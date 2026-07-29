@@ -1,0 +1,39 @@
+{
+  "version": "0.1.0",
+  "enabled": false,
+  "mode": "dry_run",
+  "repository": "kaykluz/africa-energy-software-map",
+  "default_branch": "main",
+  "source_register": "data/source-register.csv",
+  "taxonomy": "data/taxonomy.json",
+  "candidate_schema": "schemas/agent-candidate.schema.json",
+  "run_report_schema": "schemas/run-report.schema.json",
+  "limits": {
+    "max_sources_per_run": 20,
+    "max_candidates_per_run": 25,
+    "max_assertions_per_pull_request": 100,
+    "max_runtime_minutes": 30
+  },
+  "allowed_github_actions": [
+    "read_repository",
+    "create_branch",
+    "push_research_commit",
+    "open_issue",
+    "open_pull_request",
+    "comment_on_own_pull_request"
+  ],
+  "prohibited_github_actions": [
+    "push_default_branch",
+    "approve_pull_request",
+    "merge_pull_request",
+    "modify_branch_protection",
+    "modify_workflows",
+    "read_unrelated_secrets",
+    "administer_repository"
+  ],
+  "required_labels": [
+    "agent-research",
+    "needs-editorial-review"
+  ],
+  "human_review_required": true
+}

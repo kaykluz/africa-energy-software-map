@@ -1,0 +1,43 @@
+name: Correct a record
+description: Propose a sourced field-level correction.
+title: "[Correction]: "
+labels: ["data-correction", "needs-editorial-review"]
+body:
+  - type: input
+    id: record
+    attributes:
+      label: Record URL or ID
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: What is currently wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed correction
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Evidence URL
+    validations:
+      required: true
+  - type: dropdown
+    id: relationship
+    attributes:
+      label: Your relationship
+      options:
+        - No relationship
+        - Provider or employee
+        - Customer or implementation partner
+        - Investor, adviser, or funder
+        - Researcher or community contributor
+        - Other
+    validations:
+      required: true
+

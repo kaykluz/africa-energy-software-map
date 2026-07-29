@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Autonomous research run report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_id", "started_at", "finished_at", "runtime", "model", "prompt_versions", "source_ids", "candidate_count", "rejected_count", "error_count", "dry_run"],
+  "properties": {
+    "run_id": {"type": "string"},
+    "started_at": {"type": "string", "format": "date-time"},
+    "finished_at": {"type": "string", "format": "date-time"},
+    "runtime": {"type": "string"},
+    "model": {"type": "string"},
+    "prompt_versions": {"type": "array", "items": {"type": "string"}},
+    "source_ids": {"type": "array", "items": {"type": "string"}},
+    "candidate_count": {"type": "integer", "minimum": 0},
+    "rejected_count": {"type": "integer", "minimum": 0},
+    "error_count": {"type": "integer", "minimum": 0},
+    "dry_run": {"type": "boolean"},
+    "notes": {"type": "string"}
+  }
+}
+

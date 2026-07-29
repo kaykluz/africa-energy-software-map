@@ -1,0 +1,42 @@
+name: Suggest a source
+description: Add a regulator, utility, programme, database, report, or other research lead.
+title: "[Source]: "
+labels: ["source-candidate", "needs-editorial-review"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Source name
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: URL
+    validations:
+      required: true
+  - type: textarea
+    id: coverage
+    attributes:
+      label: Countries, categories, and information covered
+    validations:
+      required: true
+  - type: dropdown
+    id: source_type
+    attributes:
+      label: Source type
+      options:
+        - Customer, utility, regulator, or government
+        - DFI, donor, or implementation programme
+        - Academic or industry research
+        - Provider material
+        - News or trade reporting
+        - Aggregator or commercial database
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: access
+    attributes:
+      label: Access, licensing, or automation notes
+

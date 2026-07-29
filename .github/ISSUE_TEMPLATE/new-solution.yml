@@ -1,0 +1,58 @@
+name: Suggest a software product
+description: Propose a missing product for editorial research.
+title: "[Solution]: "
+labels: ["data-candidate", "needs-editorial-review"]
+body:
+  - type: markdown
+    attributes:
+      value: Submissions are research leads and are not published automatically.
+  - type: input
+    id: product
+    attributes:
+      label: Product name
+    validations:
+      required: true
+  - type: input
+    id: organisation
+    attributes:
+      label: Owning organisation
+    validations:
+      required: true
+  - type: textarea
+    id: function
+    attributes:
+      label: What does the product do?
+    validations:
+      required: true
+  - type: textarea
+    id: deployment
+    attributes:
+      label: African deployment
+      description: Country, customer/project, year, and live/pilot/historical status where known.
+  - type: input
+    id: source
+    attributes:
+      label: Supporting source URL
+    validations:
+      required: true
+  - type: dropdown
+    id: relationship
+    attributes:
+      label: Your relationship
+      options:
+        - No relationship
+        - Provider or employee
+        - Customer or implementation partner
+        - Investor, adviser, or funder
+        - Researcher or community contributor
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have not included confidential or sensitive infrastructure information.
+          required: true
+

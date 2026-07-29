@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/kaykluz/africa-energy-software-map/schemas/agent-candidate.schema.json",
+  "title": "AI research candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate_id",
+    "run_id",
+    "subject_type",
+    "proposed_assertion",
+    "source",
+    "source_independence",
+    "extracted_at",
+    "model",
+    "prompt_version",
+    "uncertainty",
+    "sensitive_data_flags"
+  ],
+  "properties": {
+    "candidate_id": {"type": "string", "pattern": "^cand_[a-z0-9_]+$"},
+    "run_id": {"type": "string"},
+    "subject_type": {
+      "type": "string",
+      "enum": ["organisation", "product", "deployment", "source", "market_condition"]
+    },
+    "subject_id": {"type": ["string", "null"]},
+    "proposed_assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["predicate", "value"],
+      "properties": {
+        "predicate": {"type": "string"},
+        "value": {}
+      }
+    },
+    "suggested_category_id": {"type": ["string", "null"]},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "title", "publisher", "locator", "evidence_note"],
+      "properties": {
+        "url": {"type": "string", "format": "uri"},
+        "title": {"type": "string"},
+        "publisher": {"type": "string"},
+        "publication_date": {"type": ["string", "null"], "format": "date"},
+        "locator": {"type": "string"},
+        "evidence_note": {"type": "string", "maxLength": 1000}
+      }
+    },
+    "source_independence": {
+      "type": "string",
+      "enum": [
+        "customer_or_official",
+        "independent_primary",
+        "independent_secondary",
+        "provider_authored",
+        "aggregator",
+        "community_submission"
+      ]
+    },
+    "extracted_at": {"type": "string", "format": "date-time"},
+    "model": {"type": "string"},
+    "prompt_version": {"type": "string"},
+    "uncertainty": {"type": "string"},
+    "conflicts": {"type": "array", "items": {"type": "string"}},
+    "sensitive_data_flags": {"type": "array", "items": {"type": "string"}},
+    "recommended_action": {
+      "type": "string",
+      "enum": ["editorial_review", "request_evidence", "possible_duplicate", "reject"]
+    }
+  }
+}
+

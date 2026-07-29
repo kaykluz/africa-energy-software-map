@@ -1,0 +1,92 @@
+{
+  "version": "1.0.0",
+  "stages": [
+    {
+      "id": "stage_plan_design",
+      "name": "Plan and design",
+      "order": 1,
+      "categories": [
+        {"id": "cat_planning_geospatial", "name": "Planning and geospatial"},
+        {"id": "cat_engineering_design_simulation", "name": "Engineering, design and simulation"}
+      ]
+    },
+    {
+      "id": "stage_finance_procure",
+      "name": "Finance and procure",
+      "order": 2,
+      "categories": [
+        {"id": "cat_finance_procurement_underwriting", "name": "Finance, procurement and underwriting"}
+      ]
+    },
+    {
+      "id": "stage_generate_store",
+      "name": "Generate and store",
+      "order": 3,
+      "categories": [
+        {"id": "cat_generation_storage_operations", "name": "Generation and storage operations"}
+      ]
+    },
+    {
+      "id": "stage_transmit_distribute",
+      "name": "Transmit and distribute",
+      "order": 4,
+      "categories": [
+        {"id": "cat_transmission_system_operation", "name": "Transmission and system operation"},
+        {"id": "cat_distribution_utility_operations", "name": "Distribution utility operations"},
+        {"id": "cat_forecasting_flexibility_der", "name": "Forecasting, flexibility and DER orchestration"}
+      ]
+    },
+    {
+      "id": "stage_meter_serve",
+      "name": "Meter and serve",
+      "order": 5,
+      "categories": [
+        {"id": "cat_paygo_minigrid_operations", "name": "PAYGo and mini-grid operations"},
+        {"id": "cat_retail_metering_billing_payments", "name": "Retail metering, billing and payments"},
+        {"id": "cat_ci_behind_meter", "name": "C&I and behind-the-meter"},
+        {"id": "cat_emobility_battery_networks", "name": "E-mobility and battery networks"}
+      ]
+    },
+    {
+      "id": "stage_trade_report",
+      "name": "Trade and report",
+      "order": 6,
+      "categories": [
+        {"id": "cat_trading_wheeling_settlement", "name": "Trading, wheeling and settlement"},
+        {"id": "cat_carbon_mrv_reporting", "name": "Carbon, MRV and reporting"}
+      ]
+    }
+  ],
+  "cross_cutting": [
+    {"id": "cat_data_interoperability_security", "name": "Data, interoperability and security"}
+  ],
+  "origin_classifications": [
+    "africa_built",
+    "africa_founded_global_hq",
+    "global_deployed_in_africa",
+    "public_or_open_infrastructure"
+  ],
+  "lifecycle_statuses": [
+    "active",
+    "pilot",
+    "historical",
+    "acquired",
+    "merged",
+    "inactive",
+    "under_review"
+  ],
+  "evidence_statuses": [
+    "provider_claim_only",
+    "public_source",
+    "independently_evidenced",
+    "customer_confirmed"
+  ],
+  "market_conditions": [
+    "commercial_market",
+    "bundled_or_gated",
+    "donor_supported",
+    "structurally_thin",
+    "insufficient_evidence"
+  ]
+}
+
