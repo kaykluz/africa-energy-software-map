@@ -1,0 +1,13 @@
+[
+  {
+    "country_iso2": "NG",
+    "deployment_count": 4,
+    "independent_or_customer_count": 4,
+    "provider_claim_count": 0,
+    "product_count": 3,
+    "category_counts": {
+      "cat_distribution_utility_operations": 2,
+      "cat_paygo_minigrid_operations": 2
+    }
+  }
+]

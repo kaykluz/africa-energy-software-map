@@ -1,0 +1,72 @@
+[
+  {
+    "id": "prod_001",
+    "organisation_id": "org_001",
+    "name": "CAIMS",
+    "slug": "caims",
+    "description": "Customer and asset information; network surveys; connections; digital twin",
+    "primary_category_id": "cat_distribution_utility_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial_proprietary",
+    "open_source_url": "",
+    "website": "https://beaconpowerservices.com/",
+    "launched_year": "",
+    "last_checked_at": "2026-07-24"
+  },
+  {
+    "id": "prod_002",
+    "organisation_id": "org_001",
+    "name": "Adora",
+    "slug": "adora",
+    "description": "Grid operations; outage and loss analytics; field work; commercial operations",
+    "primary_category_id": "cat_distribution_utility_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial_proprietary",
+    "open_source_url": "",
+    "website": "https://beaconpowerservices.com/",
+    "launched_year": "",
+    "last_checked_at": "2026-07-24"
+  },
+  {
+    "id": "prod_003",
+    "organisation_id": "org_001",
+    "name": "Xepp",
+    "slug": "xepp",
+    "description": "Consumption insights; payments; customer engagement; distributed solar offers",
+    "primary_category_id": "cat_retail_metering_billing_payments",
+    "lifecycle_status": "active",
+    "access_model": "not_publicly_documented",
+    "open_source_url": "",
+    "website": "https://beaconpowerservices.com/",
+    "launched_year": "",
+    "last_checked_at": "2026-07-24"
+  },
+  {
+    "id": "prod_004",
+    "organisation_id": "org_002",
+    "name": "PAM-AI",
+    "slug": "pam-ai",
+    "description": "Smart metering; payments; automation; dynamic tariffs; demand response",
+    "primary_category_id": "cat_paygo_minigrid_operations",
+    "lifecycle_status": "pilot",
+    "access_model": "commercial_service",
+    "open_source_url": "",
+    "website": "",
+    "launched_year": "",
+    "last_checked_at": "2026-07-24"
+  },
+  {
+    "id": "prod_005",
+    "organisation_id": "org_003",
+    "name": "Pai",
+    "slug": "pai",
+    "description": "Hybrid dispatch; source orchestration; monitoring; optimisation; control",
+    "primary_category_id": "cat_ci_behind_meter",
+    "lifecycle_status": "active",
+    "access_model": "not_publicly_documented",
+    "open_source_url": "",
+    "website": "https://powerlabs.energy/",
+    "launched_year": "",
+    "last_checked_at": "2026-07-24"
+  }
+]

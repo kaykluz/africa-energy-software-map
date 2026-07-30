@@ -18,4 +18,5 @@ jobs:
           python-version: "3.12"
       - name: Validate data and repository contracts
         run: python3 scripts/validate_repository.py
-
+      - name: Run migration tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py'

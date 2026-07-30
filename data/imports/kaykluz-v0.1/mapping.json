@@ -1,0 +1,274 @@
+{
+  "version": "1.0.0",
+  "source_filename": "kaykluz_africa_energy_software_map_v0_1.xlsx",
+  "eligible_sheets": [
+    "Organisations",
+    "Products",
+    "Deployments",
+    "Taxonomy",
+    "Research_Queue"
+  ],
+  "excluded_sheets": {
+    "People": "Phase 1 does not publish people profiles; contains personal data.",
+    "Submission_Template": "Contains submitter contact fields and must not enter public Git.",
+    "Summary": "Derived presentation sheet.",
+    "README_Methodology": "Documentation sheet.",
+    "Comparables": "Background research rather than product records.",
+    "Map_Export": "Derived export; regenerated from canonical tables."
+  },
+  "limits": {
+    "max_entities_per_batch": 25,
+    "max_assertions_per_batch": 100
+  },
+  "pilot_organisation_ids": [
+    "ORG-001",
+    "ORG-002",
+    "ORG-003"
+  ],
+  "category_map": {
+    "Planning and geospatial": "cat_planning_geospatial",
+    "Project development and design": "cat_engineering_design_simulation",
+    "Finance, procurement and underwriting": "cat_finance_procurement_underwriting",
+    "Generation and storage operations": "cat_generation_storage_operations",
+    "Transmission and system operation": "cat_transmission_system_operation",
+    "Distribution utility operations": "cat_distribution_utility_operations",
+    "Forecasting, flexibility and DER orchestration": "cat_forecasting_flexibility_der",
+    "Mini-grid, PAYGo and off-grid": "cat_paygo_minigrid_operations",
+    "Retail billing and customer experience": "cat_retail_metering_billing_payments",
+    "C&I and behind-the-meter energy": "cat_ci_behind_meter",
+    "E-mobility and battery networks": "cat_emobility_battery_networks",
+    "Trading, wheeling and settlement": "cat_trading_wheeling_settlement",
+    "MRV, carbon and reporting": "cat_carbon_mrv_reporting",
+    "Cybersecurity and interoperability": "cat_data_interoperability_security"
+  },
+  "country_codes": {
+    "Angola": "AO",
+    "Australia": "AU",
+    "Benin": "BJ",
+    "Botswana": "BW",
+    "Brazil": "BR",
+    "Burkina Faso": "BF",
+    "Cabo Verde": "CV",
+    "Cambodia": "KH",
+    "Canada": "CA",
+    "China": "CN",
+    "Comoros": "KM",
+    "Democratic Republic of the Congo": "CD",
+    "Egypt": "EG",
+    "Ethiopia": "ET",
+    "France": "FR",
+    "Germany": "DE",
+    "Ghana": "GH",
+    "Kenya": "KE",
+    "Madagascar": "MG",
+    "Mozambique": "MZ",
+    "Namibia": "NA",
+    "Niger": "NE",
+    "Nigeria": "NG",
+    "Rwanda": "RW",
+    "Senegal": "SN",
+    "South Africa": "ZA",
+    "Spain": "ES",
+    "São Tomé and Príncipe": "ST",
+    "Tanzania": "TZ",
+    "Togo": "TG",
+    "Tunisia": "TN",
+    "Uganda": "UG",
+    "United Kingdom": "GB",
+    "United States": "US",
+    "Zambia": "ZM",
+    "Zimbabwe": "ZW"
+  },
+  "source_domains": {
+    "afd.fr": {
+      "publisher": "Agence Française de Développement",
+      "source_type": "official_programme",
+      "independence_class": "independent_primary"
+    },
+    "digital-energy.eu": {
+      "publisher": "Digital Energy Challenge",
+      "source_type": "official_programme",
+      "independence_class": "independent_primary"
+    },
+    "kplc.co.ke": {
+      "publisher": "Kenya Power",
+      "source_type": "customer_official",
+      "independence_class": "customer_or_official"
+    },
+    "ecg.com.gh": {
+      "publisher": "Electricity Company of Ghana",
+      "source_type": "customer_official",
+      "independence_class": "customer_or_official"
+    }
+  },
+  "capabilities": [
+    {
+      "id": "cap_map",
+      "name": "Map",
+      "description": "Geospatial, network, site or resource mapping."
+    },
+    {
+      "id": "cap_assess",
+      "name": "Assess",
+      "description": "Technical, commercial, demand or credit assessment."
+    },
+    {
+      "id": "cap_design",
+      "name": "Design",
+      "description": "System sizing, engineering and simulation."
+    },
+    {
+      "id": "cap_finance",
+      "name": "Finance",
+      "description": "Credit, underwriting, capital workflow or receivables."
+    },
+    {
+      "id": "cap_procure",
+      "name": "Procure",
+      "description": "Equipment sourcing, tenders and supplier workflow."
+    },
+    {
+      "id": "cap_sense",
+      "name": "Sense",
+      "description": "Metering, telemetry and data capture."
+    },
+    {
+      "id": "cap_control",
+      "name": "Control",
+      "description": "Dispatch, remote control and automation."
+    },
+    {
+      "id": "cap_forecast",
+      "name": "Forecast",
+      "description": "Demand, generation, failure or market forecasting."
+    },
+    {
+      "id": "cap_optimise",
+      "name": "Optimise",
+      "description": "Operational, tariff, storage or network optimisation."
+    },
+    {
+      "id": "cap_maintain",
+      "name": "Maintain",
+      "description": "Asset management, field service and predictive maintenance."
+    },
+    {
+      "id": "cap_bill_collect",
+      "name": "Bill and collect",
+      "description": "Billing, vending, mobile payments and collections."
+    },
+    {
+      "id": "cap_trade_settle",
+      "name": "Trade and settle",
+      "description": "Market transactions, wheeling, reconciliation and settlement."
+    },
+    {
+      "id": "cap_verify_report",
+      "name": "Verify and report",
+      "description": "MRV, carbon, impact, compliance and financial reporting."
+    },
+    {
+      "id": "cap_engage",
+      "name": "Engage",
+      "description": "Customer applications, support and behavioural insight."
+    }
+  ],
+  "capability_keywords": {
+    "cap_map": [
+      "map",
+      "geospatial",
+      "gis",
+      "site selection",
+      "network survey",
+      "digital twin"
+    ],
+    "cap_assess": [
+      "assessment",
+      "credit",
+      "risk",
+      "feasibility",
+      "qualification"
+    ],
+    "cap_design": [
+      "design",
+      "sizing",
+      "simulation",
+      "modelling",
+      "modeling"
+    ],
+    "cap_finance": [
+      "finance",
+      "financing",
+      "underwriting",
+      "receivable",
+      "tokenisation",
+      "tokenization"
+    ],
+    "cap_procure": [
+      "procurement",
+      "sourcing",
+      "supplier",
+      "tender"
+    ],
+    "cap_sense": [
+      "meter",
+      "telemetry",
+      "monitor",
+      "sensor",
+      "data capture",
+      "consumption"
+    ],
+    "cap_control": [
+      "control",
+      "automation",
+      "dispatch",
+      "orchestration"
+    ],
+    "cap_forecast": [
+      "forecast",
+      "prediction",
+      "predictive"
+    ],
+    "cap_optimise": [
+      "optimisation",
+      "optimization",
+      "dynamic tariff",
+      "demand response",
+      "loss analytics"
+    ],
+    "cap_maintain": [
+      "maintenance",
+      "field work",
+      "field service",
+      "asset management",
+      "outage"
+    ],
+    "cap_bill_collect": [
+      "bill",
+      "payment",
+      "collection",
+      "vending",
+      "token purchase"
+    ],
+    "cap_trade_settle": [
+      "trading",
+      "wheeling",
+      "settlement",
+      "marketplace",
+      "transaction management"
+    ],
+    "cap_verify_report": [
+      "mrv",
+      "emissions",
+      "reporting",
+      "verification",
+      "carbon"
+    ],
+    "cap_engage": [
+      "customer engagement",
+      "customer support",
+      "consumer insight",
+      "customer app"
+    ]
+  }
+}

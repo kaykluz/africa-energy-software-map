@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Workbook migration report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "status",
+    "source",
+    "privacy",
+    "input_counts",
+    "output_counts",
+    "warnings",
+    "review_batches"
+  ],
+  "properties": {
+    "version": {"type": "string"},
+    "status": {"const": "candidate_only"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["filename", "sha256"],
+      "properties": {
+        "filename": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["excluded_sheets", "personal_records_emitted"],
+      "properties": {
+        "excluded_sheets": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "personal_records_emitted": {"const": 0}
+      }
+    },
+    "input_counts": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "output_counts": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "warnings": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "review_batches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "organisation_ids",
+          "entity_count",
+          "assertion_count"
+        ],
+        "properties": {
+          "id": {"type": "string", "pattern": "^batch_[0-9]{3}$"},
+          "organisation_ids": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "entity_count": {"type": "integer", "minimum": 1, "maximum": 25},
+          "assertion_count": {"type": "integer", "minimum": 1, "maximum": 100}
+        }
+      }
+    },
+    "selected_organisation_ids": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    }
+  }
+}

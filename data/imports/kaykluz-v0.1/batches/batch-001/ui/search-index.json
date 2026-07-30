@@ -1,0 +1,50 @@
+[
+  {
+    "id": "prod_002",
+    "type": "product",
+    "name": "Adora",
+    "context": "Grid operations; outage and loss analytics; field work; commercial operations"
+  },
+  {
+    "id": "org_001",
+    "type": "organisation",
+    "name": "Beacon Power Services",
+    "context": "Distribution utility digitisation, grid mapping, customer and asset systems"
+  },
+  {
+    "id": "prod_001",
+    "type": "product",
+    "name": "CAIMS",
+    "context": "Customer and asset information; network surveys; connections; digital twin"
+  },
+  {
+    "id": "org_002",
+    "type": "organisation",
+    "name": "PAM Africa",
+    "context": "Mini-grid optimisation, smart metering, payments and demand response"
+  },
+  {
+    "id": "prod_004",
+    "type": "product",
+    "name": "PAM-AI",
+    "context": "Smart metering; payments; automation; dynamic tariffs; demand response"
+  },
+  {
+    "id": "prod_005",
+    "type": "product",
+    "name": "Pai",
+    "context": "Hybrid dispatch; source orchestration; monitoring; optimisation; control"
+  },
+  {
+    "id": "org_003",
+    "type": "organisation",
+    "name": "PowerLabs",
+    "context": "Hybrid power orchestration for grid, solar, batteries, generators and inverters"
+  },
+  {
+    "id": "prod_003",
+    "type": "product",
+    "name": "Xepp",
+    "context": "Consumption insights; payments; customer engagement; distributed solar offers"
+  }
+]

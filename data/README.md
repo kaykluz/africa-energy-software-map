@@ -25,5 +25,7 @@ imported.
 - [`source-register.csv`](source-register.csv) — canonical approved-source list
 - [`releases/`](releases/) — conventions for future versioned snapshots
 - [`research-queue/`](research-queue/) — reviewed leads not yet publishable
+- [`imports/`](imports/) — candidate-only migrations from external structured
+  sources; not part of a public release
 
 Table definitions are in [`../schemas/tables.json`](../schemas/tables.json).
