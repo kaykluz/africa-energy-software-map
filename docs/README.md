@@ -9,6 +9,7 @@
 - [15 — Phase 1 page specifications](15-phase-1-page-specifications.md)
 - [16 — Workbook migration protocol](16-workbook-migration-protocol.md)
 - [17 — Visual interaction redesign](17-visual-interaction-redesign.md)
+- [18 — Expansion architecture and roadmap](18-expansion-architecture-and-roadmap.md)
 
 ## Data and evidence
 

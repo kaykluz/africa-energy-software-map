@@ -45,11 +45,24 @@ test("server-renders the Directory and its export action", async () => {
   const response = await render("/directory?country=NG");
   assert.equal(response.status, 200);
   const html = await response.text();
+  const textHtml = html.replaceAll(/<!--.*?-->/g, "");
   assert.match(html, /<h1[^>]*>Directory<\/h1>/i);
   assert.match(html, /Export current view/);
+  assert.match(html, /Page size/);
+  assert.match(textHtml, /Page 1 of 1/);
   assert.match(html, /Nigeria/);
   assert.match(html, /PAM-AI/);
   assert.doesNotMatch(html, /Pai Enterprise/);
+});
+
+test("server search includes organisation records", async () => {
+  const response = await render("/search?q=Beacon");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Results for “Beacon”/);
+  assert.match(html, /Organisations/);
+  assert.match(html, /Beacon Power Services/);
+  assert.match(html, /Open record/);
 });
 
 test("server-renders a source-linked product profile", async () => {

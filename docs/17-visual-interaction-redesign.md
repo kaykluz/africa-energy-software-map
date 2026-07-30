@@ -323,3 +323,6 @@ route tests.
 - `web/components/registry-explorer.tsx` — Explore, Map, Data and product preview.
 - `web/app/visual-system.css` — version 2 visual and motion system.
 - `design/tokens.json` — machine-readable presentation tokens.
+
+Capacity, data-boundary and future-scope rules are defined in
+[`18-expansion-architecture-and-roadmap.md`](18-expansion-architecture-and-roadmap.md).

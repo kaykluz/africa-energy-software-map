@@ -9,6 +9,7 @@ import {
   sources,
   type EvidenceStatus,
 } from "@/lib/registry-data";
+import { normaliseQuery } from "@/lib/registry-query";
 import { EvidenceStatusLabel } from "@/components/semantic-tags";
 
 export function MethodologyPage() {
@@ -292,15 +293,38 @@ export function DataPage() {
 }
 
 export function SearchResultsPage({ query }: { query: string }) {
-  const term = query.trim().toLowerCase();
+  const term = normaliseQuery(query);
   const productResults = term
     ? products.filter((product) =>
-        [product.name, product.organisation, product.category, product.description, ...product.capabilities]
-          .join(" ").toLowerCase().includes(term),
+        normaliseQuery(
+          [
+            product.name,
+            product.organisation,
+            product.category,
+            product.description,
+            ...product.capabilities,
+          ].join(" "),
+        ).includes(term),
+      )
+    : [];
+  const organisationResults = term
+    ? organisations.filter((organisation) =>
+        normaliseQuery(
+          [
+            organisation.name,
+            organisation.type,
+            organisation.description,
+            organisation.origin,
+            organisation.countryOfOrigin,
+            organisation.headquarters,
+          ].join(" "),
+        ).includes(term),
       )
     : [];
   const categoryResults = term
-    ? categories.filter((category) => category.name.toLowerCase().includes(term))
+    ? categories.filter((category) =>
+        normaliseQuery(category.name).includes(term),
+      )
     : [];
   return (
     <main className="standard-width search-page" id="main-content">
@@ -315,12 +339,31 @@ export function SearchResultsPage({ query }: { query: string }) {
       </header>
       {!query ? (
         <div className="inline-empty"><strong>Enter at least two characters.</strong><p>Try “metering”, “Nigeria” or “PAYGo”.</p></div>
-      ) : productResults.length || categoryResults.length ? (
+      ) : productResults.length ||
+        organisationResults.length ||
+        categoryResults.length ? (
         <div className="search-groups">
           {productResults.length ? (
             <section><h2>Products <span>{productResults.length}</span></h2>
               {productResults.map((product) => (
                 <Link href={`/products/${product.slug}`} key={product.id}><span><strong>{product.name}</strong><small>{product.organisation}</small></span><span>{product.category} →</span></Link>
+              ))}
+            </section>
+          ) : null}
+          {organisationResults.length ? (
+            <section>
+              <h2>Organisations <span>{organisationResults.length}</span></h2>
+              {organisationResults.map((organisation) => (
+                <Link
+                  href={`/organisations/${organisation.slug}`}
+                  key={organisation.id}
+                >
+                  <span>
+                    <strong>{organisation.name}</strong>
+                    <small>{organisation.type}</small>
+                  </span>
+                  <span>Open record →</span>
+                </Link>
               ))}
             </section>
           ) : null}

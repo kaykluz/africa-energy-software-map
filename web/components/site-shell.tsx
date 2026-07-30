@@ -5,9 +5,11 @@ import { usePathname } from "next/navigation";
 import {
   africanCountries,
   categories,
+  organisations,
   products,
   release,
 } from "@/lib/registry-data";
+import { normaliseQuery } from "@/lib/registry-query";
 import {
   type KeyboardEvent,
   type ReactNode,
@@ -62,25 +64,21 @@ export function SiteShell({ children }: { children: ReactNode }) {
   }, [menuOpen, searchOpen]);
 
   const searchResults = useMemo(() => {
-    const normalised = query.trim().toLowerCase();
+    const normalised = normaliseQuery(query);
     if (normalised.length < 2) return [];
-    const aliases = normalised
-      .replaceAll("pay-as-you-go", "paygo")
-      .replaceAll("commercial and industrial", "c&i")
-      .replaceAll("advanced metering", "ami");
+    const aliases = normalised;
     return [
       ...products
         .filter((product) =>
-          [
-            product.name,
-            product.organisation,
-            product.description,
-            product.category,
-            ...product.capabilities,
-          ]
-            .join(" ")
-            .toLowerCase()
-            .includes(aliases),
+          normaliseQuery(
+            [
+              product.name,
+              product.organisation,
+              product.description,
+              product.category,
+              ...product.capabilities,
+            ].join(" "),
+          ).includes(aliases),
         )
         .map((product) => ({
           type: "Product",
@@ -88,9 +86,27 @@ export function SiteShell({ children }: { children: ReactNode }) {
           context: product.organisation,
           href: `/products/${product.slug}`,
         })),
+      ...organisations
+        .filter((organisation) =>
+          normaliseQuery(
+            [
+              organisation.name,
+              organisation.type,
+              organisation.description,
+              organisation.countryOfOrigin,
+              organisation.headquarters,
+            ].join(" "),
+          ).includes(aliases),
+        )
+        .map((organisation) => ({
+          type: "Organisation",
+          name: organisation.name,
+          context: organisation.type,
+          href: `/organisations/${organisation.slug}`,
+        })),
       ...categories
         .filter((category) =>
-          category.name.toLowerCase().includes(aliases),
+          normaliseQuery(category.name).includes(aliases),
         )
         .map((category) => ({
           type: "Capability",
@@ -99,7 +115,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           href: `/?category=${category.id}`,
         })),
       ...africanCountries
-        .filter(([, name]) => name.toLowerCase().includes(aliases))
+        .filter(([, name]) => normaliseQuery(name).includes(aliases))
         .slice(0, 4)
         .map(([iso2, name]) => ({
           type: "Country",
@@ -107,7 +123,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           context: iso2,
           href: `/countries/${iso2.toLowerCase()}`,
         })),
-    ].slice(0, 8);
+    ].slice(0, 10);
   }, [query]);
 
   function onSearchKeyDown(event: KeyboardEvent<HTMLInputElement>) {

@@ -18,6 +18,9 @@ export default async function Directory({
       initialCountry={params.country}
       initialEvidence={params.evidence}
       initialQuery={params.q}
+      initialOrigin={params.origin}
+      initialLifecycle={params.lifecycle}
+      initialAccess={params.access}
       key={JSON.stringify(params)}
       view="directory"
     />

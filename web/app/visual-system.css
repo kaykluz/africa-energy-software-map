@@ -548,8 +548,14 @@ body {
   animation: v2-slide-left .5s var(--v2-ease) both;
 }
 
-.v2-filter-fields { display: grid; margin-block: auto; border-top: 1px solid var(--v2-line); }
-.v2-filter-fields label { display: grid; padding: 24px 0; border-bottom: 1px solid var(--v2-line); grid-template-columns: 110px 1fr; gap: 20px; }
+.v2-filter-fields {
+  display: grid;
+  flex: 1;
+  margin: 18px 0;
+  border-top: 1px solid var(--v2-line);
+  overflow-y: auto;
+}
+.v2-filter-fields label { display: grid; padding: 17px 0; border-bottom: 1px solid var(--v2-line); grid-template-columns: 110px 1fr; gap: 20px; }
 .v2-filter-fields label > span { color: var(--muted); font: .68rem var(--font-mono); text-transform: uppercase; }
 .v2-filter-fields select { width: 100%; border: 0; outline: 0; background: transparent; font-size: 1.1rem; font-weight: 600; }
 
@@ -664,6 +670,16 @@ body {
 .v2-product-orb small { color: var(--muted); font-size: .67rem; }
 .v2-product-orb:hover small { color: #bfc5bf; }
 .v2-product-orb > i { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; color: var(--v2-teal-dark); background: #d8f4ec; font: .65rem var(--font-mono); font-style: normal; }
+.v2-category-more {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 4px 2px;
+  color: var(--v2-blue);
+  font-size: .7rem;
+  font-weight: 700;
+  text-decoration: none;
+}
 
 .v2-category-empty { position: relative; z-index: 1; display: grid; min-height: 150px; align-content: end; justify-items: start; }
 .v2-category-empty > span { display: grid; width: 42px; height: 42px; place-items: center; margin-bottom: 14px; border: 1px dashed var(--v2-line-dark); border-radius: 50%; color: var(--muted); }
@@ -838,8 +854,10 @@ body {
   z-index: 2;
   display: grid;
   width: min(720px, 100%);
+  max-height: 520px;
   margin: auto;
-  padding: 0;
+  padding: 0 8px 0 0;
+  overflow-y: auto;
   list-style: none;
 }
 
@@ -858,6 +876,7 @@ body {
 
 .v2-country-rank button > span { color: var(--muted); font: .65rem var(--font-mono); }
 .v2-country-rank button > i { height: 7px; border-radius: 999px; background: var(--v2-teal); }
+.v2-country-rank button > i.unknown { background: #dfe2da; }
 .v2-country-rank button > b { text-align: right; }
 
 .v2-country-panel {
@@ -906,6 +925,17 @@ body {
 .v2-deployment-list b { font: .66rem var(--font-mono); }
 .v2-deployment-list i { color: var(--v2-teal); font-style: normal; transition: transform .3s var(--v2-ease); }
 .v2-deployment-list button:hover i { transform: translate(4px, -4px); }
+.v2-country-more {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  color: var(--v2-teal);
+  border-bottom: 1px solid #353b36;
+  font-size: .72rem;
+  font-weight: 700;
+  text-decoration: none;
+}
 
 .v2-country-unknown { display: grid; margin-block: auto; justify-items: start; }
 .v2-country-unknown > span { display: grid; width: 74px; height: 74px; place-items: center; margin-bottom: 18px; border: 1px solid #4b534b; border-radius: 50%; color: var(--v2-teal); font-size: 2rem; }
@@ -1024,6 +1054,32 @@ body {
 .v2-data-cards small { color: var(--muted); }
 .v2-data-cards i { margin-top: 28px; font-size: .72rem; font-style: normal; }
 .v2-data-cards b { position: absolute; right: 20px; bottom: 18px; color: var(--v2-teal); }
+.v2-pagination {
+  display: grid;
+  align-items: center;
+  padding: 18px 0;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+}
+.v2-pagination button {
+  width: max-content;
+  min-height: 38px;
+  padding: 7px 12px;
+  border: 1px solid var(--v2-line-dark);
+  border-radius: 999px;
+  background: var(--v2-paper-bright);
+  font-size: .72rem;
+  font-weight: 700;
+}
+.v2-pagination button:last-child { justify-self: end; }
+.v2-pagination button:disabled { cursor: not-allowed; opacity: .38; }
+.v2-pagination > span {
+  display: grid;
+  justify-items: center;
+  font-size: .72rem;
+  font-weight: 700;
+}
+.v2-pagination small { color: var(--muted); font: .58rem var(--font-mono); }
 .v2-data-foot { display: flex; justify-content: space-between; padding: 18px 4px; color: var(--muted); font: .62rem var(--font-mono); }
 .v2-data-foot a { color: var(--v2-blue); text-decoration: none; }
 

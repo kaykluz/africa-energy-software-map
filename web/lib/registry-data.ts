@@ -4,6 +4,28 @@ export type EvidenceStatus =
   | "independently_evidenced"
   | "customer_confirmed";
 
+export type OriginClassification =
+  | "africa_built"
+  | "africa_founded_global_hq"
+  | "global_deployed_in_africa"
+  | "public_or_open_infrastructure";
+
+export type ProductLifecycle =
+  | "active"
+  | "pilot"
+  | "historical"
+  | "acquired"
+  | "merged"
+  | "inactive"
+  | "under_review";
+
+export type DeploymentLifecycle =
+  | "live"
+  | "pilot"
+  | "historical"
+  | "ended"
+  | "under_review";
+
 export type Product = {
   id: string;
   name: string;
@@ -14,10 +36,12 @@ export type Product = {
   categoryId: string;
   category: string;
   stageId: string;
-  origin: "africa_built" | "global_deployed_in_africa";
-  lifecycle: "active" | "pilot" | "historical";
+  origin: OriginClassification;
+  lifecycle: ProductLifecycle;
   accessModel: string;
+  openSourceUrl?: string;
   website: string;
+  launchedYear?: string;
   lastChecked: string;
   deploymentCountries: string[];
   evidence: EvidenceStatus[];
@@ -31,8 +55,8 @@ export type Deployment = {
   country: string;
   area: string;
   customer: string;
-  customerDisclosure: "named" | "undisclosed";
-  lifecycle: "live" | "pilot" | "historical";
+  customerDisclosure: "named" | "undisclosed" | "unknown" | "confidential";
+  lifecycle: DeploymentLifecycle;
   year: string;
   evidence: EvidenceStatus;
   sourceId: string;
@@ -526,6 +550,13 @@ export const evidenceLabels: Record<EvidenceStatus, string> = {
   customer_confirmed: "Customer confirmed",
 };
 
+export const originLabels: Record<OriginClassification, string> = {
+  africa_built: "Africa-built",
+  africa_founded_global_hq: "Africa-founded, global HQ",
+  global_deployed_in_africa: "Global, deployed in Africa",
+  public_or_open_infrastructure: "Public or open infrastructure",
+};
+
 export const productBySlug = (slug: string) =>
   products.find((product) => product.slug === slug);
 
@@ -534,3 +565,14 @@ export const productById = (id: string) =>
 
 export const organisationBySlug = (slug: string) =>
   organisations.find((organisation) => organisation.slug === slug);
+
+export const registrySnapshot = {
+  release,
+  organisations,
+  products,
+  deployments,
+  sources,
+  stages,
+  categories,
+  countries: africanCountries,
+} as const;

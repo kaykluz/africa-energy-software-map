@@ -19,6 +19,9 @@ export default async function Deployments({
       initialCountry={params.country}
       initialEvidence={params.evidence}
       initialQuery={params.q}
+      initialOrigin={params.origin}
+      initialLifecycle={params.lifecycle}
+      initialAccess={params.access}
       key={JSON.stringify(params)}
       view="deployments"
     />

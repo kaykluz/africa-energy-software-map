@@ -7,6 +7,7 @@ import {
   categories,
   deployments,
   evidenceLabels,
+  originLabels,
   productById,
   products,
   release,
@@ -14,6 +15,12 @@ import {
   type EvidenceStatus,
   type Product,
 } from "@/lib/registry-data";
+import {
+  filterProducts,
+  paginate,
+  sortProducts,
+  type ProductSort,
+} from "@/lib/registry-query";
 import {
   EvidenceStatusLabel,
   Freshness,
@@ -53,12 +60,18 @@ export function RegistryExplorer({
   initialCategory = "all",
   initialEvidence = "all",
   initialCountry = "all",
+  initialOrigin = "all",
+  initialLifecycle = "all",
+  initialAccess = "all",
 }: {
   view: RegistryView;
   initialQuery?: string;
   initialCategory?: string;
   initialEvidence?: string;
   initialCountry?: string;
+  initialOrigin?: string;
+  initialLifecycle?: string;
+  initialAccess?: string;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -66,6 +79,9 @@ export function RegistryExplorer({
   const [categoryFilter, setCategoryFilter] = useState(initialCategory);
   const [evidenceFilter, setEvidenceFilter] = useState(initialEvidence);
   const [countryFilter, setCountryFilter] = useState(initialCountry);
+  const [originFilter, setOriginFilter] = useState(initialOrigin);
+  const [lifecycleFilter, setLifecycleFilter] = useState(initialLifecycle);
+  const [accessFilter, setAccessFilter] = useState(initialAccess);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const openerRef = useRef<HTMLElement | null>(null);
@@ -85,39 +101,33 @@ export function RegistryExplorer({
   }, [filtersOpen, selectedProduct]);
 
   const filteredProducts = useMemo(() => {
-    const term = query.trim().toLowerCase();
-    return products.filter((product) => {
-      const matchesQuery =
-        !term ||
-        [
-          product.name,
-          product.organisation,
-          product.description,
-          product.category,
-          ...product.capabilities,
-        ]
-          .join(" ")
-          .toLowerCase()
-          .includes(term);
-      const matchesCategory =
-        categoryFilter === "all" || product.categoryId === categoryFilter;
-      const matchesEvidence =
-        evidenceFilter === "all" ||
-        product.evidence.includes(evidenceFilter as EvidenceStatus);
-      const matchesCountry =
-        countryFilter === "all" ||
-        product.deploymentCountries.includes(countryFilter);
-      return (
-        matchesQuery && matchesCategory && matchesEvidence && matchesCountry
-      );
+    return filterProducts(products, {
+      query,
+      category: categoryFilter,
+      evidence: evidenceFilter,
+      country: countryFilter,
+      origin: originFilter,
+      lifecycle: lifecycleFilter,
+      access: accessFilter,
     });
-  }, [categoryFilter, countryFilter, evidenceFilter, query]);
+  }, [
+    accessFilter,
+    categoryFilter,
+    countryFilter,
+    evidenceFilter,
+    lifecycleFilter,
+    originFilter,
+    query,
+  ]);
 
   function updateUrl(next: {
     q?: string;
     category?: string;
     evidence?: string;
     country?: string;
+    origin?: string;
+    lifecycle?: string;
+    access?: string;
   }) {
     const params = new URLSearchParams();
     const values = {
@@ -125,11 +135,17 @@ export function RegistryExplorer({
       category: next.category ?? categoryFilter,
       evidence: next.evidence ?? evidenceFilter,
       country: next.country ?? countryFilter,
+      origin: next.origin ?? originFilter,
+      lifecycle: next.lifecycle ?? lifecycleFilter,
+      access: next.access ?? accessFilter,
     };
     if (values.q.trim()) params.set("q", values.q.trim());
     if (values.category !== "all") params.set("category", values.category);
     if (values.evidence !== "all") params.set("evidence", values.evidence);
     if (values.country !== "all") params.set("country", values.country);
+    if (values.origin !== "all") params.set("origin", values.origin);
+    if (values.lifecycle !== "all") params.set("lifecycle", values.lifecycle);
+    if (values.access !== "all") params.set("access", values.access);
     const search = params.toString();
     router.replace(search ? `${pathname}?${search}` : pathname, {
       scroll: false,
@@ -141,6 +157,9 @@ export function RegistryExplorer({
     setCategoryFilter("all");
     setEvidenceFilter("all");
     setCountryFilter("all");
+    setOriginFilter("all");
+    setLifecycleFilter("all");
+    setAccessFilter("all");
     router.replace(pathname, { scroll: false });
   }
 
@@ -159,6 +178,13 @@ export function RegistryExplorer({
     countryFilter !== "all"
       ? africanCountries.find(([iso2]) => iso2 === countryFilter)?.[1]
       : null,
+    originFilter !== "all"
+      ? originLabels[originFilter as keyof typeof originLabels]
+      : null,
+    lifecycleFilter !== "all"
+      ? lifecycleFilter.replaceAll("_", " ")
+      : null,
+    accessFilter !== "all" ? accessFilter : null,
   ].filter(Boolean) as string[];
 
   const preservedSearch = (() => {
@@ -167,6 +193,9 @@ export function RegistryExplorer({
     if (categoryFilter !== "all") params.set("category", categoryFilter);
     if (evidenceFilter !== "all") params.set("evidence", evidenceFilter);
     if (countryFilter !== "all") params.set("country", countryFilter);
+    if (originFilter !== "all") params.set("origin", originFilter);
+    if (lifecycleFilter !== "all") params.set("lifecycle", lifecycleFilter);
+    if (accessFilter !== "all") params.set("access", accessFilter);
     return params.toString();
   })();
 
@@ -237,6 +266,9 @@ export function RegistryExplorer({
           close={() => setFiltersOpen(false)}
           countryFilter={countryFilter}
           evidenceFilter={evidenceFilter}
+          originFilter={originFilter}
+          lifecycleFilter={lifecycleFilter}
+          accessFilter={accessFilter}
           resultCount={filteredProducts.length}
           setCategoryFilter={(value) => {
             setCategoryFilter(value);
@@ -250,6 +282,18 @@ export function RegistryExplorer({
             setEvidenceFilter(value);
             updateUrl({ evidence: value });
           }}
+          setOriginFilter={(value) => {
+            setOriginFilter(value);
+            updateUrl({ origin: value });
+          }}
+          setLifecycleFilter={(value) => {
+            setLifecycleFilter(value);
+            updateUrl({ lifecycle: value });
+          }}
+          setAccessFilter={(value) => {
+            setAccessFilter(value);
+            updateUrl({ access: value });
+          }}
         />
       ) : null}
 
@@ -258,6 +302,7 @@ export function RegistryExplorer({
           filteredProducts={filteredProducts}
           initialCategory={initialCategory}
           onOpenProduct={openProduct}
+          preservedSearch={preservedSearch}
           query={query}
         />
       ) : null}
@@ -265,6 +310,7 @@ export function RegistryExplorer({
         <DeploymentsView
           filteredProducts={filteredProducts}
           onOpenProduct={openProduct}
+          preservedSearch={preservedSearch}
         />
       ) : null}
       {view === "directory" ? (
@@ -353,24 +399,42 @@ function CommandBar({
 }
 
 function FilterPanel({
+  accessFilter,
   categoryFilter,
   close,
   countryFilter,
   evidenceFilter,
+  lifecycleFilter,
+  originFilter,
   resultCount,
+  setAccessFilter,
   setCategoryFilter,
   setCountryFilter,
   setEvidenceFilter,
+  setLifecycleFilter,
+  setOriginFilter,
 }: {
+  accessFilter: string;
   categoryFilter: string;
   close: () => void;
   countryFilter: string;
   evidenceFilter: string;
+  lifecycleFilter: string;
+  originFilter: string;
   resultCount: number;
+  setAccessFilter: (value: string) => void;
   setCategoryFilter: (value: string) => void;
   setCountryFilter: (value: string) => void;
   setEvidenceFilter: (value: string) => void;
+  setLifecycleFilter: (value: string) => void;
+  setOriginFilter: (value: string) => void;
 }) {
+  const accessModels = Array.from(
+    new Set(products.map((product) => product.accessModel)),
+  ).sort();
+  const lifecycleStates = Array.from(
+    new Set(products.map((product) => product.lifecycle)),
+  ).sort();
   return (
     <div className="v2-overlay" onMouseDown={close}>
       <section
@@ -423,6 +487,44 @@ function FilterPanel({
               ))}
             </select>
           </label>
+          <label>
+            <span>Origin</span>
+            <select
+              onChange={(event) => setOriginFilter(event.target.value)}
+              value={originFilter}
+            >
+              <option value="all">All origins</option>
+              {Object.entries(originLabels).map(([value, label]) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span>Lifecycle</span>
+            <select
+              onChange={(event) => setLifecycleFilter(event.target.value)}
+              value={lifecycleFilter}
+            >
+              <option value="all">All lifecycle states</option>
+              {lifecycleStates.map((value) => (
+                <option key={value} value={value}>
+                  {value.replaceAll("_", " ")}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span>Access</span>
+            <select
+              onChange={(event) => setAccessFilter(event.target.value)}
+              value={accessFilter}
+            >
+              <option value="all">All access models</option>
+              {accessModels.map((value) => (
+                <option key={value} value={value}>{value}</option>
+              ))}
+            </select>
+          </label>
         </div>
         <button className="v2-panel-apply" onClick={close} type="button">
           Show {resultCount} {resultCount === 1 ? "result" : "results"}
@@ -437,11 +539,13 @@ function StackView({
   filteredProducts,
   initialCategory,
   onOpenProduct,
+  preservedSearch,
   query,
 }: {
   filteredProducts: Product[];
   initialCategory: string;
   onOpenProduct: (product: Product, element: HTMLElement) => void;
+  preservedSearch: string;
   query: string;
 }) {
   const requestedStage =
@@ -519,6 +623,10 @@ function StackView({
                   const categoryProducts = filteredProducts.filter(
                     (product) => product.categoryId === category.id,
                   );
+                  const visibleProducts = categoryProducts.slice(
+                    0,
+                    query ? 6 : 4,
+                  );
                   return (
                     <article
                       className={`v2-category-card v2-market-${category.marketCondition}`}
@@ -532,13 +640,27 @@ function StackView({
                       </header>
                       {categoryProducts.length ? (
                         <div className="v2-product-orbits">
-                          {categoryProducts.map((product) => (
+                          {visibleProducts.map((product) => (
                             <ProductOrb
                               key={product.id}
                               onOpenProduct={onOpenProduct}
                               product={product}
                             />
                           ))}
+                          {categoryProducts.length > visibleProducts.length ? (
+                            <Link
+                              className="v2-category-more"
+                              href={withSearchParam(
+                                "/directory",
+                                preservedSearch,
+                                "category",
+                                category.id,
+                              )}
+                            >
+                              View all {categoryProducts.length} products
+                              <span aria-hidden="true">→</span>
+                            </Link>
+                          ) : null}
                         </div>
                       ) : (
                         <div className="v2-category-empty">
@@ -633,9 +755,11 @@ function ProductOrb({
 function DeploymentsView({
   filteredProducts,
   onOpenProduct,
+  preservedSearch,
 }: {
   filteredProducts: Product[];
   onOpenProduct: (product: Product, element: HTMLElement) => void;
+  preservedSearch: string;
 }) {
   const [geography, setGeography] = useState("evidenced");
   const [representation, setRepresentation] = useState<"grid" | "ranked">(
@@ -645,10 +769,31 @@ function DeploymentsView({
   const visibleDeployments = deployments.filter((deployment) =>
     filteredProducts.some((product) => product.id === deployment.productId),
   );
-  const selected = africanCountries.find(([iso2]) => iso2 === selectedCountry);
-  const selectedDeployments = visibleDeployments.filter(
-    (deployment) => deployment.countryIso2 === selectedCountry,
+  const assessedCountries = new Set(
+    deployments.map((deployment) => deployment.countryIso2),
   );
+  const rankedCountries = africanCountries
+    .map(([iso2, name]) => ({
+      iso2,
+      name,
+      count:
+        geography === "evidenced"
+          ? visibleDeployments.filter(
+              (deployment) => deployment.countryIso2 === iso2,
+            ).length
+          : 0,
+      assessed: geography === "evidenced" && assessedCountries.has(iso2),
+    }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+  const selected = africanCountries.find(([iso2]) => iso2 === selectedCountry);
+  const selectedCountryAssessed =
+    geography === "evidenced" && assessedCountries.has(selectedCountry);
+  const selectedDeployments =
+    geography === "evidenced"
+      ? visibleDeployments.filter(
+          (deployment) => deployment.countryIso2 === selectedCountry,
+        )
+      : [];
 
   return (
     <section className="v2-map-canvas">
@@ -711,7 +856,8 @@ function DeploymentsView({
                         (deployment) => deployment.countryIso2 === iso2,
                       ).length
                     : 0;
-                const researched = iso2 === "NG";
+                const researched =
+                  geography === "evidenced" && assessedCountries.has(iso2);
                 return (
                   <button
                     aria-label={`${name}: ${
@@ -734,17 +880,7 @@ function DeploymentsView({
             </div>
           ) : (
             <ol className="v2-country-rank">
-              {[
-                ["NG", "Nigeria"],
-                ["GH", "Ghana"],
-                ["KE", "Kenya"],
-                ["ZA", "South Africa"],
-                ["TZ", "Tanzania"],
-                ["UG", "Uganda"],
-              ].map(([iso2, name], index) => {
-                const count = visibleDeployments.filter(
-                  (deployment) => deployment.countryIso2 === iso2,
-                ).length;
+              {rankedCountries.map(({ assessed, count, iso2, name }, index) => {
                 return (
                   <li key={iso2}>
                     <button
@@ -754,8 +890,20 @@ function DeploymentsView({
                     >
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       <strong>{name}</strong>
-                      <i style={{ width: count ? "100%" : "8%" }} />
-                      <b>{count || "—"}</b>
+                      <i
+                        className={assessed ? "known" : "unknown"}
+                        style={{
+                          width: count
+                            ? `${Math.max(
+                                10,
+                                (count /
+                                  Math.max(1, rankedCountries[0]?.count ?? 1)) *
+                                  100,
+                              )}%`
+                            : "8%",
+                        }}
+                      />
+                      <b>{assessed ? count : "—"}</b>
                     </button>
                   </li>
                 );
@@ -775,9 +923,13 @@ function DeploymentsView({
             <div>
               <h2>{selected?.[1] ?? selectedCountry}</h2>
               <p>
-                {selectedCountry === "NG"
-                  ? `${selectedDeployments.length} evidence points`
-                  : "Coverage not assessed"}
+                {geography !== "evidenced"
+                  ? "Layer not available"
+                  : selectedCountryAssessed
+                    ? `${selectedDeployments.length} matching evidence ${
+                        selectedDeployments.length === 1 ? "point" : "points"
+                      }`
+                    : "Coverage not assessed"}
               </p>
             </div>
           </header>
@@ -789,7 +941,7 @@ function DeploymentsView({
                 <small>Current candidate coverage</small>
               </div>
               <div className="v2-deployment-list">
-                {selectedDeployments.map((deployment, index) => {
+                {selectedDeployments.slice(0, 5).map((deployment, index) => {
                   const product = productById(deployment.productId);
                   if (!product) return null;
                   return (
@@ -810,13 +962,35 @@ function DeploymentsView({
                     </button>
                   );
                 })}
+                {selectedDeployments.length > 5 ? (
+                  <Link
+                    className="v2-country-more"
+                    href={withSearchParam(
+                      "/directory",
+                      preservedSearch,
+                      "country",
+                      selectedCountry,
+                    )}
+                  >
+                    View all {selectedDeployments.length} in Data
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                ) : null}
               </div>
             </>
           ) : (
             <div className="v2-country-unknown">
               <span aria-hidden="true">?</span>
-              <strong>Coverage has not been assessed.</strong>
-              <Link href="/contribute/deployment">Add evidence →</Link>
+              <strong>
+                {geography !== "evidenced"
+                  ? "Reviewed data is not available for this layer."
+                  : selectedCountryAssessed
+                    ? "No evidence matches the current filters."
+                    : "Coverage has not been assessed."}
+              </strong>
+              {geography === "evidenced" ? (
+                <Link href="/contribute/deployment">Add evidence →</Link>
+              ) : null}
             </div>
           )}
 
@@ -841,7 +1015,9 @@ function DirectoryView({
   filteredProducts: Product[];
   onOpenProduct: (product: Product, element: HTMLElement) => void;
 }) {
-  const [sort, setSort] = useState("product");
+  const [sort, setSort] = useState<ProductSort>("product");
+  const [pageSize, setPageSize] = useState(25);
+  const [requestedPage, setRequestedPage] = useState(1);
   const [display, setDisplay] = useState<"table" | "cards">("table");
   const [exportOpen, setExportOpen] = useState(false);
   const [exportFormat, setExportFormat] = useState<"csv" | "json">("csv");
@@ -857,16 +1033,12 @@ function DirectoryView({
   ]);
 
   const rows = useMemo(
-    () =>
-      [...filteredProducts].sort((a, b) => {
-        if (sort === "organisation")
-          return a.organisation.localeCompare(b.organisation);
-        if (sort === "category") return a.category.localeCompare(b.category);
-        if (sort === "checked")
-          return b.lastChecked.localeCompare(a.lastChecked);
-        return a.name.localeCompare(b.name);
-      }),
+    () => sortProducts(filteredProducts, sort),
     [filteredProducts, sort],
+  );
+  const pageData = useMemo(
+    () => paginate(rows, requestedPage, pageSize),
+    [pageSize, requestedPage, rows],
   );
 
   function toggleColumn(value: string) {
@@ -930,11 +1102,32 @@ function DirectoryView({
       <div className="v2-data-tools">
         <label>
           <span>Sort</span>
-          <select onChange={(event) => setSort(event.target.value)} value={sort}>
+          <select
+            onChange={(event) => {
+              setSort(event.target.value as ProductSort);
+              setRequestedPage(1);
+            }}
+            value={sort}
+          >
             <option value="product">Product</option>
             <option value="organisation">Organisation</option>
             <option value="category">Category</option>
             <option value="checked">Last checked</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Page size</span>
+          <select
+            onChange={(event) => {
+              setPageSize(Number(event.target.value));
+              setRequestedPage(1);
+            }}
+            value={pageSize}
+          >
+            <option value={25}>25</option>
+            <option value={50}>50</option>
+            <option value={100}>100</option>
           </select>
         </label>
 
@@ -1016,10 +1209,14 @@ function DirectoryView({
               </tr>
             </thead>
             <tbody>
-              {rows.map((product, index) => (
+              {pageData.items.map((product, index) => (
                 <tr key={product.id}>
                   <th scope="row">
-                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span>
+                      {String(
+                        (pageData.page - 1) * pageData.pageSize + index + 1,
+                      ).padStart(2, "0")}
+                    </span>
                     <Link href={`/products/${product.slug}`}>{product.name}</Link>
                   </th>
                   {visibleColumns.includes("organisation") ? <td>{product.organisation}</td> : null}
@@ -1050,13 +1247,17 @@ function DirectoryView({
         </div>
       ) : (
         <div className="v2-data-cards">
-          {rows.map((product, index) => (
+          {pageData.items.map((product, index) => (
             <button
               key={product.id}
               onClick={(event) => onOpenProduct(product, event.currentTarget)}
               type="button"
             >
-              <span>{String(index + 1).padStart(2, "0")}</span>
+              <span>
+                {String(
+                  (pageData.page - 1) * pageData.pageSize + index + 1,
+                ).padStart(2, "0")}
+              </span>
               <strong>{product.name}</strong>
               <small>{product.organisation}</small>
               <i>{product.category}</i>
@@ -1065,6 +1266,27 @@ function DirectoryView({
           ))}
         </div>
       )}
+
+      <nav aria-label="Directory pages" className="v2-pagination">
+        <button
+          disabled={pageData.page === 1}
+          onClick={() => setRequestedPage(pageData.page - 1)}
+          type="button"
+        >
+          ← Previous
+        </button>
+        <span>
+          Page {pageData.page} of {pageData.totalPages}
+          <small>{pageData.total} records</small>
+        </span>
+        <button
+          disabled={pageData.page === pageData.totalPages}
+          onClick={() => setRequestedPage(pageData.page + 1)}
+          type="button"
+        >
+          Next →
+        </button>
+      </nav>
 
       <div className="v2-data-foot">
         <span>{release.version} · {release.date}</span>
@@ -1256,4 +1478,15 @@ function toCsv(rows: Record<string, string | string[]>[]) {
       headers.map((header) => escape(row[header])).join(","),
     ),
   ].join("\n");
+}
+
+function withSearchParam(
+  pathname: string,
+  search: string,
+  key: string,
+  value: string,
+) {
+  const params = new URLSearchParams(search);
+  params.set(key, value);
+  return `${pathname}?${params.toString()}`;
 }

@@ -6,6 +6,8 @@ with detail revealed progressively through search, previews and full records.
 
 The implementation contract is
 [`docs/17-visual-interaction-redesign.md`](../docs/17-visual-interaction-redesign.md).
+Growth and data-boundary rules are in
+[`docs/18-expansion-architecture-and-roadmap.md`](../docs/18-expansion-architecture-and-roadmap.md).
 
 The interface currently renders the first workbook migration batch as
 **candidate prototype data**. It does not publish or verify those records.
@@ -32,6 +34,8 @@ the Stack, Directory, a product profile and the methodology AI disclosure.
 - evidence wording stays visible where claims appear;
 - provider claims never become evidenced deployments;
 - Stack, Deployments and Directory use one filter vocabulary;
+- category and country previews stay bounded as the registry grows;
+- the Directory pages the full filtered set at 25, 50 or 100 rows;
 - exports state the visible record set and prototype status;
 - country views avoid precise non-public infrastructure coordinates;
 - browsing, search, export and correction require no account; and
