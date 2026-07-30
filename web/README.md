@@ -11,6 +11,9 @@ Growth and data-boundary rules are in
 
 The interface currently renders the first workbook migration batch as
 **candidate prototype data**. It does not publish or verify those records.
+Products, organisations, deployments and downloads are generated together from
+one checksum-verified batch; they are not duplicated in UI components. See the
+[snapshot and export pipeline](../docs/19-snapshot-and-export-pipeline.md).
 
 ## Run locally
 
@@ -27,7 +30,15 @@ npm test
 ```
 
 `npm test` builds the production worker and checks server-rendered content for
-the Stack, Directory, a product profile and the methodology AI disclosure.
+the Stack, Directory, Data, product and country profiles, search, and the
+methodology AI disclosure.
+
+To regenerate or verify the interface data before running the web checks:
+
+```bash
+python3 scripts/build_registry_snapshot.py
+python3 scripts/build_registry_snapshot.py --check
+```
 
 ## Product principles
 

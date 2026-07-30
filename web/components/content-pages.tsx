@@ -2,10 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   categories,
+  dataDistributions,
   deployments,
   organisations,
   products,
   release,
+  registryManifest,
   sources,
   type EvidenceStatus,
 } from "@/lib/registry-data";
@@ -253,6 +255,11 @@ export function DataPage() {
           <div><dt>Deployments</dt><dd>{deployments.length}</dd></div>
           <div><dt>Sources</dt><dd>{sources.length}</dd></div>
         </dl>
+        <p className="release-gate">
+          {registryManifest.reviewGate.reviewedAssertions} of{" "}
+          {registryManifest.reviewGate.assertions} assertions reviewed ·{" "}
+          {registryManifest.reviewGate.unresolvedSources} sources need metadata
+        </p>
       </section>
       <figure className="data-visual">
         <Image
@@ -268,20 +275,46 @@ export function DataPage() {
         </figcaption>
       </figure>
       <section className="data-section">
-        <div><span className="eyebrow">Phase 1 release package</span><h2>Release files</h2></div>
+        <div>
+          <span className="eyebrow">Candidate package</span>
+          <h2>Download the current data</h2>
+          <p>
+            These files reproduce the prototype. They remain candidate data
+            until editorial review is complete.
+          </p>
+        </div>
         <div className="download-list">
-          {[
-            ["CSV package", "Normalised tables for analysis and databases", "Planned"],
-            ["JSON and JSONL", "Structured records and streaming-friendly assertions", "Planned"],
-            ["GeoJSON", "Country/province geography with disclosure status", "Planned"],
-            ["Excel workbook", "Excel-compatible release for non-technical users", "Planned"],
-            ["Schema and dictionary", "Stable identifiers, definitions and accepted values", "Available on GitHub"],
-          ].map(([name, copy, status]) => (
-            <article key={name}>
-              <div><h3>{name}</h3><p>{copy}</p></div>
-              <span>{status}</span>
+          {dataDistributions.map((distribution) => (
+            <article key={distribution.id}>
+              <div>
+                <h3>{distribution.label}</h3>
+                <p>{distributionDescription(distribution.id)}</p>
+              </div>
+              <a download href={distribution.href}>
+                {distribution.format} ↓
+              </a>
             </article>
           ))}
+          <article>
+            <div>
+              <h3>Schema and dictionary</h3>
+              <p>Stable identifiers, accepted values and field definitions.</p>
+            </div>
+            <a
+              href="https://github.com/kaykluz/africa-energy-software-map/tree/main/schemas"
+              rel="noreferrer"
+              target="_blank"
+            >
+              GitHub ↗
+            </a>
+          </article>
+          <article>
+            <div>
+              <h3>Excel workbook</h3>
+              <p>Non-technical release workbook after editorial promotion.</p>
+            </div>
+            <span>Planned</span>
+          </article>
         </div>
       </section>
       <section className="data-section two-column-copy">
@@ -290,6 +323,16 @@ export function DataPage() {
       </section>
     </main>
   );
+}
+
+function distributionDescription(id: string) {
+  return {
+    csv_package: "Normalised tables, metadata, licence and checksums.",
+    registry_json: "The complete snapshot used by this interface.",
+    assertions_jsonl: "One source-linked candidate assertion per line.",
+    deployments_geojson: "Country-safe geography without precise coordinates.",
+    download_manifest: "Counts, review status, file sizes and hashes.",
+  }[id] ?? "Candidate dataset file.";
 }
 
 export function SearchResultsPage({ query }: { query: string }) {

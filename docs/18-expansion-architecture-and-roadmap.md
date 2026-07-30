@@ -93,10 +93,13 @@ flowchart LR
   G --> H["Website, downloads and read API"]
 ```
 
-The current prototype represents the public snapshot in
-`web/lib/registry-data.ts`. The next data implementation should generate the
-same public shape from reviewed normalised tables. This keeps the components
-independent from the storage technology.
+The prototype now generates its snapshot and downloads from one selected,
+checksum-verified normalised batch. `web/lib/registry-data.ts` is a display
+adapter rather than a second record store. While the selected batch is still
+under review, the release mode and interface remain explicitly `candidate`.
+The generator refuses a `published` build until the assertion and source review
+gate passes. See the
+[snapshot and export pipeline](19-snapshot-and-export-pipeline.md).
 
 The snapshot includes:
 
@@ -274,11 +277,18 @@ The website consumes only a release produced after human editorial review.
 
 ### B. Reviewed snapshot generation
 
-- migrate the workbook into normalised tables;
-- resolve stable IDs and duplicate candidates;
-- validate all foreign keys and accepted values;
-- generate the public snapshot from reviewed files;
-- generate release counts and checksums; and
+- migrate the workbook into normalised tables — implemented for the first
+  review batch;
+- resolve stable IDs and duplicate candidates — implemented for the first
+  review batch;
+- validate all foreign keys and accepted values — implemented;
+- generate one candidate snapshot and download set — implemented;
+- refuse publication until every assertion and source passes review —
+  implemented;
+- complete human evidence review and source metadata — outstanding;
+- generate the first public snapshot from reviewed files — outstanding;
+- generate release counts and checksums — implemented for candidate packages;
+  and
 - import the first approximately 100 reviewed products in small pull requests.
 
 ### C. Read service and geographic layer
@@ -312,4 +322,3 @@ Expansion is ready only when:
 - no source or submission bypasses review;
 - performance targets pass at synthetic scale; and
 - the scope and safety exclusions still hold.
-

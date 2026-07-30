@@ -1,5 +1,8 @@
 import Link from "next/link";
 import {
+  africanCountries,
+  categories,
+  countrySummaries,
   deployments,
   organisationBySlug,
   organisations,
@@ -101,11 +104,9 @@ export function ProductProfile({ slug }: { slug: string }) {
                       <Fact label="Year" value={deployment.year} />
                       <Fact
                         label="Disclosure"
-                        value={
-                          deployment.customerDisclosure === "undisclosed"
-                            ? "Customer undisclosed"
-                            : "Named customer"
-                        }
+                        value={disclosureLabel(
+                          deployment.customerDisclosure,
+                        )}
                       />
                       <div>
                         <dt>Evidence</dt>
@@ -162,8 +163,8 @@ export function ProductProfile({ slug }: { slug: string }) {
           </ProfileSection>
           <ProfileSection heading="Record history">
             <ol className="history-list">
-              <li><span className="mono">30 Jul 2026</span><p>Candidate record normalised for the interactive prototype.</p></li>
-              <li><span className="mono">24 Jul 2026</span><p>Source material last checked in the workbook review.</p></li>
+              <li><span className="mono">{release.date}</span><p>Candidate record generated from the selected migration batch.</p></li>
+              <li><span className="mono">{product.lastChecked}</span><p>Source material last checked in the workbook review.</p></li>
             </ol>
           </ProfileSection>
         </article>
@@ -203,6 +204,9 @@ export function OrganisationProfile({ slug }: { slug: string }) {
   const organisationDeployments = deployments.filter((deployment) =>
     organisationProducts.some((product) => product.id === deployment.productId),
   );
+  const deploymentCountries = Array.from(
+    new Set(organisationDeployments.map((deployment) => deployment.country)),
+  );
 
   return (
     <main className="profile-page profile-width" id="main-content">
@@ -237,7 +241,14 @@ export function OrganisationProfile({ slug }: { slug: string }) {
               <Fact label="Type" value={organisation.type} />
               <Fact label="Country of origin" value={organisation.countryOfOrigin} />
               <Fact label="Current headquarters" value={organisation.headquarters} />
-              <Fact label="Provider profile confirmation" value="Not confirmed" />
+              <Fact
+                label="Provider profile confirmation"
+                value={
+                  organisation.providerProfileConfirmed
+                    ? "Confirmed"
+                    : "Not confirmed"
+                }
+              />
             </dl>
           </ProfileSection>
           <ProfileSection heading="Products">
@@ -252,10 +263,18 @@ export function OrganisationProfile({ slug }: { slug: string }) {
           </ProfileSection>
           <ProfileSection heading="Evidenced African presence">
             <p>
-              {organisationDeployments.length} candidate deployment records in
-              Nigeria. Claimed presence is not added to this total.
+              {organisationDeployments.length} candidate deployment{" "}
+              {organisationDeployments.length === 1 ? "record" : "records"}
+              {deploymentCountries.length
+                ? ` across ${deploymentCountries.join(", ")}`
+                : ""}.
+              Claimed presence is not added to this total.
             </p>
-            <Link href={`/directory?country=NG`}>View filtered Directory →</Link>
+            <Link
+              href={`/directory?q=${encodeURIComponent(organisation.name)}`}
+            >
+              View filtered Directory →
+            </Link>
           </ProfileSection>
           <ProfileSection heading="Organisation history">
             <p>No sourced rename, merger or acquisition history is recorded in this candidate batch.</p>
@@ -279,11 +298,17 @@ export function OrganisationProfile({ slug }: { slug: string }) {
 
 export function CountryProfile({ iso2 }: { iso2: string }) {
   const countryIso2 = iso2.toUpperCase();
-  if (countryIso2 !== "NG") {
+  const countryName =
+    africanCountries.find(([code]) => code === countryIso2)?.[1] ??
+    countryIso2;
+  const summary = countrySummaries.find(
+    (item) => item.countryIso2 === countryIso2,
+  );
+  if (!summary) {
     return (
       <main className="reading-page reading-width" id="main-content">
         <span className="eyebrow">Country record</span>
-        <h1>{countryIso2}</h1>
+        <h1>{countryName}</h1>
         <div className="inline-empty">
           <strong>No country summary in the prototype dataset.</strong>
           <p>
@@ -295,34 +320,59 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
     );
   }
   const countryDeployments = deployments.filter(
-    (deployment) => deployment.countryIso2 === "NG",
+    (deployment) => deployment.countryIso2 === countryIso2,
+  );
+  const categoryRows = Object.entries(summary.categoryCounts)
+    .map(([categoryId, count]) => ({
+      category: categories.find((item) => item.id === categoryId),
+      count,
+    }))
+    .filter((item) => item.category)
+    .sort((a, b) => b.count - a.count);
+  const maxCategoryCount = Math.max(
+    1,
+    ...categoryRows.map((item) => item.count),
+  );
+  const countrySourceCount = new Set(
+    countryDeployments.map((deployment) => deployment.sourceId),
   );
   return (
     <main className="profile-page profile-width" id="main-content">
       <nav aria-label="Breadcrumb" className="breadcrumb">
-        <Link href="/deployments">Map</Link><span aria-hidden="true">/</span><span>Nigeria</span>
+        <Link href="/deployments">Map</Link><span aria-hidden="true">/</span><span>{countryName}</span>
       </nav>
       <header className="record-header country-record-header">
         <div>
           <span className="eyebrow">Country record · candidate evidence</span>
-          <h1>Nigeria</h1>
+          <h1>{countryName}</h1>
           <p>
             Evidence-led software index. This page is not a complete energy-market
             or regulatory profile.
           </p>
         </div>
         <div className="country-stat-row">
-          <Stat value="4" label="Deployments" />
-          <Stat value="3" label="Products" />
-          <Stat value="2" label="Categories" />
+          <Stat value={String(summary.deploymentCount)} label="Deployments" />
+          <Stat value={String(summary.productCount)} label="Products" />
+          <Stat value={String(categoryRows.length)} label="Categories" />
         </div>
       </header>
       <div className="record-layout">
         <article className="record-main">
           <ProfileSection heading="Category distribution">
             <div className="distribution-bars">
-              <div><span>Distribution utility operations</span><i><b style={{ width: "50%" }} /></i><strong>2</strong></div>
-              <div><span>PAYGo and mini-grid operations</span><i><b style={{ width: "50%" }} /></i><strong>2</strong></div>
+              {categoryRows.map(({ category, count }) => (
+                <div key={category?.id}>
+                  <span>{category?.name}</span>
+                  <i>
+                    <b
+                      style={{
+                        width: `${(count / maxCategoryCount) * 100}%`,
+                      }}
+                    />
+                  </i>
+                  <strong>{count}</strong>
+                </div>
+              ))}
             </div>
           </ProfileSection>
           <ProfileSection heading="Evidenced deployments">
@@ -347,17 +397,20 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
           </ProfileSection>
           <ProfileSection heading="Research coverage">
             <p>
-              Candidate sources include an official programme page, an AFD article
-              and provider-authored product material. Coverage is not yet systematic
-              across utilities, mini-grids or states.
+              {countrySourceCount.size} source-linked candidate{" "}
+              {countrySourceCount.size === 1
+                ? "record supports"
+                : "records support"}{" "}
+              this country view. Coverage is not yet systematic across operators
+              or regions.
             </p>
           </ProfileSection>
         </article>
         <aside className="record-rail">
           <div className="rail-card">
             <span className="eyebrow">Explore this country</span>
-            <Link href="/deployments?country=NG">View in Map →</Link>
-            <Link href="/directory?country=NG">View in Data →</Link>
+            <Link href={`/deployments?country=${countryIso2}`}>View in Map →</Link>
+            <Link href={`/directory?country=${countryIso2}`}>View in Data →</Link>
           </div>
           <div className="rail-card">
             <span className="eyebrow">Last country review</span>
@@ -406,6 +459,17 @@ function NotFoundRecord({ type }: { type: string }) {
 
 function capitalise(value: string) {
   return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function disclosureLabel(
+  value: "named" | "undisclosed" | "unknown" | "confidential",
+) {
+  return {
+    named: "Named customer",
+    undisclosed: "Customer undisclosed",
+    unknown: "Customer not documented",
+    confidential: "Customer confidential",
+  }[value];
 }
 
 function rootWebsite(url: string) {

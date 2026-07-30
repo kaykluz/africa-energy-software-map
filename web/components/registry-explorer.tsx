@@ -309,6 +309,7 @@ export function RegistryExplorer({
       {view === "deployments" ? (
         <DeploymentsView
           filteredProducts={filteredProducts}
+          initialCountry={countryFilter}
           onOpenProduct={openProduct}
           preservedSearch={preservedSearch}
         />
@@ -754,10 +755,12 @@ function ProductOrb({
 
 function DeploymentsView({
   filteredProducts,
+  initialCountry,
   onOpenProduct,
   preservedSearch,
 }: {
   filteredProducts: Product[];
+  initialCountry: string;
   onOpenProduct: (product: Product, element: HTMLElement) => void;
   preservedSearch: string;
 }) {
@@ -765,7 +768,9 @@ function DeploymentsView({
   const [representation, setRepresentation] = useState<"grid" | "ranked">(
     "grid",
   );
-  const [selectedCountry, setSelectedCountry] = useState("NG");
+  const [selectedCountry, setSelectedCountry] = useState(
+    initialCountry !== "all" ? initialCountry : "NG",
+  );
   const visibleDeployments = deployments.filter((deployment) =>
     filteredProducts.some((product) => product.id === deployment.productId),
   );

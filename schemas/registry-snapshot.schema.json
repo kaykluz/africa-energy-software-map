@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/kaykluz/africa-energy-software-map/schemas/registry-snapshot.schema.json",
+  "title": "Africa Energy Software Map interface snapshot",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "release",
+    "reviewGate",
+    "counts",
+    "organisations",
+    "products",
+    "deployments",
+    "sources",
+    "assertions",
+    "stages",
+    "categories",
+    "countries",
+    "countrySummaries",
+    "distributions"
+  ],
+  "properties": {
+    "schemaVersion": {"type": "string", "const": "1.0.0"},
+    "release": {
+      "type": "object",
+      "required": ["mode", "version", "date", "status", "sourceBatch", "sourceWorkbook"],
+      "properties": {
+        "mode": {"enum": ["candidate", "published"]},
+        "version": {"type": "string"},
+        "date": {"type": "string", "format": "date"},
+        "status": {"type": "string"},
+        "sourceBatch": {"type": "string"},
+        "sourceWorkbook": {
+          "type": "object",
+          "required": ["filename", "sha256"],
+          "properties": {
+            "filename": {"type": "string"},
+            "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "reviewGate": {
+      "type": "object",
+      "required": ["assertions", "reviewedAssertions", "unreviewedAssertions", "unresolvedSources", "publishable"],
+      "properties": {
+        "assertions": {"type": "integer", "minimum": 0},
+        "reviewedAssertions": {"type": "integer", "minimum": 0},
+        "unreviewedAssertions": {"type": "integer", "minimum": 0},
+        "unresolvedSources": {"type": "integer", "minimum": 0},
+        "publishable": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "counts": {
+      "type": "object",
+      "required": ["organisations", "products", "deployments", "sources", "assertions"],
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "organisations": {"type": "array", "items": {"type": "object", "required": ["id", "name", "slug"]}},
+    "products": {"type": "array", "items": {"type": "object", "required": ["id", "organisationId", "name", "slug", "categoryId"]}},
+    "deployments": {"type": "array", "items": {"type": "object", "required": ["id", "productId", "countryIso2", "evidenceStatus", "sourceId"]}},
+    "sources": {"type": "array", "items": {"type": "object", "required": ["id", "url", "title", "independenceClass"]}},
+    "assertions": {"type": "array", "items": {"type": "object", "required": ["id", "subjectType", "subjectId", "predicate", "sourceId", "evidenceStatus"]}},
+    "stages": {"type": "array", "items": {"type": "object", "required": ["id", "name", "order"]}},
+    "categories": {"type": "array", "items": {"type": "object", "required": ["id", "name", "stageId", "marketCondition", "researchState", "verdict"]}},
+    "countries": {"type": "array", "minItems": 54, "items": {"type": "object", "required": ["iso2", "name"]}},
+    "countrySummaries": {"type": "array", "items": {"type": "object", "required": ["countryIso2", "deploymentCount", "productCount"]}},
+    "distributions": {"type": "array", "items": {"type": "object", "required": ["id", "label", "format", "href"]}}
+  },
+  "additionalProperties": false
+}

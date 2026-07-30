@@ -10,6 +10,7 @@
 - [16 — Workbook migration protocol](16-workbook-migration-protocol.md)
 - [17 — Visual interaction redesign](17-visual-interaction-redesign.md)
 - [18 — Expansion architecture and roadmap](18-expansion-architecture-and-roadmap.md)
+- [19 — Snapshot and export pipeline](19-snapshot-and-export-pipeline.md)
 
 ## Data and evidence
 

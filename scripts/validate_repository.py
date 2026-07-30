@@ -598,12 +598,22 @@ def validate_candidate_imports(errors: list[str]) -> None:
                 )
 
 
+def validate_interface_artifacts(errors: list[str]) -> None:
+    try:
+        from build_registry_snapshot import SnapshotError, check_artifacts
+
+        check_artifacts()
+    except (ImportError, OSError, SnapshotError, ValueError) as exc:
+        errors.append(f"generated interface artifacts: {exc}")
+
+
 def main() -> int:
     errors: list[str] = []
     validate_json_files(errors)
     validate_csv_templates(errors)
     validate_taxonomy(errors)
     validate_candidate_imports(errors)
+    validate_interface_artifacts(errors)
 
     if errors:
         print("Repository validation failed:")

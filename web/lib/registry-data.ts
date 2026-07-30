@@ -1,3 +1,5 @@
+import snapshotJson from "@/generated/registry-snapshot.json";
+
 export type EvidenceStatus =
   | "provider_claim_only"
   | "public_source"
@@ -63,6 +65,32 @@ export type Deployment = {
   lastChecked: string;
 };
 
+export type Organisation = {
+  id: string;
+  name: string;
+  slug: string;
+  type: string;
+  origin: string;
+  countryOfOrigin: string;
+  headquarters: string;
+  lifecycle: string;
+  website: string;
+  description: string;
+  lastChecked: string;
+  providerProfileConfirmed: boolean;
+};
+
+export type Source = {
+  id: string;
+  title: string;
+  publisher: string;
+  url: string;
+  independence: string;
+  retrieved: string;
+  sourceLicense: string;
+  automationPermitted: boolean;
+};
+
 export type Category = {
   id: string;
   name: string;
@@ -82,466 +110,114 @@ export type Category = {
     | "structurally_thin";
 };
 
-export const release = {
-  version: "prototype-0.1",
-  date: "30 July 2026",
-  isoDate: "2026-07-30",
-  status: "Candidate import — editorial review required",
+type SnapshotData = {
+  schemaVersion: string;
+  release: {
+    mode: "candidate" | "published";
+    version: string;
+    date: string;
+    status: string;
+    sourceBatch: string;
+    sourceWorkbook: { filename: string; sha256: string };
+  };
+  reviewGate: {
+    assertions: number;
+    reviewedAssertions: number;
+    unreviewedAssertions: number;
+    unresolvedSources: number;
+    publishable: boolean;
+  };
+  counts: {
+    organisations: number;
+    products: number;
+    deployments: number;
+    sources: number;
+    assertions: number;
+  };
+  organisations: Array<{
+    id: string;
+    name: string;
+    slug: string;
+    organisationType: string;
+    originClassification: OriginClassification;
+    countryOfOriginIso2: string;
+    headquartersCountryIso2: string;
+    lifecycleStatus: ProductLifecycle;
+    website: string;
+    description: string;
+    providerProfileConfirmed: boolean;
+    lastCheckedAt: string;
+  }>;
+  products: Array<{
+    id: string;
+    organisationId: string;
+    organisation: string;
+    name: string;
+    slug: string;
+    description: string;
+    categoryId: string;
+    category: string;
+    stageId: string;
+    originClassification: OriginClassification;
+    lifecycleStatus: ProductLifecycle;
+    accessModel: string;
+    openSourceUrl: string;
+    website: string;
+    launchedYear: string;
+    lastCheckedAt: string;
+    deploymentCountries: string[];
+    evidenceStatuses: EvidenceStatus[];
+    capabilities: string[];
+  }>;
+  deployments: Array<{
+    id: string;
+    productId: string;
+    countryIso2: string;
+    subnationalArea: string;
+    customerName: string;
+    customerDisclosure: Deployment["customerDisclosure"];
+    lifecycleStatus: DeploymentLifecycle;
+    startedYear: string;
+    endedYear: string;
+    locationPrecision: string;
+    lastCheckedAt: string;
+    evidenceStatus: EvidenceStatus;
+    sourceId: string;
+  }>;
+  sources: Array<{
+    id: string;
+    url: string;
+    title: string;
+    publisher: string;
+    sourceType: string;
+    publicationDate: string;
+    retrievedAt: string;
+    archivedUrl: string;
+    sourceLicense: string;
+    independenceClass: string;
+    automationPermitted: boolean;
+  }>;
+  assertions: Array<Record<string, string>>;
+  stages: Array<{ id: string; name: string; order: number }>;
+  categories: Category[];
+  countries: Array<{ iso2: string; name: string }>;
+  countrySummaries: Array<{
+    countryIso2: string;
+    deploymentCount: number;
+    independentOrCustomerCount: number;
+    providerClaimCount: number;
+    productCount: number;
+    categoryCounts: Record<string, number>;
+  }>;
+  distributions: Array<{
+    id: string;
+    label: string;
+    format: string;
+    href: string;
+  }>;
 };
 
-export const organisations = [
-  {
-    id: "org_001",
-    name: "Beacon Power Services",
-    slug: "beacon-power-services",
-    type: "Utility software scale-up",
-    origin: "Africa-built",
-    countryOfOrigin: "Nigeria",
-    headquarters: "Not publicly documented",
-    lifecycle: "Active",
-    website: "https://beaconpowerservices.com/",
-    description:
-      "Distribution utility digitisation, grid mapping, customer and asset systems.",
-    lastChecked: "24 July 2026",
-  },
-  {
-    id: "org_002",
-    name: "PAM Africa",
-    slug: "pam-africa",
-    type: "Energy software start-up",
-    origin: "Africa-built",
-    countryOfOrigin: "Nigeria",
-    headquarters: "Nigeria",
-    lifecycle: "Active",
-    website: "https://pamafrica.com/",
-    description:
-      "Mini-grid optimisation, smart metering, payments and demand response.",
-    lastChecked: "24 July 2026",
-  },
-  {
-    id: "org_003",
-    name: "PowerLabs",
-    slug: "powerlabs",
-    type: "Energy software start-up",
-    origin: "Africa-built",
-    countryOfOrigin: "Nigeria",
-    headquarters: "Nigeria",
-    lifecycle: "Active",
-    website: "https://powerlabs.energy/",
-    description:
-      "Hybrid power orchestration for grid, solar, batteries, generators and inverters.",
-    lastChecked: "24 July 2026",
-  },
-] as const;
-
-export const products: Product[] = [
-  {
-    id: "prod_001",
-    name: "CAIMS",
-    slug: "caims",
-    organisationId: "org_001",
-    organisation: "Beacon Power Services",
-    description:
-      "Customer and asset information, network surveys, connections and digital-twin workflows.",
-    categoryId: "cat_distribution_utility_operations",
-    category: "Distribution utility operations",
-    stageId: "stage_transmit_distribute",
-    origin: "africa_built",
-    lifecycle: "active",
-    accessModel: "Commercial proprietary",
-    website: "https://beaconpowerservices.com/en/solutions/caims",
-    lastChecked: "30 July 2026",
-    deploymentCountries: ["NG"],
-    evidence: ["independently_evidenced", "provider_claim_only"],
-    capabilities: [
-      "Customer information",
-      "Asset registry",
-      "Network surveys",
-      "Connection workflows",
-    ],
-  },
-  {
-    id: "prod_002",
-    name: "Adora",
-    slug: "adora",
-    organisationId: "org_001",
-    organisation: "Beacon Power Services",
-    description:
-      "Grid operations, outage and loss analytics, field work and commercial operations.",
-    categoryId: "cat_distribution_utility_operations",
-    category: "Distribution utility operations",
-    stageId: "stage_transmit_distribute",
-    origin: "africa_built",
-    lifecycle: "active",
-    accessModel: "Commercial proprietary",
-    website: "https://beaconpowerservices.com/en/solutions/adora",
-    lastChecked: "30 July 2026",
-    deploymentCountries: ["NG"],
-    evidence: ["independently_evidenced", "provider_claim_only"],
-    capabilities: [
-      "Grid operations",
-      "Outage analytics",
-      "Loss analytics",
-      "Field work",
-    ],
-  },
-  {
-    id: "prod_003",
-    name: "Xepp",
-    slug: "xepp",
-    organisationId: "org_001",
-    organisation: "Beacon Power Services",
-    description:
-      "Consumption insights, payments, customer engagement and distributed-solar offers.",
-    categoryId: "cat_retail_metering_billing_payments",
-    category: "Retail metering, billing and payments",
-    stageId: "stage_meter_serve",
-    origin: "africa_built",
-    lifecycle: "active",
-    accessModel: "Public access",
-    website: "https://www.beaconpowerservices.com/en/solutions/xepp",
-    lastChecked: "30 July 2026",
-    deploymentCountries: [],
-    evidence: ["provider_claim_only"],
-    capabilities: [
-      "Consumption insights",
-      "Payments",
-      "Customer engagement",
-      "Distributed-solar offers",
-    ],
-  },
-  {
-    id: "prod_004",
-    name: "PAM-AI",
-    slug: "pam-ai",
-    organisationId: "org_002",
-    organisation: "PAM Africa",
-    description:
-      "Real-time monitoring, smart tariffs, remote device control, payment integration and demand response.",
-    categoryId: "cat_paygo_minigrid_operations",
-    category: "PAYGo and mini-grid operations",
-    stageId: "stage_meter_serve",
-    origin: "africa_built",
-    lifecycle: "pilot",
-    accessModel: "Commercial service",
-    website: "https://www.pamafrica.com/",
-    lastChecked: "30 July 2026",
-    deploymentCountries: ["NG"],
-    evidence: ["independently_evidenced", "public_source"],
-    capabilities: [
-      "Smart tariffs",
-      "Remote device control",
-      "Payment integration",
-      "Demand response",
-    ],
-  },
-  {
-    id: "prod_005",
-    name: "Pai Enterprise",
-    slug: "pai-enterprise",
-    organisationId: "org_003",
-    organisation: "PowerLabs",
-    description:
-      "Energy monitoring, analytics, sizing optimisation, anomaly detection and multi-source orchestration.",
-    categoryId: "cat_ci_behind_meter",
-    category: "C&I and behind-the-meter",
-    stageId: "stage_meter_serve",
-    origin: "africa_built",
-    lifecycle: "active",
-    accessModel: "Commercial service",
-    website: "https://www.powerlabstech.com/pai-enterprise/software",
-    lastChecked: "30 July 2026",
-    deploymentCountries: [],
-    evidence: ["provider_claim_only"],
-    capabilities: [
-      "Energy monitoring",
-      "Anomaly detection",
-      "Sizing optimisation",
-      "Multi-source orchestration",
-    ],
-  },
-];
-
-export const deployments: Deployment[] = [
-  {
-    id: "dep_001",
-    productId: "prod_001",
-    countryIso2: "NG",
-    country: "Nigeria",
-    area: "Abuja distribution area",
-    customer: "Abuja Electricity Distribution Company (AEDC)",
-    customerDisclosure: "named",
-    lifecycle: "pilot",
-    year: "2023",
-    evidence: "independently_evidenced",
-    sourceId: "src_72a68084f5f1f2f3",
-    lastChecked: "24 July 2026",
-  },
-  {
-    id: "dep_002",
-    productId: "prod_002",
-    countryIso2: "NG",
-    country: "Nigeria",
-    area: "Abuja distribution area",
-    customer: "Abuja Electricity Distribution Company (AEDC)",
-    customerDisclosure: "named",
-    lifecycle: "pilot",
-    year: "2023",
-    evidence: "independently_evidenced",
-    sourceId: "src_72a68084f5f1f2f3",
-    lastChecked: "24 July 2026",
-  },
-  {
-    id: "dep_003",
-    productId: "prod_004",
-    countryIso2: "NG",
-    country: "Nigeria",
-    area: "Northern Nigeria",
-    customer: "Kano Electricity Distribution Company (KEDCO)",
-    customerDisclosure: "named",
-    lifecycle: "pilot",
-    year: "2025",
-    evidence: "independently_evidenced",
-    sourceId: "src_353841a5fa8a37f5",
-    lastChecked: "24 July 2026",
-  },
-  {
-    id: "dep_004",
-    productId: "prod_004",
-    countryIso2: "NG",
-    country: "Nigeria",
-    area: "Country-level disclosure",
-    customer: "Customer undisclosed",
-    customerDisclosure: "undisclosed",
-    lifecycle: "pilot",
-    year: "2025",
-    evidence: "independently_evidenced",
-    sourceId: "src_353841a5fa8a37f5",
-    lastChecked: "24 July 2026",
-  },
-];
-
-export const sources = [
-  {
-    id: "src_792d6f5e54ae6a49",
-    title: "Beacon Power Services — product information",
-    publisher: "Beacon Power Services",
-    url: "https://beaconpowerservices.com/",
-    independence: "Provider-authored",
-    retrieved: "24 July 2026",
-  },
-  {
-    id: "src_353841a5fa8a37f5",
-    title: "Digital Energy Challenge 2025 results",
-    publisher: "Digital Energy Challenge",
-    url: "https://digital-energy.eu/fr/resultats-du-challenge-2025",
-    independence: "Independent primary",
-    retrieved: "24 July 2026",
-  },
-  {
-    id: "src_72a68084f5f1f2f3",
-    title: "Digital Energy Challenge for Africa’s energy transition",
-    publisher: "Agence Française de Développement",
-    url: "https://www.afd.fr/en/actualites/digital-energy-challenge-africa-energy-transition",
-    independence: "Independent primary",
-    retrieved: "24 July 2026",
-  },
-  {
-    id: "src_0dbeea2074ea9657",
-    title: "PowerLabs — company information",
-    publisher: "PowerLabs",
-    url: "https://powerlabs.energy/",
-    independence: "Provider-authored",
-    retrieved: "24 July 2026",
-  },
-] as const;
-
-export const stages = [
-  { id: "stage_plan_design", name: "Plan and design", order: 1 },
-  { id: "stage_finance_procure", name: "Finance and procure", order: 2 },
-  { id: "stage_generate_store", name: "Generate and store", order: 3 },
-  {
-    id: "stage_transmit_distribute",
-    name: "Transmit and distribute",
-    order: 4,
-  },
-  { id: "stage_meter_serve", name: "Meter and serve", order: 5 },
-  { id: "stage_trade_report", name: "Trade and report", order: 6 },
-] as const;
-
-export const categories: Category[] = [
-  {
-    id: "cat_planning_geospatial",
-    name: "Planning and geospatial",
-    stageId: "stage_plan_design",
-    marketCondition: "insufficient_evidence",
-    verdict: "Research coverage is still being established.",
-    researchState: "research_queue",
-  },
-  {
-    id: "cat_engineering_design_simulation",
-    name: "Engineering, design and simulation",
-    stageId: "stage_plan_design",
-    marketCondition: "insufficient_evidence",
-    verdict: "Four candidates remain in the research queue.",
-    researchState: "research_queue",
-  },
-  {
-    id: "cat_finance_procurement_underwriting",
-    name: "Finance, procurement and underwriting",
-    stageId: "stage_finance_procure",
-    marketCondition: "insufficient_evidence",
-    verdict: "No candidate record has completed editorial review.",
-    researchState: "no_verified_entry",
-  },
-  {
-    id: "cat_generation_storage_operations",
-    name: "Generation and storage operations",
-    stageId: "stage_generate_store",
-    marketCondition: "insufficient_evidence",
-    verdict: "This category has not yet received a complete research pass.",
-    researchState: "not_researched",
-  },
-  {
-    id: "cat_transmission_system_operation",
-    name: "Transmission and system operation",
-    stageId: "stage_transmit_distribute",
-    marketCondition: "structurally_thin",
-    verdict:
-      "No verified entry found; procurement and system-access constraints require research.",
-    researchState: "structurally_thin",
-  },
-  {
-    id: "cat_distribution_utility_operations",
-    name: "Distribution utility operations",
-    stageId: "stage_transmit_distribute",
-    marketCondition: "commercial_market",
-    verdict: "Early candidate evidence shows utility digitisation activity.",
-    researchState: "published",
-  },
-  {
-    id: "cat_forecasting_flexibility_der",
-    name: "Forecasting, flexibility and DER orchestration",
-    stageId: "stage_transmit_distribute",
-    marketCondition: "donor_supported",
-    verdict: "Research queue open; commercial maturity is not yet assessed.",
-    researchState: "research_queue",
-  },
-  {
-    id: "cat_paygo_minigrid_operations",
-    name: "PAYGo and mini-grid operations",
-    stageId: "stage_meter_serve",
-    marketCondition: "commercial_market",
-    verdict: "Candidate evidence includes named and undisclosed pilot customers.",
-    researchState: "published",
-  },
-  {
-    id: "cat_retail_metering_billing_payments",
-    name: "Retail metering, billing and payments",
-    stageId: "stage_meter_serve",
-    marketCondition: "bundled_or_gated",
-    verdict: "Product availability is documented; deployment evidence is pending.",
-    researchState: "published",
-  },
-  {
-    id: "cat_ci_behind_meter",
-    name: "C&I and behind-the-meter",
-    stageId: "stage_meter_serve",
-    marketCondition: "commercial_market",
-    verdict: "Provider-authored product evidence is available.",
-    researchState: "published",
-  },
-  {
-    id: "cat_emobility_battery_networks",
-    name: "E-mobility and battery networks",
-    stageId: "stage_meter_serve",
-    marketCondition: "insufficient_evidence",
-    verdict: "Research pass scheduled; no completeness claim is made.",
-    researchState: "research_queue",
-  },
-  {
-    id: "cat_trading_wheeling_settlement",
-    name: "Trading, wheeling and settlement",
-    stageId: "stage_trade_report",
-    marketCondition: "structurally_thin",
-    verdict:
-      "No verified entry found; market structure and regulation may constrain deployment.",
-    researchState: "structurally_thin",
-  },
-  {
-    id: "cat_carbon_mrv_reporting",
-    name: "Carbon, MRV and reporting",
-    stageId: "stage_trade_report",
-    marketCondition: "insufficient_evidence",
-    verdict: "Candidate discovery has not yet become a publishable record.",
-    researchState: "research_queue",
-  },
-  {
-    id: "cat_data_interoperability_security",
-    name: "Data, interoperability and security",
-    stageId: "cross_cutting",
-    marketCondition: "insufficient_evidence",
-    verdict: "Cross-cutting research queue open.",
-    researchState: "research_queue",
-  },
-];
-
-export const africanCountries = [
-  ["DZ", "Algeria"],
-  ["AO", "Angola"],
-  ["BJ", "Benin"],
-  ["BW", "Botswana"],
-  ["BF", "Burkina Faso"],
-  ["BI", "Burundi"],
-  ["CV", "Cabo Verde"],
-  ["CM", "Cameroon"],
-  ["CF", "Central African Republic"],
-  ["TD", "Chad"],
-  ["KM", "Comoros"],
-  ["CD", "Democratic Republic of the Congo"],
-  ["CG", "Republic of the Congo"],
-  ["CI", "Côte d’Ivoire"],
-  ["DJ", "Djibouti"],
-  ["EG", "Egypt"],
-  ["GQ", "Equatorial Guinea"],
-  ["ER", "Eritrea"],
-  ["SZ", "Eswatini"],
-  ["ET", "Ethiopia"],
-  ["GA", "Gabon"],
-  ["GM", "The Gambia"],
-  ["GH", "Ghana"],
-  ["GN", "Guinea"],
-  ["GW", "Guinea-Bissau"],
-  ["KE", "Kenya"],
-  ["LS", "Lesotho"],
-  ["LR", "Liberia"],
-  ["LY", "Libya"],
-  ["MG", "Madagascar"],
-  ["MW", "Malawi"],
-  ["ML", "Mali"],
-  ["MR", "Mauritania"],
-  ["MU", "Mauritius"],
-  ["MA", "Morocco"],
-  ["MZ", "Mozambique"],
-  ["NA", "Namibia"],
-  ["NE", "Niger"],
-  ["NG", "Nigeria"],
-  ["RW", "Rwanda"],
-  ["ST", "São Tomé and Príncipe"],
-  ["SN", "Senegal"],
-  ["SC", "Seychelles"],
-  ["SL", "Sierra Leone"],
-  ["SO", "Somalia"],
-  ["ZA", "South Africa"],
-  ["SS", "South Sudan"],
-  ["SD", "Sudan"],
-  ["TZ", "Tanzania"],
-  ["TG", "Togo"],
-  ["TN", "Tunisia"],
-  ["UG", "Uganda"],
-  ["ZM", "Zambia"],
-  ["ZW", "Zimbabwe"],
-] as const;
+const snapshot = snapshotJson as unknown as SnapshotData;
 
 export const evidenceLabels: Record<EvidenceStatus, string> = {
   provider_claim_only: "Provider claim",
@@ -557,6 +233,107 @@ export const originLabels: Record<OriginClassification, string> = {
   public_or_open_infrastructure: "Public or open infrastructure",
 };
 
+const countriesByIso2 = new Map(
+  snapshot.countries.map((country) => [country.iso2, country.name]),
+);
+
+export const release = {
+  version: snapshot.release.version,
+  date: displayDate(snapshot.release.date),
+  isoDate: snapshot.release.date,
+  status: snapshot.release.status,
+  mode: snapshot.release.mode,
+};
+
+export const registryManifest = {
+  schemaVersion: snapshot.schemaVersion,
+  sourceBatch: snapshot.release.sourceBatch,
+  sourceWorkbook: snapshot.release.sourceWorkbook,
+  reviewGate: snapshot.reviewGate,
+  counts: snapshot.counts,
+};
+
+export const dataDistributions = snapshot.distributions;
+
+export const organisations: Organisation[] = snapshot.organisations.map(
+  (record) => ({
+    id: record.id,
+    name: record.name,
+    slug: record.slug,
+    type: labelValue(record.organisationType),
+    origin: originLabels[record.originClassification],
+    countryOfOrigin: countryName(record.countryOfOriginIso2),
+    headquarters: countryName(record.headquartersCountryIso2),
+    lifecycle: labelValue(record.lifecycleStatus),
+    website: record.website,
+    description: punctuate(record.description),
+    lastChecked: displayDate(record.lastCheckedAt),
+    providerProfileConfirmed: record.providerProfileConfirmed,
+  }),
+);
+
+export const products: Product[] = snapshot.products.map((record) => ({
+  id: record.id,
+  name: record.name,
+  slug: record.slug,
+  organisationId: record.organisationId,
+  organisation: record.organisation,
+  description: punctuate(record.description.replaceAll(";", ",")),
+  categoryId: record.categoryId,
+  category: record.category,
+  stageId: record.stageId,
+  origin: record.originClassification,
+  lifecycle: record.lifecycleStatus,
+  accessModel: labelValue(record.accessModel),
+  openSourceUrl: record.openSourceUrl || undefined,
+  website: record.website,
+  launchedYear: record.launchedYear || undefined,
+  lastChecked: displayDate(record.lastCheckedAt),
+  deploymentCountries: record.deploymentCountries,
+  evidence: record.evidenceStatuses,
+  capabilities: record.capabilities.map((value) => sentenceCase(value)),
+}));
+
+export const deployments: Deployment[] = snapshot.deployments.map((record) => ({
+  id: record.id,
+  productId: record.productId,
+  countryIso2: record.countryIso2,
+  country: countryName(record.countryIso2),
+  area:
+    record.locationPrecision === "country"
+      ? "Country-level disclosure"
+      : record.subnationalArea,
+  customer: customerLabel(
+    record.customerName,
+    record.customerDisclosure,
+  ),
+  customerDisclosure: record.customerDisclosure,
+  lifecycle: record.lifecycleStatus,
+  year: record.startedYear,
+  evidence: record.evidenceStatus,
+  sourceId: record.sourceId,
+  lastChecked: displayDate(record.lastCheckedAt),
+}));
+
+export const sources: Source[] = snapshot.sources.map((record) => ({
+  id: record.id,
+  title: record.title,
+  publisher: record.publisher,
+  url: record.url,
+  independence: labelValue(record.independenceClass),
+  retrieved: displayDate(record.retrievedAt),
+  sourceLicense: record.sourceLicense,
+  automationPermitted: record.automationPermitted,
+}));
+
+export const assertions = snapshot.assertions;
+export const stages = snapshot.stages;
+export const categories = snapshot.categories;
+export const countrySummaries = snapshot.countrySummaries;
+export const africanCountries = snapshot.countries.map(
+  (country) => [country.iso2, country.name] as const,
+);
+
 export const productBySlug = (slug: string) =>
   products.find((product) => product.slug === slug);
 
@@ -568,11 +345,67 @@ export const organisationBySlug = (slug: string) =>
 
 export const registrySnapshot = {
   release,
+  manifest: registryManifest,
   organisations,
   products,
   deployments,
   sources,
+  assertions,
   stages,
   categories,
   countries: africanCountries,
+  countrySummaries,
+  distributions: dataDistributions,
 } as const;
+
+function countryName(iso2: string) {
+  if (!iso2) return "Not publicly documented";
+  return countriesByIso2.get(iso2) ?? iso2;
+}
+
+function displayDate(value: string) {
+  const [year, month, day] = value.split("-").map(Number);
+  if (!year || !month || !day) return "Not documented";
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  return `${day} ${months[month - 1]} ${year}`;
+}
+
+function labelValue(value: string) {
+  return value
+    .replaceAll("_", " ")
+    .replace("start up", "start-up")
+    .replace("scale up", "scale-up")
+    .replace(/\b\w/g, (character) => character.toUpperCase())
+    .replace("Or ", "or ");
+}
+
+function sentenceCase(value: string) {
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function punctuate(value: string) {
+  return /[.!?]$/.test(value) ? value : `${value}.`;
+}
+
+function customerLabel(
+  value: string,
+  disclosure: Deployment["customerDisclosure"],
+) {
+  if (disclosure === "named" && value) return value;
+  if (disclosure === "confidential") return "Customer confidential";
+  if (disclosure === "undisclosed") return "Customer undisclosed";
+  return "Customer not documented";
+}

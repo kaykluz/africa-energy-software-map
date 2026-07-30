@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "mode": "candidate",
+  "version": "prototype-0.1",
+  "release_date": "2026-07-30",
+  "status_label": "Candidate import — editorial review required",
+  "source_batch": "data/imports/kaykluz-v0.1/batches/batch-001",
+  "taxonomy": "data/taxonomy.json",
+  "countries": "data/african-countries.json",
+  "presentation": "data/interface-presentation.json",
+  "snapshot_output": "web/generated/registry-snapshot.json",
+  "downloads_output": "web/public/downloads/prototype-0.1"
+}

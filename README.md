@@ -33,6 +33,10 @@ The initial research workbook is entering through a candidate-only,
 privacy-filtered migration. See the
 [workbook migration protocol](docs/16-workbook-migration-protocol.md). Imported
 records do not become public or verified without human editorial review.
+The prototype website and its candidate downloads are generated from one
+checksum-verified batch. The
+[snapshot and export pipeline](docs/19-snapshot-and-export-pipeline.md)
+documents the promotion gate and update workflow.
 
 ## Core principles
 
@@ -70,6 +74,7 @@ records do not become public or verified without human editorial review.
 - [Autonomous agent specification](docs/12-autonomous-agent-specification.md)
 - [Workbook migration protocol](docs/16-workbook-migration-protocol.md)
 - [Visual interaction redesign](docs/17-visual-interaction-redesign.md)
+- [Snapshot and export pipeline](docs/19-snapshot-and-export-pipeline.md)
 - [Interactive prototype](web/README.md)
 - [Contributing](CONTRIBUTING.md)
 
