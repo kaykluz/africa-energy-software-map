@@ -9,9 +9,10 @@ directory.
 
 ## Project status
 
-**Foundation phase.** The information architecture, taxonomy, evidence policy,
-data model, contribution workflow, export contract, and autonomous-research
-guardrails are being established before the public application is built.
+**Foundation and interactive-prototype phase.** The information architecture,
+taxonomy, evidence policy, data model, contribution workflow, export contract,
+autonomous-research guardrails, and first responsive application are under
+review.
 
 No dataset in this repository should yet be treated as a complete census.
 
@@ -55,6 +56,7 @@ records do not become public or verified without human editorial review.
 | [`schemas/`](schemas/) | Machine-readable table and agent-output contracts |
 | [`agent/`](agent/) | AI research prompts, policy, configuration, and adapter contract |
 | [`scripts/`](scripts/) | Repository and data validation |
+| [`web/`](web/) | Responsive Phase 1 interactive prototype and route tests |
 | [`.github/`](.github/) | Contribution templates, ownership, and automated checks |
 
 ## Start here
@@ -67,6 +69,7 @@ records do not become public or verified without human editorial review.
 - [AI research and review protocol](docs/06-ai-research-and-review-protocol.md)
 - [Autonomous agent specification](docs/12-autonomous-agent-specification.md)
 - [Workbook migration protocol](docs/16-workbook-migration-protocol.md)
+- [Interactive prototype](web/README.md)
 - [Contributing](CONTRIBUTING.md)
 
 ## Contributing
