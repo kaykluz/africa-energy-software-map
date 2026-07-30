@@ -2723,9 +2723,19 @@ dd {
 }
 
 .form-page form {
+  position: relative;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
+}
+
+.honeypot-field {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(100%);
+  white-space: nowrap;
 }
 
 .form-step {
@@ -2812,6 +2822,21 @@ dd {
   border-top: 1px solid var(--border);
 }
 
+.form-actions button:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.submission-error {
+  margin: 0 30px 18px;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--critical) 45%, var(--border));
+  border-radius: var(--radius);
+  color: var(--critical);
+  background: color-mix(in srgb, var(--critical) 7%, var(--surface));
+  font-size: 0.78rem;
+}
+
 .draft-note {
   margin-top: 12px;
   color: var(--muted);
@@ -2872,6 +2897,14 @@ dd {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.contribution-status {
+  min-height: 360px;
+}
+
+.contribution-status .submission-error {
+  margin: 22px 0;
 }
 
 /* Footer */

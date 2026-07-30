@@ -14,6 +14,12 @@ Submissions enter one moderation queue with types:
 
 Unreviewed submissions do not appear in default public views.
 
+The website’s four Phase 1 contribution routes write to a private durable queue,
+not to public registry records or downloads. Receipt tokens are private and
+contact email is stored separately. The storage, retention, validation, and
+operator contract is defined in
+[Contribution intake and moderation](21-contribution-intake-and-moderation.md).
+
 ## Workflow
 
 ```text
@@ -57,4 +63,3 @@ information or unsupportedly promote provider claims.
 - Source-link health: monthly automated check
 - Mergers, renames, and closures: continuous monitoring
 - Market-condition findings: event-driven and at least annual
-

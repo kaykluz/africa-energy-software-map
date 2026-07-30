@@ -31,7 +31,24 @@ npm test
 
 `npm test` builds the production worker and checks server-rendered content for
 the Stack, Directory, Data, product and country profiles, search, and the
-methodology AI disclosure.
+methodology AI disclosure. It also exercises contribution storage, private
+receipt lookup, origin and sensitive-data rejection, and rate limiting against
+an in-memory D1-compatible test adapter.
+
+## Contribution storage
+
+Completed contribution forms are written to the hosted D1 database through the
+logical `DB` binding. The schema and generated migration live in `db/` and
+`drizzle/`. Regenerate a migration after an intentional schema change with:
+
+```bash
+npm run db:generate
+```
+
+Contact email is not saved in the browser draft and is stored in a separate
+table with a deletion date. Public registry data and downloads never query the
+intake tables. See the
+[contribution intake and moderation contract](../docs/21-contribution-intake-and-moderation.md).
 
 To regenerate or verify the interface data before running the web checks:
 
