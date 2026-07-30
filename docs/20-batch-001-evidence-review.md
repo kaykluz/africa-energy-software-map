@@ -1,6 +1,6 @@
 # Batch 001 evidence review
 
-Status: **AI-assisted research candidate — human editorial approval pending**
+Status: **human reviewed — release prepared for independent pull-request approval**
 
 Research date: 2026-07-30
 
@@ -17,9 +17,10 @@ The checked-in research overlay is
 workbook importer, not a hand-edited output. This makes source corrections,
 evidence classification and unresolved questions reproducible.
 
-All nine source titles and locators are populated. Five source-licence fields
-remain `unknown`, so the interface publication gate continues to treat their
-metadata as incomplete.
+All 88 assertions have a human decision: 61 were accepted and 27 were amended.
+All nine source titles and locators are populated. The five sources that
+required a rights decision now have an explicit factual-metadata-and-linking
+treatment. No source text, imagery or branding is republished.
 
 ## Evidence decisions
 
@@ -74,18 +75,19 @@ structure into a single-country value.
 - `public_source` is used where a public source supports visibility of the claim
   but the classification still involves editorial interpretation.
 
-## Remaining editorial work
+## Human review outcome
 
-Before publication, a human editor must:
+- Proparco and AFD are classified `customer_or_official`; this is not treated
+  as fully independent customer evidence.
+- Digital Energy programme evidence is retained as `public_source`, not
+  customer confirmation.
+- PAM-AI access is `not_publicly_documented`.
+- The unresolved Beacon and PAM headquarters fields remain blank.
+- Provider-authored PowerLabs functionality stays `provider_claim_only`;
+  TechCabal is classified `independent_secondary`.
+- The private review package is excluded from the repository. The release
+  records its SHA-256 digest, completion time and the public reviewer label
+  `kaykluz`.
 
-1. open every source and confirm the listed locator;
-2. decide whether Proparco’s investor relationship changes the desired
-   independence label for any Beacon assertion;
-3. decide whether Digital Energy programme reporting is sufficient for PAM
-   deployment publication without direct customer confirmation;
-4. confirm the access-model classifications;
-5. review the unresolved headquarters fields;
-6. record their identity and review date; and
-7. approve, amend or reject each candidate assertion.
-
-No autonomous process may mark these steps complete.
+The remaining publication decision is the normal independent review and merge
+of the data pull request. No autonomous process may approve or merge it.

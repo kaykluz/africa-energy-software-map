@@ -1306,7 +1306,9 @@ def write_package(output: Path, package: CandidatePackage, manifest: dict) -> No
     )
 
 
-def build_ui_bundle(package: CandidatePackage) -> dict[str, object]:
+def build_ui_bundle(
+    package: CandidatePackage, status: str = "candidate_only"
+) -> dict[str, object]:
     organisations = package.tables["organisations.csv"]
     products = package.tables["products.csv"]
     deployments = package.tables["deployments.csv"]
@@ -1364,7 +1366,7 @@ def build_ui_bundle(package: CandidatePackage) -> dict[str, object]:
     ]
     return {
         "data-manifest.json": {
-            "status": "candidate_only",
+            "status": status,
             "counts": {
                 "organisations": len(organisations),
                 "products": len(products),

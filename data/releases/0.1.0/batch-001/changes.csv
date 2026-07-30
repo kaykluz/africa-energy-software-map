@@ -1,0 +1,73 @@
+id,entity_type,entity_id,field_name,old_value,new_value,changed_at,changed_by,review_note
+chg_09e6c36c8e5fb82e,products,prod_005,last_checked_at,2026-07-24,2026-07-30,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_1f81ccbdbd67621a,products,prod_003,access_model,not_publicly_documented,public_access,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_2202ed06cb4e5ee8,deployments,dep_003,location_precision,utility_territory,country,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_224857870b772707,organisations,org_002,website,https://pamafrica.com/,https://www.pamafrica.com/,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_234d350bef9f761c,deployments,dep_004,subnational_area,Multiple mini-grid sites,,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_2362148267c910a4,products,prod_004,website,,https://www.pamafrica.com/,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_276fd4e8ce6594f8,deployments,dep_003,subnational_area,Northern Nigeria,,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_3fa69bb0446becee,products,prod_003,website,https://beaconpowerservices.com/,https://www.beaconpowerservices.com/en/solutions/xepp,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_448084cf493daeff,organisations,org_001,last_checked_at,2026-07-24,2026-07-30,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_4aac347a585b1d93,deployments,dep_001,last_checked_at,2026-07-24,2026-07-30,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_4cec78cbe31d924c,organisations,org_003,description,"Hybrid power orchestration for grid, solar, batteries, generators and inverters","Energy intelligence software and hardware for orchestrating grid, solar, batteries and generators",2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_4ec506e5621add01,deployments,dep_001,lifecycle_status,pilot,active,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_55c77ac8336f9080,organisations,org_002,last_checked_at,2026-07-24,2026-07-30,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_5ba08054c5d30c4f,deployments,dep_003,last_checked_at,2026-07-24,2026-07-30,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_5be1e3704d7d8cfc,organisations,org_003,website,https://powerlabs.energy/,https://powerlabstech.com/,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_60d05d16d86c0c84,products,prod_003,last_checked_at,2026-07-24,2026-07-30,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_74839fdb9d54a6aa,deployments,dep_004,lifecycle_status,pilot,active,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_74ea5f3ca5e753a6,products,prod_004,description,Smart metering; payments; automation; dynamic tariffs; demand response,"Real-time monitoring, smart tariffs, remote device control, payment integration and demand response",2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_7a315836254bbb2e,products,prod_001,website,https://beaconpowerservices.com/,https://beaconpowerservices.com/en/solutions/caims,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_859c9033554a0e02,organisations,org_002,headquarters_country,NG,,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_8a34fdc433b31367,products,prod_005,access_model,not_publicly_documented,commercial_service,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_8acebb8919e4cb40,products,prod_004,last_checked_at,2026-07-24,2026-07-30,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_8d33a7f664e467a9,products,prod_004,lifecycle_status,pilot,active,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_91d5908cbe717187,organisations,org_003,last_checked_at,2026-07-24,2026-07-30,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_966809d1442fad0e,products,prod_002,last_checked_at,2026-07-24,2026-07-30,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_9b239ee67bf750bf,products,prod_005,launched_year,,2025,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_9b6091e59043ca20,products,prod_005,description,Hybrid dispatch; source orchestration; monitoring; optimisation; control,"Energy monitoring, analytics, sizing optimisation, anomaly detection and multi-source orchestration",2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_9d9daaffed31a447,products,prod_005,website,https://powerlabs.energy/,https://www.powerlabstech.com/pai-enterprise/software,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_a84193b5442a0477,deployments,dep_004,last_checked_at,2026-07-24,2026-07-30,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_ac630253c0d38f31,products,prod_005,name,Pai,Pai Enterprise,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_b9b4e9e02c19fb47,products,prod_001,last_checked_at,2026-07-24,2026-07-30,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_c539051ded210e69,products,prod_005,slug,pai,pai-enterprise,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_c97eb980fc03ed62,deployments,dep_003,lifecycle_status,pilot,active,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_d6f42a21319ca12f,deployments,dep_002,last_checked_at,2026-07-24,2026-07-30,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_e0450fc22a478634,products,prod_002,website,https://beaconpowerservices.com/,https://beaconpowerservices.com/en/solutions/adora,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_e879cdc5cb05c892,deployments,dep_002,lifecycle_status,pilot,active,2026-07-30,ai_assisted_research,AI-assisted source review candidate; human editorial approval remains required.
+chg_97e903f4452e0ecf,assertion,asrt_07845759e110e814,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_8ae0a368075ca9e0,assertion,asrt_1bfadeaf008f8b40,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_8917d01d2777fa98,assertion,asrt_246a7c5ed464a001,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_f925b383e781082a,assertion,asrt_3a633cb1d805690f,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_3160a928d8d222cc,assertion,asrt_3eddf67c86bc0c5e,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_bf8553e20e19d7d3,assertion,asrt_3f6071b75d3bdf56,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_9ed55a6cba977802,assertion,asrt_4520e223eb8ef3e1,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_fe9cecb9ea46069d,assertion,asrt_486a07454e573806,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_11245cbc8cd67e65,assertion,asrt_48da5ea052848a18,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_36514a4b867f14e7,assertion,asrt_49ca9eec2c030beb,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_a619eff1fdb51868,assertion,asrt_52b83b25eb3a8b85,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_7a6363240f377065,assertion,asrt_591217630dc7caac,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_0d1b8945df2abaf4,assertion,asrt_7d3d6c1623d92b9e,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_79fd51f9da9965ea,assertion,asrt_814133975224f4ab,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_b8010d8bd21aaad5,assertion,asrt_8f8054fd2fcc0c93,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_b76a906ed258a68b,assertion,asrt_90c9d62a102715aa,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_ed818b0563d8f9e0,assertion,asrt_9761b29fae870f66,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_d38339ba111eaf2a,assertion,asrt_9ee29eba13999ef4,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_b7ae86e74fdfb4fe,assertion,asrt_b6a1da022fa625bc,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_356a753138a544e7,assertion,asrt_bc5c9b4a4c470667,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_d037776d97f2d788,assertion,asrt_c1cb51aeee357631,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_8c04eb50a540a4e7,assertion,asrt_d5fcca1e85edf1d2,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_06307228495aa946,assertion,asrt_d6d03ea5ddc85b0e,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_7920330dfeb5cc52,assertion,asrt_d866a7821f95268c,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_863df28c9dc835b8,assertion,asrt_effeed44d72ce61a,value,commercial_service,not_publicly_documented,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_32b2cc2dd8253a69,assertion,asrt_f0623dbb92df930b,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_e40511dfd71bd89e,assertion,asrt_f2b8c24777b2382d,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_cdc86ab5daf819a1,assertion,asrt_f4f5659480dc0dd5,evidence_status,independently_evidenced,public_source,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_b6f6c0cf0b343a8f,source,src_3cbec379ee14aa70,source_license,unknown,all_rights_reserved; factual_metadata_and_linking_only,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_f7009671431a2e95,source,src_3cbec379ee14aa70,independence_class,independent_primary,customer_or_official,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_f112150f636c26eb,source,src_72a68084f5f1f2f3,source_license,unknown,all_rights_reserved; factual_metadata_and_linking_only,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_292e968a4a54b8a6,source,src_72a68084f5f1f2f3,independence_class,independent_primary,customer_or_official,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_9be28736e18adf65,source,src_8d5a439422f50474,source_license,unknown,all_rights_reserved; factual_metadata_and_linking_only,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_0a4e027628f49c18,source,src_91c1fac8b3e57eb7,source_license,unknown,no_open_licence_found; factual_metadata_and_linking_only,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_2eaa7e2e5479e277,source,src_91c1fac8b3e57eb7,independence_class,independent_primary,customer_or_official,2026-07-30,kaykluz,Human review decision from Batch 001.
+chg_de6ae7d598befc4a,source,src_b0a509af628fb050,source_license,unknown,restricted_terms; factual_metadata_and_linking_only,2026-07-30,kaykluz,Human review decision from Batch 001.

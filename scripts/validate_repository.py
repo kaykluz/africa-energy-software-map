@@ -18,6 +18,9 @@ ID_PATTERN = re.compile(r"^[a-z][a-z0-9_]*$")
 ISO2_PATTERN = re.compile(r"^[A-Z]{2}$")
 YEAR_PATTERN = re.compile(r"^(19|20|21)\d{2}$")
 SHA256_PATTERN = re.compile(r"^[a-f0-9]{64}$")
+PUBLIC_REVIEWER_PATTERN = re.compile(
+    r"^[a-zA-Z0-9][a-zA-Z0-9_.-]{1,79}$"
+)
 FORMULA_PREFIX = re.compile(r"^[=+@]|^-(?!\d+(?:\.\d+)?$)")
 PRIVATE_HEADER_TOKENS = {
     "email",
@@ -237,7 +240,11 @@ def validate_checksums(package: Path, errors: list[str]) -> None:
         )
 
 
-def validate_candidate_package(package: Path, errors: list[str]) -> None:
+def validate_data_package(
+    package: Path,
+    errors: list[str],
+    expected_status: str = "candidate_only",
+) -> None:
     schema = load_json(ROOT / "schemas" / "tables.json")
     taxonomy = load_json(ROOT / "data" / "taxonomy.json")
     category_ids = {
@@ -488,13 +495,16 @@ def validate_candidate_package(package: Path, errors: list[str]) -> None:
                     f"{relative_package}: {subject_type} {subject_id} missing assertions {sorted(missing)}"
                 )
 
+    report: dict = {}
     report_path = package / "migration-report.json"
     if not report_path.exists():
         errors.append(f"{relative_package}: missing migration-report.json")
     else:
         report = load_json(report_path)
-        if report.get("status") != "candidate_only":
-            errors.append(f"{report_path.relative_to(ROOT)}: must be candidate_only")
+        if report.get("status") != expected_status:
+            errors.append(
+                f"{report_path.relative_to(ROOT)}: must be {expected_status}"
+            )
         if report.get("privacy", {}).get("personal_records_emitted") != 0:
             errors.append(
                 f"{report_path.relative_to(ROOT)}: personal records must be zero"
@@ -532,13 +542,18 @@ def validate_candidate_package(package: Path, errors: list[str]) -> None:
                 )
         research_review = report.get("research_review")
         if research_review:
+            expected_research_status = (
+                "ai_researched_human_reviewed"
+                if expected_status == "reviewed_release"
+                else "ai_researched_human_pending"
+            )
             if (
                 research_review.get("status")
-                != "ai_researched_human_pending"
+                != expected_research_status
             ):
                 errors.append(
-                    f"{report_path.relative_to(ROOT)}: research review must "
-                    "remain human-pending"
+                    f"{report_path.relative_to(ROOT)}: research review must be "
+                    f"{expected_research_status}"
                 )
             if not SHA256_PATTERN.fullmatch(
                 research_review.get("sha256", "")
@@ -552,11 +567,20 @@ def validate_candidate_package(package: Path, errors: list[str]) -> None:
                     f"{report_path.relative_to(ROOT)}: research source count "
                     "does not reconcile"
                 )
-            if research_review.get("record_changes") != len(
-                tables["changes.csv"]
+            review_change_count = (
+                report.get("review_release", {}).get(
+                    "reviewChangeRecords", 0
+                )
+                if expected_status == "reviewed_release"
+                else 0
+            )
+            if (
+                research_review.get("record_changes", 0)
+                + review_change_count
+                != len(tables["changes.csv"])
             ):
                 errors.append(
-                    f"{report_path.relative_to(ROOT)}: research change count "
+                    f"{report_path.relative_to(ROOT)}: change counts "
                     "does not reconcile"
                 )
             research_assertions = [
@@ -573,7 +597,7 @@ def validate_candidate_package(package: Path, errors: list[str]) -> None:
                     f"{report_path.relative_to(ROOT)}: research assertion count "
                     "does not reconcile"
                 )
-            if any(
+            if expected_status == "candidate_only" and any(
                 row["reviewed_by"] or row["reviewed_at"]
                 for row in research_assertions
             ):
@@ -595,9 +619,9 @@ def validate_candidate_package(package: Path, errors: list[str]) -> None:
         errors.append(f"{relative_package}: missing UI data manifest")
     else:
         ui_manifest = load_json(ui_manifest_path)
-        if ui_manifest.get("status") != "candidate_only":
+        if ui_manifest.get("status") != expected_status:
             errors.append(
-                f"{ui_manifest_path.relative_to(ROOT)}: must be candidate_only"
+                f"{ui_manifest_path.relative_to(ROOT)}: must be {expected_status}"
             )
         expected_counts = {
             "organisations": len(organisations),
@@ -649,6 +673,72 @@ def validate_candidate_package(package: Path, errors: list[str]) -> None:
         )
     validate_checksums(package, errors)
 
+    if expected_status == "reviewed_release":
+        if any(
+            not row["reviewed_by"] or not row["reviewed_at"]
+            for row in tables["assertions.csv"]
+        ):
+            errors.append(
+                f"{relative_package}: every reviewed assertion needs reviewer and date"
+            )
+        if any(
+            source["source_license"].strip().lower() in {"", "unknown"}
+            for source in sources.values()
+        ):
+            errors.append(
+                f"{relative_package}: reviewed release has unresolved source rights"
+            )
+        summary_path = package / "review-summary.json"
+        if not summary_path.exists():
+            errors.append(f"{relative_package}: missing review-summary.json")
+        else:
+            summary = load_json(summary_path)
+            decision_counts = summary.get("assertionDecisions", {})
+            decision_total = (
+                sum(decision_counts.values())
+                if isinstance(decision_counts, dict)
+                and all(
+                    isinstance(value, int) and value >= 0
+                    for value in decision_counts.values()
+                )
+                else -1
+            )
+            expected_decisions = (
+                research_review.get("assertions_relinked", 0)
+                + research_review.get("assertions_added", 0)
+                if research_review
+                else len(tables["assertions.csv"])
+            )
+            treatments = summary.get("sourceTreatments", [])
+            if (
+                summary.get("status") != "reviewed_release"
+                or summary.get("publicationAuthorised") is not False
+                or not SHA256_PATTERN.fullmatch(
+                    summary.get("reviewPackageSha256", "")
+                )
+                or summary.get("reviewPackageCommitted") is not False
+                or not PUBLIC_REVIEWER_PATTERN.fullmatch(
+                    summary.get("publicReviewer", "")
+                )
+                or decision_total != expected_decisions
+                or not isinstance(treatments, list)
+                or summary.get("sourceDecisions") != len(treatments)
+                or any(
+                    treatment.get("rightsStatus") != "resolved"
+                    for treatment in treatments
+                )
+                or not isinstance(summary.get("reviewChangeRecords"), int)
+                or summary["reviewChangeRecords"] < 0
+            ):
+                errors.append(
+                    f"{summary_path.relative_to(ROOT)}: invalid reviewed-release boundary"
+                )
+            report_summary = report.get("review_release", {})
+            if report_summary != summary:
+                errors.append(
+                    f"{report_path.relative_to(ROOT)}: review summary differs"
+                )
+
 
 def validate_candidate_imports(errors: list[str]) -> None:
     imports_root = ROOT / "data" / "imports"
@@ -656,7 +746,7 @@ def validate_candidate_imports(errors: list[str]) -> None:
         return
     for package in sorted(imports_root.glob("*/batches/*")):
         if package.is_dir():
-            validate_candidate_package(package, errors)
+            validate_data_package(package, errors)
     for audit_path in sorted(imports_root.glob("*/full-audit.json")):
         audit = load_json(audit_path)
         if audit.get("status") != "candidate_only":
@@ -679,6 +769,17 @@ def validate_candidate_imports(errors: list[str]) -> None:
                 errors.append(
                     f"{audit_path.relative_to(ROOT)}: batch exceeds 100 assertions"
                 )
+
+
+def validate_reviewed_releases(errors: list[str]) -> None:
+    releases_root = ROOT / "data" / "releases"
+    if not releases_root.exists():
+        return
+    for package in sorted(releases_root.glob("*/batch-*")):
+        if package.is_dir():
+            validate_data_package(
+                package, errors, expected_status="reviewed_release"
+            )
 
 
 def validate_interface_artifacts(errors: list[str]) -> None:
@@ -762,6 +863,7 @@ def main() -> int:
     validate_csv_templates(errors)
     validate_taxonomy(errors)
     validate_candidate_imports(errors)
+    validate_reviewed_releases(errors)
     validate_interface_artifacts(errors)
     validate_automation_artifacts(errors)
 

@@ -1,0 +1,49 @@
+{
+  "version": "1.0.0",
+  "tables": {
+    "organisations.csv": {
+      "id_field": "id",
+      "fields": ["id", "name", "slug", "organisation_type", "origin_classification", "country_of_origin", "headquarters_country", "lifecycle_status", "website", "description", "provider_profile_confirmed", "last_checked_at"]
+    },
+    "products.csv": {
+      "id_field": "id",
+      "fields": ["id", "organisation_id", "name", "slug", "description", "primary_category_id", "lifecycle_status", "access_model", "open_source_url", "website", "launched_year", "last_checked_at"]
+    },
+    "capabilities.csv": {
+      "id_field": "id",
+      "fields": ["id", "name", "description"]
+    },
+    "product-capabilities.csv": {
+      "id_field": null,
+      "fields": ["product_id", "capability_id", "is_primary"]
+    },
+    "deployments.csv": {
+      "id_field": "id",
+      "fields": ["id", "product_id", "country_iso2", "subnational_area", "customer_name", "customer_disclosure", "lifecycle_status", "started_year", "ended_year", "location_precision", "last_checked_at"]
+    },
+    "deployment-parties.csv": {
+      "id_field": null,
+      "fields": ["deployment_id", "organisation_id", "role"]
+    },
+    "sources.csv": {
+      "id_field": "id",
+      "fields": ["id", "url", "title", "publisher", "source_type", "author", "publication_date", "retrieved_at", "archived_url", "source_license", "independence_class", "automation_permitted", "notes"]
+    },
+    "assertions.csv": {
+      "id_field": "id",
+      "fields": ["id", "subject_type", "subject_id", "predicate", "value", "source_id", "evidence_status", "extracted_by", "extractor_run_id", "reviewed_by", "reviewed_at", "valid_from", "valid_to", "notes"]
+    },
+    "submissions.csv": {
+      "id_field": "id",
+      "fields": ["id", "submission_type", "submitted_at", "submitter_relationship", "status", "related_entity_id", "evidence_url", "notes"]
+    },
+    "changes.csv": {
+      "id_field": "id",
+      "fields": ["id", "entity_type", "entity_id", "field_name", "old_value", "new_value", "changed_at", "changed_by", "review_note"]
+    },
+    "source-register.csv": {
+      "id_field": "id",
+      "fields": ["id", "name", "source_family", "countries", "categories", "base_url", "discovery_method", "automation_permitted", "expected_update_frequency", "default_independence_class", "language", "last_checked_at", "next_review_at", "status", "notes"]
+    }
+  }
+}

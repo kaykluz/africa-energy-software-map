@@ -1,0 +1,13 @@
+legacy_id,canonical_id,entity_type
+DEP-001,dep_001,deployment
+DEP-002,dep_002,deployment
+DEP-003,dep_003,deployment
+DEP-004,dep_004,deployment
+ORG-001,org_001,organisation
+ORG-002,org_002,organisation
+ORG-003,org_003,organisation
+PROD-001,prod_001,product
+PROD-002,prod_002,product
+PROD-003,prod_003,product
+PROD-004,prod_004,product
+PROD-005,prod_005,product

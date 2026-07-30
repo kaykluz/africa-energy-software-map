@@ -250,15 +250,15 @@ function reviewRequest(body, headers = {}) {
   };
 }
 
-test("server-renders the Stack with candidate status and useful records", async () => {
+test("server-renders the Stack with reviewed status and useful records", async () => {
   const response = await render("/");
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
   assert.match(html, /The software powering African energy/);
-  assert.match(html, /Prototype data/);
-  assert.match(html, /Candidate import/);
+  assert.match(html, /Reviewed beta/);
+  assert.match(html, /Reviewed data release/);
   assert.match(html, /CAIMS/);
   assert.match(html, /Adora/);
   assert.match(html, /PAYGo and mini-grid operations/);
@@ -312,19 +312,19 @@ test("server-renders corrected product identity and source-backed fields", async
   assert.match(html, /TechCabal/);
 });
 
-test("server-renders reproducible candidate downloads and review status", async () => {
+test("server-renders reproducible reviewed downloads and review status", async () => {
   const response = await render("/data");
   assert.equal(response.status, 200);
   const html = await response.text();
   const textHtml = html.replaceAll(/<!--.*?-->/g, "");
   assert.match(html, /<h1[^>]*>Data and downloads<\/h1>/i);
-  assert.match(textHtml, /0 of\s+88 assertions reviewed/);
-  assert.match(textHtml, /5 sources need metadata/);
-  assert.match(html, /candidate-csv-package\.zip/);
+  assert.match(textHtml, /88 of\s+88 assertions reviewed/);
+  assert.match(textHtml, /0 sources need metadata/);
+  assert.match(html, /csv-package\.zip/);
   assert.match(html, /registry\.json/);
   assert.match(html, /assertions\.jsonl/);
   assert.match(html, /deployments\.geojson/);
-  assert.match(html, /They remain candidate data/);
+  assert.match(html, /Versioned tables, assertions and country-safe deployment data/);
 });
 
 test("server-renders a country profile from the generated snapshot", async () => {

@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Prepared reviewed data release `0.1.0` from Batch 001: 61 assertion
+  acceptances, 27 amendments, five resolved source-rights decisions, 88
+  reviewer-attributed assertions and deterministic public downloads.
+- Added a privacy-preserving promotion command that records the private review
+  package digest and a public reviewer label without committing reviewer
+  contact data or granting automated publication authority.
+- Switched the generated interface snapshot from candidate mode to the reviewed
+  Batch 001 release.
 - Added a visually validated bulk-intake workbook and private candidate import
   queue with automatic review-size batching.
 - Added six sector lenses while keeping the electricity value chain as the
@@ -12,8 +20,6 @@
 
 All notable project, schema, taxonomy, policy, and data-release changes will be
 documented here.
-
-## Unreleased
 
 - Created the repository foundation.
 - Added product, data, evidence, editorial, export, and autonomous-agent

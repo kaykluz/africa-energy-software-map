@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the deterministic web snapshot and candidate download package."""
+"""Build the deterministic web snapshot and versioned download package."""
 
 from __future__ import annotations
 
@@ -151,10 +151,13 @@ def build_snapshot(config_path: Path = DEFAULT_CONFIG) -> dict[str, object]:
     sources_raw = csv_rows(batch / "sources.csv")
     assertions_raw = csv_rows(batch / "assertions.csv")
 
-    if migration_report.get("status") != "candidate_only":
-        raise SnapshotError("source batch must retain candidate_only status")
+    package_status = migration_report.get("status")
+    if package_status not in {"candidate_only", "reviewed_release"}:
+        raise SnapshotError("source batch has an unsupported release status")
     if config["mode"] not in {"candidate", "published"}:
         raise SnapshotError("interface mode must be candidate or published")
+    if config["mode"] == "published" and package_status != "reviewed_release":
+        raise SnapshotError("published mode requires a reviewed release package")
 
     reviewed_assertions = [
         row
@@ -333,7 +336,7 @@ def build_snapshot(config_path: Path = DEFAULT_CONFIG) -> dict[str, object]:
         }
         for item in ui_countries
     ]
-    distributions = distribution_records(config["version"])
+    distributions = distribution_records(config["version"], config["mode"])
 
     return {
         "schemaVersion": config["schema_version"],
@@ -418,14 +421,21 @@ def build_category(
     }
 
 
-def distribution_records(version: str) -> list[dict[str, str]]:
+def distribution_records(
+    version: str, mode: str = "candidate"
+) -> list[dict[str, str]]:
     base = f"/downloads/{version}"
+    csv_filename = (
+        "csv-package.zip"
+        if mode == "published"
+        else "candidate-csv-package.zip"
+    )
     return [
         {
             "id": "csv_package",
             "label": "CSV package",
             "format": "ZIP",
-            "href": f"{base}/candidate-csv-package.zip",
+            "href": f"{base}/{csv_filename}",
         },
         {
             "id": "registry_json",
@@ -457,6 +467,10 @@ def distribution_records(version: str) -> list[dict[str, str]]:
 def build_downloads(
     snapshot: dict[str, object], config: dict
 ) -> dict[str, bytes]:
+    published = snapshot["release"]["mode"] == "published"
+    csv_filename = (
+        "csv-package.zip" if published else "candidate-csv-package.zip"
+    )
     registry = json_bytes(snapshot)
     assertions_jsonl = b"".join(
         json.dumps(item, ensure_ascii=False, separators=(",", ":")).encode(
@@ -468,7 +482,11 @@ def build_downloads(
     geojson = json_bytes(
         {
             "type": "FeatureCollection",
-            "name": "Africa Energy Software Map candidate deployments",
+            "name": (
+                "Africa Energy Software Map reviewed deployments"
+                if published
+                else "Africa Energy Software Map candidate deployments"
+            ),
             "features": [
                 {
                     "type": "Feature",
@@ -491,10 +509,10 @@ def build_downloads(
             ],
         }
     )
-    readme = candidate_readme(snapshot).encode("utf-8")
+    readme = release_readme(snapshot).encode("utf-8")
     csv_zip = build_csv_zip(snapshot, config, readme)
     primary = {
-        "candidate-csv-package.zip": csv_zip,
+        csv_filename: csv_zip,
         "registry.json": registry,
         "assertions.jsonl": assertions_jsonl,
         "deployments.geojson": geojson,
@@ -528,23 +546,34 @@ def build_downloads(
     return files
 
 
-def candidate_readme(snapshot: dict[str, object]) -> str:
+def release_readme(snapshot: dict[str, object]) -> str:
     release = snapshot["release"]
     counts = snapshot["counts"]
     gate = snapshot["reviewGate"]
+    published = release["mode"] == "published"
+    package_name = (
+        "csv-package.zip" if published else "candidate-csv-package.zip"
+    )
+    description = (
+        "This is a reviewed public data release. Corrections are issued through "
+        "later versioned releases."
+        if published
+        else "This is an interface and research-review package, not a formal "
+        "public data release. The records remain candidates until the editorial "
+        "review fields and source metadata are complete."
+    )
+    assertion_label = "reviewed assertion" if published else "candidate assertion"
     return f"""# Africa Energy Software Map — {release['version']}
 
 Status: **{release['status']}**
 
-This is an interface and research-review package, not a formal public data
-release. The records remain candidates until the editorial review fields and
-source metadata are complete.
+{description}
 
 ## Contents
 
-- `candidate-csv-package.zip` — normalised candidate tables and metadata
+- `{package_name}` — normalised tables and metadata
 - `registry.json` — complete interface snapshot
-- `assertions.jsonl` — one atomic candidate assertion per line
+- `assertions.jsonl` — one atomic {assertion_label} per line
 - `deployments.geojson` — country-safe geography with null point geometry
 - `manifest.json` and `checksums.txt` — counts, review gate and integrity data
 
@@ -572,11 +601,13 @@ def build_csv_zip(
     snapshot: dict[str, object], config: dict, readme: bytes
 ) -> bytes:
     batch = repository_path(config["source_batch"], "source_batch")
+    published = snapshot["release"]["mode"] == "published"
+    package_suffix = "reviewed" if published else "candidate"
     datapackage = {
         "profile": "tabular-data-package",
-        "name": "africa-energy-software-map-candidate",
+        "name": f"africa-energy-software-map-{package_suffix}",
         "version": snapshot["release"]["version"],
-        "title": "Africa Energy Software Map candidate data",
+        "title": f"Africa Energy Software Map {package_suffix} data",
         "description": snapshot["release"]["status"],
         "licenses": [{"name": "CC-BY-4.0", "path": "DATA-LICENSE.md"}],
         "resources": [
@@ -595,6 +626,14 @@ def build_csv_zip(
             "datapackage.json": json_bytes(datapackage),
         }
     )
+    for filename in (
+        "review-summary.json",
+        "DATA-DICTIONARY.md",
+        "schema.json",
+    ):
+        optional = batch / filename
+        if optional.is_file():
+            entries[filename] = optional.read_bytes()
     entries["checksums.txt"] = (
         "\n".join(
             f"{sha256_bytes(content)}  {name}"

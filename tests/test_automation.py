@@ -12,6 +12,11 @@ from scripts.build_review_assist import (
 )
 from scripts.prepare_next_batch import DEFAULT_AUDIT, build_plan
 from scripts.prepare_review_release import build_release_plan
+from scripts.promote_reviewed_batch import (
+    DEFAULT_SOURCE,
+    build_reviewed_release,
+    read_csv,
+)
 from scripts.run_agent_dry_run import approved_sources
 from scripts.validate_bulk_template import (
     BULK_FIELDS,
@@ -28,7 +33,7 @@ class AutomationTests(unittest.TestCase):
         self.assertFalse(assist["publicationAuthorised"])
         self.assertEqual(assist["summary"]["assertions"], 88)
         self.assertEqual(assist["summary"]["sources"], 9)
-        self.assertEqual(assist["summary"]["rightsFirst"], 5)
+        self.assertEqual(assist["summary"]["rightsFirst"], 0)
         self.assertEqual(
             {item["assertionId"] for item in assist["assertions"]},
             {item["id"] for item in snapshot["assertions"]},
@@ -140,6 +145,64 @@ class AutomationTests(unittest.TestCase):
         self.assertEqual(plan["status"], "blocked")
         self.assertGreater(plan["summary"]["blockers"], 1)
         self.assertFalse(plan["publicationAuthorised"])
+
+    def test_reviewed_promotion_uses_public_reviewer_and_keeps_package_private(
+        self,
+    ) -> None:
+        assertions = read_csv(DEFAULT_SOURCE / "assertions.csv")
+        sources = read_csv(DEFAULT_SOURCE / "sources.csv")
+        package = {
+            "schemaVersion": "1.0.0",
+            "batchId": "data/imports/kaykluz-v0.1/batches/batch-001",
+            "generatedAt": "2026-07-30T22:41:38Z",
+            "generatedBy": "private@example.com",
+            "status": {
+                "containsPublicDataChanges": False,
+                "publicationAuthorised": False,
+            },
+            "assertionReviews": [
+                {
+                    "assertionId": assertion["id"],
+                    "decision": "accept",
+                    "sourceChecked": True,
+                    "safetyChecked": True,
+                    "reviewedAt": "2026-07-30T22:30:00Z",
+                }
+                for assertion in assertions
+            ],
+            "sourceReviews": [
+                {
+                    "sourceId": source["id"],
+                    "rightsStatus": "resolved",
+                    "sourceLicense": "factual_metadata_and_linking_only",
+                    "independenceClass": source["independence_class"],
+                    "reviewedAt": "2026-07-30T22:31:00Z",
+                }
+                for source in sources
+                if source["source_license"] == "unknown"
+            ],
+        }
+        candidate, report, summary, _ = build_reviewed_release(
+            source=DEFAULT_SOURCE,
+            package=package,
+            package_hash="a" * 64,
+            reviewer="public-editor",
+            version="test",
+        )
+        self.assertTrue(
+            all(
+                assertion["reviewed_by"] == "public-editor"
+                for assertion in candidate.tables["assertions.csv"]
+            )
+        )
+        self.assertFalse(summary["reviewPackageCommitted"])
+        self.assertNotIn("private@example.com", json.dumps(summary))
+        self.assertFalse(summary["publicationAuthorised"])
+        self.assertEqual(
+            report["research_review"]["record_changes"]
+            + summary["reviewChangeRecords"],
+            len(candidate.tables["changes.csv"]),
+        )
 
 
 if __name__ == "__main__":

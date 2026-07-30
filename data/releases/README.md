@@ -1,7 +1,12 @@
 # Data releases
 
-Formal public data releases will be added here or attached to GitHub Releases.
-The downloadable files under `web/public/downloads/prototype-0.1/` are a
+The first reviewed package is
+[`0.1.0/batch-001`](0.1.0/batch-001/README.md). It contains the 88
+human-reviewed assertions and nine resolved source records that drive the
+current interface snapshot. It is prepared for independent pull-request
+approval; generation alone does not authorise publication.
+
+The older files under `web/public/downloads/prototype-0.1/` remain a historical
 candidate interface package, not a formal release.
 Each release must include:
 

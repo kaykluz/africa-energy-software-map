@@ -276,11 +276,16 @@ export function DataPage() {
       </figure>
       <section className="data-section">
         <div>
-          <span className="eyebrow">Candidate package</span>
+          <span className="eyebrow">
+            {release.mode === "published"
+              ? "Reviewed release"
+              : "Candidate package"}
+          </span>
           <h2>Download the current data</h2>
           <p>
-            These files reproduce the prototype. They remain candidate data
-            until editorial review is complete.
+            {release.mode === "published"
+              ? "Versioned tables, assertions and country-safe deployment data."
+              : "These files reproduce the prototype. They remain candidate data until editorial review is complete."}
           </p>
         </div>
         <div className="download-list">

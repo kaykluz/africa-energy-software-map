@@ -1,0 +1,4 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_001,Beacon Power Services,beacon-power-services,utility_software_scale_up,africa_built,NG,,active,https://beaconpowerservices.com/,"Distribution utility digitisation, grid mapping, customer and asset systems",false,2026-07-30
+org_002,PAM Africa,pam-africa,energy_software_start_up,africa_built,NG,,active,https://www.pamafrica.com/,"Mini-grid optimisation, smart metering, payments and demand response",false,2026-07-30
+org_003,PowerLabs,powerlabs,energy_software_start_up,africa_built,NG,NG,active,https://powerlabstech.com/,"Energy intelligence software and hardware for orchestrating grid, solar, batteries and generators",false,2026-07-30
