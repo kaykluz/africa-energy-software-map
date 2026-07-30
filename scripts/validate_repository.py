@@ -34,6 +34,16 @@ SOURCE_INDEPENDENCE = {
     "aggregator",
     "community_submission",
 }
+IGNORED_VALIDATION_DIRECTORIES = {
+    ".git",
+    ".next",
+    ".vinext",
+    ".wrangler",
+    "dist",
+    "node_modules",
+    "outputs",
+    "work",
+}
 
 
 def load_json(path: Path):
@@ -43,6 +53,8 @@ def load_json(path: Path):
 
 def validate_json_files(errors: list[str]) -> None:
     for path in sorted(ROOT.rglob("*.json")):
+        if any(part in IGNORED_VALIDATION_DIRECTORIES for part in path.parts):
+            continue
         try:
             load_json(path)
         except (OSError, json.JSONDecodeError) as exc:
