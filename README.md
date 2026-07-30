@@ -28,6 +28,11 @@ One database will support three public views:
 Every material deployment and market claim will link to evidence and display a
 last-checked date.
 
+The initial research workbook is entering through a candidate-only,
+privacy-filtered migration. See the
+[workbook migration protocol](docs/16-workbook-migration-protocol.md). Imported
+records do not become public or verified without human editorial review.
+
 ## Core principles
 
 - Product-level records, not company logos.
@@ -46,7 +51,7 @@ last-checked date.
 | Path | Purpose |
 | --- | --- |
 | [`docs/`](docs/) | Product, data, editorial, design, and operating specifications |
-| [`data/`](data/) | Taxonomy, empty templates, release conventions, and future data |
+| [`data/`](data/) | Taxonomy, candidate imports, release conventions, and future data |
 | [`schemas/`](schemas/) | Machine-readable table and agent-output contracts |
 | [`agent/`](agent/) | AI research prompts, policy, configuration, and adapter contract |
 | [`scripts/`](scripts/) | Repository and data validation |
@@ -61,6 +66,7 @@ last-checked date.
 - [Evidence and verification policy](docs/04-evidence-and-verification-policy.md)
 - [AI research and review protocol](docs/06-ai-research-and-review-protocol.md)
 - [Autonomous agent specification](docs/12-autonomous-agent-specification.md)
+- [Workbook migration protocol](docs/16-workbook-migration-protocol.md)
 - [Contributing](CONTRIBUTING.md)
 
 ## Contributing
@@ -79,4 +85,3 @@ changes through pull requests.
 - Original documentation and project-created dataset: [CC BY 4.0](DATA-LICENSE.md)
 - Third-party source material remains subject to its original rights and is not
   relicensed by this repository.
-

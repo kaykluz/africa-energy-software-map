@@ -1,0 +1,6 @@
+id,organisation_id,name,slug,description,primary_category_id,lifecycle_status,access_model,open_source_url,website,launched_year,last_checked_at
+prod_001,org_001,CAIMS,caims,Customer and asset information; network surveys; connections; digital twin,cat_distribution_utility_operations,active,commercial_proprietary,,https://beaconpowerservices.com/,,2026-07-24
+prod_002,org_001,Adora,adora,Grid operations; outage and loss analytics; field work; commercial operations,cat_distribution_utility_operations,active,commercial_proprietary,,https://beaconpowerservices.com/,,2026-07-24
+prod_003,org_001,Xepp,xepp,Consumption insights; payments; customer engagement; distributed solar offers,cat_retail_metering_billing_payments,active,not_publicly_documented,,https://beaconpowerservices.com/,,2026-07-24
+prod_004,org_002,PAM-AI,pam-ai,Smart metering; payments; automation; dynamic tariffs; demand response,cat_paygo_minigrid_operations,pilot,commercial_service,,,,2026-07-24
+prod_005,org_003,Pai,pai,Hybrid dispatch; source orchestration; monitoring; optimisation; control,cat_ci_behind_meter,active,not_publicly_documented,,https://powerlabs.energy/,,2026-07-24

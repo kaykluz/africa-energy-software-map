@@ -1,0 +1,284 @@
+{
+  "version": "1.0.0",
+  "status": "candidate_only",
+  "source": {
+    "filename": "kaykluz_africa_energy_software_map_v0_1.xlsx",
+    "sha256": "fc7c75132d4b5ce27b2f113550be91ce0d9f0c420aaaaba2deac38bd196618d4"
+  },
+  "privacy": {
+    "excluded_sheets": [
+      "Comparables",
+      "Map_Export",
+      "People",
+      "README_Methodology",
+      "Submission_Template",
+      "Summary"
+    ],
+    "personal_records_emitted": 0
+  },
+  "input_counts": {
+    "Deployments": 83,
+    "Organisations": 87,
+    "Products": 96,
+    "Research_Queue": 39,
+    "Taxonomy": 37
+  },
+  "output_counts": {
+    "organisations": 3,
+    "products": 5,
+    "deployments": 4,
+    "sources": 4,
+    "assertions": 88,
+    "people": 0,
+    "submissions": 0
+  },
+  "warnings": {
+    "composite_or_multi_country_requires_review": 1,
+    "lifecycle_inferred_from_evidence_wording": 5,
+    "source_metadata_requires_completion": 4,
+    "source_publisher_derived_from_domain": 2,
+    "source_retrieval_date_inferred": 4,
+    "workbook_verified_word_downgraded": 4
+  },
+  "review_batches": [
+    {
+      "id": "batch_001",
+      "organisation_ids": [
+        "ORG-001",
+        "ORG-002",
+        "ORG-003"
+      ],
+      "entity_count": 16,
+      "assertion_count": 88
+    },
+    {
+      "id": "batch_002",
+      "organisation_ids": [
+        "ORG-004",
+        "ORG-005",
+        "ORG-006",
+        "ORG-007",
+        "ORG-008"
+      ],
+      "entity_count": 16,
+      "assertion_count": 87
+    },
+    {
+      "id": "batch_003",
+      "organisation_ids": [
+        "ORG-009",
+        "ORG-010",
+        "ORG-011",
+        "ORG-012",
+        "ORG-013"
+      ],
+      "entity_count": 17,
+      "assertion_count": 88
+    },
+    {
+      "id": "batch_004",
+      "organisation_ids": [
+        "ORG-014",
+        "ORG-015",
+        "ORG-016",
+        "ORG-017"
+      ],
+      "entity_count": 16,
+      "assertion_count": 91
+    },
+    {
+      "id": "batch_005",
+      "organisation_ids": [
+        "ORG-018",
+        "ORG-019",
+        "ORG-020",
+        "ORG-021"
+      ],
+      "entity_count": 17,
+      "assertion_count": 88
+    },
+    {
+      "id": "batch_006",
+      "organisation_ids": [
+        "ORG-022",
+        "ORG-023",
+        "ORG-024",
+        "ORG-025"
+      ],
+      "entity_count": 15,
+      "assertion_count": 80
+    },
+    {
+      "id": "batch_007",
+      "organisation_ids": [
+        "ORG-026",
+        "ORG-027",
+        "ORG-028",
+        "ORG-029"
+      ],
+      "entity_count": 16,
+      "assertion_count": 86
+    },
+    {
+      "id": "batch_008",
+      "organisation_ids": [
+        "ORG-030",
+        "ORG-031",
+        "ORG-032",
+        "ORG-033",
+        "ORG-034",
+        "ORG-035"
+      ],
+      "entity_count": 19,
+      "assertion_count": 96
+    },
+    {
+      "id": "batch_009",
+      "organisation_ids": [
+        "ORG-036",
+        "ORG-037",
+        "ORG-038",
+        "ORG-039",
+        "ORG-040"
+      ],
+      "entity_count": 16,
+      "assertion_count": 99
+    },
+    {
+      "id": "batch_010",
+      "organisation_ids": [
+        "ORG-041",
+        "ORG-042",
+        "ORG-043",
+        "ORG-044"
+      ],
+      "entity_count": 15,
+      "assertion_count": 86
+    },
+    {
+      "id": "batch_011",
+      "organisation_ids": [
+        "ORG-045",
+        "ORG-046",
+        "ORG-047",
+        "ORG-048"
+      ],
+      "entity_count": 17,
+      "assertion_count": 96
+    },
+    {
+      "id": "batch_012",
+      "organisation_ids": [
+        "ORG-049",
+        "ORG-050",
+        "ORG-051",
+        "ORG-052"
+      ],
+      "entity_count": 17,
+      "assertion_count": 88
+    },
+    {
+      "id": "batch_013",
+      "organisation_ids": [
+        "ORG-053",
+        "ORG-054",
+        "ORG-055",
+        "ORG-056"
+      ],
+      "entity_count": 15,
+      "assertion_count": 88
+    },
+    {
+      "id": "batch_014",
+      "organisation_ids": [
+        "ORG-057",
+        "ORG-058"
+      ],
+      "entity_count": 15,
+      "assertion_count": 97
+    },
+    {
+      "id": "batch_015",
+      "organisation_ids": [
+        "ORG-059",
+        "ORG-060",
+        "ORG-061",
+        "ORG-062"
+      ],
+      "entity_count": 19,
+      "assertion_count": 89
+    },
+    {
+      "id": "batch_016",
+      "organisation_ids": [
+        "ORG-063",
+        "ORG-064",
+        "ORG-065",
+        "ORG-066"
+      ],
+      "entity_count": 18,
+      "assertion_count": 98
+    },
+    {
+      "id": "batch_017",
+      "organisation_ids": [
+        "ORG-067",
+        "ORG-068",
+        "ORG-069",
+        "ORG-070",
+        "ORG-071"
+      ],
+      "entity_count": 19,
+      "assertion_count": 100
+    },
+    {
+      "id": "batch_018",
+      "organisation_ids": [
+        "ORG-072",
+        "ORG-073",
+        "ORG-074",
+        "ORG-075",
+        "ORG-076",
+        "ORG-077"
+      ],
+      "entity_count": 20,
+      "assertion_count": 100
+    },
+    {
+      "id": "batch_019",
+      "organisation_ids": [
+        "ORG-078",
+        "ORG-079"
+      ],
+      "entity_count": 14,
+      "assertion_count": 89
+    },
+    {
+      "id": "batch_020",
+      "organisation_ids": [
+        "ORG-080",
+        "ORG-081",
+        "ORG-082",
+        "ORG-083",
+        "ORG-084"
+      ],
+      "entity_count": 18,
+      "assertion_count": 92
+    },
+    {
+      "id": "batch_021",
+      "organisation_ids": [
+        "ORG-085",
+        "ORG-086",
+        "ORG-087"
+      ],
+      "entity_count": 12,
+      "assertion_count": 65
+    }
+  ],
+  "selected_organisation_ids": [
+    "ORG-001",
+    "ORG-002",
+    "ORG-003"
+  ]
+}

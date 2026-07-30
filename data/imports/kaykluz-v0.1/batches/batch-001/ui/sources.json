@@ -1,0 +1,62 @@
+[
+  {
+    "id": "src_0dbeea2074ea9657",
+    "url": "https://powerlabs.energy/",
+    "title": "Editorial review required — source title not captured",
+    "publisher": "powerlabs.energy",
+    "source_type": "webpage",
+    "author": "",
+    "publication_date": "",
+    "retrieved_at": "2026-07-24",
+    "archived_url": "",
+    "source_license": "unknown",
+    "independence_class": "provider_authored",
+    "automation_permitted": "false",
+    "notes": "Candidate import only; complete title, publication date, locator, rights and automation review before publication. Retrieved date is provisionally mapped from the workbook Last_Verified field."
+  },
+  {
+    "id": "src_353841a5fa8a37f5",
+    "url": "https://digital-energy.eu/fr/resultats-du-challenge-2025",
+    "title": "Editorial review required — source title not captured",
+    "publisher": "Digital Energy Challenge",
+    "source_type": "official_programme",
+    "author": "",
+    "publication_date": "",
+    "retrieved_at": "2026-07-24",
+    "archived_url": "",
+    "source_license": "unknown",
+    "independence_class": "independent_primary",
+    "automation_permitted": "false",
+    "notes": "Candidate import only; complete title, publication date, locator, rights and automation review before publication. Retrieved date is provisionally mapped from the workbook Last_Verified field."
+  },
+  {
+    "id": "src_72a68084f5f1f2f3",
+    "url": "https://www.afd.fr/en/actualites/digital-energy-challenge-africa-energy-transition",
+    "title": "Editorial review required — source title not captured",
+    "publisher": "Agence Française de Développement",
+    "source_type": "official_programme",
+    "author": "",
+    "publication_date": "",
+    "retrieved_at": "2026-07-24",
+    "archived_url": "",
+    "source_license": "unknown",
+    "independence_class": "independent_primary",
+    "automation_permitted": "false",
+    "notes": "Candidate import only; complete title, publication date, locator, rights and automation review before publication. Retrieved date is provisionally mapped from the workbook Last_Verified field."
+  },
+  {
+    "id": "src_792d6f5e54ae6a49",
+    "url": "https://beaconpowerservices.com/",
+    "title": "Editorial review required — source title not captured",
+    "publisher": "beaconpowerservices.com",
+    "source_type": "webpage",
+    "author": "",
+    "publication_date": "",
+    "retrieved_at": "2026-07-24",
+    "archived_url": "",
+    "source_license": "unknown",
+    "independence_class": "provider_authored",
+    "automation_permitted": "false",
+    "notes": "Candidate import only; complete title, publication date, locator, rights and automation review before publication. Retrieved date is provisionally mapped from the workbook Last_Verified field."
+  }
+]

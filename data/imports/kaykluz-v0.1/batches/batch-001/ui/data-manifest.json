@@ -1,0 +1,21 @@
+{
+  "status": "candidate_only",
+  "counts": {
+    "organisations": 3,
+    "products": 5,
+    "deployments": 4,
+    "sources": 4,
+    "assertions": 88
+  },
+  "files": [
+    "organisations.json",
+    "products.json",
+    "deployments.json",
+    "sources.json",
+    "assertions.json",
+    "directory.json",
+    "countries.json",
+    "stack-summary.json",
+    "search-index.json"
+  ]
+}

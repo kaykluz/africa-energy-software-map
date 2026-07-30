@@ -1,0 +1,5 @@
+deployment_id,organisation_id,role
+dep_001,org_001,product_provider
+dep_002,org_001,product_provider
+dep_003,org_002,product_provider
+dep_004,org_002,product_provider
