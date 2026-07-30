@@ -26,8 +26,8 @@
     },
     {
       "path": "assertions.jsonl",
-      "bytes": 24345,
-      "sha256": "95a572a5e75a3f55d4bef035d56aec17f4a2ff2c36d45e0bd78a0bdb79b2c019"
+      "bytes": 48853,
+      "sha256": "5e4699d800bb1bfdce4f2fbc31d072ecfcb266b90e5f0abe8042ebc7d2de74db"
     },
     {
       "path": "candidate-csv-package.zip",
@@ -41,8 +41,8 @@
     },
     {
       "path": "registry.json",
-      "bytes": 56476,
-      "sha256": "cfafb5a70ca3751ea96895664be00bbf6f7f706034a38cd03ed7bbeaf58935be"
+      "bytes": 83878,
+      "sha256": "fbfd0cfa619c8bb0231da135afe00afdd6f24c0ea9b2f8da279b0094cec42029"
     }
   ]
 }

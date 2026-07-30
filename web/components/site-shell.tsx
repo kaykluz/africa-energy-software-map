@@ -26,6 +26,7 @@ const primaryNavigation = [
 ] as const;
 
 const projectNavigation = [
+  { href: "/review", label: "Review" },
   { href: "/methodology", label: "Method" },
   { href: "/data", label: "Downloads" },
   { href: "/changes", label: "Changes" },
@@ -226,7 +227,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <strong>Candidate data</strong>
               <p>No record is published until editorial review is complete.</p>
             </div>
-            <Link href="/methodology#prototype-data">Method →</Link>
+            <Link href="/review">Review data →</Link>
           </section>
         ) : null}
       </header>

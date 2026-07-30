@@ -43,6 +43,10 @@ Completed public contributions now enter a durable private intake queue and
 receive a private status link. They remain separate from the registry until a
 human-reviewed data change passes the publication gate. See
 [contribution intake and moderation](docs/21-contribution-intake-and-moderation.md).
+Authorised editors can now review candidate assertions, source rights, and
+incoming contributions in a private
+[`/review` workspace](docs/22-review-workspace.md). Its decisions are audited
+but never publish data directly.
 
 ## Core principles
 
@@ -84,6 +88,7 @@ human-reviewed data change passes the publication gate. See
 - [Snapshot and export pipeline](docs/19-snapshot-and-export-pipeline.md)
 - [Batch 001 evidence review](docs/20-batch-001-evidence-review.md)
 - [Contribution intake and moderation](docs/21-contribution-intake-and-moderation.md)
+- [Private review workspace](docs/22-review-workspace.md)
 - [Interactive prototype](web/README.md)
 - [Contributing](CONTRIBUTING.md)
 

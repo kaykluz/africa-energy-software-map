@@ -14,10 +14,11 @@ is only a temporary convenience and is never the authoritative copy. Intake does
 not write to the public registry, generated snapshot, downloads, or GitHub data
 files.
 
-The current implementation is the intake foundation, not the complete editor
-console. Until role-based moderation is added, authorised maintainers manage the
-queue through trusted database operations and record any accepted data change in
-a reviewed pull request.
+The private `/review` workspace now provides allowlisted maintainers with the
+first editor console. It supports triage, recorded reasons, audited private
+contact access, and assertion/source review. It intentionally cannot publish;
+an accepted proposal still becomes public only through a reviewed repository
+change and release. See [Review workspace](22-review-workspace.md).
 
 ## Contributor experience
 
@@ -92,8 +93,8 @@ the evidence, rights, privacy, and human-review gates. A provider-confirmed
 statement remains provider-confirmed; acceptance never upgrades evidence
 independence.
 
-Every moderation action should eventually record the editor, time, reason, and
-linked pull request. That audit table and the role-based editor interface remain
+Every status change now records the editor, time, reason, before state, and
+after state. Linking an accepted item to its eventual pull request remains
 required before a public beta.
 
 ## Maintainer procedure

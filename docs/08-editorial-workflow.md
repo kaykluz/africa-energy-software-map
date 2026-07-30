@@ -19,6 +19,9 @@ not to public registry records or downloads. Receipt tokens are private and
 contact email is stored separately. The storage, retention, validation, and
 operator contract is defined in
 [Contribution intake and moderation](21-contribution-intake-and-moderation.md).
+Authorised editors work through the private
+[review workspace](22-review-workspace.md). The workspace records decisions
+and moderation events but cannot publish registry data.
 
 ## Workflow
 

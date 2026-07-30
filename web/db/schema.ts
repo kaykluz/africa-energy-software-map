@@ -68,3 +68,66 @@ export const contributionRateLimits = sqliteTable(
     ),
   ],
 );
+
+export const assertionReviews = sqliteTable(
+  "assertion_reviews",
+  {
+    assertionId: text("assertion_id").primaryKey(),
+    batchId: text("batch_id").notNull(),
+    decision: text("decision").notNull(),
+    proposedValue: text("proposed_value"),
+    proposedEvidenceStatus: text("proposed_evidence_status"),
+    notes: text("notes"),
+    sourceChecked: integer("source_checked", { mode: "boolean" })
+      .notNull()
+      .default(false),
+    safetyChecked: integer("safety_checked", { mode: "boolean" })
+      .notNull()
+      .default(false),
+    reviewerEmail: text("reviewer_email").notNull(),
+    reviewedAt: text("reviewed_at").notNull(),
+    updatedAt: text("updated_at").notNull(),
+    version: integer("version").notNull().default(1),
+  },
+  (table) => [
+    index("assertion_reviews_batch_decision_idx").on(
+      table.batchId,
+      table.decision,
+    ),
+  ],
+);
+
+export const sourceReviews = sqliteTable(
+  "source_reviews",
+  {
+    sourceId: text("source_id").primaryKey(),
+    rightsStatus: text("rights_status").notNull(),
+    sourceLicense: text("source_license"),
+    independenceClass: text("independence_class"),
+    notes: text("notes"),
+    reviewerEmail: text("reviewer_email").notNull(),
+    reviewedAt: text("reviewed_at").notNull(),
+    updatedAt: text("updated_at").notNull(),
+    version: integer("version").notNull().default(1),
+  },
+  (table) => [index("source_reviews_rights_status_idx").on(table.rightsStatus)],
+);
+
+export const reviewAuditEvents = sqliteTable(
+  "review_audit_events",
+  {
+    id: text("id").primaryKey(),
+    recordType: text("record_type").notNull(),
+    recordId: text("record_id").notNull(),
+    action: text("action").notNull(),
+    beforeJson: text("before_json"),
+    afterJson: text("after_json"),
+    reason: text("reason"),
+    reviewerEmail: text("reviewer_email").notNull(),
+    occurredAt: text("occurred_at").notNull(),
+  },
+  (table) => [
+    index("review_audit_record_idx").on(table.recordType, table.recordId),
+    index("review_audit_occurred_idx").on(table.occurredAt),
+  ],
+);

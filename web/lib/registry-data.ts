@@ -85,10 +85,28 @@ export type Source = {
   title: string;
   publisher: string;
   url: string;
+  sourceType: string;
+  independenceClass: string;
   independence: string;
   retrieved: string;
   sourceLicense: string;
   automationPermitted: boolean;
+  notes: string;
+};
+
+export type Assertion = {
+  id: string;
+  subjectType: string;
+  subjectId: string;
+  predicate: string;
+  value: string;
+  sourceId: string;
+  evidenceStatus: EvidenceStatus;
+  reviewedBy: string;
+  reviewedAt: string;
+  validFrom: string;
+  validTo: string;
+  notes: string;
 };
 
 export type Category = {
@@ -196,8 +214,9 @@ type SnapshotData = {
     sourceLicense: string;
     independenceClass: string;
     automationPermitted: boolean;
+    notes: string;
   }>;
-  assertions: Array<Record<string, string>>;
+  assertions: Assertion[];
   stages: Array<{ id: string; name: string; order: number }>;
   categories: Category[];
   countries: Array<{ iso2: string; name: string }>;
@@ -320,10 +339,13 @@ export const sources: Source[] = snapshot.sources.map((record) => ({
   title: record.title,
   publisher: record.publisher,
   url: record.url,
+  sourceType: record.sourceType,
+  independenceClass: record.independenceClass,
   independence: labelValue(record.independenceClass),
   retrieved: displayDate(record.retrievedAt),
   sourceLicense: record.sourceLicense,
   automationPermitted: record.automationPermitted,
+  notes: record.notes,
 }));
 
 export const assertions = snapshot.assertions;
