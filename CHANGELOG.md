@@ -24,3 +24,7 @@ documented here.
   rights, and contribution triage, with optimistic version checks, append-only
   audits, logged private-contact reveal, decision export, D1 migrations, and no
   path to automatic publication.
+- Added scheduled retention and queue-health automation, an audited intake
+  pause control, deterministic source-first review preparation, a safe
+  policy-readiness agent run, a bounded Batch 002 plan, and synthetic beta-scale
+  checks. All automation remains proposal-only.

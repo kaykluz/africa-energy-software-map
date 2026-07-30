@@ -1,7 +1,10 @@
 {
   "version": "0.1.0",
-  "enabled": false,
+  "enabled": true,
   "mode": "dry_run",
+  "stage": "policy_readiness",
+  "external_research_enabled": false,
+  "publication_enabled": false,
   "repository": "kaykluz/africa-energy-software-map",
   "default_branch": "main",
   "source_register": "data/source-register.csv",

@@ -47,6 +47,9 @@ Authorised editors can now review candidate assertions, source rights, and
 incoming contributions in a private
 [`/review` workspace](docs/22-review-workspace.md). Its decisions are audited
 but never publish data directly.
+Scheduled retention, source-first review preparation, proposal-only research
+readiness, and the bounded Batch 002 plan are documented in
+[automation and review assist](docs/23-automation-and-review-assist.md).
 
 ## Core principles
 
@@ -89,6 +92,7 @@ but never publish data directly.
 - [Batch 001 evidence review](docs/20-batch-001-evidence-review.md)
 - [Contribution intake and moderation](docs/21-contribution-intake-and-moderation.md)
 - [Private review workspace](docs/22-review-workspace.md)
+- [Automation and review assist](docs/23-automation-and-review-assist.md)
 - [Interactive prototype](web/README.md)
 - [Contributing](CONTRIBUTING.md)
 

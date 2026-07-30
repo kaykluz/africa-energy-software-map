@@ -76,3 +76,8 @@ Begin with link health, source-change detection, and candidate issues. Enable
 content extraction only after those runs are stable. Autonomous publishing is
 not part of the roadmap.
 
+The repository now runs its policy-readiness stage on a schedule. It prepares
+the review queue and emits a no-model dry-run report, but external research is
+still disabled because no source-register rows have been approved for
+automation. See
+[Automation and review assist](23-automation-and-review-assist.md).

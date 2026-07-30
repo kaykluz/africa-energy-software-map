@@ -45,6 +45,7 @@ class MemoryD1 {
     for (const migration of [
       "../drizzle/0000_quick_prodigy.sql",
       "../drizzle/0001_fancy_senator_kelly.sql",
+      "../drizzle/0002_aspiring_whistler.sql",
     ]) {
       const sql = readFileSync(new URL(migration, import.meta.url), "utf8");
       for (const statement of sql.split("--> statement-breakpoint")) {
@@ -160,6 +161,7 @@ function contributionRequest(body, headers = {}) {
 
 const reviewerEmail = "editor@example.com";
 process.env.REVIEWER_EMAILS = reviewerEmail;
+process.env.OPERATIONS_TOKEN = "operations-test-token";
 
 const reviewerHeaders = {
   accept: "application/json",
@@ -703,5 +705,145 @@ test("review export contains decisions and audit history without private contact
   assert.doesNotMatch(
     exportText,
     /contribution_contacts|statusTokenHash|status_token_hash|researcher@example\.com/,
+  );
+});
+
+test("scheduled maintenance purges retained data and reports queue health", async () => {
+  const database = new MemoryD1();
+  database.run(
+    `INSERT INTO contributions (
+      id, submission_type, status, submitted_at, updated_at, evidence_url,
+      sensitive_confirmed, status_token_hash
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    "maintenance-fixture",
+    "product",
+    "received",
+    "2020-01-01T00:00:00.000Z",
+    "2020-01-01T00:00:00.000Z",
+    "https://example.com/maintenance",
+    0,
+    "maintenance-token-hash",
+  );
+  database.run(
+    "INSERT INTO contribution_contacts (contribution_id, email, delete_after) VALUES (?, ?, ?)",
+    "maintenance-fixture",
+    "expired@example.com",
+    "2020-01-01T00:00:00.000Z",
+  );
+  database.run(
+    "INSERT INTO contribution_rate_limits (key, window_started_at, count) VALUES (?, ?, ?)",
+    "old-window",
+    "2020-01-01",
+    1,
+  );
+
+  const denied = await fetchWorker(
+    "/api/operations/maintenance",
+    { method: "POST", headers: { accept: "application/json" } },
+    { DB: database },
+  );
+  assert.equal(denied.status, 401);
+
+  const response = await fetchWorker(
+    "/api/operations/maintenance",
+    {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        authorization: "Bearer operations-test-token",
+      },
+    },
+    { DB: database },
+  );
+  assert.equal(response.status, 200);
+  const report = await response.json();
+  assert.equal(report.expiredContactsDeleted, 1);
+  assert.equal(report.expiredRateLimitsDeleted, 1);
+  assert.equal(report.openContributions, 1);
+  assert.equal(database.count("contribution_contacts"), 0);
+  assert.equal(database.count("contribution_rate_limits"), 0);
+  assert.equal(database.count("maintenance_runs"), 1);
+  assert.equal(database.count("review_audit_events"), 1);
+
+  const health = await fetchWorker(
+    "/api/operations/health",
+    {
+      headers: {
+        accept: "application/json",
+        authorization: "Bearer operations-test-token",
+      },
+    },
+    { DB: database },
+  );
+  assert.equal(health.status, 200);
+  assert.equal((await health.json()).status, "healthy");
+});
+
+test("reviewers can pause intake without affecting existing receipt data", async () => {
+  const database = new MemoryD1();
+  const paused = await fetchWorker(
+    "/api/review/operations",
+    reviewRequest({
+      paused: true,
+      reason: "Pause while investigating a privacy report.",
+      expectedVersion: 0,
+    }),
+    { DB: database },
+  );
+  assert.equal(paused.status, 200);
+  const pausedStatus = await paused.json();
+  assert.equal(pausedStatus.intakePaused, true);
+  assert.equal(pausedStatus.intakeVersion, 1);
+
+  const stale = await fetchWorker(
+    "/api/review/operations",
+    reviewRequest({
+      paused: false,
+      reason: "This browser has an outdated operations version.",
+      expectedVersion: 0,
+    }),
+    { DB: database },
+  );
+  assert.equal(stale.status, 409);
+  assert.equal(
+    database.get(
+      "SELECT COUNT(*) AS count FROM review_audit_events WHERE record_type = 'operations'",
+    ).count,
+    1,
+  );
+
+  const blocked = await fetchWorker(
+    "/api/contributions",
+    contributionRequest(validProductContribution),
+    { DB: database },
+  );
+  assert.equal(blocked.status, 503);
+  assert.match(JSON.stringify(await blocked.json()), /temporarily paused/i);
+  assert.equal(database.count("contributions"), 0);
+
+  const resumed = await fetchWorker(
+    "/api/review/operations",
+    reviewRequest({
+      paused: false,
+      reason: "Privacy report resolved and intake can resume.",
+      expectedVersion: 1,
+    }),
+    { DB: database },
+  );
+  assert.equal(resumed.status, 200);
+  assert.equal((await resumed.json()).intakePaused, false);
+
+  const accepted = await fetchWorker(
+    "/api/contributions",
+    contributionRequest(validProductContribution),
+    { DB: database },
+  );
+  assert.equal(accepted.status, 201);
+  assert.equal(database.count("contributions"), 1);
+  assert.equal(
+    database.get(
+      "SELECT COUNT(*) AS count FROM review_audit_events WHERE record_type = 'operations'",
+    ).count,
+    2,
   );
 });

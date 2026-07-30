@@ -13,6 +13,7 @@ import type {
   ModerationContribution,
   SourceReviewRecord,
 } from "@/db/reviews";
+import type { OperationsStatus } from "@/db/operations";
 import type {
   ReviewAssertion,
 } from "@/lib/review-data";
@@ -26,9 +27,10 @@ type WorkspaceState = {
   assertionReviews: AssertionReviewRecord[];
   sourceReviews: SourceReviewRecord[];
   contributions: ModerationContribution[];
+  operations: OperationsStatus;
 };
 
-type Tab = "assertions" | "sources" | "contributions";
+type Tab = "assertions" | "sources" | "contributions" | "operations";
 type AssertionFilter =
   | "all"
   | "pending"
@@ -202,6 +204,11 @@ export function ReviewWorkspace({
     });
   }
 
+  function replaceOperations(operations: OperationsStatus) {
+    if (!workspace) return;
+    setWorkspace({ ...workspace, operations });
+  }
+
   return (
     <main className="review-page" id="main-content">
       <header className="review-header">
@@ -254,7 +261,13 @@ export function ReviewWorkspace({
         />
         <Metric
           label="Contributions"
-          note={workspace ? "open queue" : "loading"}
+          note={
+            workspace
+              ? workspace.operations.intakePaused
+                ? "intake paused"
+                : "intake active"
+              : "loading"
+          }
           value={workspace ? String(openContributions) : "—"}
         />
         <Metric
@@ -292,6 +305,17 @@ export function ReviewWorkspace({
           label="Contributions"
           onClick={() => setTab("contributions")}
         />
+        <TabButton
+          active={tab === "operations"}
+          count={
+            workspace
+              ? workspace.operations.expiredContacts +
+                Number(workspace.operations.intakePaused)
+              : 0
+          }
+          label="Operations"
+          onClick={() => setTab("operations")}
+        />
       </nav>
 
       {tab === "assertions" ? (
@@ -326,7 +350,152 @@ export function ReviewWorkspace({
           onStatusSaved={replaceContribution}
         />
       ) : null}
+
+      {tab === "operations" && workspace ? (
+        <OperationsPanel
+          onSaved={replaceOperations}
+          operations={workspace.operations}
+        />
+      ) : null}
     </main>
+  );
+}
+
+function OperationsPanel({
+  operations,
+  onSaved,
+}: {
+  operations: OperationsStatus;
+  onSaved: (operations: OperationsStatus) => void;
+}) {
+  const [reason, setReason] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+
+  async function changeIntake(event: FormEvent) {
+    event.preventDefault();
+    setSaving(true);
+    setError("");
+    try {
+      const response = await fetch("/api/review/operations", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          paused: !operations.intakePaused,
+          reason,
+          expectedVersion: operations.intakeVersion,
+        }),
+      });
+      const result = (await response.json()) as OperationsStatus | ApiError;
+      if (!response.ok) {
+        throw new Error(
+          "error" in result
+            ? result.error?.message
+            : "Operations could not be updated.",
+        );
+      }
+      onSaved(result as OperationsStatus);
+      setReason("");
+    } catch (reasonValue) {
+      setError(
+        reasonValue instanceof Error
+          ? reasonValue.message
+          : "Operations could not be updated.",
+      );
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <section className="review-operations">
+      <header>
+        <div>
+          <h2>Operations</h2>
+        </div>
+        <StatusPill
+          value={operations.intakePaused ? "Intake paused" : "Intake active"}
+          warning={operations.intakePaused}
+        />
+      </header>
+      <div className="review-operations-grid">
+        <article>
+          <span>Maintenance</span>
+          <strong>
+            {operations.lastMaintenance
+              ? formatDate(operations.lastMaintenance.finishedAt)
+              : "Not run"}
+          </strong>
+          <small>
+            {operations.lastMaintenance
+              ? `${operations.lastMaintenance.expiredContactsDeleted} contacts · ${operations.lastMaintenance.expiredRateLimitsDeleted} counters cleared`
+              : "The scheduled job has not reported yet."}
+          </small>
+        </article>
+        <article>
+          <span>Retention</span>
+          <strong>{operations.expiredContacts}</strong>
+          <small>expired contacts awaiting deletion</small>
+        </article>
+        <article>
+          <span>Open queue</span>
+          <strong>{operations.openContributions}</strong>
+          <small>
+            {operations.oldestOpenAt
+              ? `oldest received ${formatDate(operations.oldestOpenAt)}`
+              : "no open contributions"}
+          </small>
+        </article>
+      </div>
+      <form className="review-intake-control" onSubmit={changeIntake}>
+        <div>
+          <strong>
+            {operations.intakePaused
+              ? "Resume contributions"
+              : "Pause contributions"}
+          </strong>
+          <p>
+            Existing receipts remain available. This control only stops new
+            submissions.
+          </p>
+        </div>
+        <label className="review-field">
+          <span>Reason · required</span>
+          <textarea
+            onChange={(event) => setReason(event.target.value)}
+            placeholder="Why is intake changing?"
+            required
+            rows={3}
+            value={reason}
+          />
+        </label>
+        {error ? <p className="review-form-error" role="alert">{error}</p> : null}
+        <button
+          className={
+            operations.intakePaused
+              ? "button button-primary"
+              : "button button-outline"
+          }
+          disabled={saving || !reason.trim()}
+          type="submit"
+        >
+          {saving
+            ? "Saving…"
+            : operations.intakePaused
+              ? "Resume intake"
+              : "Pause intake"}
+        </button>
+      </form>
+      <footer>
+        <span>Every change is logged.</span>
+        {operations.intakeUpdatedAt ? (
+          <small>
+            Last changed {formatDate(operations.intakeUpdatedAt)} by{" "}
+            {operations.intakeUpdatedBy}
+          </small>
+        ) : null}
+      </footer>
+    </section>
   );
 }
 
@@ -351,25 +520,32 @@ function AssertionsWorkspace({
   query: string;
   setQuery: (query: string) => void;
 }) {
-  const filtered = assertions.filter((assertion) => {
-    const review = reviewMap.get(assertion.id);
-    if (filter === "pending" && review) return false;
-    if (!["all", "pending"].includes(filter) && review?.decision !== filter) {
-      return false;
-    }
-    const search = query.trim().toLowerCase();
-    if (!search) return true;
-    return [
-      assertion.subjectLabel,
-      assertion.subjectContext,
-      assertion.predicateLabel,
-      assertion.value,
-      assertion.sourcePublisher,
-    ]
-      .join(" ")
-      .toLowerCase()
-      .includes(search);
-  });
+  const filtered = assertions
+    .filter((assertion) => {
+      const review = reviewMap.get(assertion.id);
+      if (filter === "pending" && review) return false;
+      if (!["all", "pending"].includes(filter) && review?.decision !== filter) {
+        return false;
+      }
+      const search = query.trim().toLowerCase();
+      if (!search) return true;
+      return [
+        assertion.subjectLabel,
+        assertion.subjectContext,
+        assertion.predicateLabel,
+        assertion.value,
+        assertion.sourcePublisher,
+      ]
+        .join(" ")
+        .toLowerCase()
+        .includes(search);
+    })
+    .sort(
+      (left, right) =>
+        left.assist.priority - right.assist.priority ||
+        left.sourcePublisher.localeCompare(right.sourcePublisher) ||
+        left.id.localeCompare(right.id),
+    );
   const groups = groupAssertions(filtered);
 
   return (
@@ -403,6 +579,7 @@ function AssertionsWorkspace({
               </button>
             ))}
           </div>
+          <small className="review-queue-mode">Grouped by source</small>
         </div>
         <div className="review-queue-scroll">
           {groups.map(([group, items]) => (
@@ -626,6 +803,20 @@ function AssertionReviewPanel({
           </p>
         ) : null}
       </section>
+
+      <div className="review-prep-strip">
+        <strong>
+          {assertion.assist.recommendedAction === "request_evidence"
+            ? "Evidence gap"
+            : "Ready to inspect"}
+        </strong>
+        <div>
+          {assertion.assist.signals.slice(0, 4).map((signal) => (
+            <span key={signal}>{assistSignalLabel(signal)}</span>
+          ))}
+        </div>
+        <small>Preparation only · you decide</small>
+      </div>
 
       <fieldset className="review-checks">
         <legend>Checks</legend>
@@ -1304,10 +1495,26 @@ function DataRow({
 function groupAssertions(assertions: ReviewAssertion[]) {
   const groups = new Map<string, ReviewAssertion[]>();
   for (const assertion of assertions) {
-    const group = `${assertion.subjectLabel} · ${assertion.subjectContext}`;
+    const group = `${assertion.sourcePublisher} · ${truncate(
+      assertion.sourceTitle,
+      58,
+    )}`;
     groups.set(group, [...(groups.get(group) ?? []), assertion]);
   }
   return Array.from(groups.entries());
+}
+
+function assistSignalLabel(value: string) {
+  return (
+    {
+      rights_unresolved: "Rights",
+      human_only_source: "Human source",
+      provider_authored: "Provider",
+      provider_claim: "Claim",
+      missing_locator: "Locator",
+      safety_review: "Safety",
+    }[value] ?? value.replaceAll("_", " ")
+  );
 }
 
 function contributionLabel(contribution: ModerationContribution) {

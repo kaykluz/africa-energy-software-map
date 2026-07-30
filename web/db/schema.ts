@@ -131,3 +131,31 @@ export const reviewAuditEvents = sqliteTable(
     index("review_audit_occurred_idx").on(table.occurredAt),
   ],
 );
+
+export const systemSettings = sqliteTable("system_settings", {
+  key: text("key").primaryKey(),
+  value: text("value").notNull(),
+  updatedBy: text("updated_by").notNull(),
+  updatedAt: text("updated_at").notNull(),
+  version: integer("version").notNull().default(1),
+});
+
+export const maintenanceRuns = sqliteTable(
+  "maintenance_runs",
+  {
+    id: text("id").primaryKey(),
+    status: text("status").notNull(),
+    startedAt: text("started_at").notNull(),
+    finishedAt: text("finished_at").notNull(),
+    expiredContactsDeleted: integer("expired_contacts_deleted")
+      .notNull()
+      .default(0),
+    expiredRateLimitsDeleted: integer("expired_rate_limits_deleted")
+      .notNull()
+      .default(0),
+    openContributions: integer("open_contributions").notNull().default(0),
+    oldestOpenAt: text("oldest_open_at"),
+    notes: text("notes"),
+  },
+  (table) => [index("maintenance_runs_finished_idx").on(table.finishedAt)],
+);

@@ -15,6 +15,8 @@
 - Stack, Deployments, and Directory views
 - Product, organisation, and light country pages
 - Moderated submission, correction, and profile-claim flows
+- Private evidence-review and operations workspace
+- Scheduled retention and proposal-only research preparation
 - Versioned public data exports
 - Initial curated launch census
 
@@ -43,4 +45,3 @@
 
 - Country market structures, regulation, infrastructure links, opportunities,
   tenders, and alerts
-

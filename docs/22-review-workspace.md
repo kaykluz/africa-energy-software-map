@@ -35,23 +35,25 @@ change and a new deployment.
 
 ## Workspace layout
 
-The top strip answers four questions at a glance:
+The top strip answers five questions at a glance:
 
 - how many assertions have a recorded decision;
 - how many sources have a rights decision;
 - how many contributions need attention; and
+- whether contribution intake is active or paused; and
 - whether the candidate batch is released.
 
 The release indicator remains **Held**. There is intentionally no publish
 button.
 
-Three tabs divide the work:
+Four tabs divide the work:
 
 | Tab | Use |
 | --- | --- |
 | Assertions | Review one atomic candidate claim against its linked source |
 | Sources | Record rights, licence treatment, and source independence |
 | Contributions | Triage private public submissions and inspect their supplied evidence |
+| Operations | Check retention runs and pause or resume contribution intake |
 
 On a wide screen, the queue remains on the left and the selected record opens on
 the right. On a small screen, the same information becomes a single vertical
@@ -84,6 +86,12 @@ conflict and the reviewer must refresh.
 
 Clearing a decision removes the current assertion decision but writes a
 `review_cleared` event to the append-only audit history.
+
+Assertions are grouped by source so reviewers can inspect one source once and
+work through its linked claims together. A compact preparation strip flags
+rights questions, provider-authored material, missing locators, human-only
+sources, and possible safety language. These are deterministic prompts for the
+reviewer, not AI verdicts: they cannot accept, amend, reject, or publish a claim.
 
 ## Reviewing a source
 
@@ -125,6 +133,18 @@ Private contact email is revealed only after an explicit click. The response is
 not included in the normal workspace payload, and each reveal creates an audit
 event without copying the email into that event. The 180-day deletion date is
 shown beside the email.
+
+## Operations
+
+The Operations tab shows the latest maintenance run, expired-contact count,
+open contribution count, and age of the oldest open item. An allowlisted
+reviewer can pause or resume new contribution intake by entering a reason.
+Changes use optimistic version checks and create append-only audit events.
+
+Pausing intake affects only new genuine submissions. It does not remove public
+data, delete existing contributions, block receipt lookups, or interrupt
+review. The honeypot response remains deliberately indistinguishable to simple
+bots. There is no public operations control.
 
 ## Data boundaries
 
@@ -173,16 +193,20 @@ No API in `/review` performs steps 2–7.
 
 ## Storage and migration
 
-The workspace uses three D1 tables:
+The workspace and operations controls use five D1 tables:
 
 - `assertion_reviews`;
-- `source_reviews`; and
-- `review_audit_events`.
+- `source_reviews`;
+- `review_audit_events`;
+- `system_settings`; and
+- `maintenance_runs`.
 
-They are created by `web/drizzle/0001_fancy_senator_kelly.sql`. Both numbered
-migrations must be applied in order on a new database. The application uses the
-same `DB` binding as contribution intake while maintaining table and query
-boundaries between public data, moderation data, and private contact data.
+The review tables are created by `web/drizzle/0001_fancy_senator_kelly.sql`;
+the operations tables are created by
+`web/drizzle/0002_aspiring_whistler.sql`. All numbered migrations must be
+applied in order on a new database. The application uses the same `DB` binding
+as contribution intake while maintaining table and query boundaries between
+public data, moderation data, and private contact data.
 
 ## Operator checks
 
@@ -194,10 +218,13 @@ Before deployment:
 4. confirm a signed-out request is redirected;
 5. confirm a signed-in but unlisted account is denied;
 6. confirm an allowlisted reviewer can save and export a test decision;
-7. confirm the public downloads are unchanged by that decision; and
-8. clear the test decision if it was made in production.
+7. confirm the latest maintenance run is visible in Operations;
+8. confirm pause and resume both require a reason and are audited;
+9. confirm the public downloads are unchanged by those decisions; and
+10. clear the test decision if it was made in production.
 
-Before a public beta, complete the remaining operational controls in
-[Contribution intake and moderation](21-contribution-intake-and-moderation.md):
-scheduled contact purging, backups and restore testing, monitoring, an intake
-freeze control, and a documented privacy-incident procedure.
+The daily retention pass and intake freeze control are documented in
+[Automation and review assist](23-automation-and-review-assist.md). Before a
+public beta, complete encrypted D1 backups and restore testing, external
+monitoring, and the privacy-incident exercise described in
+[Contribution intake and moderation](21-contribution-intake-and-moderation.md).

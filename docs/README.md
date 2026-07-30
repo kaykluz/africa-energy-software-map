@@ -23,6 +23,7 @@
 - [20 — Batch 001 evidence review](20-batch-001-evidence-review.md)
 - [21 — Contribution intake and moderation](21-contribution-intake-and-moderation.md)
 - [22 — Review workspace](22-review-workspace.md)
+- [23 — Automation and review assist](23-automation-and-review-assist.md)
 
 ## Operations and governance
 
@@ -33,6 +34,7 @@
 - [13 — Threat model](13-threat-model.md)
 - [21 — Contribution intake and moderation](21-contribution-intake-and-moderation.md)
 - [22 — Review workspace](22-review-workspace.md)
+- [23 — Automation and review assist](23-automation-and-review-assist.md)
 
 These documents are normative for Phase 1 unless a later pull request explicitly
 supersedes them.

@@ -8,6 +8,7 @@ import {
   type Assertion,
   type EvidenceStatus,
 } from "@/lib/registry-data";
+import reviewAssistSnapshot from "@/generated/review-assist.json";
 
 export const reviewBatchId = registryManifest.sourceBatch;
 
@@ -22,6 +23,14 @@ export type ReviewAssertion = Assertion & {
   sourceLicense: string;
   sourceIndependence: string;
   locator: string;
+  assist: AssertionAssist;
+};
+
+export type AssertionAssist = {
+  priority: number;
+  recommendedAction: "editorial_review" | "request_evidence";
+  signals: string[];
+  automationCanDecide: false;
 };
 
 const productById = new Map(products.map((product) => [product.id, product]));
@@ -32,10 +41,20 @@ const deploymentById = new Map(
   deployments.map((deployment) => [deployment.id, deployment]),
 );
 const sourceById = new Map(sources.map((source) => [source.id, source]));
+const assistByAssertionId = new Map(
+  reviewAssistSnapshot.assertions.map((assist) => [
+    assist.assertionId,
+    assist as AssertionAssist & { assertionId: string },
+  ]),
+);
 
 export const reviewAssertions: ReviewAssertion[] = assertions.map((assertion) => {
   const subject = subjectDetails(assertion);
   const source = sourceById.get(assertion.sourceId);
+  const assist = assistByAssertionId.get(assertion.id);
+  if (!assist) {
+    throw new Error(`Review preparation is missing assertion ${assertion.id}.`);
+  }
   return {
     ...assertion,
     ...subject,
@@ -46,6 +65,7 @@ export const reviewAssertions: ReviewAssertion[] = assertions.map((assertion) =>
     sourceLicense: source?.sourceLicense ?? "unknown",
     sourceIndependence: source?.independence ?? "Unknown",
     locator: locatorFromNotes(assertion.notes),
+    assist,
   };
 });
 

@@ -3,6 +3,7 @@ import {
   sha256,
   validateContribution,
 } from "@/lib/contribution-intake";
+import { isContributionIntakePaused } from "@/db/operations";
 import {
   reserveRateLimit,
   storeContribution,
@@ -79,6 +80,14 @@ export async function POST(request: Request) {
         statusUrl: null,
       },
       { status: 201, headers: responseHeaders() },
+    );
+  }
+
+  if (await isContributionIntakePaused()) {
+    return errorResponse(
+      "intake_paused",
+      "Contributions are temporarily paused. Please try again later.",
+      503,
     );
   }
 

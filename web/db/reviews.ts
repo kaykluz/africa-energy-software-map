@@ -1,4 +1,5 @@
 import { getD1Database } from "./index";
+import { getOperationsStatus } from "./operations";
 import { reviewBatchId } from "@/lib/review-data";
 
 export type AssertionReviewRecord = {
@@ -71,7 +72,7 @@ export async function loadReviewWorkspace() {
     .prepare("DELETE FROM contribution_contacts WHERE delete_after <= ?")
     .bind(now)
     .run();
-  const [assertionResult, sourceResult, contributionResult] =
+  const [assertionResult, sourceResult, contributionResult, operations] =
     await Promise.all([
       database
         .prepare(
@@ -139,6 +140,7 @@ export async function loadReviewWorkspace() {
            LIMIT 200`,
         )
         .all<ModerationContribution>(),
+      getOperationsStatus(),
     ]);
 
   return {
@@ -148,6 +150,7 @@ export async function loadReviewWorkspace() {
       ...record,
       sensitiveConfirmed: Boolean(record.sensitiveConfirmed),
     })),
+    operations,
   };
 }
 

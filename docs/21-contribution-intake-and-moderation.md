@@ -50,9 +50,9 @@ status access.
 
 Contact email is deliberately excluded from browser drafts, public exports,
 receipt responses, and the main contribution row. Expired contact rows are
-purged during successful intake and receipt activity. Before public launch, the
-operator must also schedule a daily purge so the 180-day limit is honoured even
-when the site has no traffic.
+purged during successful intake and receipt activity. The scheduled daily
+maintenance endpoint also purges them when the site has no traffic and records
+the deletion count without copying contact data into the run log.
 
 ## Validation and abuse controls
 
@@ -130,6 +130,10 @@ schedule.
 - During abuse or a privacy incident, stop intake, preserve relevant audit
   records, rotate exposed credentials or links, remove sensitive content, and
   follow the repository incident-response procedure.
+
+The private Operations tab provides the stop-intake control, current retention
+status, and open-queue health. Scheduled maintenance and secret handling are
+defined in [Automation and review assist](23-automation-and-review-assist.md).
 
 ## AI boundary
 
