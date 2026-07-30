@@ -34,6 +34,16 @@ SOURCE_INDEPENDENCE = {
     "aggregator",
     "community_submission",
 }
+IGNORED_VALIDATION_DIRECTORIES = {
+    ".git",
+    ".next",
+    ".vinext",
+    ".wrangler",
+    "dist",
+    "node_modules",
+    "outputs",
+    "work",
+}
 
 
 def load_json(path: Path):
@@ -43,6 +53,8 @@ def load_json(path: Path):
 
 def validate_json_files(errors: list[str]) -> None:
     for path in sorted(ROOT.rglob("*.json")):
+        if any(part in IGNORED_VALIDATION_DIRECTORIES for part in path.parts):
+            continue
         try:
             load_json(path)
         except (OSError, json.JSONDecodeError) as exc:
@@ -654,12 +666,22 @@ def validate_candidate_imports(errors: list[str]) -> None:
                 )
 
 
+def validate_interface_artifacts(errors: list[str]) -> None:
+    try:
+        from build_registry_snapshot import SnapshotError, check_artifacts
+
+        check_artifacts()
+    except (ImportError, OSError, SnapshotError, ValueError) as exc:
+        errors.append(f"generated interface artifacts: {exc}")
+
+
 def main() -> int:
     errors: list[str] = []
     validate_json_files(errors)
     validate_csv_templates(errors)
     validate_taxonomy(errors)
     validate_candidate_imports(errors)
+    validate_interface_artifacts(errors)
 
     if errors:
         print("Repository validation failed:")

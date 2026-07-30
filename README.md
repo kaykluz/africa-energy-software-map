@@ -9,21 +9,22 @@ directory.
 
 ## Project status
 
-**Foundation phase.** The information architecture, taxonomy, evidence policy,
-data model, contribution workflow, export contract, and autonomous-research
-guardrails are being established before the public application is built.
+**Foundation and interactive-prototype phase.** The information architecture,
+taxonomy, evidence policy, data model, contribution workflow, export contract,
+autonomous-research guardrails, and first responsive application are under
+review.
 
 No dataset in this repository should yet be treated as a complete census.
 
 ## Product experience
 
-One database will support three public views:
+One database supports three connected public modes:
 
-1. **Stack** — software organised across the African energy value chain.
-2. **Deployments** — where products are evidenced as being used, rather than
+1. **Explore** — a visual route through software across the energy value chain.
+2. **Map** — where products are evidenced as being used, rather than
    merely where their providers are headquartered.
-3. **Directory** — searchable, filterable, and exportable records for power
-   users.
+3. **Data** — searchable, filterable, and exportable records for academics and
+   power users.
 
 Every material deployment and market claim will link to evidence and display a
 last-checked date.
@@ -33,7 +34,11 @@ privacy-filtered migration. See the
 [workbook migration protocol](docs/16-workbook-migration-protocol.md). Imported
 records do not become public or verified without human editorial review.
 The first source pass is documented in the
-[Batch 001 evidence review](docs/17-batch-001-evidence-review.md).
+[Batch 001 evidence review](docs/20-batch-001-evidence-review.md).
+The prototype website and its candidate downloads are generated from one
+checksum-verified batch. The
+[snapshot and export pipeline](docs/19-snapshot-and-export-pipeline.md)
+documents the promotion gate and update workflow.
 
 ## Core principles
 
@@ -57,6 +62,7 @@ The first source pass is documented in the
 | [`schemas/`](schemas/) | Machine-readable table and agent-output contracts |
 | [`agent/`](agent/) | AI research prompts, policy, configuration, and adapter contract |
 | [`scripts/`](scripts/) | Repository and data validation |
+| [`web/`](web/) | Responsive Phase 1 interactive prototype and route tests |
 | [`.github/`](.github/) | Contribution templates, ownership, and automated checks |
 
 ## Start here
@@ -69,7 +75,11 @@ The first source pass is documented in the
 - [AI research and review protocol](docs/06-ai-research-and-review-protocol.md)
 - [Autonomous agent specification](docs/12-autonomous-agent-specification.md)
 - [Workbook migration protocol](docs/16-workbook-migration-protocol.md)
-- [Batch 001 evidence review](docs/17-batch-001-evidence-review.md)
+- [Visual interaction redesign](docs/17-visual-interaction-redesign.md)
+- [Expansion architecture and roadmap](docs/18-expansion-architecture-and-roadmap.md)
+- [Snapshot and export pipeline](docs/19-snapshot-and-export-pipeline.md)
+- [Batch 001 evidence review](docs/20-batch-001-evidence-review.md)
+- [Interactive prototype](web/README.md)
 - [Contributing](CONTRIBUTING.md)
 
 ## Contributing

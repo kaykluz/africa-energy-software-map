@@ -17,6 +17,10 @@ The checked-in research overlay is
 workbook importer, not a hand-edited output. This makes source corrections,
 evidence classification and unresolved questions reproducible.
 
+All nine source titles and locators are populated. Five source-licence fields
+remain `unknown`, so the interface publication gate continues to treat their
+metadata as incomplete.
+
 ## Evidence decisions
 
 | Subject | Decision | Strongest source | Boundary |
