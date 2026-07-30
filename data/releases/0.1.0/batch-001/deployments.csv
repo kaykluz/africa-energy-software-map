@@ -1,0 +1,5 @@
+id,product_id,country_iso2,subnational_area,customer_name,customer_disclosure,lifecycle_status,started_year,ended_year,location_precision,last_checked_at
+dep_001,prod_001,NG,Abuja distribution area,Abuja Electricity Distribution Company (AEDC),named,active,2023,,utility_territory,2026-07-30
+dep_002,prod_002,NG,Abuja distribution area,Abuja Electricity Distribution Company (AEDC),named,active,2023,,utility_territory,2026-07-30
+dep_003,prod_004,NG,,Kano Electricity Distribution Company (KEDCO),named,active,2025,,country,2026-07-30
+dep_004,prod_004,NG,,,undisclosed,active,2025,,country,2026-07-30

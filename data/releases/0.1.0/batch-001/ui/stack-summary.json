@@ -1,0 +1,18 @@
+[
+  {
+    "category_id": "cat_ci_behind_meter",
+    "product_count": 1
+  },
+  {
+    "category_id": "cat_distribution_utility_operations",
+    "product_count": 2
+  },
+  {
+    "category_id": "cat_paygo_minigrid_operations",
+    "product_count": 1
+  },
+  {
+    "category_id": "cat_retail_metering_billing_payments",
+    "product_count": 1
+  }
+]

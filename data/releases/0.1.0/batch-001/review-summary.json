@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "reviewed_release",
+  "version": "0.1.0",
+  "sourceBatch": "data/imports/kaykluz-v0.1/batches/batch-001",
+  "reviewBatch": "data/imports/kaykluz-v0.1/batches/batch-001",
+  "reviewPackageSha256": "215844b13b6495778bd3c44b9ef6793bcb3f709868af937c33bbeea563c335e3",
+  "reviewPackageCommitted": false,
+  "publicReviewer": "kaykluz",
+  "completedAt": "2026-07-30T22:41:38.693Z",
+  "assertionDecisions": {
+    "accept": 61,
+    "amend": 27
+  },
+  "sourceDecisions": 5,
+  "reviewChangeRecords": 36,
+  "sourceTreatments": [
+    {
+      "sourceId": "src_3cbec379ee14aa70",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved; factual_metadata_and_linking_only",
+      "independenceClass": "customer_or_official",
+      "reviewedAt": "2026-07-30"
+    },
+    {
+      "sourceId": "src_72a68084f5f1f2f3",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved; factual_metadata_and_linking_only",
+      "independenceClass": "customer_or_official",
+      "reviewedAt": "2026-07-30"
+    },
+    {
+      "sourceId": "src_8d5a439422f50474",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved; factual_metadata_and_linking_only",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-07-30"
+    },
+    {
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "rightsStatus": "resolved",
+      "sourceLicense": "no_open_licence_found; factual_metadata_and_linking_only",
+      "independenceClass": "customer_or_official",
+      "reviewedAt": "2026-07-30"
+    },
+    {
+      "sourceId": "src_b0a509af628fb050",
+      "rightsStatus": "resolved",
+      "sourceLicense": "restricted_terms; factual_metadata_and_linking_only",
+      "independenceClass": "independent_secondary",
+      "reviewedAt": "2026-07-30"
+    }
+  ],
+  "publicationAuthorised": false
+}

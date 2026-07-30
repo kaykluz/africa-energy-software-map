@@ -9,10 +9,10 @@ directory.
 
 ## Project status
 
-**Foundation and interactive-prototype phase.** The information architecture,
-taxonomy, evidence policy, data model, contribution workflow, export contract,
-autonomous-research guardrails, and first responsive application are under
-review.
+**Reviewed-beta phase.** The information architecture, taxonomy, evidence
+policy, data model, contribution workflow, export contract, autonomous-research
+guardrails and responsive application are implemented. Batch 001 is the first
+human-reviewed data package and is awaiting independent pull-request approval.
 
 No dataset in this repository should yet be treated as a complete census.
 
@@ -29,14 +29,14 @@ One database supports three connected public modes:
 Every material deployment and market claim will link to evidence and display a
 last-checked date.
 
-The initial research workbook is entering through a candidate-only,
+The initial research workbook entered through a candidate-only,
 privacy-filtered migration. See the
 [workbook migration protocol](docs/16-workbook-migration-protocol.md). Imported
 records do not become public or verified without human editorial review.
 The first source pass is documented in the
 [Batch 001 evidence review](docs/20-batch-001-evidence-review.md).
-The prototype website and its candidate downloads are generated from one
-checksum-verified batch. The
+The website and its reviewed downloads are generated from one
+checksum-verified release. The
 [snapshot and export pipeline](docs/19-snapshot-and-export-pipeline.md)
 documents the promotion gate and update workflow.
 Completed public contributions now enter a durable private intake queue and

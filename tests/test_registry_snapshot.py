@@ -19,9 +19,9 @@ from scripts.build_registry_snapshot import (
 
 
 class RegistrySnapshotTests(unittest.TestCase):
-    def test_candidate_snapshot_reconciles_counts_and_review_gate(self) -> None:
+    def test_reviewed_snapshot_reconciles_counts_and_review_gate(self) -> None:
         snapshot = build_snapshot()
-        self.assertEqual(snapshot["release"]["mode"], "candidate")
+        self.assertEqual(snapshot["release"]["mode"], "published")
         self.assertEqual(
             snapshot["counts"],
             {
@@ -32,14 +32,16 @@ class RegistrySnapshotTests(unittest.TestCase):
                 "assertions": 88,
             },
         )
-        self.assertEqual(snapshot["reviewGate"]["reviewedAssertions"], 0)
-        self.assertEqual(snapshot["reviewGate"]["unreviewedAssertions"], 88)
-        self.assertEqual(snapshot["reviewGate"]["unresolvedSources"], 5)
-        self.assertFalse(snapshot["reviewGate"]["publishable"])
+        self.assertEqual(snapshot["reviewGate"]["reviewedAssertions"], 88)
+        self.assertEqual(snapshot["reviewGate"]["unreviewedAssertions"], 0)
+        self.assertEqual(snapshot["reviewGate"]["unresolvedSources"], 0)
+        self.assertTrue(snapshot["reviewGate"]["publishable"])
 
     def test_published_mode_refuses_unreviewed_candidate_data(self) -> None:
         config = load_json(DEFAULT_CONFIG)
-        config["mode"] = "published"
+        config["source_batch"] = (
+            "data/imports/kaykluz-v0.1/batches/batch-001"
+        )
         with tempfile.TemporaryDirectory() as temporary:
             config_path = Path(temporary) / "interface-snapshot.json"
             config_path.write_text(json.dumps(config), encoding="utf-8")
@@ -52,6 +54,8 @@ class RegistrySnapshotTests(unittest.TestCase):
         first = build_downloads(snapshot, config)
         second = build_downloads(snapshot, config)
         self.assertEqual(first, second)
+        self.assertIn("csv-package.zip", first)
+        self.assertNotIn("candidate-csv-package.zip", first)
         geojson = json.loads(first["deployments.geojson"])
         self.assertEqual(geojson["type"], "FeatureCollection")
         self.assertTrue(geojson["features"])

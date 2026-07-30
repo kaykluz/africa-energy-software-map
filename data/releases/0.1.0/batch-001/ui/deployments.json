@@ -1,0 +1,54 @@
+[
+  {
+    "id": "dep_001",
+    "product_id": "prod_001",
+    "country_iso2": "NG",
+    "subnational_area": "Abuja distribution area",
+    "customer_name": "Abuja Electricity Distribution Company (AEDC)",
+    "customer_disclosure": "named",
+    "lifecycle_status": "active",
+    "started_year": "2023",
+    "ended_year": "",
+    "location_precision": "utility_territory",
+    "last_checked_at": "2026-07-30"
+  },
+  {
+    "id": "dep_002",
+    "product_id": "prod_002",
+    "country_iso2": "NG",
+    "subnational_area": "Abuja distribution area",
+    "customer_name": "Abuja Electricity Distribution Company (AEDC)",
+    "customer_disclosure": "named",
+    "lifecycle_status": "active",
+    "started_year": "2023",
+    "ended_year": "",
+    "location_precision": "utility_territory",
+    "last_checked_at": "2026-07-30"
+  },
+  {
+    "id": "dep_003",
+    "product_id": "prod_004",
+    "country_iso2": "NG",
+    "subnational_area": "",
+    "customer_name": "Kano Electricity Distribution Company (KEDCO)",
+    "customer_disclosure": "named",
+    "lifecycle_status": "active",
+    "started_year": "2025",
+    "ended_year": "",
+    "location_precision": "country",
+    "last_checked_at": "2026-07-30"
+  },
+  {
+    "id": "dep_004",
+    "product_id": "prod_004",
+    "country_iso2": "NG",
+    "subnational_area": "",
+    "customer_name": "",
+    "customer_disclosure": "undisclosed",
+    "lifecycle_status": "active",
+    "started_year": "2025",
+    "ended_year": "",
+    "location_precision": "country",
+    "last_checked_at": "2026-07-30"
+  }
+]

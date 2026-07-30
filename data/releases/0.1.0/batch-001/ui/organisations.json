@@ -1,0 +1,44 @@
+[
+  {
+    "id": "org_001",
+    "name": "Beacon Power Services",
+    "slug": "beacon-power-services",
+    "organisation_type": "utility_software_scale_up",
+    "origin_classification": "africa_built",
+    "country_of_origin": "NG",
+    "headquarters_country": "",
+    "lifecycle_status": "active",
+    "website": "https://beaconpowerservices.com/",
+    "description": "Distribution utility digitisation, grid mapping, customer and asset systems",
+    "provider_profile_confirmed": "false",
+    "last_checked_at": "2026-07-30"
+  },
+  {
+    "id": "org_002",
+    "name": "PAM Africa",
+    "slug": "pam-africa",
+    "organisation_type": "energy_software_start_up",
+    "origin_classification": "africa_built",
+    "country_of_origin": "NG",
+    "headquarters_country": "",
+    "lifecycle_status": "active",
+    "website": "https://www.pamafrica.com/",
+    "description": "Mini-grid optimisation, smart metering, payments and demand response",
+    "provider_profile_confirmed": "false",
+    "last_checked_at": "2026-07-30"
+  },
+  {
+    "id": "org_003",
+    "name": "PowerLabs",
+    "slug": "powerlabs",
+    "organisation_type": "energy_software_start_up",
+    "origin_classification": "africa_built",
+    "country_of_origin": "NG",
+    "headquarters_country": "NG",
+    "lifecycle_status": "active",
+    "website": "https://powerlabstech.com/",
+    "description": "Energy intelligence software and hardware for orchestrating grid, solar, batteries and generators",
+    "provider_profile_confirmed": "false",
+    "last_checked_at": "2026-07-30"
+  }
+]

@@ -1,14 +1,15 @@
 # Data
 
 This directory contains the canonical taxonomy, contribution/import templates,
-candidate imports, interface-snapshot configuration and future versioned public
+candidate imports, interface-snapshot configuration and versioned reviewed
 data.
 
 ## Current status
 
-The repository does not yet contain a verified launch census. The first
-privacy-filtered workbook batch is available as candidate data for interface
-and editorial review. It is not a public release.
+The repository does not yet contain a complete launch census. Batch 001 now
+contains 88 human-reviewed assertions across three organisations, five products
+and four deployments. It is the first reviewed release package and awaits
+independent pull-request approval.
 
 ## Rules
 
@@ -26,7 +27,7 @@ and editorial review. It is not a public release.
 - [`../web/public/downloads/templates/`](../web/public/downloads/templates/) —
   visually validated workbook for private bulk candidate intake
 - [`source-register.csv`](source-register.csv) — canonical approved-source list
-- [`releases/`](releases/) — conventions for future versioned snapshots
+- [`releases/`](releases/) — immutable reviewed release packages and conventions
 - [`research-queue/`](research-queue/) — reviewed leads not yet publishable
 - [`imports/`](imports/) — candidate-only migrations from external structured
   sources; not part of a public release

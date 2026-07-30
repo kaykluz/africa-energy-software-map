@@ -178,15 +178,19 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <div className="v2-header-actions">
             <button
               aria-expanded={statusOpen}
-              aria-label={`Prototype data: ${release.status}`}
+              aria-label={`Data status: ${release.status}`}
               className="v2-status-button"
               onClick={() => setStatusOpen((value) => !value)}
               type="button"
             >
               <i aria-hidden="true" />
-              <span>Prototype</span>
+              <span>
+                {release.mode === "published" ? release.version : "Prototype"}
+              </span>
               <span className="sr-only">
-                Candidate import. Editorial review required.
+                {release.mode === "published"
+                  ? "Reviewed data release."
+                  : "Candidate import. Editorial review required."}
               </span>
             </button>
             <button
@@ -221,13 +225,25 @@ export function SiteShell({ children }: { children: ReactNode }) {
         </div>
 
         {statusOpen ? (
-          <section className="v2-status-popover" aria-label="Prototype status">
-            <span className="v2-popover-index">P–01</span>
+          <section className="v2-status-popover" aria-label="Data status">
+            <span className="v2-popover-index">
+              {release.mode === "published" ? "R–01" : "P–01"}
+            </span>
             <div>
-              <strong>Candidate data</strong>
-              <p>No record is published until editorial review is complete.</p>
+              <strong>
+                {release.mode === "published"
+                  ? "Reviewed release"
+                  : "Candidate data"}
+              </strong>
+              <p>
+                {release.mode === "published"
+                  ? `${release.version} · ${release.date}`
+                  : "No record is published until editorial review is complete."}
+              </p>
             </div>
-            <Link href="/review">Review data →</Link>
+            <Link href={release.mode === "published" ? "/data" : "/review"}>
+              {release.mode === "published" ? "Open data →" : "Review data →"}
+            </Link>
           </section>
         ) : null}
       </header>

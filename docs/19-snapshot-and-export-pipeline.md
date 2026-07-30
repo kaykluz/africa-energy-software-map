@@ -1,6 +1,6 @@
 # Snapshot and export pipeline
 
-Status: implemented for candidate prototype data
+Status: implemented for reviewed releases
 Last updated: 30 July 2026
 
 ## Purpose
@@ -9,9 +9,10 @@ The website, downloadable files and future read API must describe the same
 records. They are generated together from one selected, checksum-verified data
 batch.
 
-The current snapshot is deliberately in `candidate` mode. It allows the
-interface and export workflow to be tested without presenting the workbook
-migration as reviewed or published data.
+The current snapshot is in `published` mode and is generated from the
+human-reviewed Batch 001 release. The review package itself remains private;
+the release stores only its SHA-256 digest and a repository-safe reviewer
+label.
 
 ## Data flow
 
@@ -58,8 +59,9 @@ downloads must display that status.
 
 1. every assertion has both `reviewed_by` and `reviewed_at`;
 2. every source has a resolved title;
-3. every source has a resolved licence; and
-4. at least one assertion exists.
+3. every source has a resolved rights treatment;
+4. the package is explicitly marked `reviewed_release`; and
+5. at least one assertion exists.
 
 The current batch contains:
 
@@ -68,11 +70,12 @@ The current batch contains:
 - 4 deployments;
 - 9 sources with completed titles and locators;
 - 88 assertions;
-- 0 reviewed assertions; and
-- 5 sources requiring licence metadata completion.
+- 88 reviewed assertions; and
+- 0 sources requiring rights metadata completion.
 
-It is not publishable. Changing the word `candidate` to `published` in
-configuration does not bypass the gate.
+It passes the machine publication gate. The generator records
+`publicationAuthorised: false` because generation is not editorial approval;
+the pull request must still be independently reviewed and merged.
 
 ## Generated interface snapshot
 
@@ -108,7 +111,7 @@ The same command writes
 
 | File | Purpose |
 | --- | --- |
-| `candidate-csv-package.zip` | Normalised tables, metadata, licence, migration report and internal checksums |
+| `csv-package.zip` | Normalised tables, metadata, licence, review summary, migration report and internal checksums |
 | `registry.json` | The exact structured snapshot consumed by the interface |
 | `assertions.jsonl` | One source-linked assertion per line |
 | `deployments.geojson` | Country-safe deployment properties with null geometry |
@@ -147,13 +150,15 @@ that were not followed by regeneration.
 ## Updating the data safely
 
 1. Import or edit a bounded candidate batch through a pull request.
-2. Complete source metadata and assertion-level human review.
-3. Run the migration and repository validation suites.
-4. Point `data/interface-snapshot.json` at the reviewed batch.
-5. Generate the snapshot and downloads.
-6. Review the data diff, counts, status and rendered interface.
-7. Merge only after editorial approval.
-8. Tag an immutable data release when the snapshot is in `published` mode.
+2. Complete source metadata, rights treatment and assertion-level human review.
+3. Export the private review package and promote it using a public reviewer
+   label; never commit private reviewer contact details.
+4. Run the migration and repository validation suites.
+5. Point `data/interface-snapshot.json` at the reviewed batch.
+6. Generate the snapshot and downloads.
+7. Review the data diff, counts, status and rendered interface.
+8. Merge only after independent editorial approval.
+9. Tag an immutable data release after merge.
 
 People and private submission fields are excluded from the snapshot and public
 downloads. Autonomous agents may prepare steps 1–5 on a branch, but may not

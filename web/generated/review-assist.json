@@ -1,143 +1,15 @@
 {
   "schemaVersion": "1.0.0",
-  "batchId": "data/imports/kaykluz-v0.1/batches/batch-001",
+  "batchId": "data/releases/0.1.0/batch-001",
   "status": "proposal_only",
   "publicationAuthorised": false,
   "summary": {
     "assertions": 88,
     "sources": 9,
-    "rightsFirst": 5,
-    "requestEvidence": 78
+    "rightsFirst": 0,
+    "requestEvidence": 0
   },
   "sourceGroups": [
-    {
-      "sourceId": "src_72a68084f5f1f2f3",
-      "title": "Digital Energy Challenge: innovative projects paving the way for Africa’s energy transition",
-      "publisher": "Agence Française de Développement",
-      "priority": 0,
-      "rightsUnresolved": true,
-      "automationPermitted": false,
-      "assertionIds": [
-        "asrt_07227453704c923a",
-        "asrt_fb51174ce4890ebd"
-      ]
-    },
-    {
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "title": "PAM AFRICA | Digital Energy Facility",
-      "publisher": "Digital Energy Facility — AFD Group",
-      "priority": 0,
-      "rightsUnresolved": true,
-      "automationPermitted": false,
-      "assertionIds": [
-        "asrt_07845759e110e814",
-        "asrt_1bfadeaf008f8b40",
-        "asrt_246a7c5ed464a001",
-        "asrt_3a633cb1d805690f",
-        "asrt_3eddf67c86bc0c5e",
-        "asrt_3f6071b75d3bdf56",
-        "asrt_4520e223eb8ef3e1",
-        "asrt_486a07454e573806",
-        "asrt_48da5ea052848a18",
-        "asrt_49ca9eec2c030beb",
-        "asrt_52b83b25eb3a8b85",
-        "asrt_591217630dc7caac",
-        "asrt_7d3d6c1623d92b9e",
-        "asrt_814133975224f4ab",
-        "asrt_8f8054fd2fcc0c93",
-        "asrt_90c9d62a102715aa",
-        "asrt_9761b29fae870f66",
-        "asrt_9ee29eba13999ef4",
-        "asrt_b6a1da022fa625bc",
-        "asrt_bc5c9b4a4c470667",
-        "asrt_d5fcca1e85edf1d2",
-        "asrt_d6d03ea5ddc85b0e",
-        "asrt_d866a7821f95268c",
-        "asrt_effeed44d72ce61a",
-        "asrt_f0623dbb92df930b",
-        "asrt_f2b8c24777b2382d",
-        "asrt_f4f5659480dc0dd5"
-      ]
-    },
-    {
-      "sourceId": "src_8d5a439422f50474",
-      "title": "Pai Enterprise Dashboard | PowerLabs",
-      "publisher": "PowerLabs",
-      "priority": 0,
-      "rightsUnresolved": true,
-      "automationPermitted": false,
-      "assertionIds": [
-        "asrt_180dc26ba963b405",
-        "asrt_50984f1b311a4ff1",
-        "asrt_561d58a0d9a7fb6a",
-        "asrt_bc7add211b0949ce"
-      ]
-    },
-    {
-      "sourceId": "src_3cbec379ee14aa70",
-      "title": "Beacon Power Services: harnessing data to drive Africa’s energy transition",
-      "publisher": "Proparco — AFD Group",
-      "priority": 0,
-      "rightsUnresolved": true,
-      "automationPermitted": false,
-      "assertionIds": [
-        "asrt_08ef007c6c4a2234",
-        "asrt_0bb77ef92e9708c3",
-        "asrt_0d09d9d1b2701639",
-        "asrt_1eb7316e70097b01",
-        "asrt_377ef583561a6506",
-        "asrt_3c7c23b9a323ef7f",
-        "asrt_54b47c7795a4296a",
-        "asrt_5f5c4f09c6318a89",
-        "asrt_6b08172aaf164605",
-        "asrt_7902bf89d0a7d4d0",
-        "asrt_7d2a8ad1923459ab",
-        "asrt_7dcde3441f1567af",
-        "asrt_803077b350326f82",
-        "asrt_8137c87ef55849aa",
-        "asrt_837f43de9daa7735",
-        "asrt_89fd8f9d46a94920",
-        "asrt_8d7e2824c6c17d79",
-        "asrt_904a5e38dcaf4c1c",
-        "asrt_9216a583507670a3",
-        "asrt_97ded978e99d5f39",
-        "asrt_991034d06a254b2d",
-        "asrt_c1cb51aeee357631",
-        "asrt_c4110ced08d67824",
-        "asrt_cd3e5efa923b5570",
-        "asrt_d1c44a81414b0c28",
-        "asrt_e3d49ff3c958f06f",
-        "asrt_efdfe99fac2d5dfc",
-        "asrt_f1cfb5ef55395736",
-        "asrt_f40d53ee1910124d",
-        "asrt_f88d97e5d33e8545",
-        "asrt_faac90d14181c8a5",
-        "asrt_fbd934f9a67f1d7e"
-      ]
-    },
-    {
-      "sourceId": "src_b0a509af628fb050",
-      "title": "This startup is building an ‘intelligence layer’ for Nigeria’s power grid",
-      "publisher": "TechCabal",
-      "priority": 0,
-      "rightsUnresolved": true,
-      "automationPermitted": false,
-      "assertionIds": [
-        "asrt_0a6dca967b74a800",
-        "asrt_1aaa9a19e288823a",
-        "asrt_1df6fc6ce8f98ee9",
-        "asrt_3f14c9237e037d62",
-        "asrt_5bc6c6f57ed96311",
-        "asrt_6438f8d1cb7677a5",
-        "asrt_737af1c9ed28c010",
-        "asrt_8fc4f469e6df55e8",
-        "asrt_9572ca21d4a3c388",
-        "asrt_a3d4833576863865",
-        "asrt_aa800388137a70f4",
-        "asrt_b2918c6d20e9d8f1",
-        "asrt_c7069468e5da4550"
-      ]
-    },
     {
       "sourceId": "src_792d6f5e54ae6a49",
       "title": "Beacon Power Services — Transforming Energy Management in Africa through Innovation",
@@ -187,873 +59,146 @@
         "asrt_75538177c6808dea",
         "asrt_dc00645d1b14dafa"
       ]
+    },
+    {
+      "sourceId": "src_8d5a439422f50474",
+      "title": "Pai Enterprise Dashboard | PowerLabs",
+      "publisher": "PowerLabs",
+      "priority": 1,
+      "rightsUnresolved": false,
+      "automationPermitted": false,
+      "assertionIds": [
+        "asrt_180dc26ba963b405",
+        "asrt_50984f1b311a4ff1",
+        "asrt_561d58a0d9a7fb6a",
+        "asrt_bc7add211b0949ce"
+      ]
+    },
+    {
+      "sourceId": "src_b0a509af628fb050",
+      "title": "This startup is building an ‘intelligence layer’ for Nigeria’s power grid",
+      "publisher": "TechCabal",
+      "priority": 1,
+      "rightsUnresolved": false,
+      "automationPermitted": false,
+      "assertionIds": [
+        "asrt_c7069468e5da4550",
+        "asrt_0a6dca967b74a800",
+        "asrt_1aaa9a19e288823a",
+        "asrt_1df6fc6ce8f98ee9",
+        "asrt_3f14c9237e037d62",
+        "asrt_5bc6c6f57ed96311",
+        "asrt_6438f8d1cb7677a5",
+        "asrt_737af1c9ed28c010",
+        "asrt_8fc4f469e6df55e8",
+        "asrt_9572ca21d4a3c388",
+        "asrt_a3d4833576863865",
+        "asrt_aa800388137a70f4",
+        "asrt_b2918c6d20e9d8f1"
+      ]
+    },
+    {
+      "sourceId": "src_72a68084f5f1f2f3",
+      "title": "Digital Energy Challenge: innovative projects paving the way for Africa’s energy transition",
+      "publisher": "Agence Française de Développement",
+      "priority": 3,
+      "rightsUnresolved": false,
+      "automationPermitted": false,
+      "assertionIds": [
+        "asrt_07227453704c923a",
+        "asrt_fb51174ce4890ebd"
+      ]
+    },
+    {
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "title": "PAM AFRICA | Digital Energy Facility",
+      "publisher": "Digital Energy Facility — AFD Group",
+      "priority": 3,
+      "rightsUnresolved": false,
+      "automationPermitted": false,
+      "assertionIds": [
+        "asrt_07845759e110e814",
+        "asrt_1bfadeaf008f8b40",
+        "asrt_246a7c5ed464a001",
+        "asrt_3a633cb1d805690f",
+        "asrt_3eddf67c86bc0c5e",
+        "asrt_3f6071b75d3bdf56",
+        "asrt_4520e223eb8ef3e1",
+        "asrt_486a07454e573806",
+        "asrt_48da5ea052848a18",
+        "asrt_49ca9eec2c030beb",
+        "asrt_52b83b25eb3a8b85",
+        "asrt_591217630dc7caac",
+        "asrt_7d3d6c1623d92b9e",
+        "asrt_814133975224f4ab",
+        "asrt_8f8054fd2fcc0c93",
+        "asrt_90c9d62a102715aa",
+        "asrt_9761b29fae870f66",
+        "asrt_9ee29eba13999ef4",
+        "asrt_b6a1da022fa625bc",
+        "asrt_bc5c9b4a4c470667",
+        "asrt_d5fcca1e85edf1d2",
+        "asrt_d6d03ea5ddc85b0e",
+        "asrt_d866a7821f95268c",
+        "asrt_effeed44d72ce61a",
+        "asrt_f0623dbb92df930b",
+        "asrt_f2b8c24777b2382d",
+        "asrt_f4f5659480dc0dd5"
+      ]
+    },
+    {
+      "sourceId": "src_3cbec379ee14aa70",
+      "title": "Beacon Power Services: harnessing data to drive Africa’s energy transition",
+      "publisher": "Proparco — AFD Group",
+      "priority": 3,
+      "rightsUnresolved": false,
+      "automationPermitted": false,
+      "assertionIds": [
+        "asrt_08ef007c6c4a2234",
+        "asrt_0bb77ef92e9708c3",
+        "asrt_0d09d9d1b2701639",
+        "asrt_1eb7316e70097b01",
+        "asrt_377ef583561a6506",
+        "asrt_3c7c23b9a323ef7f",
+        "asrt_54b47c7795a4296a",
+        "asrt_5f5c4f09c6318a89",
+        "asrt_6b08172aaf164605",
+        "asrt_7902bf89d0a7d4d0",
+        "asrt_7d2a8ad1923459ab",
+        "asrt_7dcde3441f1567af",
+        "asrt_803077b350326f82",
+        "asrt_8137c87ef55849aa",
+        "asrt_837f43de9daa7735",
+        "asrt_89fd8f9d46a94920",
+        "asrt_8d7e2824c6c17d79",
+        "asrt_904a5e38dcaf4c1c",
+        "asrt_9216a583507670a3",
+        "asrt_97ded978e99d5f39",
+        "asrt_991034d06a254b2d",
+        "asrt_c1cb51aeee357631",
+        "asrt_c4110ced08d67824",
+        "asrt_cd3e5efa923b5570",
+        "asrt_d1c44a81414b0c28",
+        "asrt_e3d49ff3c958f06f",
+        "asrt_efdfe99fac2d5dfc",
+        "asrt_f1cfb5ef55395736",
+        "asrt_f40d53ee1910124d",
+        "asrt_f88d97e5d33e8545",
+        "asrt_faac90d14181c8a5",
+        "asrt_fbd934f9a67f1d7e"
+      ]
     }
   ],
   "assertions": [
     {
-      "assertionId": "asrt_07227453704c923a",
-      "sourceId": "src_72a68084f5f1f2f3",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_07845759e110e814",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_08ef007c6c4a2234",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_0a6dca967b74a800",
-      "sourceId": "src_b0a509af628fb050",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_0bb77ef92e9708c3",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_0d09d9d1b2701639",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
       "assertionId": "asrt_180dc26ba963b405",
       "sourceId": "src_8d5a439422f50474",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
+      "priority": 1,
+      "recommendedAction": "editorial_review",
       "signals": [
-        "rights_unresolved",
         "human_only_source",
         "provider_authored",
         "provider_claim"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_1aaa9a19e288823a",
-      "sourceId": "src_b0a509af628fb050",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_1bfadeaf008f8b40",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_1df6fc6ce8f98ee9",
-      "sourceId": "src_b0a509af628fb050",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_1eb7316e70097b01",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_246a7c5ed464a001",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_377ef583561a6506",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_3a633cb1d805690f",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_3c7c23b9a323ef7f",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_3eddf67c86bc0c5e",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_3f14c9237e037d62",
-      "sourceId": "src_b0a509af628fb050",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_3f6071b75d3bdf56",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_4520e223eb8ef3e1",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_486a07454e573806",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_48da5ea052848a18",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_49ca9eec2c030beb",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_50984f1b311a4ff1",
-      "sourceId": "src_8d5a439422f50474",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source",
-        "provider_authored",
-        "provider_claim"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_52b83b25eb3a8b85",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_54b47c7795a4296a",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_561d58a0d9a7fb6a",
-      "sourceId": "src_8d5a439422f50474",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source",
-        "provider_authored",
-        "provider_claim"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_591217630dc7caac",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_5bc6c6f57ed96311",
-      "sourceId": "src_b0a509af628fb050",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_5f5c4f09c6318a89",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_6438f8d1cb7677a5",
-      "sourceId": "src_b0a509af628fb050",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_6b08172aaf164605",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_737af1c9ed28c010",
-      "sourceId": "src_b0a509af628fb050",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_7902bf89d0a7d4d0",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_7d2a8ad1923459ab",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_7d3d6c1623d92b9e",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_7dcde3441f1567af",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_803077b350326f82",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_8137c87ef55849aa",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_814133975224f4ab",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_837f43de9daa7735",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_89fd8f9d46a94920",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_8d7e2824c6c17d79",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_8f8054fd2fcc0c93",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_8fc4f469e6df55e8",
-      "sourceId": "src_b0a509af628fb050",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_904a5e38dcaf4c1c",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_90c9d62a102715aa",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_9216a583507670a3",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_9572ca21d4a3c388",
-      "sourceId": "src_b0a509af628fb050",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_9761b29fae870f66",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_97ded978e99d5f39",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_991034d06a254b2d",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_9ee29eba13999ef4",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_a3d4833576863865",
-      "sourceId": "src_b0a509af628fb050",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_aa800388137a70f4",
-      "sourceId": "src_b0a509af628fb050",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_b2918c6d20e9d8f1",
-      "sourceId": "src_b0a509af628fb050",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_b6a1da022fa625bc",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_bc5c9b4a4c470667",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_bc7add211b0949ce",
-      "sourceId": "src_8d5a439422f50474",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source",
-        "provider_authored",
-        "provider_claim"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_c1cb51aeee357631",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_c4110ced08d67824",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_c7069468e5da4550",
-      "sourceId": "src_b0a509af628fb050",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source",
-        "provider_claim"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_cd3e5efa923b5570",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_d1c44a81414b0c28",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_d5fcca1e85edf1d2",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_d6d03ea5ddc85b0e",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_d866a7821f95268c",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_e3d49ff3c958f06f",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_efdfe99fac2d5dfc",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_effeed44d72ce61a",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_f0623dbb92df930b",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_f1cfb5ef55395736",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_f2b8c24777b2382d",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_f40d53ee1910124d",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_f4f5659480dc0dd5",
-      "sourceId": "src_91c1fac8b3e57eb7",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_f88d97e5d33e8545",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_faac90d14181c8a5",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_fb51174ce4890ebd",
-      "sourceId": "src_72a68084f5f1f2f3",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
-      ],
-      "automationCanDecide": false
-    },
-    {
-      "assertionId": "asrt_fbd934f9a67f1d7e",
-      "sourceId": "src_3cbec379ee14aa70",
-      "priority": 0,
-      "recommendedAction": "request_evidence",
-      "signals": [
-        "rights_unresolved",
-        "human_only_source"
       ],
       "automationCanDecide": false
     },
@@ -1072,6 +217,30 @@
     {
       "assertionId": "asrt_3e5924c01f8e14e7",
       "sourceId": "src_7b2b4beeeea7e093",
+      "priority": 1,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source",
+        "provider_authored",
+        "provider_claim"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_50984f1b311a4ff1",
+      "sourceId": "src_8d5a439422f50474",
+      "priority": 1,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source",
+        "provider_authored",
+        "provider_claim"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_561d58a0d9a7fb6a",
+      "sourceId": "src_8d5a439422f50474",
       "priority": 1,
       "recommendedAction": "editorial_review",
       "signals": [
@@ -1166,6 +335,29 @@
       "automationCanDecide": false
     },
     {
+      "assertionId": "asrt_bc7add211b0949ce",
+      "sourceId": "src_8d5a439422f50474",
+      "priority": 1,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source",
+        "provider_authored",
+        "provider_claim"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_c7069468e5da4550",
+      "sourceId": "src_b0a509af628fb050",
+      "priority": 1,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source",
+        "provider_claim"
+      ],
+      "automationCanDecide": false
+    },
+    {
       "assertionId": "asrt_dc00645d1b14dafa",
       "sourceId": "src_b2ee9354fd0f5ade",
       "priority": 1,
@@ -1174,6 +366,736 @@
         "human_only_source",
         "provider_authored",
         "provider_claim"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_07227453704c923a",
+      "sourceId": "src_72a68084f5f1f2f3",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_07845759e110e814",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_08ef007c6c4a2234",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_0a6dca967b74a800",
+      "sourceId": "src_b0a509af628fb050",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_0bb77ef92e9708c3",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_0d09d9d1b2701639",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_1aaa9a19e288823a",
+      "sourceId": "src_b0a509af628fb050",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_1bfadeaf008f8b40",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_1df6fc6ce8f98ee9",
+      "sourceId": "src_b0a509af628fb050",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_1eb7316e70097b01",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_246a7c5ed464a001",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_377ef583561a6506",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_3a633cb1d805690f",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_3c7c23b9a323ef7f",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_3eddf67c86bc0c5e",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_3f14c9237e037d62",
+      "sourceId": "src_b0a509af628fb050",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_3f6071b75d3bdf56",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_4520e223eb8ef3e1",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_486a07454e573806",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_48da5ea052848a18",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_49ca9eec2c030beb",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_52b83b25eb3a8b85",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_54b47c7795a4296a",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_591217630dc7caac",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_5bc6c6f57ed96311",
+      "sourceId": "src_b0a509af628fb050",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_5f5c4f09c6318a89",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_6438f8d1cb7677a5",
+      "sourceId": "src_b0a509af628fb050",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_6b08172aaf164605",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_737af1c9ed28c010",
+      "sourceId": "src_b0a509af628fb050",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_7902bf89d0a7d4d0",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_7d2a8ad1923459ab",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_7d3d6c1623d92b9e",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_7dcde3441f1567af",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_803077b350326f82",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_8137c87ef55849aa",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_814133975224f4ab",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_837f43de9daa7735",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_89fd8f9d46a94920",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_8d7e2824c6c17d79",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_8f8054fd2fcc0c93",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_8fc4f469e6df55e8",
+      "sourceId": "src_b0a509af628fb050",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_904a5e38dcaf4c1c",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_90c9d62a102715aa",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_9216a583507670a3",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_9572ca21d4a3c388",
+      "sourceId": "src_b0a509af628fb050",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_9761b29fae870f66",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_97ded978e99d5f39",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_991034d06a254b2d",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_9ee29eba13999ef4",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_a3d4833576863865",
+      "sourceId": "src_b0a509af628fb050",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_aa800388137a70f4",
+      "sourceId": "src_b0a509af628fb050",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_b2918c6d20e9d8f1",
+      "sourceId": "src_b0a509af628fb050",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_b6a1da022fa625bc",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_bc5c9b4a4c470667",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_c1cb51aeee357631",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_c4110ced08d67824",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_cd3e5efa923b5570",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_d1c44a81414b0c28",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_d5fcca1e85edf1d2",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_d6d03ea5ddc85b0e",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_d866a7821f95268c",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_e3d49ff3c958f06f",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_efdfe99fac2d5dfc",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_effeed44d72ce61a",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_f0623dbb92df930b",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_f1cfb5ef55395736",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_f2b8c24777b2382d",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_f40d53ee1910124d",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_f4f5659480dc0dd5",
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_f88d97e5d33e8545",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_faac90d14181c8a5",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_fb51174ce4890ebd",
+      "sourceId": "src_72a68084f5f1f2f3",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
+      ],
+      "automationCanDecide": false
+    },
+    {
+      "assertionId": "asrt_fbd934f9a67f1d7e",
+      "sourceId": "src_3cbec379ee14aa70",
+      "priority": 3,
+      "recommendedAction": "editorial_review",
+      "signals": [
+        "human_only_source"
       ],
       "automationCanDecide": false
     }
