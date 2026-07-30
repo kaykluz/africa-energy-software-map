@@ -24,6 +24,7 @@
 - [21 — Contribution intake and moderation](21-contribution-intake-and-moderation.md)
 - [22 — Review workspace](22-review-workspace.md)
 - [23 — Automation and review assist](23-automation-and-review-assist.md)
+- [24 — Sector, geography and bulk intake](24-sector-geography-and-bulk-intake.md)
 
 ## Operations and governance
 
@@ -35,6 +36,7 @@
 - [21 — Contribution intake and moderation](21-contribution-intake-and-moderation.md)
 - [22 — Review workspace](22-review-workspace.md)
 - [23 — Automation and review assist](23-automation-and-review-assist.md)
+- [24 — Sector, geography and bulk intake](24-sector-geography-and-bulk-intake.md)
 
 These documents are normative for Phase 1 unless a later pull request explicitly
 supersedes them.

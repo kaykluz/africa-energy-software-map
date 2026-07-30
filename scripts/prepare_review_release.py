@@ -1,0 +1,261 @@
+#!/usr/bin/env python3
+"""Turn a private review export into a checked, candidate-only release plan."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_SNAPSHOT = ROOT / "web" / "generated" / "registry-snapshot.json"
+DECISIONS = {"accept", "amend", "reject", "needs_evidence"}
+RIGHTS_DECISIONS = {"resolved", "needs_research", "exclude"}
+
+
+class ReviewReleaseError(RuntimeError):
+    """Raised when a review package cannot be planned safely."""
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("review_package", type=Path)
+    parser.add_argument("--snapshot", type=Path, default=DEFAULT_SNAPSHOT)
+    parser.add_argument("--output", type=Path, required=True)
+    return parser.parse_args()
+
+
+def _indexed(items: list[dict[str, Any]], key: str, label: str) -> dict[str, dict]:
+    result: dict[str, dict] = {}
+    for item in items:
+        item_id = item.get(key)
+        if not isinstance(item_id, str) or not item_id:
+            raise ReviewReleaseError(f"{label} has a missing {key}")
+        if item_id in result:
+            raise ReviewReleaseError(f"{label} repeats {item_id}")
+        result[item_id] = item
+    return result
+
+
+def build_release_plan(snapshot: dict, package: dict) -> dict:
+    if package.get("schemaVersion") != "1.0.0":
+        raise ReviewReleaseError("unsupported review package schema")
+    if package.get("status", {}).get("publicationAuthorised") is not False:
+        raise ReviewReleaseError("review package must not authorise publication")
+    if package.get("status", {}).get("containsPublicDataChanges") is not False:
+        raise ReviewReleaseError("review package must not contain public data changes")
+
+    assertions = _indexed(snapshot.get("assertions", []), "id", "snapshot assertion")
+    sources = _indexed(snapshot.get("sources", []), "id", "snapshot source")
+    reviews = _indexed(
+        package.get("assertionReviews", []), "assertionId", "assertion review"
+    )
+    source_reviews = _indexed(
+        package.get("sourceReviews", []), "sourceId", "source review"
+    )
+
+    unknown_assertions = sorted(set(reviews) - set(assertions))
+    unknown_sources = sorted(set(source_reviews) - set(sources))
+    if unknown_assertions or unknown_sources:
+        raise ReviewReleaseError(
+            "review package contains records outside this snapshot: "
+            f"assertions={unknown_assertions}, sources={unknown_sources}"
+        )
+
+    blockers: list[dict[str, str]] = []
+    unresolved_assertions = sorted(set(assertions) - set(reviews))
+    for assertion_id in unresolved_assertions:
+        blockers.append(
+            {
+                "type": "assertion_decision_missing",
+                "recordId": assertion_id,
+                "message": "Assertion still needs a human decision.",
+            }
+        )
+
+    unknown_rights_sources = {
+        source_id
+        for source_id, source in sources.items()
+        if source.get("sourceLicense") == "unknown"
+    }
+    unresolved_rights: list[str] = []
+    excluded_sources: set[str] = set()
+    source_updates: list[dict[str, str]] = []
+    for source_id in sorted(unknown_rights_sources):
+        review = source_reviews.get(source_id)
+        if not review or review.get("rightsStatus") == "needs_research":
+            unresolved_rights.append(source_id)
+            blockers.append(
+                {
+                    "type": "source_rights_unresolved",
+                    "recordId": source_id,
+                    "message": "Source rights still need a human decision.",
+                }
+            )
+            continue
+        rights_status = review.get("rightsStatus")
+        if rights_status not in RIGHTS_DECISIONS:
+            raise ReviewReleaseError(
+                f"source review {source_id} has an invalid rightsStatus"
+            )
+        if rights_status == "exclude":
+            excluded_sources.add(source_id)
+        if rights_status == "resolved" and review.get("sourceLicense") in {
+            None,
+            "",
+            "unknown",
+        }:
+            blockers.append(
+                {
+                    "type": "source_license_missing",
+                    "recordId": source_id,
+                    "message": "Resolved source rights need a specific licence.",
+                }
+            )
+        source_updates.append(
+            {
+                "sourceId": source_id,
+                "rightsStatus": rights_status,
+                "sourceLicense": str(review.get("sourceLicense") or ""),
+                "independenceClass": str(review.get("independenceClass") or ""),
+            }
+        )
+
+    keep: list[str] = []
+    amend: list[dict[str, str]] = []
+    remove: list[str] = []
+    decision_counts = {decision: 0 for decision in sorted(DECISIONS)}
+    for assertion_id in sorted(reviews):
+        review = reviews[assertion_id]
+        assertion = assertions[assertion_id]
+        decision = review.get("decision")
+        if decision not in DECISIONS:
+            raise ReviewReleaseError(
+                f"assertion review {assertion_id} has an invalid decision"
+            )
+        decision_counts[decision] += 1
+        if decision != "needs_evidence" and (
+            review.get("sourceChecked") is not True
+            or review.get("safetyChecked") is not True
+        ):
+            blockers.append(
+                {
+                    "type": "review_checks_incomplete",
+                    "recordId": assertion_id,
+                    "message": "Source and safety checks must both be confirmed.",
+                }
+            )
+        if decision == "needs_evidence":
+            blockers.append(
+                {
+                    "type": "more_evidence_needed",
+                    "recordId": assertion_id,
+                    "message": "Assertion is not ready for a reviewed release.",
+                }
+            )
+            continue
+        if decision == "reject":
+            remove.append(assertion_id)
+            continue
+        if assertion.get("sourceId") in excluded_sources:
+            blockers.append(
+                {
+                    "type": "accepted_assertion_uses_excluded_source",
+                    "recordId": assertion_id,
+                    "message": "Accept or amend conflicts with the source exclusion.",
+                }
+            )
+            continue
+        if decision == "amend":
+            proposed_value = review.get("proposedValue")
+            if not isinstance(proposed_value, str) or not proposed_value.strip():
+                raise ReviewReleaseError(
+                    f"amended assertion {assertion_id} has no proposedValue"
+                )
+            amend.append(
+                {
+                    "assertionId": assertion_id,
+                    "subjectType": str(assertion.get("subjectType") or ""),
+                    "subjectId": str(assertion.get("subjectId") or ""),
+                    "predicate": str(assertion.get("predicate") or ""),
+                    "currentValue": str(assertion.get("value") or ""),
+                    "proposedValue": proposed_value,
+                    "proposedEvidenceStatus": str(
+                        review.get("proposedEvidenceStatus")
+                        or assertion.get("evidenceStatus")
+                        or ""
+                    ),
+                }
+            )
+        else:
+            keep.append(assertion_id)
+
+    return {
+        "schemaVersion": "1.0.0",
+        "status": "blocked" if blockers else "ready_for_data_pr",
+        "batchId": package.get("batchId", ""),
+        "reviewPackageGeneratedAt": package.get("generatedAt", ""),
+        "snapshotRelease": snapshot.get("release", {}),
+        "summary": {
+            "snapshotAssertions": len(assertions),
+            "assertionDecisions": len(reviews),
+            "accepted": decision_counts["accept"],
+            "amended": decision_counts["amend"],
+            "rejected": decision_counts["reject"],
+            "needsEvidence": decision_counts["needs_evidence"],
+            "sourceDecisions": len(source_reviews),
+            "unresolvedAssertions": len(unresolved_assertions),
+            "unresolvedSourceRights": len(unresolved_rights),
+            "blockers": len(blockers),
+        },
+        "actions": {
+            "keepAssertionIds": keep,
+            "amendAssertions": amend,
+            "removeAssertionIds": remove,
+            "sourceUpdates": source_updates,
+        },
+        "blockers": blockers,
+        "nextStep": (
+            "Resolve the listed review blockers and export a new package."
+            if blockers
+            else "Apply these actions to canonical tables in a reviewed data pull request."
+        ),
+        "publicationAuthorised": False,
+    }
+
+
+def main() -> int:
+    args = parse_args()
+    try:
+        snapshot = json.loads(args.snapshot.read_text(encoding="utf-8"))
+        package = json.loads(args.review_package.read_text(encoding="utf-8"))
+        result = build_release_plan(snapshot, package)
+    except (OSError, json.JSONDecodeError) as error:
+        raise ReviewReleaseError(f"cannot read input: {error}") from error
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(
+        json.dumps(result, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    print(
+        json.dumps(
+            {
+                "status": result["status"],
+                "blockers": result["summary"]["blockers"],
+                "output": str(args.output),
+                "publication_authorised": False,
+            }
+        )
+    )
+    return 0 if result["status"] == "ready_for_data_pr" else 2
+
+
+if __name__ == "__main__":
+    try:
+        raise SystemExit(main())
+    except ReviewReleaseError as error:
+        print(f"Review release planning failed: {error}", file=sys.stderr)
+        raise SystemExit(1) from error

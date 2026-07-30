@@ -26,6 +26,10 @@ Origin classifications:
 - `global_deployed_in_africa`
 - `public_or_open_infrastructure`
 
+An organisation may have an origin and headquarters outside Africa. It remains
+eligible when a product has a sourced African deployment. Headquarters, origin,
+availability and deployment geography are never substituted for one another.
+
 ## Product
 
 Key fields include organisation ID, name, description, primary category,
@@ -34,6 +38,10 @@ website, launch year, and last-checked date.
 
 Product and organisation records remain separate even when an organisation owns
 only one product.
+
+Sector IDs form a separate many-to-many classification. They describe the
+markets in which a product is relevant; they do not replace the primary
+value-chain category or imply an evidenced deployment.
 
 ## Deployment
 
@@ -81,4 +89,3 @@ capability, or market-condition reasoning.
 Change records preserve old value, new value, actor, time, and editorial reason.
 Renames, mergers, corrections, and superseded claims are never silently
 overwritten.
-

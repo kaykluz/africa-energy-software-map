@@ -60,6 +60,14 @@
   "cross_cutting": [
     {"id": "cat_data_interoperability_security", "name": "Data, interoperability and security"}
   ],
+  "sectors": [
+    {"id": "sector_power_utilities", "name": "Power networks and utilities", "order": 1},
+    {"id": "sector_distributed_energy_access", "name": "Distributed energy and energy access", "order": 2},
+    {"id": "sector_generation_storage", "name": "Generation and storage", "order": 3},
+    {"id": "sector_commercial_industrial", "name": "Commercial and industrial energy", "order": 4},
+    {"id": "sector_emobility_batteries", "name": "E-mobility and battery networks", "order": 5},
+    {"id": "sector_markets_finance_carbon", "name": "Markets, finance and carbon", "order": 6}
+  ],
   "origin_classifications": [
     "africa_built",
     "africa_founded_global_hq",
@@ -89,4 +97,3 @@
     "insufficient_evidence"
   ]
 }
-

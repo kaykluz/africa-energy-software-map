@@ -222,6 +222,18 @@ The API must preserve the public query vocabulary:
 Stable query parameters make views linkable, reproducible and usable in
 academic citations.
 
+## Sector navigation
+
+The value-chain Explore path remains the Phase 1 default. A Phase 1.1 sector
+switch will reuse the same products, evidence and filters, grouping products by
+where they are used rather than where they sit in the electricity workflow.
+Sector IDs are captured in bulk intake before the public switch is added, so
+new research does not need to be reclassified later.
+
+E-mobility is not deferred: it remains an explicit category and sector in the
+launch taxonomy. The public sector switch is an interface enhancement rather
+than a prerequisite for the first reviewed release.
+
 ## Contribution growth
 
 Contribution remains visible in the header, hero action, empty states, country

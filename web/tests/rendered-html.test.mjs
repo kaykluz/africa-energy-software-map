@@ -46,6 +46,7 @@ class MemoryD1 {
       "../drizzle/0000_quick_prodigy.sql",
       "../drizzle/0001_fancy_senator_kelly.sql",
       "../drizzle/0002_aspiring_whistler.sql",
+      "../drizzle/0003_deep_magneto.sql",
     ]) {
       const sql = readFileSync(new URL(migration, import.meta.url), "utf8");
       for (const statement of sql.split("--> statement-breakpoint")) {
@@ -141,6 +142,76 @@ const validProductContribution = {
   notes: "Utility network planning and operations.",
   sensitiveConfirmed: false,
   companyWebsite: "",
+};
+
+const bulkHeaders = [
+  "row_key",
+  "record_type",
+  "organisation_name",
+  "existing_organisation_id",
+  "organisation_website",
+  "country_of_origin",
+  "headquarters_country",
+  "origin_classification",
+  "product_name",
+  "existing_product_id",
+  "product_website",
+  "open_source_url",
+  "product_description",
+  "primary_category_id",
+  "sector_id",
+  "product_lifecycle_status",
+  "access_model",
+  "deployment_country_iso2",
+  "customer_name",
+  "customer_disclosure",
+  "deployment_lifecycle_status",
+  "started_year",
+  "source_url",
+  "source_title",
+  "source_publisher",
+  "source_publication_date",
+  "source_independence_class",
+  "source_license",
+  "evidence_status",
+  "source_locator",
+  "notes",
+  "confirms_no_sensitive_data",
+];
+
+const validBulkDeployment = {
+  row_key: "example-grid-ng-2024",
+  record_type: "deployment",
+  organisation_name: "Example Global Grid",
+  existing_organisation_id: "",
+  organisation_website: "https://example.com",
+  country_of_origin: "GB",
+  headquarters_country: "US",
+  origin_classification: "global_deployed_in_africa",
+  product_name: "Example Grid Suite",
+  existing_product_id: "",
+  product_website: "https://example.com/grid",
+  open_source_url: "",
+  product_description: "Distribution operations software.",
+  primary_category_id: "cat_distribution_utility_operations",
+  sector_id: "sector_power_utilities",
+  product_lifecycle_status: "active",
+  access_model: "commercial",
+  deployment_country_iso2: "NG",
+  customer_name: "Example Distribution Company",
+  customer_disclosure: "named",
+  deployment_lifecycle_status: "active",
+  started_year: "2024",
+  source_url: "https://example.org/programme",
+  source_title: "Distribution modernisation programme",
+  source_publisher: "Example Distribution Company",
+  source_publication_date: "2024-06-10",
+  source_independence_class: "customer_or_official",
+  source_license: "unknown",
+  evidence_status: "customer_confirmed",
+  source_locator: "Programme update, section 3",
+  notes: "",
+  confirms_no_sensitive_data: "true",
 };
 
 function contributionRequest(body, headers = {}) {
@@ -846,4 +917,62 @@ test("reviewers can pause intake without affecting existing receipt data", async
     ).count,
     2,
   );
+});
+
+test("bulk workbooks enter a private candidate queue and cannot upgrade weak evidence", async () => {
+  const database = new MemoryD1();
+  const payload = {
+    filename: "africa-energy-software-map-bulk-import.xlsx",
+    workbookHash: "a".repeat(64),
+    headers: bulkHeaders,
+    rows: [validBulkDeployment],
+  };
+  const response = await fetchWorker(
+    "/api/review/bulk-imports",
+    { ...reviewRequest(payload), method: "POST" },
+    { DB: database },
+  );
+  assert.equal(response.status, 201);
+  const record = await response.json();
+  assert.equal(record.status, "candidate");
+  assert.equal(record.rowCount, 1);
+  assert.equal(record.entityCount, 3);
+  assert.equal(record.plannedBatchCount, 1);
+  assert.equal(database.count("bulk_imports"), 1);
+  assert.equal(database.count("bulk_import_rows"), 1);
+  assert.equal(
+    database.get(
+      "SELECT COUNT(*) AS count FROM review_audit_events WHERE record_type = 'bulk_import'",
+    ).count,
+    1,
+  );
+
+  const duplicate = await fetchWorker(
+    "/api/review/bulk-imports",
+    { ...reviewRequest(payload), method: "POST" },
+    { DB: database },
+  );
+  assert.equal(duplicate.status, 409);
+
+  const invalid = await fetchWorker(
+    "/api/review/bulk-imports",
+    {
+      ...reviewRequest({
+        ...payload,
+        workbookHash: "b".repeat(64),
+        rows: [
+          {
+            ...validBulkDeployment,
+            source_independence_class: "provider_authored",
+            evidence_status: "independently_evidenced",
+          },
+        ],
+      }),
+      method: "POST",
+    },
+    { DB: database },
+  );
+  assert.equal(invalid.status, 422);
+  assert.match(JSON.stringify(await invalid.json()), /cannot independently/i);
+  assert.equal(database.count("bulk_imports"), 1);
 });

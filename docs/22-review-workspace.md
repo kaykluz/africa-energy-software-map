@@ -46,13 +46,14 @@ The top strip answers five questions at a glance:
 The release indicator remains **Held**. There is intentionally no publish
 button.
 
-Four tabs divide the work:
+Five tabs divide the work:
 
 | Tab | Use |
 | --- | --- |
 | Assertions | Review one atomic candidate claim against its linked source |
 | Sources | Record rights, licence treatment, and source independence |
 | Contributions | Triage private public submissions and inspect their supplied evidence |
+| Bulk | Upload the standard workbook into a private candidate queue |
 | Operations | Check retention runs and pause or resume contribution intake |
 
 On a wide screen, the queue remains on the left and the selected record opens on
@@ -146,6 +147,26 @@ data, delete existing contributions, block receipt lookups, or interrupt
 review. The honeypot response remains deliberately indistinguishable to simple
 bots. There is no public operations control.
 
+## Bulk intake
+
+The Bulk tab provides the standard workbook and accepts up to 100 populated
+rows at a time. The browser reads the `Bulk Records` sheet locally and submits
+structured rows only. The server repeats every validation, splits the work into
+review-size batches, stores each row as a private candidate, and writes an audit
+event.
+
+The raw workbook is not stored. A workbook fingerprint prevents accidental
+duplicate imports. Candidate imports cannot update the public snapshot, accept
+evidence, resolve source rights or publish.
+
+## After assertions are complete
+
+When every assertion has a decision, the workspace points to Sources next.
+Resolve or exclude all unresolved sources, including licence treatment and
+independence. Once assertions and source rights are complete, download the
+review package. That package is the input to a separate reviewed data pull
+request; downloading it does not publish.
+
 ## Data boundaries
 
 | Information | Stored in D1 | Returned by normal workspace API | Included in review export | Published |
@@ -182,28 +203,36 @@ file.
 After review:
 
 1. export the review package;
-2. translate accepted decisions into the canonical repository tables;
-3. preserve source IDs and assertion-level provenance;
-4. run repository, schema, privacy, and snapshot checks;
-5. open a pull request that links the review batch;
-6. obtain independent human review; and
-7. merge and run the documented release process.
+2. run `scripts/prepare_review_release.py` to produce a checked keep, amend,
+   remove and source-rights plan;
+3. resolve any missing decisions, evidence needs or source-rights conflicts;
+4. translate the ready plan into the canonical repository tables;
+5. preserve source IDs and assertion-level provenance;
+6. run repository, schema, privacy, and snapshot checks;
+7. open a pull request that links the review batch;
+8. obtain independent human review; and
+9. merge and run the documented release process.
 
-No API in `/review` performs steps 2–7.
+The planning script exits with a blocker status until the review is complete and
+always writes `publicationAuthorised: false`. No API in `/review` edits the
+canonical tables or publishes a release.
 
 ## Storage and migration
 
-The workspace and operations controls use five D1 tables:
+The workspace, bulk queue and operations controls use seven D1 tables:
 
 - `assertion_reviews`;
 - `source_reviews`;
 - `review_audit_events`;
-- `system_settings`; and
-- `maintenance_runs`.
+- `system_settings`;
+- `maintenance_runs`;
+- `bulk_imports`; and
+- `bulk_import_rows`.
 
 The review tables are created by `web/drizzle/0001_fancy_senator_kelly.sql`;
 the operations tables are created by
-`web/drizzle/0002_aspiring_whistler.sql`. All numbered migrations must be
+`web/drizzle/0002_aspiring_whistler.sql`; the bulk-intake tables are created by
+`web/drizzle/0003_deep_magneto.sql`. All numbered migrations must be
 applied in order on a new database. The application uses the same `DB` binding
 as contribution intake while maintaining table and query boundaries between
 public data, moderation data, and private contact data.

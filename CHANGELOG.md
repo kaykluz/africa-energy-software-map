@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- Added a visually validated bulk-intake workbook and private candidate import
+  queue with automatic review-size batching.
+- Added six sector lenses while keeping the electricity value chain as the
+  primary Phase 1 navigation.
+- Clarified inclusion of global-headquartered providers with sourced African
+  deployments and the e-mobility scope boundary.
+- Added a post-assertion next-step prompt for source-rights review.
+
 All notable project, schema, taxonomy, policy, and data-release changes will be
 documented here.
 

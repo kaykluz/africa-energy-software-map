@@ -159,3 +159,46 @@ export const maintenanceRuns = sqliteTable(
   },
   (table) => [index("maintenance_runs_finished_idx").on(table.finishedAt)],
 );
+
+export const bulkImports = sqliteTable(
+  "bulk_imports",
+  {
+    id: text("id").primaryKey(),
+    originalFilename: text("original_filename").notNull(),
+    workbookHash: text("workbook_hash").notNull(),
+    payloadHash: text("payload_hash").notNull(),
+    status: text("status").notNull().default("candidate"),
+    uploadedBy: text("uploaded_by").notNull(),
+    uploadedAt: text("uploaded_at").notNull(),
+    rowCount: integer("row_count").notNull(),
+    entityCount: integer("entity_count").notNull(),
+    plannedBatchCount: integer("planned_batch_count").notNull(),
+    warningsJson: text("warnings_json").notNull(),
+    batchPlanJson: text("batch_plan_json").notNull(),
+    version: integer("version").notNull().default(1),
+  },
+  (table) => [
+    uniqueIndex("bulk_imports_workbook_hash_idx").on(table.workbookHash),
+    index("bulk_imports_uploaded_idx").on(table.uploadedAt),
+  ],
+);
+
+export const bulkImportRows = sqliteTable(
+  "bulk_import_rows",
+  {
+    id: text("id").primaryKey(),
+    importId: text("import_id")
+      .notNull()
+      .references(() => bulkImports.id, { onDelete: "cascade" }),
+    rowNumber: integer("row_number").notNull(),
+    rowKey: text("row_key").notNull(),
+    recordType: text("record_type").notNull(),
+    status: text("status").notNull().default("candidate"),
+    payloadJson: text("payload_json").notNull(),
+    createdAt: text("created_at").notNull(),
+  },
+  (table) => [
+    uniqueIndex("bulk_import_rows_key_idx").on(table.importId, table.rowKey),
+    index("bulk_import_rows_import_idx").on(table.importId, table.rowNumber),
+  ],
+);

@@ -88,6 +88,25 @@ python3 scripts/validate_repository.py
 Production secrets, scheduling, retention, and failure handling are described
 in [Automation and review assist](../docs/23-automation-and-review-assist.md).
 
+## Bulk intake
+
+The private Bulk tab downloads and accepts the standard `.xlsx` workbook.
+Parsing happens in the reviewer’s browser; the server receives and revalidates
+at most 100 structured rows. Accepted uploads remain private candidate records
+and are automatically planned into review-size batches.
+
+The template is published at
+`/downloads/templates/africa-energy-software-map-bulk-import.xlsx`. Validate its
+structure with:
+
+```bash
+python3 scripts/validate_bulk_template.py
+```
+
+Company geography, e-mobility, sector classification and import boundaries are
+defined in
+[Sector, geography and bulk intake](../docs/24-sector-geography-and-bulk-intake.md).
+
 To regenerate or verify the interface data before running the web checks:
 
 ```bash
