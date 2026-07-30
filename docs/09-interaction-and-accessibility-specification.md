@@ -1,5 +1,9 @@
 # Interaction and accessibility specification
 
+This document records the foundational decisions. The implementation-level
+contracts are the [Phase 1 UI/UX design system](14-phase-1-ui-ux-design-system.md)
+and [page specifications](15-phase-1-page-specifications.md).
+
 ## Visual direction
 
 The public product is light-first: warm neutral background, quiet surfaces,
@@ -61,4 +65,3 @@ Target WCAG 2.2 AA. The application must provide:
 Browsing requires no account. Initial pages are server-rendered and useful
 without heavy client scripting. Dataset payloads are compressed and interactions
 progressively enhance the core pages.
-

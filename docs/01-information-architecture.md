@@ -51,7 +51,6 @@ export of the current result set.
 
 ```text
 /
-/stack
 /deployments
 /directory
 /methodology
@@ -61,6 +60,8 @@ export of the current result set.
 /contribute
 /data
 ```
+
+`/` is the canonical Stack route. `/stack` permanently redirects to `/`.
 
 Every public entity page is server-rendered, crawlable, and assigned a stable
 canonical URL.
@@ -89,3 +90,7 @@ AMI/advanced metering.
 
 People are not a primary Phase 1 entity or search promise.
 
+The implementation-level design contracts are:
+
+- [Phase 1 UI/UX design system](14-phase-1-ui-ux-design-system.md)
+- [Phase 1 page specifications](15-phase-1-page-specifications.md)
