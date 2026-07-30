@@ -1,6 +1,6 @@
 # Expansion architecture and roadmap
 
-Status: Phase 1 implementation contract  
+Status: Phase 1 implementation contract
 Last updated: 30 July 2026
 
 ## Decision
@@ -285,7 +285,8 @@ The website consumes only a release produced after human editorial review.
 - generate one candidate snapshot and download set — implemented;
 - refuse publication until every assertion and source passes review —
   implemented;
-- complete human evidence review and source metadata — outstanding;
+- complete human evidence review and five source-licence fields —
+  outstanding;
 - generate the first public snapshot from reviewed files — outstanding;
 - generate release counts and checksums — implemented for candidate packages;
   and

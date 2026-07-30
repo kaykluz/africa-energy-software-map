@@ -73,7 +73,18 @@ test("server-renders a source-linked product profile", async () => {
   assert.match(html, /African deployments/);
   assert.match(html, /Abuja Electricity Distribution Company/);
   assert.match(html, /Assertion-level evidence and sources/);
+  assert.match(html, /Proparco/);
   assert.match(html, /Editorial review required/);
+});
+
+test("server-renders corrected product identity and source-backed fields", async () => {
+  const response = await render("/products/pai-enterprise");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<h1[^>]*>Pai Enterprise<\/h1>/i);
+  assert.match(html, /PowerLabs/);
+  assert.match(html, /2025/);
+  assert.match(html, /TechCabal/);
 });
 
 test("server-renders reproducible candidate downloads and review status", async () => {
@@ -83,7 +94,7 @@ test("server-renders reproducible candidate downloads and review status", async 
   const textHtml = html.replaceAll(/<!--.*?-->/g, "");
   assert.match(html, /<h1[^>]*>Data and downloads<\/h1>/i);
   assert.match(textHtml, /0 of\s+88 assertions reviewed/);
-  assert.match(textHtml, /4 sources need metadata/);
+  assert.match(textHtml, /5 sources need metadata/);
   assert.match(html, /candidate-csv-package\.zip/);
   assert.match(html, /registry\.json/);
   assert.match(html, /assertions\.jsonl/);

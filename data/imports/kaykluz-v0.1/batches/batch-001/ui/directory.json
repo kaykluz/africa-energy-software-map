@@ -9,14 +9,15 @@
     "lifecycle_status": "active",
     "access_model": "commercial_proprietary",
     "open_source_url": "",
-    "website": "https://beaconpowerservices.com/",
+    "website": "https://beaconpowerservices.com/en/solutions/caims",
     "launched_year": "",
-    "last_checked_at": "2026-07-24",
+    "last_checked_at": "2026-07-30",
     "organisation": "Beacon Power Services",
     "deployment_countries": [
       "NG"
     ],
     "evidence_statuses": [
+      "independently_evidenced",
       "provider_claim_only"
     ],
     "deployment_evidence_statuses": [
@@ -33,14 +34,15 @@
     "lifecycle_status": "active",
     "access_model": "commercial_proprietary",
     "open_source_url": "",
-    "website": "https://beaconpowerservices.com/",
+    "website": "https://beaconpowerservices.com/en/solutions/adora",
     "launched_year": "",
-    "last_checked_at": "2026-07-24",
+    "last_checked_at": "2026-07-30",
     "organisation": "Beacon Power Services",
     "deployment_countries": [
       "NG"
     ],
     "evidence_statuses": [
+      "independently_evidenced",
       "provider_claim_only"
     ],
     "deployment_evidence_statuses": [
@@ -55,14 +57,15 @@
     "description": "Consumption insights; payments; customer engagement; distributed solar offers",
     "primary_category_id": "cat_retail_metering_billing_payments",
     "lifecycle_status": "active",
-    "access_model": "not_publicly_documented",
+    "access_model": "public_access",
     "open_source_url": "",
-    "website": "https://beaconpowerservices.com/",
+    "website": "https://www.beaconpowerservices.com/en/solutions/xepp",
     "launched_year": "",
-    "last_checked_at": "2026-07-24",
+    "last_checked_at": "2026-07-30",
     "organisation": "Beacon Power Services",
     "deployment_countries": [],
     "evidence_statuses": [
+      "independently_evidenced",
       "provider_claim_only"
     ],
     "deployment_evidence_statuses": []
@@ -72,20 +75,21 @@
     "organisation_id": "org_002",
     "name": "PAM-AI",
     "slug": "pam-ai",
-    "description": "Smart metering; payments; automation; dynamic tariffs; demand response",
+    "description": "Real-time monitoring, smart tariffs, remote device control, payment integration and demand response",
     "primary_category_id": "cat_paygo_minigrid_operations",
-    "lifecycle_status": "pilot",
+    "lifecycle_status": "active",
     "access_model": "commercial_service",
     "open_source_url": "",
-    "website": "",
+    "website": "https://www.pamafrica.com/",
     "launched_year": "",
-    "last_checked_at": "2026-07-24",
+    "last_checked_at": "2026-07-30",
     "organisation": "PAM Africa",
     "deployment_countries": [
       "NG"
     ],
     "evidence_statuses": [
-      "independently_evidenced"
+      "independently_evidenced",
+      "public_source"
     ],
     "deployment_evidence_statuses": [
       "independently_evidenced"
@@ -94,19 +98,20 @@
   {
     "id": "prod_005",
     "organisation_id": "org_003",
-    "name": "Pai",
-    "slug": "pai",
-    "description": "Hybrid dispatch; source orchestration; monitoring; optimisation; control",
+    "name": "Pai Enterprise",
+    "slug": "pai-enterprise",
+    "description": "Energy monitoring, analytics, sizing optimisation, anomaly detection and multi-source orchestration",
     "primary_category_id": "cat_ci_behind_meter",
     "lifecycle_status": "active",
-    "access_model": "not_publicly_documented",
+    "access_model": "commercial_service",
     "open_source_url": "",
-    "website": "https://powerlabs.energy/",
-    "launched_year": "",
-    "last_checked_at": "2026-07-24",
+    "website": "https://www.powerlabstech.com/pai-enterprise/software",
+    "launched_year": "2025",
+    "last_checked_at": "2026-07-30",
     "organisation": "PowerLabs",
     "deployment_countries": [],
     "evidence_statuses": [
+      "independently_evidenced",
       "provider_claim_only"
     ],
     "deployment_evidence_statuses": []

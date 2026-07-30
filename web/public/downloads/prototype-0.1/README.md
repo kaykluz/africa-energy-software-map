@@ -19,14 +19,14 @@ source metadata are complete.
 - Organisations: 3
 - Products: 5
 - Deployments: 4
-- Sources: 4
+- Sources: 9
 - Assertions: 88
 
 ## Review gate
 
 - Reviewed assertions: 0
 - Unreviewed assertions: 88
-- Sources requiring metadata completion: 4
+- Sources requiring metadata completion: 5
 - Publishable: false
 
 Provider claims remain separate from independently evidenced deployments. The

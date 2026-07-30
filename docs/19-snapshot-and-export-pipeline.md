@@ -1,6 +1,6 @@
 # Snapshot and export pipeline
 
-Status: implemented for candidate prototype data  
+Status: implemented for candidate prototype data
 Last updated: 30 July 2026
 
 ## Purpose
@@ -66,10 +66,10 @@ The current batch contains:
 - 3 organisations;
 - 5 products;
 - 4 deployments;
-- 4 sources;
+- 9 sources with completed titles and locators;
 - 88 assertions;
 - 0 reviewed assertions; and
-- 4 sources requiring metadata completion.
+- 5 sources requiring licence metadata completion.
 
 It is not publishable. Changing the word `candidate` to `published` in
 configuration does not bypass the gate.

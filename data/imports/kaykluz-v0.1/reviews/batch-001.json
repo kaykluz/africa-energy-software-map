@@ -1,0 +1,629 @@
+{
+  "version": "1.0.0",
+  "status": "ai_researched_human_pending",
+  "run_id": "batch_001_source_review_2026_07_30",
+  "researched_at": "2026-07-30",
+  "selected_organisation_ids": [
+    "ORG-001",
+    "ORG-002",
+    "ORG-003"
+  ],
+  "prune_unused_sources": true,
+  "sources": {
+    "https://www.afd.fr/en/actualites/digital-energy-challenge-africa-energy-transition": {
+      "title": "Digital Energy Challenge: innovative projects paving the way for Africa’s energy transition",
+      "publisher": "Agence Française de Développement",
+      "source_type": "official_programme",
+      "author": "",
+      "publication_date": "2024-11-28",
+      "retrieved_at": "2026-07-30",
+      "archived_url": "",
+      "source_license": "unknown",
+      "independence_class": "independent_primary",
+      "automation_permitted": "false",
+      "notes": "Locator: “Reducing power outages in Nigeria: AEDC x Beacon Power Services.” Supports the named partnership, Nigeria, the 2023 programme-support year and reported implementation activity. AFD administers the supporting programme; outcome figures require separate scrutiny."
+    },
+    "https://beaconpowerservices.com/": {
+      "title": "Beacon Power Services — Transforming Energy Management in Africa through Innovation",
+      "publisher": "Beacon Power Services",
+      "source_type": "provider_webpage",
+      "author": "",
+      "publication_date": "",
+      "retrieved_at": "2026-07-30",
+      "archived_url": "",
+      "source_license": "all_rights_reserved",
+      "independence_class": "provider_authored",
+      "automation_permitted": "false",
+      "notes": "Locator: homepage and company footer. Used only for the provider’s current canonical website; it does not independently establish origin, headquarters or deployment."
+    },
+    "https://beaconpowerservices.com/en/solutions/caims": {
+      "title": "CAIMS — Customer and Asset Information Management System | Beacon Power Services",
+      "publisher": "Beacon Power Services",
+      "source_type": "provider_product_page",
+      "author": "",
+      "publication_date": "",
+      "retrieved_at": "2026-07-30",
+      "archived_url": "",
+      "source_license": "all_rights_reserved",
+      "independence_class": "provider_authored",
+      "automation_permitted": "false",
+      "notes": "Locator: CAIMS overview, Features, Functionalities and Technical Specifications. Supports product functions as provider claims; customer outcomes are not imported from this page."
+    },
+    "https://beaconpowerservices.com/en/solutions/adora": {
+      "title": "Adora — Grid Network Management | Beacon Power Services",
+      "publisher": "Beacon Power Services",
+      "source_type": "provider_product_page",
+      "author": "",
+      "publication_date": "",
+      "retrieved_at": "2026-07-30",
+      "archived_url": "",
+      "source_license": "all_rights_reserved",
+      "independence_class": "provider_authored",
+      "automation_permitted": "false",
+      "notes": "Locator: Adora overview, Features, Functionalities and Technical Specifications. Supports product functions as provider claims; performance claims are not imported."
+    },
+    "https://www.beaconpowerservices.com/en/solutions/xepp": {
+      "title": "Xepp — Track energy, pay for electricity and go solar | Beacon Power Services",
+      "publisher": "Beacon Power Services",
+      "source_type": "provider_product_page",
+      "author": "",
+      "publication_date": "",
+      "retrieved_at": "2026-07-30",
+      "archived_url": "",
+      "source_license": "all_rights_reserved",
+      "independence_class": "provider_authored",
+      "automation_permitted": "false",
+      "notes": "Locator: Features, Functionalities and Technical Specifications. The page states that the app is available on iOS and Android and is free to download and use; product claims remain provider-authored."
+    },
+    "https://proparco.fr/en/news/beacon-power-services-harnessing-data-drive-africas-energy-transition": {
+      "title": "Beacon Power Services: harnessing data to drive Africa’s energy transition",
+      "publisher": "Proparco — AFD Group",
+      "source_type": "dfi_report",
+      "author": "",
+      "publication_date": "2026-04-23",
+      "retrieved_at": "2026-07-30",
+      "archived_url": "",
+      "source_license": "unknown",
+      "independence_class": "independent_primary",
+      "automation_permitted": "false",
+      "notes": "Locators: “In Abuja, a network transitioning from ‘flying blind’ to real-time visibility” and the paragraph describing CAIMS, Adora and Xepp. Includes direct comment from an AEDC director. Proparco is a BPS investor, so reported outcomes are not imported without additional corroboration."
+    },
+    "https://digital-energy.eu/en/projects/pam-africa": {
+      "title": "PAM AFRICA | Digital Energy Facility",
+      "publisher": "Digital Energy Facility — AFD Group",
+      "source_type": "official_programme",
+      "author": "",
+      "publication_date": "",
+      "retrieved_at": "2026-07-30",
+      "archived_url": "",
+      "source_license": "unknown",
+      "independence_class": "independent_primary",
+      "automation_permitted": "false",
+      "notes": "Locators: “The Project at a Glance,” “How It Works” and “Results So Far.” Supports PAM-AI, Nigeria, KEDCO and unnamed mini-grid implementations. It is programme evidence, not customer confirmation; outcome figures are excluded."
+    },
+    "https://www.powerlabstech.com/pai-enterprise/software": {
+      "title": "Pai Enterprise Dashboard | PowerLabs",
+      "publisher": "PowerLabs",
+      "source_type": "provider_product_page",
+      "author": "",
+      "publication_date": "",
+      "retrieved_at": "2026-07-30",
+      "archived_url": "",
+      "source_license": "unknown",
+      "independence_class": "provider_authored",
+      "automation_permitted": "false",
+      "notes": "Locators: Analytics, Sizing Optimisation, Anomaly Detections and Use Cases. Supports the current product URL and provider-described functionality; it does not independently establish deployments."
+    },
+    "https://techcabal.com/2026/04/09/powerlabs-wants-to-make-nigerias-grid-think/": {
+      "title": "This startup is building an ‘intelligence layer’ for Nigeria’s power grid",
+      "publisher": "TechCabal",
+      "source_type": "news_article",
+      "author": "Frank Eleanya",
+      "publication_date": "2026-04-09",
+      "retrieved_at": "2026-07-30",
+      "archived_url": "",
+      "source_license": "unknown",
+      "independence_class": "independent_secondary",
+      "automation_permitted": "false",
+      "notes": "Locators: article introduction, “How the system works” and the Pai Enterprise launch paragraph. Independently supports company and product existence, Lagos base and June 2025 launch. Regional usage is attributed to the founder and is retained only as claimed availability, never as deployment evidence."
+    }
+  },
+  "record_overrides": {
+    "organisations.csv": {
+      "org_001": {
+        "last_checked_at": "2026-07-30"
+      },
+      "org_002": {
+        "headquarters_country": "",
+        "website": "https://www.pamafrica.com/",
+        "last_checked_at": "2026-07-30"
+      },
+      "org_003": {
+        "website": "https://powerlabstech.com/",
+        "description": "Energy intelligence software and hardware for orchestrating grid, solar, batteries and generators",
+        "last_checked_at": "2026-07-30"
+      }
+    },
+    "products.csv": {
+      "prod_001": {
+        "website": "https://beaconpowerservices.com/en/solutions/caims",
+        "last_checked_at": "2026-07-30"
+      },
+      "prod_002": {
+        "website": "https://beaconpowerservices.com/en/solutions/adora",
+        "last_checked_at": "2026-07-30"
+      },
+      "prod_003": {
+        "access_model": "public_access",
+        "website": "https://www.beaconpowerservices.com/en/solutions/xepp",
+        "last_checked_at": "2026-07-30"
+      },
+      "prod_004": {
+        "description": "Real-time monitoring, smart tariffs, remote device control, payment integration and demand response",
+        "lifecycle_status": "active",
+        "website": "https://www.pamafrica.com/",
+        "last_checked_at": "2026-07-30"
+      },
+      "prod_005": {
+        "name": "Pai Enterprise",
+        "slug": "pai-enterprise",
+        "description": "Energy monitoring, analytics, sizing optimisation, anomaly detection and multi-source orchestration",
+        "access_model": "commercial_service",
+        "website": "https://www.powerlabstech.com/pai-enterprise/software",
+        "launched_year": "2025",
+        "last_checked_at": "2026-07-30"
+      }
+    },
+    "deployments.csv": {
+      "dep_001": {
+        "lifecycle_status": "active",
+        "last_checked_at": "2026-07-30"
+      },
+      "dep_002": {
+        "lifecycle_status": "active",
+        "last_checked_at": "2026-07-30"
+      },
+      "dep_003": {
+        "subnational_area": "",
+        "lifecycle_status": "active",
+        "location_precision": "country",
+        "last_checked_at": "2026-07-30"
+      },
+      "dep_004": {
+        "subnational_area": "",
+        "lifecycle_status": "active",
+        "last_checked_at": "2026-07-30"
+      }
+    }
+  },
+  "assertion_rules": [
+    {
+      "subject_type": "organisation",
+      "subject_id": "org_001",
+      "predicates": [
+        "name",
+        "organisation_type",
+        "origin_classification",
+        "country_of_origin",
+        "lifecycle_status",
+        "description"
+      ],
+      "source_url": "https://proparco.fr/en/news/beacon-power-services-harnessing-data-drive-africas-energy-transition",
+      "evidence_status": "independently_evidenced",
+      "note": "The report identifies BPS as an African energy-technology start-up operating in Nigeria and describes its grid-management software. The single-country headquarters field remains unresolved."
+    },
+    {
+      "subject_type": "organisation",
+      "subject_id": "org_001",
+      "predicates": [
+        "website"
+      ],
+      "source_url": "https://beaconpowerservices.com/",
+      "evidence_status": "provider_claim_only",
+      "note": "Canonical provider website only."
+    },
+    {
+      "subject_type": "organisation",
+      "subject_id": "org_002",
+      "predicates": [
+        "name",
+        "organisation_type",
+        "origin_classification",
+        "country_of_origin",
+        "lifecycle_status",
+        "website",
+        "description"
+      ],
+      "source_url": "https://digital-energy.eu/en/projects/pam-africa",
+      "evidence_status": "independently_evidenced",
+      "note": "Official programme profile identifies PAM Africa, Nigeria and active scale-up activity, and links the provider website. Headquarters is withheld because the provider lists both Lagos and London locations."
+    },
+    {
+      "subject_type": "organisation",
+      "subject_id": "org_002",
+      "predicates": [
+        "headquarters_country"
+      ],
+      "remove": true,
+      "note": "A single headquarters country is not established."
+    },
+    {
+      "subject_type": "organisation",
+      "subject_id": "org_003",
+      "predicates": [
+        "name",
+        "organisation_type",
+        "origin_classification",
+        "country_of_origin",
+        "headquarters_country",
+        "lifecycle_status",
+        "description"
+      ],
+      "source_url": "https://techcabal.com/2026/04/09/powerlabs-wants-to-make-nigerias-grid-think/",
+      "evidence_status": "independently_evidenced",
+      "note": "Independent editorial profile identifies PowerLabs as a Lagos-based energy and climate-tech startup founded in Nigeria and describes its orchestration focus."
+    },
+    {
+      "subject_type": "organisation",
+      "subject_id": "org_003",
+      "predicates": [
+        "website"
+      ],
+      "source_url": "https://www.powerlabstech.com/pai-enterprise/software",
+      "evidence_status": "provider_claim_only",
+      "note": "Current provider domain and product page."
+    },
+    {
+      "subject_type": "product",
+      "subject_id": "prod_001",
+      "predicates": [
+        "organisation_id",
+        "name",
+        "primary_category_id",
+        "lifecycle_status"
+      ],
+      "source_url": "https://proparco.fr/en/news/beacon-power-services-harnessing-data-drive-africas-energy-transition",
+      "evidence_status": "independently_evidenced",
+      "note": "Proparco names CAIMS as BPS’s field-mapping and digital-twin building block and documents its current use in Abuja."
+    },
+    {
+      "subject_type": "product",
+      "subject_id": "prod_001",
+      "predicates": [
+        "description",
+        "access_model",
+        "website"
+      ],
+      "source_url": "https://beaconpowerservices.com/en/solutions/caims",
+      "evidence_status": "provider_claim_only",
+      "note": "Provider product page supports detailed functions and request-a-demo access; no provider outcome claims are imported."
+    },
+    {
+      "subject_type": "product",
+      "subject_id": "prod_002",
+      "predicates": [
+        "organisation_id",
+        "name",
+        "primary_category_id",
+        "lifecycle_status"
+      ],
+      "source_url": "https://proparco.fr/en/news/beacon-power-services-harnessing-data-drive-africas-energy-transition",
+      "evidence_status": "independently_evidenced",
+      "note": "Proparco names Adora as a BPS product and describes billing, outage management and predictive-maintenance functions in the Abuja deployment."
+    },
+    {
+      "subject_type": "product",
+      "subject_id": "prod_002",
+      "predicates": [
+        "description",
+        "access_model",
+        "website"
+      ],
+      "source_url": "https://beaconpowerservices.com/en/solutions/adora",
+      "evidence_status": "provider_claim_only",
+      "note": "Provider product page supports detailed functions and request-a-demo access; performance claims are excluded."
+    },
+    {
+      "subject_type": "product",
+      "subject_id": "prod_003",
+      "predicates": [
+        "organisation_id",
+        "name",
+        "primary_category_id",
+        "lifecycle_status"
+      ],
+      "source_url": "https://proparco.fr/en/news/beacon-power-services-harnessing-data-drive-africas-energy-transition",
+      "evidence_status": "independently_evidenced",
+      "note": "Proparco names Xepp and describes consumption tracking, transactions and renewable-energy offers."
+    },
+    {
+      "subject_type": "product",
+      "subject_id": "prod_003",
+      "predicates": [
+        "description",
+        "access_model",
+        "website"
+      ],
+      "source_url": "https://www.beaconpowerservices.com/en/solutions/xepp",
+      "evidence_status": "provider_claim_only",
+      "note": "Provider product page supports detailed functions and states the app is free to download and use."
+    },
+    {
+      "subject_type": "product",
+      "subject_id": "prod_004",
+      "predicates": [
+        "organisation_id",
+        "name",
+        "description",
+        "primary_category_id",
+        "lifecycle_status",
+        "website"
+      ],
+      "source_url": "https://digital-energy.eu/en/projects/pam-africa",
+      "evidence_status": "independently_evidenced",
+      "note": "Official programme profile names PAM-AI, documents functions and labels the project a scale-up with active deployments."
+    },
+    {
+      "subject_type": "product",
+      "subject_id": "prod_004",
+      "predicates": [
+        "access_model"
+      ],
+      "source_url": "https://digital-energy.eu/en/projects/pam-africa",
+      "evidence_status": "public_source",
+      "note": "Commercial-service classification remains an editorial interpretation of a utility-facing implementation; pricing is not published."
+    },
+    {
+      "subject_type": "product",
+      "subject_id": "prod_005",
+      "predicates": [
+        "organisation_id",
+        "name",
+        "primary_category_id",
+        "lifecycle_status",
+        "launched_year"
+      ],
+      "source_url": "https://techcabal.com/2026/04/09/powerlabs-wants-to-make-nigerias-grid-think/",
+      "evidence_status": "independently_evidenced",
+      "note": "Independent article names Pai Enterprise, describes the hybrid energy orchestration layer and reports a June 2025 launch."
+    },
+    {
+      "subject_type": "product",
+      "subject_id": "prod_005",
+      "predicates": [
+        "description",
+        "access_model",
+        "website"
+      ],
+      "source_url": "https://www.powerlabstech.com/pai-enterprise/software",
+      "evidence_status": "provider_claim_only",
+      "note": "Provider page supports current product functions and contact-sales access."
+    },
+    {
+      "subject_type": "product",
+      "subject_id": "prod_005",
+      "predicates": [
+        "claimed_availability"
+      ],
+      "values": {
+        "claimed_availability": "Northern and Southern Nigeria; customers unnamed"
+      },
+      "source_url": "https://techcabal.com/2026/04/09/powerlabs-wants-to-make-nigerias-grid-think/",
+      "evidence_status": "provider_claim_only",
+      "note": "The article attributes this statement to the founder. It is retained as claimed availability and must not be counted as a deployment."
+    },
+    {
+      "subject_type": "deployment",
+      "subject_id": "dep_001",
+      "predicates": [
+        "product_id",
+        "country_iso2",
+        "subnational_area",
+        "customer_name",
+        "customer_disclosure",
+        "lifecycle_status",
+        "location_precision"
+      ],
+      "source_url": "https://proparco.fr/en/news/beacon-power-services-harnessing-data-drive-africas-energy-transition",
+      "evidence_status": "independently_evidenced",
+      "note": "Proparco’s Abuja report names CAIMS, BPS and AEDC and describes the live field-mapping/digital-twin implementation. Includes comment from AEDC’s Director of Regulation and Efficiency."
+    },
+    {
+      "subject_type": "deployment",
+      "subject_id": "dep_001",
+      "predicates": [
+        "started_year"
+      ],
+      "source_url": "https://www.afd.fr/en/actualites/digital-energy-challenge-africa-energy-transition",
+      "evidence_status": "independently_evidenced",
+      "note": "AFD states that programme support for the AEDC–BPS partnership began in 2023."
+    },
+    {
+      "subject_type": "deployment",
+      "subject_id": "dep_002",
+      "predicates": [
+        "product_id",
+        "country_iso2",
+        "subnational_area",
+        "customer_name",
+        "customer_disclosure",
+        "lifecycle_status",
+        "location_precision"
+      ],
+      "source_url": "https://proparco.fr/en/news/beacon-power-services-harnessing-data-drive-africas-energy-transition",
+      "evidence_status": "independently_evidenced",
+      "note": "Proparco’s Abuja report names Adora, BPS and AEDC and describes the deployed product range. Includes comment from AEDC’s Director of Regulation and Efficiency."
+    },
+    {
+      "subject_type": "deployment",
+      "subject_id": "dep_002",
+      "predicates": [
+        "started_year"
+      ],
+      "source_url": "https://www.afd.fr/en/actualites/digital-energy-challenge-africa-energy-transition",
+      "evidence_status": "independently_evidenced",
+      "note": "AFD states that programme support for the AEDC–BPS partnership began in 2023."
+    },
+    {
+      "subject_type": "deployment",
+      "subject_id": "dep_003",
+      "predicates": [
+        "product_id",
+        "country_iso2",
+        "customer_name",
+        "customer_disclosure",
+        "lifecycle_status",
+        "started_year",
+        "location_precision"
+      ],
+      "source_url": "https://digital-energy.eu/en/projects/pam-africa",
+      "evidence_status": "independently_evidenced",
+      "note": "Digital Energy states that PAM-AI created demand-side-response programmes for KEDCO in Nigeria and labels the 2025 project a scale-up with active deployments. This is programme evidence, not customer confirmation."
+    },
+    {
+      "subject_type": "deployment",
+      "subject_id": "dep_003",
+      "predicates": [
+        "subnational_area"
+      ],
+      "remove": true,
+      "note": "The source names KEDCO but does not state a safe subnational deployment location."
+    },
+    {
+      "subject_type": "deployment",
+      "subject_id": "dep_004",
+      "predicates": [
+        "product_id",
+        "country_iso2",
+        "customer_disclosure",
+        "lifecycle_status",
+        "started_year",
+        "location_precision"
+      ],
+      "source_url": "https://digital-energy.eu/en/projects/pam-africa",
+      "evidence_status": "independently_evidenced",
+      "note": "Digital Energy states that PAM-AI is implemented by four unnamed mini-grid developers in Nigeria. The record remains country-level and the customers remain undisclosed."
+    },
+    {
+      "subject_type": "deployment",
+      "subject_id": "dep_004",
+      "predicates": [
+        "subnational_area"
+      ],
+      "remove": true,
+      "note": "The source names multiple developers, not specific sites or subnational locations."
+    }
+  ],
+  "source_register": [
+    {
+      "id": "srcreg_afd_news",
+      "name": "Agence Française de Développement news and programme reporting",
+      "source_family": "official_dfi",
+      "countries": "NG",
+      "categories": "distribution_utility_operations",
+      "base_url": "https://www.afd.fr/",
+      "discovery_method": "manual_search",
+      "automation_permitted": "false",
+      "expected_update_frequency": "event_driven",
+      "default_independence_class": "independent_primary",
+      "language": "en",
+      "last_checked_at": "2026-07-30",
+      "next_review_at": "2026-10-30",
+      "status": "candidate_review",
+      "notes": "Programme administrator; inspect funding relationship and claim provenance before assigning evidence status."
+    },
+    {
+      "id": "srcreg_proparco",
+      "name": "Proparco reports and investment news",
+      "source_family": "official_dfi",
+      "countries": "NG",
+      "categories": "distribution_utility_operations",
+      "base_url": "https://proparco.fr/",
+      "discovery_method": "manual_search",
+      "automation_permitted": "false",
+      "expected_update_frequency": "event_driven",
+      "default_independence_class": "independent_primary",
+      "language": "en",
+      "last_checked_at": "2026-07-30",
+      "next_review_at": "2026-10-30",
+      "status": "candidate_review",
+      "notes": "Investor and DFI source; direct customer quotations may support deployments, while investment and outcome claims require corroboration."
+    },
+    {
+      "id": "srcreg_digital_energy",
+      "name": "Digital Energy Facility project profiles",
+      "source_family": "official_programme",
+      "countries": "NG",
+      "categories": "distribution_utility_operations|paygo_minigrid_operations",
+      "base_url": "https://digital-energy.eu/",
+      "discovery_method": "project_directory",
+      "automation_permitted": "false",
+      "expected_update_frequency": "quarterly",
+      "default_independence_class": "independent_primary",
+      "language": "en|fr",
+      "last_checked_at": "2026-07-30",
+      "next_review_at": "2026-10-30",
+      "status": "candidate_review",
+      "notes": "Official grant-programme source. Distinguish programme statements from customer confirmation and provider-supplied outcomes."
+    },
+    {
+      "id": "srcreg_beacon_provider",
+      "name": "Beacon Power Services website",
+      "source_family": "provider_website",
+      "countries": "NG",
+      "categories": "distribution_utility_operations|retail_metering_billing_payments",
+      "base_url": "https://beaconpowerservices.com/",
+      "discovery_method": "provider_monitoring",
+      "automation_permitted": "false",
+      "expected_update_frequency": "monthly",
+      "default_independence_class": "provider_authored",
+      "language": "en|fr",
+      "last_checked_at": "2026-07-30",
+      "next_review_at": "2026-08-30",
+      "status": "candidate_review",
+      "notes": "Use for product descriptions and current URLs only unless independently corroborated."
+    },
+    {
+      "id": "srcreg_powerlabs_provider",
+      "name": "PowerLabs website",
+      "source_family": "provider_website",
+      "countries": "NG",
+      "categories": "ci_behind_meter",
+      "base_url": "https://powerlabstech.com/",
+      "discovery_method": "provider_monitoring",
+      "automation_permitted": "false",
+      "expected_update_frequency": "monthly",
+      "default_independence_class": "provider_authored",
+      "language": "en",
+      "last_checked_at": "2026-07-30",
+      "next_review_at": "2026-08-30",
+      "status": "candidate_review",
+      "notes": "Use for product descriptions and current URLs only; provider deployment claims remain claims."
+    },
+    {
+      "id": "srcreg_techcabal",
+      "name": "TechCabal editorial reporting",
+      "source_family": "independent_media",
+      "countries": "NG",
+      "categories": "ci_behind_meter",
+      "base_url": "https://techcabal.com/",
+      "discovery_method": "manual_search",
+      "automation_permitted": "false",
+      "expected_update_frequency": "event_driven",
+      "default_independence_class": "independent_secondary",
+      "language": "en",
+      "last_checked_at": "2026-07-30",
+      "next_review_at": "2026-10-30",
+      "status": "candidate_review",
+      "notes": "Separate independently reported facts from statements attributed to founders or providers."
+    }
+  ],
+  "unresolved_items": [
+    "Beacon Power Services has a Nigerian operating company and a US parent; a single headquarters_country is not established, so the field remains blank.",
+    "PAM Africa’s provider site lists both Lagos and London locations without identifying one headquarters; headquarters_country was cleared.",
+    "PAM-AI deployments are supported by Digital Energy programme reporting but are not customer-confirmed.",
+    "PowerLabs’ regional usage statement names no customers; it is retained only as provider-claimed availability and does not create deployment records.",
+    "Provider product pages support features and access descriptions only; provider outcome claims remain excluded.",
+    "No human editor has approved these AI-assisted research classifications."
+  ]
+}

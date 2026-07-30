@@ -31,6 +31,7 @@ external workbook
   → legacy-ID, country, taxonomy, lifecycle and evidence mapping
   → canonical candidate tables
   → atomic assertions and normalised sources
+  → optional checked-in research overlay
   → review-sized batches
   → repository validation
   → human editorial review
@@ -52,6 +53,12 @@ the source domain:
 Source titles, publication dates, locators, publishers, rights, and automation
 permissions must be completed during review. A provisional retrieval date
 copied from a workbook `Last_Verified` field is explicitly flagged.
+
+AI-assisted source research must be stored as a checked-in overlay and remain
+`ai_researched_human_pending`. It may relink assertions, correct candidate
+values and remove unsupported precision, but it must leave `reviewed_by` and
+`reviewed_at` blank. A provider-authored source cannot be upgraded to
+`independently_evidenced` or `customer_confirmed`.
 
 ## Geography
 

@@ -28,12 +28,13 @@ class RegistrySnapshotTests(unittest.TestCase):
                 "organisations": 3,
                 "products": 5,
                 "deployments": 4,
-                "sources": 4,
+                "sources": 9,
                 "assertions": 88,
             },
         )
         self.assertEqual(snapshot["reviewGate"]["reviewedAssertions"], 0)
         self.assertEqual(snapshot["reviewGate"]["unreviewedAssertions"], 88)
+        self.assertEqual(snapshot["reviewGate"]["unresolvedSources"], 5)
         self.assertFalse(snapshot["reviewGate"]["publishable"])
 
     def test_published_mode_refuses_unreviewed_candidate_data(self) -> None:

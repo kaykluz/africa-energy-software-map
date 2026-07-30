@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI-assisted candidate research overlay",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "status",
+    "run_id",
+    "researched_at",
+    "selected_organisation_ids",
+    "prune_unused_sources",
+    "sources",
+    "record_overrides",
+    "assertion_rules",
+    "source_register",
+    "unresolved_items"
+  ],
+  "properties": {
+    "version": {"type": "string"},
+    "status": {"const": "ai_researched_human_pending"},
+    "run_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "researched_at": {"type": "string", "format": "date"},
+    "selected_organisation_ids": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^ORG-[0-9]{3}$"},
+      "uniqueItems": true
+    },
+    "prune_unused_sources": {"type": "boolean"},
+    "sources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "publisher",
+          "source_type",
+          "author",
+          "publication_date",
+          "retrieved_at",
+          "archived_url",
+          "source_license",
+          "independence_class",
+          "automation_permitted",
+          "notes"
+        ],
+        "properties": {
+          "title": {"type": "string", "minLength": 1},
+          "publisher": {"type": "string", "minLength": 1},
+          "source_type": {"type": "string", "minLength": 1},
+          "author": {"type": "string"},
+          "publication_date": {"type": "string"},
+          "retrieved_at": {"type": "string", "format": "date"},
+          "archived_url": {"type": "string"},
+          "source_license": {"type": "string", "minLength": 1},
+          "independence_class": {
+            "enum": [
+              "customer_or_official",
+              "independent_primary",
+              "independent_secondary",
+              "provider_authored",
+              "aggregator",
+              "community_submission"
+            ]
+          },
+          "automation_permitted": {"enum": ["true", "false"]},
+          "notes": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "record_overrides": {
+      "type": "object",
+      "propertyNames": {
+        "enum": [
+          "organisations.csv",
+          "products.csv",
+          "deployments.csv"
+        ]
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": ["string", "number", "boolean", "null"]
+          }
+        }
+      }
+    },
+    "assertion_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["subject_type", "subject_id", "predicates", "note"],
+        "properties": {
+          "subject_type": {
+            "enum": ["organisation", "product", "deployment"]
+          },
+          "subject_id": {
+            "type": "string",
+            "pattern": "^(org|prod|dep)_[0-9]{3}$"
+          },
+          "predicates": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "values": {
+            "type": "object",
+            "additionalProperties": {"type": "string"}
+          },
+          "source_url": {"type": "string", "format": "uri"},
+          "evidence_status": {
+            "enum": [
+              "provider_claim_only",
+              "public_source",
+              "independently_evidenced",
+              "customer_confirmed"
+            ]
+          },
+          "remove": {"type": "boolean"},
+          "note": {"type": "string", "minLength": 1}
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {"remove": {"const": true}},
+              "required": ["remove"]
+            },
+            "then": {},
+            "else": {
+              "required": ["source_url", "evidence_status"]
+            }
+          }
+        ]
+      }
+    },
+    "source_register": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "source_family",
+          "countries",
+          "categories",
+          "base_url",
+          "discovery_method",
+          "automation_permitted",
+          "expected_update_frequency",
+          "default_independence_class",
+          "language",
+          "last_checked_at",
+          "next_review_at",
+          "status",
+          "notes"
+        ]
+      }
+    },
+    "unresolved_items": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  }
+}

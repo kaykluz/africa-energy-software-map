@@ -60,6 +60,7 @@ batches should be generated and reviewed separately.
 python3 scripts/import_workbook.py \
   /path/to/kaykluz_africa_energy_software_map_v0_1.xlsx \
   --config data/imports/kaykluz-v0.1/mapping.json \
+  --review data/imports/kaykluz-v0.1/reviews/batch-001.json \
   --output data/imports/kaykluz-v0.1/generated \
   --full-audit-output data/imports/kaykluz-v0.1/full-audit.json \
   --selected-organisations ORG-001 ORG-002 ORG-003
@@ -68,3 +69,11 @@ python3 scripts/import_workbook.py \
 The command refuses to read or emit the People or Submission_Template sheets.
 The full audit contains aggregate counts and warnings only; it does not emit the
 remaining workbook records.
+
+## Batch 001 research overlay
+
+`reviews/batch-001.json` records the 2026-07-30 AI-assisted source pass. It
+contains completed source metadata, exact source locators, field corrections,
+assertion-level evidence decisions, source-register candidates and unresolved
+questions. It is deliberately marked `ai_researched_human_pending`; it cannot
+record a human reviewer or convert the candidate package into a release.

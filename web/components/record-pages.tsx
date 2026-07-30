@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   africanCountries,
+  assertions,
   categories,
   countrySummaries,
   deployments,
@@ -27,6 +28,15 @@ export function ProductProfile({ slug }: { slug: string }) {
   );
   const organisation = organisations.find(
     (record) => record.id === product.organisationId,
+  );
+  const relatedSubjectIds = new Set([
+    product.id,
+    ...productDeployments.map((deployment) => deployment.id),
+  ]);
+  const relatedSourceIds = new Set(
+    assertions
+      .filter((assertion) => relatedSubjectIds.has(assertion.subjectId))
+      .map((assertion) => assertion.sourceId),
   );
 
   return (
@@ -70,6 +80,10 @@ export function ProductProfile({ slug }: { slug: string }) {
               <Fact label="Category" value={product.category} />
               <Fact label="Access model" value={product.accessModel} />
               <Fact label="Lifecycle" value={capitalise(product.lifecycle)} />
+              <Fact
+                label="Launch year"
+                value={product.launchedYear ?? "Not documented"}
+              />
               <Fact
                 label="Deployment countries"
                 value={
@@ -142,11 +156,7 @@ export function ProductProfile({ slug }: { slug: string }) {
           <ProfileSection heading="Assertion-level evidence and sources">
             <div className="source-list">
               {sources
-                .filter((source) =>
-                  productDeployments.some(
-                    (deployment) => deployment.sourceId === source.id,
-                  ) || source.url === rootWebsite(product.website),
-                )
+                .filter((source) => relatedSourceIds.has(source.id))
                 .map((source) => (
                   <article key={source.id}>
                     <div>
@@ -470,12 +480,4 @@ function disclosureLabel(
     unknown: "Customer not documented",
     confidential: "Customer confidential",
   }[value];
-}
-
-function rootWebsite(url: string) {
-  try {
-    return new URL(url).origin + "/";
-  } catch {
-    return url;
-  }
 }
