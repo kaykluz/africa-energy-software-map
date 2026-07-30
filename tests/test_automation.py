@@ -11,7 +11,13 @@ from scripts.build_review_assist import (
     build_review_assist,
 )
 from scripts.prepare_next_batch import DEFAULT_AUDIT, build_plan
+from scripts.prepare_review_release import build_release_plan
 from scripts.run_agent_dry_run import approved_sources
+from scripts.validate_bulk_template import (
+    BULK_FIELDS,
+    DEFAULT_TEMPLATE,
+    validate_template,
+)
 
 
 class AutomationTests(unittest.TestCase):
@@ -68,6 +74,72 @@ class AutomationTests(unittest.TestCase):
                 encoding="utf-8",
             )
             self.assertEqual(approved_sources(source_register), [])
+
+    def test_bulk_template_is_empty_and_import_compatible(self) -> None:
+        report = validate_template(DEFAULT_TEMPLATE)
+        self.assertEqual(report["status"], "valid")
+        self.assertEqual(report["fields"], len(BULK_FIELDS))
+        self.assertFalse(report["publication_authorised"])
+
+    def test_review_export_can_prepare_but_not_authorise_a_data_pr(self) -> None:
+        snapshot = json.loads(DEFAULT_SNAPSHOT.read_text(encoding="utf-8"))
+        review_package = {
+            "schemaVersion": "1.0.0",
+            "batchId": "batch-001",
+            "generatedAt": "2026-07-30T12:00:00Z",
+            "status": {
+                "containsPublicDataChanges": False,
+                "publicationAuthorised": False,
+            },
+            "assertionReviews": [
+                {
+                    "assertionId": assertion["id"],
+                    "decision": "accept",
+                    "sourceChecked": True,
+                    "safetyChecked": True,
+                }
+                for assertion in snapshot["assertions"]
+            ],
+            "sourceReviews": [
+                {
+                    "sourceId": source["id"],
+                    "rightsStatus": "resolved",
+                    "sourceLicense": "reuse-cleared",
+                    "independenceClass": source["independenceClass"],
+                }
+                for source in snapshot["sources"]
+                if source["sourceLicense"] == "unknown"
+            ],
+        }
+        plan = build_release_plan(snapshot, review_package)
+        self.assertEqual(plan["status"], "ready_for_data_pr")
+        self.assertEqual(plan["summary"]["accepted"], 88)
+        self.assertEqual(plan["summary"]["blockers"], 0)
+        self.assertFalse(plan["publicationAuthorised"])
+
+    def test_review_release_plan_blocks_unresolved_evidence(self) -> None:
+        snapshot = json.loads(DEFAULT_SNAPSHOT.read_text(encoding="utf-8"))
+        review_package = {
+            "schemaVersion": "1.0.0",
+            "batchId": "batch-001",
+            "status": {
+                "containsPublicDataChanges": False,
+                "publicationAuthorised": False,
+            },
+            "assertionReviews": [
+                {
+                    "assertionId": snapshot["assertions"][0]["id"],
+                    "decision": "needs_evidence",
+                    "sourceChecked": False,
+                    "safetyChecked": False,
+                }
+            ],
+            "sourceReviews": [],
+        }
+        plan = build_release_plan(snapshot, review_package)
+        self.assertEqual(plan["status"], "blocked")
+        self.assertGreater(plan["summary"]["blockers"], 1)
+        self.assertFalse(plan["publicationAuthorised"])
 
 
 if __name__ == "__main__":

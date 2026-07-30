@@ -132,6 +132,8 @@ def validate_taxonomy(errors: list[str]) -> None:
         ids.append(stage["id"])
         ids.extend(category["id"] for category in stage["categories"])
     ids.extend(category["id"] for category in taxonomy["cross_cutting"])
+    sector_ids = [sector["id"] for sector in taxonomy.get("sectors", [])]
+    ids.extend(sector_ids)
 
     duplicates = sorted({value for value in ids if ids.count(value) > 1})
     if duplicates:
@@ -139,6 +141,19 @@ def validate_taxonomy(errors: list[str]) -> None:
     invalid = sorted(value for value in ids if not ID_PATTERN.fullmatch(value))
     if invalid:
         errors.append(f"data/taxonomy.json: invalid IDs: {invalid}")
+    if len(sector_ids) != 6 or any(
+        not value.startswith("sector_") for value in sector_ids
+    ):
+        errors.append(
+            "data/taxonomy.json: exactly six sector IDs are required"
+        )
+
+    try:
+        from validate_bulk_template import DEFAULT_TEMPLATE, validate_template
+
+        validate_template(DEFAULT_TEMPLATE)
+    except (ImportError, OSError, RuntimeError, ValueError) as exc:
+        errors.append(f"bulk intake template: {exc}")
 
 
 def csv_records(path: Path) -> tuple[list[str], list[dict[str, str]]]:

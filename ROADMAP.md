@@ -23,6 +23,7 @@
 ## Phase 1.1 — Research and reuse
 
 - “What the map shows” insights
+- Sector navigation across the same reviewed product set
 - Factual comparison and shortlist
 - Public read API
 - Multilingual groundwork

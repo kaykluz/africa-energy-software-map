@@ -14,6 +14,8 @@ import type {
   SourceReviewRecord,
 } from "@/db/reviews";
 import type { OperationsStatus } from "@/db/operations";
+import type { BulkImportRecord } from "@/db/bulk-imports";
+import { parseBulkWorkbook } from "@/lib/bulk-xlsx-client";
 import type {
   ReviewAssertion,
 } from "@/lib/review-data";
@@ -28,9 +30,15 @@ type WorkspaceState = {
   sourceReviews: SourceReviewRecord[];
   contributions: ModerationContribution[];
   operations: OperationsStatus;
+  bulkImports: BulkImportRecord[];
 };
 
-type Tab = "assertions" | "sources" | "contributions" | "operations";
+type Tab =
+  | "assertions"
+  | "sources"
+  | "contributions"
+  | "bulk"
+  | "operations";
 type AssertionFilter =
   | "all"
   | "pending"
@@ -38,7 +46,7 @@ type AssertionFilter =
   | "amend"
   | "reject"
   | "needs_evidence";
-type ApiError = { error?: { message?: string } };
+type ApiError = { error?: { message?: string; details?: string[] } };
 
 export function ReviewWorkspace({
   assertions,
@@ -138,7 +146,9 @@ export function ReviewWorkspace({
   const reviewedAssertions = assertionReviewMap.size;
   const resolvedSources = sources.filter((source) => {
     if (source.sourceLicense !== "unknown") return true;
-    return sourceReviewMap.get(source.id)?.rightsStatus === "resolved";
+    return ["resolved", "exclude"].includes(
+      sourceReviewMap.get(source.id)?.rightsStatus ?? "",
+    );
   }).length;
   const openContributions = (workspace?.contributions ?? []).filter(
     (record) =>
@@ -207,6 +217,17 @@ export function ReviewWorkspace({
   function replaceOperations(operations: OperationsStatus) {
     if (!workspace) return;
     setWorkspace({ ...workspace, operations });
+  }
+
+  function addBulkImport(record: BulkImportRecord) {
+    if (!workspace) return;
+    setWorkspace({
+      ...workspace,
+      bulkImports: [
+        record,
+        ...workspace.bulkImports.filter((item) => item.id !== record.id),
+      ],
+    });
   }
 
   return (
@@ -306,6 +327,12 @@ export function ReviewWorkspace({
           onClick={() => setTab("contributions")}
         />
         <TabButton
+          active={tab === "bulk"}
+          count={workspace?.bulkImports.length ?? 0}
+          label="Bulk"
+          onClick={() => setTab("bulk")}
+        />
+        <TabButton
           active={tab === "operations"}
           count={
             workspace
@@ -317,6 +344,13 @@ export function ReviewWorkspace({
           onClick={() => setTab("operations")}
         />
       </nav>
+
+      {workspace && reviewedAssertions === assertions.length ? (
+        <ReviewNextStep
+          allSourcesResolved={resolvedSources === sources.length}
+          onOpenSources={() => setTab("sources")}
+        />
+      ) : null}
 
       {tab === "assertions" ? (
         <AssertionsWorkspace
@@ -351,6 +385,13 @@ export function ReviewWorkspace({
         />
       ) : null}
 
+      {tab === "bulk" && workspace ? (
+        <BulkImportPanel
+          imports={workspace.bulkImports}
+          onImported={addBulkImport}
+        />
+      ) : null}
+
       {tab === "operations" && workspace ? (
         <OperationsPanel
           onSaved={replaceOperations}
@@ -358,6 +399,174 @@ export function ReviewWorkspace({
         />
       ) : null}
     </main>
+  );
+}
+
+function ReviewNextStep({
+  allSourcesResolved,
+  onOpenSources,
+}: {
+  allSourcesResolved: boolean;
+  onOpenSources: () => void;
+}) {
+  return (
+    <section className="review-next-step">
+      <div>
+        <strong>
+          {allSourcesResolved ? "Review package ready" : "Assertions complete"}
+        </strong>
+        <span>
+          {allSourcesResolved
+            ? "Download the package for the reviewed data pull request."
+            : "Resolve source rights before preparing the release."}
+        </span>
+      </div>
+      {allSourcesResolved ? (
+        <a className="button button-primary" href="/api/review/export">
+          Download package
+        </a>
+      ) : (
+        <button
+          className="button button-primary"
+          onClick={onOpenSources}
+          type="button"
+        >
+          Review sources
+        </button>
+      )}
+    </section>
+  );
+}
+
+function BulkImportPanel({
+  imports,
+  onImported,
+}: {
+  imports: BulkImportRecord[];
+  onImported: (record: BulkImportRecord) => void;
+}) {
+  const [file, setFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState("");
+  const [details, setDetails] = useState<string[]>([]);
+
+  async function upload(event: FormEvent) {
+    event.preventDefault();
+    if (!file) return;
+    setUploading(true);
+    setError("");
+    setDetails([]);
+    try {
+      const payload = await parseBulkWorkbook(file);
+      const response = await fetch("/api/review/bulk-imports", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = (await response.json()) as BulkImportRecord | ApiError;
+      if (!response.ok) {
+        if ("error" in result) {
+          setDetails(result.error?.details ?? []);
+        }
+        throw new Error(
+          "error" in result
+            ? result.error?.message
+            : "The workbook could not be imported.",
+        );
+      }
+      onImported(result as BulkImportRecord);
+      setFile(null);
+    } catch (reason) {
+      setError(
+        reason instanceof Error
+          ? reason.message
+          : "The workbook could not be imported.",
+      );
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  return (
+    <section className="review-bulk">
+      <header>
+        <div>
+          <h2>Bulk intake</h2>
+          <p>Products and deployments enter review as candidates.</p>
+        </div>
+        <a
+          className="button button-outline"
+          download
+          href="/downloads/templates/africa-energy-software-map-bulk-import.xlsx"
+        >
+          Download template
+        </a>
+      </header>
+      <form className="review-bulk-upload" onSubmit={upload}>
+        <label>
+          <span>Completed workbook</span>
+          <input
+            accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            onChange={(event) => setFile(event.target.files?.[0] ?? null)}
+            type="file"
+          />
+          <small>The workbook is read locally; only validated rows are sent.</small>
+        </label>
+        <button
+          className="button button-primary"
+          disabled={!file || uploading}
+          type="submit"
+        >
+          {uploading ? "Checking…" : "Import to review"}
+        </button>
+        {error ? (
+          <div className="review-form-error" role="alert">
+            <strong>{error}</strong>
+            {details.slice(0, 8).map((detail) => (
+              <span key={detail}>{detail}</span>
+            ))}
+          </div>
+        ) : null}
+      </form>
+      <div className="review-bulk-list">
+        <h3>Recent imports</h3>
+        {imports.map((record) => (
+          <article key={record.id}>
+            <div>
+              <strong>{record.originalFilename}</strong>
+              <span>{formatDate(record.uploadedAt)}</span>
+            </div>
+            <dl>
+              <div>
+                <dt>Rows</dt>
+                <dd>{record.rowCount}</dd>
+              </div>
+              <div>
+                <dt>Entities</dt>
+                <dd>{record.entityCount}</dd>
+              </div>
+              <div>
+                <dt>Batches</dt>
+                <dd>{record.plannedBatchCount}</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Candidate</dd>
+              </div>
+            </dl>
+            {record.warnings.length ? (
+              <small>{record.warnings.join(" · ")}</small>
+            ) : null}
+          </article>
+        ))}
+        {!imports.length ? (
+          <div className="review-empty-list">
+            <strong>No bulk imports yet</strong>
+            <span>Use the template to stage the first batch.</span>
+          </div>
+        ) : null}
+      </div>
+    </section>
   );
 }
 
@@ -954,10 +1163,14 @@ function SourcesWorkspace({
   const ordered = [...sources].sort((left, right) => {
     const leftOpen =
       left.sourceLicense === "unknown" &&
-      reviewMap.get(left.id)?.rightsStatus !== "resolved";
+      !["resolved", "exclude"].includes(
+        reviewMap.get(left.id)?.rightsStatus ?? "",
+      );
     const rightOpen =
       right.sourceLicense === "unknown" &&
-      reviewMap.get(right.id)?.rightsStatus !== "resolved";
+      !["resolved", "exclude"].includes(
+        reviewMap.get(right.id)?.rightsStatus ?? "",
+      );
     return Number(rightOpen) - Number(leftOpen);
   });
   return (
@@ -972,7 +1185,7 @@ function SourcesWorkspace({
             const review = reviewMap.get(source.id);
             const unresolved =
               source.sourceLicense === "unknown" &&
-              review?.rightsStatus !== "resolved";
+              !["resolved", "exclude"].includes(review?.rightsStatus ?? "");
             return (
               <button
                 aria-current={active?.id === source.id ? "true" : undefined}

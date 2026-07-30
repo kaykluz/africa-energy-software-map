@@ -22,7 +22,9 @@ and editorial review. It is not a public release.
 
 ## Directories
 
-- [`templates/`](templates/) — header-only CSV files
+- [`templates/`](templates/) — header-only canonical CSV files
+- [`../web/public/downloads/templates/`](../web/public/downloads/templates/) —
+  visually validated workbook for private bulk candidate intake
 - [`source-register.csv`](source-register.csv) — canonical approved-source list
 - [`releases/`](releases/) — conventions for future versioned snapshots
 - [`research-queue/`](research-queue/) — reviewed leads not yet publishable

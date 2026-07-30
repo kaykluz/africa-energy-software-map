@@ -93,6 +93,7 @@ readiness, and the bounded Batch 002 plan are documented in
 - [Contribution intake and moderation](docs/21-contribution-intake-and-moderation.md)
 - [Private review workspace](docs/22-review-workspace.md)
 - [Automation and review assist](docs/23-automation-and-review-assist.md)
+- [Sector, geography and bulk intake](docs/24-sector-geography-and-bulk-intake.md)
 - [Interactive prototype](web/README.md)
 - [Contributing](CONTRIBUTING.md)
 

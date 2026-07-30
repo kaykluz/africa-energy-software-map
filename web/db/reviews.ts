@@ -1,4 +1,5 @@
 import { getD1Database } from "./index";
+import { listBulkImports } from "./bulk-imports";
 import { getOperationsStatus } from "./operations";
 import { reviewBatchId } from "@/lib/review-data";
 
@@ -72,7 +73,13 @@ export async function loadReviewWorkspace() {
     .prepare("DELETE FROM contribution_contacts WHERE delete_after <= ?")
     .bind(now)
     .run();
-  const [assertionResult, sourceResult, contributionResult, operations] =
+  const [
+    assertionResult,
+    sourceResult,
+    contributionResult,
+    operations,
+    bulkImports,
+  ] =
     await Promise.all([
       database
         .prepare(
@@ -141,6 +148,7 @@ export async function loadReviewWorkspace() {
         )
         .all<ModerationContribution>(),
       getOperationsStatus(),
+      listBulkImports(),
     ]);
 
   return {
@@ -151,6 +159,7 @@ export async function loadReviewWorkspace() {
       sensitiveConfirmed: Boolean(record.sensitiveConfirmed),
     })),
     operations,
+    bulkImports,
   };
 }
 

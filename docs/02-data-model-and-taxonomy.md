@@ -43,6 +43,23 @@ changing identity.
 
 Products receive one primary category and any number of secondary capabilities.
 
+## Sector lens
+
+The value chain describes what a product does. Sectors describe where it is
+used. A product may belong to several sectors:
+
+- Power networks and utilities
+- Distributed energy and energy access
+- Generation and storage
+- Commercial and industrial energy
+- E-mobility and battery networks
+- Markets, finance and carbon
+
+Sector membership does not change the product’s primary value-chain category
+and does not establish a deployment. The controlled IDs are in
+[`data/taxonomy.json`](../data/taxonomy.json). See
+[Sector, geography and bulk intake](24-sector-geography-and-bulk-intake.md).
+
 ## Separate concept systems
 
 The following must not be collapsed into one status:
@@ -61,4 +78,3 @@ The following must not be collapsed into one status:
 are distinct values. Absence of evidence is not evidence of absence.
 
 The canonical taxonomy is in [`data/taxonomy.json`](../data/taxonomy.json).
-

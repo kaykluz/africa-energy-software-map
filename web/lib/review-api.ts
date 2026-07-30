@@ -13,7 +13,10 @@ export async function authorisedReviewer() {
     : { ok: false as const, response: reviewAccessError(access) };
 }
 
-export async function readReviewBody(request: Request) {
+export async function readReviewBody(
+  request: Request,
+  maximumBytes = maximumReviewBodyBytes,
+) {
   if (!sameOrigin(request)) {
     return {
       ok: false as const,
@@ -35,7 +38,7 @@ export async function readReviewBody(request: Request) {
     };
   }
   const length = Number(request.headers.get("content-length") ?? "0");
-  if (length > maximumReviewBodyBytes) {
+  if (length > maximumBytes) {
     return {
       ok: false as const,
       response: reviewError(
@@ -47,7 +50,7 @@ export async function readReviewBody(request: Request) {
   }
   try {
     const raw = await request.text();
-    if (new TextEncoder().encode(raw).byteLength > maximumReviewBodyBytes) {
+    if (new TextEncoder().encode(raw).byteLength > maximumBytes) {
       return {
         ok: false as const,
         response: reviewError(

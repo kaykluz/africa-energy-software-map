@@ -13,6 +13,18 @@ workstreams:
 
 Every generated artefact declares that it cannot authorise publication.
 
+After a reviewer exports Batch 001, `scripts/prepare_review_release.py` checks
+the package against the exact registry snapshot. It detects missing or unknown
+decisions, unresolved source rights, accepted assertions tied to excluded
+sources, incomplete safety checks and evidence holds. A complete package becomes
+a deterministic keep/amend/remove plan for a human-reviewed data pull request;
+it never edits canonical tables or authorises publication.
+
+The scale-up layer also supports validated bulk workbooks, automatic review-size
+batch planning, sector capture, duplicate fingerprints and candidate-only
+storage. See
+[Sector, geography and bulk intake](24-sector-geography-and-bulk-intake.md).
+
 ## Responsibility boundary
 
 | Activity | Automation | Human |
