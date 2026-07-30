@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./visual-system.css";
 
 :root {
   --canvas: #f7f7f2;
@@ -2429,6 +2430,14 @@ dd {
   color: var(--muted);
 }
 
+.release-card .release-gate {
+  grid-column: 1 / -1;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
 .release-card dl {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2500,6 +2509,23 @@ dd {
   border-radius: 999px;
   background: var(--surface-strong);
   font-size: 0.72rem;
+}
+
+.download-list > article > a {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.download-list > article > a:hover {
+  color: #fff;
+  border-color: var(--blue);
+  background: var(--blue);
 }
 
 .search-page-form {

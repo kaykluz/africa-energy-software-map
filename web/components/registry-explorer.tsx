@@ -7,6 +7,7 @@ import {
   categories,
   deployments,
   evidenceLabels,
+  originLabels,
   productById,
   products,
   release,
@@ -15,13 +16,19 @@ import {
   type Product,
 } from "@/lib/registry-data";
 import {
+  filterProducts,
+  paginate,
+  sortProducts,
+  type ProductSort,
+} from "@/lib/registry-query";
+import {
   EvidenceStatusLabel,
   Freshness,
   LifecycleTag,
-  MarketCondition,
   OriginLabel,
 } from "@/components/semantic-tags";
 import {
+  type CSSProperties,
   useEffect,
   useMemo,
   useRef,
@@ -32,25 +39,18 @@ export type RegistryView = "stack" | "deployments" | "directory";
 
 const viewMeta: Record<
   RegistryView,
-  { eyebrow: string; title: string; description: string }
+  {
+    title: string;
+  }
 > = {
   stack: {
-    eyebrow: "Explore the stack",
     title: "The software powering African energy",
-    description:
-      "Browse products by the work they support, then inspect where each deployment claim comes from.",
   },
   deployments: {
-    eyebrow: "Explore the geography",
-    title: "Where software is evidenced",
-    description:
-      "Separate evidenced deployments from availability claims, headquarters and country of origin.",
+    title: "Where the software is running",
   },
   directory: {
-    eyebrow: "Explore the records",
     title: "Directory",
-    description:
-      "Filter, sort and export the structured candidate records behind the map.",
   },
 };
 
@@ -60,12 +60,18 @@ export function RegistryExplorer({
   initialCategory = "all",
   initialEvidence = "all",
   initialCountry = "all",
+  initialOrigin = "all",
+  initialLifecycle = "all",
+  initialAccess = "all",
 }: {
   view: RegistryView;
   initialQuery?: string;
   initialCategory?: string;
   initialEvidence?: string;
   initialCountry?: string;
+  initialOrigin?: string;
+  initialLifecycle?: string;
+  initialAccess?: string;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -73,6 +79,9 @@ export function RegistryExplorer({
   const [categoryFilter, setCategoryFilter] = useState(initialCategory);
   const [evidenceFilter, setEvidenceFilter] = useState(initialEvidence);
   const [countryFilter, setCountryFilter] = useState(initialCountry);
+  const [originFilter, setOriginFilter] = useState(initialOrigin);
+  const [lifecycleFilter, setLifecycleFilter] = useState(initialLifecycle);
+  const [accessFilter, setAccessFilter] = useState(initialAccess);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const openerRef = useRef<HTMLElement | null>(null);
@@ -92,39 +101,33 @@ export function RegistryExplorer({
   }, [filtersOpen, selectedProduct]);
 
   const filteredProducts = useMemo(() => {
-    const term = query.trim().toLowerCase();
-    return products.filter((product) => {
-      const matchesQuery =
-        !term ||
-        [
-          product.name,
-          product.organisation,
-          product.description,
-          product.category,
-          ...product.capabilities,
-        ]
-          .join(" ")
-          .toLowerCase()
-          .includes(term);
-      const matchesCategory =
-        categoryFilter === "all" || product.categoryId === categoryFilter;
-      const matchesEvidence =
-        evidenceFilter === "all" ||
-        product.evidence.includes(evidenceFilter as EvidenceStatus);
-      const matchesCountry =
-        countryFilter === "all" ||
-        product.deploymentCountries.includes(countryFilter);
-      return (
-        matchesQuery && matchesCategory && matchesEvidence && matchesCountry
-      );
+    return filterProducts(products, {
+      query,
+      category: categoryFilter,
+      evidence: evidenceFilter,
+      country: countryFilter,
+      origin: originFilter,
+      lifecycle: lifecycleFilter,
+      access: accessFilter,
     });
-  }, [categoryFilter, countryFilter, evidenceFilter, query]);
+  }, [
+    accessFilter,
+    categoryFilter,
+    countryFilter,
+    evidenceFilter,
+    lifecycleFilter,
+    originFilter,
+    query,
+  ]);
 
   function updateUrl(next: {
     q?: string;
     category?: string;
     evidence?: string;
     country?: string;
+    origin?: string;
+    lifecycle?: string;
+    access?: string;
   }) {
     const params = new URLSearchParams();
     const values = {
@@ -132,13 +135,21 @@ export function RegistryExplorer({
       category: next.category ?? categoryFilter,
       evidence: next.evidence ?? evidenceFilter,
       country: next.country ?? countryFilter,
+      origin: next.origin ?? originFilter,
+      lifecycle: next.lifecycle ?? lifecycleFilter,
+      access: next.access ?? accessFilter,
     };
     if (values.q.trim()) params.set("q", values.q.trim());
     if (values.category !== "all") params.set("category", values.category);
     if (values.evidence !== "all") params.set("evidence", values.evidence);
     if (values.country !== "all") params.set("country", values.country);
+    if (values.origin !== "all") params.set("origin", values.origin);
+    if (values.lifecycle !== "all") params.set("lifecycle", values.lifecycle);
+    if (values.access !== "all") params.set("access", values.access);
     const search = params.toString();
-    router.replace(search ? `${pathname}?${search}` : pathname, { scroll: false });
+    router.replace(search ? `${pathname}?${search}` : pathname, {
+      scroll: false,
+    });
   }
 
   function clearFilters() {
@@ -146,6 +157,9 @@ export function RegistryExplorer({
     setCategoryFilter("all");
     setEvidenceFilter("all");
     setCountryFilter("all");
+    setOriginFilter("all");
+    setLifecycleFilter("all");
+    setAccessFilter("all");
     router.replace(pathname, { scroll: false });
   }
 
@@ -161,7 +175,16 @@ export function RegistryExplorer({
     evidenceFilter !== "all"
       ? evidenceLabels[evidenceFilter as EvidenceStatus]
       : null,
-    countryFilter === "NG" ? "Nigeria" : null,
+    countryFilter !== "all"
+      ? africanCountries.find(([iso2]) => iso2 === countryFilter)?.[1]
+      : null,
+    originFilter !== "all"
+      ? originLabels[originFilter as keyof typeof originLabels]
+      : null,
+    lifecycleFilter !== "all"
+      ? lifecycleFilter.replaceAll("_", " ")
+      : null,
+    accessFilter !== "all" ? accessFilter : null,
   ].filter(Boolean) as string[];
 
   const preservedSearch = (() => {
@@ -170,82 +193,82 @@ export function RegistryExplorer({
     if (categoryFilter !== "all") params.set("category", categoryFilter);
     if (evidenceFilter !== "all") params.set("evidence", evidenceFilter);
     if (countryFilter !== "all") params.set("country", countryFilter);
+    if (originFilter !== "all") params.set("origin", originFilter);
+    if (lifecycleFilter !== "all") params.set("lifecycle", lifecycleFilter);
+    if (accessFilter !== "all") params.set("access", accessFilter);
     return params.toString();
   })();
 
   const meta = viewMeta[view];
 
   return (
-    <main id="main-content">
-      <section className="page-intro data-width">
-        <span className="eyebrow">{meta.eyebrow}</span>
-        <div className="title-row">
-          <div>
-            <h1>{meta.title}</h1>
-            <p>{meta.description}</p>
-          </div>
-          <div className="release-meta" aria-label="Data release">
-            <span>{release.version}</span>
-            <span>{release.date}</span>
-          </div>
+    <main className={`v2-experience v2-experience-${view}`} id="main-content">
+      <section className="v2-experience-hero">
+        <div className="v2-hero-copy">
+          <h1>{meta.title}</h1>
         </div>
-
-        <nav aria-label="Dataset views" className="view-switcher">
+        <div className="v2-hero-side">
+          <div className="v2-hero-stats">
+            <div>
+              <strong>{stages.length}</strong>
+              <span>stages</span>
+            </div>
+            <div>
+              <strong>{products.length}</strong>
+              <span>products</span>
+            </div>
+            <div>
+              <strong>{deployments.length}</strong>
+              <span>evidence points</span>
+            </div>
+          </div>
+          <Link className="v2-hero-contribute" href="/contribute">
+            <span>
+              <strong>Improve the map</strong>
+              <small>Submit data</small>
+            </span>
+            <i aria-hidden="true">↗</i>
+          </Link>
+        </div>
+        <nav aria-label="Dataset views" className="v2-view-dock">
           {[
-            ["/", "Stack", "stack"],
-            ["/deployments", "Deployments", "deployments"],
-            ["/directory", "Directory", "directory"],
-          ].map(([href, label, id]) => (
+            ["/", "Explore", "stack", "01"],
+            ["/deployments", "Map", "deployments", "02"],
+            ["/directory", "Data", "directory", "03"],
+          ].map(([href, label, id, index]) => (
             <Link
               aria-current={view === id ? "page" : undefined}
-              className={view === id ? "view-link active" : "view-link"}
+              className={view === id ? "active" : ""}
               href={`${href}${preservedSearch ? `?${preservedSearch}` : ""}`}
               key={id}
             >
+              <span>{index}</span>
               {label}
             </Link>
           ))}
         </nav>
+      </section>
 
-        {view === "stack" ? (
-          <div className="hero-search">
-            <label htmlFor="stack-search">Search the stack</label>
-            <div>
-              <span aria-hidden="true">⌕</span>
-              <input
-                id="stack-search"
-                onBlur={() => updateUrl({ q: query })}
-                onChange={(event) => setQuery(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter") updateUrl({ q: query });
-                }}
-                placeholder="Products, organisations, capabilities or countries"
-                type="search"
-                value={query}
-              />
-              {query ? (
-                <button
-                  className="quiet-button"
-                  onClick={() => {
-                    setQuery("");
-                    updateUrl({ q: "" });
-                  }}
-                  type="button"
-                >
-                  Clear
-                </button>
-              ) : null}
-            </div>
-          </div>
-        ) : null}
+      <CommandBar
+        activeFilters={activeFilters}
+        clearFilters={clearFilters}
+        filtersOpen={filtersOpen}
+        query={query}
+        resultCount={filteredProducts.length}
+        setFiltersOpen={setFiltersOpen}
+        setQuery={(value) => setQuery(value)}
+        submitQuery={() => updateUrl({ q: query })}
+      />
 
-        <FilterBar
-          activeFilters={activeFilters}
+      {filtersOpen ? (
+        <FilterPanel
           categoryFilter={categoryFilter}
-          clearFilters={clearFilters}
+          close={() => setFiltersOpen(false)}
           countryFilter={countryFilter}
           evidenceFilter={evidenceFilter}
-          filtersOpen={filtersOpen}
+          originFilter={originFilter}
+          lifecycleFilter={lifecycleFilter}
+          accessFilter={accessFilter}
           resultCount={filteredProducts.length}
           setCategoryFilter={(value) => {
             setCategoryFilter(value);
@@ -259,21 +282,36 @@ export function RegistryExplorer({
             setEvidenceFilter(value);
             updateUrl({ evidence: value });
           }}
-          setFiltersOpen={setFiltersOpen}
+          setOriginFilter={(value) => {
+            setOriginFilter(value);
+            updateUrl({ origin: value });
+          }}
+          setLifecycleFilter={(value) => {
+            setLifecycleFilter(value);
+            updateUrl({ lifecycle: value });
+          }}
+          setAccessFilter={(value) => {
+            setAccessFilter(value);
+            updateUrl({ access: value });
+          }}
         />
-      </section>
+      ) : null}
 
       {view === "stack" ? (
         <StackView
           filteredProducts={filteredProducts}
+          initialCategory={initialCategory}
           onOpenProduct={openProduct}
+          preservedSearch={preservedSearch}
           query={query}
         />
       ) : null}
       {view === "deployments" ? (
         <DeploymentsView
           filteredProducts={filteredProducts}
+          initialCountry={countryFilter}
           onOpenProduct={openProduct}
+          preservedSearch={preservedSearch}
         />
       ) : null}
       {view === "directory" ? (
@@ -297,340 +335,397 @@ export function RegistryExplorer({
   );
 }
 
-function FilterBar({
+function CommandBar({
   activeFilters,
-  categoryFilter,
   clearFilters,
+  filtersOpen,
+  query,
+  resultCount,
+  setFiltersOpen,
+  setQuery,
+  submitQuery,
+}: {
+  activeFilters: string[];
+  clearFilters: () => void;
+  filtersOpen: boolean;
+  query: string;
+  resultCount: number;
+  setFiltersOpen: (value: boolean) => void;
+  setQuery: (value: string) => void;
+  submitQuery: () => void;
+}) {
+  return (
+    <div className="v2-command-wrap">
+      <div className="v2-command-bar">
+        <label>
+          <span className="sr-only">Search this view</span>
+          <i aria-hidden="true">⌕</i>
+          <input
+            onBlur={submitQuery}
+            onChange={(event) => setQuery(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") submitQuery();
+            }}
+            placeholder="Search this view"
+            type="search"
+            value={query}
+          />
+        </label>
+        <span className="v2-command-count" aria-live="polite">
+          {resultCount} {resultCount === 1 ? "result" : "results"}
+        </span>
+        <button
+          aria-expanded={filtersOpen}
+          className={activeFilters.length ? "has-filters" : ""}
+          onClick={() => setFiltersOpen(true)}
+          type="button"
+        >
+          <span aria-hidden="true">≡</span>
+          Filter
+          {activeFilters.length ? <i>{activeFilters.length}</i> : null}
+        </button>
+      </div>
+      {activeFilters.length ? (
+        <div className="v2-active-filters">
+          {activeFilters.map((filter) => (
+            <span key={filter}>{filter}</span>
+          ))}
+          <button onClick={clearFilters} type="button">
+            Clear
+          </button>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function FilterPanel({
+  accessFilter,
+  categoryFilter,
+  close,
   countryFilter,
   evidenceFilter,
-  filtersOpen,
+  lifecycleFilter,
+  originFilter,
   resultCount,
+  setAccessFilter,
   setCategoryFilter,
   setCountryFilter,
   setEvidenceFilter,
-  setFiltersOpen,
+  setLifecycleFilter,
+  setOriginFilter,
 }: {
-  activeFilters: string[];
+  accessFilter: string;
   categoryFilter: string;
-  clearFilters: () => void;
+  close: () => void;
   countryFilter: string;
   evidenceFilter: string;
-  filtersOpen: boolean;
+  lifecycleFilter: string;
+  originFilter: string;
   resultCount: number;
+  setAccessFilter: (value: string) => void;
   setCategoryFilter: (value: string) => void;
   setCountryFilter: (value: string) => void;
   setEvidenceFilter: (value: string) => void;
-  setFiltersOpen: (value: boolean) => void;
+  setLifecycleFilter: (value: string) => void;
+  setOriginFilter: (value: string) => void;
 }) {
-  const controls = (
-    <>
-      <label className="filter-control">
-        <span>Country</span>
-        <select
-          onChange={(event) => setCountryFilter(event.target.value)}
-          value={countryFilter}
-        >
-          <option value="all">All countries</option>
-          <option value="NG">Nigeria</option>
-        </select>
-      </label>
-      <label className="filter-control">
-        <span>Category</span>
-        <select
-          onChange={(event) => setCategoryFilter(event.target.value)}
-          value={categoryFilter}
-        >
-          <option value="all">All categories</option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label className="filter-control">
-        <span>Evidence</span>
-        <select
-          onChange={(event) => setEvidenceFilter(event.target.value)}
-          value={evidenceFilter}
-        >
-          <option value="all">All evidence</option>
-          {Object.entries(evidenceLabels).map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </select>
-      </label>
-      <button className="filter-placeholder" disabled type="button">
-        Energy segment <span>All</span>
-      </button>
-      <button className="filter-placeholder" disabled type="button">
-        More filters <span>Phase 1</span>
-      </button>
-    </>
-  );
-
+  const accessModels = Array.from(
+    new Set(products.map((product) => product.accessModel)),
+  ).sort();
+  const lifecycleStates = Array.from(
+    new Set(products.map((product) => product.lifecycle)),
+  ).sort();
   return (
-    <div className="filters-zone">
-      <div className="desktop-filters">{controls}</div>
-      <button
-        aria-expanded={filtersOpen}
-        className="button button-outline mobile-filter-trigger"
-        onClick={() => setFiltersOpen(true)}
-        type="button"
+    <div className="v2-overlay" onMouseDown={close}>
+      <section
+        aria-labelledby="v2-filter-title"
+        aria-modal="true"
+        className="v2-filter-panel"
+        onMouseDown={(event) => event.stopPropagation()}
+        role="dialog"
       >
-        Filters{activeFilters.length ? ` · ${activeFilters.length}` : ""}
-      </button>
-      {filtersOpen ? (
-        <div className="filter-sheet-backdrop" onMouseDown={() => setFiltersOpen(false)}>
-          <section
-            aria-label="Filters"
-            aria-modal="true"
-            className="filter-sheet"
-            onMouseDown={(event) => event.stopPropagation()}
-            role="dialog"
-          >
-            <div className="sheet-header">
-              <h2>Filter records</h2>
-              <button className="quiet-button" onClick={() => setFiltersOpen(false)} type="button">
-                Cancel
-              </button>
-            </div>
-            <div className="mobile-filter-controls">{controls}</div>
-            <button
-              className="button button-primary sheet-apply"
-              onClick={() => setFiltersOpen(false)}
-              type="button"
+        <div className="v2-sheet-top">
+          <span id="v2-filter-title">Refine</span>
+          <button onClick={close} type="button">Close</button>
+        </div>
+        <div className="v2-filter-fields">
+          <label>
+            <span>Country</span>
+            <select
+              onChange={(event) => setCountryFilter(event.target.value)}
+              value={countryFilter}
             >
-              Show {resultCount} {resultCount === 1 ? "product" : "products"}
-            </button>
-          </section>
+              <option value="all">All countries</option>
+              {africanCountries.map(([iso2, name]) => (
+                <option key={iso2} value={iso2}>{name}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span>Category</span>
+            <select
+              onChange={(event) => setCategoryFilter(event.target.value)}
+              value={categoryFilter}
+            >
+              <option value="all">All categories</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span>Evidence</span>
+            <select
+              onChange={(event) => setEvidenceFilter(event.target.value)}
+              value={evidenceFilter}
+            >
+              <option value="all">All evidence</option>
+              {Object.entries(evidenceLabels).map(([value, label]) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span>Origin</span>
+            <select
+              onChange={(event) => setOriginFilter(event.target.value)}
+              value={originFilter}
+            >
+              <option value="all">All origins</option>
+              {Object.entries(originLabels).map(([value, label]) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span>Lifecycle</span>
+            <select
+              onChange={(event) => setLifecycleFilter(event.target.value)}
+              value={lifecycleFilter}
+            >
+              <option value="all">All lifecycle states</option>
+              {lifecycleStates.map((value) => (
+                <option key={value} value={value}>
+                  {value.replaceAll("_", " ")}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span>Access</span>
+            <select
+              onChange={(event) => setAccessFilter(event.target.value)}
+              value={accessFilter}
+            >
+              <option value="all">All access models</option>
+              {accessModels.map((value) => (
+                <option key={value} value={value}>{value}</option>
+              ))}
+            </select>
+          </label>
         </div>
-      ) : null}
-      <div className="filter-summary">
-        <strong aria-live="polite">
-          {resultCount} {resultCount === 1 ? "product" : "products"}
-        </strong>
-        <div className="active-filter-list">
-          {activeFilters.map((filter) => (
-            <span className="active-filter" key={filter}>
-              {filter}
-            </span>
-          ))}
-        </div>
-        {activeFilters.length ? (
-          <button className="text-button" onClick={clearFilters} type="button">
-            Clear all
-          </button>
-        ) : null}
-      </div>
+        <button className="v2-panel-apply" onClick={close} type="button">
+          Show {resultCount} {resultCount === 1 ? "result" : "results"}
+          <span aria-hidden="true">→</span>
+        </button>
+      </section>
     </div>
   );
 }
 
 function StackView({
   filteredProducts,
+  initialCategory,
   onOpenProduct,
+  preservedSearch,
   query,
 }: {
   filteredProducts: Product[];
+  initialCategory: string;
   onOpenProduct: (product: Product, element: HTMLElement) => void;
+  preservedSearch: string;
   query: string;
 }) {
-  const [openStages, setOpenStages] = useState<string[]>([
-    "stage_transmit_distribute",
-    "stage_meter_serve",
-  ]);
-
-  const effectiveOpenStages = query
-    ? Array.from(new Set(filteredProducts.map((product) => product.stageId)))
-    : openStages;
-
-  function toggleStage(stageId: string) {
-    setOpenStages((current) =>
-      current.includes(stageId)
-        ? current.filter((id) => id !== stageId)
-        : [...current, stageId],
-    );
-  }
+  const requestedStage =
+    categories.find((category) => category.id === initialCategory)?.stageId ??
+    "stage_transmit_distribute";
+  const [selectedStage, setSelectedStage] = useState(requestedStage);
+  const selectedHasResults = filteredProducts.some(
+    (product) => product.stageId === selectedStage,
+  );
+  const effectiveSelectedStage =
+    query && !selectedHasResults && filteredProducts[0]
+      ? filteredProducts[0].stageId
+      : selectedStage;
+  const selectedIndex = stages.findIndex(
+    (stage) => stage.id === effectiveSelectedStage,
+  );
 
   return (
-    <div className="stack-width stack-layout">
-      <div className="stack-legend" aria-label="Map legend">
-        <span>
-          <span className="origin-mark" aria-hidden="true" /> Africa-built
-        </span>
-        <span>
-          <span className="market-dot market-commercial_market" aria-hidden="true" />
-          Commercial market
-        </span>
-        <span>
-          <span className="market-dot market-structurally_thin" aria-hidden="true" />
-          Structurally thin
-        </span>
-        <Link href="/methodology#market-condition">How verdicts work</Link>
-      </div>
-
-      {stages.map((stage) => {
-        const stageCategories = categories.filter(
-          (category) => category.stageId === stage.id,
-        );
-        const stageProducts = filteredProducts.filter(
-          (product) => product.stageId === stage.id,
-        );
-        const expanded = effectiveOpenStages.includes(stage.id);
-        return (
-          <section className="stage-section" key={stage.id}>
+    <section className="v2-stack-canvas">
+      <div className="v2-stage-route" aria-label="Energy value-chain stages">
+        <div className="v2-route-line" aria-hidden="true">
+          <i style={{ width: `${(selectedIndex / (stages.length - 1)) * 100}%` }} />
+        </div>
+        {stages.map((stage) => {
+          const count = filteredProducts.filter(
+            (product) => product.stageId === stage.id,
+          ).length;
+          return (
             <button
-              aria-expanded={expanded}
-              className="stage-header"
-              onClick={() => toggleStage(stage.id)}
+              aria-pressed={stage.id === effectiveSelectedStage}
+              key={stage.id}
+              onClick={() => setSelectedStage(stage.id)}
               type="button"
             >
-              <span className="stage-number mono">
-                {String(stage.order).padStart(2, "0")}
-              </span>
-              <span>
-                <strong>{stage.name}</strong>
-                <small>
-                  {stageCategories.length}{" "}
-                  {stageCategories.length === 1 ? "category" : "categories"} ·{" "}
-                  {stageProducts.length} matching{" "}
-                  {stageProducts.length === 1 ? "product" : "products"}
-                </small>
-              </span>
-              <span aria-hidden="true" className="stage-chevron">
-                {expanded ? "−" : "+"}
-              </span>
+              <span>{String(stage.order).padStart(2, "0")}</span>
+              <i aria-hidden="true" />
+              <strong>{stage.name}</strong>
+              <small>{count || "—"}</small>
             </button>
-            {expanded ? (
-              <div className="category-list">
-                {stageCategories.map((category) => {
+          );
+        })}
+      </div>
+
+      <div className="v2-stage-scenes">
+        {stages.map((stage) => {
+          const stageCategories = categories.filter(
+            (category) => category.stageId === stage.id,
+          );
+          const stageProducts = filteredProducts.filter(
+            (product) => product.stageId === stage.id,
+          );
+          const active = stage.id === effectiveSelectedStage;
+          return (
+            <section
+              aria-labelledby={`v2-stage-${stage.id}`}
+              className="v2-stage-scene"
+              hidden={!active}
+              key={stage.id}
+            >
+              <div className="v2-stage-title">
+                <span>{String(stage.order).padStart(2, "0")}</span>
+                <div>
+                  <h2 id={`v2-stage-${stage.id}`}>{stage.name}</h2>
+                  <p>
+                    {stageProducts.length}{" "}
+                    {stageProducts.length === 1 ? "product" : "products"} ·{" "}
+                    {stageCategories.length}{" "}
+                    {stageCategories.length === 1 ? "category" : "categories"}
+                  </p>
+                </div>
+              </div>
+
+              <div className="v2-category-field">
+                {stageCategories.map((category, categoryIndex) => {
                   const categoryProducts = filteredProducts.filter(
                     (product) => product.categoryId === category.id,
                   );
+                  const visibleProducts = categoryProducts.slice(
+                    0,
+                    query ? 6 : 4,
+                  );
                   return (
-                    <CategoryBand
-                      category={category}
+                    <article
+                      className={`v2-category-card v2-market-${category.marketCondition}`}
                       key={category.id}
-                      onOpenProduct={onOpenProduct}
-                      products={categoryProducts}
-                    />
+                      style={{ "--card-index": categoryIndex } as CSSProperties}
+                    >
+                      <header>
+                        <span className="v2-market-signal" aria-hidden="true" />
+                        <h3>{category.name}</h3>
+                        <span>{categoryProducts.length || "—"}</span>
+                      </header>
+                      {categoryProducts.length ? (
+                        <div className="v2-product-orbits">
+                          {visibleProducts.map((product) => (
+                            <ProductOrb
+                              key={product.id}
+                              onOpenProduct={onOpenProduct}
+                              product={product}
+                            />
+                          ))}
+                          {categoryProducts.length > visibleProducts.length ? (
+                            <Link
+                              className="v2-category-more"
+                              href={withSearchParam(
+                                "/directory",
+                                preservedSearch,
+                                "category",
+                                category.id,
+                              )}
+                            >
+                              View all {categoryProducts.length} products
+                              <span aria-hidden="true">→</span>
+                            </Link>
+                          ) : null}
+                        </div>
+                      ) : (
+                        <div className="v2-category-empty">
+                          <span aria-hidden="true">＋</span>
+                          <strong>
+                            {category.researchState === "structurally_thin"
+                              ? "Thin market"
+                              : "Researching"}
+                          </strong>
+                          <Link href="/contribute/product">Add lead</Link>
+                        </div>
+                      )}
+                      <details>
+                        <summary>Market note</summary>
+                        <p>{category.verdict}</p>
+                      </details>
+                    </article>
                   );
                 })}
               </div>
-            ) : null}
-          </section>
-        );
-      })}
 
-      <section className="cross-cutting">
-        <div>
-          <span className="eyebrow">Cross-cutting</span>
-          <h2>Data, interoperability and security</h2>
-          <p>
-            This category spans all six stages. Candidate discovery is open, but
-            no reviewed product record is shown yet.
-          </p>
-        </div>
-        <Link className="button button-outline" href="/contribute/product">
-          Suggest a product
-        </Link>
-      </section>
-      <CoverageCallout />
-    </div>
-  );
-}
+              <div className="v2-stage-next">
+                <button
+                  disabled={selectedIndex === 0}
+                  onClick={() =>
+                    setSelectedStage(stages[Math.max(0, selectedIndex - 1)].id)
+                  }
+                  type="button"
+                >
+                  ←
+                  <span className="sr-only">Previous stage</span>
+                </button>
+                <span>
+                  {selectedIndex + 1} / {stages.length}
+                </span>
+                <button
+                  disabled={selectedIndex === stages.length - 1}
+                  onClick={() =>
+                    setSelectedStage(
+                      stages[Math.min(stages.length - 1, selectedIndex + 1)].id,
+                    )
+                  }
+                  type="button"
+                >
+                  →
+                  <span className="sr-only">Next stage</span>
+                </button>
+              </div>
+            </section>
+          );
+        })}
+      </div>
 
-function CategoryBand({
-  category,
-  onOpenProduct,
-  products: categoryProducts,
-}: {
-  category: (typeof categories)[number];
-  onOpenProduct: (product: Product, element: HTMLElement) => void;
-  products: Product[];
-}) {
-  return (
-    <section className={`category-band state-${category.researchState}`}>
-      <header className="category-header">
-        <div>
-          <h3>{category.name}</h3>
-          <MarketCondition
-            text={`Market reading · ${category.verdict}`}
-            value={category.marketCondition}
-          />
-        </div>
-        <span className="category-count">
-          {categoryProducts.length}{" "}
-          {categoryProducts.length === 1 ? "product" : "products"}
-        </span>
-      </header>
-      {categoryProducts.length ? (
-        <div className="product-grid">
-          {categoryProducts.map((product) => (
-            <ProductTile
-              key={product.id}
-              onOpenProduct={onOpenProduct}
-              product={product}
-            />
-          ))}
-        </div>
-      ) : (
-        <ResearchState category={category} />
-      )}
+      <div className="v2-cross-cutting">
+        <span>∞</span>
+        <strong>Data · interoperability · security</strong>
+        <small>Across every stage</small>
+        <Link href="/?category=cat_data_interoperability_security">Open →</Link>
+      </div>
     </section>
   );
 }
 
-function ResearchState({
-  category,
-}: {
-  category: (typeof categories)[number];
-}) {
-  const copy: Record<string, { heading: string; body: string; action: string }> = {
-    research_queue: {
-      heading: "Research queue",
-      body: "Candidates are being assessed. They are not shown until source and editorial checks are complete.",
-      action: "Suggest a source",
-    },
-    not_researched: {
-      heading: "Not researched",
-      body: "This category has not had a complete research pass. Absence is not a market conclusion.",
-      action: "Help scope research",
-    },
-    no_verified_entry: {
-      heading: "No verified entry found",
-      body: "Research has started, but no candidate currently meets the publication threshold.",
-      action: "Submit a product",
-    },
-    structurally_thin: {
-      heading: "Structurally thin",
-      body: "A sourced category-level finding may explain why published products are scarce.",
-      action: "Read the analysis",
-    },
-    published: {
-      heading: "No matching product",
-      body: "Published candidates exist, but none match the active filters.",
-      action: "Clear filters",
-    },
-  };
-  const state = copy[category.researchState];
-  return (
-    <div className="research-state">
-      <div>
-        <strong>{state.heading}</strong>
-        <p>{state.body}</p>
-      </div>
-      <Link href={category.researchState === "structurally_thin" ? "/methodology#market-condition" : "/contribute"}>
-        {state.action} →
-      </Link>
-    </div>
-  );
-}
-
-function ProductTile({
+function ProductOrb({
   onOpenProduct,
   product,
 }: {
@@ -642,7 +737,8 @@ function ProductTile({
   ).length;
   return (
     <button
-      className="product-tile"
+      aria-label={`${product.name} by ${product.organisation}, ${evidenceCount} evidenced deployments`}
+      className="v2-product-orb"
       onClick={(event) => onOpenProduct(product, event.currentTarget)}
       type="button"
     >
@@ -650,238 +746,268 @@ function ProductTile({
         <strong>{product.name}</strong>
         <small>{product.organisation}</small>
       </span>
-      <OriginLabel value={product.origin} />
-      <span className="tile-evidence">
-        {evidenceCount
-          ? `${evidenceCount} evidenced ${evidenceCount === 1 ? "deployment" : "deployments"}`
-          : "Provider claim · no evidenced deployment"}
-      </span>
-      <span aria-hidden="true" className="tile-arrow">
-        →
-      </span>
+      <i aria-hidden="true">
+        {evidenceCount ? evidenceCount : "·"}
+      </i>
     </button>
   );
 }
 
 function DeploymentsView({
   filteredProducts,
+  initialCountry,
   onOpenProduct,
+  preservedSearch,
 }: {
   filteredProducts: Product[];
+  initialCountry: string;
   onOpenProduct: (product: Product, element: HTMLElement) => void;
+  preservedSearch: string;
 }) {
   const [geography, setGeography] = useState("evidenced");
-  const [representation, setRepresentation] = useState("ranked");
-  const [selectedCountry, setSelectedCountry] = useState("NG");
-
-  useEffect(() => {
-    const stored = window.localStorage.getItem("aesm-geography-view");
-    const timer = window.setTimeout(() => {
-      if (stored === "grid" || stored === "ranked") setRepresentation(stored);
-    }, 0);
-    return () => window.clearTimeout(timer);
-  }, []);
-
+  const [representation, setRepresentation] = useState<"grid" | "ranked">(
+    "grid",
+  );
+  const [selectedCountry, setSelectedCountry] = useState(
+    initialCountry !== "all" ? initialCountry : "NG",
+  );
   const visibleDeployments = deployments.filter((deployment) =>
     filteredProducts.some((product) => product.id === deployment.productId),
   );
+  const assessedCountries = new Set(
+    deployments.map((deployment) => deployment.countryIso2),
+  );
+  const rankedCountries = africanCountries
+    .map(([iso2, name]) => ({
+      iso2,
+      name,
+      count:
+        geography === "evidenced"
+          ? visibleDeployments.filter(
+              (deployment) => deployment.countryIso2 === iso2,
+            ).length
+          : 0,
+      assessed: geography === "evidenced" && assessedCountries.has(iso2),
+    }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   const selected = africanCountries.find(([iso2]) => iso2 === selectedCountry);
-
-  function changeRepresentation(value: string) {
-    setRepresentation(value);
-    window.localStorage.setItem("aesm-geography-view", value);
-  }
+  const selectedCountryAssessed =
+    geography === "evidenced" && assessedCountries.has(selectedCountry);
+  const selectedDeployments =
+    geography === "evidenced"
+      ? visibleDeployments.filter(
+          (deployment) => deployment.countryIso2 === selectedCountry,
+        )
+      : [];
 
   return (
-    <div className="data-width deployments-layout">
-      <section className="geography-column">
-        <fieldset className="segmented-control">
-          <legend>Geographic meaning</legend>
+    <section className="v2-map-canvas">
+      <div className="v2-map-controls">
+        <div className="v2-layer-switch" role="group" aria-label="Map layer">
           {[
-            ["evidenced", "Evidenced"],
-            ["claimed", "Claimed"],
-            ["headquarters", "Headquarters"],
-            ["founded", "Founded in"],
+            ["evidenced", "Deployments"],
+            ["claimed", "Claims"],
+            ["headquarters", "HQ"],
+            ["founded", "Origin"],
           ].map(([value, label]) => (
-            <label key={value}>
-              <input
-                checked={geography === value}
-                name="geography"
-                onChange={() => setGeography(value)}
-                type="radio"
-                value={value}
-              />
-              <span>{label}</span>
-            </label>
-          ))}
-        </fieldset>
-        <div className="representation-row">
-          <div>
-            <span className="control-label">Representation</span>
-            <div className="button-group">
-              <button
-                aria-pressed={representation === "ranked"}
-                onClick={() => changeRepresentation("ranked")}
-                type="button"
-              >
-                Ranked list
-              </button>
-              <button
-                aria-pressed={representation === "grid"}
-                onClick={() => changeRepresentation("grid")}
-                type="button"
-              >
-                Country grid
-              </button>
-            </div>
-          </div>
-          <label className="country-search">
-            <span>Find a country</span>
-            <select
-              onChange={(event) => setSelectedCountry(event.target.value)}
-              value={selectedCountry}
+            <button
+              aria-pressed={geography === value}
+              key={value}
+              onClick={() => setGeography(value)}
+              type="button"
             >
-              {africanCountries.map(([iso2, name]) => (
-                <option key={iso2} value={iso2}>
-                  {name}
-                </option>
-              ))}
-            </select>
-          </label>
+              {label}
+            </button>
+          ))}
         </div>
-
-        <div className="geography-legend" aria-label="Geography legend">
-          <span><i className="map-swatch map-high" /> 4 evidenced</span>
-          <span><i className="map-swatch map-zero" /> Researched zero</span>
-          <span><i className="map-swatch map-unknown" /> Not yet researched</span>
+        <div className="v2-representation-switch" role="group" aria-label="Map representation">
+          <button
+            aria-pressed={representation === "grid"}
+            onClick={() => setRepresentation("grid")}
+            type="button"
+          >
+            Grid
+          </button>
+          <button
+            aria-pressed={representation === "ranked"}
+            onClick={() => setRepresentation("ranked")}
+            type="button"
+          >
+            Rank
+          </button>
         </div>
+      </div>
 
-        {geography !== "evidenced" ? (
-          <div className="mode-notice" role="status">
-            <strong>{labelGeography(geography)} is separate from deployment evidence.</strong>
-            <p>
-              This prototype has insufficient reviewed records for a meaningful
-              comparison. The control remains visible to test the distinction.
-            </p>
+      <div className="v2-map-stage">
+        <section className="v2-map-visual" aria-label="African country data view">
+          <div className="v2-map-caption">
+            <span>{geography === "evidenced" ? "Evidence layer" : `${labelGeography(geography)} layer`}</span>
+            <strong>
+              {geography === "evidenced"
+                ? `${visibleDeployments.length} located records`
+                : "Layer awaiting reviewed data"}
+            </strong>
           </div>
-        ) : representation === "grid" ? (
-          <div aria-label="African countries, equal-area grid" className="country-grid" role="list">
-            {africanCountries.map(([iso2, name]) => {
-              const count =
-                iso2 === "NG"
-                  ? visibleDeployments.filter((deployment) => deployment.countryIso2 === iso2).length
-                  : 0;
-              const known = iso2 === "NG";
-              return (
-                <div key={iso2} role="listitem">
-                  <button
-                    aria-label={`${name}: ${known ? `${count} candidate evidenced deployments` : "not yet researched in this prototype"}`}
-                    aria-pressed={selectedCountry === iso2}
-                    className={`country-tile ${known ? countClass(count) : "unknown"}`}
-                    onClick={() => setSelectedCountry(iso2)}
-                    type="button"
-                  >
-                    <strong>{iso2}</strong>
-                    {known ? <span>{count}</span> : null}
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <ol className="country-ranking">
-            <li>
-              <button
-                aria-pressed={selectedCountry === "NG"}
-                onClick={() => setSelectedCountry("NG")}
-                type="button"
-              >
-                <span className="rank">01</span>
-                <span><strong>Nigeria</strong><small>3 products · 2 categories</small></span>
-                <span className="rank-count">{visibleDeployments.length}</span>
-              </button>
-            </li>
-            {[
-              "Ghana",
-              "Kenya",
-              "South Africa",
-              "Tanzania",
-              "Uganda",
-            ].map((country, index) => (
-              <li className="unknown-rank" key={country}>
-                <button
-                  onClick={() => {
-                    const record = africanCountries.find(([, name]) => name === country);
-                    if (record) setSelectedCountry(record[0]);
-                  }}
-                  type="button"
-                >
-                  <span className="rank">{String(index + 2).padStart(2, "0")}</span>
-                  <span><strong>{country}</strong><small>Research coverage incomplete</small></span>
-                  <span className="rank-count">—</span>
-                </button>
-              </li>
-            ))}
-          </ol>
-        )}
-        <p className="method-note">
-          Country-level evidence only. No exact infrastructure coordinates are
-          collected or displayed. <Link href="/methodology#sensitive-infrastructure">Methodology →</Link>
-        </p>
-      </section>
 
-      <aside aria-label={`${selected?.[1] ?? "Country"} details`} className="country-panel">
-        <span className="eyebrow">Selected country</span>
-        <h2>{selected?.[1] ?? selectedCountry}</h2>
-        {selectedCountry === "NG" && geography === "evidenced" ? (
-          <>
-            <p className="country-total">
-              <strong>{visibleDeployments.length}</strong> candidate evidenced deployments
-              <span>Provider claims are counted separately</span>
-            </p>
-            <dl className="category-totals">
-              <div><dt>Distribution utility operations</dt><dd>2</dd></div>
-              <div><dt>PAYGo and mini-grid operations</dt><dd>2</dd></div>
-            </dl>
-            <h3>Deployments</h3>
-            <div className="deployment-cards">
-              {visibleDeployments.map((deployment) => {
-                const product = productById(deployment.productId);
-                if (!product) return null;
+          {representation === "grid" ? (
+            <div
+              aria-label="African countries, equal-area grid"
+              className="v2-country-field"
+            >
+              {africanCountries.map(([iso2, name], index) => {
+                const count =
+                  geography === "evidenced"
+                    ? visibleDeployments.filter(
+                        (deployment) => deployment.countryIso2 === iso2,
+                      ).length
+                    : 0;
+                const researched =
+                  geography === "evidenced" && assessedCountries.has(iso2);
                 return (
                   <button
-                    key={deployment.id}
-                    onClick={(event) => onOpenProduct(product, event.currentTarget)}
+                    aria-label={`${name}: ${
+                      researched
+                        ? `${count} candidate records`
+                        : "coverage not yet assessed"
+                    }`}
+                    aria-pressed={selectedCountry === iso2}
+                    className={`${researched ? countClass(count) : "unknown"}`}
+                    key={iso2}
+                    onClick={() => setSelectedCountry(iso2)}
+                    style={{ "--tile-index": index } as CSSProperties}
                     type="button"
                   >
-                    <span><strong>{product.name}</strong><small>{deployment.customer}</small></span>
-                    <span>{deployment.year}</span>
-                    <EvidenceStatusLabel compact status={deployment.evidence} />
+                    <span>{iso2}</span>
+                    {count ? <strong>{count}</strong> : null}
                   </button>
                 );
               })}
             </div>
-            <div className="panel-actions">
-              <Link className="button button-primary" href="/directory?country=NG">
-                View in Directory
-              </Link>
-              <Link className="button button-outline" href="/countries/ng">
-                Open country page
-              </Link>
-            </div>
-          </>
-        ) : (
-          <div className="country-empty">
-            <strong>No prototype evidence to summarise.</strong>
-            <p>
-              This means “not yet researched here”, not zero software use in the
-              country.
-            </p>
-            <Link href="/contribute/deployment">Suggest a deployment →</Link>
+          ) : (
+            <ol className="v2-country-rank">
+              {rankedCountries.map(({ assessed, count, iso2, name }, index) => {
+                return (
+                  <li key={iso2}>
+                    <button
+                      aria-pressed={selectedCountry === iso2}
+                      onClick={() => setSelectedCountry(iso2)}
+                      type="button"
+                    >
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <strong>{name}</strong>
+                      <i
+                        className={assessed ? "known" : "unknown"}
+                        style={{
+                          width: count
+                            ? `${Math.max(
+                                10,
+                                (count /
+                                  Math.max(1, rankedCountries[0]?.count ?? 1)) *
+                                  100,
+                              )}%`
+                            : "8%",
+                        }}
+                      />
+                      <b>{assessed ? count : "—"}</b>
+                    </button>
+                  </li>
+                );
+              })}
+            </ol>
+          )}
+
+          <div className="v2-map-legend">
+            <span><i className="known" /> evidenced</span>
+            <span><i className="unknown" /> not assessed</span>
           </div>
-        )}
-      </aside>
-    </div>
+        </section>
+
+        <aside className="v2-country-panel">
+          <header>
+            <span>{selectedCountry}</span>
+            <div>
+              <h2>{selected?.[1] ?? selectedCountry}</h2>
+              <p>
+                {geography !== "evidenced"
+                  ? "Layer not available"
+                  : selectedCountryAssessed
+                    ? `${selectedDeployments.length} matching evidence ${
+                        selectedDeployments.length === 1 ? "point" : "points"
+                      }`
+                    : "Coverage not assessed"}
+              </p>
+            </div>
+          </header>
+
+          {selectedDeployments.length ? (
+            <>
+              <div className="v2-country-score">
+                <span style={{ "--score": "78%" } as CSSProperties} />
+                <small>Current candidate coverage</small>
+              </div>
+              <div className="v2-deployment-list">
+                {selectedDeployments.slice(0, 5).map((deployment, index) => {
+                  const product = productById(deployment.productId);
+                  if (!product) return null;
+                  return (
+                    <button
+                      key={deployment.id}
+                      onClick={(event) =>
+                        onOpenProduct(product, event.currentTarget)
+                      }
+                      type="button"
+                    >
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <span>
+                        <strong>{product.name}</strong>
+                        <small>{deployment.customer}</small>
+                      </span>
+                      <b>{deployment.year}</b>
+                      <i aria-hidden="true">↗</i>
+                    </button>
+                  );
+                })}
+                {selectedDeployments.length > 5 ? (
+                  <Link
+                    className="v2-country-more"
+                    href={withSearchParam(
+                      "/directory",
+                      preservedSearch,
+                      "country",
+                      selectedCountry,
+                    )}
+                  >
+                    View all {selectedDeployments.length} in Data
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                ) : null}
+              </div>
+            </>
+          ) : (
+            <div className="v2-country-unknown">
+              <span aria-hidden="true">?</span>
+              <strong>
+                {geography !== "evidenced"
+                  ? "Reviewed data is not available for this layer."
+                  : selectedCountryAssessed
+                    ? "No evidence matches the current filters."
+                    : "Coverage has not been assessed."}
+              </strong>
+              {geography === "evidenced" ? (
+                <Link href="/contribute/deployment">Add evidence →</Link>
+              ) : null}
+            </div>
+          )}
+
+          <Link
+            className="v2-country-open"
+            href={`/countries/${selectedCountry.toLowerCase()}`}
+          >
+            Open country record <span aria-hidden="true">→</span>
+          </Link>
+        </aside>
+      </div>
+    </section>
   );
 }
 
@@ -894,7 +1020,10 @@ function DirectoryView({
   filteredProducts: Product[];
   onOpenProduct: (product: Product, element: HTMLElement) => void;
 }) {
-  const [sort, setSort] = useState("product");
+  const [sort, setSort] = useState<ProductSort>("product");
+  const [pageSize, setPageSize] = useState(25);
+  const [requestedPage, setRequestedPage] = useState(1);
+  const [display, setDisplay] = useState<"table" | "cards">("table");
   const [exportOpen, setExportOpen] = useState(false);
   const [exportFormat, setExportFormat] = useState<"csv" | "json">("csv");
   const [includeSources, setIncludeSources] = useState(false);
@@ -909,14 +1038,12 @@ function DirectoryView({
   ]);
 
   const rows = useMemo(
-    () =>
-      [...filteredProducts].sort((a, b) => {
-        if (sort === "organisation") return a.organisation.localeCompare(b.organisation);
-        if (sort === "category") return a.category.localeCompare(b.category);
-        if (sort === "checked") return b.lastChecked.localeCompare(a.lastChecked);
-        return a.name.localeCompare(b.name);
-      }),
+    () => sortProducts(filteredProducts, sort),
     [filteredProducts, sort],
+  );
+  const pageData = useMemo(
+    () => paginate(rows, requestedPage, pageSize),
+    [pageSize, requestedPage, rows],
   );
 
   function toggleColumn(value: string) {
@@ -932,14 +1059,21 @@ function DirectoryView({
       const record: Record<string, string | string[]> = {
         product: product.name,
       };
-      if (visibleColumns.includes("organisation")) record.organisation = product.organisation;
-      if (visibleColumns.includes("category")) record.category = product.category;
-      if (visibleColumns.includes("countries")) record.countries = product.deploymentCountries;
-      if (visibleColumns.includes("access")) record.access_model = product.accessModel;
+      if (visibleColumns.includes("organisation"))
+        record.organisation = product.organisation;
+      if (visibleColumns.includes("category"))
+        record.category = product.category;
+      if (visibleColumns.includes("countries"))
+        record.countries = product.deploymentCountries;
+      if (visibleColumns.includes("access"))
+        record.access_model = product.accessModel;
       if (visibleColumns.includes("evidence")) {
-        record.evidence = product.evidence.map((value) => evidenceLabels[value]);
+        record.evidence = product.evidence.map(
+          (value) => evidenceLabels[value],
+        );
       }
-      if (visibleColumns.includes("checked")) record.last_checked = product.lastChecked;
+      if (visibleColumns.includes("checked"))
+        record.last_checked = product.lastChecked;
       if (includeSources) record.source_urls = [product.website];
       return record;
     });
@@ -969,183 +1103,241 @@ function DirectoryView({
   }
 
   return (
-    <div className="data-width directory-layout">
-      <div className="directory-toolbar">
-        <div>
-          <label>
-            <span>Sort by</span>
-            <select onChange={(event) => setSort(event.target.value)} value={sort}>
-              <option value="product">Product name</option>
-              <option value="organisation">Organisation</option>
-              <option value="category">Category</option>
-              <option value="checked">Last checked</option>
-            </select>
-          </label>
-          <div className="columns-menu-wrap">
-            <button
-              aria-expanded={columnsOpen}
-              className="button button-outline"
-              onClick={() => setColumnsOpen((value) => !value)}
-              type="button"
-            >
-              Columns
-            </button>
-            {columnsOpen ? (
-              <fieldset className="columns-menu">
-                <legend>Visible columns</legend>
-                <label><input checked disabled type="checkbox" /> Product</label>
-                {[
-                  ["organisation", "Organisation"],
-                  ["category", "Category"],
-                  ["countries", "Countries"],
-                  ["access", "Access model"],
-                  ["evidence", "Evidence"],
-                  ["checked", "Last checked"],
-                ].map(([value, label]) => (
-                  <label key={value}>
-                    <input
-                      checked={visibleColumns.includes(value)}
-                      onChange={() => toggleColumn(value)}
-                      type="checkbox"
-                    />
-                    {label}
-                  </label>
-                ))}
-              </fieldset>
-            ) : null}
-          </div>
-          <label>
-            <span>Page size</span>
-            <select defaultValue="25">
-              <option>25</option>
-              <option>50</option>
-              <option>100</option>
-            </select>
-          </label>
+    <section className="v2-data-canvas">
+      <div className="v2-data-tools">
+        <label>
+          <span>Sort</span>
+          <select
+            onChange={(event) => {
+              setSort(event.target.value as ProductSort);
+              setRequestedPage(1);
+            }}
+            value={sort}
+          >
+            <option value="product">Product</option>
+            <option value="organisation">Organisation</option>
+            <option value="category">Category</option>
+            <option value="checked">Last checked</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Page size</span>
+          <select
+            onChange={(event) => {
+              setPageSize(Number(event.target.value));
+              setRequestedPage(1);
+            }}
+            value={pageSize}
+          >
+            <option value={25}>25</option>
+            <option value={50}>50</option>
+            <option value={100}>100</option>
+          </select>
+        </label>
+
+        <div className="v2-columns-wrap">
+          <button
+            aria-expanded={columnsOpen}
+            onClick={() => setColumnsOpen((value) => !value)}
+            type="button"
+          >
+            Columns
+          </button>
+          {columnsOpen ? (
+            <fieldset className="v2-columns-menu">
+              <legend>Visible columns</legend>
+              {[
+                ["organisation", "Organisation"],
+                ["category", "Category"],
+                ["countries", "Countries"],
+                ["access", "Access"],
+                ["evidence", "Evidence"],
+                ["checked", "Checked"],
+              ].map(([value, label]) => (
+                <label key={value}>
+                  <input
+                    checked={visibleColumns.includes(value)}
+                    onChange={() => toggleColumn(value)}
+                    type="checkbox"
+                  />
+                  {label}
+                </label>
+              ))}
+            </fieldset>
+          ) : null}
         </div>
-        <button className="button button-primary" onClick={() => setExportOpen(true)} type="button">
-          Export current view
+
+        <div className="v2-data-view" role="group" aria-label="Directory view">
+          <button
+            aria-pressed={display === "table"}
+            onClick={() => setDisplay("table")}
+            type="button"
+          >
+            Rows
+          </button>
+          <button
+            aria-pressed={display === "cards"}
+            onClick={() => setDisplay("cards")}
+            type="button"
+          >
+            Cards
+          </button>
+        </div>
+
+        <button
+          className="v2-export-action"
+          onClick={() => setExportOpen(true)}
+          type="button"
+        >
+          Export current view <span aria-hidden="true">↓</span>
         </button>
       </div>
 
-      <div className="table-scroll">
-        <table>
-          <caption>
-            {rows.length} candidate products, sorted by {sort.replace("_", " ")}
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">Product</th>
-              {visibleColumns.includes("organisation") ? <th scope="col">Organisation</th> : null}
-              {visibleColumns.includes("category") ? <th scope="col">Category</th> : null}
-              {visibleColumns.includes("countries") ? <th scope="col">Countries</th> : null}
-              {visibleColumns.includes("access") ? <th scope="col">Access model</th> : null}
-              {visibleColumns.includes("evidence") ? <th scope="col">Evidence</th> : null}
-              {visibleColumns.includes("checked") ? <th scope="col">Last checked</th> : null}
-              <th className="preview-column" scope="col"><span className="sr-only">Preview</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((product) => (
-              <tr key={product.id}>
-                <th scope="row"><Link href={`/products/${product.slug}`}>{product.name}</Link></th>
-                {visibleColumns.includes("organisation") ? <td>{product.organisation}</td> : null}
-                {visibleColumns.includes("category") ? <td>{product.category}</td> : null}
-                {visibleColumns.includes("countries") ? (
-                  <td>{product.deploymentCountries.length ? product.deploymentCountries.join(", ") : "No evidenced country"}</td>
-                ) : null}
-                {visibleColumns.includes("access") ? <td>{product.accessModel}</td> : null}
-                {visibleColumns.includes("evidence") ? (
-                  <td><EvidenceStatusLabel compact status={product.evidence[0]} /></td>
-                ) : null}
-                {visibleColumns.includes("checked") ? <td>{product.lastChecked}</td> : null}
-                <td>
-                  <button
-                    className="preview-button"
-                    onClick={(event) => onOpenProduct(product, event.currentTarget)}
-                    type="button"
-                  >
-                    Preview
-                  </button>
-                </td>
+      {display === "table" ? (
+        <div className="v2-data-table-wrap">
+          <table className="v2-data-table">
+            <caption>
+              {rows.length} candidate products, sorted by{" "}
+              {sort.replace("_", " ")}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                {visibleColumns.includes("organisation") ? <th scope="col">Organisation</th> : null}
+                {visibleColumns.includes("category") ? <th scope="col">Category</th> : null}
+                {visibleColumns.includes("countries") ? <th scope="col">Country</th> : null}
+                {visibleColumns.includes("access") ? <th scope="col">Access</th> : null}
+                {visibleColumns.includes("evidence") ? <th scope="col">Evidence</th> : null}
+                {visibleColumns.includes("checked") ? <th scope="col">Checked</th> : null}
+                <th scope="col"><span className="sr-only">Preview</span></th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="directory-cards">
-        {rows.map((product) => (
-          <article key={product.id}>
-            <div>
-              <h2><Link href={`/products/${product.slug}`}>{product.name}</Link></h2>
-              <span>{product.organisation}</span>
-            </div>
-            <p>{product.category}</p>
-            <EvidenceStatusLabel compact status={product.evidence[0]} />
-            <span>{product.deploymentCountries.length ? product.deploymentCountries.join(", ") : "No evidenced country"}</span>
-            <Freshness date={product.lastChecked} />
+            </thead>
+            <tbody>
+              {pageData.items.map((product, index) => (
+                <tr key={product.id}>
+                  <th scope="row">
+                    <span>
+                      {String(
+                        (pageData.page - 1) * pageData.pageSize + index + 1,
+                      ).padStart(2, "0")}
+                    </span>
+                    <Link href={`/products/${product.slug}`}>{product.name}</Link>
+                  </th>
+                  {visibleColumns.includes("organisation") ? <td>{product.organisation}</td> : null}
+                  {visibleColumns.includes("category") ? <td>{product.category}</td> : null}
+                  {visibleColumns.includes("countries") ? (
+                    <td>{product.deploymentCountries.length ? product.deploymentCountries.join(", ") : "—"}</td>
+                  ) : null}
+                  {visibleColumns.includes("access") ? <td>{product.accessModel}</td> : null}
+                  {visibleColumns.includes("evidence") ? (
+                    <td><EvidenceStatusLabel compact status={product.evidence[0]} /></td>
+                  ) : null}
+                  {visibleColumns.includes("checked") ? <td>{product.lastChecked}</td> : null}
+                  <td>
+                    <button
+                      aria-label={`Preview ${product.name}`}
+                      onClick={(event) =>
+                        onOpenProduct(product, event.currentTarget)
+                      }
+                      type="button"
+                    >
+                      ↗
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="v2-data-cards">
+          {pageData.items.map((product, index) => (
             <button
-              className="text-button"
+              key={product.id}
               onClick={(event) => onOpenProduct(product, event.currentTarget)}
               type="button"
             >
-              Preview record →
+              <span>
+                {String(
+                  (pageData.page - 1) * pageData.pageSize + index + 1,
+                ).padStart(2, "0")}
+              </span>
+              <strong>{product.name}</strong>
+              <small>{product.organisation}</small>
+              <i>{product.category}</i>
+              <b aria-hidden="true">↗</b>
             </button>
-          </article>
-        ))}
+          ))}
+        </div>
+      )}
+
+      <nav aria-label="Directory pages" className="v2-pagination">
+        <button
+          disabled={pageData.page === 1}
+          onClick={() => setRequestedPage(pageData.page - 1)}
+          type="button"
+        >
+          ← Previous
+        </button>
+        <span>
+          Page {pageData.page} of {pageData.totalPages}
+          <small>{pageData.total} records</small>
+        </span>
+        <button
+          disabled={pageData.page === pageData.totalPages}
+          onClick={() => setRequestedPage(pageData.page + 1)}
+          type="button"
+        >
+          Next →
+        </button>
+      </nav>
+
+      <div className="v2-data-foot">
+        <span>{release.version} · {release.date}</span>
+        <Link href="/data">Dataset notes →</Link>
       </div>
-      <div className="pagination">
-        <button disabled type="button">Previous</button>
-        <span>Page 1 of 1</span>
-        <button disabled type="button">Next</button>
-      </div>
-      <p className="licence-note">
-        Prototype export for interface testing. Intended public project data licence:
-        CC BY 4.0; third-party source content is excluded.
-      </p>
 
       {exportOpen ? (
-        <div className="modal-backdrop" onMouseDown={() => setExportOpen(false)}>
+        <div className="v2-overlay" onMouseDown={() => setExportOpen(false)}>
           <section
-            aria-labelledby="export-title"
+            aria-labelledby="v2-export-title"
             aria-modal="true"
-            className="export-dialog"
+            className="v2-export-panel"
             onMouseDown={(event) => event.stopPropagation()}
             role="dialog"
           >
-            <div className="sheet-header">
-              <div>
-                <span className="eyebrow">Reusable data</span>
-                <h2 id="export-title">Export current view</h2>
-              </div>
-              <button className="quiet-button" onClick={() => setExportOpen(false)} type="button">Close</button>
+            <div className="v2-sheet-top">
+              <span id="v2-export-title">Export</span>
+              <button onClick={() => setExportOpen(false)} type="button">Close</button>
             </div>
-            <div className="export-summary">
-              <strong>{rows.length} records</strong>
-              <span>{activeFilters.length ? activeFilters.join(" · ") : "No active filters"}</span>
-              <span>{visibleColumns.length + 1} columns</span>
+            <div className="v2-export-number">
+              <strong>{rows.length}</strong>
+              <span>records</span>
             </div>
-            <fieldset>
+            <fieldset className="v2-export-formats">
               <legend>Format</legend>
-              <label><input checked={exportFormat === "csv"} name="format" onChange={() => setExportFormat("csv")} type="radio" /> CSV</label>
-              <label><input checked={exportFormat === "json"} name="format" onChange={() => setExportFormat("json")} type="radio" /> JSON</label>
+              <label>
+                <input checked={exportFormat === "csv"} name="format" onChange={() => setExportFormat("csv")} type="radio" />
+                <span>CSV</span>
+              </label>
+              <label>
+                <input checked={exportFormat === "json"} name="format" onChange={() => setExportFormat("json")} type="radio" />
+                <span>JSON</span>
+              </label>
             </fieldset>
-            <label className="source-toggle">
+            <label className="v2-source-check">
               <input checked={includeSources} onChange={(event) => setIncludeSources(event.target.checked)} type="checkbox" />
-              <span><strong>Include source URLs</strong><small>Add the public source URL available for each exported record.</small></span>
+              Include source URLs
             </label>
-            <div className="dialog-notice">
-              <strong>Candidate data</strong>
-              <p>This download is a prototype artefact and must not be presented as a published release.</p>
-            </div>
-            <button className="button button-primary export-submit" onClick={downloadExport} type="button">
-              Download {exportFormat.toUpperCase()}
+            <p>Candidate data · editorial review required</p>
+            <button className="v2-panel-apply" onClick={downloadExport} type="button">
+              Download {exportFormat.toUpperCase()} <span aria-hidden="true">↓</span>
             </button>
           </section>
         </div>
       ) : null}
-    </div>
+    </section>
   );
 }
 
@@ -1156,89 +1348,109 @@ function ProductPreview({
   close: () => void;
   product: Product;
 }) {
+  const [tab, setTab] = useState<"overview" | "evidence">("overview");
   const productDeployments = deployments.filter(
     (deployment) => deployment.productId === product.id,
   );
   return (
-    <div className="drawer-backdrop" onMouseDown={close}>
+    <div className="v2-overlay v2-drawer-overlay" onMouseDown={close}>
       <aside
-        aria-labelledby="preview-title"
+        aria-labelledby="v2-preview-title"
         aria-modal="true"
-        className="product-drawer"
+        className="v2-product-drawer"
         onMouseDown={(event) => event.stopPropagation()}
         role="dialog"
       >
-        <div className="drawer-top">
-          <button className="back-button" onClick={close} type="button">← Back to results</button>
-          <button className="quiet-button" onClick={close} type="button">Close</button>
+        <div className="v2-sheet-top">
+          <span>Product</span>
+          <button onClick={close} type="button">Close</button>
         </div>
-        <div className="preview-heading">
-          <div>
-            <span className="eyebrow">Product preview</span>
-            <h2 id="preview-title">{product.name}</h2>
-            <Link href={`/organisations/${product.organisationId === "org_001" ? "beacon-power-services" : product.organisationId === "org_002" ? "pam-africa" : "powerlabs"}`}>
-              {product.organisation}
-            </Link>
-          </div>
-          <LifecycleTag value={product.lifecycle} />
+        <header className="v2-preview-head">
+          <span>{product.category}</span>
+          <h2 id="v2-preview-title">{product.name}</h2>
+          <Link href={`/organisations/${organisationSlug(product)}`}>
+            {product.organisation} ↗
+          </Link>
+        </header>
+
+        <div className="v2-preview-metrics">
+          <div><strong>{productDeployments.length}</strong><span>deployments</span></div>
+          <div><strong>{product.deploymentCountries.length}</strong><span>countries</span></div>
+          <div><strong>{product.capabilities.length}</strong><span>capabilities</span></div>
         </div>
-        <div className="preview-labels">
-          <OriginLabel value={product.origin} />
-          <EvidenceStatusLabel status={product.evidence[0]} />
+
+        <div className="v2-preview-tabs" role="tablist">
+          <button
+            aria-selected={tab === "overview"}
+            onClick={() => setTab("overview")}
+            role="tab"
+            type="button"
+          >
+            Overview
+          </button>
+          <button
+            aria-selected={tab === "evidence"}
+            onClick={() => setTab("evidence")}
+            role="tab"
+            type="button"
+          >
+            Evidence
+          </button>
         </div>
-        <p className="preview-description">{product.description}</p>
-        <Link className="category-link" href={`/?category=${product.categoryId}`}>{product.category}</Link>
-        <section className="preview-section">
-          <div className="section-heading-row">
-            <h3>Evidence</h3>
-            <span>{productDeployments.length} deployments</span>
-          </div>
-          {productDeployments.length ? (
-            <div className="preview-deployments">
-              {productDeployments.map((deployment) => (
-                <div key={deployment.id}>
-                  <span><strong>{deployment.country}</strong><small>{deployment.customer}</small></span>
-                  <span>{deployment.year}</span>
-                  <EvidenceStatusLabel compact status={deployment.evidence} />
-                </div>
+
+        {tab === "overview" ? (
+          <div className="v2-preview-overview" role="tabpanel">
+            <p>{product.description}</p>
+            <div className="v2-preview-tags">
+              <OriginLabel value={product.origin} />
+              <LifecycleTag value={product.lifecycle} />
+              <EvidenceStatusLabel compact status={product.evidence[0]} />
+            </div>
+            <div className="v2-capability-list">
+              {product.capabilities.map((capability, index) => (
+                <span key={capability}>
+                  <i>{String(index + 1).padStart(2, "0")}</i>
+                  {capability}
+                </span>
               ))}
             </div>
-          ) : (
-            <div className="no-evidence">
-              <strong>No evidenced deployment in the candidate batch.</strong>
-              <p>Provider availability is not counted as deployment evidence.</p>
-            </div>
-          )}
-        </section>
-        <Freshness date={product.lastChecked} />
-        <div className="drawer-actions">
-          <Link className="button button-primary" href={`/products/${product.slug}`}>View full profile</Link>
-          <Link className="button button-outline" href={`/contribute/correction?product=${product.slug}`}>Suggest a correction</Link>
+          </div>
+        ) : (
+          <div className="v2-preview-evidence" role="tabpanel">
+            {productDeployments.length ? (
+              productDeployments.map((deployment, index) => (
+                <div key={deployment.id}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{deployment.country}</strong>
+                  <small>{deployment.customer}</small>
+                  <b>{deployment.year}</b>
+                  <EvidenceStatusLabel compact status={deployment.evidence} />
+                </div>
+              ))
+            ) : (
+              <div className="v2-preview-none">
+                <span aria-hidden="true">○</span>
+                <strong>No evidenced deployment yet.</strong>
+              </div>
+            )}
+            <Freshness date={product.lastChecked} />
+          </div>
+        )}
+
+        <div className="v2-preview-actions">
+          <Link href={`/products/${product.slug}`}>
+            Full record <span aria-hidden="true">→</span>
+          </Link>
+          <Link href={`/contribute/correction?product=${product.slug}`}>
+            Correct
+          </Link>
         </div>
       </aside>
     </div>
   );
 }
 
-function CoverageCallout() {
-  return (
-    <section className="coverage-callout">
-      <div>
-        <span className="eyebrow">Coverage, not completeness</span>
-        <h2>Five candidate products are enough to test the system, not describe the market.</h2>
-      </div>
-      <p>
-        This workstream deliberately exposes research queues, unknowns and structural
-        hypotheses. The empty states are part of the evidence model, not placeholders
-        to hide.
-      </p>
-      <Link className="button button-primary" href="/contribute">Contribute evidence</Link>
-    </section>
-  );
-}
-
 function countClass(count: number) {
-  if (count >= 10) return "count-highest";
   if (count >= 4) return "count-high";
   if (count > 0) return "count-low";
   return "count-zero";
@@ -1246,10 +1458,16 @@ function countClass(count: number) {
 
 function labelGeography(value: string) {
   return {
-    claimed: "Claimed availability",
-    headquarters: "Current headquarters",
-    founded: "Country of origin",
+    claimed: "Claims",
+    headquarters: "Headquarters",
+    founded: "Origin",
   }[value] ?? "Geography";
+}
+
+function organisationSlug(product: Product) {
+  if (product.organisationId === "org_001") return "beacon-power-services";
+  if (product.organisationId === "org_002") return "pam-africa";
+  return "powerlabs";
 }
 
 function toCsv(rows: Record<string, string | string[]>[]) {
@@ -1261,6 +1479,19 @@ function toCsv(rows: Record<string, string | string[]>[]) {
   };
   return [
     headers.map(escape).join(","),
-    ...rows.map((row) => headers.map((header) => escape(row[header])).join(",")),
+    ...rows.map((row) =>
+      headers.map((header) => escape(row[header])).join(","),
+    ),
   ].join("\n");
+}
+
+function withSearchParam(
+  pathname: string,
+  search: string,
+  key: string,
+  value: string,
+) {
+  const params = new URLSearchParams(search);
+  params.set(key, value);
+  return `${pathname}?${params.toString()}`;
 }

@@ -1,0 +1,74 @@
+{
+  "categories": {
+    "cat_planning_geospatial": {
+      "market_condition": "insufficient_evidence",
+      "research_state": "research_queue",
+      "verdict": "Research coverage is still being established."
+    },
+    "cat_engineering_design_simulation": {
+      "market_condition": "insufficient_evidence",
+      "research_state": "research_queue",
+      "verdict": "Four candidates remain in the research queue."
+    },
+    "cat_finance_procurement_underwriting": {
+      "market_condition": "insufficient_evidence",
+      "research_state": "no_verified_entry",
+      "verdict": "No candidate record has completed editorial review."
+    },
+    "cat_generation_storage_operations": {
+      "market_condition": "insufficient_evidence",
+      "research_state": "not_researched",
+      "verdict": "This category has not yet received a complete research pass."
+    },
+    "cat_transmission_system_operation": {
+      "market_condition": "structurally_thin",
+      "research_state": "structurally_thin",
+      "verdict": "No reviewed entry has been found. Procurement and system-access constraints require further research."
+    },
+    "cat_distribution_utility_operations": {
+      "market_condition": "commercial_market",
+      "research_state": "published",
+      "verdict": "Candidate evidence shows utility digitisation activity."
+    },
+    "cat_forecasting_flexibility_der": {
+      "market_condition": "donor_supported",
+      "research_state": "research_queue",
+      "verdict": "Research is open; commercial maturity has not been assessed."
+    },
+    "cat_paygo_minigrid_operations": {
+      "market_condition": "commercial_market",
+      "research_state": "published",
+      "verdict": "Candidate evidence includes named and undisclosed pilot customers."
+    },
+    "cat_retail_metering_billing_payments": {
+      "market_condition": "bundled_or_gated",
+      "research_state": "published",
+      "verdict": "Product availability is documented; deployment evidence is pending."
+    },
+    "cat_ci_behind_meter": {
+      "market_condition": "commercial_market",
+      "research_state": "published",
+      "verdict": "Provider-authored product evidence is available."
+    },
+    "cat_emobility_battery_networks": {
+      "market_condition": "insufficient_evidence",
+      "research_state": "research_queue",
+      "verdict": "Research is scheduled; no completeness claim is made."
+    },
+    "cat_trading_wheeling_settlement": {
+      "market_condition": "structurally_thin",
+      "research_state": "structurally_thin",
+      "verdict": "No reviewed entry has been found. Market structure and regulation may constrain deployment."
+    },
+    "cat_carbon_mrv_reporting": {
+      "market_condition": "insufficient_evidence",
+      "research_state": "research_queue",
+      "verdict": "Candidate discovery has not yet become a reviewed record."
+    },
+    "cat_data_interoperability_security": {
+      "market_condition": "insufficient_evidence",
+      "research_state": "research_queue",
+      "verdict": "Cross-cutting research remains open."
+    }
+  }
+}

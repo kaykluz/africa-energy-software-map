@@ -2,13 +2,16 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   categories,
+  dataDistributions,
   deployments,
   organisations,
   products,
   release,
+  registryManifest,
   sources,
   type EvidenceStatus,
 } from "@/lib/registry-data";
+import { normaliseQuery } from "@/lib/registry-query";
 import { EvidenceStatusLabel } from "@/components/semantic-tags";
 
 export function MethodologyPage() {
@@ -29,8 +32,7 @@ export function MethodologyPage() {
         <span className="eyebrow">Methodology 1.0 · effective 30 July 2026</span>
         <h1>How the map decides what to show</h1>
         <p>
-          The method turns scattered claims into source-linked records while keeping
-          uncertainty, confidentiality and human editorial judgement visible.
+          The public rules for evidence, uncertainty and editorial review.
         </p>
         <div className="intro-actions">
           <a className="button button-outline" href="https://github.com/kaykluz/africa-energy-software-map/tree/main/docs" target="_blank" rel="noreferrer">
@@ -168,29 +170,29 @@ export function ContributeHubPage() {
       href: "/contribute/product",
       number: "01",
       title: "Submit a product",
-      copy: "Propose a missing product and its owning organisation. A public product page alone does not establish a deployment.",
-      evidence: "Product or organisation source URL",
+      copy: "Add missing software and its owner.",
+      evidence: "Product or organisation source",
     },
     {
       href: "/contribute/deployment",
       number: "02",
       title: "Add a deployment",
-      copy: "Connect an existing product to a country, safe area, customer disclosure state and source.",
-      evidence: "Customer, official or independent source preferred",
+      copy: "Connect software to a country and source.",
+      evidence: "Customer, official or independent source",
     },
     {
       href: "/contribute/correction",
       number: "03",
       title: "Correct a record",
-      copy: "Identify the exact field, propose a replacement and explain the source-supported reason.",
-      evidence: "Source for the proposed correction",
+      copy: "Replace an exact field with sourced information.",
+      evidence: "Source for the correction",
     },
     {
       href: "/contribute/claim",
       number: "04",
       title: "Claim a profile",
-      copy: "Verify your organisational relationship and propose sourced updates. Claiming never verifies deployments.",
-      evidence: "Organisation-domain email and authority",
+      copy: "Confirm your relationship and propose updates.",
+      evidence: "Organisation-domain email",
     },
   ];
   return (
@@ -199,8 +201,7 @@ export function ContributeHubPage() {
         <span className="eyebrow">Contribute evidence</span>
         <h1>Help make the map more accurate</h1>
         <p>
-          Choose the type of contribution. Every submission is reviewed; nothing
-          becomes published or verified automatically.
+          Choose a route. Every submission receives human review.
         </p>
       </header>
       <div className="contribution-grid">
@@ -215,7 +216,7 @@ export function ContributeHubPage() {
         ))}
       </div>
       <section className="review-process">
-        <div><span className="eyebrow">What happens next</span><h2>Transparent review, not instant publication</h2></div>
+        <div><span className="eyebrow">After submission</span><h2>Review process</h2></div>
         <ol>
           <li><strong>1. Intake</strong><span>Duplicate and sensitive-data checks</span></li>
           <li><strong>2. Research</strong><span>Source classification and corroboration</span></li>
@@ -230,11 +231,10 @@ export function DataPage() {
   return (
     <main className="standard-width data-page" id="main-content">
       <header className="page-intro reading-intro">
-        <span className="eyebrow">Open and reusable</span>
+        <span className="eyebrow">Data access</span>
         <h1>Data and downloads</h1>
         <p>
-          Use the Directory to export a filtered view. Versioned public releases
-          will provide complete normalised packages without requiring website scraping.
+          Export a filtered view or inspect versioned release packages.
         </p>
         <div className="intro-actions">
           <Link className="button button-primary" href="/directory">Create a filtered export</Link>
@@ -255,6 +255,11 @@ export function DataPage() {
           <div><dt>Deployments</dt><dd>{deployments.length}</dd></div>
           <div><dt>Sources</dt><dd>{sources.length}</dd></div>
         </dl>
+        <p className="release-gate">
+          {registryManifest.reviewGate.reviewedAssertions} of{" "}
+          {registryManifest.reviewGate.assertions} assertions reviewed ·{" "}
+          {registryManifest.reviewGate.unresolvedSources} sources need metadata
+        </p>
       </section>
       <figure className="data-visual">
         <Image
@@ -270,20 +275,46 @@ export function DataPage() {
         </figcaption>
       </figure>
       <section className="data-section">
-        <div><span className="eyebrow">Phase 1 release package</span><h2>Designed for reuse</h2></div>
+        <div>
+          <span className="eyebrow">Candidate package</span>
+          <h2>Download the current data</h2>
+          <p>
+            These files reproduce the prototype. They remain candidate data
+            until editorial review is complete.
+          </p>
+        </div>
         <div className="download-list">
-          {[
-            ["CSV package", "Normalised tables for analysis and databases", "Planned"],
-            ["JSON and JSONL", "Structured records and streaming-friendly assertions", "Planned"],
-            ["GeoJSON", "Country/province geography with disclosure status", "Planned"],
-            ["Excel workbook", "Excel-compatible release for non-technical users", "Planned"],
-            ["Schema and dictionary", "Stable identifiers, definitions and accepted values", "Available on GitHub"],
-          ].map(([name, copy, status]) => (
-            <article key={name}>
-              <div><h3>{name}</h3><p>{copy}</p></div>
-              <span>{status}</span>
+          {dataDistributions.map((distribution) => (
+            <article key={distribution.id}>
+              <div>
+                <h3>{distribution.label}</h3>
+                <p>{distributionDescription(distribution.id)}</p>
+              </div>
+              <a download href={distribution.href}>
+                {distribution.format} ↓
+              </a>
             </article>
           ))}
+          <article>
+            <div>
+              <h3>Schema and dictionary</h3>
+              <p>Stable identifiers, accepted values and field definitions.</p>
+            </div>
+            <a
+              href="https://github.com/kaykluz/africa-energy-software-map/tree/main/schemas"
+              rel="noreferrer"
+              target="_blank"
+            >
+              GitHub ↗
+            </a>
+          </article>
+          <article>
+            <div>
+              <h3>Excel workbook</h3>
+              <p>Non-technical release workbook after editorial promotion.</p>
+            </div>
+            <span>Planned</span>
+          </article>
         </div>
       </section>
       <section className="data-section two-column-copy">
@@ -294,16 +325,49 @@ export function DataPage() {
   );
 }
 
+function distributionDescription(id: string) {
+  return {
+    csv_package: "Normalised tables, metadata, licence and checksums.",
+    registry_json: "The complete snapshot used by this interface.",
+    assertions_jsonl: "One source-linked candidate assertion per line.",
+    deployments_geojson: "Country-safe geography without precise coordinates.",
+    download_manifest: "Counts, review status, file sizes and hashes.",
+  }[id] ?? "Candidate dataset file.";
+}
+
 export function SearchResultsPage({ query }: { query: string }) {
-  const term = query.trim().toLowerCase();
+  const term = normaliseQuery(query);
   const productResults = term
     ? products.filter((product) =>
-        [product.name, product.organisation, product.category, product.description, ...product.capabilities]
-          .join(" ").toLowerCase().includes(term),
+        normaliseQuery(
+          [
+            product.name,
+            product.organisation,
+            product.category,
+            product.description,
+            ...product.capabilities,
+          ].join(" "),
+        ).includes(term),
+      )
+    : [];
+  const organisationResults = term
+    ? organisations.filter((organisation) =>
+        normaliseQuery(
+          [
+            organisation.name,
+            organisation.type,
+            organisation.description,
+            organisation.origin,
+            organisation.countryOfOrigin,
+            organisation.headquarters,
+          ].join(" "),
+        ).includes(term),
       )
     : [];
   const categoryResults = term
-    ? categories.filter((category) => category.name.toLowerCase().includes(term))
+    ? categories.filter((category) =>
+        normaliseQuery(category.name).includes(term),
+      )
     : [];
   return (
     <main className="standard-width search-page" id="main-content">
@@ -318,7 +382,9 @@ export function SearchResultsPage({ query }: { query: string }) {
       </header>
       {!query ? (
         <div className="inline-empty"><strong>Enter at least two characters.</strong><p>Try “metering”, “Nigeria” or “PAYGo”.</p></div>
-      ) : productResults.length || categoryResults.length ? (
+      ) : productResults.length ||
+        organisationResults.length ||
+        categoryResults.length ? (
         <div className="search-groups">
           {productResults.length ? (
             <section><h2>Products <span>{productResults.length}</span></h2>
@@ -327,10 +393,27 @@ export function SearchResultsPage({ query }: { query: string }) {
               ))}
             </section>
           ) : null}
+          {organisationResults.length ? (
+            <section>
+              <h2>Organisations <span>{organisationResults.length}</span></h2>
+              {organisationResults.map((organisation) => (
+                <Link
+                  href={`/organisations/${organisation.slug}`}
+                  key={organisation.id}
+                >
+                  <span>
+                    <strong>{organisation.name}</strong>
+                    <small>{organisation.type}</small>
+                  </span>
+                  <span>Open record →</span>
+                </Link>
+              ))}
+            </section>
+          ) : null}
           {categoryResults.length ? (
             <section><h2>Capabilities <span>{categoryResults.length}</span></h2>
               {categoryResults.map((category) => (
-                <Link href={`/?category=${category.id}`} key={category.id}><span><strong>{category.name}</strong><small>Value-chain category</small></span><span>View in Stack →</span></Link>
+                <Link href={`/?category=${category.id}`} key={category.id}><span><strong>{category.name}</strong><small>Value-chain category</small></span><span>View in Explore →</span></Link>
               ))}
             </section>
           ) : null}
@@ -343,7 +426,7 @@ export function SearchResultsPage({ query }: { query: string }) {
             This does not prove the product or capability does not exist. Try a
             broader term, clear filters or submit a candidate for review.
           </p>
-          <div><Link className="button button-primary" href="/contribute/product">Submit product</Link><Link className="button button-outline" href="/">Browse the Stack</Link></div>
+          <div><Link className="button button-primary" href="/contribute/product">Submit product</Link><Link className="button button-outline" href="/">Open Explore</Link></div>
         </div>
       )}
     </main>

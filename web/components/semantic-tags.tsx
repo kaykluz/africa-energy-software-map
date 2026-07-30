@@ -1,6 +1,8 @@
 import {
   evidenceLabels,
+  originLabels,
   type EvidenceStatus,
+  type OriginClassification,
 } from "@/lib/registry-data";
 
 export function EvidenceStatusLabel({
@@ -28,14 +30,12 @@ export function LifecycleTag({ value }: { value: string }) {
 export function OriginLabel({
   value,
 }: {
-  value: "africa_built" | "global_deployed_in_africa";
+  value: OriginClassification;
 }) {
   return (
     <span className="origin-label">
       <span aria-hidden="true" className="origin-mark" />
-      {value === "africa_built"
-        ? "Africa-built"
-        : "Global, deployed in Africa"}
+      {originLabels[value]}
     </span>
   );
 }

@@ -5,9 +5,11 @@ import { usePathname } from "next/navigation";
 import {
   africanCountries,
   categories,
+  organisations,
   products,
   release,
 } from "@/lib/registry-data";
+import { normaliseQuery } from "@/lib/registry-query";
 import {
   type KeyboardEvent,
   type ReactNode,
@@ -18,24 +20,23 @@ import {
 } from "react";
 
 const primaryNavigation = [
-  { href: "/", label: "Stack" },
-  { href: "/deployments", label: "Deployments" },
-  { href: "/directory", label: "Directory" },
-  { href: "/methodology", label: "Methodology" },
+  { href: "/", label: "Explore" },
+  { href: "/deployments", label: "Map" },
+  { href: "/directory", label: "Data" },
 ] as const;
 
-const secondaryNavigation = [
-  { href: "/data", label: "Data" },
+const projectNavigation = [
+  { href: "/methodology", label: "Method" },
+  { href: "/data", label: "Downloads" },
   { href: "/changes", label: "Changes" },
   { href: "/accessibility", label: "Accessibility" },
-  { href: "/privacy", label: "Privacy" },
-  { href: "/licence", label: "Licence" },
 ] as const;
 
 export function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [searchOpen, setSearchOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [statusOpen, setStatusOpen] = useState(false);
   const [query, setQuery] = useState("");
   const searchButtonRef = useRef<HTMLButtonElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -56,41 +57,56 @@ export function SiteShell({ children }: { children: ReactNode }) {
         setMenuOpen(false);
         menuButtonRef.current?.focus();
       }
+      setStatusOpen(false);
     };
     document.addEventListener("keydown", closeOnEscape);
     return () => document.removeEventListener("keydown", closeOnEscape);
   }, [menuOpen, searchOpen]);
 
   const searchResults = useMemo(() => {
-    const normalised = query.trim().toLowerCase();
+    const normalised = normaliseQuery(query);
     if (normalised.length < 2) return [];
-    const aliases = normalised
-      .replaceAll("pay-as-you-go", "paygo")
-      .replaceAll("commercial and industrial", "c&i")
-      .replaceAll("advanced metering", "ami");
+    const aliases = normalised;
     return [
       ...products
         .filter((product) =>
-          [
-            product.name,
-            product.organisation,
-            product.description,
-            product.category,
-            ...product.capabilities,
-          ]
-            .join(" ")
-            .toLowerCase()
-            .includes(aliases),
+          normaliseQuery(
+            [
+              product.name,
+              product.organisation,
+              product.description,
+              product.category,
+              ...product.capabilities,
+            ].join(" "),
+          ).includes(aliases),
         )
         .map((product) => ({
           type: "Product",
           name: product.name,
-          context: `${product.organisation} · ${product.category}`,
+          context: product.organisation,
           href: `/products/${product.slug}`,
+        })),
+      ...organisations
+        .filter((organisation) =>
+          normaliseQuery(
+            [
+              organisation.name,
+              organisation.type,
+              organisation.description,
+              organisation.countryOfOrigin,
+              organisation.headquarters,
+            ].join(" "),
+          ).includes(aliases),
+        )
+        .map((organisation) => ({
+          type: "Organisation",
+          name: organisation.name,
+          context: organisation.type,
+          href: `/organisations/${organisation.slug}`,
         })),
       ...categories
         .filter((category) =>
-          category.name.toLowerCase().includes(aliases),
+          normaliseQuery(category.name).includes(aliases),
         )
         .map((category) => ({
           type: "Capability",
@@ -99,7 +115,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           href: `/?category=${category.id}`,
         })),
       ...africanCountries
-        .filter(([, name]) => name.toLowerCase().includes(aliases))
+        .filter(([, name]) => normaliseQuery(name).includes(aliases))
         .slice(0, 4)
         .map(([iso2, name]) => ({
           type: "Country",
@@ -107,7 +123,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           context: iso2,
           href: `/countries/${iso2.toLowerCase()}`,
         })),
-    ].slice(0, 8);
+    ].slice(0, 10);
   }, [query]);
 
   function onSearchKeyDown(event: KeyboardEvent<HTMLInputElement>) {
@@ -121,17 +137,25 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
-      <header className="site-header">
-        <div className="header-inner">
-          <Link className="wordmark" href="/" aria-label="Africa Energy Software Map home">
-            <span aria-hidden="true" className="wordmark-mark">
-              AE
+      <header className="v2-header">
+        <div className="v2-header-inner">
+          <Link
+            className="v2-wordmark"
+            href="/"
+            aria-label="Africa Energy Software Map home"
+          >
+            <span className="v2-wordmark-disc" aria-hidden="true">
+              A
             </span>
-            <span className="wordmark-long">Africa Energy Software Map</span>
-            <span className="wordmark-short">Energy software map</span>
+            <span>
+              Africa Energy
+              <br />
+              Software Map
+            </span>
           </Link>
-          <nav aria-label="Primary navigation" className="desktop-nav">
-            {primaryNavigation.map((item) => {
+
+          <nav aria-label="Primary navigation" className="v2-nav">
+            {primaryNavigation.map((item, index) => {
               const active =
                 item.href === "/"
                   ? pathname === "/"
@@ -139,71 +163,123 @@ export function SiteShell({ children }: { children: ReactNode }) {
               return (
                 <Link
                   aria-current={active ? "page" : undefined}
-                  className={active ? "nav-link active" : "nav-link"}
+                  className={active ? "active" : ""}
                   href={item.href}
                   key={item.href}
                 >
+                  <span aria-hidden="true">0{index + 1}</span>
                   {item.label}
                 </Link>
               );
             })}
           </nav>
-          <div className="header-actions">
+
+          <div className="v2-header-actions">
+            <button
+              aria-expanded={statusOpen}
+              aria-label={`Prototype data: ${release.status}`}
+              className="v2-status-button"
+              onClick={() => setStatusOpen((value) => !value)}
+              type="button"
+            >
+              <i aria-hidden="true" />
+              <span>Prototype</span>
+              <span className="sr-only">
+                Candidate import. Editorial review required.
+              </span>
+            </button>
             <button
               aria-expanded={searchOpen}
-              className="header-text-button"
+              aria-label="Search the map"
+              className="v2-round-action"
               onClick={() => setSearchOpen(true)}
               ref={searchButtonRef}
               type="button"
             >
-              <span aria-hidden="true">⌕</span> Search
+              <span aria-hidden="true">⌕</span>
             </button>
-            <Link className="button button-outline header-contribute" href="/contribute">
-              Contribute
+            <Link
+              className="v2-contribute"
+              href="/contribute"
+            >
+              <span>Improve the map</span>
+              <i aria-hidden="true">＋</i>
             </Link>
             <button
-              aria-controls="mobile-menu"
+              aria-controls="v2-mobile-menu"
               aria-expanded={menuOpen}
-              className="header-text-button mobile-menu-button"
+              aria-label="Open menu"
+              className="v2-round-action v2-menu-button"
               onClick={() => setMenuOpen((value) => !value)}
               ref={menuButtonRef}
               type="button"
             >
-              Menu
+              <span aria-hidden="true">••</span>
             </button>
           </div>
         </div>
+
+        {statusOpen ? (
+          <section className="v2-status-popover" aria-label="Prototype status">
+            <span className="v2-popover-index">P–01</span>
+            <div>
+              <strong>Candidate data</strong>
+              <p>No record is published until editorial review is complete.</p>
+            </div>
+            <Link href="/methodology#prototype-data">Method →</Link>
+          </section>
+        ) : null}
       </header>
 
       {menuOpen ? (
-        <div className="mobile-menu-backdrop" onMouseDown={() => setMenuOpen(false)}>
+        <div
+          className="v2-overlay"
+          onMouseDown={() => setMenuOpen(false)}
+        >
           <nav
-            aria-label="Mobile navigation"
-            className="mobile-menu-sheet"
-            id="mobile-menu"
+            aria-label="Menu"
+            className="v2-menu-sheet"
+            id="v2-mobile-menu"
             onMouseDown={(event) => event.stopPropagation()}
           >
-            <div className="sheet-header">
-              <strong>Explore</strong>
-              <button className="icon-button" onClick={() => setMenuOpen(false)} type="button">
+            <div className="v2-sheet-top">
+              <span>Navigate</span>
+              <button onClick={() => setMenuOpen(false)} type="button">
                 Close
               </button>
             </div>
-            {[...primaryNavigation, ...secondaryNavigation].map((item) => (
-              <Link href={item.href} key={item.href} onClick={() => setMenuOpen(false)}>
-                {item.label}
-              </Link>
-            ))}
-            <Link className="button button-primary" href="/contribute">
-              Contribute
-            </Link>
+            <div className="v2-menu-primary">
+              {primaryNavigation.map((item, index) => (
+                <Link
+                  href={item.href}
+                  key={item.href}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <span>0{index + 1}</span>
+                  {item.label}
+                  <i aria-hidden="true">↗</i>
+                </Link>
+              ))}
+            </div>
+            <div className="v2-menu-secondary">
+              {projectNavigation.map((item) => (
+                <Link
+                  href={item.href}
+                  key={item.href}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <Link href="/contribute">Contribute data</Link>
+            </div>
           </nav>
         </div>
       ) : null}
 
       {searchOpen ? (
         <div
-          className="search-backdrop"
+          className="v2-search-overlay"
           onMouseDown={() => {
             setSearchOpen(false);
             searchButtonRef.current?.focus();
@@ -212,68 +288,78 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <section
             aria-label="Search the software map"
             aria-modal="true"
-            className="search-dialog"
+            className="v2-search-stage"
             onMouseDown={(event) => event.stopPropagation()}
             role="dialog"
           >
-            <div className="search-input-row">
+            <div className="v2-search-topline">
+              <span>Search</span>
+              <button
+                onClick={() => setSearchOpen(false)}
+                type="button"
+              >
+                Esc&nbsp;&nbsp;Close
+              </button>
+            </div>
+            <label className="sr-only" htmlFor="global-search">
+              Search products, organisations, capabilities or countries
+            </label>
+            <div className="v2-search-input">
               <span aria-hidden="true">⌕</span>
-              <label className="sr-only" htmlFor="global-search">
-                Search products, organisations, capabilities or countries
-              </label>
               <input
                 id="global-search"
                 onChange={(event) => setQuery(event.target.value)}
                 onKeyDown={onSearchKeyDown}
-                placeholder="Search products, organisations, capabilities or countries"
+                placeholder="Product, organisation, capability or country"
                 ref={searchInputRef}
                 type="search"
                 value={query}
               />
-              <button
-                className="quiet-button"
-                onClick={() => setSearchOpen(false)}
-                type="button"
-              >
-                Close
-              </button>
             </div>
-            <div aria-live="polite" className="search-results">
+
+            <div aria-live="polite" className="v2-search-results">
               {query.trim().length < 2 ? (
-                <p className="search-guidance">
-                  Type at least two characters. Try “metering”, “Nigeria” or “PAYGo”.
-                </p>
+                <div className="v2-search-starters">
+                  <span>Try</span>
+                  {["Nigeria", "Metering", "PAYGo", "Grid operations"].map(
+                    (term) => (
+                      <button
+                        key={term}
+                        onClick={() => setQuery(term)}
+                        type="button"
+                      >
+                        {term}
+                      </button>
+                    ),
+                  )}
+                </div>
               ) : searchResults.length ? (
                 <>
-                  <p className="result-count">{searchResults.length} suggested results</p>
-                  {searchResults.map((result) => (
-                  <Link
-                    className="search-result"
-                    href={result.href}
-                    key={`${result.type}-${result.name}`}
-                    onClick={() => setSearchOpen(false)}
-                  >
-                      <span className="result-type">{result.type}</span>
+                  {searchResults.map((result, index) => (
+                    <Link
+                      className="v2-search-result"
+                      href={result.href}
+                      key={`${result.type}-${result.name}`}
+                      onClick={() => setSearchOpen(false)}
+                    >
+                      <span>{String(index + 1).padStart(2, "0")}</span>
                       <strong>{result.name}</strong>
-                      <span>{result.context}</span>
+                      <small>{result.type} · {result.context}</small>
+                      <i aria-hidden="true">↗</i>
                     </Link>
                   ))}
                   <Link
-                    className="search-all-link"
+                    className="v2-search-all"
                     href={`/search?q=${encodeURIComponent(query.trim())}`}
                     onClick={() => setSearchOpen(false)}
                   >
-                    See all results for “{query.trim()}” →
+                    View all results <span aria-hidden="true">→</span>
                   </Link>
                 </>
               ) : (
-                <div className="empty-search">
-                  <strong>No published record matched “{query.trim()}”.</strong>
-                  <p>
-                    The map is incomplete. Try a broader capability or submit a product
-                    for editorial review.
-                  </p>
-                  <Link href="/contribute/product">Submit product →</Link>
+                <div className="v2-search-empty">
+                  <strong>No matching record</strong>
+                  <Link href="/contribute/product">Submit a product →</Link>
                 </div>
               )}
             </div>
@@ -281,82 +367,27 @@ export function SiteShell({ children }: { children: ReactNode }) {
         </div>
       ) : null}
 
-      <div className="candidate-banner" role="note">
-        <div>
-          <strong>Prototype data</strong>
-          <span>{release.status}. No record shown here is published by this prototype.</span>
-        </div>
-        <Link href="/methodology#prototype-data">How candidate data is handled</Link>
-      </div>
-
       {children}
 
-      <footer className="site-footer">
-        <div className="footer-grid">
-          <div>
-            <strong>Africa Energy Software Map</strong>
-            <p>
-              An open, evidence-led record of the software used across African
-              energy systems.
-            </p>
-            <span className="mono">
-              {release.version} · {release.date}
-            </span>
-          </div>
-          <FooterGroup
-            heading="Explore"
-            links={[
-              ["/", "Stack"],
-              ["/deployments", "Deployments"],
-              ["/directory", "Directory"],
-            ]}
-          />
-          <FooterGroup
-            heading="Project"
-            links={[
-              ["/methodology", "Methodology"],
-              ["/changes", "Changes"],
-              ["https://github.com/kaykluz/africa-energy-software-map", "GitHub"],
-            ]}
-          />
-          <FooterGroup
-            heading="Contribute"
-            links={[
-              ["/contribute/product", "Submit product"],
-              ["/contribute/deployment", "Add deployment"],
-              ["/contribute/correction", "Correct a record"],
-            ]}
-          />
-          <FooterGroup
-            heading="Access"
-            links={[
-              ["/data", "Data"],
-              ["/licence", "Licence"],
-              ["/privacy", "Privacy"],
-              ["/accessibility", "Accessibility"],
-            ]}
-          />
+      <footer className="v2-footer">
+        <div>
+          <Link className="v2-footer-mark" href="/">
+            Africa Energy Software Map
+          </Link>
+          <span className="mono">{release.version}</span>
         </div>
+        <nav aria-label="Footer">
+          <Link href="/methodology">Method</Link>
+          <Link href="/data">Downloads</Link>
+          <Link href="/licence">Licence</Link>
+          <a href="https://github.com/kaykluz/africa-energy-software-map">
+            GitHub
+          </a>
+        </nav>
+        <Link className="v2-footer-contribute" href="/contribute">
+          Improve the map <span aria-hidden="true">↗</span>
+        </Link>
       </footer>
     </>
-  );
-}
-
-function FooterGroup({
-  heading,
-  links,
-}: {
-  heading: string;
-  links: readonly (readonly [string, string])[];
-}) {
-  return (
-    <nav aria-label={`${heading} links`} className="footer-links">
-      <strong>{heading}</strong>
-      {links.map(([href, label]) => (
-        <Link href={href} key={href}>
-          {label}
-        </Link>
-      ))}
-    </nav>
   );
 }

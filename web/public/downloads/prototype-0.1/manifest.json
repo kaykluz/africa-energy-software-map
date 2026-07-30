@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "mode": "candidate",
+  "version": "prototype-0.1",
+  "date": "2026-07-30",
+  "status": "Candidate import — editorial review required",
+  "counts": {
+    "organisations": 3,
+    "products": 5,
+    "deployments": 4,
+    "sources": 4,
+    "assertions": 88
+  },
+  "reviewGate": {
+    "assertions": 88,
+    "reviewedAssertions": 0,
+    "unreviewedAssertions": 88,
+    "unresolvedSources": 4,
+    "publishable": false
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1012,
+      "sha256": "9602835877a24d64e30a96ecb43252d11bf058eefdeaf2a1ba7f90460afb78dd"
+    },
+    {
+      "path": "assertions.jsonl",
+      "bytes": 24072,
+      "sha256": "f2c47a3c68de6388736e12da75d213ef40287c76aab7a0e7dcae2a0cef2b90d9"
+    },
+    {
+      "path": "candidate-csv-package.zip",
+      "bytes": 10080,
+      "sha256": "c0bf0703c055d0a3e15cdaa8261d7e17053ee5b07bed8183176ebc72d0b429a3"
+    },
+    {
+      "path": "deployments.geojson",
+      "bytes": 2218,
+      "sha256": "c68fa08f4f93344f2d0fcc7014e71c8b59a7ffcafe4a499ba7bfbcd1d50ed818"
+    },
+    {
+      "path": "registry.json",
+      "bytes": 53270,
+      "sha256": "296c4faca3280efd098853a34bf3fd180a4e7dcec3ee88e7c2681af072f8f1de"
+    }
+  ]
+}

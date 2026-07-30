@@ -45,11 +45,24 @@ test("server-renders the Directory and its export action", async () => {
   const response = await render("/directory?country=NG");
   assert.equal(response.status, 200);
   const html = await response.text();
+  const textHtml = html.replaceAll(/<!--.*?-->/g, "");
   assert.match(html, /<h1[^>]*>Directory<\/h1>/i);
   assert.match(html, /Export current view/);
+  assert.match(html, /Page size/);
+  assert.match(textHtml, /Page 1 of 1/);
   assert.match(html, /Nigeria/);
   assert.match(html, /PAM-AI/);
   assert.doesNotMatch(html, /Pai Enterprise/);
+});
+
+test("server search includes organisation records", async () => {
+  const response = await render("/search?q=Beacon");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Results for “Beacon”/);
+  assert.match(html, /Organisations/);
+  assert.match(html, /Beacon Power Services/);
+  assert.match(html, /Open record/);
 });
 
 test("server-renders a source-linked product profile", async () => {
@@ -61,6 +74,32 @@ test("server-renders a source-linked product profile", async () => {
   assert.match(html, /Abuja Electricity Distribution Company/);
   assert.match(html, /Assertion-level evidence and sources/);
   assert.match(html, /Editorial review required/);
+});
+
+test("server-renders reproducible candidate downloads and review status", async () => {
+  const response = await render("/data");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  const textHtml = html.replaceAll(/<!--.*?-->/g, "");
+  assert.match(html, /<h1[^>]*>Data and downloads<\/h1>/i);
+  assert.match(textHtml, /0 of\s+88 assertions reviewed/);
+  assert.match(textHtml, /4 sources need metadata/);
+  assert.match(html, /candidate-csv-package\.zip/);
+  assert.match(html, /registry\.json/);
+  assert.match(html, /assertions\.jsonl/);
+  assert.match(html, /deployments\.geojson/);
+  assert.match(html, /They remain candidate data/);
+});
+
+test("server-renders a country profile from the generated snapshot", async () => {
+  const response = await render("/countries/ng");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<h1[^>]*>Nigeria<\/h1>/i);
+  assert.match(html, /Evidence-led software index/);
+  assert.match(html, /Abuja Electricity Distribution Company/);
+  assert.match(html, /View in Data/);
+  assert.match(html, /href="\/directory\?country=NG"/);
 });
 
 test("server-renders the methodology AI disclosure", async () => {
