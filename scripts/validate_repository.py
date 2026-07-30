@@ -675,6 +675,72 @@ def validate_interface_artifacts(errors: list[str]) -> None:
         errors.append(f"generated interface artifacts: {exc}")
 
 
+def validate_automation_artifacts(errors: list[str]) -> None:
+    try:
+        from build_review_assist import (
+            DEFAULT_OUTPUT as review_output,
+            DEFAULT_SNAPSHOT,
+            build_review_assist,
+        )
+        from prepare_next_batch import (
+            DEFAULT_AUDIT,
+            DEFAULT_OUTPUT as batch_output,
+            build_plan,
+        )
+
+        snapshot = load_json(DEFAULT_SNAPSHOT)
+        committed_review = load_json(review_output)
+        expected_review = build_review_assist(snapshot)
+        if committed_review != expected_review:
+            errors.append(
+                "web/generated/review-assist.json: differs from generated preparation"
+            )
+        if (
+            committed_review.get("status") != "proposal_only"
+            or committed_review.get("publicationAuthorised") is not False
+        ):
+            errors.append(
+                "web/generated/review-assist.json: must remain proposal-only"
+            )
+        if any(
+            item.get("automationCanDecide") is not False
+            or item.get("recommendedAction")
+            not in {"editorial_review", "request_evidence"}
+            for item in committed_review.get("assertions", [])
+        ):
+            errors.append(
+                "web/generated/review-assist.json: automation cannot decide assertions"
+            )
+
+        audit = load_json(DEFAULT_AUDIT)
+        committed_batch = load_json(batch_output)
+        expected_batch = build_plan(audit, "batch_001")
+        if committed_batch != expected_batch:
+            errors.append(
+                "data/research-queue/batch-002-plan.json: differs from generated plan"
+            )
+        if (
+            committed_batch.get("status") != "planned_candidate_only"
+            or committed_batch.get("publicationAuthorised") is not False
+        ):
+            errors.append(
+                "data/research-queue/batch-002-plan.json: must remain candidate-only"
+            )
+
+        agent_config = load_json(ROOT / "agent" / "config" / "agent.json")
+        if (
+            agent_config.get("mode") != "dry_run"
+            or agent_config.get("external_research_enabled") is not False
+            or agent_config.get("publication_enabled") is not False
+            or agent_config.get("human_review_required") is not True
+        ):
+            errors.append(
+                "agent/config/agent.json: unsafe automation activation state"
+            )
+    except (ImportError, OSError, ValueError, RuntimeError) as exc:
+        errors.append(f"automation artifacts: {exc}")
+
+
 def main() -> int:
     errors: list[str] = []
     validate_json_files(errors)
@@ -682,6 +748,7 @@ def main() -> int:
     validate_taxonomy(errors)
     validate_candidate_imports(errors)
     validate_interface_artifacts(errors)
+    validate_automation_artifacts(errors)
 
     if errors:
         print("Repository validation failed:")

@@ -1,3 +1,6 @@
 # Comma-separated, exact reviewer email addresses. The workspace fails closed
 # when this value is empty.
 REVIEWER_EMAILS=editor@example.org
+
+# Long random bearer token used only by scheduled retention maintenance.
+OPERATIONS_TOKEN=replace-with-a-long-random-token

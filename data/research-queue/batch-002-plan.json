@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "planned_candidate_only",
+  "sourceWorkbook": {
+    "filename": "kaykluz_africa_energy_software_map_v0_1.xlsx",
+    "sha256": "fc7c75132d4b5ce27b2f113550be91ce0d9f0c420aaaaba2deac38bd196618d4"
+  },
+  "afterBatch": "batch_001",
+  "batch": {
+    "id": "batch-002",
+    "organisationIds": [
+      "ORG-004",
+      "ORG-005",
+      "ORG-006",
+      "ORG-007",
+      "ORG-008"
+    ],
+    "entityCount": 16,
+    "assertionCount": 87
+  },
+  "automation": {
+    "permitted": [
+      "privacy_filtered_import",
+      "normalisation",
+      "stable_id_matching",
+      "duplicate_candidates",
+      "schema_validation",
+      "review_bundle_generation"
+    ],
+    "prohibited": [
+      "verification",
+      "publication",
+      "default_branch_write"
+    ]
+  },
+  "promotionBlockedUntil": [
+    "source inspection",
+    "assertion-level human review",
+    "rights resolution",
+    "reviewed data pull request"
+  ],
+  "publicationAuthorised": false
+}

@@ -15,6 +15,13 @@
       "when": 1785434074845,
       "tag": "0001_fancy_senator_kelly",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1785441802499,
+      "tag": "0002_aspiring_whistler",
+      "breakpoints": true
     }
   ]
 }

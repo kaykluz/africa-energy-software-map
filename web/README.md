@@ -35,7 +35,8 @@ methodology AI disclosure. It also exercises contribution storage, private
 receipt lookup, origin and sensitive-data rejection, rate limiting, reviewer
 authorisation, decision auditing, conflict handling, contact isolation, and
 safe review export against an in-memory SQLite database using the real
-migrations.
+migrations. The operations checks cover scheduled retention, queue health,
+authenticated pause/resume, and fail-closed automation access.
 
 ## Contribution storage
 
@@ -60,11 +61,32 @@ to D1; it cannot update the public registry or publish a release.
 
 Reviewers must be signed in and included in the comma-separated
 `REVIEWER_EMAILS` runtime variable. Copy `.dev.vars.example` to an ignored local
-environment file when developing. Apply both migrations in `drizzle/` before
+environment file when developing. Apply all migrations in `drizzle/` before
 using the workspace against a new database.
 
 The complete access, decision, privacy, export, and promotion procedure is in
 the [review workspace contract](../docs/22-review-workspace.md).
+
+## Safe automation
+
+The daily maintenance endpoint requires the private `OPERATIONS_TOKEN`; the
+reviewer Operations tab uses the existing allowlist. Repository automation
+prepares source-grouped review prompts, a bounded Batch 002 research plan, and a
+dry-run research report. None of these paths can edit the public registry or
+publish a release.
+
+Run the complete preparation checks from the repository root:
+
+```bash
+python3 scripts/build_review_assist.py --check
+python3 scripts/prepare_next_batch.py --check
+python3 scripts/run_agent_dry_run.py
+python3 scripts/check_launch_readiness.py
+python3 scripts/validate_repository.py
+```
+
+Production secrets, scheduling, retention, and failure handling are described
+in [Automation and review assist](../docs/23-automation-and-review-assist.md).
 
 To regenerate or verify the interface data before running the web checks:
 

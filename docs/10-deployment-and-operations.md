@@ -55,3 +55,8 @@ Published snapshots remain reproducible from the repository and release archive.
 
 Monitor failed source checks, agent errors, moderation backlog, stale records,
 schema failures, data-release failures, and public application availability.
+
+The scheduled Safe automation workflow now runs retention maintenance and a
+weekly proposal-only research and scale-readiness pass. Its deployment,
+credential and failure rules are defined in
+[Automation and review assist](23-automation-and-review-assist.md).

@@ -7,10 +7,13 @@ register, and safety rules.
 
 ## Current status
 
-**Scaffold only; continuous research is not enabled.**
+**Policy-readiness runner enabled; external research remains disabled.**
 
-The first integrations should run in dry-run mode and create candidate pull
-requests. No runtime is authorised to publish or merge.
+The scheduled runner validates policy, prepares the human review queue and
+emits a dry-run report. It does not fetch source content because no
+source-register row is currently approved for automation. Future runtime
+integrations remain candidate-only. No runtime is authorised to publish or
+merge.
 
 ## Contents
 
@@ -43,4 +46,5 @@ The runtime must:
 - stop safely when evidence or repository state is ambiguous.
 
 See the [autonomous agent specification](../docs/12-autonomous-agent-specification.md).
-
+The active readiness and operations workflow is documented in
+[Automation and review assist](../docs/23-automation-and-review-assist.md).

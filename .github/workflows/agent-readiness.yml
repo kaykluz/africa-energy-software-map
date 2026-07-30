@@ -22,9 +22,11 @@ jobs:
           import json
           from pathlib import Path
           config = json.loads(Path("agent/config/agent.json").read_text())
-          assert config["enabled"] is False
+          assert config["enabled"] is True
           assert config["mode"] == "dry_run"
+          assert config["stage"] == "policy_readiness"
+          assert config["external_research_enabled"] is False
+          assert config["publication_enabled"] is False
           assert config["human_review_required"] is True
-          print("Agent scaffold is disabled, dry-run, and human-review-only.")
+          print("Policy runner is active; external research and publication are disabled.")
           PY
-
