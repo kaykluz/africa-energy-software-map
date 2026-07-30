@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { DatabaseSync } from "node:sqlite";
 import test from "node:test";
 
 async function fetchWorker(pathname = "/", init = {}, environment = {}) {
@@ -36,16 +38,50 @@ async function render(pathname = "/") {
 }
 
 class MemoryD1 {
-  contributions = new Map();
-  contacts = new Map();
-  rates = new Map();
+  database = new DatabaseSync(":memory:");
+
+  constructor() {
+    this.database.exec("PRAGMA foreign_keys = ON");
+    for (const migration of [
+      "../drizzle/0000_quick_prodigy.sql",
+      "../drizzle/0001_fancy_senator_kelly.sql",
+    ]) {
+      const sql = readFileSync(new URL(migration, import.meta.url), "utf8");
+      for (const statement of sql.split("--> statement-breakpoint")) {
+        if (statement.trim()) this.database.exec(statement);
+      }
+    }
+  }
 
   prepare(sql) {
     return new MemoryStatement(this, sql);
   }
 
   async batch(statements) {
-    return Promise.all(statements.map((statement) => statement.run()));
+    this.database.exec("BEGIN IMMEDIATE");
+    try {
+      const results = [];
+      for (const statement of statements) {
+        results.push(await statement.run());
+      }
+      this.database.exec("COMMIT");
+      return results;
+    } catch (error) {
+      this.database.exec("ROLLBACK");
+      throw error;
+    }
+  }
+
+  get(sql, ...values) {
+    return this.database.prepare(sql).get(...values);
+  }
+
+  run(sql, ...values) {
+    return this.database.prepare(sql).run(...values);
+  }
+
+  count(table) {
+    return this.get(`SELECT COUNT(*) AS count FROM ${table}`).count;
   }
 }
 
@@ -54,7 +90,7 @@ class MemoryStatement {
 
   constructor(database, sql) {
     this.database = database;
-    this.sql = sql.replaceAll(/\s+/g, " ").trim();
+    this.sql = sql;
   }
 
   bind(...values) {
@@ -63,51 +99,25 @@ class MemoryStatement {
   }
 
   async first() {
-    if (this.sql.startsWith("INSERT INTO contribution_rate_limits")) {
-      const key = `${this.values[0]}|${this.values[1]}`;
-      const count = this.database.rates.get(key) ?? 0;
-      if (count >= this.values[2]) return null;
-      this.database.rates.set(key, count + 1);
-      return { count: count + 1 };
-    }
-    if (this.sql.includes("FROM contributions") && this.sql.includes("status_token_hash")) {
-      const record = this.database.contributions.get(this.values[0]);
-      return record?.statusTokenHash === this.values[1] ? record : null;
-    }
-    throw new Error(`Unsupported first statement: ${this.sql}`);
+    return this.database.database.prepare(this.sql).get(...this.values) ?? null;
+  }
+
+  async all() {
+    return {
+      success: true,
+      results: this.database.database.prepare(this.sql).all(...this.values),
+    };
   }
 
   async run() {
-    if (this.sql.startsWith("INSERT INTO contributions (")) {
-      this.database.contributions.set(this.values[0], {
-        id: this.values[0],
-        submissionType: this.values[1],
-        status: "received",
-        submittedAt: this.values[2],
-        updatedAt: this.values[3],
-        statusTokenHash: this.values[20],
-      });
-      return { success: true };
-    }
-    if (this.sql.startsWith("DELETE FROM contribution_rate_limits")) {
-      return { success: true };
-    }
-    if (this.sql.startsWith("DELETE FROM contribution_contacts")) {
-      for (const [id, contact] of this.database.contacts) {
-        if (contact.deleteAfter <= this.values[0]) {
-          this.database.contacts.delete(id);
-        }
-      }
-      return { success: true };
-    }
-    if (this.sql.startsWith("INSERT INTO contribution_contacts")) {
-      this.database.contacts.set(this.values[0], {
-        email: this.values[1],
-        deleteAfter: this.values[2],
-      });
-      return { success: true };
-    }
-    throw new Error(`Unsupported run statement: ${this.sql}`);
+    const result = this.database.database.prepare(this.sql).run(...this.values);
+    return {
+      success: true,
+      meta: {
+        changes: Number(result.changes),
+        last_row_id: Number(result.lastInsertRowid),
+      },
+    };
   }
 }
 
@@ -144,6 +154,25 @@ function contributionRequest(body, headers = {}) {
       "user-agent": "registry-test",
       ...headers,
     },
+    body: JSON.stringify(body),
+  };
+}
+
+const reviewerEmail = "editor@example.com";
+process.env.REVIEWER_EMAILS = reviewerEmail;
+
+const reviewerHeaders = {
+  accept: "application/json",
+  "content-type": "application/json",
+  origin: "http://localhost",
+  "sec-fetch-site": "same-origin",
+  "oai-authenticated-user-email": reviewerEmail,
+};
+
+function reviewRequest(body, headers = {}) {
+  return {
+    method: "PUT",
+    headers: { ...reviewerHeaders, ...headers },
     body: JSON.stringify(body),
   };
 }
@@ -263,10 +292,26 @@ test("server-renders durable contribution and private receipt routes", async () 
 
 test("contribution API stores moderated content and private contact separately", async () => {
   const database = new MemoryD1();
-  database.contacts.set("expired", {
-    email: "old@example.com",
-    deleteAfter: "2020-01-01T00:00:00.000Z",
-  });
+  database.run(
+    `INSERT INTO contributions (
+      id, submission_type, status, submitted_at, updated_at, evidence_url,
+      sensitive_confirmed, status_token_hash
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    "expired",
+    "product",
+    "received",
+    "2020-01-01T00:00:00.000Z",
+    "2020-01-01T00:00:00.000Z",
+    "https://example.com/expired",
+    0,
+    "expired-token-hash",
+  );
+  database.run(
+    "INSERT INTO contribution_contacts (contribution_id, email, delete_after) VALUES (?, ?, ?)",
+    "expired",
+    "old@example.com",
+    "2020-01-01T00:00:00.000Z",
+  );
   const response = await fetchWorker(
     "/api/contributions",
     contributionRequest(validProductContribution),
@@ -279,11 +324,32 @@ test("contribution API stores moderated content and private contact separately",
   assert.match(receipt.statusUrl, /^\/contribute\/status\//);
   const receiptToken = new URL(receipt.statusUrl, "http://localhost").searchParams.get("token");
   assert.equal(receiptToken.length, 48);
-  assert.equal(database.contributions.size, 1);
-  assert.equal(database.contacts.get(receipt.id).email, "researcher@example.com");
-  assert.equal(database.contacts.has("expired"), false);
+  assert.equal(
+    database.get(
+      "SELECT COUNT(*) AS count FROM contributions WHERE id = ?",
+      receipt.id,
+    ).count,
+    1,
+  );
+  assert.equal(
+    database.get(
+      "SELECT email FROM contribution_contacts WHERE contribution_id = ?",
+      receipt.id,
+    ).email,
+    "researcher@example.com",
+  );
+  assert.equal(
+    database.get(
+      "SELECT email FROM contribution_contacts WHERE contribution_id = ?",
+      "expired",
+    ),
+    undefined,
+  );
   assert.notEqual(
-    database.contributions.get(receipt.id).statusTokenHash,
+    database.get(
+      "SELECT status_token_hash AS statusTokenHash FROM contributions WHERE id = ?",
+      receipt.id,
+    ).statusTokenHash,
     receiptToken,
   );
 
@@ -352,7 +418,7 @@ test("contribution API rejects cross-site and sensitive submissions", async () =
     JSON.stringify(await credentials.json()),
     /Remove credentials/,
   );
-  assert.equal(database.contributions.size, 0);
+  assert.equal(database.count("contributions"), 0);
 });
 
 test("contribution API enforces registry countries and categories", async () => {
@@ -370,7 +436,7 @@ test("contribution API enforces registry countries and categories", async () => 
   const error = JSON.stringify(await response.json());
   assert.match(error, /African country/);
   assert.match(error, /registry taxonomy/);
-  assert.equal(database.contributions.size, 0);
+  assert.equal(database.count("contributions"), 0);
 });
 
 test("contribution API enforces the daily intake limit", async () => {
@@ -394,4 +460,248 @@ test("contribution API enforces the daily intake limit", async () => {
   );
   assert.equal(limited.status, 429);
   assert.match(JSON.stringify(await limited.json()), /contribution limit/i);
+});
+
+test("review workspace is private and renders for an allowlisted reviewer", async () => {
+  const signedOut = await fetchWorker("/review");
+  assert.ok([302, 303, 307, 308].includes(signedOut.status));
+  assert.match(signedOut.headers.get("location") ?? "", /signin-with-chatgpt/);
+
+  const denied = await fetchWorker("/review", {
+    headers: { "oai-authenticated-user-email": "reader@example.com" },
+  });
+  assert.equal(denied.status, 200);
+  assert.match(await denied.text(), /Reviewer access required/);
+
+  const database = new MemoryD1();
+  const allowed = await fetchWorker(
+    "/review",
+    { headers: { "oai-authenticated-user-email": reviewerEmail } },
+    { DB: database },
+  );
+  assert.equal(allowed.status, 200);
+  const html = await allowed.text();
+  assert.match(html, /<h1[^>]*>Review<\/h1>/i);
+  assert.match(html, /Assertions/);
+  assert.match(html, /Source rights/);
+  assert.match(html, /Contributions/);
+});
+
+test("review API requires an allowlisted ChatGPT identity", async () => {
+  const database = new MemoryD1();
+  const signedOut = await fetchWorker(
+    "/api/review/workspace",
+    { headers: { accept: "application/json" } },
+    { DB: database },
+  );
+  assert.equal(signedOut.status, 401);
+
+  const denied = await fetchWorker(
+    "/api/review/workspace",
+    {
+      headers: {
+        accept: "application/json",
+        "oai-authenticated-user-email": "reader@example.com",
+      },
+    },
+    { DB: database },
+  );
+  assert.equal(denied.status, 403);
+
+  const allowed = await fetchWorker(
+    "/api/review/workspace",
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  assert.equal(allowed.status, 200);
+  assert.match(allowed.headers.get("cache-control") ?? "", /no-store/);
+  const workspace = await allowed.json();
+  assert.deepEqual(workspace.assertionReviews, []);
+  assert.deepEqual(workspace.sourceReviews, []);
+  assert.deepEqual(workspace.contributions, []);
+});
+
+test("assertion review records decisions, audits changes, and detects conflicts", async () => {
+  const database = new MemoryD1();
+  const assertionId = "asrt_07227453704c923a";
+  const decision = {
+    decision: "accept",
+    proposedValue: "",
+    proposedEvidenceStatus: "",
+    notes: "",
+    sourceChecked: true,
+    safetyChecked: true,
+    expectedVersion: 0,
+  };
+  const saved = await fetchWorker(
+    `/api/review/assertions/${assertionId}`,
+    reviewRequest(decision),
+    { DB: database },
+  );
+  assert.equal(saved.status, 200);
+  const savedReview = await saved.json();
+  assert.equal(savedReview.decision, "accept");
+  assert.equal(savedReview.version, 1);
+  assert.equal(database.count("assertion_reviews"), 1);
+  assert.equal(database.count("review_audit_events"), 1);
+
+  const stale = await fetchWorker(
+    `/api/review/assertions/${assertionId}`,
+    reviewRequest(decision),
+    { DB: database },
+  );
+  assert.equal(stale.status, 409);
+
+  const invalid = await fetchWorker(
+    `/api/review/assertions/${assertionId}`,
+    reviewRequest({
+      decision: "reject",
+      proposedValue: "",
+      proposedEvidenceStatus: "",
+      notes: "",
+      sourceChecked: false,
+      safetyChecked: false,
+      expectedVersion: 1,
+    }),
+    { DB: database },
+  );
+  assert.equal(invalid.status, 422);
+});
+
+test("source rights decisions and contribution contact access are audited", async () => {
+  const database = new MemoryD1();
+  const sourceId = "src_3cbec379ee14aa70";
+  const sourceReview = await fetchWorker(
+    `/api/review/sources/${sourceId}`,
+    reviewRequest({
+      rightsStatus: "resolved",
+      sourceLicense: "all_rights_reserved_factual_use",
+      independenceClass: "independent_primary",
+      notes: "Facts may be cited with a link; no source text will be republished.",
+      expectedVersion: 0,
+    }),
+    { DB: database },
+  );
+  assert.equal(sourceReview.status, 200);
+  assert.equal((await sourceReview.json()).version, 1);
+  assert.equal(database.count("source_reviews"), 1);
+
+  const contribution = await fetchWorker(
+    "/api/contributions",
+    contributionRequest(validProductContribution),
+    { DB: database },
+  );
+  assert.equal(contribution.status, 201);
+  const receipt = await contribution.json();
+
+  const workspaceResponse = await fetchWorker(
+    "/api/review/workspace",
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  assert.equal(workspaceResponse.status, 200);
+  const workspaceText = await workspaceResponse.text();
+  assert.match(workspaceText, new RegExp(receipt.id));
+  assert.doesNotMatch(workspaceText, /researcher@example\.com/);
+  assert.doesNotMatch(workspaceText, /statusTokenHash|status_token_hash/);
+
+  const contact = await fetchWorker(
+    `/api/review/contributions/${receipt.id}/contact`,
+    {
+      method: "POST",
+      headers: reviewerHeaders,
+      body: "{}",
+    },
+    { DB: database },
+  );
+  assert.equal(contact.status, 200);
+  assert.equal((await contact.json()).contact.email, "researcher@example.com");
+
+  const moderated = await fetchWorker(
+    `/api/review/contributions/${receipt.id}`,
+    reviewRequest({
+      status: "triaged",
+      reason: "Source and product identity checked; ready for evidence review.",
+    }),
+    { DB: database },
+  );
+  assert.equal(moderated.status, 200);
+  assert.equal((await moderated.json()).status, "triaged");
+  assert.equal(database.count("review_audit_events"), 3);
+
+  const skippedReview = await fetchWorker(
+    `/api/review/contributions/${receipt.id}`,
+    reviewRequest({
+      status: "accepted",
+      reason: "Attempted to bypass the reviewed state.",
+    }),
+    { DB: database },
+  );
+  assert.equal(skippedReview.status, 409);
+
+  const reviewed = await fetchWorker(
+    `/api/review/contributions/${receipt.id}`,
+    reviewRequest({
+      status: "reviewed",
+      reason: "Content, source, privacy and duplicate checks completed.",
+    }),
+    { DB: database },
+  );
+  assert.equal(reviewed.status, 200);
+  assert.equal((await reviewed.json()).status, "reviewed");
+
+  const accepted = await fetchWorker(
+    `/api/review/contributions/${receipt.id}`,
+    reviewRequest({
+      status: "accepted",
+      reason: "Ready to translate into a separately reviewed data pull request.",
+    }),
+    { DB: database },
+  );
+  assert.equal(accepted.status, 200);
+  assert.equal((await accepted.json()).status, "accepted");
+  assert.equal(database.count("review_audit_events"), 5);
+
+  const invalidStatus = await fetchWorker(
+    `/api/review/contributions/${receipt.id}`,
+    reviewRequest({ status: "published", reason: "Not a valid moderation state." }),
+    { DB: database },
+  );
+  assert.equal(invalidStatus.status, 422);
+});
+
+test("review export contains decisions and audit history without private contact data", async () => {
+  const database = new MemoryD1();
+  const saved = await fetchWorker(
+    "/api/review/assertions/asrt_07227453704c923a",
+    reviewRequest({
+      decision: "needs_evidence",
+      proposedValue: "",
+      proposedEvidenceStatus: "",
+      notes: "Find a source that independently confirms the product ownership claim.",
+      sourceChecked: false,
+      safetyChecked: false,
+      expectedVersion: 0,
+    }),
+    { DB: database },
+  );
+  assert.equal(saved.status, 200);
+
+  const exported = await fetchWorker(
+    "/api/review/export",
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  assert.equal(exported.status, 200);
+  assert.match(
+    exported.headers.get("content-disposition") ?? "",
+    /batch-001-human-review-package\.json/,
+  );
+  const exportText = await exported.text();
+  assert.match(exportText, /"publicationAuthorised": false/);
+  assert.match(exportText, /needs_evidence/);
+  assert.doesNotMatch(
+    exportText,
+    /contribution_contacts|statusTokenHash|status_token_hash|researcher@example\.com/,
+  );
 });

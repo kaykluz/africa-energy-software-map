@@ -20,3 +20,7 @@ documented here.
 - Added durable, moderated contribution intake with separate private contact
   storage, private receipt links, abuse and sensitive-data controls, a complete
   taxonomy/country vocabulary, and an operating and retention contract.
+- Added an authenticated `/review` workspace for candidate assertions, source
+  rights, and contribution triage, with optimistic version checks, append-only
+  audits, logged private-contact reveal, decision export, D1 migrations, and no
+  path to automatic publication.

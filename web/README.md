@@ -32,8 +32,10 @@ npm test
 `npm test` builds the production worker and checks server-rendered content for
 the Stack, Directory, Data, product and country profiles, search, and the
 methodology AI disclosure. It also exercises contribution storage, private
-receipt lookup, origin and sensitive-data rejection, and rate limiting against
-an in-memory D1-compatible test adapter.
+receipt lookup, origin and sensitive-data rejection, rate limiting, reviewer
+authorisation, decision auditing, conflict handling, contact isolation, and
+safe review export against an in-memory SQLite database using the real
+migrations.
 
 ## Contribution storage
 
@@ -49,6 +51,20 @@ Contact email is not saved in the browser draft and is stored in a separate
 table with a deletion date. Public registry data and downloads never query the
 intake tables. See the
 [contribution intake and moderation contract](../docs/21-contribution-intake-and-moderation.md).
+
+## Private review workspace
+
+`/review` lets an authorised editor review candidate assertions, resolve source
+rights, and triage incoming contributions. It writes decisions and audit events
+to D1; it cannot update the public registry or publish a release.
+
+Reviewers must be signed in and included in the comma-separated
+`REVIEWER_EMAILS` runtime variable. Copy `.dev.vars.example` to an ignored local
+environment file when developing. Apply both migrations in `drizzle/` before
+using the workspace against a new database.
+
+The complete access, decision, privacy, export, and promotion procedure is in
+the [review workspace contract](../docs/22-review-workspace.md).
 
 To regenerate or verify the interface data before running the web checks:
 

@@ -21,6 +21,12 @@ Community contributions use the website’s private D1 binding. That binding doe
 not give the research runner or public-data build a path around the editorial
 release gate.
 
+The private review workspace uses the same binding for isolated review and
+audit tables. Access requires ChatGPT authentication plus the explicit
+`REVIEWER_EMAILS` environment allowlist. The allowlist fails closed and must be
+configured independently in every deployed environment. See
+[Review workspace](22-review-workspace.md).
+
 ## Continuous integration
 
 Required checks will include:

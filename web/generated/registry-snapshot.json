@@ -290,7 +290,8 @@
       "archivedUrl": "",
       "sourceLicense": "unknown",
       "independenceClass": "independent_primary",
-      "automationPermitted": false
+      "automationPermitted": false,
+      "notes": "Locators: “In Abuja, a network transitioning from ‘flying blind’ to real-time visibility” and the paragraph describing CAIMS, Adora and Xepp. Includes direct comment from an AEDC director. Proparco is a BPS investor, so reported outcomes are not imported without additional corroboration."
     },
     {
       "id": "src_72a68084f5f1f2f3",
@@ -303,7 +304,8 @@
       "archivedUrl": "",
       "sourceLicense": "unknown",
       "independenceClass": "independent_primary",
-      "automationPermitted": false
+      "automationPermitted": false,
+      "notes": "Locator: “Reducing power outages in Nigeria: AEDC x Beacon Power Services.” Supports the named partnership, Nigeria, the 2023 programme-support year and reported implementation activity. AFD administers the supporting programme; outcome figures require separate scrutiny."
     },
     {
       "id": "src_792d6f5e54ae6a49",
@@ -316,7 +318,8 @@
       "archivedUrl": "",
       "sourceLicense": "all_rights_reserved",
       "independenceClass": "provider_authored",
-      "automationPermitted": false
+      "automationPermitted": false,
+      "notes": "Locator: homepage and company footer. Used only for the provider’s current canonical website; it does not independently establish origin, headquarters or deployment."
     },
     {
       "id": "src_7b2b4beeeea7e093",
@@ -329,7 +332,8 @@
       "archivedUrl": "",
       "sourceLicense": "all_rights_reserved",
       "independenceClass": "provider_authored",
-      "automationPermitted": false
+      "automationPermitted": false,
+      "notes": "Locator: CAIMS overview, Features, Functionalities and Technical Specifications. Supports product functions as provider claims; customer outcomes are not imported from this page."
     },
     {
       "id": "src_8d5a439422f50474",
@@ -342,7 +346,8 @@
       "archivedUrl": "",
       "sourceLicense": "unknown",
       "independenceClass": "provider_authored",
-      "automationPermitted": false
+      "automationPermitted": false,
+      "notes": "Locators: Analytics, Sizing Optimisation, Anomaly Detections and Use Cases. Supports the current product URL and provider-described functionality; it does not independently establish deployments."
     },
     {
       "id": "src_91c1fac8b3e57eb7",
@@ -355,7 +360,8 @@
       "archivedUrl": "",
       "sourceLicense": "unknown",
       "independenceClass": "independent_primary",
-      "automationPermitted": false
+      "automationPermitted": false,
+      "notes": "Locators: “The Project at a Glance,” “How It Works” and “Results So Far.” Supports PAM-AI, Nigeria, KEDCO and unnamed mini-grid implementations. It is programme evidence, not customer confirmation; outcome figures are excluded."
     },
     {
       "id": "src_91c77faf0f6640eb",
@@ -368,7 +374,8 @@
       "archivedUrl": "",
       "sourceLicense": "all_rights_reserved",
       "independenceClass": "provider_authored",
-      "automationPermitted": false
+      "automationPermitted": false,
+      "notes": "Locator: Adora overview, Features, Functionalities and Technical Specifications. Supports product functions as provider claims; performance claims are not imported."
     },
     {
       "id": "src_b0a509af628fb050",
@@ -381,7 +388,8 @@
       "archivedUrl": "",
       "sourceLicense": "unknown",
       "independenceClass": "independent_secondary",
-      "automationPermitted": false
+      "automationPermitted": false,
+      "notes": "Locators: article introduction, “How the system works” and the Pai Enterprise launch paragraph. Independently supports company and product existence, Lagos base and June 2025 launch. Regional usage is attributed to the founder and is retained only as claimed availability, never as deployment evidence."
     },
     {
       "id": "src_b2ee9354fd0f5ade",
@@ -394,7 +402,8 @@
       "archivedUrl": "",
       "sourceLicense": "all_rights_reserved",
       "independenceClass": "provider_authored",
-      "automationPermitted": false
+      "automationPermitted": false,
+      "notes": "Locator: Features, Functionalities and Technical Specifications. The page states that the app is available on iOS and Android and is free to download and use; product claims remain provider-authored."
     }
   ],
   "assertions": [
@@ -409,7 +418,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-002. Source locator and limits: AFD states that programme support for the AEDC–BPS partnership began in 2023."
     },
     {
       "id": "asrt_07845759e110e814",
@@ -422,7 +432,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-003. Source locator and limits: Digital Energy states that PAM-AI created demand-side-response programmes for KEDCO in Nigeria and labels the 2025 project a scale-up with active deployments. This is programme evidence, not customer confirmation."
     },
     {
       "id": "asrt_08ef007c6c4a2234",
@@ -435,7 +446,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-001. Source locator and limits: The report identifies BPS as an African energy-technology start-up operating in Nigeria and describes its grid-management software. The single-country headquarters field remains unresolved."
     },
     {
       "id": "asrt_0a6dca967b74a800",
@@ -448,7 +460,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-003. Source locator and limits: Independent editorial profile identifies PowerLabs as a Lagos-based energy and climate-tech startup founded in Nigeria and describes its orchestration focus."
     },
     {
       "id": "asrt_0bb77ef92e9708c3",
@@ -461,7 +474,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-001. Source locator and limits: Proparco names CAIMS as BPS’s field-mapping and digital-twin building block and documents its current use in Abuja."
     },
     {
       "id": "asrt_0d09d9d1b2701639",
@@ -474,7 +488,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-001. Source locator and limits: Proparco’s Abuja report names CAIMS, BPS and AEDC and describes the live field-mapping/digital-twin implementation. Includes comment from AEDC’s Director of Regulation and Efficiency."
     },
     {
       "id": "asrt_180dc26ba963b405",
@@ -487,7 +502,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-005. Source locator and limits: Provider page supports current product functions and contact-sales access."
     },
     {
       "id": "asrt_1aaa9a19e288823a",
@@ -500,7 +516,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-003. Source locator and limits: Independent editorial profile identifies PowerLabs as a Lagos-based energy and climate-tech startup founded in Nigeria and describes its orchestration focus."
     },
     {
       "id": "asrt_1bfadeaf008f8b40",
@@ -513,7 +530,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-003. Source locator and limits: Digital Energy states that PAM-AI created demand-side-response programmes for KEDCO in Nigeria and labels the 2025 project a scale-up with active deployments. This is programme evidence, not customer confirmation."
     },
     {
       "id": "asrt_1d529a17d6b67d99",
@@ -526,7 +544,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-001. Source locator and limits: Canonical provider website only."
     },
     {
       "id": "asrt_1df6fc6ce8f98ee9",
@@ -539,7 +558,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-005. Source locator and limits: Independent article names Pai Enterprise, describes the hybrid energy orchestration layer and reports a June 2025 launch."
     },
     {
       "id": "asrt_1eb7316e70097b01",
@@ -552,7 +572,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-001. Source locator and limits: The report identifies BPS as an African energy-technology start-up operating in Nigeria and describes its grid-management software. The single-country headquarters field remains unresolved."
     },
     {
       "id": "asrt_246a7c5ed464a001",
@@ -565,7 +586,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-003. Source locator and limits: Digital Energy states that PAM-AI created demand-side-response programmes for KEDCO in Nigeria and labels the 2025 project a scale-up with active deployments. This is programme evidence, not customer confirmation."
     },
     {
       "id": "asrt_377ef583561a6506",
@@ -578,7 +600,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-003. Source locator and limits: Proparco names Xepp and describes consumption tracking, transactions and renewable-energy offers."
     },
     {
       "id": "asrt_3a633cb1d805690f",
@@ -591,7 +614,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-004. Source locator and limits: Official programme profile names PAM-AI, documents functions and labels the project a scale-up with active deployments."
     },
     {
       "id": "asrt_3c7c23b9a323ef7f",
@@ -604,7 +628,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-001. Source locator and limits: Proparco’s Abuja report names CAIMS, BPS and AEDC and describes the live field-mapping/digital-twin implementation. Includes comment from AEDC’s Director of Regulation and Efficiency."
     },
     {
       "id": "asrt_3e5924c01f8e14e7",
@@ -617,7 +642,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-001. Source locator and limits: Provider product page supports detailed functions and request-a-demo access; no provider outcome claims are imported."
     },
     {
       "id": "asrt_3eddf67c86bc0c5e",
@@ -630,7 +656,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-004. Source locator and limits: Official programme profile names PAM-AI, documents functions and labels the project a scale-up with active deployments."
     },
     {
       "id": "asrt_3f14c9237e037d62",
@@ -643,7 +670,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-003. Source locator and limits: Independent editorial profile identifies PowerLabs as a Lagos-based energy and climate-tech startup founded in Nigeria and describes its orchestration focus."
     },
     {
       "id": "asrt_3f6071b75d3bdf56",
@@ -656,7 +684,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-004. Source locator and limits: Official programme profile names PAM-AI, documents functions and labels the project a scale-up with active deployments."
     },
     {
       "id": "asrt_4520e223eb8ef3e1",
@@ -669,7 +698,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-002. Source locator and limits: Official programme profile identifies PAM Africa, Nigeria and active scale-up activity, and links the provider website. Headquarters is withheld because the provider lists both Lagos and London locations."
     },
     {
       "id": "asrt_486a07454e573806",
@@ -682,7 +712,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-003. Source locator and limits: Digital Energy states that PAM-AI created demand-side-response programmes for KEDCO in Nigeria and labels the 2025 project a scale-up with active deployments. This is programme evidence, not customer confirmation."
     },
     {
       "id": "asrt_48da5ea052848a18",
@@ -695,7 +726,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-002. Source locator and limits: Official programme profile identifies PAM Africa, Nigeria and active scale-up activity, and links the provider website. Headquarters is withheld because the provider lists both Lagos and London locations."
     },
     {
       "id": "asrt_49ca9eec2c030beb",
@@ -708,7 +740,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-002. Source locator and limits: Official programme profile identifies PAM Africa, Nigeria and active scale-up activity, and links the provider website. Headquarters is withheld because the provider lists both Lagos and London locations."
     },
     {
       "id": "asrt_50984f1b311a4ff1",
@@ -721,7 +754,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-005. Source locator and limits: Provider page supports current product functions and contact-sales access."
     },
     {
       "id": "asrt_52b83b25eb3a8b85",
@@ -734,7 +768,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-002. Source locator and limits: Official programme profile identifies PAM Africa, Nigeria and active scale-up activity, and links the provider website. Headquarters is withheld because the provider lists both Lagos and London locations."
     },
     {
       "id": "asrt_54b47c7795a4296a",
@@ -747,7 +782,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-001. Source locator and limits: Proparco’s Abuja report names CAIMS, BPS and AEDC and describes the live field-mapping/digital-twin implementation. Includes comment from AEDC’s Director of Regulation and Efficiency."
     },
     {
       "id": "asrt_561d58a0d9a7fb6a",
@@ -760,7 +796,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-005. Source locator and limits: Provider page supports current product functions and contact-sales access."
     },
     {
       "id": "asrt_591217630dc7caac",
@@ -773,7 +810,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-004. Source locator and limits: Digital Energy states that PAM-AI is implemented by four unnamed mini-grid developers in Nigeria. The record remains country-level and the customers remain undisclosed."
     },
     {
       "id": "asrt_5aeac7ec9fc81232",
@@ -786,7 +824,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-003. Source locator and limits: Provider product page supports detailed functions and states the app is free to download and use."
     },
     {
       "id": "asrt_5bc6c6f57ed96311",
@@ -799,7 +838,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-005. Source locator and limits: Independent article names Pai Enterprise, describes the hybrid energy orchestration layer and reports a June 2025 launch."
     },
     {
       "id": "asrt_5f5c4f09c6318a89",
@@ -812,7 +852,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-001. Source locator and limits: The report identifies BPS as an African energy-technology start-up operating in Nigeria and describes its grid-management software. The single-country headquarters field remains unresolved."
     },
     {
       "id": "asrt_6438f8d1cb7677a5",
@@ -825,7 +866,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-003. Source locator and limits: Independent editorial profile identifies PowerLabs as a Lagos-based energy and climate-tech startup founded in Nigeria and describes its orchestration focus."
     },
     {
       "id": "asrt_6b08172aaf164605",
@@ -838,7 +880,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-001. Source locator and limits: Proparco’s Abuja report names CAIMS, BPS and AEDC and describes the live field-mapping/digital-twin implementation. Includes comment from AEDC’s Director of Regulation and Efficiency."
     },
     {
       "id": "asrt_734c371921a1891e",
@@ -851,7 +894,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-001. Source locator and limits: Provider product page supports detailed functions and request-a-demo access; no provider outcome claims are imported."
     },
     {
       "id": "asrt_737af1c9ed28c010",
@@ -864,7 +908,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-003. Source locator and limits: Independent editorial profile identifies PowerLabs as a Lagos-based energy and climate-tech startup founded in Nigeria and describes its orchestration focus."
     },
     {
       "id": "asrt_75538177c6808dea",
@@ -877,7 +922,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-003. Source locator and limits: Provider product page supports detailed functions and states the app is free to download and use."
     },
     {
       "id": "asrt_7902bf89d0a7d4d0",
@@ -890,7 +936,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-002. Source locator and limits: Proparco’s Abuja report names Adora, BPS and AEDC and describes the deployed product range. Includes comment from AEDC’s Director of Regulation and Efficiency."
     },
     {
       "id": "asrt_7d2a8ad1923459ab",
@@ -903,7 +950,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-002. Source locator and limits: Proparco names Adora as a BPS product and describes billing, outage management and predictive-maintenance functions in the Abuja deployment."
     },
     {
       "id": "asrt_7d3d6c1623d92b9e",
@@ -916,7 +964,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-002. Source locator and limits: Official programme profile identifies PAM Africa, Nigeria and active scale-up activity, and links the provider website. Headquarters is withheld because the provider lists both Lagos and London locations."
     },
     {
       "id": "asrt_7dcde3441f1567af",
@@ -929,7 +978,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-002. Source locator and limits: Proparco’s Abuja report names Adora, BPS and AEDC and describes the deployed product range. Includes comment from AEDC’s Director of Regulation and Efficiency."
     },
     {
       "id": "asrt_803077b350326f82",
@@ -942,7 +992,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-001. Source locator and limits: The report identifies BPS as an African energy-technology start-up operating in Nigeria and describes its grid-management software. The single-country headquarters field remains unresolved."
     },
     {
       "id": "asrt_8137c87ef55849aa",
@@ -955,7 +1006,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-003. Source locator and limits: Proparco names Xepp and describes consumption tracking, transactions and renewable-energy offers."
     },
     {
       "id": "asrt_814133975224f4ab",
@@ -968,7 +1020,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-004. Source locator and limits: Official programme profile names PAM-AI, documents functions and labels the project a scale-up with active deployments."
     },
     {
       "id": "asrt_837f43de9daa7735",
@@ -981,7 +1034,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-002. Source locator and limits: Proparco’s Abuja report names Adora, BPS and AEDC and describes the deployed product range. Includes comment from AEDC’s Director of Regulation and Efficiency."
     },
     {
       "id": "asrt_86015a5555153bbc",
@@ -994,7 +1048,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-002. Source locator and limits: Provider product page supports detailed functions and request-a-demo access; performance claims are excluded."
     },
     {
       "id": "asrt_89fd8f9d46a94920",
@@ -1007,7 +1062,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-002. Source locator and limits: Proparco’s Abuja report names Adora, BPS and AEDC and describes the deployed product range. Includes comment from AEDC’s Director of Regulation and Efficiency."
     },
     {
       "id": "asrt_8d7e2824c6c17d79",
@@ -1020,7 +1076,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-002. Source locator and limits: Proparco’s Abuja report names Adora, BPS and AEDC and describes the deployed product range. Includes comment from AEDC’s Director of Regulation and Efficiency."
     },
     {
       "id": "asrt_8f8054fd2fcc0c93",
@@ -1033,7 +1090,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-004. Source locator and limits: Digital Energy states that PAM-AI is implemented by four unnamed mini-grid developers in Nigeria. The record remains country-level and the customers remain undisclosed."
     },
     {
       "id": "asrt_8fc4f469e6df55e8",
@@ -1046,7 +1104,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-005. Source locator and limits: Independent article names Pai Enterprise, describes the hybrid energy orchestration layer and reports a June 2025 launch."
     },
     {
       "id": "asrt_904a5e38dcaf4c1c",
@@ -1059,7 +1118,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-001. Source locator and limits: Proparco names CAIMS as BPS’s field-mapping and digital-twin building block and documents its current use in Abuja."
     },
     {
       "id": "asrt_90c9d62a102715aa",
@@ -1072,7 +1132,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-002. Source locator and limits: Official programme profile identifies PAM Africa, Nigeria and active scale-up activity, and links the provider website. Headquarters is withheld because the provider lists both Lagos and London locations."
     },
     {
       "id": "asrt_9216a583507670a3",
@@ -1085,7 +1146,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-001. Source locator and limits: The report identifies BPS as an African energy-technology start-up operating in Nigeria and describes its grid-management software. The single-country headquarters field remains unresolved."
     },
     {
       "id": "asrt_9572ca21d4a3c388",
@@ -1098,7 +1160,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-005. Source locator and limits: Independent article names Pai Enterprise, describes the hybrid energy orchestration layer and reports a June 2025 launch."
     },
     {
       "id": "asrt_9761b29fae870f66",
@@ -1111,7 +1174,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-003. Source locator and limits: Digital Energy states that PAM-AI created demand-side-response programmes for KEDCO in Nigeria and labels the 2025 project a scale-up with active deployments. This is programme evidence, not customer confirmation."
     },
     {
       "id": "asrt_97ded978e99d5f39",
@@ -1124,7 +1188,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-001. Source locator and limits: Proparco’s Abuja report names CAIMS, BPS and AEDC and describes the live field-mapping/digital-twin implementation. Includes comment from AEDC’s Director of Regulation and Efficiency."
     },
     {
       "id": "asrt_991034d06a254b2d",
@@ -1137,7 +1202,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-001. Source locator and limits: Proparco’s Abuja report names CAIMS, BPS and AEDC and describes the live field-mapping/digital-twin implementation. Includes comment from AEDC’s Director of Regulation and Efficiency."
     },
     {
       "id": "asrt_9ee29eba13999ef4",
@@ -1150,7 +1216,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-004. Source locator and limits: Digital Energy states that PAM-AI is implemented by four unnamed mini-grid developers in Nigeria. The record remains country-level and the customers remain undisclosed."
     },
     {
       "id": "asrt_a3d4833576863865",
@@ -1163,7 +1230,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-003. Source locator and limits: Independent editorial profile identifies PowerLabs as a Lagos-based energy and climate-tech startup founded in Nigeria and describes its orchestration focus."
     },
     {
       "id": "asrt_a8deaf1852841b9a",
@@ -1176,7 +1244,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-002. Source locator and limits: Provider product page supports detailed functions and request-a-demo access; performance claims are excluded."
     },
     {
       "id": "asrt_aa800388137a70f4",
@@ -1189,7 +1258,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-003. Source locator and limits: Independent editorial profile identifies PowerLabs as a Lagos-based energy and climate-tech startup founded in Nigeria and describes its orchestration focus."
     },
     {
       "id": "asrt_b234d765197e1baa",
@@ -1202,7 +1272,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-001. Source locator and limits: Provider product page supports detailed functions and request-a-demo access; no provider outcome claims are imported."
     },
     {
       "id": "asrt_b2918c6d20e9d8f1",
@@ -1215,7 +1286,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-005. Source locator and limits: Independent article names Pai Enterprise, describes the hybrid energy orchestration layer and reports a June 2025 launch."
     },
     {
       "id": "asrt_b4449c5ffd3ba5a5",
@@ -1228,7 +1300,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-002. Source locator and limits: Provider product page supports detailed functions and request-a-demo access; performance claims are excluded."
     },
     {
       "id": "asrt_b6a1da022fa625bc",
@@ -1241,7 +1314,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-004. Source locator and limits: Official programme profile names PAM-AI, documents functions and labels the project a scale-up with active deployments."
     },
     {
       "id": "asrt_bc5c9b4a4c470667",
@@ -1254,7 +1328,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-002. Source locator and limits: Official programme profile identifies PAM Africa, Nigeria and active scale-up activity, and links the provider website. Headquarters is withheld because the provider lists both Lagos and London locations."
     },
     {
       "id": "asrt_bc7add211b0949ce",
@@ -1267,7 +1342,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-003. Source locator and limits: Current provider domain and product page."
     },
     {
       "id": "asrt_c1cb51aeee357631",
@@ -1280,7 +1356,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: ORG-001. Source locator and limits: The report identifies BPS as an African energy-technology start-up operating in Nigeria and describes its grid-management software. The single-country headquarters field remains unresolved."
     },
     {
       "id": "asrt_c4110ced08d67824",
@@ -1293,7 +1370,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-002. Source locator and limits: Proparco names Adora as a BPS product and describes billing, outage management and predictive-maintenance functions in the Abuja deployment."
     },
     {
       "id": "asrt_c7069468e5da4550",
@@ -1306,7 +1384,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-005. Source locator and limits: The article attributes this statement to the founder. It is retained as claimed availability and must not be counted as a deployment."
     },
     {
       "id": "asrt_cd3e5efa923b5570",
@@ -1319,7 +1398,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-003. Source locator and limits: Proparco names Xepp and describes consumption tracking, transactions and renewable-energy offers."
     },
     {
       "id": "asrt_d1c44a81414b0c28",
@@ -1332,7 +1412,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-002. Source locator and limits: Proparco’s Abuja report names Adora, BPS and AEDC and describes the deployed product range. Includes comment from AEDC’s Director of Regulation and Efficiency."
     },
     {
       "id": "asrt_d5fcca1e85edf1d2",
@@ -1345,7 +1426,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-004. Source locator and limits: Digital Energy states that PAM-AI is implemented by four unnamed mini-grid developers in Nigeria. The record remains country-level and the customers remain undisclosed."
     },
     {
       "id": "asrt_d6d03ea5ddc85b0e",
@@ -1358,7 +1440,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-004. Source locator and limits: Digital Energy states that PAM-AI is implemented by four unnamed mini-grid developers in Nigeria. The record remains country-level and the customers remain undisclosed."
     },
     {
       "id": "asrt_d866a7821f95268c",
@@ -1371,7 +1454,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-003. Source locator and limits: Digital Energy states that PAM-AI created demand-side-response programmes for KEDCO in Nigeria and labels the 2025 project a scale-up with active deployments. This is programme evidence, not customer confirmation."
     },
     {
       "id": "asrt_dc00645d1b14dafa",
@@ -1384,7 +1468,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-003. Source locator and limits: Provider product page supports detailed functions and states the app is free to download and use."
     },
     {
       "id": "asrt_e3d49ff3c958f06f",
@@ -1397,7 +1482,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-003. Source locator and limits: Proparco names Xepp and describes consumption tracking, transactions and renewable-energy offers."
     },
     {
       "id": "asrt_efdfe99fac2d5dfc",
@@ -1410,7 +1496,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-001. Source locator and limits: Proparco’s Abuja report names CAIMS, BPS and AEDC and describes the live field-mapping/digital-twin implementation. Includes comment from AEDC’s Director of Regulation and Efficiency."
     },
     {
       "id": "asrt_effeed44d72ce61a",
@@ -1423,7 +1510,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-004. Source locator and limits: Commercial-service classification remains an editorial interpretation of a utility-facing implementation; pricing is not published."
     },
     {
       "id": "asrt_f0623dbb92df930b",
@@ -1436,7 +1524,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-004. Source locator and limits: Digital Energy states that PAM-AI is implemented by four unnamed mini-grid developers in Nigeria. The record remains country-level and the customers remain undisclosed."
     },
     {
       "id": "asrt_f1cfb5ef55395736",
@@ -1449,7 +1538,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-002. Source locator and limits: Proparco names Adora as a BPS product and describes billing, outage management and predictive-maintenance functions in the Abuja deployment."
     },
     {
       "id": "asrt_f2b8c24777b2382d",
@@ -1462,7 +1552,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-004. Source locator and limits: Official programme profile names PAM-AI, documents functions and labels the project a scale-up with active deployments."
     },
     {
       "id": "asrt_f40d53ee1910124d",
@@ -1475,7 +1566,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-002. Source locator and limits: Proparco names Adora as a BPS product and describes billing, outage management and predictive-maintenance functions in the Abuja deployment."
     },
     {
       "id": "asrt_f4f5659480dc0dd5",
@@ -1488,7 +1580,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-003. Source locator and limits: Digital Energy states that PAM-AI created demand-side-response programmes for KEDCO in Nigeria and labels the 2025 project a scale-up with active deployments. This is programme evidence, not customer confirmation."
     },
     {
       "id": "asrt_f88d97e5d33e8545",
@@ -1501,7 +1594,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-001. Source locator and limits: Proparco names CAIMS as BPS’s field-mapping and digital-twin building block and documents its current use in Abuja."
     },
     {
       "id": "asrt_faac90d14181c8a5",
@@ -1514,7 +1608,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: PROD-001. Source locator and limits: Proparco names CAIMS as BPS’s field-mapping and digital-twin building block and documents its current use in Abuja."
     },
     {
       "id": "asrt_fb51174ce4890ebd",
@@ -1527,7 +1622,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-001. Source locator and limits: AFD states that programme support for the AEDC–BPS partnership began in 2023."
     },
     {
       "id": "asrt_fbd934f9a67f1d7e",
@@ -1540,7 +1636,8 @@
       "reviewedBy": "",
       "reviewedAt": "",
       "validFrom": "",
-      "validTo": ""
+      "validTo": "",
+      "notes": "AI-assisted source review candidate; human editorial approval required. Legacy ID: DEP-002. Source locator and limits: Proparco’s Abuja report names Adora, BPS and AEDC and describes the deployed product range. Includes comment from AEDC’s Director of Regulation and Efficiency."
     }
   ],
   "stages": [

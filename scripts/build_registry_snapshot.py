@@ -299,6 +299,7 @@ def build_snapshot(config_path: Path = DEFAULT_CONFIG) -> dict[str, object]:
             "sourceLicense": row["source_license"],
             "independenceClass": row["independence_class"],
             "automationPermitted": row["automation_permitted"] == "true",
+            "notes": row["notes"],
         }
         for row in sources_raw
     ]
@@ -315,6 +316,7 @@ def build_snapshot(config_path: Path = DEFAULT_CONFIG) -> dict[str, object]:
             "reviewedAt": row["reviewed_at"],
             "validFrom": row["valid_from"],
             "validTo": row["valid_to"],
+            "notes": row["notes"],
         }
         for row in assertions_raw
     ]

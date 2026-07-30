@@ -22,6 +22,7 @@
 - [11 — Data licensing and rights](11-data-licensing-and-rights.md)
 - [20 — Batch 001 evidence review](20-batch-001-evidence-review.md)
 - [21 — Contribution intake and moderation](21-contribution-intake-and-moderation.md)
+- [22 — Review workspace](22-review-workspace.md)
 
 ## Operations and governance
 
@@ -31,6 +32,7 @@
 - [12 — Autonomous agent specification](12-autonomous-agent-specification.md)
 - [13 — Threat model](13-threat-model.md)
 - [21 — Contribution intake and moderation](21-contribution-intake-and-moderation.md)
+- [22 — Review workspace](22-review-workspace.md)
 
 These documents are normative for Phase 1 unless a later pull request explicitly
 supersedes them.

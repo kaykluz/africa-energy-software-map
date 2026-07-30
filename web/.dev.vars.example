@@ -1,0 +1,3 @@
+# Comma-separated, exact reviewer email addresses. The workspace fails closed
+# when this value is empty.
+REVIEWER_EMAILS=editor@example.org
