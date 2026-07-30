@@ -39,6 +39,10 @@ The prototype website and its candidate downloads are generated from one
 checksum-verified batch. The
 [snapshot and export pipeline](docs/19-snapshot-and-export-pipeline.md)
 documents the promotion gate and update workflow.
+Completed public contributions now enter a durable private intake queue and
+receive a private status link. They remain separate from the registry until a
+human-reviewed data change passes the publication gate. See
+[contribution intake and moderation](docs/21-contribution-intake-and-moderation.md).
 
 ## Core principles
 
@@ -79,6 +83,7 @@ documents the promotion gate and update workflow.
 - [Expansion architecture and roadmap](docs/18-expansion-architecture-and-roadmap.md)
 - [Snapshot and export pipeline](docs/19-snapshot-and-export-pipeline.md)
 - [Batch 001 evidence review](docs/20-batch-001-evidence-review.md)
+- [Contribution intake and moderation](docs/21-contribution-intake-and-moderation.md)
 - [Interactive prototype](web/README.md)
 - [Contributing](CONTRIBUTING.md)
 

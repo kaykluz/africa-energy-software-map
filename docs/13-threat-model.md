@@ -18,6 +18,9 @@
 | Provider data poisoning | Disclose relationship; separate claims from independent evidence |
 | Duplicate or syndicated evidence | Source-origin classification and deduplication |
 | Malicious community submission | Moderation queue, link safety, contributor disclosure |
+| Intake spam and automated flooding | Same-origin requests, body limits, honeypot, hashed daily rate limit |
+| Receipt enumeration or leakage | Non-sequential IDs, separate high-entropy secret, hash-only storage, no-store and no-index responses |
+| Private contact disclosure | Separate contact table, no public/API export, timed deletion |
 | Secret leakage | Least privilege, secret scanning, redacted logs |
 | Direct agent publication | Protected branch and PR-only credentials |
 | Link rot | Archive metadata where permitted, retrieval dates, link checks |
@@ -30,8 +33,8 @@
 ## Kill switch
 
 Maintainers must be able to disable schedules, revoke the agent credential, close
-open agent branches, and freeze automated intake without affecting public read
-access.
+open agent branches, and freeze automated or community intake without affecting
+public read access.
 
 ## Incident response
 
@@ -42,4 +45,3 @@ access.
 5. Revert or supersede affected published changes.
 6. Notify affected parties where appropriate.
 7. Document corrective controls before re-enabling.
-

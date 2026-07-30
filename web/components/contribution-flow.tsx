@@ -1,10 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { products } from "@/lib/registry-data";
-import { type FormEvent, useEffect, useMemo, useState } from "react";
+import { africanCountries, categories, products } from "@/lib/registry-data";
+import { type FormEvent, useEffect, useState } from "react";
 
 type FlowType = "product" | "deployment" | "correction" | "claim";
+type Receipt = {
+  id: string;
+  status: string;
+  statusLabel: string;
+  statusUrl: string | null;
+};
 
 const flowContent: Record<
   FlowType,
@@ -49,10 +55,14 @@ const flowContent: Record<
 export function ContributionFlow({ type }: { type: FlowType }) {
   const content = flowContent[type];
   const [step, setStep] = useState(0);
-  const [submitted, setSubmitted] = useState(false);
+  const [receipt, setReceipt] = useState<Receipt | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [draftReady, setDraftReady] = useState(false);
   const [form, setForm] = useState({
     product: "",
     organisation: "",
+    category: "",
     country: "NG",
     customerDisclosure: "named",
     customer: "",
@@ -62,53 +72,86 @@ export function ContributionFlow({ type }: { type: FlowType }) {
     proposedValue: "",
     source: "",
     relationship: "",
+    authority: "",
     email: "",
     notes: "",
     sensitiveConfirmed: false,
+    companyWebsite: "",
   });
   const storageKey = `aesm-contribution-draft-${type}`;
 
   useEffect(() => {
     const saved = window.localStorage.getItem(storageKey);
-    if (!saved) return;
     const timer = window.setTimeout(() => {
-    try {
-      const parsed = JSON.parse(saved) as typeof form;
-      setForm((current) => ({ ...current, ...parsed, email: "" }));
-    } catch {
-      window.localStorage.removeItem(storageKey);
-    }
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved) as typeof form;
+          setForm((current) => ({
+            ...current,
+            ...parsed,
+            email: "",
+            companyWebsite: "",
+          }));
+        } catch {
+          window.localStorage.removeItem(storageKey);
+        }
+      }
+      setDraftReady(true);
     }, 0);
     return () => window.clearTimeout(timer);
   }, [storageKey]);
 
   useEffect(() => {
-    const safeDraft = { ...form, email: "" };
+    if (!draftReady) return;
+    const safeDraft = { ...form, email: "", companyWebsite: "" };
     window.localStorage.setItem(storageKey, JSON.stringify(safeDraft));
-  }, [form, storageKey]);
-
-  const submissionId = useMemo(
-    () => `AEM-${type.slice(0, 3).toUpperCase()}-260730`,
-    [type],
-  );
+  }, [draftReady, form, storageKey]);
 
   function update(name: string, value: string | boolean) {
     setForm((current) => ({ ...current, [name]: value }));
+    setSubmitError("");
   }
 
-  function submit(event: FormEvent) {
+  async function submit(event: FormEvent) {
     event.preventDefault();
     if (step < content.steps.length - 1) {
       setStep((current) => current + 1);
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-    setSubmitted(true);
-    window.localStorage.removeItem(storageKey);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setSubmitting(true);
+    setSubmitError("");
+    try {
+      const response = await fetch("/api/contributions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type, ...form }),
+      });
+      const result = (await response.json()) as
+        | Receipt
+        | { error?: { message?: string } };
+      if (!response.ok) {
+        throw new Error(
+          "error" in result
+            ? result.error?.message
+            : "The contribution could not be saved.",
+        );
+      }
+      setReceipt(result as Receipt);
+      window.localStorage.removeItem(storageKey);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (reason) {
+      setSubmitError(
+        reason instanceof Error
+          ? reason.message
+          : "The contribution could not be saved. Try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
 
-  if (submitted) {
+  if (receipt) {
     return (
       <main className="form-page reading-width" id="main-content">
         <div className="submission-success">
@@ -119,8 +162,11 @@ export function ContributionFlow({ type }: { type: FlowType }) {
             This does not mean the record is published or verified. A reviewer may
             contact you for clarification using the route provided.
           </p>
-          <dl><div><dt>Submission ID</dt><dd className="mono">{submissionId}</dd></div><div><dt>Status</dt><dd>Awaiting intake review</dd></div></dl>
-          <div><Link className="button button-primary" href="/directory">Open Data</Link><button className="button button-outline" onClick={() => { setSubmitted(false); setStep(0); }} type="button">Start another</button></div>
+          <dl><div><dt>Submission ID</dt><dd className="mono">{receipt.id}</dd></div><div><dt>Status</dt><dd>{receipt.statusLabel}</dd></div></dl>
+          <div>
+            {receipt.statusUrl ? <Link className="button button-primary" href={receipt.statusUrl}>Track status</Link> : null}
+            <button className="button button-outline" onClick={() => { setReceipt(null); setStep(0); }} type="button">Start another</button>
+          </div>
         </div>
       </main>
     );
@@ -142,6 +188,16 @@ export function ContributionFlow({ type }: { type: FlowType }) {
         ))}
       </ol>
       <form onSubmit={submit}>
+        <label aria-hidden="true" className="honeypot-field">
+          Company website
+          <input
+            autoComplete="off"
+            name="company-website"
+            onChange={(event) => update("companyWebsite", event.target.value)}
+            tabIndex={-1}
+            value={form.companyWebsite}
+          />
+        </label>
         <div className="form-step">
           <span className="eyebrow">Step {step + 1} of {content.steps.length}</span>
           <h2>{content.steps[step]}</h2>
@@ -152,10 +208,11 @@ export function ContributionFlow({ type }: { type: FlowType }) {
         </div>
         <div className="form-actions">
           {step ? <button className="button button-outline" onClick={() => setStep((current) => current - 1)} type="button">Back</button> : <Link className="button button-outline" href="/contribute">Cancel</Link>}
-          <button className="button button-primary" type="submit">{step === content.steps.length - 1 ? content.submit : "Continue"}</button>
+          <button className="button button-primary" disabled={submitting} type="submit">{submitting ? "Sending…" : step === content.steps.length - 1 ? content.submit : "Continue"}</button>
         </div>
+        {submitError ? <p className="submission-error" role="alert">{submitError}</p> : null}
       </form>
-      <p className="draft-note">A non-sensitive draft is stored only in this browser. Email fields are never stored.</p>
+      <p className="draft-note">A non-sensitive draft is stored only in this browser. Contact email is sent only with the final contribution, stored separately and scheduled for deletion.</p>
     </main>
   );
 }
@@ -183,35 +240,36 @@ function FirstStep({ form, type, update }: StepProps) {
 function DetailStep({ form, type, update }: StepProps) {
   if (type === "deployment") {
     return <>
-      <Field helper="Country or safe subnational area only. Never enter exact infrastructure coordinates." label="Country" required><select onChange={(event) => update("country", event.target.value)} required value={form.country}><option value="NG">Nigeria</option><option value="GH">Ghana</option><option value="KE">Kenya</option><option value="ZA">South Africa</option></select></Field>
+      <Field helper="Country or safe subnational area only. Never enter exact infrastructure coordinates." label="Country" required><select onChange={(event) => update("country", event.target.value)} required value={form.country}>{africanCountries.map(([iso2, name]) => <option key={iso2} value={iso2}>{name}</option>)}</select></Field>
       <fieldset className="field-group"><legend>Customer disclosure</legend><label><input checked={form.customerDisclosure === "named"} name="disclosure" onChange={() => update("customerDisclosure", "named")} type="radio" /> Named customer</label><label><input checked={form.customerDisclosure === "undisclosed"} name="disclosure" onChange={() => update("customerDisclosure", "undisclosed")} type="radio" /> Customer undisclosed</label></fieldset>
       <Field helper={form.customerDisclosure === "undisclosed" ? "Do not enter the confidential name. Describe only the publishable verification basis in Notes." : ""} label={form.customerDisclosure === "undisclosed" ? "Publishable customer description" : "Customer name"} required><input onChange={(event) => update("customer", event.target.value)} required value={form.customer} /></Field>
       <div className="field-row"><Field label="Start year"><input inputMode="numeric" maxLength={4} onChange={(event) => update("year", event.target.value)} value={form.year} /></Field><Field label="Lifecycle"><select onChange={(event) => update("lifecycle", event.target.value)} value={form.lifecycle}><option value="live">Live</option><option value="pilot">Pilot</option><option value="historical">Historical</option></select></Field></div>
     </>;
   }
   if (type === "correction") return <Field helper="State the replacement exactly as it should appear." label="Proposed value" required><textarea onChange={(event) => update("proposedValue", event.target.value)} required rows={4} value={form.proposedValue} /></Field>;
-  if (type === "claim") return <><Field label="Role and authority" required><textarea onChange={(event) => update("relationship", event.target.value)} required rows={4} value={form.relationship} /></Field><div className="claim-notice"><strong>Claiming grants no direct editing rights.</strong><p>It also does not independently verify deployments or outcomes.</p></div></>;
-  return <><Field label="What does the product do?" required><textarea onChange={(event) => update("notes", event.target.value)} required rows={5} value={form.notes} /></Field><Field label="Primary category" required><select defaultValue=""><option disabled value="">Select category</option><option>Distribution utility operations</option><option>PAYGo and mini-grid operations</option><option>Retail metering, billing and payments</option><option>C&I and behind-the-meter</option></select></Field></>;
+  if (type === "claim") return <><Field label="Role and authority" required><textarea onChange={(event) => update("authority", event.target.value)} required rows={4} value={form.authority} /></Field><div className="claim-notice"><strong>Claiming grants no direct editing rights.</strong><p>It also does not independently verify deployments or outcomes.</p></div></>;
+  return <><Field label="What does the product do?" required><textarea onChange={(event) => update("notes", event.target.value)} required rows={5} value={form.notes} /></Field><Field label="Primary category" required><select onChange={(event) => update("category", event.target.value)} required value={form.category}><option disabled value="">Select category</option>{categories.map((category) => <option key={category.id}>{category.name}</option>)}</select></Field></>;
 }
 
 function EvidenceStep({ form, type, update }: StepProps) {
   return <>
     <Field helper="Use a direct public page, document or repository URL. Search results and generated summaries are not evidence." label="Source URL" required><input onChange={(event) => update("source", event.target.value)} placeholder="https://" required type="url" value={form.source} /></Field>
     <Field label="Your relationship to this source or record"><select onChange={(event) => update("relationship", event.target.value)} value={form.relationship}><option value="">Select relationship</option><option value="provider">Product provider</option><option value="customer">Customer or user</option><option value="researcher">Independent researcher</option><option value="public">Public-source contributor</option></select></Field>
+    {type !== "claim" ? <Field helper="Optional. Stored privately and separately from the contribution." label="Contact email"><input onChange={(event) => update("email", event.target.value)} type="email" value={form.email} /></Field> : null}
     <Field helper="Do not paste confidential excerpts, personal contacts or credentials." label="Notes for the reviewer"><textarea onChange={(event) => update("notes", event.target.value)} rows={4} value={form.notes} /></Field>
     {type === "deployment" ? <label className="source-toggle sensitive-check"><input checked={form.sensitiveConfirmed} onChange={(event) => update("sensitiveConfirmed", event.target.checked)} required type="checkbox" /><span><strong>I have not included sensitive infrastructure data</strong><small>No exact non-public coordinates, vulnerabilities, credentials or confidential identity clues.</small></span></label> : null}
   </>;
 }
 
 function ReviewStep({ form, type }: Omit<StepProps, "update">) {
-  return <div className="review-card"><p>Review the publishable summary. A human editor will assess the source, wording, independence and privacy.</p><dl>{form.product ? <div><dt>{type === "product" ? "Product" : "Record"}</dt><dd>{form.product}</dd></div> : null}{form.organisation ? <div><dt>Organisation</dt><dd>{form.organisation}</dd></div> : null}{form.country ? <div><dt>Country</dt><dd>{form.country}</dd></div> : null}{form.customer ? <div><dt>Customer disclosure</dt><dd>{form.customerDisclosure === "undisclosed" ? "Customer undisclosed" : form.customer}</dd></div> : null}{form.field ? <div><dt>Field</dt><dd>{form.field}</dd></div> : null}{form.proposedValue ? <div><dt>Proposed value</dt><dd>{form.proposedValue}</dd></div> : null}{form.source ? <div><dt>Source</dt><dd>{form.source}</dd></div> : null}</dl><div className="dialog-notice"><strong>Submission status</strong><p>The submission enters editorial review. It is not published or verified automatically.</p></div></div>;
+  return <div className="review-card"><p>Review the publishable summary. A human editor will assess the source, wording, independence and privacy.</p><dl>{form.product ? <div><dt>{type === "product" ? "Product" : "Record"}</dt><dd>{form.product}</dd></div> : null}{form.organisation ? <div><dt>Organisation</dt><dd>{form.organisation}</dd></div> : null}{form.category ? <div><dt>Category</dt><dd>{form.category}</dd></div> : null}{form.country ? <div><dt>Country</dt><dd>{form.country}</dd></div> : null}{form.customer ? <div><dt>Customer disclosure</dt><dd>{form.customerDisclosure === "undisclosed" ? "Customer undisclosed" : form.customer}</dd></div> : null}{form.field ? <div><dt>Field</dt><dd>{form.field}</dd></div> : null}{form.proposedValue ? <div><dt>Proposed value</dt><dd>{form.proposedValue}</dd></div> : null}{form.source ? <div><dt>Source</dt><dd>{form.source}</dd></div> : null}</dl><div className="dialog-notice"><strong>Submission status</strong><p>The submission enters editorial review. It is not published or verified automatically.</p></div></div>;
 }
 
 type StepProps = {
   form: {
-    product: string; organisation: string; country: string; customerDisclosure: string;
+    product: string; organisation: string; category: string; country: string; customerDisclosure: string;
     customer: string; year: string; lifecycle: string; field: string; proposedValue: string;
-    source: string; relationship: string; email: string; notes: string; sensitiveConfirmed: boolean;
+    source: string; relationship: string; authority: string; email: string; notes: string; sensitiveConfirmed: boolean; companyWebsite: string;
   };
   type: FlowType;
   update: (name: string, value: string | boolean) => void;

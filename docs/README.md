@@ -21,6 +21,7 @@
 - [07 — Export and API specification](07-export-and-api-specification.md)
 - [11 — Data licensing and rights](11-data-licensing-and-rights.md)
 - [20 — Batch 001 evidence review](20-batch-001-evidence-review.md)
+- [21 — Contribution intake and moderation](21-contribution-intake-and-moderation.md)
 
 ## Operations and governance
 
@@ -29,6 +30,7 @@
 - [10 — Deployment and operations](10-deployment-and-operations.md)
 - [12 — Autonomous agent specification](12-autonomous-agent-specification.md)
 - [13 — Threat model](13-threat-model.md)
+- [21 — Contribution intake and moderation](21-contribution-intake-and-moderation.md)
 
 These documents are normative for Phase 1 unless a later pull request explicitly
 supersedes them.

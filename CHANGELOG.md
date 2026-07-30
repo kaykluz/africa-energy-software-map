@@ -17,3 +17,6 @@ documented here.
 - Added a deterministic candidate snapshot and download pipeline, explicit
   editorial promotion gate, 54-country reference, generated UI data adapter,
   public candidate downloads, and reproducibility checks.
+- Added durable, moderated contribution intake with separate private contact
+  storage, private receipt links, abuse and sensitive-data controls, a complete
+  taxonomy/country vocabulary, and an operating and retention contract.

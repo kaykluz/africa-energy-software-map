@@ -17,6 +17,10 @@
 The research runner receives no production write credential. It writes branches
 and pull requests only.
 
+Community contributions use the website’s private D1 binding. That binding does
+not give the research runner or public-data build a path around the editorial
+release gate.
+
 ## Continuous integration
 
 Required checks will include:
@@ -36,12 +40,12 @@ checksums, schema, licence, change log, and archived snapshot.
 
 ## Backups and recovery
 
-The canonical database, source register, release artefacts, and moderation
-history require automated backups. Published snapshots remain reproducible from
-the repository and release archive.
+The canonical database, source register, release artefacts, moderation history,
+and private contribution queue require automated backups. Contact data must keep
+its shorter retention schedule in backups as well as the live database.
+Published snapshots remain reproducible from the repository and release archive.
 
 ## Observability
 
 Monitor failed source checks, agent errors, moderation backlog, stale records,
 schema failures, data-release failures, and public application availability.
-
