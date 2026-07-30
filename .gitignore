@@ -9,7 +9,8 @@ __pycache__/
 node_modules/
 dist/
 build/
+!web/build/
+!web/build/sites-vite-plugin.ts
 coverage/
 agent/runs/*
 !agent/runs/README.md
-
