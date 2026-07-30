@@ -120,7 +120,7 @@ export function ContributionFlow({ type }: { type: FlowType }) {
             contact you for clarification using the route provided.
           </p>
           <dl><div><dt>Submission ID</dt><dd className="mono">{submissionId}</dd></div><div><dt>Status</dt><dd>Awaiting intake review</dd></div></dl>
-          <div><Link className="button button-primary" href="/directory">Return to Directory</Link><button className="button button-outline" onClick={() => { setSubmitted(false); setStep(0); }} type="button">Start another</button></div>
+          <div><Link className="button button-primary" href="/directory">Open Data</Link><button className="button button-outline" onClick={() => { setSubmitted(false); setStep(0); }} type="button">Start another</button></div>
         </div>
       </main>
     );
@@ -196,7 +196,7 @@ function DetailStep({ form, type, update }: StepProps) {
 
 function EvidenceStep({ form, type, update }: StepProps) {
   return <>
-    <Field helper="Use a direct public page, document or repository URL. AI output and search snippets are not evidence." label="Source URL" required><input onChange={(event) => update("source", event.target.value)} placeholder="https://" required type="url" value={form.source} /></Field>
+    <Field helper="Use a direct public page, document or repository URL. Search results and generated summaries are not evidence." label="Source URL" required><input onChange={(event) => update("source", event.target.value)} placeholder="https://" required type="url" value={form.source} /></Field>
     <Field label="Your relationship to this source or record"><select onChange={(event) => update("relationship", event.target.value)} value={form.relationship}><option value="">Select relationship</option><option value="provider">Product provider</option><option value="customer">Customer or user</option><option value="researcher">Independent researcher</option><option value="public">Public-source contributor</option></select></Field>
     <Field helper="Do not paste confidential excerpts, personal contacts or credentials." label="Notes for the reviewer"><textarea onChange={(event) => update("notes", event.target.value)} rows={4} value={form.notes} /></Field>
     {type === "deployment" ? <label className="source-toggle sensitive-check"><input checked={form.sensitiveConfirmed} onChange={(event) => update("sensitiveConfirmed", event.target.checked)} required type="checkbox" /><span><strong>I have not included sensitive infrastructure data</strong><small>No exact non-public coordinates, vulnerabilities, credentials or confidential identity clues.</small></span></label> : null}
@@ -204,7 +204,7 @@ function EvidenceStep({ form, type, update }: StepProps) {
 }
 
 function ReviewStep({ form, type }: Omit<StepProps, "update">) {
-  return <div className="review-card"><p>Review the publishable summary. A human editor will assess the source, wording, independence and privacy.</p><dl>{form.product ? <div><dt>{type === "product" ? "Product" : "Record"}</dt><dd>{form.product}</dd></div> : null}{form.organisation ? <div><dt>Organisation</dt><dd>{form.organisation}</dd></div> : null}{form.country ? <div><dt>Country</dt><dd>{form.country}</dd></div> : null}{form.customer ? <div><dt>Customer disclosure</dt><dd>{form.customerDisclosure === "undisclosed" ? "Customer undisclosed" : form.customer}</dd></div> : null}{form.field ? <div><dt>Field</dt><dd>{form.field}</dd></div> : null}{form.proposedValue ? <div><dt>Proposed value</dt><dd>{form.proposedValue}</dd></div> : null}{form.source ? <div><dt>Source</dt><dd>{form.source}</dd></div> : null}</dl><div className="dialog-notice"><strong>Submission, not publication</strong><p>Submitting creates an editorial-review item. It does not publish or verify the information.</p></div></div>;
+  return <div className="review-card"><p>Review the publishable summary. A human editor will assess the source, wording, independence and privacy.</p><dl>{form.product ? <div><dt>{type === "product" ? "Product" : "Record"}</dt><dd>{form.product}</dd></div> : null}{form.organisation ? <div><dt>Organisation</dt><dd>{form.organisation}</dd></div> : null}{form.country ? <div><dt>Country</dt><dd>{form.country}</dd></div> : null}{form.customer ? <div><dt>Customer disclosure</dt><dd>{form.customerDisclosure === "undisclosed" ? "Customer undisclosed" : form.customer}</dd></div> : null}{form.field ? <div><dt>Field</dt><dd>{form.field}</dd></div> : null}{form.proposedValue ? <div><dt>Proposed value</dt><dd>{form.proposedValue}</dd></div> : null}{form.source ? <div><dt>Source</dt><dd>{form.source}</dd></div> : null}</dl><div className="dialog-notice"><strong>Submission status</strong><p>The submission enters editorial review. It is not published or verified automatically.</p></div></div>;
 }
 
 type StepProps = {

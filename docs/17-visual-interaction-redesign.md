@@ -1,7 +1,7 @@
 # Visual interaction redesign
 
-Status: Phase 1 implementation direction  
-Version: 2.0  
+Status: Phase 1 implementation direction
+Version: 2.1
 Date: 30 July 2026
 
 This document supersedes the presentation and motion rules in
@@ -82,13 +82,12 @@ The desktop header has three destinations:
 2. Map
 3. Data
 
-Search, contribution and prototype status are compact controls. Method,
-downloads, changes and accessibility live in the expanded menu. Prototype
-status is a quiet signal with an accessible label; its explanation appears only
-when selected.
+`Improve the map` is a labelled primary action. Search and prototype status are
+compact controls. Method, downloads, changes and accessibility live in the
+expanded menu. Prototype status is a quiet signal with an accessible label; its
+explanation appears only when selected.
 
-The mobile header keeps the mark, status, search and menu. Contribution moves
-into the menu when space is limited.
+The mobile header keeps the mark, status, search, `Improve the map` and menu.
 
 ### Search
 
@@ -117,7 +116,12 @@ The page opens with one statement:
 > The software powering African energy
 
 Three small dataset numbers establish scale. Explore, Map and Data remain visible
-as a local mode dock.
+as a local mode dock. A labelled `Improve the map` action links directly to
+contribution routes.
+
+The opening has no eyebrow or slogan below the title. Core page titles use a
+compact display scale so useful controls and data remain visible in the first
+viewport.
 
 ### Value-chain route
 
@@ -173,7 +177,8 @@ the full country and coverage status.
 - acid hover: interaction affordance, never a data meaning.
 
 The country panel shows the selected country, coverage state, deployment list
-and link to the country record. Unknown is explicitly “Not zero. Not known yet.”
+and link to the country record. Unknown is stated as `Coverage has not been
+assessed.`
 
 The geographic choropleth remains a later enhancement once official geometry
 and enough reviewed data are available.
@@ -220,7 +225,7 @@ Methodology, contribution, data releases and policy pages remain text-capable
 because their job is precision. They use the same quiet shell but do not imitate
 the large Explore canvas. Their content rules are:
 
-- one page title and one-sentence orientation;
+- one page title and a plain orientation only when needed;
 - short in-page navigation;
 - summary before procedure;
 - disclosure for worked examples and edge cases;
@@ -232,7 +237,7 @@ the large Explore canvas. Their content rules are:
 
 Main discovery surfaces follow these limits:
 
-- one sentence below a page title;
+- no standalone slogan below a core page title;
 - one line per empty state;
 - no paragraph on a closed card;
 - no more than three small statistics in an opening;
@@ -242,6 +247,21 @@ Main discovery surfaces follow these limits:
 
 “AI” appears only in methodology, workflow or provenance where it materially
 changes interpretation.
+
+### Copy audit
+
+Public interface copy must read like labels, records and instructions rather
+than generated promotion.
+
+- remove rhythmic fragments when the controls already explain the page;
+- avoid constructions such as `X first. Y stays separate.`;
+- avoid `designed to`, `built to`, `unlock`, `seamless`, `discover` and similar
+  promotional filler;
+- avoid artificial `not X, but Y` contrasts unless the distinction is required
+  for evidence accuracy;
+- use a direct noun or verb for headings: `Review process`, `Release files`,
+  `Search`; and
+- keep references to automated research inside methodology and source guidance.
 
 ## Colour and material
 
@@ -303,4 +323,3 @@ route tests.
 - `web/components/registry-explorer.tsx` — Explore, Map, Data and product preview.
 - `web/app/visual-system.css` — version 2 visual and motion system.
 - `design/tokens.json` — machine-readable presentation tokens.
-

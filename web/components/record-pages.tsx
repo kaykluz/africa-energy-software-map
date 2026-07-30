@@ -29,7 +29,7 @@ export function ProductProfile({ slug }: { slug: string }) {
   return (
     <main className="profile-page profile-width" id="main-content">
       <nav aria-label="Breadcrumb" className="breadcrumb">
-        <Link href="/">Stack</Link><span aria-hidden="true">/</span>
+        <Link href="/">Explore</Link><span aria-hidden="true">/</span>
         <Link href={`/?category=${product.categoryId}`}>{product.category}</Link>
         <span aria-hidden="true">/</span><span>{product.name}</span>
       </nav>
@@ -289,7 +289,7 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
           <p>
             This is an unknown research state, not evidence of zero deployments.
           </p>
-          <Link href="/deployments">Return to Deployments →</Link>
+          <Link href="/deployments">Return to Map →</Link>
         </div>
       </main>
     );
@@ -300,7 +300,7 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
   return (
     <main className="profile-page profile-width" id="main-content">
       <nav aria-label="Breadcrumb" className="breadcrumb">
-        <Link href="/deployments">Deployments</Link><span aria-hidden="true">/</span><span>Nigeria</span>
+        <Link href="/deployments">Map</Link><span aria-hidden="true">/</span><span>Nigeria</span>
       </nav>
       <header className="record-header country-record-header">
         <div>
@@ -356,8 +356,8 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
         <aside className="record-rail">
           <div className="rail-card">
             <span className="eyebrow">Explore this country</span>
-            <Link href="/deployments?country=NG">View in Deployments →</Link>
-            <Link href="/directory?country=NG">View in Directory →</Link>
+            <Link href="/deployments?country=NG">View in Map →</Link>
+            <Link href="/directory?country=NG">View in Data →</Link>
           </div>
           <div className="rail-card">
             <span className="eyebrow">Last country review</span>
@@ -399,7 +399,7 @@ function NotFoundRecord({ type }: { type: string }) {
       <span className="eyebrow">Record not found</span>
       <h1>No published {type} matched this address.</h1>
       <p>The record may have moved, merged or not yet completed editorial review.</p>
-      <Link className="button button-primary" href="/directory">Search the Directory</Link>
+      <Link className="button button-primary" href="/directory">Search the data</Link>
     </main>
   );
 }

@@ -33,29 +33,17 @@ export type RegistryView = "stack" | "deployments" | "directory";
 const viewMeta: Record<
   RegistryView,
   {
-    index: string;
-    eyebrow: string;
     title: string;
-    description: string;
   }
 > = {
   stack: {
-    index: "01",
-    eyebrow: "Explore",
     title: "The software powering African energy",
-    description: "Six stages. One visual path.",
   },
   deployments: {
-    index: "02",
-    eyebrow: "Map",
     title: "Where the software is running",
-    description: "Evidence first. Claims stay separate.",
   },
   directory: {
-    index: "03",
-    eyebrow: "Data",
     title: "Directory",
-    description: "Search, compare, export.",
   },
 };
 
@@ -187,27 +175,31 @@ export function RegistryExplorer({
   return (
     <main className={`v2-experience v2-experience-${view}`} id="main-content">
       <section className="v2-experience-hero">
-        <div className="v2-hero-index" aria-hidden="true">
-          {meta.index}
-        </div>
         <div className="v2-hero-copy">
-          <span>{meta.eyebrow}</span>
           <h1>{meta.title}</h1>
-          <p>{meta.description}</p>
         </div>
-        <div className="v2-hero-stats">
-          <div>
-            <strong>{stages.length}</strong>
-            <span>stages</span>
+        <div className="v2-hero-side">
+          <div className="v2-hero-stats">
+            <div>
+              <strong>{stages.length}</strong>
+              <span>stages</span>
+            </div>
+            <div>
+              <strong>{products.length}</strong>
+              <span>products</span>
+            </div>
+            <div>
+              <strong>{deployments.length}</strong>
+              <span>evidence points</span>
+            </div>
           </div>
-          <div>
-            <strong>{products.length}</strong>
-            <span>products</span>
-          </div>
-          <div>
-            <strong>{deployments.length}</strong>
-            <span>evidence points</span>
-          </div>
+          <Link className="v2-hero-contribute" href="/contribute">
+            <span>
+              <strong>Improve the map</strong>
+              <small>Submit data</small>
+            </span>
+            <i aria-hidden="true">↗</i>
+          </Link>
         </div>
         <nav aria-label="Dataset views" className="v2-view-dock">
           {[
@@ -823,7 +815,7 @@ function DeploymentsView({
           ) : (
             <div className="v2-country-unknown">
               <span aria-hidden="true">?</span>
-              <strong>Not zero. Not known yet.</strong>
+              <strong>Coverage has not been assessed.</strong>
               <Link href="/contribute/deployment">Add evidence →</Link>
             </div>
           )}

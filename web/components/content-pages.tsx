@@ -213,7 +213,7 @@ export function ContributeHubPage() {
         ))}
       </div>
       <section className="review-process">
-        <div><span className="eyebrow">What happens next</span><h2>Transparent review, not instant publication</h2></div>
+        <div><span className="eyebrow">After submission</span><h2>Review process</h2></div>
         <ol>
           <li><strong>1. Intake</strong><span>Duplicate and sensitive-data checks</span></li>
           <li><strong>2. Research</strong><span>Source classification and corroboration</span></li>
@@ -228,7 +228,7 @@ export function DataPage() {
   return (
     <main className="standard-width data-page" id="main-content">
       <header className="page-intro reading-intro">
-        <span className="eyebrow">Open and reusable</span>
+        <span className="eyebrow">Data access</span>
         <h1>Data and downloads</h1>
         <p>
           Export a filtered view or inspect versioned release packages.
@@ -267,7 +267,7 @@ export function DataPage() {
         </figcaption>
       </figure>
       <section className="data-section">
-        <div><span className="eyebrow">Phase 1 release package</span><h2>Designed for reuse</h2></div>
+        <div><span className="eyebrow">Phase 1 release package</span><h2>Release files</h2></div>
         <div className="download-list">
           {[
             ["CSV package", "Normalised tables for analysis and databases", "Planned"],
@@ -327,7 +327,7 @@ export function SearchResultsPage({ query }: { query: string }) {
           {categoryResults.length ? (
             <section><h2>Capabilities <span>{categoryResults.length}</span></h2>
               {categoryResults.map((category) => (
-                <Link href={`/?category=${category.id}`} key={category.id}><span><strong>{category.name}</strong><small>Value-chain category</small></span><span>View in Stack →</span></Link>
+                <Link href={`/?category=${category.id}`} key={category.id}><span><strong>{category.name}</strong><small>Value-chain category</small></span><span>View in Explore →</span></Link>
               ))}
             </section>
           ) : null}
@@ -340,7 +340,7 @@ export function SearchResultsPage({ query }: { query: string }) {
             This does not prove the product or capability does not exist. Try a
             broader term, clear filters or submit a candidate for review.
           </p>
-          <div><Link className="button button-primary" href="/contribute/product">Submit product</Link><Link className="button button-outline" href="/">Browse the Stack</Link></div>
+          <div><Link className="button button-primary" href="/contribute/product">Submit product</Link><Link className="button button-outline" href="/">Open Explore</Link></div>
         </div>
       )}
     </main>

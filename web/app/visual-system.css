@@ -141,7 +141,34 @@ body {
   background: var(--v2-ink);
 }
 
-.v2-contribute { color: var(--v2-ink); background: var(--v2-acid); }
+.v2-contribute {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px;
+  border: 1px solid var(--v2-blue);
+  border-radius: 999px;
+  color: #fff;
+  background: var(--v2-blue);
+  font-size: .76rem;
+  font-weight: 720;
+  text-decoration: none;
+  transition: background .18s, border .18s, transform .3s var(--v2-ease);
+}
+
+.v2-contribute i {
+  color: var(--v2-acid);
+  font-size: 1rem;
+  font-style: normal;
+}
+
+.v2-contribute:hover {
+  transform: translateY(-2px);
+  color: #fff;
+  border-color: var(--v2-blue-dark);
+  background: var(--v2-blue-dark);
+}
 
 .v2-status-button {
   display: inline-flex;
@@ -344,18 +371,19 @@ body {
   display: grid;
   width: calc(100% - 48px);
   max-width: 1500px;
-  min-height: clamp(390px, 58vh, 620px);
+  min-height: clamp(300px, 38vh, 410px);
   align-content: center;
   margin-inline: auto;
-  padding: 74px 0 116px;
+  padding: 50px 0 98px;
   overflow: hidden;
-  grid-template-columns: 86px minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(330px, auto);
+  gap: 54px;
 }
 
 .v2-experience-hero::after {
   position: absolute;
   right: 0;
-  bottom: 85px;
+  bottom: 72px;
   left: 0;
   height: 1px;
   background: var(--v2-line);
@@ -365,29 +393,30 @@ body {
   animation: v2-line-draw .9s .18s var(--v2-ease) forwards;
 }
 
-.v2-hero-index { padding-top: 10px; color: var(--v2-blue); font: .72rem var(--font-mono); }
-.v2-hero-copy > span { display: block; margin-bottom: 18px; color: var(--muted); font: 700 .7rem var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
-
 .v2-hero-copy h1 {
-  max-width: 1120px;
+  max-width: 900px;
   margin: 0;
   color: var(--v2-ink);
-  font-size: clamp(3.2rem, 7.5vw, 8.4rem);
+  font-size: clamp(2.8rem, 5.1vw, 5.2rem);
   font-weight: 580;
-  letter-spacing: -.072em;
-  line-height: .86;
+  letter-spacing: -.062em;
+  line-height: .94;
   text-wrap: balance;
   animation: v2-title-in .8s var(--v2-ease) both;
 }
 
 .v2-experience-deployments .v2-hero-copy h1,
-.v2-experience-directory .v2-hero-copy h1 { max-width: 900px; }
-.v2-hero-copy p { margin: 24px 0 0; color: var(--v2-ink-2); font-size: clamp(1rem, 1.7vw, 1.35rem); font-weight: 560; letter-spacing: -.02em; }
+.v2-experience-directory .v2-hero-copy h1 { max-width: 760px; }
+
+.v2-hero-side {
+  display: grid;
+  width: min(430px, 100%);
+  align-self: end;
+  gap: 14px;
+}
 
 .v2-hero-stats {
   display: grid;
-  align-self: end;
-  margin-bottom: 20px;
   grid-template-columns: repeat(3, minmax(80px, 1fr));
 }
 
@@ -395,7 +424,51 @@ body {
 .v2-hero-stats strong { font-size: 1.8rem; font-weight: 580; letter-spacing: -.05em; line-height: 1; }
 .v2-hero-stats span { margin-top: 5px; color: var(--muted); font: .62rem var(--font-mono); text-transform: uppercase; }
 
-.v2-view-dock { position: absolute; bottom: 28px; left: 86px; display: flex; gap: 4px; }
+.v2-hero-contribute {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px 10px 18px;
+  border-radius: 14px;
+  color: #fff;
+  background: var(--v2-blue);
+  text-decoration: none;
+  transition: background .18s, transform .35s var(--v2-ease);
+}
+
+.v2-hero-contribute:hover {
+  transform: translateY(-3px);
+  color: #fff;
+  background: var(--v2-blue-dark);
+}
+
+.v2-hero-contribute > span {
+  display: grid;
+}
+
+.v2-hero-contribute strong {
+  font-size: .9rem;
+}
+
+.v2-hero-contribute small {
+  color: #c8d5ff;
+  font: .6rem var(--font-mono);
+  text-transform: uppercase;
+}
+
+.v2-hero-contribute i {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--v2-ink);
+  background: var(--v2-acid);
+  font-style: normal;
+}
+
+.v2-view-dock { position: absolute; bottom: 19px; left: 0; display: flex; gap: 4px; }
 
 .v2-view-dock a {
   display: inline-flex;
@@ -1129,9 +1202,9 @@ body {
   .v2-header-inner { grid-template-columns: 1fr auto; }
   .v2-nav { display: none; }
   .v2-menu-button { display: grid; }
-  .v2-experience-hero { grid-template-columns: 58px 1fr; }
-  .v2-hero-stats { grid-column: 2; justify-self: start; margin-top: 36px; }
-  .v2-view-dock { left: 58px; }
+  .v2-experience-hero { grid-template-columns: 1fr; gap: 28px; }
+  .v2-hero-side { width: min(520px, 100%); }
+  .v2-view-dock { left: 0; }
   .v2-map-stage { grid-template-columns: 1fr; }
   .v2-country-panel { min-height: 540px; border-top: 1px solid var(--v2-line-dark); border-left: 0; }
   .v2-map-visual { min-height: 640px; }
@@ -1144,12 +1217,12 @@ body {
   .v2-header-inner { min-height: 66px; }
   .v2-status-button span:not(.sr-only) { display: none; }
   .v2-status-button { width: 38px; justify-content: center; padding: 0; }
-  .v2-contribute { display: none; }
-  .v2-experience-hero { min-height: 500px; padding: 66px 0 108px; grid-template-columns: 1fr; }
-  .v2-hero-index { margin-bottom: 32px; }
-  .v2-hero-copy h1 { font-size: clamp(3.5rem, 17vw, 6.4rem); }
-  .v2-hero-copy p { margin-top: 18px; }
+  .v2-contribute { padding-inline: 11px; font-size: .7rem; }
+  .v2-experience-hero { min-height: 380px; padding: 44px 0 92px; grid-template-columns: 1fr; gap: 22px; }
+  .v2-hero-copy h1 { font-size: clamp(2.65rem, 12vw, 4.35rem); }
   .v2-hero-stats { display: none; }
+  .v2-hero-side { width: 100%; }
+  .v2-hero-contribute { min-height: 52px; }
   .v2-view-dock { right: 0; bottom: 24px; left: 0; }
   .v2-view-dock a { min-width: 0; flex: 1; justify-content: center; }
   .v2-command-wrap { top: 66px; }
@@ -1204,7 +1277,8 @@ body {
 @media (max-width: 420px) {
   .v2-wordmark > span:last-child { display: none; }
   .v2-header-actions { gap: 5px; }
-  .v2-hero-copy h1 { font-size: 3.55rem; }
+  .v2-contribute span { max-width: 62px; line-height: 1.05; }
+  .v2-hero-copy h1 { font-size: clamp(2.5rem, 12.5vw, 3.25rem); }
   .v2-view-dock a span { display: none; }
   .v2-command-bar { gap: 8px; }
   .v2-command-bar input { font-size: .8rem; }

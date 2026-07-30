@@ -183,11 +183,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <span aria-hidden="true">⌕</span>
             </button>
             <Link
-              aria-label="Contribute data"
-              className="v2-round-action v2-contribute"
+              className="v2-contribute"
               href="/contribute"
             >
-              <span aria-hidden="true">＋</span>
+              <span>Improve the map</span>
+              <i aria-hidden="true">＋</i>
             </Link>
             <button
               aria-controls="v2-mobile-menu"
@@ -277,7 +277,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             role="dialog"
           >
             <div className="v2-search-topline">
-              <span>Search everything</span>
+              <span>Search</span>
               <button
                 onClick={() => setSearchOpen(false)}
                 type="button"
@@ -294,7 +294,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 id="global-search"
                 onChange={(event) => setQuery(event.target.value)}
                 onKeyDown={onSearchKeyDown}
-                placeholder="What are you looking for?"
+                placeholder="Product, organisation, capability or country"
                 ref={searchInputRef}
                 type="search"
                 value={query}
@@ -342,8 +342,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 </>
               ) : (
                 <div className="v2-search-empty">
-                  <strong>No match yet.</strong>
-                  <Link href="/contribute/product">Add what is missing →</Link>
+                  <strong>No matching record</strong>
+                  <Link href="/contribute/product">Submit a product →</Link>
                 </div>
               )}
             </div>
