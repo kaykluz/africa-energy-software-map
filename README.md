@@ -32,6 +32,8 @@ The initial research workbook is entering through a candidate-only,
 privacy-filtered migration. See the
 [workbook migration protocol](docs/16-workbook-migration-protocol.md). Imported
 records do not become public or verified without human editorial review.
+The first source pass is documented in the
+[Batch 001 evidence review](docs/17-batch-001-evidence-review.md).
 
 ## Core principles
 
@@ -67,6 +69,7 @@ records do not become public or verified without human editorial review.
 - [AI research and review protocol](docs/06-ai-research-and-review-protocol.md)
 - [Autonomous agent specification](docs/12-autonomous-agent-specification.md)
 - [Workbook migration protocol](docs/16-workbook-migration-protocol.md)
+- [Batch 001 evidence review](docs/17-batch-001-evidence-review.md)
 - [Contributing](CONTRIBUTING.md)
 
 ## Contributing

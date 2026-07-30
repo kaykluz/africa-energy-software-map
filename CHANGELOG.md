@@ -12,3 +12,5 @@ documented here.
   validation checks.
 - Added the privacy-filtered workbook migration pipeline, aggregate audit,
   first review-sized candidate batch, UI data bundle, and stricter validation.
+- Added a reproducible Batch 001 evidence-review overlay with nine completed
+  source records, source-linked corrections and explicit human-review blockers.

@@ -27,19 +27,19 @@
     "id": "prod_004",
     "type": "product",
     "name": "PAM-AI",
-    "context": "Smart metering; payments; automation; dynamic tariffs; demand response"
+    "context": "Real-time monitoring, smart tariffs, remote device control, payment integration and demand response"
   },
   {
     "id": "prod_005",
     "type": "product",
-    "name": "Pai",
-    "context": "Hybrid dispatch; source orchestration; monitoring; optimisation; control"
+    "name": "Pai Enterprise",
+    "context": "Energy monitoring, analytics, sizing optimisation, anomaly detection and multi-source orchestration"
   },
   {
     "id": "org_003",
     "type": "organisation",
     "name": "PowerLabs",
-    "context": "Hybrid power orchestration for grid, solar, batteries, generators and inverters"
+    "context": "Energy intelligence software and hardware for orchestrating grid, solar, batteries and generators"
   },
   {
     "id": "prod_003",

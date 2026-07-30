@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import json
 import sys
 import tempfile
@@ -219,6 +220,108 @@ class WorkbookMigrationTests(unittest.TestCase):
         country = bundle["countries.json"][0]
         self.assertEqual(country["country_iso2"], "NG")
         self.assertEqual(country["independent_or_customer_count"], 1)
+
+    def test_research_overlay_is_reproducible_and_remains_human_pending(
+        self,
+    ) -> None:
+        config = copy.deepcopy(CONFIG)
+        source_url = "https://research.example.org/profile"
+        config["research_review"] = {
+            "status": "ai_researched_human_pending",
+            "run_id": "test_source_review",
+            "researched_at": "2026-07-30",
+            "selected_organisation_ids": ["ORG-001"],
+            "prune_unused_sources": False,
+            "sources": {
+                source_url: {
+                    "title": "Independent product profile",
+                    "publisher": "Research Example",
+                    "source_type": "article",
+                    "author": "",
+                    "publication_date": "2026-07-01",
+                    "retrieved_at": "2026-07-30",
+                    "archived_url": "",
+                    "source_license": "unknown",
+                    "independence_class": "independent_secondary",
+                    "automation_permitted": "false",
+                    "notes": "Test source.",
+                }
+            },
+            "record_overrides": {
+                "products.csv": {
+                    "prod_001": {"name": "Reviewed Platform"}
+                }
+            },
+            "assertion_rules": [
+                {
+                    "subject_type": "product",
+                    "subject_id": "prod_001",
+                    "predicates": ["name"],
+                    "source_url": source_url,
+                    "evidence_status": "independently_evidenced",
+                    "note": "Independent article names the product.",
+                }
+            ],
+            "source_register": [],
+            "unresolved_items": [],
+        }
+        package = transform_rows(sample_sheets(), config, {"ORG-001"})
+        product = package.tables["products.csv"][0]
+        self.assertEqual(product["name"], "Reviewed Platform")
+        assertion = next(
+            row
+            for row in package.tables["assertions.csv"]
+            if row["subject_id"] == "prod_001" and row["predicate"] == "name"
+        )
+        self.assertEqual(assertion["evidence_status"], "independently_evidenced")
+        self.assertEqual(assertion["extracted_by"], "ai_assisted_research")
+        self.assertEqual(assertion["reviewed_by"], "")
+        self.assertEqual(assertion["reviewed_at"], "")
+        self.assertEqual(
+            package.research_summary["status"],
+            "ai_researched_human_pending",
+        )
+        self.assertEqual(len(package.tables["changes.csv"]), 1)
+
+    def test_research_overlay_cannot_upgrade_provider_evidence(self) -> None:
+        config = copy.deepcopy(CONFIG)
+        provider_url = "https://example.energy/"
+        config["research_review"] = {
+            "status": "ai_researched_human_pending",
+            "run_id": "test_provider_upgrade",
+            "researched_at": "2026-07-30",
+            "selected_organisation_ids": ["ORG-001"],
+            "sources": {
+                provider_url: {
+                    "title": "Provider profile",
+                    "publisher": "Example Energy",
+                    "source_type": "provider_webpage",
+                    "author": "",
+                    "publication_date": "",
+                    "retrieved_at": "2026-07-30",
+                    "archived_url": "",
+                    "source_license": "unknown",
+                    "independence_class": "provider_authored",
+                    "automation_permitted": "false",
+                    "notes": "Provider source.",
+                }
+            },
+            "record_overrides": {},
+            "assertion_rules": [
+                {
+                    "subject_type": "product",
+                    "subject_id": "prod_001",
+                    "predicates": ["name"],
+                    "source_url": provider_url,
+                    "evidence_status": "independently_evidenced",
+                    "note": "Invalid attempted upgrade.",
+                }
+            ],
+            "source_register": [],
+            "unresolved_items": [],
+        }
+        with self.assertRaises(MigrationError):
+            transform_rows(sample_sheets(), config, {"ORG-001"})
 
     def test_review_plan_respects_repository_limits(self) -> None:
         sheets = sample_sheets()

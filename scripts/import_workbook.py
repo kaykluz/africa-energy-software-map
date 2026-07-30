@@ -28,6 +28,14 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("workbook", type=Path)
     parser.add_argument("--config", type=Path, required=True)
+    parser.add_argument(
+        "--review",
+        type=Path,
+        help=(
+            "Optional checked-in AI-assisted research overlay. The overlay "
+            "must remain human-pending and cannot publish records."
+        ),
+    )
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument(
         "--full-audit-output",
@@ -48,6 +56,11 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
+    review_hash = ""
+    if args.review:
+        review = json.loads(args.review.read_text(encoding="utf-8"))
+        config["research_review"] = review
+        review_hash = sha256_file(args.review)
     if args.workbook.name != config["source_filename"]:
         raise MigrationError(
             "workbook filename does not match the reviewed import configuration"
@@ -93,6 +106,12 @@ def main() -> int:
         "review_batches": batches,
         "selected_organisation_ids": sorted(selected),
     }
+    if package.research_summary:
+        manifest["research_review"] = {
+            **package.research_summary,
+            "review_file": args.review.name if args.review else "",
+            "sha256": review_hash,
+        }
     write_package(args.output, package, manifest)
     full_audit_counts = None
     if args.full_audit_output:
@@ -131,6 +150,12 @@ def main() -> int:
             "warnings": full_warnings,
             "review_batches": batches,
         }
+        if full_package.research_summary:
+            full_audit["research_review"] = {
+                **full_package.research_summary,
+                "review_file": args.review.name if args.review else "",
+                "sha256": review_hash,
+            }
         args.full_audit_output.parent.mkdir(parents=True, exist_ok=True)
         args.full_audit_output.write_text(
             json.dumps(full_audit, indent=2, ensure_ascii=False) + "\n",

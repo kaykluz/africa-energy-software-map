@@ -76,6 +76,46 @@
       "type": "array",
       "items": {"type": "string"},
       "uniqueItems": true
+    },
+    "research_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "run_id",
+        "researched_at",
+        "selected_organisation_ids",
+        "sources_inspected",
+        "assertions_relinked",
+        "assertions_added",
+        "assertions_removed",
+        "record_changes",
+        "unresolved_items",
+        "review_file",
+        "sha256"
+      ],
+      "properties": {
+        "status": {"const": "ai_researched_human_pending"},
+        "run_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+        "researched_at": {"type": "string", "format": "date"},
+        "selected_organisation_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "sources_inspected": {"type": "integer", "minimum": 1},
+        "assertions_relinked": {"type": "integer", "minimum": 0},
+        "assertions_added": {"type": "integer", "minimum": 0},
+        "assertions_removed": {"type": "integer", "minimum": 0},
+        "record_changes": {"type": "integer", "minimum": 0},
+        "unresolved_items": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "review_file": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
     }
   }
 }

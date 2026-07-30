@@ -27,7 +27,7 @@
     "organisations": 87,
     "products": 96,
     "deployments": 78,
-    "sources": 63,
+    "sources": 69,
     "assertions": 1891,
     "people": 0,
     "submissions": 0
@@ -43,9 +43,9 @@
     "open_source_repository_not_captured": 5,
     "product_without_capability_mapping": 4,
     "sensitive_location_review": 4,
-    "source_metadata_requires_completion": 63,
-    "source_publisher_derived_from_domain": 54,
-    "source_retrieval_date_inferred": 63,
+    "source_metadata_requires_completion": 60,
+    "source_publisher_derived_from_domain": 52,
+    "source_retrieval_date_inferred": 60,
     "workbook_verified_word_downgraded": 77,
     "input_deployment_year_blank": 35,
     "research_queue_not_emitted": 39
@@ -58,7 +58,7 @@
         "ORG-002",
         "ORG-003"
       ],
-      "entity_count": 16,
+      "entity_count": 21,
       "assertion_count": 88
     },
     {
@@ -285,5 +285,30 @@
       "entity_count": 12,
       "assertion_count": 65
     }
-  ]
+  ],
+  "research_review": {
+    "status": "ai_researched_human_pending",
+    "run_id": "batch_001_source_review_2026_07_30",
+    "researched_at": "2026-07-30",
+    "selected_organisation_ids": [
+      "ORG-001",
+      "ORG-002",
+      "ORG-003"
+    ],
+    "sources_inspected": 69,
+    "assertions_relinked": 85,
+    "assertions_added": 3,
+    "assertions_removed": 3,
+    "record_changes": 36,
+    "unresolved_items": [
+      "Beacon Power Services has a Nigerian operating company and a US parent; a single headquarters_country is not established, so the field remains blank.",
+      "PAM Africa’s provider site lists both Lagos and London locations without identifying one headquarters; headquarters_country was cleared.",
+      "PAM-AI deployments are supported by Digital Energy programme reporting but are not customer-confirmed.",
+      "PowerLabs’ regional usage statement names no customers; it is retained only as provider-claimed availability and does not create deployment records.",
+      "Provider product pages support features and access descriptions only; provider outcome claims remain excluded.",
+      "No human editor has approved these AI-assisted research classifications."
+    ],
+    "review_file": "batch-001.json",
+    "sha256": "b4b1119c38b3e5a7075a6613bc0da3847fb61170fe2ddeeb5579887e9417eb50"
+  }
 }

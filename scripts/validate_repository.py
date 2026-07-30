@@ -385,6 +385,15 @@ def validate_candidate_package(package: Path, errors: list[str]) -> None:
             errors.append(
                 f"{relative_package}/sources.csv:{line_number}: invalid source URL"
             )
+        expected_source_id = (
+            "src_"
+            + hashlib.sha256(row["url"].encode("utf-8")).hexdigest()[:16]
+        )
+        if row["id"] != expected_source_id:
+            errors.append(
+                f"{relative_package}/sources.csv:{line_number}: source ID does "
+                "not match its URL"
+            )
         if row["independence_class"] not in SOURCE_INDEPENDENCE:
             errors.append(
                 f"{relative_package}/sources.csv:{line_number}: invalid independence_class"
@@ -493,6 +502,65 @@ def validate_candidate_package(package: Path, errors: list[str]) -> None:
             if batch.get("assertion_count", 0) > 100:
                 errors.append(
                     f"{report_path.relative_to(ROOT)}: batch exceeds 100 assertions"
+                )
+        research_review = report.get("research_review")
+        if research_review:
+            if (
+                research_review.get("status")
+                != "ai_researched_human_pending"
+            ):
+                errors.append(
+                    f"{report_path.relative_to(ROOT)}: research review must "
+                    "remain human-pending"
+                )
+            if not SHA256_PATTERN.fullmatch(
+                research_review.get("sha256", "")
+            ):
+                errors.append(
+                    f"{report_path.relative_to(ROOT)}: invalid research review "
+                    "SHA-256"
+                )
+            if research_review.get("sources_inspected") != len(sources):
+                errors.append(
+                    f"{report_path.relative_to(ROOT)}: research source count "
+                    "does not reconcile"
+                )
+            if research_review.get("record_changes") != len(
+                tables["changes.csv"]
+            ):
+                errors.append(
+                    f"{report_path.relative_to(ROOT)}: research change count "
+                    "does not reconcile"
+                )
+            research_assertions = [
+                row
+                for row in tables["assertions.csv"]
+                if row["extracted_by"] == "ai_assisted_research"
+            ]
+            expected_research_assertions = (
+                research_review.get("assertions_relinked", 0)
+                + research_review.get("assertions_added", 0)
+            )
+            if len(research_assertions) != expected_research_assertions:
+                errors.append(
+                    f"{report_path.relative_to(ROOT)}: research assertion count "
+                    "does not reconcile"
+                )
+            if any(
+                row["reviewed_by"] or row["reviewed_at"]
+                for row in research_assertions
+            ):
+                errors.append(
+                    f"{relative_package}: AI-assisted assertions cannot record "
+                    "a human reviewer"
+                )
+            if any(
+                source["title"].startswith("Editorial review required")
+                for source in sources.values()
+            ):
+                errors.append(
+                    f"{relative_package}: researched package retains incomplete "
+                    "source metadata"
                 )
 
     ui_manifest_path = package / "ui" / "data-manifest.json"
