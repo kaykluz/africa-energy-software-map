@@ -1,8 +1,11 @@
 # Africa Energy Software Map web prototype
 
-Responsive Phase 1 interface for the public registry. It implements the approved
-design contract across Stack, Deployments, Directory, search, record profiles,
-methodology, contribution flows, data access, changes and policy pages.
+Responsive Phase 1 interface for the public registry. Its version 2 direction
+combines a visual Explore mode, an interactive Map and a precise Data workspace,
+with detail revealed progressively through search, previews and full records.
+
+The implementation contract is
+[`docs/17-visual-interaction-redesign.md`](../docs/17-visual-interaction-redesign.md).
 
 The interface currently renders the first workbook migration batch as
 **candidate prototype data**. It does not publish or verify those records.

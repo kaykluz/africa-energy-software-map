@@ -29,8 +29,7 @@ export function MethodologyPage() {
         <span className="eyebrow">Methodology 1.0 · effective 30 July 2026</span>
         <h1>How the map decides what to show</h1>
         <p>
-          The method turns scattered claims into source-linked records while keeping
-          uncertainty, confidentiality and human editorial judgement visible.
+          The public rules for evidence, uncertainty and editorial review.
         </p>
         <div className="intro-actions">
           <a className="button button-outline" href="https://github.com/kaykluz/africa-energy-software-map/tree/main/docs" target="_blank" rel="noreferrer">
@@ -168,29 +167,29 @@ export function ContributeHubPage() {
       href: "/contribute/product",
       number: "01",
       title: "Submit a product",
-      copy: "Propose a missing product and its owning organisation. A public product page alone does not establish a deployment.",
-      evidence: "Product or organisation source URL",
+      copy: "Add missing software and its owner.",
+      evidence: "Product or organisation source",
     },
     {
       href: "/contribute/deployment",
       number: "02",
       title: "Add a deployment",
-      copy: "Connect an existing product to a country, safe area, customer disclosure state and source.",
-      evidence: "Customer, official or independent source preferred",
+      copy: "Connect software to a country and source.",
+      evidence: "Customer, official or independent source",
     },
     {
       href: "/contribute/correction",
       number: "03",
       title: "Correct a record",
-      copy: "Identify the exact field, propose a replacement and explain the source-supported reason.",
-      evidence: "Source for the proposed correction",
+      copy: "Replace an exact field with sourced information.",
+      evidence: "Source for the correction",
     },
     {
       href: "/contribute/claim",
       number: "04",
       title: "Claim a profile",
-      copy: "Verify your organisational relationship and propose sourced updates. Claiming never verifies deployments.",
-      evidence: "Organisation-domain email and authority",
+      copy: "Confirm your relationship and propose updates.",
+      evidence: "Organisation-domain email",
     },
   ];
   return (
@@ -199,8 +198,7 @@ export function ContributeHubPage() {
         <span className="eyebrow">Contribute evidence</span>
         <h1>Help make the map more accurate</h1>
         <p>
-          Choose the type of contribution. Every submission is reviewed; nothing
-          becomes published or verified automatically.
+          Choose a route. Every submission receives human review.
         </p>
       </header>
       <div className="contribution-grid">
@@ -233,8 +231,7 @@ export function DataPage() {
         <span className="eyebrow">Open and reusable</span>
         <h1>Data and downloads</h1>
         <p>
-          Use the Directory to export a filtered view. Versioned public releases
-          will provide complete normalised packages without requiring website scraping.
+          Export a filtered view or inspect versioned release packages.
         </p>
         <div className="intro-actions">
           <Link className="button button-primary" href="/directory">Create a filtered export</Link>

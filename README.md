@@ -18,13 +18,13 @@ No dataset in this repository should yet be treated as a complete census.
 
 ## Product experience
 
-One database will support three public views:
+One database supports three connected public modes:
 
-1. **Stack** — software organised across the African energy value chain.
-2. **Deployments** — where products are evidenced as being used, rather than
+1. **Explore** — a visual route through software across the energy value chain.
+2. **Map** — where products are evidenced as being used, rather than
    merely where their providers are headquartered.
-3. **Directory** — searchable, filterable, and exportable records for power
-   users.
+3. **Data** — searchable, filterable, and exportable records for academics and
+   power users.
 
 Every material deployment and market claim will link to evidence and display a
 last-checked date.
@@ -69,6 +69,7 @@ records do not become public or verified without human editorial review.
 - [AI research and review protocol](docs/06-ai-research-and-review-protocol.md)
 - [Autonomous agent specification](docs/12-autonomous-agent-specification.md)
 - [Workbook migration protocol](docs/16-workbook-migration-protocol.md)
+- [Visual interaction redesign](docs/17-visual-interaction-redesign.md)
 - [Interactive prototype](web/README.md)
 - [Contributing](CONTRIBUTING.md)
 

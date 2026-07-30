@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./visual-system.css";
 
 :root {
   --canvas: #f7f7f2;
