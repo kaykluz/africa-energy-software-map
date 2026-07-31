@@ -65,3 +65,10 @@ Target WCAG 2.2 AA. The application must provide:
 Browsing requires no account. Initial pages are server-rendered and useful
 without heavy client scripting. Dataset payloads are compressed and interactions
 progressively enhance the core pages.
+
+## Human evaluation
+
+Automated semantic and scale checks are preflight gates, not evidence of usable
+access. Recruitment, tasks, severity, privacy and exit criteria for keyboard,
+screen-reader, zoom, reduced-motion and constrained-connection sessions are in
+[Moderated accessibility and user testing](27-moderated-accessibility-user-testing.md).

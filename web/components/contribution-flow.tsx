@@ -153,7 +153,7 @@ export function ContributionFlow({ type }: { type: FlowType }) {
 
   if (receipt) {
     return (
-      <main className="form-page reading-width" id="main-content">
+      <main className="form-page reading-width" id="main-content" tabIndex={-1}>
         <div className="submission-success">
           <span className="success-mark" aria-hidden="true">✓</span>
           <span className="eyebrow">Submission received</span>
@@ -173,7 +173,7 @@ export function ContributionFlow({ type }: { type: FlowType }) {
   }
 
   return (
-    <main className="form-page reading-width" id="main-content">
+    <main className="form-page reading-width" id="main-content" tabIndex={-1}>
       <nav aria-label="Breadcrumb" className="breadcrumb"><Link href="/contribute">Contribute</Link><span aria-hidden="true">/</span><span>{content.title}</span></nav>
       <header>
         <span className="eyebrow">{content.eyebrow}</span>

@@ -62,7 +62,7 @@ export function ContributionStatus({
   }, [id, token]);
 
   return (
-    <main className="form-page reading-width" id="main-content">
+    <main className="form-page reading-width" id="main-content" tabIndex={-1}>
       <nav aria-label="Breadcrumb" className="breadcrumb">
         <Link href="/contribute">Contribute</Link>
         <span aria-hidden="true">/</span>

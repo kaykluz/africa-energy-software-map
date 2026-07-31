@@ -51,6 +51,11 @@ and private contribution queue require automated backups. Contact data must keep
 its shorter retention schedule in backups as well as the live database.
 Published snapshots remain reproducible from the repository and release archive.
 
+The checked-in local compatibility rehearsal and the operator-only managed Time
+Travel procedure are defined in [D1 recovery runbook](26-d1-recovery-runbook.md).
+The local rehearsal is required in CI, but it is not a substitute for the
+disposable managed D1 restore exercise.
+
 ## Observability
 
 Monitor failed source checks, agent errors, moderation backlog, stale records,

@@ -233,7 +233,7 @@ export function ReviewWorkspace({
   }
 
   return (
-    <main className="review-page" id="main-content">
+    <main className="review-page" id="main-content" tabIndex={-1}>
       <header className="review-header">
         <div>
           <div className="review-header-line">

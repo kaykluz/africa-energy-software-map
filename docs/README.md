@@ -26,6 +26,7 @@
 - [23 — Automation and review assist](23-automation-and-review-assist.md)
 - [24 — Sector, geography and bulk intake](24-sector-geography-and-bulk-intake.md)
 - [25 — Production backend, admin and custom domain](25-production-backend-admin-and-domain.md)
+- [27 — Moderated accessibility and user testing](27-moderated-accessibility-user-testing.md)
 
 ## Operations and governance
 
@@ -39,6 +40,8 @@
 - [23 — Automation and review assist](23-automation-and-review-assist.md)
 - [24 — Sector, geography and bulk intake](24-sector-geography-and-bulk-intake.md)
 - [25 — Production backend, admin and custom domain](25-production-backend-admin-and-domain.md)
+- [26 — D1 recovery runbook](26-d1-recovery-runbook.md)
+- [27 — Moderated accessibility and user testing](27-moderated-accessibility-user-testing.md)
 
 These documents are normative for Phase 1 unless a later pull request explicitly
 supersedes them.

@@ -26,7 +26,7 @@ async function ReviewGate() {
   const access = await requireReviewPage();
   if (!access.allowed) {
     return (
-      <main className="review-access-page" id="main-content">
+      <main className="review-access-page" id="main-content" tabIndex={-1}>
         <div>
           <span aria-hidden="true" className="review-lock">×</span>
           <h1>Reviewer access required</h1>

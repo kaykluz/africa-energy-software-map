@@ -266,6 +266,49 @@ test("server-renders the Stack with reviewed status and useful records", async (
   assert.doesNotMatch(html, /Your site is taking shape|Building your site/);
 });
 
+test("core public routes expose semantic keyboard and reflow contracts", async () => {
+  for (const pathname of [
+    "/",
+    "/deployments",
+    "/directory",
+    "/accessibility",
+    "/contribute",
+  ]) {
+    const response = await render(pathname);
+    assert.equal(response.status, 200, pathname);
+    const html = await response.text();
+    assert.match(html, /<html[^>]*lang="en"/i, pathname);
+    assert.match(
+      html,
+      /<a[^>]*class="skip-link"[^>]*href="#main-content"/i,
+      pathname,
+    );
+    assert.match(
+      html,
+      /<main[^>]*id="main-content"[^>]*tabindex="-1"/i,
+      pathname,
+    );
+    assert.equal(html.match(/<main\b/gi)?.length, 1, pathname);
+    assert.equal(html.match(/<h1\b/gi)?.length, 1, pathname);
+    assert.match(html, /aria-label="Primary navigation"/i, pathname);
+  }
+
+  const mapResponse = await render("/deployments");
+  const mapHtml = await mapResponse.text();
+  assert.match(mapHtml, /aria-label="Map layer"/i);
+  assert.match(mapHtml, /aria-label="Map representation"/i);
+  assert.match(mapHtml, /aria-label="African country data view"/i);
+  assert.match(mapHtml, /aria-label="African countries, equal-area grid"/i);
+  assert.match(mapHtml, /aria-live="polite"/i);
+
+  const styles = ["../app/globals.css", "../app/visual-system.css"]
+    .map((filename) => readFileSync(new URL(filename, import.meta.url), "utf8"))
+    .join("\n");
+  assert.match(styles, /:focus-visible/);
+  assert.match(styles, /prefers-reduced-motion:\s*reduce/);
+  assert.match(styles, /min-width:\s*320px/);
+});
+
 test("server-renders the Directory and its export action", async () => {
   const response = await render("/directory?country=NG");
   assert.equal(response.status, 200);
