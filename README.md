@@ -12,7 +12,8 @@ directory.
 **Reviewed-beta phase.** The information architecture, taxonomy, evidence
 policy, data model, contribution workflow, export contract, autonomous-research
 guardrails and responsive application are implemented. Batch 001 is the first
-human-reviewed data package and is awaiting independent pull-request approval.
+human-reviewed data release and was merged through independent pull-request
+review.
 
 No dataset in this repository should yet be treated as a complete census.
 
@@ -94,6 +95,7 @@ readiness, and the bounded Batch 002 plan are documented in
 - [Private review workspace](docs/22-review-workspace.md)
 - [Automation and review assist](docs/23-automation-and-review-assist.md)
 - [Sector, geography and bulk intake](docs/24-sector-geography-and-bulk-intake.md)
+- [Production backend, admin and custom domain](docs/25-production-backend-admin-and-domain.md)
 - [Interactive prototype](web/README.md)
 - [Contributing](CONTRIBUTING.md)
 

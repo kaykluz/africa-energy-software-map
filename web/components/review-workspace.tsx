@@ -54,6 +54,7 @@ export function ReviewWorkspace({
   manifest,
   batchId,
   reviewer,
+  signOutHref,
 }: {
   assertions: ReviewAssertion[];
   sources: Source[];
@@ -73,6 +74,7 @@ export function ReviewWorkspace({
   };
   batchId: string;
   reviewer: { displayName: string; email: string };
+  signOutHref: string;
 }) {
   const [tab, setTab] = useState<Tab>("assertions");
   const [workspace, setWorkspace] = useState<WorkspaceState | null>(null);
@@ -246,6 +248,9 @@ export function ReviewWorkspace({
           <small>{reviewer.email}</small>
         </div>
         <div className="review-header-actions">
+          <Link className="button button-outline" href={signOutHref}>
+            Sign out
+          </Link>
           <button
             className="button button-outline"
             onClick={() => setRefreshKey((value) => value + 1)}

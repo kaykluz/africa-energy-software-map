@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { RegistryExplorer } from "@/components/registry-explorer";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/deployments" },
   title: "Deployments",
   description:
     "Explore evidenced deployment geography separately from claims, headquarters and origin.",

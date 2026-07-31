@@ -1,6 +1,8 @@
 import { getD1Database } from "./index";
 import type { ContributionInput } from "@/lib/contribution-intake";
 
+const contactLiveRetentionDays = 150;
+
 export type StoredContribution = {
   id: string;
   submissionType: string;
@@ -130,7 +132,10 @@ export async function findContributionByReceipt(
 
 function contactDeletionDate(now: string) {
   const date = new Date(now);
-  date.setUTCDate(date.getUTCDate() + 180);
+  // D1 point-in-time recovery may retain a deleted row for up to 30 days.
+  // Purging the live row after 150 days keeps maximum recoverability within
+  // the public 180-day contact-retention promise.
+  date.setUTCDate(date.getUTCDate() + contactLiveRetentionDays);
   return date.toISOString();
 }
 

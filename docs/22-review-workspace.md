@@ -132,8 +132,9 @@ publish anything. `published` is deliberately unavailable in the workspace.
 
 Private contact email is revealed only after an explicit click. The response is
 not included in the normal workspace payload, and each reveal creates an audit
-event without copying the email into that event. The 180-day deletion date is
-shown beside the email.
+event without copying the email into that event. The live deletion date is shown
+beside the email; it is set at 150 days so managed recovery history cannot push
+potential contact retention past 180 days.
 
 ## Operations
 
@@ -242,7 +243,7 @@ public data, moderation data, and private contact data.
 Before deployment:
 
 1. apply pending D1 migrations;
-2. set `REVIEWER_EMAILS`;
+2. set `REVIEWER_EMAILS` to the exact comma-separated admin email allowlist;
 3. run `npm run lint` and `npm test` in `web/`;
 4. confirm a signed-out request is redirected;
 5. confirm a signed-in but unlisted account is denied;

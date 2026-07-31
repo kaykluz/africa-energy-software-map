@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { PolicyPage } from "@/components/content-pages";
 
-export const metadata: Metadata = { title: "Licence and attribution" };
+export const metadata: Metadata = {
+  alternates: { canonical: "/licence" },
+  title: "Licence and attribution",
+};
 
 export default function Licence() {
   return (

@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Patched the production dependency graph, disabled unused runtime image
+  optimisation, added global response hardening and made high-severity
+  production audit findings fail continuous integration.
+- Clarified the Git-backed public registry and D1-backed private workflow
+  boundary, added a visible admin sign-out, domain-ready canonical metadata and
+  a production backend, admin and custom-domain runbook.
+- Shortened live contact retention to 150 days so managed database recovery
+  history cannot extend potential retention beyond 180 days.
 - Prepared reviewed data release `0.1.0` from Batch 001: 61 assertion
   acceptances, 27 amendments, five resolved source-rights decisions, 88
   reviewer-attributed assertions and deterministic public downloads.

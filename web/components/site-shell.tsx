@@ -26,7 +26,7 @@ const primaryNavigation = [
 ] as const;
 
 const projectNavigation = [
-  { href: "/review", label: "Review" },
+  { href: "/review", label: "Admin" },
   { href: "/methodology", label: "Method" },
   { href: "/data", label: "Downloads" },
   { href: "/changes", label: "Changes" },

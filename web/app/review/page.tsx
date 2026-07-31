@@ -59,6 +59,7 @@ async function ReviewGate() {
         displayName: access.user.displayName,
         email: access.user.email,
       }}
+      signOutHref={chatGPTSignOutPath("/")}
       sources={reviewSources}
     />
   );
