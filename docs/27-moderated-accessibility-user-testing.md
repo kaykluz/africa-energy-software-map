@@ -50,7 +50,12 @@ On 31 July 2026, a keyboard smoke test against production confirmed that the
 Skip link was first in the focus order but only scrolled the page; it left focus
 on `body`. The implementation branch makes every `#main-content` landmark
 programmatically focusable and adds this requirement to the rendered-route test.
-That fix must be retested after deployment.
+The owner-only Version 15 deployment then passed the retest: the first Tab reached
+the Skip link, activation moved focus to the `main` landmark, opening Search
+moved focus to its search input, and Escape closed Search and returned focus to
+its trigger. At a 320 CSS-pixel viewport the homepage reported no horizontal
+overflow and exposed the mobile menu. Screen-reader interpretation and real
+constrained-network behaviour remain untested.
 
 The repository also checks one H1, one main landmark, English document language,
 the primary navigation label, live result announcements, focus-visible styling,
