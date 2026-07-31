@@ -10,6 +10,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const organisation = organisationBySlug(slug);
   return {
+    alternates: { canonical: `/organisations/${slug}` },
     title: organisation?.name ?? "Organisation record",
     description:
       organisation?.description ?? "Africa energy-software organisation record.",

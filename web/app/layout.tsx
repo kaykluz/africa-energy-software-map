@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { SiteShell } from "@/components/site-shell";
 import "./globals.css";
 
+const canonicalSiteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://africa-energy-software-map-2026.kaykluz.chatgpt.site";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    "https://africa-energy-software-map-2026.kaykluz.chatgpt.site",
-  ),
+  metadataBase: new URL(canonicalSiteUrl),
   title: {
     default: "Africa Energy Software Map",
     template: "%s · Africa Energy Software Map",

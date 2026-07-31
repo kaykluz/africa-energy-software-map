@@ -4,3 +4,7 @@ REVIEWER_EMAILS=editor@example.org
 
 # Long random bearer token used only by scheduled retention maintenance.
 OPERATIONS_TOKEN=replace-with-a-long-random-token
+
+# Public canonical URL used for metadata. Set this to the custom https hostname
+# after Sites has validated the domain.
+NEXT_PUBLIC_SITE_URL=http://localhost:3000

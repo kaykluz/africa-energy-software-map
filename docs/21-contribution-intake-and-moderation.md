@@ -42,7 +42,7 @@ status access.
 | --- | --- | --- | --- |
 | Temporary non-sensitive draft | Contributor browser | No | Until submitted or cleared by the browser |
 | Contribution content and workflow state | Hosted D1 `contributions` table | No | Until the moderation and audit policy permits deletion |
-| Contact email | Separate D1 `contribution_contacts` table | No | 180 days, then purge |
+| Contact email | Separate D1 `contribution_contacts` table | No | 150 days live; no more than 180 days including recovery history |
 | Receipt secret | Contributor’s URL only | No | Never stored in plaintext |
 | Receipt-token hash | D1 `contributions` table | No | With the contribution |
 | Abuse counter | D1 `contribution_rate_limits` table | No | Rolling operational window |
@@ -53,6 +53,11 @@ receipt responses, and the main contribution row. Expired contact rows are
 purged during successful intake and receipt activity. The scheduled daily
 maintenance endpoint also purges them when the site has no traffic and records
 the deletion count without copying contact data into the run log.
+
+The live deletion date is 150 days. Managed D1 point-in-time recovery may retain
+a deleted database state for up to 30 more days, keeping total potential
+recoverability within the stated 180-day maximum. A restore drill must confirm
+this boundary before public launch.
 
 ## Validation and abuse controls
 

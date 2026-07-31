@@ -267,6 +267,7 @@ export function DataPage() {
           height={630}
           priority={false}
           src="/social-card.jpg"
+          unoptimized
           width={1200}
         />
         <figcaption>

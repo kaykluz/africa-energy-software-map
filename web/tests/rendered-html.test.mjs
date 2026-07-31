@@ -315,7 +315,21 @@ test("server-renders corrected product identity and source-backed fields", async
 test("server-renders reproducible reviewed downloads and review status", async () => {
   const response = await render("/data");
   assert.equal(response.status, 200);
+  assert.equal(
+    response.headers.get("permissions-policy"),
+    "camera=(), microphone=(), geolocation=()",
+  );
+  assert.equal(
+    response.headers.get("referrer-policy"),
+    "strict-origin-when-cross-origin",
+  );
+  assert.equal(response.headers.get("x-content-type-options"), "nosniff");
+  assert.equal(response.headers.get("x-frame-options"), "DENY");
   const html = await response.text();
+  assert.match(
+    html,
+    /<link rel="canonical" href="https:\/\/africa-energy-software-map-2026\.kaykluz\.chatgpt\.site\/data"\/>/,
+  );
   const textHtml = html.replaceAll(/<!--.*?-->/g, "");
   assert.match(html, /<h1[^>]*>Data and downloads<\/h1>/i);
   assert.match(textHtml, /88 of\s+88 assertions reviewed/);
@@ -325,6 +339,7 @@ test("server-renders reproducible reviewed downloads and review status", async (
   assert.match(html, /assertions\.jsonl/);
   assert.match(html, /deployments\.geojson/);
   assert.match(html, /Versioned tables, assertions and country-safe deployment data/);
+  assert.doesNotMatch(html, /_vinext\/image/);
 });
 
 test("server-renders a country profile from the generated snapshot", async () => {
@@ -410,6 +425,22 @@ test("contribution API stores moderated content and private contact separately",
       receipt.id,
     ).email,
     "researcher@example.com",
+  );
+  const storedContact = database.get(
+    "SELECT delete_after AS deleteAfter FROM contribution_contacts WHERE contribution_id = ?",
+    receipt.id,
+  );
+  const storedContribution = database.get(
+    "SELECT submitted_at AS submittedAt FROM contributions WHERE id = ?",
+    receipt.id,
+  );
+  assert.equal(
+    Math.round(
+      (Date.parse(storedContact.deleteAfter) -
+        Date.parse(storedContribution.submittedAt)) /
+        86_400_000,
+    ),
+    150,
   );
   assert.equal(
     database.get(
@@ -558,6 +589,7 @@ test("review workspace is private and renders for an allowlisted reviewer", asyn
   assert.match(html, /Assertions/);
   assert.match(html, /Source rights/);
   assert.match(html, /Contributions/);
+  assert.match(html, /Sign out/);
 });
 
 test("review API requires an allowlisted ChatGPT identity", async () => {

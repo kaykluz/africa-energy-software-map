@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { RegistryExplorer } from "@/components/registry-explorer";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/directory" },
   title: "Directory",
   description: "Filter, sort and export Africa energy-software records.",
 };

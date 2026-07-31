@@ -42,7 +42,8 @@ storage. See
 
 The private operations service:
 
-- deletes contact rows whose 180-day retention date has passed;
+- deletes contact rows whose 150-day live retention date has passed, keeping
+  maximum recoverability within 180 days when the D1 recovery window is included;
 - deletes rate-limit windows older than three days;
 - retains 90 days of maintenance-run history;
 - counts the open moderation queue;

@@ -9,10 +9,9 @@ The implementation contract is
 Growth and data-boundary rules are in
 [`docs/18-expansion-architecture-and-roadmap.md`](../docs/18-expansion-architecture-and-roadmap.md).
 
-The interface currently renders the first workbook migration batch as
-**candidate prototype data**. It does not publish or verify those records.
+The interface currently renders reviewed data release **0.1.0**.
 Products, organisations, deployments and downloads are generated together from
-one checksum-verified batch; they are not duplicated in UI components. See the
+one checksum-verified release; they are not duplicated in UI components. See the
 [snapshot and export pipeline](../docs/19-snapshot-and-export-pipeline.md).
 
 ## Run locally
@@ -49,13 +48,14 @@ npm run db:generate
 ```
 
 Contact email is not saved in the browser draft and is stored in a separate
-table with a deletion date. Public registry data and downloads never query the
-intake tables. See the
+table with a 150-day live deletion date. This keeps total recoverability within
+180 days when the managed D1 recovery window is included. Public registry data
+and downloads never query the intake tables. See the
 [contribution intake and moderation contract](../docs/21-contribution-intake-and-moderation.md).
 
 ## Private review workspace
 
-`/review` lets an authorised editor review candidate assertions, resolve source
+`/review` is the admin sign-in route. It lets an authorised editor review candidate assertions, resolve source
 rights, and triage incoming contributions. It writes decisions and audit events
 to D1; it cannot update the public registry or publish a release.
 

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { PolicyPage } from "@/components/content-pages";
 
-export const metadata: Metadata = { title: "Accessibility" };
+export const metadata: Metadata = {
+  alternates: { canonical: "/accessibility" },
+  title: "Accessibility",
+};
 
 export default function Accessibility() {
   return (

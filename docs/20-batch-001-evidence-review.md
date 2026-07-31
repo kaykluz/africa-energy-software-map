@@ -1,6 +1,6 @@
 # Batch 001 evidence review
 
-Status: **human reviewed — release prepared for independent pull-request approval**
+Status: **human reviewed — published in release 0.1.0**
 
 Research date: 2026-07-30
 

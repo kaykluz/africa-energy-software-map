@@ -10,6 +10,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const product = productBySlug(slug);
   return {
+    alternates: { canonical: `/products/${slug}` },
     title: product?.name ?? "Product record",
     description: product?.description ?? "Africa energy-software product record.",
   };
