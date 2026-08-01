@@ -1022,6 +1022,29 @@ test("bulk workbooks enter a private candidate queue and cannot upgrade weak evi
     1,
   );
 
+  const rowsResponse = await fetchWorker(
+    `/api/review/bulk-import-rows?importId=${encodeURIComponent(record.id)}`,
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  assert.equal(rowsResponse.status, 200);
+  const rows = await rowsResponse.json();
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].rowKey, validBulkDeployment.row_key);
+  assert.equal(rows[0].recordType, "deployment");
+  assert.equal(rows[0].status, "candidate");
+  assert.equal(
+    rows[0].payload.organisation_name,
+    validBulkDeployment.organisation_name,
+  );
+
+  const hiddenRows = await fetchWorker(
+    `/api/review/bulk-import-rows?importId=${encodeURIComponent(record.id)}`,
+    {},
+    { DB: database },
+  );
+  assert.equal(hiddenRows.status, 401);
+
   const duplicate = await fetchWorker(
     "/api/review/bulk-imports",
     { ...reviewRequest(payload), method: "POST" },
