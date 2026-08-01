@@ -3881,6 +3881,7 @@ dd {
 
 .review-bulk-upload label {
   display: grid;
+  min-width: 0;
   gap: 7px;
 }
 
@@ -3890,6 +3891,9 @@ dd {
 }
 
 .review-bulk-upload input {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   min-height: 46px;
   padding: 9px;
   border: 1px solid var(--border-strong);
