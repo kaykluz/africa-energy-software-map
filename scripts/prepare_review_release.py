@@ -41,7 +41,7 @@ def _indexed(items: list[dict[str, Any]], key: str, label: str) -> dict[str, dic
 
 
 def build_release_plan(snapshot: dict, package: dict) -> dict:
-    if package.get("schemaVersion") != "1.0.0":
+    if package.get("schemaVersion") not in {"1.0.0", "1.1.0"}:
         raise ReviewReleaseError("unsupported review package schema")
     if package.get("status", {}).get("publicationAuthorised") is not False:
         raise ReviewReleaseError("review package must not authorise publication")
@@ -49,7 +49,37 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
         raise ReviewReleaseError("review package must not contain public data changes")
 
     assertions = _indexed(snapshot.get("assertions", []), "id", "snapshot assertion")
+    promoted_assertions = _indexed(
+        package.get("promotedAssertions", []), "id", "promoted assertion"
+    )
+    duplicate_assertions = sorted(set(assertions) & set(promoted_assertions))
+    if duplicate_assertions:
+        raise ReviewReleaseError(
+            f"promoted assertions collide with the snapshot: {duplicate_assertions}"
+        )
+    all_assertions = {**assertions, **promoted_assertions}
     sources = _indexed(snapshot.get("sources", []), "id", "snapshot source")
+    promoted_sources = _indexed(
+        package.get("promotedSources", []), "id", "promoted source"
+    )
+    duplicate_sources = sorted(set(sources) & set(promoted_sources))
+    if duplicate_sources:
+        raise ReviewReleaseError(
+            f"promoted sources collide with the snapshot: {duplicate_sources}"
+        )
+    all_sources = {**sources, **promoted_sources}
+    missing_assertion_sources = sorted(
+        {
+            str(assertion.get("sourceId") or "")
+            for assertion in promoted_assertions.values()
+        }
+        - set(all_sources)
+    )
+    if missing_assertion_sources:
+        raise ReviewReleaseError(
+            "promoted assertions have missing sources: "
+            f"{missing_assertion_sources}"
+        )
     reviews = _indexed(
         package.get("assertionReviews", []), "assertionId", "assertion review"
     )
@@ -57,8 +87,8 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
         package.get("sourceReviews", []), "sourceId", "source review"
     )
 
-    unknown_assertions = sorted(set(reviews) - set(assertions))
-    unknown_sources = sorted(set(source_reviews) - set(sources))
+    unknown_assertions = sorted(set(reviews) - set(all_assertions))
+    unknown_sources = sorted(set(source_reviews) - set(all_sources))
     if unknown_assertions or unknown_sources:
         raise ReviewReleaseError(
             "review package contains records outside this snapshot: "
@@ -66,7 +96,7 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
         )
 
     blockers: list[dict[str, str]] = []
-    unresolved_assertions = sorted(set(assertions) - set(reviews))
+    unresolved_assertions = sorted(set(all_assertions) - set(reviews))
     for assertion_id in unresolved_assertions:
         blockers.append(
             {
@@ -78,7 +108,7 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
 
     unknown_rights_sources = {
         source_id
-        for source_id, source in sources.items()
+        for source_id, source in all_sources.items()
         if source.get("sourceLicense") == "unknown"
     }
     unresolved_rights: list[str] = []
@@ -127,10 +157,12 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
     keep: list[str] = []
     amend: list[dict[str, str]] = []
     remove: list[str] = []
+    add_assertions: list[dict[str, str]] = []
     decision_counts = {decision: 0 for decision in sorted(DECISIONS)}
     for assertion_id in sorted(reviews):
         review = reviews[assertion_id]
-        assertion = assertions[assertion_id]
+        assertion = all_assertions[assertion_id]
+        is_promoted = assertion_id in promoted_assertions
         decision = review.get("decision")
         if decision not in DECISIONS:
             raise ReviewReleaseError(
@@ -158,7 +190,8 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
             )
             continue
         if decision == "reject":
-            remove.append(assertion_id)
+            if not is_promoted:
+                remove.append(assertion_id)
             continue
         if assertion.get("sourceId") in excluded_sources:
             blockers.append(
@@ -175,32 +208,83 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
                 raise ReviewReleaseError(
                     f"amended assertion {assertion_id} has no proposedValue"
                 )
-            amend.append(
+            amendment = {
+                "assertionId": assertion_id,
+                "subjectType": str(assertion.get("subjectType") or ""),
+                "subjectId": str(assertion.get("subjectId") or ""),
+                "predicate": str(assertion.get("predicate") or ""),
+                "currentValue": str(assertion.get("value") or ""),
+                "proposedValue": proposed_value,
+                "proposedEvidenceStatus": str(
+                    review.get("proposedEvidenceStatus")
+                    or assertion.get("evidenceStatus")
+                    or ""
+                ),
+            }
+            if is_promoted:
+                add_assertions.append(
+                    canonical_candidate_assertion(
+                        assertion,
+                        value=proposed_value,
+                        evidence_status=amendment["proposedEvidenceStatus"],
+                    )
+                )
+            else:
+                amend.append(amendment)
+        else:
+            if is_promoted:
+                add_assertions.append(canonical_candidate_assertion(assertion))
+            else:
+                keep.append(assertion_id)
+
+    added_source_ids = {item["sourceId"] for item in add_assertions}
+    add_sources = [
+        canonical_candidate_source(
+            promoted_sources[source_id], source_reviews.get(source_id)
+        )
+        for source_id in sorted(added_source_ids)
+        if source_id in promoted_sources and source_id not in excluded_sources
+    ]
+    candidate_contexts = []
+    for candidate in package.get("bulkCandidates", []):
+        review = candidate.get("review") or {}
+        if review.get("decision") not in {"accept", "amend"}:
+            continue
+        row_id = candidate.get("id")
+        row_assertions = [
+            item
+            for item in promoted_assertions.values()
+            if item.get("rowId") == row_id
+        ]
+        if not row_assertions:
+            blockers.append(
                 {
-                    "assertionId": assertion_id,
-                    "subjectType": str(assertion.get("subjectType") or ""),
-                    "subjectId": str(assertion.get("subjectId") or ""),
-                    "predicate": str(assertion.get("predicate") or ""),
-                    "currentValue": str(assertion.get("value") or ""),
-                    "proposedValue": proposed_value,
-                    "proposedEvidenceStatus": str(
-                        review.get("proposedEvidenceStatus")
-                        or assertion.get("evidenceStatus")
-                        or ""
-                    ),
+                    "type": "candidate_assertions_missing",
+                    "recordId": str(row_id or ""),
+                    "message": "Approved candidate has no promoted assertions.",
                 }
             )
-        else:
-            keep.append(assertion_id)
+            continue
+        if any(item.get("id") not in reviews for item in row_assertions):
+            continue
+        candidate_contexts.append(
+            {
+                "rowId": str(row_id or ""),
+                "importId": str(candidate.get("importId") or ""),
+                "recordType": str(candidate.get("recordType") or ""),
+                "effectivePayload": candidate.get("effectivePayload") or {},
+            }
+        )
 
     return {
-        "schemaVersion": "1.0.0",
+        "schemaVersion": "1.1.0",
         "status": "blocked" if blockers else "ready_for_data_pr",
         "batchId": package.get("batchId", ""),
         "reviewPackageGeneratedAt": package.get("generatedAt", ""),
         "snapshotRelease": snapshot.get("release", {}),
         "summary": {
             "snapshotAssertions": len(assertions),
+            "promotedAssertions": len(promoted_assertions),
             "assertionDecisions": len(reviews),
             "accepted": decision_counts["accept"],
             "amended": decision_counts["amend"],
@@ -216,6 +300,9 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
             "amendAssertions": amend,
             "removeAssertionIds": remove,
             "sourceUpdates": source_updates,
+            "candidateContexts": candidate_contexts,
+            "addSources": add_sources,
+            "addAssertions": add_assertions,
         },
         "blockers": blockers,
         "nextStep": (
@@ -224,6 +311,51 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
             else "Apply these actions to canonical tables in a reviewed data pull request."
         ),
         "publicationAuthorised": False,
+    }
+
+
+def canonical_candidate_assertion(
+    assertion: dict[str, Any],
+    *,
+    value: str | None = None,
+    evidence_status: str | None = None,
+) -> dict[str, str]:
+    return {
+        "id": str(assertion.get("id") or ""),
+        "subjectType": str(assertion.get("subjectType") or ""),
+        "subjectId": str(assertion.get("subjectId") or ""),
+        "predicate": str(assertion.get("predicate") or ""),
+        "value": value if value is not None else str(assertion.get("value") or ""),
+        "sourceId": str(assertion.get("sourceId") or ""),
+        "evidenceStatus": evidence_status
+        if evidence_status is not None
+        else str(assertion.get("evidenceStatus") or ""),
+        "notes": str(assertion.get("notes") or ""),
+    }
+
+
+def canonical_candidate_source(
+    source: dict[str, Any], review: dict[str, Any] | None = None
+) -> dict[str, Any]:
+    review = review or {}
+    return {
+        "id": str(source.get("id") or ""),
+        "title": str(source.get("title") or ""),
+        "publisher": str(source.get("publisher") or ""),
+        "url": str(source.get("url") or ""),
+        "sourceType": str(source.get("sourceType") or "web"),
+        "independenceClass": str(
+            review.get("independenceClass")
+            or source.get("independenceClass")
+            or "unknown"
+        ),
+        "sourceLicense": str(
+            review.get("sourceLicense")
+            or source.get("sourceLicense")
+            or "unknown"
+        ),
+        "automationPermitted": False,
+        "notes": str(source.get("notes") or ""),
     }
 
 

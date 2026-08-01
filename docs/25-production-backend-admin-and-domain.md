@@ -40,7 +40,7 @@ moderation and review to be interactive.
 | Private contact | `contribution_contacts` | Explicit admin reveal only |
 | Editorial review | `assertion_reviews`, `source_reviews`, `review_audit_events` | Admin workspace only |
 | Operations | `system_settings`, `maintenance_runs` | Protected health and admin operations views |
-| Bulk intake | `bulk_imports`, `bulk_import_rows` | Admin workspace only |
+| Bulk intake and promotion | `bulk_imports`, `bulk_import_rows`, `bulk_row_reviews`, `promoted_assertions` | Admin workspace only |
 
 All database access runs on the server through the logical `DB` binding.
 Browser code never receives database credentials. SQL is parameterised, writes
@@ -48,7 +48,7 @@ are bounded, and multi-record operations use D1 batches.
 
 Schema changes require a numbered migration in `web/drizzle/`, review of the
 generated SQL, a full application test, and a new saved site version. The
-current schema has four ordered migrations.
+current schema has five ordered migrations.
 
 ## Contact retention and recovery
 
@@ -140,4 +140,3 @@ Before changing the access policy to public:
 6. activate the custom hostname and test admin sign-in there;
 7. confirm privacy, licence and contribution wording; and
 8. record explicit owner approval for public access.
-

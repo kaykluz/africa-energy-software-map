@@ -1,8 +1,10 @@
 import { getD1Database } from "./index";
+import type { BulkRowReviewRecord } from "./bulk-reviews";
 import type {
   BulkImportRow,
   ValidatedBulkImport,
 } from "@/lib/bulk-import";
+import { normalizeSourceUrl } from "@/lib/source-url";
 
 export type BulkImportRecord = {
   id: string;
@@ -32,6 +34,9 @@ export type BulkImportRowRecord = {
   recordType: string;
   status: string;
   payload: BulkImportRow;
+  effectivePayload: BulkImportRow;
+  review: BulkRowReviewRecord | null;
+  promotedAssertionCount: number;
   createdAt: string;
 };
 
@@ -76,29 +81,113 @@ export async function listBulkImportRows(
   const result = await database
     .prepare(
       `SELECT
-         id,
-         import_id AS importId,
-         row_number AS rowNumber,
-         row_key AS rowKey,
-         record_type AS recordType,
-         status,
-         payload_json AS payloadJson,
-         created_at AS createdAt
-       FROM bulk_import_rows
-       WHERE import_id = ?
-       ORDER BY row_number ASC
+         rows.id,
+         rows.import_id AS importId,
+         rows.row_number AS rowNumber,
+         rows.row_key AS rowKey,
+         rows.record_type AS recordType,
+         rows.status,
+         rows.payload_json AS payloadJson,
+         rows.created_at AS createdAt,
+         reviews.decision,
+         reviews.amended_payload_json AS amendedPayloadJson,
+         reviews.normalized_source_url AS normalizedSourceUrl,
+         reviews.source_opened AS sourceOpened,
+         reviews.source_direct AS sourceDirect,
+         reviews.source_supports AS sourceSupports,
+         reviews.safety_checked AS safetyChecked,
+         reviews.notes AS reviewNotes,
+         reviews.reviewer_email AS reviewerEmail,
+         reviews.reviewed_at AS reviewedAt,
+         reviews.updated_at AS updatedAt,
+         reviews.version AS reviewVersion,
+         (
+           SELECT COUNT(*) FROM promoted_assertions promoted
+           WHERE promoted.row_id = rows.id
+         ) AS promotedAssertionCount
+       FROM bulk_import_rows rows
+       LEFT JOIN bulk_row_reviews reviews ON reviews.row_id = rows.id
+       WHERE rows.import_id = ?
+       ORDER BY rows.row_number ASC
        LIMIT 100`,
     )
     .bind(importId)
     .all<
-      Omit<BulkImportRowRecord, "payload"> & {
+      Omit<
+        BulkImportRowRecord,
+        "payload" | "effectivePayload" | "review"
+      > & {
         payloadJson: string;
+        decision: BulkRowReviewRecord["decision"] | null;
+        amendedPayloadJson: string | null;
+        normalizedSourceUrl: string | null;
+        sourceOpened: number | boolean | null;
+        sourceDirect: number | boolean | null;
+        sourceSupports: number | boolean | null;
+        safetyChecked: number | boolean | null;
+        reviewNotes: string | null;
+        reviewerEmail: string | null;
+        reviewedAt: string | null;
+        updatedAt: string | null;
+        reviewVersion: number | null;
       }
     >();
-  return result.results.map(({ payloadJson, ...record }) => ({
-    ...record,
-    payload: JSON.parse(payloadJson) as BulkImportRow,
-  }));
+  return result.results.map(
+    ({
+      payloadJson,
+      decision,
+      amendedPayloadJson,
+      normalizedSourceUrl,
+      sourceOpened,
+      sourceDirect,
+      sourceSupports,
+      safetyChecked,
+      reviewNotes,
+      reviewerEmail,
+      reviewedAt,
+      updatedAt,
+      reviewVersion,
+      ...record
+    }) => {
+      const payload = JSON.parse(payloadJson) as BulkImportRow;
+      const amendments = amendedPayloadJson
+        ? (JSON.parse(amendedPayloadJson) as BulkRowReviewRecord["amendments"])
+        : {};
+      const sourceUrl =
+        normalizedSourceUrl ?? normalizeSourceUrl(payload.source_url);
+      return {
+        ...record,
+        payload,
+        effectivePayload: {
+          ...payload,
+          ...amendments,
+          source_url: sourceUrl,
+        },
+        review:
+          decision &&
+          reviewerEmail &&
+          reviewedAt &&
+          updatedAt &&
+          reviewVersion
+            ? {
+                rowId: record.id,
+                decision,
+                amendments,
+                normalizedSourceUrl: sourceUrl,
+                sourceOpened: Boolean(sourceOpened),
+                sourceDirect: Boolean(sourceDirect),
+                sourceSupports: Boolean(sourceSupports),
+                safetyChecked: Boolean(safetyChecked),
+                notes: reviewNotes,
+                reviewerEmail,
+                reviewedAt,
+                updatedAt,
+                version: reviewVersion,
+              }
+            : null,
+      };
+    },
+  );
 }
 
 export async function storeBulkImport(

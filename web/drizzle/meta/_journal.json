@@ -29,6 +29,13 @@
       "when": 1785446276215,
       "tag": "0003_deep_magneto",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1785605669759,
+      "tag": "0004_curious_magma",
+      "breakpoints": true
     }
   ]
 }

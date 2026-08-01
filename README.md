@@ -48,6 +48,10 @@ Authorised editors can now review candidate assertions, source rights, and
 incoming contributions in a private
 [`/review` workspace](docs/22-review-workspace.md). Its decisions are audited
 but never publish data directly.
+Bulk candidates can be accepted, amended, rejected or held for more evidence.
+Approved rows become source-linked atomic assertions in that same private
+workspace and still require assertion-level review before a release pull
+request can be prepared.
 Scheduled retention, source-first review preparation, proposal-only research
 readiness, and the bounded Batch 002 plan are documented in
 [automation and review assist](docs/23-automation-and-review-assist.md).
