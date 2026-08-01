@@ -3881,6 +3881,7 @@ dd {
 
 .review-bulk-upload label {
   display: grid;
+  min-width: 0;
   gap: 7px;
 }
 
@@ -3890,6 +3891,9 @@ dd {
 }
 
 .review-bulk-upload input {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   min-height: 46px;
   padding: 9px;
   border: 1px solid var(--border-strong);
@@ -3925,50 +3929,249 @@ dd {
 }
 
 .review-bulk-list article {
-  display: grid;
-  grid-template-columns: minmax(200px, 1fr) minmax(340px, 1.4fr);
-  gap: 18px;
   padding: 18px 0;
   border-top: 1px solid var(--border);
 }
 
-.review-bulk-list article > div,
-.review-bulk-list article dl {
+.review-bulk-import-summary {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.review-bulk-import-title {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
   gap: 16px;
 }
 
-.review-bulk-list article > div {
-  justify-content: space-between;
+.review-bulk-import-title strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.review-bulk-list article > div span,
+.review-bulk-import-title span,
 .review-bulk-list article > small,
-.review-bulk-list article dt {
+.review-bulk-import-summary dt {
   color: var(--muted);
   font-size: 0.62rem;
 }
 
-.review-bulk-list article dl {
+.review-bulk-import-summary dl {
+  display: flex;
+  align-items: center;
   justify-content: flex-end;
+  gap: 16px;
   margin: 0;
 }
 
-.review-bulk-list article dl div {
+.review-bulk-import-summary dl div {
   display: grid;
   gap: 2px;
   min-width: 54px;
 }
 
-.review-bulk-list article dd {
+.review-bulk-import-summary dd {
   margin: 0;
   font-size: 0.78rem;
   font-weight: 720;
 }
 
 .review-bulk-list article > small {
+  display: block;
+  margin-top: 10px;
+}
+
+.review-bulk-records {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--canvas);
+}
+
+.review-bulk-records > header,
+.review-bulk-records > header > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.review-bulk-records > header > div {
+  justify-content: flex-start;
+}
+
+.review-bulk-records > header strong {
+  font-size: 0.82rem;
+}
+
+.review-bulk-records > header span {
+  color: var(--muted);
+  font-size: 0.64rem;
+}
+
+.review-bulk-record-tools {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 16px 0 12px;
+}
+
+.review-bulk-record-tools label {
+  display: grid;
+  width: min(420px, 100%);
+  gap: 5px;
+}
+
+.review-bulk-record-tools label > span {
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.review-bulk-record-tools input {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 11px;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  color: var(--ink);
+  background: var(--surface);
+}
+
+.review-bulk-record-tools [role="group"] {
+  display: flex;
+  gap: 4px;
+}
+
+.review-bulk-record-tools [role="group"] button {
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--muted);
+  background: transparent;
+  font-size: 0.65rem;
+  font-weight: 680;
+  cursor: pointer;
+}
+
+.review-bulk-record-tools [role="group"] button[aria-pressed="true"] {
+  border-color: var(--border);
+  color: var(--ink);
+  background: var(--surface);
+}
+
+.review-bulk-record-list {
+  max-height: 620px;
+  overflow: auto;
+  border-top: 1px solid var(--border);
+}
+
+.review-bulk-record-list details {
+  border-bottom: 1px solid var(--border);
+}
+
+.review-bulk-record-list summary {
+  display: grid;
+  grid-template-columns: 28px minmax(180px, 1fr) 48px minmax(130px, auto) 60px;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 8px 4px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.review-bulk-record-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.review-bulk-record-list summary > span {
+  color: var(--muted);
+  font-size: 0.64rem;
+}
+
+.review-bulk-record-list summary > span:nth-child(2) {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.review-bulk-record-list summary strong {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 0.76rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.review-bulk-record-list summary small {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.62rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.review-bulk-record-type {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--ink) !important;
+  background: var(--surface);
+  font-weight: 760;
+}
+
+.review-bulk-record-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px 20px;
+  padding: 2px 44px 18px;
+}
+
+.review-bulk-record-detail dl {
+  display: flex;
   grid-column: 1 / -1;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  margin: 0;
+}
+
+.review-bulk-record-detail dl div {
+  display: grid;
+  gap: 2px;
+}
+
+.review-bulk-record-detail dt,
+.review-bulk-record-detail p {
+  color: var(--muted);
+  font-size: 0.61rem;
+}
+
+.review-bulk-record-detail dd {
+  margin: 0;
+  font-size: 0.69rem;
+}
+
+.review-bulk-record-detail p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.review-bulk-record-detail a {
+  align-self: end;
+  font-size: 0.68rem;
+  font-weight: 680;
 }
 
 .review-operations {
@@ -4280,14 +4483,47 @@ dd {
     padding: 20px 16px;
   }
 
-  .review-bulk-upload,
-  .review-bulk-list article {
+  .review-bulk-upload {
     grid-template-columns: 1fr;
   }
 
-  .review-bulk-list article dl {
+  .review-bulk-import-summary,
+  .review-bulk-record-tools,
+  .review-bulk-records > header,
+  .review-bulk-records > header > div {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .review-bulk-import-summary {
+    display: flex;
+  }
+
+  .review-bulk-import-summary dl {
     justify-content: flex-start;
     flex-wrap: wrap;
+  }
+
+  .review-bulk-record-tools label {
+    width: 100%;
+  }
+
+  .review-bulk-record-list summary {
+    grid-template-columns: 28px minmax(130px, 1fr) 44px;
+  }
+
+  .review-bulk-record-list summary > span:nth-child(4),
+  .review-bulk-record-list summary > span:nth-child(5) {
+    display: none;
+  }
+
+  .review-bulk-record-detail {
+    grid-template-columns: 1fr;
+    padding: 2px 4px 18px 44px;
+  }
+
+  .review-bulk-record-detail dl {
+    grid-column: auto;
   }
 
   .review-operations-grid,

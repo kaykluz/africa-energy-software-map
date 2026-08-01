@@ -266,6 +266,49 @@ test("server-renders the Stack with reviewed status and useful records", async (
   assert.doesNotMatch(html, /Your site is taking shape|Building your site/);
 });
 
+test("core public routes expose semantic keyboard and reflow contracts", async () => {
+  for (const pathname of [
+    "/",
+    "/deployments",
+    "/directory",
+    "/accessibility",
+    "/contribute",
+  ]) {
+    const response = await render(pathname);
+    assert.equal(response.status, 200, pathname);
+    const html = await response.text();
+    assert.match(html, /<html[^>]*lang="en"/i, pathname);
+    assert.match(
+      html,
+      /<a[^>]*class="skip-link"[^>]*href="#main-content"/i,
+      pathname,
+    );
+    assert.match(
+      html,
+      /<main[^>]*id="main-content"[^>]*tabindex="-1"/i,
+      pathname,
+    );
+    assert.equal(html.match(/<main\b/gi)?.length, 1, pathname);
+    assert.equal(html.match(/<h1\b/gi)?.length, 1, pathname);
+    assert.match(html, /aria-label="Primary navigation"/i, pathname);
+  }
+
+  const mapResponse = await render("/deployments");
+  const mapHtml = await mapResponse.text();
+  assert.match(mapHtml, /aria-label="Map layer"/i);
+  assert.match(mapHtml, /aria-label="Map representation"/i);
+  assert.match(mapHtml, /aria-label="African country data view"/i);
+  assert.match(mapHtml, /aria-label="African countries, equal-area grid"/i);
+  assert.match(mapHtml, /aria-live="polite"/i);
+
+  const styles = ["../app/globals.css", "../app/visual-system.css"]
+    .map((filename) => readFileSync(new URL(filename, import.meta.url), "utf8"))
+    .join("\n");
+  assert.match(styles, /:focus-visible/);
+  assert.match(styles, /prefers-reduced-motion:\s*reduce/);
+  assert.match(styles, /min-width:\s*320px/);
+});
+
 test("server-renders the Directory and its export action", async () => {
   const response = await render("/directory?country=NG");
   assert.equal(response.status, 200);
@@ -978,6 +1021,29 @@ test("bulk workbooks enter a private candidate queue and cannot upgrade weak evi
     ).count,
     1,
   );
+
+  const rowsResponse = await fetchWorker(
+    `/api/review/bulk-import-rows?importId=${encodeURIComponent(record.id)}`,
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  assert.equal(rowsResponse.status, 200);
+  const rows = await rowsResponse.json();
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].rowKey, validBulkDeployment.row_key);
+  assert.equal(rows[0].recordType, "deployment");
+  assert.equal(rows[0].status, "candidate");
+  assert.equal(
+    rows[0].payload.organisation_name,
+    validBulkDeployment.organisation_name,
+  );
+
+  const hiddenRows = await fetchWorker(
+    `/api/review/bulk-import-rows?importId=${encodeURIComponent(record.id)}`,
+    {},
+    { DB: database },
+  );
+  assert.equal(hiddenRows.status, 401);
 
   const duplicate = await fetchWorker(
     "/api/review/bulk-imports",

@@ -14,7 +14,10 @@ import type {
   SourceReviewRecord,
 } from "@/db/reviews";
 import type { OperationsStatus } from "@/db/operations";
-import type { BulkImportRecord } from "@/db/bulk-imports";
+import type {
+  BulkImportRecord,
+  BulkImportRowRecord,
+} from "@/db/bulk-imports";
 import { parseBulkWorkbook } from "@/lib/bulk-xlsx-client";
 import type {
   ReviewAssertion,
@@ -233,7 +236,7 @@ export function ReviewWorkspace({
   }
 
   return (
-    <main className="review-page" id="main-content">
+    <main className="review-page" id="main-content" tabIndex={-1}>
       <header className="review-header">
         <div>
           <div className="review-header-line">
@@ -454,6 +457,76 @@ function BulkImportPanel({
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const [details, setDetails] = useState<string[]>([]);
+  const [activeImportId, setActiveImportId] = useState("");
+  const [rows, setRows] = useState<BulkImportRowRecord[]>([]);
+  const [rowsLoading, setRowsLoading] = useState(false);
+  const [rowsError, setRowsError] = useState("");
+  const [rowQuery, setRowQuery] = useState("");
+  const [rowType, setRowType] = useState<"all" | "product" | "deployment">(
+    "all",
+  );
+  const activeImport = imports.find((record) => record.id === activeImportId);
+  const visibleRows = useMemo(() => {
+    const needle = rowQuery.trim().toLowerCase();
+    return rows.filter((row) => {
+      if (rowType !== "all" && row.recordType !== rowType) return false;
+      if (!needle) return true;
+      const value = row.payload;
+      return [
+        row.rowKey,
+        value.organisation_name,
+        value.product_name,
+        value.customer_name,
+        value.deployment_country_iso2,
+        value.country_of_origin,
+        value.source_publisher,
+        value.primary_category_id,
+      ]
+        .join(" ")
+        .toLowerCase()
+        .includes(needle);
+    });
+  }, [rowQuery, rowType, rows]);
+
+  async function toggleRows(record: BulkImportRecord) {
+    if (record.id === activeImportId) {
+      setActiveImportId("");
+      setRows([]);
+      setRowsError("");
+      return;
+    }
+    setActiveImportId(record.id);
+    setRows([]);
+    setRowsError("");
+    setRowQuery("");
+    setRowType("all");
+    setRowsLoading(true);
+    try {
+      const response = await fetch(
+        `/api/review/bulk-import-rows?importId=${encodeURIComponent(record.id)}`,
+        { cache: "no-store" },
+      );
+      const result = (await response.json()) as
+        | BulkImportRowRecord[]
+        | ApiError;
+      if (!response.ok || !Array.isArray(result)) {
+        throw new Error(
+          !Array.isArray(result)
+            ? result.error?.message
+            : "The candidate rows could not be loaded.",
+        );
+      }
+      setRows(result);
+    } catch (reason) {
+      setRowsError(
+        reason instanceof Error
+          ? reason.message
+          : "The candidate rows could not be loaded.",
+      );
+    } finally {
+      setRowsLoading(false);
+    }
+  }
 
   async function upload(event: FormEvent) {
     event.preventDefault();
@@ -537,30 +610,168 @@ function BulkImportPanel({
         <h3>Recent imports</h3>
         {imports.map((record) => (
           <article key={record.id}>
-            <div>
-              <strong>{record.originalFilename}</strong>
-              <span>{formatDate(record.uploadedAt)}</span>
+            <div className="review-bulk-import-summary">
+              <div className="review-bulk-import-title">
+                <strong>{record.originalFilename}</strong>
+                <span>{formatDate(record.uploadedAt)}</span>
+              </div>
+              <dl>
+                <div>
+                  <dt>Rows</dt>
+                  <dd>{record.rowCount}</dd>
+                </div>
+                <div>
+                  <dt>Entities</dt>
+                  <dd>{record.entityCount}</dd>
+                </div>
+                <div>
+                  <dt>Batches</dt>
+                  <dd>{record.plannedBatchCount}</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>Candidate</dd>
+                </div>
+              </dl>
+              <button
+                aria-controls={`bulk-records-${record.id}`}
+                aria-expanded={activeImportId === record.id}
+                className="button button-outline"
+                onClick={() => void toggleRows(record)}
+                type="button"
+              >
+                {activeImportId === record.id
+                  ? "Hide records"
+                  : `View ${record.rowCount} records`}
+              </button>
             </div>
-            <dl>
-              <div>
-                <dt>Rows</dt>
-                <dd>{record.rowCount}</dd>
-              </div>
-              <div>
-                <dt>Entities</dt>
-                <dd>{record.entityCount}</dd>
-              </div>
-              <div>
-                <dt>Batches</dt>
-                <dd>{record.plannedBatchCount}</dd>
-              </div>
-              <div>
-                <dt>Status</dt>
-                <dd>Candidate</dd>
-              </div>
-            </dl>
             {record.warnings.length ? (
               <small>{record.warnings.join(" · ")}</small>
+            ) : null}
+            {activeImportId === record.id ? (
+              <section
+                aria-label={`${record.originalFilename} candidate records`}
+                className="review-bulk-records"
+                id={`bulk-records-${record.id}`}
+              >
+                <header>
+                  <div>
+                    <strong>Candidate records</strong>
+                    <span>Private until editorial approval.</span>
+                  </div>
+                  <span aria-live="polite">
+                    {rowsLoading
+                      ? "Loading…"
+                      : `${visibleRows.length} shown`}
+                  </span>
+                </header>
+                {rowsError ? (
+                  <div className="review-form-error" role="alert">
+                    <strong>{rowsError}</strong>
+                  </div>
+                ) : null}
+                {!rowsError ? (
+                  <>
+                    <div className="review-bulk-record-tools">
+                      <label>
+                        <span>Find a record</span>
+                        <input
+                          onChange={(event) => setRowQuery(event.target.value)}
+                          placeholder="Product, organisation or country"
+                          type="search"
+                          value={rowQuery}
+                        />
+                      </label>
+                      <div aria-label="Record type" role="group">
+                        {(["all", "product", "deployment"] as const).map(
+                          (value) => (
+                            <button
+                              aria-pressed={rowType === value}
+                              key={value}
+                              onClick={() => setRowType(value)}
+                              type="button"
+                            >
+                              {value === "all"
+                                ? "All"
+                                : value === "product"
+                                  ? "Products"
+                                  : "Deployments"}
+                            </button>
+                          ),
+                        )}
+                      </div>
+                    </div>
+                    <div className="review-bulk-record-list">
+                      {visibleRows.map((row) => {
+                        const value = row.payload;
+                        const batch = activeImport?.batches.find((item) =>
+                          item.rowKeys.includes(row.rowKey),
+                        )?.number;
+                        const country =
+                          value.deployment_country_iso2 ||
+                          value.country_of_origin ||
+                          value.headquarters_country ||
+                          "—";
+                        return (
+                          <details key={row.id}>
+                            <summary>
+                              <span className="review-bulk-record-type">
+                                {row.recordType === "deployment" ? "D" : "P"}
+                              </span>
+                              <span>
+                                <strong>{value.product_name}</strong>
+                                <small>{value.organisation_name}</small>
+                              </span>
+                              <span>{country}</span>
+                              <span>{evidenceLabel(value.evidence_status)}</span>
+                              <span>Batch {batch ?? "—"}</span>
+                            </summary>
+                            <div className="review-bulk-record-detail">
+                              <dl>
+                                <DataRow label="Row key" mono value={row.rowKey} />
+                                <DataRow
+                                  label="Category"
+                                  value={value.primary_category_id.replaceAll("_", " ")}
+                                />
+                                <DataRow
+                                  label="Customer"
+                                  value={value.customer_name}
+                                />
+                                <DataRow
+                                  label="Started"
+                                  value={value.started_year}
+                                />
+                                <DataRow
+                                  label="Publisher"
+                                  value={value.source_publisher}
+                                />
+                                <DataRow
+                                  label="Status"
+                                  value={row.status}
+                                />
+                              </dl>
+                              <p>{value.source_locator}</p>
+                              <a
+                                href={value.source_url}
+                                rel="noreferrer"
+                                target="_blank"
+                              >
+                                Open evidence ↗
+                              </a>
+                            </div>
+                          </details>
+                        );
+                      })}
+                      {!rowsLoading && !visibleRows.length ? (
+                        <div className="review-empty-list">
+                          <strong>No matching records</strong>
+                          <span>Clear the search or change the record type.</span>
+                        </div>
+                      ) : null}
+                    </div>
+                  </>
+                ) : null}
+              </section>
             ) : null}
           </article>
         ))}

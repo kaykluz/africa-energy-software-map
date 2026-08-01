@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "completedAt": "2026-07-31T22:57:43.894323Z",
+  "drillMode": "local_sqlite_d1_compatibility_rehearsal",
+  "productionD1Untouched": true,
+  "containsOnlySyntheticData": true,
+  "migrations": [
+    "0000_quick_prodigy.sql",
+    "0001_fancy_senator_kelly.sql",
+    "0002_aspiring_whistler.sql",
+    "0003_deep_magneto.sql"
+  ],
+  "tablesVerified": 10,
+  "tableCounts": {
+    "assertion_reviews": 1,
+    "bulk_import_rows": 1,
+    "bulk_imports": 1,
+    "contribution_contacts": 1,
+    "contribution_rate_limits": 1,
+    "contributions": 1,
+    "maintenance_runs": 1,
+    "review_audit_events": 1,
+    "source_reviews": 1,
+    "system_settings": 1
+  },
+  "baselineFingerprint": "78e7bd89d872031c6423ac7f5ff816bc3b3b49c8bf4c94535643fa679a03c047",
+  "restoredFingerprint": "78e7bd89d872031c6423ac7f5ff816bc3b3b49c8bf4c94535643fa679a03c047",
+  "simulatedLossDetected": true,
+  "integrity": "ok",
+  "foreignKeyFailures": 0,
+  "durationSeconds": 0.03,
+  "rtoTargetSeconds": 30.0,
+  "productionTimeTravelDrillRequired": true,
+  "publicationAuthorised": false
+}

@@ -40,7 +40,7 @@ export function ProductProfile({ slug }: { slug: string }) {
   );
 
   return (
-    <main className="profile-page profile-width" id="main-content">
+    <main className="profile-page profile-width" id="main-content" tabIndex={-1}>
       <nav aria-label="Breadcrumb" className="breadcrumb">
         <Link href="/">Explore</Link><span aria-hidden="true">/</span>
         <Link href={`/?category=${product.categoryId}`}>{product.category}</Link>
@@ -219,7 +219,7 @@ export function OrganisationProfile({ slug }: { slug: string }) {
   );
 
   return (
-    <main className="profile-page profile-width" id="main-content">
+    <main className="profile-page profile-width" id="main-content" tabIndex={-1}>
       <nav aria-label="Breadcrumb" className="breadcrumb">
         <Link href="/directory">Directory</Link><span aria-hidden="true">/</span>
         <span>{organisation.name}</span>
@@ -316,7 +316,7 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
   );
   if (!summary) {
     return (
-      <main className="reading-page reading-width" id="main-content">
+      <main className="reading-page reading-width" id="main-content" tabIndex={-1}>
         <span className="eyebrow">Country record</span>
         <h1>{countryName}</h1>
         <div className="inline-empty">
@@ -347,7 +347,7 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
     countryDeployments.map((deployment) => deployment.sourceId),
   );
   return (
-    <main className="profile-page profile-width" id="main-content">
+    <main className="profile-page profile-width" id="main-content" tabIndex={-1}>
       <nav aria-label="Breadcrumb" className="breadcrumb">
         <Link href="/deployments">Map</Link><span aria-hidden="true">/</span><span>{countryName}</span>
       </nav>
@@ -458,7 +458,7 @@ function Stat({ label, value }: { label: string; value: string }) {
 
 function NotFoundRecord({ type }: { type: string }) {
   return (
-    <main className="reading-page reading-width" id="main-content">
+    <main className="reading-page reading-width" id="main-content" tabIndex={-1}>
       <span className="eyebrow">Record not found</span>
       <h1>No published {type} matched this address.</h1>
       <p>The record may have moved, merged or not yet completed editorial review.</p>

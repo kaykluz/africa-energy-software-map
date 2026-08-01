@@ -27,7 +27,7 @@ export function MethodologyPage() {
     ["licence-exports", "Licence and exports"],
   ] as const;
   return (
-    <main className="methodology-page standard-width" id="main-content">
+    <main className="methodology-page standard-width" id="main-content" tabIndex={-1}>
       <header className="page-intro reading-intro">
         <span className="eyebrow">Methodology 1.0 · effective 30 July 2026</span>
         <h1>How the map decides what to show</h1>
@@ -196,7 +196,7 @@ export function ContributeHubPage() {
     },
   ];
   return (
-    <main className="standard-width contribute-page" id="main-content">
+    <main className="standard-width contribute-page" id="main-content" tabIndex={-1}>
       <header className="page-intro reading-intro">
         <span className="eyebrow">Contribute evidence</span>
         <h1>Help make the map more accurate</h1>
@@ -229,7 +229,7 @@ export function ContributeHubPage() {
 
 export function DataPage() {
   return (
-    <main className="standard-width data-page" id="main-content">
+    <main className="standard-width data-page" id="main-content" tabIndex={-1}>
       <header className="page-intro reading-intro">
         <span className="eyebrow">Data access</span>
         <h1>Data and downloads</h1>
@@ -376,7 +376,7 @@ export function SearchResultsPage({ query }: { query: string }) {
       )
     : [];
   return (
-    <main className="standard-width search-page" id="main-content">
+    <main className="standard-width search-page" id="main-content" tabIndex={-1}>
       <header className="page-intro">
         <span className="eyebrow">Search the registry</span>
         <h1>{query ? `Results for “${query}”` : "Search"}</h1>
@@ -441,7 +441,7 @@ export function SearchResultsPage({ query }: { query: string }) {
 
 export function ChangesPage() {
   return (
-    <main className="standard-width changes-page" id="main-content">
+    <main className="standard-width changes-page" id="main-content" tabIndex={-1}>
       <header className="page-intro reading-intro">
         <span className="eyebrow">Public editorial record</span>
         <h1>Changes</h1>
@@ -468,7 +468,7 @@ export function PolicyPage({
   sections: { heading: string; body: string }[];
 }) {
   return (
-    <main className="reading-page reading-width" id="main-content">
+    <main className="reading-page reading-width" id="main-content" tabIndex={-1}>
       <span className="eyebrow">{eyebrow}</span>
       <h1>{title}</h1>
       <p className="reading-lead">{intro}</p>

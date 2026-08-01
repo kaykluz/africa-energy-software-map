@@ -202,7 +202,11 @@ export function RegistryExplorer({
   const meta = viewMeta[view];
 
   return (
-    <main className={`v2-experience v2-experience-${view}`} id="main-content">
+    <main
+      className={`v2-experience v2-experience-${view}`}
+      id="main-content"
+      tabIndex={-1}
+    >
       <section className="v2-experience-hero">
         <div className="v2-hero-copy">
           <h1>{meta.title}</h1>

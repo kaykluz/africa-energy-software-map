@@ -1,5 +1,8 @@
 import { getD1Database } from "./index";
-import type { ValidatedBulkImport } from "@/lib/bulk-import";
+import type {
+  BulkImportRow,
+  ValidatedBulkImport,
+} from "@/lib/bulk-import";
 
 export type BulkImportRecord = {
   id: string;
@@ -19,6 +22,17 @@ export type BulkImportRecord = {
     assertionEstimate: number;
   }>;
   version: number;
+};
+
+export type BulkImportRowRecord = {
+  id: string;
+  importId: string;
+  rowNumber: number;
+  rowKey: string;
+  recordType: string;
+  status: string;
+  payload: BulkImportRow;
+  createdAt: string;
 };
 
 export async function listBulkImports(): Promise<BulkImportRecord[]> {
@@ -52,6 +66,38 @@ export async function listBulkImports(): Promise<BulkImportRecord[]> {
     ...record,
     warnings: parseJsonArray(record.warningsJson),
     batches: JSON.parse(record.batchPlanJson) as BulkImportRecord["batches"],
+  }));
+}
+
+export async function listBulkImportRows(
+  importId: string,
+): Promise<BulkImportRowRecord[]> {
+  const database = await getD1Database();
+  const result = await database
+    .prepare(
+      `SELECT
+         id,
+         import_id AS importId,
+         row_number AS rowNumber,
+         row_key AS rowKey,
+         record_type AS recordType,
+         status,
+         payload_json AS payloadJson,
+         created_at AS createdAt
+       FROM bulk_import_rows
+       WHERE import_id = ?
+       ORDER BY row_number ASC
+       LIMIT 100`,
+    )
+    .bind(importId)
+    .all<
+      Omit<BulkImportRowRecord, "payload"> & {
+        payloadJson: string;
+      }
+    >();
+  return result.results.map(({ payloadJson, ...record }) => ({
+    ...record,
+    payload: JSON.parse(payloadJson) as BulkImportRow,
   }));
 }
 
