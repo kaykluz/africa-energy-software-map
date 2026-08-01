@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "completedAt": "2026-07-31T22:57:43.894323Z",
+  "completedAt": "2026-08-01T18:06:35.304739Z",
   "drillMode": "local_sqlite_d1_compatibility_rehearsal",
   "productionD1Untouched": true,
   "containsOnlySyntheticData": true,
@@ -8,28 +8,31 @@
     "0000_quick_prodigy.sql",
     "0001_fancy_senator_kelly.sql",
     "0002_aspiring_whistler.sql",
-    "0003_deep_magneto.sql"
+    "0003_deep_magneto.sql",
+    "0004_curious_magma.sql"
   ],
-  "tablesVerified": 10,
+  "tablesVerified": 12,
   "tableCounts": {
     "assertion_reviews": 1,
     "bulk_import_rows": 1,
     "bulk_imports": 1,
+    "bulk_row_reviews": 1,
     "contribution_contacts": 1,
     "contribution_rate_limits": 1,
     "contributions": 1,
     "maintenance_runs": 1,
+    "promoted_assertions": 1,
     "review_audit_events": 1,
     "source_reviews": 1,
     "system_settings": 1
   },
-  "baselineFingerprint": "78e7bd89d872031c6423ac7f5ff816bc3b3b49c8bf4c94535643fa679a03c047",
-  "restoredFingerprint": "78e7bd89d872031c6423ac7f5ff816bc3b3b49c8bf4c94535643fa679a03c047",
+  "baselineFingerprint": "fbfe245720d28ae7bb9808a0249c15d7395de51942b581273919ea104f56c6e6",
+  "restoredFingerprint": "fbfe245720d28ae7bb9808a0249c15d7395de51942b581273919ea104f56c6e6",
   "simulatedLossDetected": true,
   "integrity": "ok",
   "foreignKeyFailures": 0,
-  "durationSeconds": 0.03,
-  "rtoTargetSeconds": 30.0,
+  "durationSeconds": 0.023,
+  "rtoTargetSeconds": 900,
   "productionTimeTravelDrillRequired": true,
   "publicationAuthorised": false
 }

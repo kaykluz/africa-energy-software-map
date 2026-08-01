@@ -1,5 +1,10 @@
 import { getD1Database } from "./index";
-import { listBulkImports } from "./bulk-imports";
+import { listBulkImportRows, listBulkImports } from "./bulk-imports";
+import {
+  listPromotedAssertions,
+  listPromotedSources,
+  promotedAssertionBatchId,
+} from "./bulk-reviews";
 import { getOperationsStatus } from "./operations";
 import { reviewBatchId } from "@/lib/review-data";
 
@@ -79,6 +84,8 @@ export async function loadReviewWorkspace() {
     contributionResult,
     operations,
     bulkImports,
+    promotedAssertions,
+    promotedSources,
   ] =
     await Promise.all([
       database
@@ -97,10 +104,8 @@ export async function loadReviewWorkspace() {
             updated_at AS updatedAt,
             version
            FROM assertion_reviews
-           WHERE batch_id = ?
            ORDER BY updated_at DESC`,
         )
-        .bind(reviewBatchId)
         .all<AssertionReviewRecord>(),
       database
         .prepare(
@@ -149,6 +154,8 @@ export async function loadReviewWorkspace() {
         .all<ModerationContribution>(),
       getOperationsStatus(),
       listBulkImports(),
+      listPromotedAssertions(),
+      listPromotedSources(),
     ]);
 
   return {
@@ -160,6 +167,8 @@ export async function loadReviewWorkspace() {
     })),
     operations,
     bulkImports,
+    promotedAssertions,
+    promotedSources,
   };
 }
 
@@ -187,11 +196,13 @@ export async function saveAssertionReview({
   const database = await getD1Database();
   const existing = await findAssertionReview(database, assertionId);
   enforceVersion(existing?.version ?? 0, expectedVersion);
+  const batchId =
+    (await promotedAssertionBatchId(assertionId)) ?? reviewBatchId;
   const now = new Date().toISOString();
   const nextVersion = (existing?.version ?? 0) + 1;
   const next = {
     assertionId,
-    batchId: reviewBatchId,
+    batchId,
     decision,
     proposedValue: proposedValue || null,
     proposedEvidenceStatus: proposedEvidenceStatus || null,
@@ -451,6 +462,11 @@ export async function revealContributionContact({
 export async function exportReviewPackage(reviewerEmail: string) {
   const database = await getD1Database();
   const workspace = await loadReviewWorkspace();
+  const bulkCandidates = (
+    await Promise.all(
+      workspace.bulkImports.map((record) => listBulkImportRows(record.id)),
+    )
+  ).flat();
   const audit = await database
     .prepare(
       `SELECT
@@ -464,23 +480,34 @@ export async function exportReviewPackage(reviewerEmail: string) {
         reviewer_email AS reviewerEmail,
         occurred_at AS occurredAt
        FROM review_audit_events
-       WHERE record_type IN ('assertion', 'source')
+       WHERE record_type IN (
+         'assertion', 'source', 'bulk_import_row', 'promoted_assertion'
+       )
        ORDER BY occurred_at ASC`,
     )
     .all<AuditEvent>();
   return {
-    schemaVersion: "1.0.0",
+    schemaVersion: "1.1.0",
     batchId: reviewBatchId,
     generatedAt: new Date().toISOString(),
     generatedBy: reviewerEmail,
     status: {
       assertionDecisions: workspace.assertionReviews.length,
       sourceDecisions: workspace.sourceReviews.length,
+      bulkCandidateRows: bulkCandidates.length,
+      bulkCandidateDecisions: bulkCandidates.filter((record) => record.review)
+        .length,
+      promotedAssertions: workspace.promotedAssertions.length,
+      promotedSources: workspace.promotedSources.length,
       containsPublicDataChanges: false,
       publicationAuthorised: false,
     },
     assertionReviews: workspace.assertionReviews,
     sourceReviews: workspace.sourceReviews,
+    bulkImports: workspace.bulkImports,
+    bulkCandidates,
+    promotedAssertions: workspace.promotedAssertions,
+    promotedSources: workspace.promotedSources,
     audit: audit.results,
   };
 }

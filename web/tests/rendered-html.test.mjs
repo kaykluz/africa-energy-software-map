@@ -47,6 +47,7 @@ class MemoryD1 {
       "../drizzle/0001_fancy_senator_kelly.sql",
       "../drizzle/0002_aspiring_whistler.sql",
       "../drizzle/0003_deep_magneto.sql",
+      "../drizzle/0004_curious_magma.sql",
     ]) {
       const sql = readFileSync(new URL(migration, import.meta.url), "utf8");
       for (const statement of sql.split("--> statement-breakpoint")) {
@@ -1033,9 +1034,261 @@ test("bulk workbooks enter a private candidate queue and cannot upgrade weak evi
   assert.equal(rows[0].rowKey, validBulkDeployment.row_key);
   assert.equal(rows[0].recordType, "deployment");
   assert.equal(rows[0].status, "candidate");
+  assert.equal(rows[0].review, null);
+  assert.equal(rows[0].promotedAssertionCount, 0);
   assert.equal(
     rows[0].payload.organisation_name,
     validBulkDeployment.organisation_name,
+  );
+  const rowId = rows[0].id;
+
+  const privateSource = await fetchWorker(
+    `/api/review/bulk-import-rows/${rowId}`,
+    reviewRequest({
+      decision: "needs_evidence",
+      amendments: {},
+      sourceUrl: "http://127.0.0.1/evidence",
+      sourceOpened: false,
+      sourceDirect: false,
+      sourceSupports: false,
+      safetyChecked: false,
+      notes: "The candidate needs a public source.",
+      expectedVersion: 0,
+    }),
+    { DB: database },
+  );
+  assert.equal(privateSource.status, 422);
+
+  const uncheckedApproval = await fetchWorker(
+    `/api/review/bulk-import-rows/${rowId}`,
+    reviewRequest({
+      decision: "accept",
+      amendments: {},
+      sourceUrl: validBulkDeployment.source_url,
+      sourceOpened: true,
+      sourceDirect: false,
+      sourceSupports: false,
+      safetyChecked: false,
+      notes: "",
+      expectedVersion: 0,
+    }),
+    { DB: database },
+  );
+  assert.equal(uncheckedApproval.status, 422);
+  assert.equal(database.count("bulk_row_reviews"), 0);
+  assert.equal(database.count("promoted_assertions"), 0);
+
+  const evidenceRequested = await fetchWorker(
+    `/api/review/bulk-import-rows/${rowId}`,
+    reviewRequest({
+      decision: "needs_evidence",
+      amendments: {},
+      sourceUrl: validBulkDeployment.source_url,
+      sourceOpened: true,
+      sourceDirect: false,
+      sourceSupports: false,
+      safetyChecked: true,
+      notes: "Find a direct customer page for this deployment.",
+      expectedVersion: 0,
+    }),
+    { DB: database },
+  );
+  assert.equal(evidenceRequested.status, 200);
+  const requestedRecord = await evidenceRequested.json();
+  assert.equal(requestedRecord.review.decision, "needs_evidence");
+  assert.equal(requestedRecord.review.version, 1);
+  assert.equal(requestedRecord.importStatus, "blocked");
+  assert.equal(requestedRecord.promotedAssertionCount, 0);
+
+  const silentAmendment = await fetchWorker(
+    `/api/review/bulk-import-rows/${rowId}`,
+    reviewRequest({
+      decision: "accept",
+      amendments: { product_name: "Changed without Amend" },
+      sourceUrl: validBulkDeployment.source_url,
+      sourceOpened: true,
+      sourceDirect: true,
+      sourceSupports: true,
+      safetyChecked: true,
+      notes: "",
+      expectedVersion: 1,
+    }),
+    { DB: database },
+  );
+  assert.equal(silentAmendment.status, 422);
+  assert.match(JSON.stringify(await silentAmendment.json()), /Choose Amend/i);
+
+  const accepted = await fetchWorker(
+    `/api/review/bulk-import-rows/${rowId}`,
+    reviewRequest({
+      decision: "accept",
+      amendments: {},
+      sourceUrl:
+        "https://example.org/programme?utm_source=review&b=2&a=1#deployment",
+      sourceOpened: true,
+      sourceDirect: true,
+      sourceSupports: true,
+      safetyChecked: true,
+      notes: "Direct customer source checked.",
+      expectedVersion: 1,
+    }),
+    { DB: database },
+  );
+  assert.equal(accepted.status, 200);
+  const acceptedRecord = await accepted.json();
+  assert.equal(acceptedRecord.review.decision, "accept");
+  assert.equal(
+    acceptedRecord.review.normalizedSourceUrl,
+    "https://example.org/programme?a=1&b=2",
+  );
+  assert.equal(acceptedRecord.importStatus, "reviewed");
+  assert.ok(acceptedRecord.promotedAssertionCount > 10);
+  assert.equal(
+    database.count("promoted_assertions"),
+    acceptedRecord.promotedAssertionCount,
+  );
+
+  const workspaceResponse = await fetchWorker(
+    "/api/review/workspace",
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  assert.equal(workspaceResponse.status, 200);
+  const workspace = await workspaceResponse.json();
+  assert.equal(
+    workspace.promotedAssertions.length,
+    acceptedRecord.promotedAssertionCount,
+  );
+  assert.equal(
+    workspace.promotedAssertions[0].sourceUrl,
+    "https://example.org/programme?a=1&b=2",
+  );
+  assert.equal(workspace.promotedSources.length, 1);
+  assert.equal(workspace.promotedSources[0].sourceLicense, "unknown");
+
+  const promotedSourceId = workspace.promotedSources[0].id;
+  const sourceResolved = await fetchWorker(
+    `/api/review/sources/${promotedSourceId}`,
+    reviewRequest({
+      rightsStatus: "resolved",
+      sourceLicense: "factual_metadata_and_linking_only",
+      independenceClass: "customer_or_official",
+      notes: "Factual metadata and direct linking only.",
+      expectedVersion: 0,
+    }),
+    { DB: database },
+  );
+  assert.equal(sourceResolved.status, 200);
+  assert.equal(database.count("source_reviews"), 1);
+
+  const promotedAssertionId = workspace.promotedAssertions[0].id;
+  const assertionAccepted = await fetchWorker(
+    `/api/review/assertions/${promotedAssertionId}`,
+    reviewRequest({
+      decision: "accept",
+      proposedValue: "",
+      proposedEvidenceStatus: "",
+      notes: "",
+      sourceChecked: true,
+      safetyChecked: true,
+      expectedVersion: 0,
+    }),
+    { DB: database },
+  );
+  assert.equal(assertionAccepted.status, 200);
+  assert.equal(database.count("assertion_reviews"), 1);
+
+  const rejected = await fetchWorker(
+    `/api/review/bulk-import-rows/${rowId}`,
+    reviewRequest({
+      decision: "reject",
+      amendments: {},
+      sourceUrl: validBulkDeployment.source_url,
+      sourceOpened: true,
+      sourceDirect: true,
+      sourceSupports: false,
+      safetyChecked: true,
+      notes: "The source does not support the named deployment.",
+      expectedVersion: 2,
+    }),
+    { DB: database },
+  );
+  assert.equal(rejected.status, 200);
+  assert.equal((await rejected.json()).promotedAssertionCount, 0);
+  assert.equal(database.count("promoted_assertions"), 0);
+  assert.equal(database.count("assertion_reviews"), 0);
+  assert.equal(database.count("source_reviews"), 0);
+
+  const amended = await fetchWorker(
+    `/api/review/bulk-import-rows/${rowId}`,
+    reviewRequest({
+      decision: "amend",
+      amendments: { product_name: "Example Grid Suite Verified" },
+      sourceUrl: validBulkDeployment.source_url,
+      sourceOpened: true,
+      sourceDirect: true,
+      sourceSupports: true,
+      safetyChecked: true,
+      notes: "Product name corrected to match the direct source.",
+      expectedVersion: 3,
+    }),
+    { DB: database },
+  );
+  assert.equal(amended.status, 200);
+  const amendedRecord = await amended.json();
+  assert.equal(amendedRecord.review.decision, "amend");
+  assert.equal(amendedRecord.review.version, 4);
+  assert.ok(amendedRecord.promotedAssertionCount > 10);
+  assert.equal(
+    database.get(
+      "SELECT COUNT(*) AS count FROM promoted_assertions WHERE value = ?",
+      "Example Grid Suite Verified",
+    ).count > 0,
+    true,
+  );
+  assert.equal(
+    JSON.parse(
+      database.get("SELECT payload_json AS payload FROM bulk_import_rows").payload,
+    ).product_name,
+    validBulkDeployment.product_name,
+  );
+
+  const reviewedRowsResponse = await fetchWorker(
+    `/api/review/bulk-import-rows?importId=${encodeURIComponent(record.id)}`,
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  const reviewedRows = await reviewedRowsResponse.json();
+  assert.equal(reviewedRows[0].status, "amend");
+  assert.equal(
+    reviewedRows[0].effectivePayload.product_name,
+    "Example Grid Suite Verified",
+  );
+  assert.equal(reviewedRows[0].review.version, 4);
+  assert.equal(
+    reviewedRows[0].promotedAssertionCount,
+    amendedRecord.promotedAssertionCount,
+  );
+  assert.ok(
+    database.get(
+      "SELECT COUNT(*) AS count FROM review_audit_events WHERE record_type IN ('bulk_import_row', 'promoted_assertion')",
+    ).count >= 7,
+  );
+
+  const bulkExportResponse = await fetchWorker(
+    "/api/review/export",
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  assert.equal(bulkExportResponse.status, 200);
+  const bulkExport = await bulkExportResponse.json();
+  assert.equal(bulkExport.schemaVersion, "1.1.0");
+  assert.equal(bulkExport.status.bulkCandidateRows, 1);
+  assert.equal(bulkExport.status.bulkCandidateDecisions, 1);
+  assert.equal(bulkExport.bulkCandidates[0].review.decision, "amend");
+  assert.equal(
+    bulkExport.promotedAssertions.length,
+    amendedRecord.promotedAssertionCount,
   );
 
   const hiddenRows = await fetchWorker(

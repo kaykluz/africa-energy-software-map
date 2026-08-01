@@ -146,6 +146,122 @@ class AutomationTests(unittest.TestCase):
         self.assertGreater(plan["summary"]["blockers"], 1)
         self.assertFalse(plan["publicationAuthorised"])
 
+    def test_promoted_bulk_assertion_enters_the_release_plan_safely(self) -> None:
+        snapshot = {"assertions": [], "sources": [], "release": {}}
+        promoted_assertion = {
+            "id": "asrt_bulk_example",
+            "rowId": "bulk_example_001",
+            "subjectType": "product",
+            "subjectId": "cand_prod_example",
+            "predicate": "name",
+            "value": "Example Grid Suite",
+            "sourceId": "cand_src_example",
+            "evidenceStatus": "customer_confirmed",
+            "notes": "Promoted from a reviewed bulk candidate.",
+        }
+        promoted_source = {
+            "id": "cand_src_example",
+            "title": "Direct programme page",
+            "publisher": "Example Utility",
+            "url": "https://example.org/programme",
+            "sourceType": "web",
+            "independenceClass": "customer_or_official",
+            "sourceLicense": "factual_metadata_and_linking_only",
+            "notes": "Direct source checked by a human reviewer.",
+        }
+        package = {
+            "schemaVersion": "1.1.0",
+            "batchId": "bulk-example/batch-01",
+            "status": {
+                "containsPublicDataChanges": False,
+                "publicationAuthorised": False,
+            },
+            "promotedAssertions": [promoted_assertion],
+            "promotedSources": [promoted_source],
+            "assertionReviews": [
+                {
+                    "assertionId": "asrt_bulk_example",
+                    "decision": "accept",
+                    "sourceChecked": True,
+                    "safetyChecked": True,
+                }
+            ],
+            "sourceReviews": [],
+            "bulkCandidates": [
+                {
+                    "id": "bulk_example_001",
+                    "importId": "bulk_example",
+                    "recordType": "product",
+                    "effectivePayload": {"product_name": "Example Grid Suite"},
+                    "review": {"decision": "accept"},
+                }
+            ],
+        }
+        plan = build_release_plan(snapshot, package)
+        self.assertEqual(plan["status"], "ready_for_data_pr")
+        self.assertEqual(plan["summary"]["promotedAssertions"], 1)
+        self.assertEqual(
+            plan["actions"]["addAssertions"][0]["id"],
+            "asrt_bulk_example",
+        )
+        self.assertEqual(
+            plan["actions"]["addSources"][0]["id"], "cand_src_example"
+        )
+        self.assertEqual(
+            plan["actions"]["candidateContexts"][0]["rowId"],
+            "bulk_example_001",
+        )
+        self.assertFalse(plan["publicationAuthorised"])
+
+    def test_promoted_source_with_unknown_rights_blocks_release(self) -> None:
+        snapshot = {"assertions": [], "sources": [], "release": {}}
+        package = {
+            "schemaVersion": "1.1.0",
+            "status": {
+                "containsPublicDataChanges": False,
+                "publicationAuthorised": False,
+            },
+            "promotedAssertions": [
+                {
+                    "id": "asrt_bulk_unknown_rights",
+                    "rowId": "bulk_example_001",
+                    "subjectType": "product",
+                    "subjectId": "cand_prod_example",
+                    "predicate": "name",
+                    "value": "Example Grid Suite",
+                    "sourceId": "cand_src_unknown_rights",
+                    "evidenceStatus": "public_source",
+                    "notes": "",
+                }
+            ],
+            "promotedSources": [
+                {
+                    "id": "cand_src_unknown_rights",
+                    "title": "Example source",
+                    "publisher": "Example publisher",
+                    "url": "https://example.org/source",
+                    "sourceLicense": "unknown",
+                    "independenceClass": "independent_secondary",
+                }
+            ],
+            "assertionReviews": [
+                {
+                    "assertionId": "asrt_bulk_unknown_rights",
+                    "decision": "accept",
+                    "sourceChecked": True,
+                    "safetyChecked": True,
+                }
+            ],
+            "sourceReviews": [],
+            "bulkCandidates": [],
+        }
+        plan = build_release_plan(snapshot, package)
+        self.assertEqual(plan["status"], "blocked")
+        self.assertIn(
+            "source_rights_unresolved",
+            {blocker["type"] for blocker in plan["blockers"]},
+        )
+
     def test_reviewed_promotion_uses_public_reviewer_and_keeps_package_private(
         self,
     ) -> None:

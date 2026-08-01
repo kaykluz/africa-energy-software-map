@@ -79,8 +79,9 @@ performed safely from this repository session.
    loss.
 7. Restore the pre-loss bookmark with
    `wrangler d1 time-travel restore <database> --bookmark <bookmark> --json`.
-8. Verify table counts, referential integrity, audit events, bulk rows, contact
-   separation and the original fingerprint.
+8. Verify table counts, referential integrity, audit events, bulk rows, bulk
+   decisions, promoted assertions, contact separation and the original
+   fingerprint.
 9. Record elapsed time and the `previous_bookmark` returned by the restore. That
    bookmark is the rollback point for an accidental restore.
 10. Remove the disposable database and revoke the short-lived token.

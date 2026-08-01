@@ -18,6 +18,11 @@ import type {
   BulkImportRecord,
   BulkImportRowRecord,
 } from "@/db/bulk-imports";
+import type {
+  BulkAmendableField,
+  BulkRowDecision,
+  BulkRowReviewRecord,
+} from "@/db/bulk-reviews";
 import { parseBulkWorkbook } from "@/lib/bulk-xlsx-client";
 import type {
   ReviewAssertion,
@@ -30,6 +35,8 @@ import type { Source } from "@/lib/registry-data";
 
 type WorkspaceState = {
   assertionReviews: AssertionReviewRecord[];
+  promotedAssertions: ReviewAssertion[];
+  promotedSources: Source[];
   sourceReviews: SourceReviewRecord[];
   contributions: ModerationContribution[];
   operations: OperationsStatus;
@@ -50,6 +57,13 @@ type AssertionFilter =
   | "reject"
   | "needs_evidence";
 type ApiError = { error?: { message?: string; details?: string[] } };
+type BulkReviewSaveResult = {
+  review: BulkRowReviewRecord;
+  status: string;
+  promotedAssertionCount: number;
+  importStatus: string;
+  importVersion: number;
+};
 
 export function ReviewWorkspace({
   assertions,
@@ -148,8 +162,24 @@ export function ReviewWorkspace({
       ),
     [workspace],
   );
-  const reviewedAssertions = assertionReviewMap.size;
-  const resolvedSources = sources.filter((source) => {
+  const combinedAssertions = useMemo(() => {
+    const values = new Map(assertions.map((assertion) => [assertion.id, assertion]));
+    for (const assertion of workspace?.promotedAssertions ?? []) {
+      values.set(assertion.id, assertion);
+    }
+    return Array.from(values.values());
+  }, [assertions, workspace?.promotedAssertions]);
+  const combinedSources = useMemo(() => {
+    const values = new Map(sources.map((source) => [source.id, source]));
+    for (const source of workspace?.promotedSources ?? []) {
+      values.set(source.id, source);
+    }
+    return Array.from(values.values());
+  }, [sources, workspace?.promotedSources]);
+  const reviewedAssertions = combinedAssertions.filter((assertion) =>
+    assertionReviewMap.has(assertion.id),
+  ).length;
+  const resolvedSources = combinedSources.filter((source) => {
     if (source.sourceLicense !== "unknown") return true;
     return ["resolved", "exclude"].includes(
       sourceReviewMap.get(source.id)?.rightsStatus ?? "",
@@ -161,14 +191,20 @@ export function ReviewWorkspace({
         record.status,
       ),
   ).length;
-  const progress = assertions.length
-    ? Math.round((reviewedAssertions / assertions.length) * 100)
+  const progress = combinedAssertions.length
+    ? Math.round((reviewedAssertions / combinedAssertions.length) * 100)
     : 0;
+  const assertionsPending = combinedAssertions.length - reviewedAssertions;
+  const releaseReady =
+    manifest.reviewGate.publishable &&
+    assertionsPending === 0 &&
+    resolvedSources === combinedSources.length;
   const activeAssertion =
-    assertions.find((assertion) => assertion.id === activeAssertionId) ??
-    assertions[0];
+    combinedAssertions.find((assertion) => assertion.id === activeAssertionId) ??
+    combinedAssertions[0];
   const activeSource =
-    sources.find((source) => source.id === activeSourceId) ?? sources[0];
+    combinedSources.find((source) => source.id === activeSourceId) ??
+    combinedSources[0];
   const contributions = workspace?.contributions ?? [];
   const activeContribution =
     contributions.find(
@@ -279,14 +315,14 @@ export function ReviewWorkspace({
           <div>
             <span>Assertions</span>
             <strong>
-              {reviewedAssertions}<small> / {assertions.length}</small>
+              {reviewedAssertions}<small> / {combinedAssertions.length}</small>
             </strong>
           </div>
         </div>
         <Metric
           label="Source rights"
-          note={`${sources.length - resolvedSources} unresolved`}
-          value={`${resolvedSources}/${sources.length}`}
+          note={`${combinedSources.length - resolvedSources} unresolved`}
+          value={`${resolvedSources}/${combinedSources.length}`}
         />
         <Metric
           label="Contributions"
@@ -301,8 +337,14 @@ export function ReviewWorkspace({
         />
         <Metric
           label="Release"
-          note="review package only"
-          value={manifest.reviewGate.publishable ? "Ready" : "Held"}
+          note={
+            assertionsPending
+              ? `${assertionsPending} assertions pending`
+              : resolvedSources < combinedSources.length
+                ? `${combinedSources.length - resolvedSources} source rights pending`
+                : "review package only"
+          }
+          value={releaseReady ? "Ready" : "Held"}
         />
       </section>
 
@@ -318,13 +360,13 @@ export function ReviewWorkspace({
       <nav aria-label="Review queues" className="review-tabs">
         <TabButton
           active={tab === "assertions"}
-          count={assertions.length}
+          count={combinedAssertions.length}
           label="Assertions"
           onClick={() => setTab("assertions")}
         />
         <TabButton
           active={tab === "sources"}
-          count={sources.length}
+          count={combinedSources.length}
           label="Sources"
           onClick={() => setTab("sources")}
         />
@@ -353,9 +395,9 @@ export function ReviewWorkspace({
         />
       </nav>
 
-      {workspace && reviewedAssertions === assertions.length ? (
+      {workspace && reviewedAssertions === combinedAssertions.length ? (
         <ReviewNextStep
-          allSourcesResolved={resolvedSources === sources.length}
+          allSourcesResolved={resolvedSources === combinedSources.length}
           onOpenSources={() => setTab("sources")}
         />
       ) : null}
@@ -363,7 +405,7 @@ export function ReviewWorkspace({
       {tab === "assertions" ? (
         <AssertionsWorkspace
           active={activeAssertion}
-          assertions={assertions}
+          assertions={combinedAssertions}
           filter={assertionFilter}
           onFilter={setAssertionFilter}
           onReviewSaved={replaceAssertionReview}
@@ -380,7 +422,7 @@ export function ReviewWorkspace({
           onReviewSaved={replaceSourceReview}
           onSelect={setActiveSourceId}
           reviewMap={sourceReviewMap}
-          sources={sources}
+          sources={combinedSources}
         />
       ) : null}
 
@@ -397,6 +439,7 @@ export function ReviewWorkspace({
         <BulkImportPanel
           imports={workspace.bulkImports}
           onImported={addBulkImport}
+          onWorkspaceRefresh={() => setRefreshKey((value) => value + 1)}
         />
       ) : null}
 
@@ -449,9 +492,11 @@ function ReviewNextStep({
 function BulkImportPanel({
   imports,
   onImported,
+  onWorkspaceRefresh,
 }: {
   imports: BulkImportRecord[];
   onImported: (record: BulkImportRecord) => void;
+  onWorkspaceRefresh: () => void;
 }) {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -465,13 +510,23 @@ function BulkImportPanel({
   const [rowType, setRowType] = useState<"all" | "product" | "deployment">(
     "all",
   );
+  const [batchFilter, setBatchFilter] = useState<number | "all">("all");
   const activeImport = imports.find((record) => record.id === activeImportId);
+  const decidedRows = rows.filter((row) => row.review).length;
+  const promotedAssertions = rows.reduce(
+    (total, row) => total + row.promotedAssertionCount,
+    0,
+  );
   const visibleRows = useMemo(() => {
     const needle = rowQuery.trim().toLowerCase();
     return rows.filter((row) => {
       if (rowType !== "all" && row.recordType !== rowType) return false;
+      const batch = activeImport?.batches.find((item) =>
+        item.rowKeys.includes(row.rowKey),
+      )?.number;
+      if (batchFilter !== "all" && batch !== batchFilter) return false;
       if (!needle) return true;
-      const value = row.payload;
+      const value = row.effectivePayload;
       return [
         row.rowKey,
         value.organisation_name,
@@ -486,7 +541,7 @@ function BulkImportPanel({
         .toLowerCase()
         .includes(needle);
     });
-  }, [rowQuery, rowType, rows]);
+  }, [activeImport?.batches, batchFilter, rowQuery, rowType, rows]);
 
   async function toggleRows(record: BulkImportRecord) {
     if (record.id === activeImportId) {
@@ -500,6 +555,7 @@ function BulkImportPanel({
     setRowsError("");
     setRowQuery("");
     setRowType("all");
+    setBatchFilter("all");
     setRowsLoading(true);
     try {
       const response = await fetch(
@@ -526,6 +582,13 @@ function BulkImportPanel({
     } finally {
       setRowsLoading(false);
     }
+  }
+
+  function replaceRow(row: BulkImportRowRecord) {
+    setRows((current) =>
+      current.map((item) => (item.id === row.id ? row : item)),
+    );
+    onWorkspaceRefresh();
   }
 
   async function upload(event: FormEvent) {
@@ -630,7 +693,7 @@ function BulkImportPanel({
                 </div>
                 <div>
                   <dt>Status</dt>
-                  <dd>Candidate</dd>
+                  <dd>{bulkImportStatusLabel(record.status)}</dd>
                 </div>
               </dl>
               <button
@@ -657,7 +720,9 @@ function BulkImportPanel({
                 <header>
                   <div>
                     <strong>Candidate records</strong>
-                    <span>Private until editorial approval.</span>
+                    <span>
+                      {decidedRows}/{rows.length} decided · {promotedAssertions} assertions
+                    </span>
                   </div>
                   <span aria-live="polite">
                     {rowsLoading
@@ -665,6 +730,22 @@ function BulkImportPanel({
                       : `${visibleRows.length} shown`}
                   </span>
                 </header>
+                {rows.length ? (
+                  <div
+                    aria-label={`${decidedRows} of ${rows.length} candidates decided`}
+                    className="review-bulk-progress"
+                    role="progressbar"
+                    aria-valuemax={rows.length}
+                    aria-valuemin={0}
+                    aria-valuenow={decidedRows}
+                  >
+                    <span
+                      style={{
+                        width: `${Math.round((decidedRows / rows.length) * 100)}%`,
+                      }}
+                    />
+                  </div>
+                ) : null}
                 {rowsError ? (
                   <div className="review-form-error" role="alert">
                     <strong>{rowsError}</strong>
@@ -672,6 +753,39 @@ function BulkImportPanel({
                 ) : null}
                 {!rowsError ? (
                   <>
+                    <div
+                      aria-label="Review batch"
+                      className="review-bulk-batches"
+                      role="group"
+                    >
+                      <button
+                        aria-pressed={batchFilter === "all"}
+                        onClick={() => setBatchFilter("all")}
+                        type="button"
+                      >
+                        All
+                        <small>{decidedRows}/{rows.length}</small>
+                      </button>
+                      {(activeImport?.batches ?? []).map((batch) => {
+                        const batchRows = rows.filter((row) =>
+                          batch.rowKeys.includes(row.rowKey),
+                        );
+                        const batchDecided = batchRows.filter(
+                          (row) => row.review,
+                        ).length;
+                        return (
+                          <button
+                            aria-pressed={batchFilter === batch.number}
+                            key={batch.number}
+                            onClick={() => setBatchFilter(batch.number)}
+                            type="button"
+                          >
+                            {batch.number}
+                            <small>{batchDecided}/{batchRows.length}</small>
+                          </button>
+                        );
+                      })}
+                    </div>
                     <div className="review-bulk-record-tools">
                       <label>
                         <span>Find a record</span>
@@ -703,63 +817,16 @@ function BulkImportPanel({
                     </div>
                     <div className="review-bulk-record-list">
                       {visibleRows.map((row) => {
-                        const value = row.payload;
                         const batch = activeImport?.batches.find((item) =>
                           item.rowKeys.includes(row.rowKey),
                         )?.number;
-                        const country =
-                          value.deployment_country_iso2 ||
-                          value.country_of_origin ||
-                          value.headquarters_country ||
-                          "—";
                         return (
-                          <details key={row.id}>
-                            <summary>
-                              <span className="review-bulk-record-type">
-                                {row.recordType === "deployment" ? "D" : "P"}
-                              </span>
-                              <span>
-                                <strong>{value.product_name}</strong>
-                                <small>{value.organisation_name}</small>
-                              </span>
-                              <span>{country}</span>
-                              <span>{evidenceLabel(value.evidence_status)}</span>
-                              <span>Batch {batch ?? "—"}</span>
-                            </summary>
-                            <div className="review-bulk-record-detail">
-                              <dl>
-                                <DataRow label="Row key" mono value={row.rowKey} />
-                                <DataRow
-                                  label="Category"
-                                  value={value.primary_category_id.replaceAll("_", " ")}
-                                />
-                                <DataRow
-                                  label="Customer"
-                                  value={value.customer_name}
-                                />
-                                <DataRow
-                                  label="Started"
-                                  value={value.started_year}
-                                />
-                                <DataRow
-                                  label="Publisher"
-                                  value={value.source_publisher}
-                                />
-                                <DataRow
-                                  label="Status"
-                                  value={row.status}
-                                />
-                              </dl>
-                              <p>{value.source_locator}</p>
-                              <a
-                                href={value.source_url}
-                                rel="noreferrer"
-                                target="_blank"
-                              >
-                                Open evidence ↗
-                              </a>
-                            </div>
-                          </details>
+                          <BulkCandidateRow
+                            batch={batch ?? 1}
+                            key={`${row.id}-${row.review?.version ?? 0}`}
+                            onSaved={replaceRow}
+                            row={row}
+                          />
                         );
                       })}
                       {!rowsLoading && !visibleRows.length ? (
@@ -783,6 +850,315 @@ function BulkImportPanel({
         ) : null}
       </div>
     </section>
+  );
+}
+
+const bulkEditFields: Array<{
+  field: BulkAmendableField;
+  label: string;
+  wide?: boolean;
+}> = [
+  { field: "organisation_name", label: "Organisation" },
+  { field: "product_name", label: "Product" },
+  { field: "deployment_country_iso2", label: "Deployment country" },
+  { field: "customer_name", label: "Customer" },
+  { field: "started_year", label: "Started" },
+  { field: "primary_category_id", label: "Category" },
+  { field: "product_lifecycle_status", label: "Product status" },
+  { field: "deployment_lifecycle_status", label: "Deployment status" },
+  { field: "source_publisher", label: "Publisher" },
+  { field: "source_title", label: "Source title", wide: true },
+  { field: "source_locator", label: "Source locator", wide: true },
+  { field: "notes", label: "Record notes", wide: true },
+];
+
+function BulkCandidateRow({
+  row,
+  batch,
+  onSaved,
+}: {
+  row: BulkImportRowRecord;
+  batch: number;
+  onSaved: (row: BulkImportRowRecord) => void;
+}) {
+  const [decision, setDecision] = useState<BulkRowDecision | "">(
+    row.review?.decision ?? "",
+  );
+  const [amendments, setAmendments] = useState<
+    Partial<Record<BulkAmendableField, string>>
+  >(row.review?.amendments ?? {});
+  const [sourceUrl, setSourceUrl] = useState(
+    row.review?.normalizedSourceUrl ?? row.effectivePayload.source_url,
+  );
+  const [sourceOpened, setSourceOpened] = useState(
+    row.review?.sourceOpened ?? false,
+  );
+  const [sourceDirect, setSourceDirect] = useState(
+    row.review?.sourceDirect ?? false,
+  );
+  const [sourceSupports, setSourceSupports] = useState(
+    row.review?.sourceSupports ?? false,
+  );
+  const [safetyChecked, setSafetyChecked] = useState(
+    row.review?.safetyChecked ?? false,
+  );
+  const [notes, setNotes] = useState(row.review?.notes ?? "");
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
+  const [saveDetails, setSaveDetails] = useState<string[]>([]);
+  const value = {
+    ...row.payload,
+    ...amendments,
+    source_url: sourceUrl,
+  };
+  const country =
+    value.deployment_country_iso2 ||
+    value.country_of_origin ||
+    value.headquarters_country ||
+    "—";
+
+  function updateField(field: BulkAmendableField, next: string) {
+    setAmendments((current) => {
+      const updated = { ...current };
+      if (next === row.payload[field]) delete updated[field];
+      else updated[field] = next;
+      return updated;
+    });
+  }
+
+  async function saveReview(event: FormEvent) {
+    event.preventDefault();
+    if (!decision) return;
+    setSaving(true);
+    setSaveError("");
+    setSaveDetails([]);
+    try {
+      const response = await fetch(
+        `/api/review/bulk-import-rows/${encodeURIComponent(row.id)}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            decision,
+            amendments,
+            sourceUrl,
+            sourceOpened,
+            sourceDirect,
+            sourceSupports,
+            safetyChecked,
+            notes,
+            expectedVersion: row.review?.version ?? 0,
+          }),
+        },
+      );
+      const result = (await response.json()) as
+        | BulkReviewSaveResult
+        | ApiError;
+      if (!response.ok || !("review" in result)) {
+        if ("error" in result) setSaveDetails(result.error?.details ?? []);
+        throw new Error(
+          "error" in result
+            ? result.error?.message
+            : "The candidate decision could not be saved.",
+        );
+      }
+      const review = result.review;
+      setDecision(review.decision);
+      setAmendments(review.amendments);
+      setSourceUrl(review.normalizedSourceUrl);
+      setSourceOpened(review.sourceOpened);
+      setSourceDirect(review.sourceDirect);
+      setSourceSupports(review.sourceSupports);
+      setSafetyChecked(review.safetyChecked);
+      setNotes(review.notes ?? "");
+      onSaved({
+        ...row,
+        status: result.status,
+        effectivePayload: {
+          ...row.payload,
+          ...review.amendments,
+          source_url: review.normalizedSourceUrl,
+        },
+        review,
+        promotedAssertionCount: result.promotedAssertionCount,
+      });
+    } catch (reason) {
+      setSaveError(
+        reason instanceof Error
+          ? reason.message
+          : "The candidate decision could not be saved.",
+      );
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <details className="review-bulk-candidate">
+      <summary>
+        <span className="review-bulk-record-type">
+          {row.recordType === "deployment" ? "D" : "P"}
+        </span>
+        <span>
+          <strong>{value.product_name}</strong>
+          <small>{value.organisation_name}</small>
+        </span>
+        <span>{country}</span>
+        <span>{evidenceLabel(value.evidence_status)}</span>
+        <span className={`review-bulk-row-state ${row.status}`}>
+          <small>Batch {batch}</small>
+          <strong>{bulkDecisionLabel(row.status)}</strong>
+        </span>
+      </summary>
+      <form className="review-bulk-review-form" onSubmit={saveReview}>
+        <section className="review-bulk-source-check">
+          <div>
+            <span>Direct source</span>
+            <strong>{value.source_title}</strong>
+            <small>{value.source_publisher}</small>
+          </div>
+          <label>
+            <span>Normalised URL</span>
+            <input
+              onChange={(event) => setSourceUrl(event.target.value)}
+              type="url"
+              value={sourceUrl}
+            />
+          </label>
+          <a href={sourceUrl} rel="noreferrer" target="_blank">
+            Open evidence ↗
+          </a>
+        </section>
+
+        <details className="review-bulk-amendments">
+          <summary>Edit candidate</summary>
+          <div>
+            {bulkEditFields.map(({ field, label, wide }) => (
+              <label className={wide ? "wide" : undefined} key={field}>
+                <span>{label}</span>
+                {wide ? (
+                  <textarea
+                    onChange={(event) => updateField(field, event.target.value)}
+                    rows={field === "notes" ? 3 : 2}
+                    value={value[field]}
+                  />
+                ) : (
+                  <input
+                    onChange={(event) => updateField(field, event.target.value)}
+                    value={value[field]}
+                  />
+                )}
+              </label>
+            ))}
+            <label>
+              <span>Evidence class</span>
+              <select
+                onChange={(event) =>
+                  updateField("evidence_status", event.target.value)
+                }
+                value={value.evidence_status}
+              >
+                {reviewEvidenceOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+        </details>
+
+        <fieldset className="review-bulk-checks">
+          <legend>Checks for approval</legend>
+          <label>
+            <input
+              checked={sourceOpened}
+              onChange={(event) => setSourceOpened(event.target.checked)}
+              type="checkbox"
+            />
+            Source opened
+          </label>
+          <label>
+            <input
+              checked={sourceDirect}
+              onChange={(event) => setSourceDirect(event.target.checked)}
+              type="checkbox"
+            />
+            Direct page
+          </label>
+          <label>
+            <input
+              checked={sourceSupports}
+              onChange={(event) => setSourceSupports(event.target.checked)}
+              type="checkbox"
+            />
+            Supports record
+          </label>
+          <label>
+            <input
+              checked={safetyChecked}
+              onChange={(event) => setSafetyChecked(event.target.checked)}
+              type="checkbox"
+            />
+            Safe to publish
+          </label>
+        </fieldset>
+
+        <div aria-label="Candidate decision" className="review-bulk-decisions">
+          {(
+            [
+              ["accept", "Accept"],
+              ["amend", "Amend"],
+              ["reject", "Reject"],
+              ["needs_evidence", "More evidence"],
+            ] as const
+          ).map(([value, label]) => (
+            <button
+              aria-pressed={decision === value}
+              key={value}
+              onClick={() => setDecision(value)}
+              type="button"
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        <label className="review-bulk-note">
+          <span>Review note</span>
+          <textarea
+            onChange={(event) => setNotes(event.target.value)}
+            placeholder="Reason, correction or missing evidence"
+            rows={3}
+            value={notes}
+          />
+        </label>
+
+        {saveError ? (
+          <div className="review-form-error" role="alert">
+            <strong>{saveError}</strong>
+            {saveDetails.slice(0, 8).map((detail) => (
+              <span key={detail}>{detail}</span>
+            ))}
+          </div>
+        ) : null}
+
+        <footer>
+          <span>
+            {row.promotedAssertionCount
+              ? `${row.promotedAssertionCount} assertions created`
+              : "No assertions created"}
+          </span>
+          <button
+            className="button button-primary"
+            disabled={!decision || saving}
+            type="submit"
+          >
+            {saving ? "Saving…" : "Save decision"}
+          </button>
+        </footer>
+      </form>
+    </details>
   );
 }
 
@@ -2030,6 +2406,29 @@ function evidenceLabel(value: string) {
   return (
     reviewEvidenceOptions.find((option) => option.value === value)?.label ??
     value.replaceAll("_", " ")
+  );
+}
+
+function bulkDecisionLabel(value: string) {
+  return (
+    {
+      candidate: "Open",
+      accept: "Accepted",
+      amend: "Amended",
+      reject: "Rejected",
+      needs_evidence: "More evidence",
+    }[value] ?? value.replaceAll("_", " ")
+  );
+}
+
+function bulkImportStatusLabel(value: string) {
+  return (
+    {
+      candidate: "Candidate",
+      in_review: "In review",
+      blocked: "Evidence needed",
+      reviewed: "Reviewed",
+    }[value] ?? value.replaceAll("_", " ")
   );
 }
 

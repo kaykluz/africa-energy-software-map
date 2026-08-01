@@ -55,9 +55,10 @@ and downloads never query the intake tables. See the
 
 ## Private review workspace
 
-`/review` is the admin sign-in route. It lets an authorised editor review candidate assertions, resolve source
-rights, and triage incoming contributions. It writes decisions and audit events
-to D1; it cannot update the public registry or publish a release.
+`/review` is the admin sign-in route. It lets an authorised editor review
+candidate assertions, resolve source rights, triage incoming contributions, and
+decide bulk candidates batch by batch. It writes decisions and audit events to
+D1; it cannot update the public registry or publish a release.
 
 Reviewers must be signed in and included in the comma-separated
 `REVIEWER_EMAILS` runtime variable. Copy `.dev.vars.example` to an ignored local
@@ -93,7 +94,10 @@ in [Automation and review assist](../docs/23-automation-and-review-assist.md).
 The private Bulk tab downloads and accepts the standard `.xlsx` workbook.
 Parsing happens in the reviewer’s browser; the server receives and revalidates
 at most 100 structured rows. Accepted uploads remain private candidate records
-and are automatically planned into review-size batches.
+and are automatically planned into review-size batches. Reviewers can Accept,
+Amend, Reject or request More evidence for each row. Accepted or amended rows
+create atomic assertions in the private Assertions queue; they do not enter the
+public registry until the separate review and release gates pass.
 
 The template is published at
 `/downloads/templates/africa-energy-software-map-bulk-import.xlsx`. Validate its

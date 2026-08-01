@@ -202,3 +202,73 @@ export const bulkImportRows = sqliteTable(
     index("bulk_import_rows_import_idx").on(table.importId, table.rowNumber),
   ],
 );
+
+export const bulkRowReviews = sqliteTable(
+  "bulk_row_reviews",
+  {
+    rowId: text("row_id")
+      .primaryKey()
+      .references(() => bulkImportRows.id, { onDelete: "cascade" }),
+    decision: text("decision").notNull(),
+    amendedPayloadJson: text("amended_payload_json"),
+    normalizedSourceUrl: text("normalized_source_url").notNull(),
+    sourceOpened: integer("source_opened", { mode: "boolean" })
+      .notNull()
+      .default(false),
+    sourceDirect: integer("source_direct", { mode: "boolean" })
+      .notNull()
+      .default(false),
+    sourceSupports: integer("source_supports", { mode: "boolean" })
+      .notNull()
+      .default(false),
+    safetyChecked: integer("safety_checked", { mode: "boolean" })
+      .notNull()
+      .default(false),
+    notes: text("notes"),
+    reviewerEmail: text("reviewer_email").notNull(),
+    reviewedAt: text("reviewed_at").notNull(),
+    updatedAt: text("updated_at").notNull(),
+    version: integer("version").notNull().default(1),
+  },
+  (table) => [index("bulk_row_reviews_decision_idx").on(table.decision)],
+);
+
+export const promotedAssertions = sqliteTable(
+  "promoted_assertions",
+  {
+    id: text("id").primaryKey(),
+    rowId: text("row_id")
+      .notNull()
+      .references(() => bulkImportRows.id, { onDelete: "cascade" }),
+    importId: text("import_id")
+      .notNull()
+      .references(() => bulkImports.id, { onDelete: "cascade" }),
+    batchId: text("batch_id").notNull(),
+    subjectType: text("subject_type").notNull(),
+    subjectId: text("subject_id").notNull(),
+    subjectLabel: text("subject_label").notNull(),
+    subjectContext: text("subject_context").notNull(),
+    subjectHref: text("subject_href").notNull(),
+    predicate: text("predicate").notNull(),
+    value: text("value").notNull(),
+    sourceId: text("source_id").notNull(),
+    sourceTitle: text("source_title").notNull(),
+    sourcePublisher: text("source_publisher").notNull(),
+    sourceUrl: text("source_url").notNull(),
+    sourceLicense: text("source_license").notNull(),
+    sourceIndependence: text("source_independence").notNull(),
+    locator: text("locator").notNull(),
+    evidenceStatus: text("evidence_status").notNull(),
+    notes: text("notes").notNull(),
+    createdBy: text("created_by").notNull(),
+    createdAt: text("created_at").notNull(),
+  },
+  (table) => [
+    index("promoted_assertions_row_idx").on(table.rowId),
+    index("promoted_assertions_batch_idx").on(table.batchId),
+    index("promoted_assertions_subject_idx").on(
+      table.subjectType,
+      table.subjectId,
+    ),
+  ],
+);

@@ -93,12 +93,16 @@ review API. The raw file is not stored. The server:
 4. rejects precise or confidential infrastructure content;
 5. prevents provider sources from claiming independent confirmation;
 6. plans batches within 25 entities and 100 assertions;
-7. stores candidate rows and an audit event; and
-8. exposes no publish action.
+7. stores immutable candidate rows and an audit event;
+8. records row decisions and amendments separately;
+9. normalises approved public source URLs;
+10. converts accepted or amended rows into atomic review assertions; and
+11. exposes no publish action.
 
 Bulk intake is an acceleration path into editorial review, not an alternative
-to it. Matching, evidence decisions, source rights and release still require a
-human-reviewed data pull request.
+to it. Source support is confirmed by a human, every promoted assertion receives
+its own decision, unknown source rights are resolved in the Sources queue, and
+release still requires a human-reviewed data pull request.
 
 ## Scale-up automation layers
 

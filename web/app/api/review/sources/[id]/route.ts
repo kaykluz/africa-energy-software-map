@@ -12,6 +12,7 @@ import {
   textValue,
 } from "@/lib/review-api";
 import { isReviewSourceId } from "@/lib/review-data";
+import { promotedSourceExists } from "@/db/bulk-reviews";
 
 const rightsStatuses = new Set(["resolved", "needs_research", "exclude"]);
 const independenceClasses = new Set([
@@ -33,7 +34,7 @@ export async function PUT(
   const body = await readReviewBody(request);
   if (!body.ok) return body.response;
   const { id } = await params;
-  if (!isReviewSourceId(id)) {
+  if (!isReviewSourceId(id) && !(await promotedSourceExists(id))) {
     return reviewError("source_not_found", "Source not found.", 404);
   }
   const rightsStatus = textValue(body.value, "rightsStatus", 30);

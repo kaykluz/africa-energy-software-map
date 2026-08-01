@@ -3,6 +3,7 @@ import {
   ReviewConflictError,
   saveAssertionReview,
 } from "@/db/reviews";
+import { promotedAssertionBatchId } from "@/db/bulk-reviews";
 import {
   authorisedReviewer,
   booleanValue,
@@ -37,7 +38,7 @@ export async function PUT(
   const body = await readReviewBody(request);
   if (!body.ok) return body.response;
   const { id } = await params;
-  if (!isReviewAssertionId(id)) {
+  if (!isReviewAssertionId(id) && !(await promotedAssertionBatchId(id))) {
     return reviewError("assertion_not_found", "Assertion not found.", 404);
   }
 
@@ -130,7 +131,7 @@ export async function DELETE(
   const body = await readReviewBody(request);
   if (!body.ok) return body.response;
   const { id } = await params;
-  if (!isReviewAssertionId(id)) {
+  if (!isReviewAssertionId(id) && !(await promotedAssertionBatchId(id))) {
     return reviewError("assertion_not_found", "Assertion not found.", 404);
   }
   try {

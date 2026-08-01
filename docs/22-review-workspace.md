@@ -53,7 +53,7 @@ Five tabs divide the work:
 | Assertions | Review one atomic candidate claim against its linked source |
 | Sources | Record rights, licence treatment, and source independence |
 | Contributions | Triage private public submissions and inspect their supplied evidence |
-| Bulk | Upload the standard workbook into a private candidate queue |
+| Bulk | Import, check and decide workbook candidates batch by batch |
 | Operations | Check retention runs and pause or resume contribution intake |
 
 On a wide screen, the queue remains on the left and the selected record opens on
@@ -157,8 +157,36 @@ review-size batches, stores each row as a private candidate, and writes an audit
 event.
 
 The raw workbook is not stored. A workbook fingerprint prevents accidental
-duplicate imports. Candidate imports cannot update the public snapshot, accept
-evidence, resolve source rights or publish.
+duplicate imports. The imported payload for each row remains immutable; review
+decisions and amendments are stored separately.
+
+Select a numbered batch, open a candidate and check the direct source. The
+server removes fragments and common tracking parameters from public HTTP(S)
+links and rejects local or private addresses. The reviewer must still open the
+page and confirm that it is direct, supports the record and is safe to publish.
+URL normalisation is not evidence verification.
+
+Each row has four decisions:
+
+| Decision | Result |
+| --- | --- |
+| Accept | Keep the candidate as supplied and create atomic review assertions |
+| Amend | Store the stated field changes and create assertions from the effective row |
+| Reject | Retain the audit record but create no assertions |
+| More evidence | Hold the row with a required research note and create no assertions |
+
+An accepted row cannot contain silent field edits; choose **Amend** for any
+content change. Accept and Amend require all four source/safety confirmations.
+Reject and More evidence require a note. Optimistic version checks stop one
+browser session overwriting another.
+
+Promotion creates source-linked organisation, product and deployment
+assertions in the normal Assertions tab. Those assertions still require their
+own atomic editorial decisions. Their evidence pages also enter the Sources tab
+when a rights decision is needed. Re-amending, rejecting or returning a promoted
+row for evidence removes its generated assertions and any decisions attached to
+the old versions; a source decision is cleared when its last promoted row is
+removed. Candidate imports cannot update the public snapshot or publish.
 
 ## After assertions are complete
 
@@ -175,6 +203,9 @@ request; downloading it does not publish.
 | Assertion decisions | Yes | Yes | Yes | No |
 | Source-rights decisions | Yes | Yes | Yes | No |
 | Assertion/source audit history | Yes | No | Yes | No |
+| Immutable bulk candidate rows | Yes | Bulk tab only | Yes | No |
+| Bulk decisions and amendments | Yes | Bulk tab only | Yes | No |
+| Promoted candidate assertions | Yes | Assertions and Bulk tabs | Yes | No |
 | Contribution content | Yes | Yes | No | No |
 | Contribution contact email | Separate table | No | No | No |
 | Plaintext receipt token | Never | Never | Never | No |
@@ -190,7 +221,9 @@ nofollow`. Write APIs accept small same-origin JSON requests only.
 
 - schema and batch identifiers;
 - assertion and source decisions;
-- the assertion/source audit trail;
+- bulk import summaries, immutable candidate rows and row decisions;
+- promoted candidate assertions;
+- the assertion, source and bulk-promotion audit trail;
 - the generating reviewer and timestamp; and
 - explicit `containsPublicDataChanges: false` and
   `publicationAuthorised: false` flags.
@@ -205,7 +238,7 @@ After review:
 
 1. export the review package;
 2. run `scripts/prepare_review_release.py` to produce a checked keep, amend,
-   remove and source-rights plan;
+   remove, add-assertion, add-source and source-rights plan;
 3. resolve any missing decisions, evidence needs or source-rights conflicts;
 4. translate the ready plan into the canonical repository tables;
 5. preserve source IDs and assertion-level provenance;
@@ -220,7 +253,7 @@ canonical tables or publishes a release.
 
 ## Storage and migration
 
-The workspace, bulk queue and operations controls use seven D1 tables:
+The workspace, bulk queue and operations controls use nine D1 tables:
 
 - `assertion_reviews`;
 - `source_reviews`;
@@ -228,12 +261,15 @@ The workspace, bulk queue and operations controls use seven D1 tables:
 - `system_settings`;
 - `maintenance_runs`;
 - `bulk_imports`; and
-- `bulk_import_rows`.
+- `bulk_import_rows`;
+- `bulk_row_reviews`; and
+- `promoted_assertions`.
 
 The review tables are created by `web/drizzle/0001_fancy_senator_kelly.sql`;
 the operations tables are created by
 `web/drizzle/0002_aspiring_whistler.sql`; the bulk-intake tables are created by
-`web/drizzle/0003_deep_magneto.sql`. All numbered migrations must be
+`web/drizzle/0003_deep_magneto.sql`; and candidate review and assertion
+promotion are created by `web/drizzle/0004_curious_magma.sql`. All numbered migrations must be
 applied in order on a new database. The application uses the same `DB` binding
 as contribution intake while maintaining table and query boundaries between
 public data, moderation data, and private contact data.
@@ -250,8 +286,10 @@ Before deployment:
 6. confirm an allowlisted reviewer can save and export a test decision;
 7. confirm the latest maintenance run is visible in Operations;
 8. confirm pause and resume both require a reason and are audited;
-9. confirm the public downloads are unchanged by those decisions; and
-10. clear the test decision if it was made in production.
+9. confirm a test candidate can move through More evidence, Accept, Reject and
+   Amend, with promoted assertions appearing and disappearing accordingly;
+10. confirm the public downloads are unchanged by those decisions; and
+11. clear the test decision if it was made in production.
 
 The daily retention pass and intake freeze control are documented in
 [Automation and review assist](23-automation-and-review-assist.md). Before a
