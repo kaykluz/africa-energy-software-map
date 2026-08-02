@@ -1,0 +1,21 @@
+id,product_id,country_iso2,subnational_area,customer_name,customer_disclosure,lifecycle_status,started_year,ended_year,location_precision,last_checked_at
+dep_001,prod_001,NG,Abuja distribution area,Abuja Electricity Distribution Company (AEDC),named,active,2023,,utility_territory,2026-07-30
+dep_002,prod_002,NG,Abuja distribution area,Abuja Electricity Distribution Company (AEDC),named,active,2023,,utility_territory,2026-07-30
+dep_003,prod_004,NG,,Kano Electricity Distribution Company (KEDCO),named,active,2025,,country,2026-07-30
+dep_004,prod_004,NG,,,undisclosed,active,2025,,country,2026-07-30
+dep_0fd414076188d885,prod_47d2aba604b42faf,BJ,,West African Power Pool,named,active,2024,,country,2026-08-02
+dep_3962898e06c0b969,prod_f3d9dc4a77ea4cab,MA,,TAQA North Africa / TAQA Energy Monitoring Center,named,historical,,,country,2026-08-02
+dep_3bf37cad1e299f2e,prod_65cb59d227c4267f,BJ,,West African Power Pool,named,active,2024,,country,2026-08-02
+dep_44d402bf3aac6e76,prod_63cceeebf437dc69,ZA,,eThekwini Metropolitan Municipality,named,pilot,2024,,country,2026-08-02
+dep_4d45ed97e1038e6d,prod_faed4459e7d6ab27,NG,,Ikeja Electric,named,active,,,country,2026-08-02
+dep_5dafb03405e9b7a4,prod_a4f1a4a52c37c33c,ZM,,Kazang Solar,named,active,2022,,country,2026-08-02
+dep_621d5c7586b993f8,prod_83e8647b12c0f40a,SO,,Baidoa Electric Company (BECO),named,historical,2024,,country,2026-08-02
+dep_6c7d4295f3f84919,prod_3464ecbd2a2298cc,UG,,Uganda Electricity Distribution Company Limited,named,active,2018,,country,2026-08-02
+dep_8ba702b9e523b312,prod_14d47cbe194106c4,ML,,Bboxx Mali,named,active,2023,,country,2026-08-02
+dep_91df12effd6080a3,prod_84787f6a75dff4dd,NG,,Daystar Power,named,active,,,country,2026-08-02
+dep_9f93d6392cac38f3,prod_bc70438d15454ac9,BJ,,West African Power Pool,named,active,2024,,country,2026-08-02
+dep_a7c8d5b7c82274d7,prod_3e36972ea2d29b21,ZA,,City of Cape Town Electricity Service Department,named,historical,2012,,country,2026-08-02
+dep_c12f3d3769ac31c2,prod_27402d8bb06c6333,NG,,Aspire Power Solutions,named,active,,,country,2026-08-02
+dep_c4d486068f0ae346,prod_7ec0014d7e86dba9,ZA,,Growthpoint Properties,named,active,2025,,country,2026-08-02
+dep_cc875ff369c6e798,prod_3b9526941c4a04c6,NG,,Ikeja Electric,named,active,,,country,2026-08-02
+dep_ef40e913768f8074,prod_7b787a3f1eec1e39,KE,,,undisclosed,active,,,country,2026-08-02

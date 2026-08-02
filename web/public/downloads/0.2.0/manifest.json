@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "mode": "published",
+  "version": "0.2.0",
+  "date": "2026-08-02",
+  "status": "Reviewed beta · Expanded Batch 001",
+  "counts": {
+    "organisations": 64,
+    "products": 94,
+    "deployments": 20,
+    "sources": 75,
+    "assertions": 1276
+  },
+  "reviewGate": {
+    "assertions": 1276,
+    "reviewedAssertions": 1276,
+    "unreviewedAssertions": 0,
+    "unresolvedSources": 0,
+    "publishable": true
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 894,
+      "sha256": "662df299fcc969bdfbaf91441a9b220fee498713aeabc0d23d10906d34664567"
+    },
+    {
+      "path": "assertions.jsonl",
+      "bytes": 604849,
+      "sha256": "30c0333a7bc73e5b5adc638f351c3c0dd74fa6cabf02a942e0c7d48895854176"
+    },
+    {
+      "path": "csv-package.zip",
+      "bytes": 105874,
+      "sha256": "6a8d9f23a86564f14c744f3e4cb9200a725e4c8aa45e91d620e84ca1710abd82"
+    },
+    {
+      "path": "deployments.geojson",
+      "bytes": 10647,
+      "sha256": "c1da279ac7394c7b106bfb11cce4ae3a98e0eec7b9bcc6650fba32ff4b4078da"
+    },
+    {
+      "path": "registry.json",
+      "bytes": 939056,
+      "sha256": "22ba4ef374c84b4ec7ae0055c50a6e6e5b1bbdae7056a57b41cf0a2ac5a43871"
+    }
+  ]
+}

@@ -1,0 +1,950 @@
+[
+  {
+    "id": "org_41b9fcad44ad911b",
+    "type": "organisation",
+    "name": "7Secondsolar (Pty) Ltd",
+    "context": ""
+  },
+  {
+    "id": "prod_84787f6a75dff4dd",
+    "type": "product",
+    "name": "AMMP OS",
+    "context": "A vendor-agnostic operating platform for technical monitoring, alerts, maintenance workflows, commercial tracking and reporting across distributed solar portfolios."
+  },
+  {
+    "id": "org_c538d1eb164e6e41",
+    "type": "organisation",
+    "name": "AMMP Technologies",
+    "context": ""
+  },
+  {
+    "id": "org_a05bce318bbf4ea0",
+    "type": "organisation",
+    "name": "ARC Ride",
+    "context": ""
+  },
+  {
+    "id": "prod_76e1cb9631e5da42",
+    "type": "product",
+    "name": "ARC Ride Mobile App",
+    "context": "Mobile application for locating ARC Ride battery-swapping cabinets in Nairobi."
+  },
+  {
+    "id": "org_9df3ccd43710a1e4",
+    "type": "organisation",
+    "name": "AVEVA Group Limited",
+    "context": ""
+  },
+  {
+    "id": "prod_f3d9dc4a77ea4cab",
+    "type": "product",
+    "name": "AVEVA PI System",
+    "context": "Operational-data platform that collects, stores, contextualizes, analyzes and visualizes real-time industrial and power-system data."
+  },
+  {
+    "id": "prod_002",
+    "type": "product",
+    "name": "Adora",
+    "context": "Grid operations; outage and loss analytics; field work; commercial operations"
+  },
+  {
+    "id": "prod_00904b9e2148c62a",
+    "type": "product",
+    "name": "Adroit M2M and IoT Platform",
+    "context": "SCADA and IoT rapid-development platform for secure device integration, data logging and operational dashboards across energy and other industrial applications."
+  },
+  {
+    "id": "org_fc7c0c72d1969875",
+    "type": "organisation",
+    "name": "Adroit Technologies",
+    "context": ""
+  },
+  {
+    "id": "prod_a3b8555b0b37b5d2",
+    "type": "product",
+    "name": "AmperOps",
+    "context": "Fleet and battery-network management software using predictive analytics to optimise battery lifespan."
+  },
+  {
+    "id": "prod_7dc0a9bb41944d44",
+    "type": "product",
+    "name": "Ampersand Driver App",
+    "context": "Driver application for monitoring battery state and navigating to battery-swap stations."
+  },
+  {
+    "id": "org_36577bb3608ee5a3",
+    "type": "organisation",
+    "name": "Ampersand Energy",
+    "context": ""
+  },
+  {
+    "id": "prod_dafd91d42f6636f9",
+    "type": "product",
+    "name": "Amptera",
+    "context": "A cloud utility platform that ingests smart-meter data and automates tariff application, billing, wheeling calculations and dashboards."
+  },
+  {
+    "id": "prod_3464ecbd2a2298cc",
+    "type": "product",
+    "name": "ArcGIS Enterprise",
+    "context": "Enterprise geospatial platform for utility asset registries, web maps, spatial analysis, dashboards and integration with operational systems."
+  },
+  {
+    "id": "prod_3b9526941c4a04c6",
+    "type": "product",
+    "name": "ArcGIS GeoEvent Server",
+    "context": "Real-time geospatial event-processing software that ingests sensor streams, updates map features and supports operational alerts and dashboards."
+  },
+  {
+    "id": "prod_faed4459e7d6ab27",
+    "type": "product",
+    "name": "ArcGIS Survey123",
+    "context": "Field data-collection application for georeferenced inspections, surveys, asset records and customer-enumeration workflows."
+  },
+  {
+    "id": "prod_8d5f9abcd9decdc8",
+    "type": "product",
+    "name": "ArkFlow",
+    "context": "Operating system for solar EPCs covering PV layout, electrical design, yield simulation, finance origination, project delivery and handover workflows."
+  },
+  {
+    "id": "prod_3f8147ec1b685701",
+    "type": "product",
+    "name": "Aurora AI",
+    "context": "An AI platform that analyses meter and vending data to detect loss anomalies, meter bypass, tampering and illegal connections."
+  },
+  {
+    "id": "prod_fbd4ec7d619dc446",
+    "type": "product",
+    "name": "AutoPV",
+    "context": "Cloud engineering software that automates utility-scale photovoltaic layout, cable routing, equipment placement, loss analysis and technical-document generation."
+  },
+  {
+    "id": "prod_870e878724216eb1",
+    "type": "product",
+    "name": "Battery Bank Africa",
+    "context": "Storage-as-a-service platform combining battery sizing, financing, remote monitoring and lifecycle management for mini-grids."
+  },
+  {
+    "id": "org_63de83960ce6a966",
+    "type": "organisation",
+    "name": "Bboxx",
+    "context": ""
+  },
+  {
+    "id": "prod_14d47cbe194106c4",
+    "type": "product",
+    "name": "Bboxx Pulse",
+    "context": "An operating and management platform for PAYGo utility businesses covering products, customers, financing and field operations."
+  },
+  {
+    "id": "org_001",
+    "type": "organisation",
+    "name": "Beacon Power Services",
+    "context": "Distribution utility digitisation, grid mapping, customer and asset systems"
+  },
+  {
+    "id": "prod_5cabfd347277fd43",
+    "type": "product",
+    "name": "Building-level Electricity Access and Demand Model",
+    "context": "Open-source AI and geospatial model estimating building-level electricity access and demand in sub-Saharan Africa."
+  },
+  {
+    "id": "prod_001",
+    "type": "product",
+    "name": "CAIMS",
+    "context": "Customer and asset information; network surveys; connections; digital twin"
+  },
+  {
+    "id": "prod_d123b1e7b49b439e",
+    "type": "product",
+    "name": "CLEWs",
+    "context": "Open modelling framework linking climate, land-use, energy and water systems."
+  },
+  {
+    "id": "prod_af06988b7962e214",
+    "type": "product",
+    "name": "ChargePocket",
+    "context": "EV-charging application for live charger discovery, session management and payments on the South African network."
+  },
+  {
+    "id": "prod_5a6f083895aef158",
+    "type": "product",
+    "name": "Citiq App",
+    "context": "A mobile app for purchasing prepaid electricity, tracking usage and transaction history, and managing multiple meters."
+  },
+  {
+    "id": "org_063aba978073ba5d",
+    "type": "organisation",
+    "name": "Citiq Prepaid",
+    "context": ""
+  },
+  {
+    "id": "org_b4e978f005016067",
+    "type": "organisation",
+    "name": "Climate Compatible Growth",
+    "context": ""
+  },
+  {
+    "id": "org_c196bc963028ee6e",
+    "type": "organisation",
+    "name": "Climate Compatible Growth and IRENA",
+    "context": ""
+  },
+  {
+    "id": "prod_a65525f1816d4864",
+    "type": "product",
+    "name": "Congo Epela Platform",
+    "context": "Interactive platform presenting OnSSET-based least-cost electrification analysis for the Democratic Republic of the Congo."
+  },
+  {
+    "id": "org_e33da6f90fe33e3b",
+    "type": "organisation",
+    "name": "D-REC Organization",
+    "context": ""
+  },
+  {
+    "id": "prod_4862d10385138cf5",
+    "type": "product",
+    "name": "D-REC Platform",
+    "context": "Open digital platform for validating distributed renewable generation data and issuing traceable energy certificates."
+  },
+  {
+    "id": "prod_84da79537e9d2e53",
+    "type": "product",
+    "name": "Data Integrator",
+    "context": "Energy-data integration product using APIs, secure file transfer and workflow orchestration to consolidate internal and external data sources."
+  },
+  {
+    "id": "org_14ddaae613b81fe5",
+    "type": "organisation",
+    "name": "E-Stations",
+    "context": ""
+  },
+  {
+    "id": "prod_835fa410d7e3dba0",
+    "type": "product",
+    "name": "E-Stations",
+    "context": "Moroccan EV-charging application for locating chargers, checking availability, controlling sessions and paying."
+  },
+  {
+    "id": "org_515b5b14c4e13ea8",
+    "type": "organisation",
+    "name": "ELDO",
+    "context": ""
+  },
+  {
+    "id": "prod_8cc55e7483a66134",
+    "type": "product",
+    "name": "ELDO Energy App",
+    "context": "A digital-utility app for smart-meter data, energy-use insights, embedded billing and payments, and purchasing wheeled renewable electricity."
+  },
+  {
+    "id": "org_6894f264f4bd16ed",
+    "type": "organisation",
+    "name": "ENERGIC",
+    "context": ""
+  },
+  {
+    "id": "prod_04226a46eb948cbc",
+    "type": "product",
+    "name": "ENERGIC EV Charging Platform",
+    "context": "End-to-end EV-charging software for network operations and driver charging applications."
+  },
+  {
+    "id": "org_ccaab0a9973b7404",
+    "type": "organisation",
+    "name": "EV Node",
+    "context": ""
+  },
+  {
+    "id": "prod_dc72bea09d0725f4",
+    "type": "product",
+    "name": "EV Node",
+    "context": "EV-charging application providing a unified wallet, live map, availability and charging history across Egyptian networks."
+  },
+  {
+    "id": "prod_5ace380c4742b933",
+    "type": "product",
+    "name": "Elon Smart Water digital platform",
+    "context": "The mobile-app and cloud-services layer of the Elon Smart Water solution for connected water-heating and solar-PV management."
+  },
+  {
+    "id": "prod_daa50f9ebedcc7b0",
+    "type": "product",
+    "name": "Energy Access Explorer",
+    "context": "Geospatial information system for data-driven and inclusive energy-access planning."
+  },
+  {
+    "id": "prod_4add1d20552ca8e8",
+    "type": "product",
+    "name": "Energy Management System",
+    "context": "An energy-management tool for operational efficiency and emissions reduction in industrial and telecom infrastructure."
+  },
+  {
+    "id": "prod_3cdf76665621519b",
+    "type": "product",
+    "name": "Energypro Marketplace",
+    "context": "Digital marketplace matching large electricity buyers with renewable generators."
+  },
+  {
+    "id": "prod_4801ed63e28a4c98",
+    "type": "product",
+    "name": "Energypro Transactions",
+    "context": "Private-energy transaction software for contract automation, power sales and wheeling management."
+  },
+  {
+    "id": "org_b5a699ab229742b6",
+    "type": "organisation",
+    "name": "Enerweb",
+    "context": ""
+  },
+  {
+    "id": "org_530820839614a2eb",
+    "type": "organisation",
+    "name": "Esri",
+    "context": ""
+  },
+  {
+    "id": "prod_c65e8228650434e7",
+    "type": "product",
+    "name": "FINPLAN",
+    "context": "Model for financial analysis of electricity-sector expansion plans and project viability."
+  },
+  {
+    "id": "org_686ef9b185a5a75d",
+    "type": "organisation",
+    "name": "FastVolt",
+    "context": ""
+  },
+  {
+    "id": "prod_f63dd1268b6e12c7",
+    "type": "product",
+    "name": "FastVolt App",
+    "context": "Application for locating, planning and paying for EV fast-charging sessions across Morocco."
+  },
+  {
+    "id": "org_5d4d39fbfe878d2c",
+    "type": "organisation",
+    "name": "Fekra Technology",
+    "context": ""
+  },
+  {
+    "id": "prod_6511e9ace503cbaa",
+    "type": "product",
+    "name": "FinCoRE",
+    "context": "Financial modelling tool providing projected capital costs for energy investment analysis."
+  },
+  {
+    "id": "prod_37d006103d63d180",
+    "type": "product",
+    "name": "FinTrack",
+    "context": "Financial modelling tool supplying financing terms for energy-investment analysis."
+  },
+  {
+    "id": "prod_c0f44036c2631600",
+    "type": "product",
+    "name": "Fossil Fuel Retirement Model",
+    "context": "Model for estimating foregone revenue from early retirement of fossil-fuel power plants."
+  },
+  {
+    "id": "org_58b430c887a693da",
+    "type": "organisation",
+    "name": "Fuel Switch",
+    "context": ""
+  },
+  {
+    "id": "prod_7ec0014d7e86dba9",
+    "type": "product",
+    "name": "Fuel Switch",
+    "context": "Blockchain marketplace for issuing, trading and reporting renewable-energy certificates."
+  },
+  {
+    "id": "org_907aa74533dc527b",
+    "type": "organisation",
+    "name": "GE Vernova",
+    "context": ""
+  },
+  {
+    "id": "prod_6105cb20d5181a16",
+    "type": "product",
+    "name": "GEP Generator",
+    "context": "Open-source interface for generating custom electrification outlooks in real time."
+  },
+  {
+    "id": "prod_5d86400ebf4fde2e",
+    "type": "product",
+    "name": "GEP Toolbox",
+    "context": "Toolset for generating and incorporating input data into electrification plans."
+  },
+  {
+    "id": "prod_033fbcf0e9b1c951",
+    "type": "product",
+    "name": "Global Electrification Platform Explorer",
+    "context": "Web mapping application for exploring least-cost electrification scenarios and technology mixes."
+  },
+  {
+    "id": "org_e6912eb1478e941d",
+    "type": "organisation",
+    "name": "Green Innovation Ventures",
+    "context": ""
+  },
+  {
+    "id": "org_6d53c1b9743e7ec9",
+    "type": "organisation",
+    "name": "GridCars",
+    "context": ""
+  },
+  {
+    "id": "prod_65cb59d227c4267f",
+    "type": "product",
+    "name": "GridOS Energy Management System",
+    "context": "Transmission control-centre software for dispatch, real-time monitoring, generation-demand balancing, network analysis and renewable integration."
+  },
+  {
+    "id": "prod_47d2aba604b42faf",
+    "type": "product",
+    "name": "GridOS Forecasting",
+    "context": "Grid forecasting software providing variable-renewable-energy forecasts, ramping tools and near-real-time operational inputs."
+  },
+  {
+    "id": "prod_bc70438d15454ac9",
+    "type": "product",
+    "name": "GridOS Wide Area Monitoring System",
+    "context": "Synchrophasor-based wide-area grid monitoring software for near-real-time visibility and transmission-system stability analysis."
+  },
+  {
+    "id": "prod_09961473d83843e4",
+    "type": "product",
+    "name": "IRENA FlexTool",
+    "context": "Open-source power-system flexibility assessment tool used after capacity-expansion modelling."
+  },
+  {
+    "id": "prod_1b711e547ec33e4e",
+    "type": "product",
+    "name": "IRENA West Africa Electrification Platform",
+    "context": "Interactive platform providing electrification investment scenarios for West African countries."
+  },
+  {
+    "id": "org_1f5127f2c1cec727",
+    "type": "organisation",
+    "name": "IRENA and OnSSET partners",
+    "context": ""
+  },
+  {
+    "id": "org_60c02033635240b1",
+    "type": "organisation",
+    "name": "International Atomic Energy Agency and Climate Compatible Growth",
+    "context": ""
+  },
+  {
+    "id": "org_a2926a5df5cdd48c",
+    "type": "organisation",
+    "name": "International Energy Agency and MIT",
+    "context": ""
+  },
+  {
+    "id": "prod_01e0b6c0d126d66c",
+    "type": "product",
+    "name": "JSE Ventures Carbon Market",
+    "context": "Digital market providing access to carbon credits and renewable-energy certificates for African buyers and sellers."
+  },
+  {
+    "id": "org_d669749a39dbc6b6",
+    "type": "organisation",
+    "name": "Johannesburg Stock Exchange",
+    "context": ""
+  },
+  {
+    "id": "org_930efc4050b16d68",
+    "type": "organisation",
+    "name": "KTH Royal Institute of Technology",
+    "context": ""
+  },
+  {
+    "id": "org_abe67edf168ef702",
+    "type": "organisation",
+    "name": "KTH Royal Institute of Technology and OnSSET contributors",
+    "context": ""
+  },
+  {
+    "id": "org_8f37967e82047776",
+    "type": "organisation",
+    "name": "KTH Royal Institute of Technology and United Nations partners",
+    "context": ""
+  },
+  {
+    "id": "prod_dfff8365390e2421",
+    "type": "product",
+    "name": "Kofa Fleet Platform",
+    "context": "Fleet-management platform for rider swap access, fleet purchases and battery-network running costs."
+  },
+  {
+    "id": "prod_28e66e28e429e98a",
+    "type": "product",
+    "name": "Kofa Swap & Go",
+    "context": "Mobile and web application for battery-swap access, station discovery, battery availability and account management."
+  },
+  {
+    "id": "org_df0fd10412aadaab",
+    "type": "organisation",
+    "name": "Kofa Technologies",
+    "context": ""
+  },
+  {
+    "id": "prod_fcaaff4768a60d65",
+    "type": "product",
+    "name": "MAED",
+    "context": "Model for Analysis of Energy Demand used to develop sectoral energy-demand assessments."
+  },
+  {
+    "id": "prod_54cb1b174fd192ac",
+    "type": "product",
+    "name": "MINFin",
+    "context": "Model for Informed National Financing used to develop national climate-finance strategies."
+  },
+  {
+    "id": "prod_353718ec5630f5cc",
+    "type": "product",
+    "name": "Market Forecaster",
+    "context": "Forecasting software using historical data, statistical models and machine learning for demand, supply and other energy-market outcomes."
+  },
+  {
+    "id": "org_8dbd3ffeca6e1efd",
+    "type": "organisation",
+    "name": "Masunga",
+    "context": ""
+  },
+  {
+    "id": "org_d26348409ac6de26",
+    "type": "organisation",
+    "name": "Mazi Mobility",
+    "context": ""
+  },
+  {
+    "id": "prod_31c98189497128c4",
+    "type": "product",
+    "name": "Mazi Mobility Web App",
+    "context": "Web application for locating battery-swap stations with battery availability and dynamic routing."
+  },
+  {
+    "id": "org_3684c370a0486cf0",
+    "type": "organisation",
+    "name": "Metavolt Énergie and Nghezo",
+    "context": ""
+  },
+  {
+    "id": "org_7951c70ccd95064f",
+    "type": "organisation",
+    "name": "MeterX",
+    "context": ""
+  },
+  {
+    "id": "prod_b57d9407040b6d6d",
+    "type": "product",
+    "name": "MeterX",
+    "context": "Utility metering and billing platform that reconciles grid, solar, battery and generator supply against tenant consumption and applies South African electricity tariffs."
+  },
+  {
+    "id": "org_6fa8233b4c6f7e60",
+    "type": "organisation",
+    "name": "MyVoltage",
+    "context": ""
+  },
+  {
+    "id": "prod_4a59c1c6110c4219",
+    "type": "product",
+    "name": "MyVoltage Utility Management Platform",
+    "context": "Cloud utility-management platform for electricity, water and gas monitoring, billing, payments, accounting reconciliation and network balancing."
+  },
+  {
+    "id": "prod_99b7bcd9a368219b",
+    "type": "product",
+    "name": "NISMOD",
+    "context": "National Infrastructure Systems Model used for integrated infrastructure planning."
+  },
+  {
+    "id": "prod_7a974ed97072233c",
+    "type": "product",
+    "name": "NetFin",
+    "context": "Utility billing platform for metered services with additional and recurring billing and municipal general-ledger export support."
+  },
+  {
+    "id": "prod_4e6bb096113f7a45",
+    "type": "product",
+    "name": "NetMaps",
+    "context": "Utility asset-management software with mapping, auditing and administrative functions for field technical teams."
+  },
+  {
+    "id": "prod_d5b79f9c98ecce44",
+    "type": "product",
+    "name": "NetVend",
+    "context": "Standard Transfer Specification prepaid vending platform for electricity, water and gas utilities."
+  },
+  {
+    "id": "prod_46feee3513c5f4a9",
+    "type": "product",
+    "name": "NetView",
+    "context": "Hardware-agnostic utility metering-management platform for electricity, water and gas across multiple communications channels."
+  },
+  {
+    "id": "org_99b1e294a6715f25",
+    "type": "organisation",
+    "name": "Netelek",
+    "context": ""
+  },
+  {
+    "id": "prod_90c1269fb6533050",
+    "type": "product",
+    "name": "Nimbus AMI",
+    "context": "A cloud AMI platform for visibility, monitoring and control of energy billing across utility metering assets."
+  },
+  {
+    "id": "prod_d52c504a42c601a3",
+    "type": "product",
+    "name": "OSeMOSYS",
+    "context": "Open-source modelling system for long-run integrated assessment and energy planning."
+  },
+  {
+    "id": "org_a8add2f3b4fe90af",
+    "type": "organisation",
+    "name": "OSeMOSYS Community",
+    "context": ""
+  },
+  {
+    "id": "prod_4c1eb1c96a6e5afa",
+    "type": "product",
+    "name": "OSeMOSYS Global",
+    "context": "Open-source model generator for interconnected global or regional energy-system models."
+  },
+  {
+    "id": "prod_acf9505b6591bcdc",
+    "type": "product",
+    "name": "OnSSET",
+    "context": "Open-source geospatial optimisation software for least-cost electrification planning."
+  },
+  {
+    "id": "prod_2cb981c2e4d76c28",
+    "type": "product",
+    "name": "Ontec Meter Manager",
+    "context": "Web-based meter-administration and prepaid vending software for electricity, water and gas, with a high-volume transaction gateway."
+  },
+  {
+    "id": "org_0a99ba7088470e53",
+    "type": "organisation",
+    "name": "Ontec Systems (Pty) Ltd",
+    "context": ""
+  },
+  {
+    "id": "org_d48d027ab1a1011c",
+    "type": "organisation",
+    "name": "Open Access Energy",
+    "context": ""
+  },
+  {
+    "id": "org_002",
+    "type": "organisation",
+    "name": "PAM Africa",
+    "context": "Mini-grid optimisation, smart metering, payments and demand response"
+  },
+  {
+    "id": "prod_004",
+    "type": "product",
+    "name": "PAM-AI",
+    "context": "Real-time monitoring, smart tariffs, remote device control, payment integration and demand response"
+  },
+  {
+    "id": "prod_005",
+    "type": "product",
+    "name": "Pai Enterprise",
+    "context": "Energy monitoring, analytics, sizing optimisation, anomaly detection and multi-source orchestration"
+  },
+  {
+    "id": "prod_3c464ba494208cc0",
+    "type": "product",
+    "name": "PathCalc",
+    "context": "Interactive software for visualising the carbon-emissions implications of energy choices."
+  },
+  {
+    "id": "prod_a4f1a4a52c37c33c",
+    "type": "product",
+    "name": "PaygOps",
+    "context": "A last-mile operations and PAYGo platform for leases, payments, customers, inventory, field service and device integrations."
+  },
+  {
+    "id": "prod_642f0da0b4e417a3",
+    "type": "product",
+    "name": "Pika EV Drive",
+    "context": "EV charge-station management platform for infrastructure monitoring, sessions, connectors and load balancing."
+  },
+  {
+    "id": "org_c60ee59766bb7296",
+    "type": "organisation",
+    "name": "Plentify",
+    "context": ""
+  },
+  {
+    "id": "prod_63cceeebf437dc69",
+    "type": "product",
+    "name": "Plentify HEMS Cloud Platform",
+    "context": "AI-driven home-energy management and virtual-power-plant platform coordinating solar, batteries and water heating."
+  },
+  {
+    "id": "org_003",
+    "type": "organisation",
+    "name": "PowerLabs",
+    "context": "Energy intelligence software and hardware for orchestrating grid, solar, batteries and generators"
+  },
+  {
+    "id": "org_d8a52b70cf175966",
+    "type": "organisation",
+    "name": "PowerOptimal",
+    "context": ""
+  },
+  {
+    "id": "prod_a99b94237c7e13fa",
+    "type": "product",
+    "name": "PowerPay",
+    "context": "IoT software for monitoring off-grid solar assets, energy consumption, payments and financed appliances."
+  },
+  {
+    "id": "prod_88eab8436b1e03d8",
+    "type": "product",
+    "name": "PyPSA",
+    "context": "Open-source Python framework for optimising and simulating power and energy systems."
+  },
+  {
+    "id": "org_73b14ede2c4a2ead",
+    "type": "organisation",
+    "name": "PyPSA Contributors",
+    "context": ""
+  },
+  {
+    "id": "org_d1bdcd4f66807716",
+    "type": "organisation",
+    "name": "PyPSA meets Earth",
+    "context": ""
+  },
+  {
+    "id": "prod_d6cc37a1cf2d1294",
+    "type": "product",
+    "name": "PyPSA-Earth",
+    "context": "Open-source multi-energy optimisation model with global data workflows and African demonstrations."
+  },
+  {
+    "id": "org_406033f114a69ab6",
+    "type": "organisation",
+    "name": "Pylon",
+    "context": ""
+  },
+  {
+    "id": "org_cbf8bcdb4fb4587b",
+    "type": "organisation",
+    "name": "Resource Matters and partners",
+    "context": ""
+  },
+  {
+    "id": "org_39703db4e82ec396",
+    "type": "organisation",
+    "name": "Rubicon",
+    "context": ""
+  },
+  {
+    "id": "prod_99c67cf93bb73c5f",
+    "type": "product",
+    "name": "Rubicon Charge",
+    "context": "EV-charging application for finding chargers, remotely controlling sessions, live updates and wallet payments."
+  },
+  {
+    "id": "prod_3e36972ea2d29b21",
+    "type": "product",
+    "name": "SAP Advanced Metering Infrastructure Integration for Utilities",
+    "context": "Integration software connecting smart-meter data systems with utility back-office processes for remote reads, billing, customer service and consumption analysis."
+  },
+  {
+    "id": "org_32b8d4d2ec475f59",
+    "type": "organisation",
+    "name": "SAP SE",
+    "context": ""
+  },
+  {
+    "id": "prod_27402d8bb06c6333",
+    "type": "product",
+    "name": "SHYFT Connect",
+    "context": "A web and mobile platform for real-time monitoring, metering, control and automation of grid, solar, battery and generator assets."
+  },
+  {
+    "id": "org_a4f72ab71d53535a",
+    "type": "organisation",
+    "name": "SHYFT Power Solutions",
+    "context": ""
+  },
+  {
+    "id": "org_96eebaf75520bce8",
+    "type": "organisation",
+    "name": "SOLINK (Pty) Ltd",
+    "context": ""
+  },
+  {
+    "id": "prod_7ca64cacd469d465",
+    "type": "product",
+    "name": "SOLINK Core",
+    "context": "Guided renewable-project platform covering site-data intake, feasibility analysis, design specification, installer procurement and delivery oversight."
+  },
+  {
+    "id": "prod_b91aa7029d7054cd",
+    "type": "product",
+    "name": "Smart-View SaaS Utilities Management Solution",
+    "context": "Software-as-a-service platform for real-time utility monitoring, anomaly detection, bill creation and verification, analytics and sustainability reporting."
+  },
+  {
+    "id": "org_b9fc077cac046000",
+    "type": "organisation",
+    "name": "Smart-View Technology",
+    "context": ""
+  },
+  {
+    "id": "org_a08b81b7f5f0b23a",
+    "type": "organisation",
+    "name": "Solar MD",
+    "context": ""
+  },
+  {
+    "id": "prod_bb8d9737e621ddbf",
+    "type": "product",
+    "name": "SolarFlow",
+    "context": "Cloud platform for real-time monitoring, automation and optimisation of off-grid solar systems."
+  },
+  {
+    "id": "org_cdc655096c67d97e",
+    "type": "organisation",
+    "name": "Solarmente (Pty) Ltd trading as ArkFlow",
+    "context": ""
+  },
+  {
+    "id": "org_7e4e5bedaec641be",
+    "type": "organisation",
+    "name": "SparkMeter / EarthSpark International",
+    "context": ""
+  },
+  {
+    "id": "prod_83e8647b12c0f40a",
+    "type": "product",
+    "name": "SparkMeter digital grid and smart-metering platform",
+    "context": "Smart-metering and digital-grid platform supporting billing, loss detection, network monitoring, transformer analysis and distribution planning."
+  },
+  {
+    "id": "org_9fb06d7319bc6e76",
+    "type": "organisation",
+    "name": "Spiro",
+    "context": ""
+  },
+  {
+    "id": "prod_7b787a3f1eec1e39",
+    "type": "product",
+    "name": "Spiro App",
+    "context": "Application for locating battery-swap stations on Spiro's African electric-mobility network."
+  },
+  {
+    "id": "org_e7a91741bca86f28",
+    "type": "organisation",
+    "name": "SteamaCo",
+    "context": ""
+  },
+  {
+    "id": "org_4ac6c37b6348829f",
+    "type": "organisation",
+    "name": "Stima",
+    "context": ""
+  },
+  {
+    "id": "prod_786ef0a3b218061b",
+    "type": "product",
+    "name": "Stima Care",
+    "context": "Cloud SaaS platform for stationary-battery health, performance, anomaly and warranty management."
+  },
+  {
+    "id": "prod_21c1794343050d9f",
+    "type": "product",
+    "name": "SunBeam",
+    "context": "A consumer app for checking prepaid balances, transactions and energy usage and receiving account notifications."
+  },
+  {
+    "id": "org_6813554323495fa0",
+    "type": "organisation",
+    "name": "Switch Energy",
+    "context": ""
+  },
+  {
+    "id": "prod_ad4f1a22ff85d12b",
+    "type": "product",
+    "name": "Switch Energy Trading Platform",
+    "context": "A platform for PPA administration, portfolio planning, generation-load matching, energy aggregation, allocations, optimisation and forecasting."
+  },
+  {
+    "id": "prod_596ed16f715fb870",
+    "type": "product",
+    "name": "Switch Smart Metering Platform",
+    "context": "An internally built meter-data, sub-metering, revenue-collection, billing and reporting platform for utilities and property energy systems."
+  },
+  {
+    "id": "prod_8c028e7d3c878e74",
+    "type": "product",
+    "name": "TEMBA",
+    "context": "Open-source electricity-supply model representing African countries and cross-border transmission links."
+  },
+  {
+    "id": "prod_5c44515448aa55ab",
+    "type": "product",
+    "name": "ThunderBolt",
+    "context": "A field-force application for utility investigation and operational workflows."
+  },
+  {
+    "id": "prod_c88c7983f9fcb410",
+    "type": "product",
+    "name": "Universal Electrification Access",
+    "context": "Online interface presenting OnSSET methods, datasets and electrification-planning results."
+  },
+  {
+    "id": "prod_39480c97b0739c3c",
+    "type": "product",
+    "name": "Utility Management Platform",
+    "context": "An integrated platform for real-time monitoring and optimisation of electricity and water distribution networks."
+  },
+  {
+    "id": "org_7245d69e568dc70a",
+    "type": "organisation",
+    "name": "Vittoria Technology",
+    "context": ""
+  },
+  {
+    "id": "org_2744e404ad22d210",
+    "type": "organisation",
+    "name": "World Bank ESMAP",
+    "context": ""
+  },
+  {
+    "id": "org_2e848005aab6ebe8",
+    "type": "organisation",
+    "name": "World Resources Institute and Climate Compatible Growth",
+    "context": ""
+  },
+  {
+    "id": "prod_003",
+    "type": "product",
+    "name": "Xepp",
+    "context": "Consumption insights; payments; customer engagement; distributed solar offers"
+  },
+  {
+    "id": "prod_7f669470202474a2",
+    "type": "product",
+    "name": "clicSAND",
+    "context": "Open-source user interface for entering OSeMOSYS data and visualising energy-system modelling results."
+  },
+  {
+    "id": "prod_50515a6186c6f41d",
+    "type": "product",
+    "name": "mypower24",
+    "context": "A web and mobile energy-management platform for monitoring, analytics, device control and logic configuration across solar and storage systems."
+  }
+]

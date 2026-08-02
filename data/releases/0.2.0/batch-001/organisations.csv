@@ -1,0 +1,65 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_001,Beacon Power Services,beacon-power-services,utility_software_scale_up,africa_built,NG,,active,https://beaconpowerservices.com/,"Distribution utility digitisation, grid mapping, customer and asset systems",false,2026-07-30
+org_002,PAM Africa,pam-africa,energy_software_start_up,africa_built,NG,,active,https://www.pamafrica.com/,"Mini-grid optimisation, smart metering, payments and demand response",false,2026-07-30
+org_003,PowerLabs,powerlabs,energy_software_start_up,africa_built,NG,NG,active,https://powerlabstech.com/,"Energy intelligence software and hardware for orchestrating grid, solar, batteries and generators",false,2026-07-30
+org_063aba978073ba5d,Citiq Prepaid,citiq-prepaid,energy_software_provider,africa_built,ZA,ZA,unknown,https://citiqprepaid.co.za/,,false,2026-08-02
+org_0a99ba7088470e53,Ontec Systems (Pty) Ltd,ontec-systems-pty-ltd,energy_software_provider,africa_built,ZA,ZA,unknown,https://ontec.co.za/,,false,2026-08-02
+org_14ddaae613b81fe5,E-Stations,e-stations,energy_software_provider,africa_built,MA,MA,unknown,https://play.google.com/store/apps/details?id=com.estations.ma,,false,2026-08-02
+org_1f5127f2c1cec727,IRENA and OnSSET partners,irena-and-onsset-partners,energy_software_provider,public_or_open_infrastructure,,,unknown,https://www.irena.org/,,false,2026-08-02
+org_2744e404ad22d210,World Bank ESMAP,world-bank-esmap,energy_software_provider,public_or_open_infrastructure,,,unknown,https://www.esmap.org/,,false,2026-08-02
+org_2e848005aab6ebe8,World Resources Institute and Climate Compatible Growth,world-resources-institute-and-climate-compatible-growth,energy_software_provider,public_or_open_infrastructure,,,unknown,https://www.energyaccessexplorer.org/,,false,2026-08-02
+org_32b8d4d2ec475f59,SAP SE,sap-se,energy_software_provider,global_deployed_in_africa,DE,DE,unknown,https://www.sap.com/,,false,2026-08-02
+org_36577bb3608ee5a3,Ampersand Energy,ampersand-energy,energy_software_provider,africa_built,RW,,unknown,https://www.ampersand.energy/,,false,2026-08-02
+org_3684c370a0486cf0,Metavolt Énergie and Nghezo,metavolt-nergie-and-nghezo,energy_software_provider,africa_built,BF,,unknown,https://digital-energy.eu/en/projects/metavolt-energie-nghezo,,false,2026-08-02
+org_39703db4e82ec396,Rubicon,rubicon,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.rubicon.tech/,,false,2026-08-02
+org_406033f114a69ab6,Pylon,pylon,energy_software_provider,africa_built,EG,EG,unknown,https://pylonump.com/,,false,2026-08-02
+org_41b9fcad44ad911b,7Secondsolar (Pty) Ltd,7secondsolar-pty-ltd,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.autopv.io/,,false,2026-08-02
+org_4ac6c37b6348829f,Stima,stima,energy_software_provider,africa_built,KE,KE,unknown,https://digital-energy.eu/en/projects/stima-care,,false,2026-08-02
+org_515b5b14c4e13ea8,ELDO,eldo,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.eldo.co.za/,,false,2026-08-02
+org_530820839614a2eb,Esri,esri,energy_software_provider,global_deployed_in_africa,US,US,unknown,https://www.esri.com/,,false,2026-08-02
+org_58b430c887a693da,Fuel Switch,fuel-switch,energy_software_provider,africa_built,ZA,ZA,unknown,https://digital-energy.eu/en/projects/fuel-switch,,false,2026-08-02
+org_5d4d39fbfe878d2c,Fekra Technology,fekra-technology,energy_software_provider,africa_built,EG,EG,unknown,https://fekra-egy.com/,,false,2026-08-02
+org_60c02033635240b1,International Atomic Energy Agency and Climate Compatible Growth,international-atomic-energy-agency-and-climate-compatible-growth,energy_software_provider,public_or_open_infrastructure,,,unknown,https://climatecompatiblegrowth.com/,,false,2026-08-02
+org_63de83960ce6a966,Bboxx,bboxx,energy_software_provider,global_deployed_in_africa,,,unknown,https://www.bboxx.com/,,false,2026-08-02
+org_6813554323495fa0,Switch Energy,switch-energy,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.switch.org.za/,,false,2026-08-02
+org_686ef9b185a5a75d,FastVolt,fastvolt,energy_software_provider,africa_built,MA,MA,unknown,https://fastvolt.net/,,false,2026-08-02
+org_6894f264f4bd16ed,ENERGIC,energic,energy_software_provider,africa_built,EG,EG,unknown,https://www.energiccharge.com/,,false,2026-08-02
+org_6d53c1b9743e7ec9,GridCars,gridcars,energy_software_provider,africa_built,ZA,ZA,unknown,https://gridcars.net/,,false,2026-08-02
+org_6fa8233b4c6f7e60,MyVoltage,myvoltage,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.myvoltage.co.za/,,false,2026-08-02
+org_7245d69e568dc70a,Vittoria Technology,vittoria-technology,energy_software_provider,africa_built,ZA,ZA,unknown,https://digital-energy.eu/en/projects/vittoria-technology,,false,2026-08-02
+org_73b14ede2c4a2ead,PyPSA Contributors,pypsa-contributors,energy_software_provider,public_or_open_infrastructure,,,unknown,https://pypsa.org/,,false,2026-08-02
+org_7951c70ccd95064f,MeterX,meterx,energy_software_provider,africa_built,ZA,ZA,unknown,https://meterx.co.za/,,false,2026-08-02
+org_7e4e5bedaec641be,SparkMeter / EarthSpark International,sparkmeter-earthspark-international,energy_software_provider,global_deployed_in_africa,US,US,unknown,https://www.sparkmeter.io/,,false,2026-08-02
+org_8dbd3ffeca6e1efd,Masunga,masunga,energy_software_provider,global_deployed_in_africa,,,unknown,https://www.paygops.com/about-us,,false,2026-08-02
+org_8f37967e82047776,KTH Royal Institute of Technology and United Nations partners,kth-royal-institute-of-technology-and-united-nations-partners,energy_software_provider,public_or_open_infrastructure,,,unknown,https://onsset.readthedocs.io/,,false,2026-08-02
+org_907aa74533dc527b,GE Vernova,ge-vernova,energy_software_provider,global_deployed_in_africa,US,US,unknown,https://www.gevernova.com/,,false,2026-08-02
+org_930efc4050b16d68,KTH Royal Institute of Technology,kth-royal-institute-of-technology,energy_software_provider,public_or_open_infrastructure,,SE,unknown,https://www.kth.se/,,false,2026-08-02
+org_96eebaf75520bce8,SOLINK (Pty) Ltd,solink-pty-ltd,energy_software_provider,africa_built,ZA,ZA,unknown,https://solink.co.za/about-us/,,false,2026-08-02
+org_99b1e294a6715f25,Netelek,netelek,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.netelek.co.za/,,false,2026-08-02
+org_9df3ccd43710a1e4,AVEVA Group Limited,aveva-group-limited,energy_software_provider,global_deployed_in_africa,GB,GB,unknown,https://www.aveva.com/,,false,2026-08-02
+org_9fb06d7319bc6e76,Spiro,spiro,energy_software_provider,global_deployed_in_africa,,,unknown,https://www.spironet.com/,,false,2026-08-02
+org_a05bce318bbf4ea0,ARC Ride,arc-ride,energy_software_provider,africa_built,KE,KE,unknown,https://arcrideglobal.com/,,false,2026-08-02
+org_a08b81b7f5f0b23a,Solar MD,solar-md,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.solarmd.com/,,false,2026-08-02
+org_a2926a5df5cdd48c,International Energy Agency and MIT,international-energy-agency-and-mit,energy_software_provider,public_or_open_infrastructure,,,unknown,https://www.iea.org/,,false,2026-08-02
+org_a4f72ab71d53535a,SHYFT Power Solutions,shyft-power-solutions,energy_software_provider,global_deployed_in_africa,,,unknown,https://shyftpower.com/,,false,2026-08-02
+org_a8add2f3b4fe90af,OSeMOSYS Community,osemosys-community,energy_software_provider,public_or_open_infrastructure,,,unknown,https://osemosys.github.io/,,false,2026-08-02
+org_abe67edf168ef702,KTH Royal Institute of Technology and OnSSET contributors,kth-royal-institute-of-technology-and-onsset-contributors,energy_software_provider,public_or_open_infrastructure,,,unknown,https://www.onsset.org/,,false,2026-08-02
+org_b4e978f005016067,Climate Compatible Growth,climate-compatible-growth,energy_software_provider,public_or_open_infrastructure,,,unknown,https://climatecompatiblegrowth.com/,,false,2026-08-02
+org_b5a699ab229742b6,Enerweb,enerweb,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.enerweb.co.za/,,false,2026-08-02
+org_b9fc077cac046000,Smart-View Technology,smart-view-technology,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.smartviewtechnology.co.za/,,false,2026-08-02
+org_c196bc963028ee6e,Climate Compatible Growth and IRENA,climate-compatible-growth-and-irena,energy_software_provider,public_or_open_infrastructure,,,unknown,https://climatecompatiblegrowth.com/,,false,2026-08-02
+org_c538d1eb164e6e41,AMMP Technologies,ammp-technologies,energy_software_provider,global_deployed_in_africa,,,unknown,https://www.ammp.io/,,false,2026-08-02
+org_c60ee59766bb7296,Plentify,plentify,energy_software_provider,africa_built,ZA,ZA,unknown,https://plentify.io/,,false,2026-08-02
+org_cbf8bcdb4fb4587b,Resource Matters and partners,resource-matters-and-partners,energy_software_provider,public_or_open_infrastructure,,,unknown,https://resourcematters.org/,,false,2026-08-02
+org_ccaab0a9973b7404,EV Node,ev-node,energy_software_provider,africa_built,EG,EG,unknown,https://www.ev-node.com/,,false,2026-08-02
+org_cdc655096c67d97e,Solarmente (Pty) Ltd trading as ArkFlow,solarmente-pty-ltd-trading-as-arkflow,energy_software_provider,africa_built,ZA,ZA,unknown,https://arkflow.co.za/,,false,2026-08-02
+org_d1bdcd4f66807716,PyPSA meets Earth,pypsa-meets-earth,energy_software_provider,public_or_open_infrastructure,,,unknown,https://pypsa-earth.readthedocs.io/,,false,2026-08-02
+org_d26348409ac6de26,Mazi Mobility,mazi-mobility,energy_software_provider,africa_built,KE,KE,unknown,https://mazimobility.com/,,false,2026-08-02
+org_d48d027ab1a1011c,Open Access Energy,open-access-energy,energy_software_provider,africa_built,ZA,ZA,unknown,https://openaccess.energy/,,false,2026-08-02
+org_d669749a39dbc6b6,Johannesburg Stock Exchange,johannesburg-stock-exchange,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.jse.co.za/,,false,2026-08-02
+org_d8a52b70cf175966,PowerOptimal,poweroptimal,energy_software_provider,africa_built,ZA,ZA,unknown,https://poweroptimal.com/,,false,2026-08-02
+org_df0fd10412aadaab,Kofa Technologies,kofa-technologies,energy_software_provider,africa_built,GH,GH,unknown,https://www.kofa.co/,,false,2026-08-02
+org_e33da6f90fe33e3b,D-REC Organization,d-rec-organization,energy_software_provider,public_or_open_infrastructure,,,unknown,https://drecs.org/,,false,2026-08-02
+org_e6912eb1478e941d,Green Innovation Ventures,green-innovation-ventures,energy_software_provider,africa_built,KE,KE,unknown,https://digital-energy.eu/en/projects/give-ltd,,false,2026-08-02
+org_e7a91741bca86f28,SteamaCo,steamaco,energy_software_provider,africa_founded_global_hq,KE,GB,unknown,https://steama.co/,,false,2026-08-02
+org_fc7c0c72d1969875,Adroit Technologies,adroit-technologies,energy_software_provider,africa_built,ZA,ZA,unknown,https://adroittech.co.za/,,false,2026-08-02

@@ -9,7 +9,7 @@ The implementation contract is
 Growth and data-boundary rules are in
 [`docs/18-expansion-architecture-and-roadmap.md`](../docs/18-expansion-architecture-and-roadmap.md).
 
-The interface currently renders reviewed data release **0.1.0**.
+The interface currently renders reviewed data release **0.2.0**.
 Products, organisations, deployments and downloads are generated together from
 one checksum-verified release; they are not duplicated in UI components. See the
 [snapshot and export pipeline](../docs/19-snapshot-and-export-pipeline.md).

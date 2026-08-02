@@ -6,10 +6,10 @@ data.
 
 ## Current status
 
-The repository does not yet contain a complete launch census. Batch 001 now
-contains 88 human-reviewed assertions across three organisations, five products
-and four deployments. It is the first reviewed release package and awaits
-independent pull-request approval.
+The repository does not yet contain a complete census. Reviewed release 0.2.0
+contains 1,276 human-reviewed assertions across 64 organisations, 94 products
+and 20 country-level deployments, backed by 75 rights-resolved sources. Eleven
+candidate records remain held for stronger or accessible evidence.
 
 ## Rules
 

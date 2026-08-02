@@ -185,8 +185,8 @@ class AutomationTests(unittest.TestCase):
         assist = build_review_assist(snapshot)
         self.assertEqual(assist["status"], "proposal_only")
         self.assertFalse(assist["publicationAuthorised"])
-        self.assertEqual(assist["summary"]["assertions"], 88)
-        self.assertEqual(assist["summary"]["sources"], 9)
+        self.assertEqual(assist["summary"]["assertions"], 1276)
+        self.assertEqual(assist["summary"]["sources"], 75)
         self.assertEqual(assist["summary"]["rightsFirst"], 0)
         self.assertEqual(
             {item["assertionId"] for item in assist["assertions"]},
@@ -272,7 +272,7 @@ class AutomationTests(unittest.TestCase):
         }
         plan = build_release_plan(snapshot, review_package)
         self.assertEqual(plan["status"], "ready_for_data_pr")
-        self.assertEqual(plan["summary"]["accepted"], 88)
+        self.assertEqual(plan["summary"]["accepted"], 1276)
         self.assertEqual(plan["summary"]["blockers"], 0)
         self.assertFalse(plan["publicationAuthorised"])
 

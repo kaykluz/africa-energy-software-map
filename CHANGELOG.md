@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Composed reviewed release `0.2.0` from the independently approved `0.1.0`
+  baseline and all 13 bounded Batch 001 shards: 64 organisations, 94 products,
+  20 country-level deployments, 75 rights-resolved sources and 1,276 reviewed
+  assertions. Eleven candidates remain held for stronger evidence.
+- Added a deterministic, checksum-verifying release composer that rejects
+  missing shards, conflicting IDs and private-review boundary failures.
 - Patched the production dependency graph, disabled unused runtime image
   optimisation, added global response hardening and made high-severity
   production audit findings fail continuous integration.
