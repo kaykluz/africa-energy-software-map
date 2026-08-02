@@ -1,0 +1,3 @@
+id,product_id,country_iso2,subnational_area,customer_name,customer_disclosure,lifecycle_status,started_year,ended_year,location_precision,last_checked_at
+dep_44d402bf3aac6e76,prod_63cceeebf437dc69,ZA,,eThekwini Metropolitan Municipality,named,pilot,2024,,country,2026-08-02
+dep_91df12effd6080a3,prod_84787f6a75dff4dd,NG,,Daystar Power,named,active,,,country,2026-08-02
