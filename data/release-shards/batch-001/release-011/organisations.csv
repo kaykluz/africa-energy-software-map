@@ -1,0 +1,7 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_063aba978073ba5d,Citiq Prepaid,citiq-prepaid,energy_software_provider,africa_built,ZA,ZA,unknown,https://citiqprepaid.co.za/,,false,2026-08-02
+org_2744e404ad22d210,World Bank ESMAP,world-bank-esmap,energy_software_provider,public_or_open_infrastructure,,,unknown,https://www.esmap.org/,,false,2026-08-02
+org_2e848005aab6ebe8,World Resources Institute and Climate Compatible Growth,world-resources-institute-and-climate-compatible-growth,energy_software_provider,public_or_open_infrastructure,,,unknown,https://www.energyaccessexplorer.org/,,false,2026-08-02
+org_6fa8233b4c6f7e60,MyVoltage,myvoltage,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.myvoltage.co.za/,,false,2026-08-02
+org_7951c70ccd95064f,MeterX,meterx,energy_software_provider,africa_built,ZA,ZA,unknown,https://meterx.co.za/,,false,2026-08-02
+org_99b1e294a6715f25,Netelek,netelek,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.netelek.co.za/,,false,2026-08-02
