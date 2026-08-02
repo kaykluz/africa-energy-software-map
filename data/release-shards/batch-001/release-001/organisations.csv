@@ -1,0 +1,8 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_406033f114a69ab6,Pylon,pylon,energy_software_provider,africa_built,EG,EG,unknown,https://pylonump.com/,,false,2026-08-02
+org_58b430c887a693da,Fuel Switch,fuel-switch,energy_software_provider,africa_built,ZA,ZA,unknown,https://digital-energy.eu/en/projects/fuel-switch,,false,2026-08-02
+org_a4f72ab71d53535a,SHYFT Power Solutions,shyft-power-solutions,energy_software_provider,global_deployed_in_africa,,,unknown,https://shyftpower.com/,,false,2026-08-02
+org_b4e978f005016067,Climate Compatible Growth,climate-compatible-growth,energy_software_provider,public_or_open_infrastructure,,,unknown,https://climatecompatiblegrowth.com/,,false,2026-08-02
+org_d669749a39dbc6b6,Johannesburg Stock Exchange,johannesburg-stock-exchange,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.jse.co.za/,,false,2026-08-02
+org_d8a52b70cf175966,PowerOptimal,poweroptimal,energy_software_provider,africa_built,ZA,ZA,unknown,https://poweroptimal.com/,,false,2026-08-02
+org_e33da6f90fe33e3b,D-REC Organization,d-rec-organization,energy_software_provider,public_or_open_infrastructure,,,unknown,https://drecs.org/,,false,2026-08-02
