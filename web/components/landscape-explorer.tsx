@@ -7,6 +7,7 @@ import {
   landscapeItems,
   landscapeKindLabels,
   landscapeRelationships,
+  landscapeSourceDomains,
   landscapeSourceAsOf,
   landscapeStageLabels,
   type LandscapeItem,
@@ -15,7 +16,7 @@ import {
 import { normaliseQuery } from "@/lib/registry-query";
 import { useMemo, useState } from "react";
 
-type LandscapeView = "listings" | "deployments" | "history";
+type LandscapeView = "listings" | "deployments" | "history" | "sources";
 
 const kindOptions = Object.entries(landscapeKindLabels) as [
   LandscapeKind,
@@ -55,7 +56,9 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
         ? filteredItems.map(exportItem)
         : view === "deployments"
           ? landscapeDeploymentLeads
-          : landscapeRelationships;
+          : view === "history"
+            ? landscapeRelationships
+            : landscapeSourceDomains.map((domain) => ({ domain, url: `https://${domain}` }));
     const content = format === "json" ? JSON.stringify(rows, null, 2) : toCsv(rows);
     const blob = new Blob([content], {
       type: format === "json" ? "application/json" : "text/csv;charset=utf-8",
@@ -73,7 +76,9 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
       ? filteredItems.length
       : view === "deployments"
         ? landscapeDeploymentLeads.length
-        : landscapeRelationships.length;
+        : view === "history"
+          ? landscapeRelationships.length
+          : landscapeSourceDomains.length;
 
   return (
     <main className="landscape-page" id="main-content" tabIndex={-1}>
@@ -106,6 +111,7 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
           ["listings", "Listings", landscapeItems.length],
           ["deployments", "Deployment leads", landscapeDeploymentLeads.length],
           ["history", "Company history", landscapeRelationships.length],
+          ["sources", "Sources supplied", landscapeSourceDomains.length],
         ].map(([value, label, count]) => (
           <button
             aria-current={view === value ? "page" : undefined}
@@ -183,7 +189,7 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
             </article>
           )) : <LandscapeWaiting label="deployment leads" />}
         </section>
-      ) : (
+      ) : view === "history" ? (
         <section className="landscape-lead-list" aria-live="polite">
           {landscapeRelationships.length ? landscapeRelationships.map((event, index) => (
             <article key={event.id}>
@@ -192,6 +198,16 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
               <small>{event.dateAsSubmitted}</small>
             </article>
           )) : <LandscapeWaiting label="company events" />}
+        </section>
+      ) : (
+        <section className="landscape-source-list" aria-live="polite">
+          {landscapeSourceDomains.map((domain, index) => (
+            <a href={`https://${domain}`} key={domain} rel="noreferrer" target="_blank">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{domain}</strong>
+              <i aria-hidden="true">↗</i>
+            </a>
+          ))}
         </section>
       )}
 
@@ -272,4 +288,3 @@ function toCsv(rows: object[]) {
   };
   return [headers.map(escape).join(","), ...records.map((row) => headers.map((header) => escape(row[header])).join(","))].join("\n");
 }
-

@@ -79,6 +79,15 @@ export const landscapeDeploymentLeads = landscapeShards.flatMap(
 export const landscapeRelationships = landscapeShards.flatMap(
   (shard) => shard.relationships,
 );
+export const landscapeSourceDomains = Array.from(
+  new Set(
+    landscapeShards.flatMap((shard) =>
+      [...shard.items, ...shard.deploymentLeads, ...shard.relationships].flatMap(
+        (record) => record.sourceDomains,
+      ),
+    ),
+  ),
+).sort((left, right) => left.localeCompare(right));
 
 export const landscapeSourceAsOf = landscapeShards
   .map((shard) => shard.sourceAsOf)
@@ -90,7 +99,7 @@ export const landscapeKindLabels: Record<LandscapeKind, string> = {
   product: "Product",
   public_tool: "Public tool",
   research_lead: "Research lead",
-  source_directory: "Source directory",
+  source_directory: "Source lead",
 };
 
 export const landscapeStageLabels: Record<string, string> = {
@@ -118,4 +127,3 @@ export const landscapeCategoryLabels: Record<string, string> = {
   cat_carbon_mrv_reporting: "Carbon, MRV and reporting",
   cat_data_interoperability_security: "Data, interoperability and security",
 };
-
