@@ -1,0 +1,4 @@
+id,name,source_family,countries,categories,base_url,discovery_method,automation_permitted,expected_update_frequency,default_independence_class,language,last_checked_at,next_review_at,status,notes
+reg_0b5edd0e8acff460,SOLINK,web,,,https://solink.co.za/,human_reviewed_bulk_intake,false,unknown,provider_authored,,2026-08-02,,active,"Rights treatment: factual metadata, attribution and linking only; source text, imagery and branding are not reused."
+reg_15f79d74fb8c2740,GE Vernova,web,,,https://www.gevernova.com/,human_reviewed_bulk_intake,false,unknown,provider_authored,,2026-08-02,,active,"Rights treatment: factual metadata, attribution and linking only; source text, imagery and branding are not reused."
+reg_5dddbdef43b77f81,Enerweb,web,,,https://www.enerweb.co.za/,human_reviewed_bulk_intake,false,unknown,provider_authored,,2026-08-02,,active,"Rights treatment: factual metadata, attribution and linking only; source text, imagery and branding are not reused."
