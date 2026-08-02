@@ -1,0 +1,99 @@
+[
+  {
+    "country_iso2": "BJ",
+    "deployment_count": 3,
+    "independent_or_customer_count": 0,
+    "provider_claim_count": 3,
+    "product_count": 3,
+    "category_counts": {
+      "cat_forecasting_flexibility_der": 1,
+      "cat_transmission_system_operation": 2
+    }
+  },
+  {
+    "country_iso2": "KE",
+    "deployment_count": 1,
+    "independent_or_customer_count": 0,
+    "provider_claim_count": 1,
+    "product_count": 1,
+    "category_counts": {
+      "cat_emobility_battery_networks": 1
+    }
+  },
+  {
+    "country_iso2": "MA",
+    "deployment_count": 1,
+    "independent_or_customer_count": 0,
+    "provider_claim_count": 1,
+    "product_count": 1,
+    "category_counts": {
+      "cat_data_interoperability_security": 1
+    }
+  },
+  {
+    "country_iso2": "ML",
+    "deployment_count": 1,
+    "independent_or_customer_count": 0,
+    "provider_claim_count": 1,
+    "product_count": 1,
+    "category_counts": {
+      "cat_paygo_minigrid_operations": 1
+    }
+  },
+  {
+    "country_iso2": "NG",
+    "deployment_count": 8,
+    "independent_or_customer_count": 2,
+    "provider_claim_count": 4,
+    "product_count": 7,
+    "category_counts": {
+      "cat_ci_behind_meter": 1,
+      "cat_distribution_utility_operations": 3,
+      "cat_generation_storage_operations": 1,
+      "cat_paygo_minigrid_operations": 2,
+      "cat_planning_geospatial": 1
+    }
+  },
+  {
+    "country_iso2": "SO",
+    "deployment_count": 1,
+    "independent_or_customer_count": 1,
+    "provider_claim_count": 0,
+    "product_count": 1,
+    "category_counts": {
+      "cat_distribution_utility_operations": 1
+    }
+  },
+  {
+    "country_iso2": "UG",
+    "deployment_count": 1,
+    "independent_or_customer_count": 0,
+    "provider_claim_count": 1,
+    "product_count": 1,
+    "category_counts": {
+      "cat_planning_geospatial": 1
+    }
+  },
+  {
+    "country_iso2": "ZA",
+    "deployment_count": 3,
+    "independent_or_customer_count": 2,
+    "provider_claim_count": 1,
+    "product_count": 3,
+    "category_counts": {
+      "cat_carbon_mrv_reporting": 1,
+      "cat_data_interoperability_security": 1,
+      "cat_forecasting_flexibility_der": 1
+    }
+  },
+  {
+    "country_iso2": "ZM",
+    "deployment_count": 1,
+    "independent_or_customer_count": 0,
+    "provider_claim_count": 1,
+    "product_count": 1,
+    "category_counts": {
+      "cat_paygo_minigrid_operations": 1
+    }
+  }
+]

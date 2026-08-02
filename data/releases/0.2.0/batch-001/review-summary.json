@@ -1,0 +1,545 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "reviewed_release",
+  "version": "0.2.0",
+  "sourceBatch": "data/releases/0.1.0/batch-001",
+  "reviewBatch": "data/release-shards/batch-001",
+  "reviewPackageSha256": "e67ec5faaa091d94567dc7bf101fc2b592409b9151ce7e76a71c8d9506c6a0af",
+  "reviewPackageCommitted": false,
+  "publicReviewer": "kaykluz",
+  "completedAt": "2026-08-02T14:06:22.441Z",
+  "assertionDecisions": {
+    "accept": 1247,
+    "amend": 29
+  },
+  "sourceDecisions": 75,
+  "reviewChangeRecords": 36,
+  "sourceTreatments": [
+    {
+      "sourceId": "src_006b50f09716afd0",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_02027067a2b6f47d",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_05e838c776926403",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "customer_or_official",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_06e5f378dc49db18",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_09a3d01a3a3a8b9a",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_0a4fa31247a1d3c3",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_0aeaf7bbb4111bf3",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_0b2d11046a03402c",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_0b7158369b815d9f",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_0df75f7550839b7c",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_0e2b17c179cb2014",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_19cbb51c9737fa08",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_1aba15c2ac9250fc",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_1fd4de155f438bff",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_2036ee97788b09bc",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_25c2a0a72ca484b2",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_2a5c99c65a3533f8",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_2f4a7e763bb7e671",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_31fdc6b36c19f321",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_33e8d065011165de",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_36ff3d019dab7c6f",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_3cbec379ee14aa70",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved; factual_metadata_and_linking_only",
+      "independenceClass": "customer_or_official",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_3fed97da9ebf5a38",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_419b4f8f3ed72377",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "customer_or_official",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_4319a4161634cca0",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_49525542a4a0aa7a",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_4acfd42725b98b4e",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "aggregator",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_4b7adae0776349b3",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_5d32c0903dfe6e9c",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_6fa288b6cac304e9",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_705592f873593725",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_728b5d57ef518817",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_72a68084f5f1f2f3",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved; factual_metadata_and_linking_only",
+      "independenceClass": "customer_or_official",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_75449c38606a534e",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "customer_or_official",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_792d6f5e54ae6a49",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_7b2b4beeeea7e093",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_7c0c0c942fa173cd",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_7de3c1f07aa1a7fc",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_8055fc93905afd67",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_80750634d4eb4e8f",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_85884b03ae89ab9b",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "customer_or_official",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_8663e6ac3734b42a",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_8ad2a6fd5ad32af1",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "independent_secondary",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_8d5a439422f50474",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved; factual_metadata_and_linking_only",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_91c1fac8b3e57eb7",
+      "rightsStatus": "resolved",
+      "sourceLicense": "no_open_licence_found; factual_metadata_and_linking_only",
+      "independenceClass": "customer_or_official",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_91c77faf0f6640eb",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_966853451e9815ad",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_978f6fdd465962a6",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_a007594faa6d6482",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_a1861482fff6a50d",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "independent_secondary",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_a6c915fb6879f499",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_a9aeffadb63a1fef",
+      "rightsStatus": "resolved",
+      "sourceLicense": "Apache-2.0",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_ad5d15b92aa2776d",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_afd975f932305487",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_b0a509af628fb050",
+      "rightsStatus": "resolved",
+      "sourceLicense": "restricted_terms; factual_metadata_and_linking_only",
+      "independenceClass": "independent_secondary",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_b0d8da97968bb795",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_b2ee9354fd0f5ade",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_b587f5fa42612646",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "independent_secondary",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_c2df3e2d24c3763b",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_c563b254a72836d5",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_c70678946460cecc",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_c7616caa46f7a0c2",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_c884b377e1fc531b",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_cdecc55785a2e84f",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_d129bd0549b7a8a2",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_d151cbedc6c4759e",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_d20623b62099ccd7",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_d4d68c56788ce4d7",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "customer_or_official",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_daca46ab58257600",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_de00f697c22cfe83",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_e0428ec7ccfcfd99",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_e1397f8d9f1aec2c",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_e5c412f183848e7c",
+      "rightsStatus": "resolved",
+      "sourceLicense": "MIT",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_f533c88c1d12d756",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    },
+    {
+      "sourceId": "src_fdebbdff203ee17c",
+      "rightsStatus": "resolved",
+      "sourceLicense": "all_rights_reserved",
+      "independenceClass": "provider_authored",
+      "reviewedAt": "2026-08-02"
+    }
+  ],
+  "publicationAuthorised": false
+}

@@ -1,0 +1,1962 @@
+[
+  {
+    "id": "prod_001",
+    "organisation_id": "org_001",
+    "name": "CAIMS",
+    "slug": "caims",
+    "description": "Customer and asset information; network surveys; connections; digital twin",
+    "primary_category_id": "cat_distribution_utility_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial_proprietary",
+    "open_source_url": "",
+    "website": "https://beaconpowerservices.com/en/solutions/caims",
+    "launched_year": "",
+    "last_checked_at": "2026-07-30",
+    "organisation": "Beacon Power Services",
+    "deployment_countries": [
+      "NG"
+    ],
+    "evidence_statuses": [
+      "independently_evidenced",
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "independently_evidenced"
+    ]
+  },
+  {
+    "id": "prod_002",
+    "organisation_id": "org_001",
+    "name": "Adora",
+    "slug": "adora",
+    "description": "Grid operations; outage and loss analytics; field work; commercial operations",
+    "primary_category_id": "cat_distribution_utility_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial_proprietary",
+    "open_source_url": "",
+    "website": "https://beaconpowerservices.com/en/solutions/adora",
+    "launched_year": "",
+    "last_checked_at": "2026-07-30",
+    "organisation": "Beacon Power Services",
+    "deployment_countries": [
+      "NG"
+    ],
+    "evidence_statuses": [
+      "independently_evidenced",
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "independently_evidenced"
+    ]
+  },
+  {
+    "id": "prod_003",
+    "organisation_id": "org_001",
+    "name": "Xepp",
+    "slug": "xepp",
+    "description": "Consumption insights; payments; customer engagement; distributed solar offers",
+    "primary_category_id": "cat_retail_metering_billing_payments",
+    "lifecycle_status": "active",
+    "access_model": "public_access",
+    "open_source_url": "",
+    "website": "https://www.beaconpowerservices.com/en/solutions/xepp",
+    "launched_year": "",
+    "last_checked_at": "2026-07-30",
+    "organisation": "Beacon Power Services",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "independently_evidenced",
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_004",
+    "organisation_id": "org_002",
+    "name": "PAM-AI",
+    "slug": "pam-ai",
+    "description": "Real-time monitoring, smart tariffs, remote device control, payment integration and demand response",
+    "primary_category_id": "cat_paygo_minigrid_operations",
+    "lifecycle_status": "active",
+    "access_model": "not_publicly_documented",
+    "open_source_url": "",
+    "website": "https://www.pamafrica.com/",
+    "launched_year": "",
+    "last_checked_at": "2026-07-30",
+    "organisation": "PAM Africa",
+    "deployment_countries": [
+      "NG"
+    ],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": [
+      "public_source"
+    ]
+  },
+  {
+    "id": "prod_005",
+    "organisation_id": "org_003",
+    "name": "Pai Enterprise",
+    "slug": "pai-enterprise",
+    "description": "Energy monitoring, analytics, sizing optimisation, anomaly detection and multi-source orchestration",
+    "primary_category_id": "cat_ci_behind_meter",
+    "lifecycle_status": "active",
+    "access_model": "commercial_service",
+    "open_source_url": "",
+    "website": "https://www.powerlabstech.com/pai-enterprise/software",
+    "launched_year": "2025",
+    "last_checked_at": "2026-07-30",
+    "organisation": "PowerLabs",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "independently_evidenced",
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_00904b9e2148c62a",
+    "organisation_id": "org_fc7c0c72d1969875",
+    "name": "Adroit M2M and IoT Platform",
+    "slug": "adroit-m2m-and-iot-platform",
+    "description": "SCADA and IoT rapid-development platform for secure device integration, data logging and operational dashboards across energy and other industrial applications.",
+    "primary_category_id": "cat_data_interoperability_security",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://adroitscada.com/adroit-m2m-and-iiot-platform/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Adroit Technologies",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_01e0b6c0d126d66c",
+    "organisation_id": "org_d669749a39dbc6b6",
+    "name": "JSE Ventures Carbon Market",
+    "slug": "jse-ventures-carbon-market",
+    "description": "Digital market providing access to carbon credits and renewable-energy certificates for African buyers and sellers.",
+    "primary_category_id": "cat_carbon_mrv_reporting",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.jse.co.za/services/jse-ventures-carbon-market",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Johannesburg Stock Exchange",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_033fbcf0e9b1c951",
+    "organisation_id": "org_2744e404ad22d210",
+    "name": "Global Electrification Platform Explorer",
+    "slug": "global-electrification-platform-explorer",
+    "description": "Web mapping application for exploring least-cost electrification scenarios and technology mixes.",
+    "primary_category_id": "cat_planning_geospatial",
+    "lifecycle_status": "active",
+    "access_model": "public",
+    "open_source_url": "",
+    "website": "https://electrifynow.energydata.info/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "World Bank ESMAP",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_04226a46eb948cbc",
+    "organisation_id": "org_6894f264f4bd16ed",
+    "name": "ENERGIC EV Charging Platform",
+    "slug": "energic-ev-charging-platform",
+    "description": "End-to-end EV-charging software for network operations and driver charging applications.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.energiccharge.com/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "ENERGIC",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_09961473d83843e4",
+    "organisation_id": "org_c196bc963028ee6e",
+    "name": "IRENA FlexTool",
+    "slug": "irena-flextool",
+    "description": "Open-source power-system flexibility assessment tool used after capacity-expansion modelling.",
+    "primary_category_id": "cat_forecasting_flexibility_der",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "",
+    "website": "https://climatecompatiblegrowth.com/international-partnerships/data-and-tools/modelling-tools-and-frameworks/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Climate Compatible Growth and IRENA",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_14d47cbe194106c4",
+    "organisation_id": "org_63de83960ce6a966",
+    "name": "Bboxx Pulse",
+    "slug": "bboxx-pulse",
+    "description": "An operating and management platform for PAYGo utility businesses covering products, customers, financing and field operations.",
+    "primary_category_id": "cat_paygo_minigrid_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://nigeria.bboxx.com/technology/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Bboxx",
+    "deployment_countries": [
+      "ML"
+    ],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "provider_claim_only"
+    ]
+  },
+  {
+    "id": "prod_1b711e547ec33e4e",
+    "organisation_id": "org_1f5127f2c1cec727",
+    "name": "IRENA West Africa Electrification Platform",
+    "slug": "irena-west-africa-electrification-platform",
+    "description": "Interactive platform providing electrification investment scenarios for West African countries.",
+    "primary_category_id": "cat_planning_geospatial",
+    "lifecycle_status": "active",
+    "access_model": "public",
+    "open_source_url": "",
+    "website": "https://energy-modelling-tools.github.io/onsset/applications/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "IRENA and OnSSET partners",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_21c1794343050d9f",
+    "organisation_id": "org_e7a91741bca86f28",
+    "name": "SunBeam",
+    "slug": "sunbeam",
+    "description": "A consumer app for checking prepaid balances, transactions and energy usage and receiving account notifications.",
+    "primary_category_id": "cat_retail_metering_billing_payments",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://steama.co/sunbeam",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "SteamaCo",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_27402d8bb06c6333",
+    "organisation_id": "org_a4f72ab71d53535a",
+    "name": "SHYFT Connect",
+    "slug": "shyft-connect",
+    "description": "A web and mobile platform for real-time monitoring, metering, control and automation of grid, solar, battery and generator assets.",
+    "primary_category_id": "cat_ci_behind_meter",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://shyftpower.com/faqs",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "SHYFT Power Solutions",
+    "deployment_countries": [
+      "NG"
+    ],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "provider_claim_only"
+    ]
+  },
+  {
+    "id": "prod_28e66e28e429e98a",
+    "organisation_id": "org_df0fd10412aadaab",
+    "name": "Kofa Swap & Go",
+    "slug": "kofa-swap-go",
+    "description": "Mobile and web application for battery-swap access, station discovery, battery availability and account management.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.kofa.co/solutions",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Kofa Technologies",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_2cb981c2e4d76c28",
+    "organisation_id": "org_0a99ba7088470e53",
+    "name": "Ontec Meter Manager",
+    "slug": "ontec-meter-manager",
+    "description": "Web-based meter-administration and prepaid vending software for electricity, water and gas, with a high-volume transaction gateway.",
+    "primary_category_id": "cat_retail_metering_billing_payments",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://ontec.co.za/technology/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Ontec Systems (Pty) Ltd",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_31c98189497128c4",
+    "organisation_id": "org_d26348409ac6de26",
+    "name": "Mazi Mobility Web App",
+    "slug": "mazi-mobility-web-app",
+    "description": "Web application for locating battery-swap stations with battery availability and dynamic routing.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://mazimobility.com/product.html",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Mazi Mobility",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_3464ecbd2a2298cc",
+    "organisation_id": "org_530820839614a2eb",
+    "name": "ArcGIS Enterprise",
+    "slug": "arcgis-enterprise",
+    "description": "Enterprise geospatial platform for utility asset registries, web maps, spatial analysis, dashboards and integration with operational systems.",
+    "primary_category_id": "cat_planning_geospatial",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.esri.com/en-us/arcgis/products/arcgis-enterprise/overview",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Esri",
+    "deployment_countries": [
+      "UG"
+    ],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "provider_claim_only"
+    ]
+  },
+  {
+    "id": "prod_353718ec5630f5cc",
+    "organisation_id": "org_b5a699ab229742b6",
+    "name": "Market Forecaster",
+    "slug": "market-forecaster",
+    "description": "Forecasting software using historical data, statistical models and machine learning for demand, supply and other energy-market outcomes.",
+    "primary_category_id": "cat_forecasting_flexibility_der",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.enerweb.co.za/index.php/products/mf",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Enerweb",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_37d006103d63d180",
+    "organisation_id": "org_b4e978f005016067",
+    "name": "FinTrack",
+    "slug": "fintrack",
+    "description": "Financial modelling tool supplying financing terms for energy-investment analysis.",
+    "primary_category_id": "cat_finance_procurement_underwriting",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "",
+    "website": "https://climatecompatiblegrowth.com/international-partnerships/data-and-tools/modelling-tools-and-frameworks/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Climate Compatible Growth",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_39480c97b0739c3c",
+    "organisation_id": "org_406033f114a69ab6",
+    "name": "Utility Management Platform",
+    "slug": "utility-management-platform",
+    "description": "An integrated platform for real-time monitoring and optimisation of electricity and water distribution networks.",
+    "primary_category_id": "cat_distribution_utility_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://pylonump.com/?lang=en",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Pylon",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_3b9526941c4a04c6",
+    "organisation_id": "org_530820839614a2eb",
+    "name": "ArcGIS GeoEvent Server",
+    "slug": "arcgis-geoevent-server",
+    "description": "Real-time geospatial event-processing software that ingests sensor streams, updates map features and supports operational alerts and dashboards.",
+    "primary_category_id": "cat_distribution_utility_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.esri.com/en-us/arcgis/products/arcgis-geoevent-server/overview",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Esri",
+    "deployment_countries": [
+      "NG"
+    ],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "provider_claim_only"
+    ]
+  },
+  {
+    "id": "prod_3c464ba494208cc0",
+    "organisation_id": "org_b4e978f005016067",
+    "name": "PathCalc",
+    "slug": "pathcalc",
+    "description": "Interactive software for visualising the carbon-emissions implications of energy choices.",
+    "primary_category_id": "cat_carbon_mrv_reporting",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "",
+    "website": "https://climatecompatiblegrowth.com/international-partnerships/data-and-tools/modelling-tools-and-frameworks/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Climate Compatible Growth",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_3cdf76665621519b",
+    "organisation_id": "org_d48d027ab1a1011c",
+    "name": "Energypro Marketplace",
+    "slug": "energypro-marketplace",
+    "description": "Digital marketplace matching large electricity buyers with renewable generators.",
+    "primary_category_id": "cat_trading_wheeling_settlement",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://openaccess.energy/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Open Access Energy",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_3e36972ea2d29b21",
+    "organisation_id": "org_32b8d4d2ec475f59",
+    "name": "SAP Advanced Metering Infrastructure Integration for Utilities",
+    "slug": "sap-advanced-metering-infrastructure-integration-for-utilities",
+    "description": "Integration software connecting smart-meter data systems with utility back-office processes for remote reads, billing, customer service and consumption analysis.",
+    "primary_category_id": "cat_data_interoperability_security",
+    "lifecycle_status": "historical",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.prnewswire.com/news-releases/newsbyte-city-of-cape-town-empowers-commercial-and-industrial-customers-with-sap-ami-integration-for-utilities-software-148054465.html",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "SAP SE",
+    "deployment_countries": [
+      "ZA"
+    ],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "provider_claim_only"
+    ]
+  },
+  {
+    "id": "prod_3f8147ec1b685701",
+    "organisation_id": "org_e7a91741bca86f28",
+    "name": "Aurora AI",
+    "slug": "aurora-ai",
+    "description": "An AI platform that analyses meter and vending data to detect loss anomalies, meter bypass, tampering and illegal connections.",
+    "primary_category_id": "cat_distribution_utility_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://steama.co/aurora-ai",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "SteamaCo",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_46feee3513c5f4a9",
+    "organisation_id": "org_99b1e294a6715f25",
+    "name": "NetView",
+    "slug": "netview",
+    "description": "Hardware-agnostic utility metering-management platform for electricity, water and gas across multiple communications channels.",
+    "primary_category_id": "cat_retail_metering_billing_payments",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://cloud.netelek.co.za/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Netelek",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_47d2aba604b42faf",
+    "organisation_id": "org_907aa74533dc527b",
+    "name": "GridOS Forecasting",
+    "slug": "gridos-forecasting",
+    "description": "Grid forecasting software providing variable-renewable-energy forecasts, ramping tools and near-real-time operational inputs.",
+    "primary_category_id": "cat_forecasting_flexibility_der",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.gevernova.com/software/products/grid-os",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "GE Vernova",
+    "deployment_countries": [
+      "BJ"
+    ],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "provider_claim_only"
+    ]
+  },
+  {
+    "id": "prod_4801ed63e28a4c98",
+    "organisation_id": "org_d48d027ab1a1011c",
+    "name": "Energypro Transactions",
+    "slug": "energypro-transactions",
+    "description": "Private-energy transaction software for contract automation, power sales and wheeling management.",
+    "primary_category_id": "cat_trading_wheeling_settlement",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://openaccess.energy/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Open Access Energy",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_4862d10385138cf5",
+    "organisation_id": "org_e33da6f90fe33e3b",
+    "name": "D-REC Platform",
+    "slug": "d-rec-platform",
+    "description": "Open digital platform for validating distributed renewable generation data and issuing traceable energy certificates.",
+    "primary_category_id": "cat_carbon_mrv_reporting",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "https://github.com/d-rec/drec-origin",
+    "website": "https://d-rec.github.io/drec-origin/platform-overview/key-features.html",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "D-REC Organization",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_4a59c1c6110c4219",
+    "organisation_id": "org_6fa8233b4c6f7e60",
+    "name": "MyVoltage Utility Management Platform",
+    "slug": "myvoltage-utility-management-platform",
+    "description": "Cloud utility-management platform for electricity, water and gas monitoring, billing, payments, accounting reconciliation and network balancing.",
+    "primary_category_id": "cat_retail_metering_billing_payments",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.myvoltage.co.za/what-we-do/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "MyVoltage",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_4add1d20552ca8e8",
+    "organisation_id": "org_406033f114a69ab6",
+    "name": "Energy Management System",
+    "slug": "energy-management-system",
+    "description": "An energy-management tool for operational efficiency and emissions reduction in industrial and telecom infrastructure.",
+    "primary_category_id": "cat_ci_behind_meter",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://pylonump.com/?lang=en",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Pylon",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_4c1eb1c96a6e5afa",
+    "organisation_id": "org_a8add2f3b4fe90af",
+    "name": "OSeMOSYS Global",
+    "slug": "osemosys-global",
+    "description": "Open-source model generator for interconnected global or regional energy-system models.",
+    "primary_category_id": "cat_engineering_design_simulation",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "https://github.com/OSeMOSYS/osemosys_global",
+    "website": "https://osemosys-global.readthedocs.io/en/latest/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "OSeMOSYS Community",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_4e6bb096113f7a45",
+    "organisation_id": "org_99b1e294a6715f25",
+    "name": "NetMaps",
+    "slug": "netmaps",
+    "description": "Utility asset-management software with mapping, auditing and administrative functions for field technical teams.",
+    "primary_category_id": "cat_planning_geospatial",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://cloud.netelek.co.za/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Netelek",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_50515a6186c6f41d",
+    "organisation_id": "org_a08b81b7f5f0b23a",
+    "name": "mypower24",
+    "slug": "mypower24",
+    "description": "A web and mobile energy-management platform for monitoring, analytics, device control and logic configuration across solar and storage systems.",
+    "primary_category_id": "cat_generation_storage_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.solarmd.com/products/monitoring-control/ems-mypower24/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Solar MD",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_54cb1b174fd192ac",
+    "organisation_id": "org_b4e978f005016067",
+    "name": "MINFin",
+    "slug": "minfin",
+    "description": "Model for Informed National Financing used to develop national climate-finance strategies.",
+    "primary_category_id": "cat_finance_procurement_underwriting",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "",
+    "website": "https://climatecompatiblegrowth.com/international-partnerships/data-and-tools/modelling-tools-and-frameworks/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Climate Compatible Growth",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_596ed16f715fb870",
+    "organisation_id": "org_6813554323495fa0",
+    "name": "Switch Smart Metering Platform",
+    "slug": "switch-smart-metering-platform",
+    "description": "An internally built meter-data, sub-metering, revenue-collection, billing and reporting platform for utilities and property energy systems.",
+    "primary_category_id": "cat_retail_metering_billing_payments",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.switch.org.za/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Switch Energy",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_5a6f083895aef158",
+    "organisation_id": "org_063aba978073ba5d",
+    "name": "Citiq App",
+    "slug": "citiq-app",
+    "description": "A mobile app for purchasing prepaid electricity, tracking usage and transaction history, and managing multiple meters.",
+    "primary_category_id": "cat_retail_metering_billing_payments",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://citiqprepaid.co.za/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Citiq Prepaid",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_5ace380c4742b933",
+    "organisation_id": "org_d8a52b70cf175966",
+    "name": "Elon Smart Water digital platform",
+    "slug": "elon-smart-water-digital-platform",
+    "description": "The mobile-app and cloud-services layer of the Elon Smart Water solution for connected water-heating and solar-PV management.",
+    "primary_category_id": "cat_ci_behind_meter",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://poweroptimal.com/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "PowerOptimal",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_5c44515448aa55ab",
+    "organisation_id": "org_e7a91741bca86f28",
+    "name": "ThunderBolt",
+    "slug": "thunderbolt",
+    "description": "A field-force application for utility investigation and operational workflows.",
+    "primary_category_id": "cat_distribution_utility_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://steama.co/products",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "SteamaCo",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_5cabfd347277fd43",
+    "organisation_id": "org_a2926a5df5cdd48c",
+    "name": "Building-level Electricity Access and Demand Model",
+    "slug": "building-level-electricity-access-and-demand-model",
+    "description": "Open-source AI and geospatial model estimating building-level electricity access and demand in sub-Saharan Africa.",
+    "primary_category_id": "cat_planning_geospatial",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "",
+    "website": "https://www.iea.org/data-and-statistics/data-product/building-level-electricity-access-and-demand-model",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "International Energy Agency and MIT",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_5d86400ebf4fde2e",
+    "organisation_id": "org_2744e404ad22d210",
+    "name": "GEP Toolbox",
+    "slug": "gep-toolbox",
+    "description": "Toolset for generating and incorporating input data into electrification plans.",
+    "primary_category_id": "cat_planning_geospatial",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "",
+    "website": "https://www.esmap.org/global-electrification-platform-gep",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "World Bank ESMAP",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_6105cb20d5181a16",
+    "organisation_id": "org_2744e404ad22d210",
+    "name": "GEP Generator",
+    "slug": "gep-generator",
+    "description": "Open-source interface for generating custom electrification outlooks in real time.",
+    "primary_category_id": "cat_planning_geospatial",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "",
+    "website": "https://www.esmap.org/global-electrification-platform-gep",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "World Bank ESMAP",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_63cceeebf437dc69",
+    "organisation_id": "org_c60ee59766bb7296",
+    "name": "Plentify HEMS Cloud Platform",
+    "slug": "plentify-hems-cloud-platform",
+    "description": "AI-driven home-energy management and virtual-power-plant platform coordinating solar, batteries and water heating.",
+    "primary_category_id": "cat_forecasting_flexibility_der",
+    "lifecycle_status": "pilot",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://digital-energy.eu/en/projects/ethekwini-municipality-plentify",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Plentify",
+    "deployment_countries": [
+      "ZA"
+    ],
+    "evidence_statuses": [
+      "customer_confirmed"
+    ],
+    "deployment_evidence_statuses": [
+      "customer_confirmed"
+    ]
+  },
+  {
+    "id": "prod_642f0da0b4e417a3",
+    "organisation_id": "org_5d4d39fbfe878d2c",
+    "name": "Pika EV Drive",
+    "slug": "pika-ev-drive",
+    "description": "EV charge-station management platform for infrastructure monitoring, sessions, connectors and load balancing.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://fekra-egy.com/ev-charging/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Fekra Technology",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_6511e9ace503cbaa",
+    "organisation_id": "org_b4e978f005016067",
+    "name": "FinCoRE",
+    "slug": "fincore",
+    "description": "Financial modelling tool providing projected capital costs for energy investment analysis.",
+    "primary_category_id": "cat_finance_procurement_underwriting",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "",
+    "website": "https://climatecompatiblegrowth.com/international-partnerships/data-and-tools/modelling-tools-and-frameworks/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Climate Compatible Growth",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_65cb59d227c4267f",
+    "organisation_id": "org_907aa74533dc527b",
+    "name": "GridOS Energy Management System",
+    "slug": "gridos-energy-management-system",
+    "description": "Transmission control-centre software for dispatch, real-time monitoring, generation-demand balancing, network analysis and renewable integration.",
+    "primary_category_id": "cat_transmission_system_operation",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.gevernova.com/software/products/grid-os",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "GE Vernova",
+    "deployment_countries": [
+      "BJ"
+    ],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "provider_claim_only"
+    ]
+  },
+  {
+    "id": "prod_76e1cb9631e5da42",
+    "organisation_id": "org_a05bce318bbf4ea0",
+    "name": "ARC Ride Mobile App",
+    "slug": "arc-ride-mobile-app",
+    "description": "Mobile application for locating ARC Ride battery-swapping cabinets in Nairobi.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://arcrideglobal.com/bidii-boda",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "ARC Ride",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_786ef0a3b218061b",
+    "organisation_id": "org_4ac6c37b6348829f",
+    "name": "Stima Care",
+    "slug": "stima-care",
+    "description": "Cloud SaaS platform for stationary-battery health, performance, anomaly and warranty management.",
+    "primary_category_id": "cat_generation_storage_operations",
+    "lifecycle_status": "pilot",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://digital-energy.eu/en/projects/stima-care",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Stima",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "independently_evidenced"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_7a974ed97072233c",
+    "organisation_id": "org_99b1e294a6715f25",
+    "name": "NetFin",
+    "slug": "netfin",
+    "description": "Utility billing platform for metered services with additional and recurring billing and municipal general-ledger export support.",
+    "primary_category_id": "cat_retail_metering_billing_payments",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://cloud.netelek.co.za/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Netelek",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_7b787a3f1eec1e39",
+    "organisation_id": "org_9fb06d7319bc6e76",
+    "name": "Spiro App",
+    "slug": "spiro-app",
+    "description": "Application for locating battery-swap stations on Spiro's African electric-mobility network.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.spironet.com/faq",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Spiro",
+    "deployment_countries": [
+      "KE"
+    ],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "provider_claim_only"
+    ]
+  },
+  {
+    "id": "prod_7ca64cacd469d465",
+    "organisation_id": "org_96eebaf75520bce8",
+    "name": "SOLINK Core",
+    "slug": "solink-core",
+    "description": "Guided renewable-project platform covering site-data intake, feasibility analysis, design specification, installer procurement and delivery oversight.",
+    "primary_category_id": "cat_finance_procurement_underwriting",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://solink.co.za/core/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "SOLINK (Pty) Ltd",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_7dc0a9bb41944d44",
+    "organisation_id": "org_36577bb3608ee5a3",
+    "name": "Ampersand Driver App",
+    "slug": "ampersand-driver-app",
+    "description": "Driver application for monitoring battery state and navigating to battery-swap stations.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.ampersand.energy/technology",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Ampersand Energy",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_7ec0014d7e86dba9",
+    "organisation_id": "org_58b430c887a693da",
+    "name": "Fuel Switch",
+    "slug": "fuel-switch",
+    "description": "Blockchain marketplace for issuing, trading and reporting renewable-energy certificates.",
+    "primary_category_id": "cat_carbon_mrv_reporting",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://digital-energy.eu/en/projects/fuel-switch",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Fuel Switch",
+    "deployment_countries": [
+      "ZA"
+    ],
+    "evidence_statuses": [
+      "independently_evidenced"
+    ],
+    "deployment_evidence_statuses": [
+      "independently_evidenced"
+    ]
+  },
+  {
+    "id": "prod_7f669470202474a2",
+    "organisation_id": "org_b4e978f005016067",
+    "name": "clicSAND",
+    "slug": "clicsand",
+    "description": "Open-source user interface for entering OSeMOSYS data and visualising energy-system modelling results.",
+    "primary_category_id": "cat_engineering_design_simulation",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "",
+    "website": "https://climatecompatiblegrowth.com/clicsand-for-osemosys-a-user-friendly-interface-using-open-source-optimisation-software-for-energy-system-modelling-analysis/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Climate Compatible Growth",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_835fa410d7e3dba0",
+    "organisation_id": "org_14ddaae613b81fe5",
+    "name": "E-Stations",
+    "slug": "e-stations",
+    "description": "Moroccan EV-charging application for locating chargers, checking availability, controlling sessions and paying.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://play.google.com/store/apps/details?id=com.estations.ma",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "E-Stations",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_83e8647b12c0f40a",
+    "organisation_id": "org_7e4e5bedaec641be",
+    "name": "SparkMeter digital grid and smart-metering platform",
+    "slug": "sparkmeter-digital-grid-and-smart-metering-platform",
+    "description": "Smart-metering and digital-grid platform supporting billing, loss detection, network monitoring, transformer analysis and distribution planning.",
+    "primary_category_id": "cat_distribution_utility_operations",
+    "lifecycle_status": "under_review",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.sparkmeter.io/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "SparkMeter / EarthSpark International",
+    "deployment_countries": [
+      "SO"
+    ],
+    "evidence_statuses": [
+      "independently_evidenced"
+    ],
+    "deployment_evidence_statuses": [
+      "independently_evidenced"
+    ]
+  },
+  {
+    "id": "prod_84787f6a75dff4dd",
+    "organisation_id": "org_c538d1eb164e6e41",
+    "name": "AMMP OS",
+    "slug": "ammp-os",
+    "description": "A vendor-agnostic operating platform for technical monitoring, alerts, maintenance workflows, commercial tracking and reporting across distributed solar portfolios.",
+    "primary_category_id": "cat_generation_storage_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.ammp.io/product",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "AMMP Technologies",
+    "deployment_countries": [
+      "NG"
+    ],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "provider_claim_only"
+    ]
+  },
+  {
+    "id": "prod_84da79537e9d2e53",
+    "organisation_id": "org_b5a699ab229742b6",
+    "name": "Data Integrator",
+    "slug": "data-integrator",
+    "description": "Energy-data integration product using APIs, secure file transfer and workflow orchestration to consolidate internal and external data sources.",
+    "primary_category_id": "cat_data_interoperability_security",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.enerweb.co.za/index.php/products/di",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Enerweb",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_870e878724216eb1",
+    "organisation_id": "org_7245d69e568dc70a",
+    "name": "Battery Bank Africa",
+    "slug": "battery-bank-africa",
+    "description": "Storage-as-a-service platform combining battery sizing, financing, remote monitoring and lifecycle management for mini-grids.",
+    "primary_category_id": "cat_generation_storage_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://digital-energy.eu/en/projects/vittoria-technology",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Vittoria Technology",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "independently_evidenced"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_88eab8436b1e03d8",
+    "organisation_id": "org_73b14ede2c4a2ead",
+    "name": "PyPSA",
+    "slug": "pypsa",
+    "description": "Open-source Python framework for optimising and simulating power and energy systems.",
+    "primary_category_id": "cat_engineering_design_simulation",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "https://github.com/PyPSA/PyPSA",
+    "website": "https://pypsa.org/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "PyPSA Contributors",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_8c028e7d3c878e74",
+    "organisation_id": "org_930efc4050b16d68",
+    "name": "TEMBA",
+    "slug": "temba",
+    "description": "Open-source electricity-supply model representing African countries and cross-border transmission links.",
+    "primary_category_id": "cat_transmission_system_operation",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "",
+    "website": "https://www.kth.se/en/2.88189/energy-systems/completed-projects/the-electricity-model-base-for-africa-temba-1.940034",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "KTH Royal Institute of Technology",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_8cc55e7483a66134",
+    "organisation_id": "org_515b5b14c4e13ea8",
+    "name": "ELDO Energy App",
+    "slug": "eldo-energy-app",
+    "description": "A digital-utility app for smart-meter data, energy-use insights, embedded billing and payments, and purchasing wheeled renewable electricity.",
+    "primary_category_id": "cat_trading_wheeling_settlement",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.eldo.co.za/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "ELDO",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_8d5f9abcd9decdc8",
+    "organisation_id": "org_cdc655096c67d97e",
+    "name": "ArkFlow",
+    "slug": "arkflow",
+    "description": "Operating system for solar EPCs covering PV layout, electrical design, yield simulation, finance origination, project delivery and handover workflows.",
+    "primary_category_id": "cat_engineering_design_simulation",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://arkflow.co.za/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Solarmente (Pty) Ltd trading as ArkFlow",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_90c1269fb6533050",
+    "organisation_id": "org_e7a91741bca86f28",
+    "name": "Nimbus AMI",
+    "slug": "nimbus-ami",
+    "description": "A cloud AMI platform for visibility, monitoring and control of energy billing across utility metering assets.",
+    "primary_category_id": "cat_retail_metering_billing_payments",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://steama.co/products",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "SteamaCo",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_99b7bcd9a368219b",
+    "organisation_id": "org_b4e978f005016067",
+    "name": "NISMOD",
+    "slug": "nismod",
+    "description": "National Infrastructure Systems Model used for integrated infrastructure planning.",
+    "primary_category_id": "cat_planning_geospatial",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "",
+    "website": "https://climatecompatiblegrowth.com/international-partnerships/data-and-tools/modelling-tools-and-frameworks/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Climate Compatible Growth",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_99c67cf93bb73c5f",
+    "organisation_id": "org_39703db4e82ec396",
+    "name": "Rubicon Charge",
+    "slug": "rubicon-charge",
+    "description": "EV-charging application for finding chargers, remotely controlling sessions, live updates and wallet payments.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.rubicon.tech/pages/e-mobility",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Rubicon",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_a3b8555b0b37b5d2",
+    "organisation_id": "org_36577bb3608ee5a3",
+    "name": "AmperOps",
+    "slug": "amperops",
+    "description": "Fleet and battery-network management software using predictive analytics to optimise battery lifespan.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.ampersand.energy/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Ampersand Energy",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_a4f1a4a52c37c33c",
+    "organisation_id": "org_8dbd3ffeca6e1efd",
+    "name": "PaygOps",
+    "slug": "paygops",
+    "description": "A last-mile operations and PAYGo platform for leases, payments, customers, inventory, field service and device integrations.",
+    "primary_category_id": "cat_paygo_minigrid_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.paygops.com/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Masunga",
+    "deployment_countries": [
+      "ZM"
+    ],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "provider_claim_only"
+    ]
+  },
+  {
+    "id": "prod_a65525f1816d4864",
+    "organisation_id": "org_cbf8bcdb4fb4587b",
+    "name": "Congo Epela Platform",
+    "slug": "congo-epela-platform",
+    "description": "Interactive platform presenting OnSSET-based least-cost electrification analysis for the Democratic Republic of the Congo.",
+    "primary_category_id": "cat_planning_geospatial",
+    "lifecycle_status": "active",
+    "access_model": "public",
+    "open_source_url": "",
+    "website": "https://onsset.readthedocs.io/en/latest/applications.html",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Resource Matters and partners",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_a99b94237c7e13fa",
+    "organisation_id": "org_e6912eb1478e941d",
+    "name": "PowerPay",
+    "slug": "powerpay",
+    "description": "IoT software for monitoring off-grid solar assets, energy consumption, payments and financed appliances.",
+    "primary_category_id": "cat_paygo_minigrid_operations",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://digital-energy.eu/en/projects/give-ltd",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Green Innovation Ventures",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "independently_evidenced"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_acf9505b6591bcdc",
+    "organisation_id": "org_abe67edf168ef702",
+    "name": "OnSSET",
+    "slug": "onsset",
+    "description": "Open-source geospatial optimisation software for least-cost electrification planning.",
+    "primary_category_id": "cat_planning_geospatial",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "https://github.com/OnSSET/onsset",
+    "website": "https://www.onsset.org/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "KTH Royal Institute of Technology and OnSSET contributors",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_ad4f1a22ff85d12b",
+    "organisation_id": "org_6813554323495fa0",
+    "name": "Switch Energy Trading Platform",
+    "slug": "switch-energy-trading-platform",
+    "description": "A platform for PPA administration, portfolio planning, generation-load matching, energy aggregation, allocations, optimisation and forecasting.",
+    "primary_category_id": "cat_trading_wheeling_settlement",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.switch.org.za/energy-trading-wheeling",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Switch Energy",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_af06988b7962e214",
+    "organisation_id": "org_6d53c1b9743e7ec9",
+    "name": "ChargePocket",
+    "slug": "chargepocket",
+    "description": "EV-charging application for live charger discovery, session management and payments on the South African network.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://gridcars.net/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "GridCars",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_b57d9407040b6d6d",
+    "organisation_id": "org_7951c70ccd95064f",
+    "name": "MeterX",
+    "slug": "meterx",
+    "description": "Utility metering and billing platform that reconciles grid, solar, battery and generator supply against tenant consumption and applies South African electricity tariffs.",
+    "primary_category_id": "cat_retail_metering_billing_payments",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://meterx.co.za/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "MeterX",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_b91aa7029d7054cd",
+    "organisation_id": "org_b9fc077cac046000",
+    "name": "Smart-View SaaS Utilities Management Solution",
+    "slug": "smart-view-saas-utilities-management-solution",
+    "description": "Software-as-a-service platform for real-time utility monitoring, anomaly detection, bill creation and verification, analytics and sustainability reporting.",
+    "primary_category_id": "cat_ci_behind_meter",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.smartviewtechnology.co.za/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Smart-View Technology",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_bb8d9737e621ddbf",
+    "organisation_id": "org_3684c370a0486cf0",
+    "name": "SolarFlow",
+    "slug": "solarflow",
+    "description": "Cloud platform for real-time monitoring, automation and optimisation of off-grid solar systems.",
+    "primary_category_id": "cat_generation_storage_operations",
+    "lifecycle_status": "pilot",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://digital-energy.eu/en/projects/metavolt-energie-nghezo",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Metavolt Énergie and Nghezo",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "independently_evidenced"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_bc70438d15454ac9",
+    "organisation_id": "org_907aa74533dc527b",
+    "name": "GridOS Wide Area Monitoring System",
+    "slug": "gridos-wide-area-monitoring-system",
+    "description": "Synchrophasor-based wide-area grid monitoring software for near-real-time visibility and transmission-system stability analysis.",
+    "primary_category_id": "cat_transmission_system_operation",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.gevernova.com/software/products/grid-os",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "GE Vernova",
+    "deployment_countries": [
+      "BJ"
+    ],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "provider_claim_only"
+    ]
+  },
+  {
+    "id": "prod_c0f44036c2631600",
+    "organisation_id": "org_b4e978f005016067",
+    "name": "Fossil Fuel Retirement Model",
+    "slug": "fossil-fuel-retirement-model",
+    "description": "Model for estimating foregone revenue from early retirement of fossil-fuel power plants.",
+    "primary_category_id": "cat_finance_procurement_underwriting",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "",
+    "website": "https://climatecompatiblegrowth.com/international-partnerships/data-and-tools/modelling-tools-and-frameworks/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Climate Compatible Growth",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_c65e8228650434e7",
+    "organisation_id": "org_60c02033635240b1",
+    "name": "FINPLAN",
+    "slug": "finplan",
+    "description": "Model for financial analysis of electricity-sector expansion plans and project viability.",
+    "primary_category_id": "cat_finance_procurement_underwriting",
+    "lifecycle_status": "active",
+    "access_model": "public",
+    "open_source_url": "",
+    "website": "https://climatecompatiblegrowth.com/international-partnerships/data-and-tools/modelling-tools-and-frameworks/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "International Atomic Energy Agency and Climate Compatible Growth",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_c88c7983f9fcb410",
+    "organisation_id": "org_8f37967e82047776",
+    "name": "Universal Electrification Access",
+    "slug": "universal-electrification-access",
+    "description": "Online interface presenting OnSSET methods, datasets and electrification-planning results.",
+    "primary_category_id": "cat_planning_geospatial",
+    "lifecycle_status": "active",
+    "access_model": "public",
+    "open_source_url": "",
+    "website": "https://onsset.readthedocs.io/en/latest/applications.html",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "KTH Royal Institute of Technology and United Nations partners",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_d123b1e7b49b439e",
+    "organisation_id": "org_b4e978f005016067",
+    "name": "CLEWs",
+    "slug": "clews",
+    "description": "Open modelling framework linking climate, land-use, energy and water systems.",
+    "primary_category_id": "cat_engineering_design_simulation",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "",
+    "website": "https://climatecompatiblegrowth.com/international-partnerships/data-and-tools/modelling-tools-and-frameworks/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Climate Compatible Growth",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_d52c504a42c601a3",
+    "organisation_id": "org_a8add2f3b4fe90af",
+    "name": "OSeMOSYS",
+    "slug": "osemosys",
+    "description": "Open-source modelling system for long-run integrated assessment and energy planning.",
+    "primary_category_id": "cat_engineering_design_simulation",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "https://github.com/OSeMOSYS/OSeMOSYS",
+    "website": "https://osemosys.readthedocs.io/en/latest/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "OSeMOSYS Community",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_d5b79f9c98ecce44",
+    "organisation_id": "org_99b1e294a6715f25",
+    "name": "NetVend",
+    "slug": "netvend",
+    "description": "Standard Transfer Specification prepaid vending platform for electricity, water and gas utilities.",
+    "primary_category_id": "cat_retail_metering_billing_payments",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://cloud.netelek.co.za/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Netelek",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_d6cc37a1cf2d1294",
+    "organisation_id": "org_d1bdcd4f66807716",
+    "name": "PyPSA-Earth",
+    "slug": "pypsa-earth",
+    "description": "Open-source multi-energy optimisation model with global data workflows and African demonstrations.",
+    "primary_category_id": "cat_engineering_design_simulation",
+    "lifecycle_status": "active",
+    "access_model": "open_source",
+    "open_source_url": "https://github.com/pypsa-meets-earth/pypsa-earth",
+    "website": "https://pypsa-earth.readthedocs.io/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "PyPSA meets Earth",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_daa50f9ebedcc7b0",
+    "organisation_id": "org_2e848005aab6ebe8",
+    "name": "Energy Access Explorer",
+    "slug": "energy-access-explorer",
+    "description": "Geospatial information system for data-driven and inclusive energy-access planning.",
+    "primary_category_id": "cat_planning_geospatial",
+    "lifecycle_status": "active",
+    "access_model": "public",
+    "open_source_url": "",
+    "website": "https://www.energyaccessexplorer.org/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "World Resources Institute and Climate Compatible Growth",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_dafd91d42f6636f9",
+    "organisation_id": "org_d48d027ab1a1011c",
+    "name": "Amptera",
+    "slug": "amptera",
+    "description": "A cloud utility platform that ingests smart-meter data and automates tariff application, billing, wheeling calculations and dashboards.",
+    "primary_category_id": "cat_retail_metering_billing_payments",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://openaccess.energy/pages/solutions/amptera",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Open Access Energy",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_dc72bea09d0725f4",
+    "organisation_id": "org_ccaab0a9973b7404",
+    "name": "EV Node",
+    "slug": "ev-node",
+    "description": "EV-charging application providing a unified wallet, live map, availability and charging history across Egyptian networks.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.ev-node.com/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "EV Node",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_dfff8365390e2421",
+    "organisation_id": "org_df0fd10412aadaab",
+    "name": "Kofa Fleet Platform",
+    "slug": "kofa-fleet-platform",
+    "description": "Fleet-management platform for rider swap access, fleet purchases and battery-network running costs.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.kofa.co/solutions",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Kofa Technologies",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_f3d9dc4a77ea4cab",
+    "organisation_id": "org_9df3ccd43710a1e4",
+    "name": "AVEVA PI System",
+    "slug": "aveva-pi-system",
+    "description": "Operational-data platform that collects, stores, contextualizes, analyzes and visualizes real-time industrial and power-system data.",
+    "primary_category_id": "cat_data_interoperability_security",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.aveva.com/en/products/aveva-pi-system/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "AVEVA Group Limited",
+    "deployment_countries": [
+      "MA"
+    ],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "provider_claim_only"
+    ]
+  },
+  {
+    "id": "prod_f63dd1268b6e12c7",
+    "organisation_id": "org_686ef9b185a5a75d",
+    "name": "FastVolt App",
+    "slug": "fastvolt-app",
+    "description": "Application for locating, planning and paying for EV fast-charging sessions across Morocco.",
+    "primary_category_id": "cat_emobility_battery_networks",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://fastvolt.net/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "FastVolt",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_faed4459e7d6ab27",
+    "organisation_id": "org_530820839614a2eb",
+    "name": "ArcGIS Survey123",
+    "slug": "arcgis-survey123",
+    "description": "Field data-collection application for georeferenced inspections, surveys, asset records and customer-enumeration workflows.",
+    "primary_category_id": "cat_planning_geospatial",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.esri.com/en-us/arcgis/products/arcgis-survey123/overview",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "Esri",
+    "deployment_countries": [
+      "NG"
+    ],
+    "evidence_statuses": [
+      "provider_claim_only"
+    ],
+    "deployment_evidence_statuses": [
+      "provider_claim_only"
+    ]
+  },
+  {
+    "id": "prod_fbd4ec7d619dc446",
+    "organisation_id": "org_41b9fcad44ad911b",
+    "name": "AutoPV",
+    "slug": "autopv",
+    "description": "Cloud engineering software that automates utility-scale photovoltaic layout, cable routing, equipment placement, loss analysis and technical-document generation.",
+    "primary_category_id": "cat_engineering_design_simulation",
+    "lifecycle_status": "active",
+    "access_model": "commercial",
+    "open_source_url": "",
+    "website": "https://www.autopv.io/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "7Secondsolar (Pty) Ltd",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  },
+  {
+    "id": "prod_fcaaff4768a60d65",
+    "organisation_id": "org_60c02033635240b1",
+    "name": "MAED",
+    "slug": "maed",
+    "description": "Model for Analysis of Energy Demand used to develop sectoral energy-demand assessments.",
+    "primary_category_id": "cat_forecasting_flexibility_der",
+    "lifecycle_status": "active",
+    "access_model": "public",
+    "open_source_url": "",
+    "website": "https://climatecompatiblegrowth.com/international-partnerships/data-and-tools/modelling-tools-and-frameworks/",
+    "launched_year": "",
+    "last_checked_at": "2026-08-02",
+    "organisation": "International Atomic Energy Agency and Climate Compatible Growth",
+    "deployment_countries": [],
+    "evidence_statuses": [
+      "public_source"
+    ],
+    "deployment_evidence_statuses": []
+  }
+]

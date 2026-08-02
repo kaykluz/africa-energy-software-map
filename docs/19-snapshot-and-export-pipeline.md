@@ -1,7 +1,7 @@
 # Snapshot and export pipeline
 
 Status: implemented for reviewed releases
-Last updated: 30 July 2026
+Last updated: 2 August 2026
 
 ## Purpose
 
@@ -9,10 +9,11 @@ The website, downloadable files and future read API must describe the same
 records. They are generated together from one selected, checksum-verified data
 batch.
 
-The current snapshot is in `published` mode and is generated from the
-human-reviewed Batch 001 release. The review package itself remains private;
-the release stores only its SHA-256 digest and a repository-safe reviewer
-label.
+The current snapshot is in `published` mode and is generated from reviewed
+release 0.2.0. That release deterministically composes the independently
+approved 0.1.0 baseline and all 13 bounded Batch 001 release shards. The private
+review package remains outside Git; the release stores only its SHA-256 digest,
+aggregate decisions and a repository-safe reviewer label.
 
 ## Data flow
 
@@ -159,6 +160,11 @@ that were not followed by regeneration.
 7. Review the data diff, counts, status and rendered interface.
 8. Merge only after independent editorial approval.
 9. Tag an immutable data release after merge.
+
+For a reviewed baseline plus already approved release shards, run
+`scripts/compose_reviewed_release.py`. The composer verifies every checksum,
+requires a complete shard sequence, rejects conflicting IDs, keeps private
+review data out of the repository and creates no new editorial decisions.
 
 People and private submission fields are excluded from the snapshot and public
 downloads. Autonomous agents may prepare steps 1–5 on a branch, but may not

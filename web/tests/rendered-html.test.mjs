@@ -372,11 +372,11 @@ test("server-renders reproducible reviewed downloads and review status", async (
   const html = await response.text();
   assert.match(
     html,
-    /<link rel="canonical" href="https:\/\/africa-energy-software-map-2026\.kaykluz\.chatgpt\.site\/data"\/>/,
+    /<link rel="canonical" href="https:\/\/map\.kaykluz\.com\/data"\/>/,
   );
   const textHtml = html.replaceAll(/<!--.*?-->/g, "");
   assert.match(html, /<h1[^>]*>Data and downloads<\/h1>/i);
-  assert.match(textHtml, /88 of\s+88 assertions reviewed/);
+  assert.match(textHtml, /1276 of\s+1276 assertions reviewed/);
   assert.match(textHtml, /0 sources need metadata/);
   assert.match(html, /csv-package\.zip/);
   assert.match(html, /registry\.json/);

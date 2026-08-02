@@ -25,14 +25,14 @@ class RegistrySnapshotTests(unittest.TestCase):
         self.assertEqual(
             snapshot["counts"],
             {
-                "organisations": 3,
-                "products": 5,
-                "deployments": 4,
-                "sources": 9,
-                "assertions": 88,
+                "organisations": 64,
+                "products": 94,
+                "deployments": 20,
+                "sources": 75,
+                "assertions": 1276,
             },
         )
-        self.assertEqual(snapshot["reviewGate"]["reviewedAssertions"], 88)
+        self.assertEqual(snapshot["reviewGate"]["reviewedAssertions"], 1276)
         self.assertEqual(snapshot["reviewGate"]["unreviewedAssertions"], 0)
         self.assertEqual(snapshot["reviewGate"]["unresolvedSources"], 0)
         self.assertTrue(snapshot["reviewGate"]["publishable"])

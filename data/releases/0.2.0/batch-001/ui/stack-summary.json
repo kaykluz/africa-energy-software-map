@@ -1,0 +1,58 @@
+[
+  {
+    "category_id": "cat_carbon_mrv_reporting",
+    "product_count": 4
+  },
+  {
+    "category_id": "cat_ci_behind_meter",
+    "product_count": 5
+  },
+  {
+    "category_id": "cat_data_interoperability_security",
+    "product_count": 4
+  },
+  {
+    "category_id": "cat_distribution_utility_operations",
+    "product_count": 7
+  },
+  {
+    "category_id": "cat_emobility_battery_networks",
+    "product_count": 14
+  },
+  {
+    "category_id": "cat_engineering_design_simulation",
+    "product_count": 8
+  },
+  {
+    "category_id": "cat_finance_procurement_underwriting",
+    "product_count": 6
+  },
+  {
+    "category_id": "cat_forecasting_flexibility_der",
+    "product_count": 5
+  },
+  {
+    "category_id": "cat_generation_storage_operations",
+    "product_count": 5
+  },
+  {
+    "category_id": "cat_paygo_minigrid_operations",
+    "product_count": 4
+  },
+  {
+    "category_id": "cat_planning_geospatial",
+    "product_count": 13
+  },
+  {
+    "category_id": "cat_retail_metering_billing_payments",
+    "product_count": 12
+  },
+  {
+    "category_id": "cat_trading_wheeling_settlement",
+    "product_count": 4
+  },
+  {
+    "category_id": "cat_transmission_system_operation",
+    "product_count": 3
+  }
+]

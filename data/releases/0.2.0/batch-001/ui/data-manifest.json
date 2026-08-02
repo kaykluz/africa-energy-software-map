@@ -1,0 +1,21 @@
+{
+  "status": "reviewed_release",
+  "counts": {
+    "organisations": 64,
+    "products": 94,
+    "deployments": 20,
+    "sources": 75,
+    "assertions": 1276
+  },
+  "files": [
+    "organisations.json",
+    "products.json",
+    "deployments.json",
+    "sources.json",
+    "assertions.json",
+    "directory.json",
+    "countries.json",
+    "stack-summary.json",
+    "search-index.json"
+  ]
+}

@@ -4,7 +4,7 @@ import "./globals.css";
 
 const canonicalSiteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://africa-energy-software-map-2026.kaykluz.chatgpt.site";
+  "https://map.kaykluz.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(canonicalSiteUrl),

@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0.0",
   "mode": "published",
-  "version": "0.1.0",
-  "release_date": "2026-07-30",
-  "status_label": "Reviewed beta · Batch 001",
-  "source_batch": "data/releases/0.1.0/batch-001",
+  "version": "0.2.0",
+  "release_date": "2026-08-02",
+  "status_label": "Reviewed beta · Expanded Batch 001",
+  "source_batch": "data/releases/0.2.0/batch-001",
   "taxonomy": "data/taxonomy.json",
   "countries": "data/african-countries.json",
   "presentation": "data/interface-presentation.json",
   "snapshot_output": "web/generated/registry-snapshot.json",
-  "downloads_output": "web/public/downloads/0.1.0"
+  "downloads_output": "web/public/downloads/0.2.0"
 }

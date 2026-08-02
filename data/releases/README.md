@@ -1,10 +1,15 @@
 # Data releases
 
-The first reviewed package is
-[`0.1.0/batch-001`](0.1.0/batch-001/README.md). It contains the 88
-human-reviewed assertions and nine resolved source records that drive the
-current interface snapshot. It is prepared for independent pull-request
-approval; generation alone does not authorise publication.
+The current reviewed package is
+[`0.2.0/batch-001`](0.2.0/batch-001/README.md). It composes the independently
+approved `0.1.0` baseline and all 13 reviewed Batch 001 shards: 64
+organisations, 94 products, 20 country-level deployments, 75 resolved sources
+and 1,276 human-reviewed assertions. Eleven candidates remain excluded pending
+stronger or accessible evidence. Composition adds no new editorial decisions;
+generation alone does not authorise publication.
+
+[`0.1.0/batch-001`](0.1.0/batch-001/README.md) remains immutable as the first
+reviewed release.
 
 The older files under `web/public/downloads/prototype-0.1/` remain a historical
 candidate interface package, not a formal release.
