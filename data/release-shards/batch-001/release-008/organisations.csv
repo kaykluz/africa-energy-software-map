@@ -1,0 +1,7 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_3684c370a0486cf0,Metavolt Énergie and Nghezo,metavolt-nergie-and-nghezo,energy_software_provider,africa_built,BF,,unknown,https://digital-energy.eu/en/projects/metavolt-energie-nghezo,,false,2026-08-02
+org_4ac6c37b6348829f,Stima,stima,energy_software_provider,africa_built,KE,KE,unknown,https://digital-energy.eu/en/projects/stima-care,,false,2026-08-02
+org_7245d69e568dc70a,Vittoria Technology,vittoria-technology,energy_software_provider,africa_built,ZA,ZA,unknown,https://digital-energy.eu/en/projects/vittoria-technology,,false,2026-08-02
+org_a08b81b7f5f0b23a,Solar MD,solar-md,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.solarmd.com/,,false,2026-08-02
+org_c538d1eb164e6e41,AMMP Technologies,ammp-technologies,energy_software_provider,global_deployed_in_africa,,,unknown,https://www.ammp.io/,,false,2026-08-02
+org_c60ee59766bb7296,Plentify,plentify,energy_software_provider,africa_built,ZA,ZA,unknown,https://plentify.io/,,false,2026-08-02
