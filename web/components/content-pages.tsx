@@ -324,8 +324,8 @@ export function DataPage() {
         </div>
       </section>
       <section className="data-section two-column-copy">
-        <div><h2>Versioning and provenance</h2><p>Every immutable release will state its semantic version, date, generated time, Git commit, record counts, limitations, checksums and licence.</p></div>
-        <div><h2>Read API direction</h2><p>Phase 1 endpoints will mirror public filters with pagination and stable response schemas. Changes continue through moderated contribution routes.</p></div>
+        <div><h2>Full landscape list</h2><p>Browse and export every submitted name, including research leads that are not yet part of the reviewed release.</p><Link href="/landscape">Open the full list →</Link></div>
+        <div><h2>Versioning and provenance</h2><p>Every immutable release states its version, date, Git commit, record counts, limitations, checksums and licence.</p></div>
       </section>
     </main>
   );

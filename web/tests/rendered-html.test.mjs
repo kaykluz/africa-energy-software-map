@@ -272,6 +272,7 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
     "/",
     "/deployments",
     "/directory",
+    "/landscape",
     "/accessibility",
     "/contribute",
   ]) {
@@ -308,6 +309,19 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
   assert.match(styles, /:focus-visible/);
   assert.match(styles, /prefers-reduced-motion:\s*reduce/);
   assert.match(styles, /min-width:\s*320px/);
+});
+
+test("server-renders the inclusive landscape as a separate searchable list", async () => {
+  const response = await render("/landscape?q=SteamaCo");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<h1[^>]*>The full list<\/h1>/i);
+  assert.match(html, /Every organisation, product and research lead/);
+  assert.match(html, /SteamaCo/);
+  assert.match(html, /Listed means included/);
+  assert.match(html, /Deployment map/);
+  assert.match(html, /CSV/);
+  assert.match(html, /JSON/);
 });
 
 test("server-renders the Directory and its export action", async () => {

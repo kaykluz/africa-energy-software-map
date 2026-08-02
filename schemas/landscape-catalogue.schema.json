@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://map.kaykluz.com/schemas/landscape-catalogue.schema.json",
+  "title": "Africa Energy Software Map inclusive landscape shard",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "batchId",
+    "sourceLabel",
+    "sourceAsOf",
+    "items",
+    "deploymentLeads",
+    "relationships"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "batchId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "sourceLabel": { "type": "string", "minLength": 1 },
+    "sourceAsOf": { "type": "string", "format": "date" },
+    "items": {
+      "type": "array",
+      "maxItems": 25,
+      "items": { "$ref": "#/$defs/item" }
+    },
+    "deploymentLeads": {
+      "type": "array",
+      "maxItems": 25,
+      "items": { "$ref": "#/$defs/deploymentLead" }
+    },
+    "relationships": {
+      "type": "array",
+      "maxItems": 25,
+      "items": { "$ref": "#/$defs/relationship" }
+    }
+  },
+  "$defs": {
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "name", "kind", "stageIds", "categoryIds", "sectorIds",
+        "geographies", "statusAsSubmitted", "summaryAsSubmitted",
+        "sourceDomains"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^land_[a-z0-9_]+$" },
+        "name": { "type": "string", "minLength": 1 },
+        "kind": {
+          "enum": ["organisation", "product", "public_tool", "research_lead", "source_directory"]
+        },
+        "parent": { "type": "string" },
+        "aliases": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "stageIds": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "categoryIds": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "sectorIds": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "geographies": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "statusAsSubmitted": { "type": "string" },
+        "summaryAsSubmitted": { "type": "string" },
+        "sourceDomains": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "canonicalHref": { "type": "string", "pattern": "^/" }
+      }
+    },
+    "deploymentLead": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "organisation", "product", "countries", "customerAsSubmitted", "scaleAsSubmitted", "dateAsSubmitted", "sourceDomains"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^land_dep_[a-z0-9_]+$" },
+        "name": { "type": "string", "minLength": 1 },
+        "organisation": { "type": "string" },
+        "product": { "type": "string" },
+        "countries": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "customerAsSubmitted": { "type": "string" },
+        "scaleAsSubmitted": { "type": "string" },
+        "dateAsSubmitted": { "type": "string" },
+        "sourceDomains": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "subject", "eventAsSubmitted", "dateAsSubmitted", "sourceDomains"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^land_rel_[a-z0-9_]+$" },
+        "name": { "type": "string", "minLength": 1 },
+        "subject": { "type": "string" },
+        "eventAsSubmitted": { "type": "string" },
+        "dateAsSubmitted": { "type": "string" },
+        "sourceDomains": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      }
+    }
+  }
+}

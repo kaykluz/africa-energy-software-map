@@ -1299,7 +1299,10 @@ function DirectoryView({
 
       <div className="v2-data-foot">
         <span>{release.version} · {release.date}</span>
-        <Link href="/data">Dataset notes →</Link>
+        <div>
+          <Link href="/landscape">Open the full list →</Link>
+          <Link href="/data">Dataset notes →</Link>
+        </div>
       </div>
 
       {exportOpen ? (

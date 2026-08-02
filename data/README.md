@@ -31,6 +31,8 @@ candidate records remain held for stronger or accessible evidence.
 - [`release-shards/`](release-shards/) — bounded reviewed deltas awaiting
   independent approval and composition into the next release
 - [`research-queue/`](research-queue/) — reviewed leads not yet publishable
+- [`landscape/`](landscape/) — inclusion-first public listings kept separate
+  from the reviewed deployment dataset
 - [`imports/`](imports/) — candidate-only migrations from external structured
   sources; not part of a public release
 - [`interface-snapshot.json`](interface-snapshot.json) — selected source batch,
