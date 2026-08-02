@@ -1,0 +1,4 @@
+id,product_id,country_iso2,subnational_area,customer_name,customer_disclosure,lifecycle_status,started_year,ended_year,location_precision,last_checked_at
+dep_3962898e06c0b969,prod_f3d9dc4a77ea4cab,MA,,TAQA North Africa / TAQA Energy Monitoring Center,named,historical,,,country,2026-08-02
+dep_a7c8d5b7c82274d7,prod_3e36972ea2d29b21,ZA,,City of Cape Town Electricity Service Department,named,historical,2012,,country,2026-08-02
+dep_cc875ff369c6e798,prod_3b9526941c4a04c6,NG,,Ikeja Electric,named,active,,,country,2026-08-02
