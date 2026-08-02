@@ -1,0 +1,3 @@
+id,name,source_family,countries,categories,base_url,discovery_method,automation_permitted,expected_update_frequency,default_independence_class,language,last_checked_at,next_review_at,status,notes
+reg_25c2a0a72ca484b2,Switch Energy,web,,,https://www.switch.org.za/,human_reviewed_bulk_intake,false,unknown,provider_authored,,2026-08-02,,active,"Rights treatment: factual metadata, attribution and linking only; source text, imagery and branding are not reused."
+reg_ce66de76e13fdbb2,KTH Royal Institute of Technology,web,,,https://www.kth.se/,human_reviewed_bulk_intake,false,unknown,provider_authored,,2026-08-02,,active,"Rights treatment: factual metadata, attribution and linking only; source text, imagery and branding are not reused."

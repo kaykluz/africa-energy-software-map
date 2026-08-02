@@ -1,0 +1,5 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_6813554323495fa0,Switch Energy,switch-energy,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.switch.org.za/,,false,2026-08-02
+org_907aa74533dc527b,GE Vernova,ge-vernova,energy_software_provider,global_deployed_in_africa,US,US,unknown,https://www.gevernova.com/,,false,2026-08-02
+org_930efc4050b16d68,KTH Royal Institute of Technology,kth-royal-institute-of-technology,energy_software_provider,public_or_open_infrastructure,,SE,unknown,https://www.kth.se/,,false,2026-08-02
+org_d48d027ab1a1011c,Open Access Energy,open-access-energy,energy_software_provider,africa_built,ZA,ZA,unknown,https://openaccess.energy/,,false,2026-08-02

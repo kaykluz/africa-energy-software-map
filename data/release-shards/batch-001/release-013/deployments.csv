@@ -1,0 +1,3 @@
+id,product_id,country_iso2,subnational_area,customer_name,customer_disclosure,lifecycle_status,started_year,ended_year,location_precision,last_checked_at
+dep_3bf37cad1e299f2e,prod_65cb59d227c4267f,BJ,,West African Power Pool,named,active,2024,,country,2026-08-02
+dep_9f93d6392cac38f3,prod_bc70438d15454ac9,BJ,,West African Power Pool,named,active,2024,,country,2026-08-02
