@@ -1,0 +1,7 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_32b8d4d2ec475f59,SAP SE,sap-se,energy_software_provider,global_deployed_in_africa,DE,DE,unknown,https://www.sap.com/,,false,2026-08-02
+org_530820839614a2eb,Esri,esri,energy_software_provider,global_deployed_in_africa,US,US,unknown,https://www.esri.com/,,false,2026-08-02
+org_9df3ccd43710a1e4,AVEVA Group Limited,aveva-group-limited,energy_software_provider,global_deployed_in_africa,GB,GB,unknown,https://www.aveva.com/,,false,2026-08-02
+org_b5a699ab229742b6,Enerweb,enerweb,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.enerweb.co.za/,,false,2026-08-02
+org_b9fc077cac046000,Smart-View Technology,smart-view-technology,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.smartviewtechnology.co.za/,,false,2026-08-02
+org_fc7c0c72d1969875,Adroit Technologies,adroit-technologies,energy_software_provider,africa_built,ZA,ZA,unknown,https://adroittech.co.za/,,false,2026-08-02
