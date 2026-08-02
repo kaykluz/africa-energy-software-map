@@ -1,0 +1,6 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_530820839614a2eb,Esri,esri,energy_software_provider,global_deployed_in_africa,US,US,unknown,https://www.esri.com/,,false,2026-08-02
+org_63de83960ce6a966,Bboxx,bboxx,energy_software_provider,global_deployed_in_africa,,,unknown,https://www.bboxx.com/,,false,2026-08-02
+org_8dbd3ffeca6e1efd,Masunga,masunga,energy_software_provider,global_deployed_in_africa,,,unknown,https://www.paygops.com/about-us,,false,2026-08-02
+org_b4e978f005016067,Climate Compatible Growth,climate-compatible-growth,energy_software_provider,public_or_open_infrastructure,,,unknown,https://climatecompatiblegrowth.com/,,false,2026-08-02
+org_e6912eb1478e941d,Green Innovation Ventures,green-innovation-ventures,energy_software_provider,africa_built,KE,KE,unknown,https://digital-energy.eu/en/projects/give-ltd,,false,2026-08-02
