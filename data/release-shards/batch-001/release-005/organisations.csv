@@ -1,0 +1,7 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_39703db4e82ec396,Rubicon,rubicon,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.rubicon.tech/,,false,2026-08-02
+org_41b9fcad44ad911b,7Secondsolar (Pty) Ltd,7secondsolar-pty-ltd,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.autopv.io/,,false,2026-08-02
+org_9fb06d7319bc6e76,Spiro,spiro,energy_software_provider,global_deployed_in_africa,,,unknown,https://www.spironet.com/,,false,2026-08-02
+org_b4e978f005016067,Climate Compatible Growth,climate-compatible-growth,energy_software_provider,public_or_open_infrastructure,,,unknown,https://climatecompatiblegrowth.com/,,false,2026-08-02
+org_d26348409ac6de26,Mazi Mobility,mazi-mobility,energy_software_provider,africa_built,KE,KE,unknown,https://mazimobility.com/,,false,2026-08-02
+org_df0fd10412aadaab,Kofa Technologies,kofa-technologies,energy_software_provider,africa_built,GH,GH,unknown,https://www.kofa.co/,,false,2026-08-02
