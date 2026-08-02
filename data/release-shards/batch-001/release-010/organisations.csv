@@ -1,0 +1,8 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_1f5127f2c1cec727,IRENA and OnSSET partners,irena-and-onsset-partners,energy_software_provider,public_or_open_infrastructure,,,unknown,https://www.irena.org/,,false,2026-08-02
+org_2744e404ad22d210,World Bank ESMAP,world-bank-esmap,energy_software_provider,public_or_open_infrastructure,,,unknown,https://www.esmap.org/,,false,2026-08-02
+org_8f37967e82047776,KTH Royal Institute of Technology and United Nations partners,kth-royal-institute-of-technology-and-united-nations-partners,energy_software_provider,public_or_open_infrastructure,,,unknown,https://onsset.readthedocs.io/,,false,2026-08-02
+org_99b1e294a6715f25,Netelek,netelek,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.netelek.co.za/,,false,2026-08-02
+org_a2926a5df5cdd48c,International Energy Agency and MIT,international-energy-agency-and-mit,energy_software_provider,public_or_open_infrastructure,,,unknown,https://www.iea.org/,,false,2026-08-02
+org_abe67edf168ef702,KTH Royal Institute of Technology and OnSSET contributors,kth-royal-institute-of-technology-and-onsset-contributors,energy_software_provider,public_or_open_infrastructure,,,unknown,https://www.onsset.org/,,false,2026-08-02
+org_cbf8bcdb4fb4587b,Resource Matters and partners,resource-matters-and-partners,energy_software_provider,public_or_open_infrastructure,,,unknown,https://resourcematters.org/,,false,2026-08-02
