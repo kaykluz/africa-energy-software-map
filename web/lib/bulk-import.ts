@@ -406,8 +406,43 @@ function uniqueEntities(rows: BulkImportRow[]) {
 
 function estimateAssertions(rows: BulkImportRow[]) {
   return rows.reduce(
-    (total, row) => total + (row.record_type === "deployment" ? 8 : 5),
+    (total, row) => total + promotedAssertionCount(row),
     0,
+  );
+}
+
+export function promotedAssertionCount(row: BulkImportRow) {
+  const organisationValues = [
+    row.organisation_name,
+    row.organisation_website,
+    row.country_of_origin,
+    row.headquarters_country,
+    row.origin_classification,
+  ];
+  const productValues = [
+    row.product_name,
+    row.product_website,
+    row.open_source_url,
+    row.product_description,
+    row.primary_category_id,
+    row.sector_id,
+    row.product_lifecycle_status,
+    row.access_model,
+  ];
+  const deploymentValues = [
+    row.deployment_country_iso2,
+    row.customer_name,
+    row.customer_disclosure,
+    row.deployment_lifecycle_status,
+    row.started_year,
+  ];
+  return (
+    organisationValues.filter(Boolean).length +
+    productValues.filter(Boolean).length +
+    1 +
+    (row.record_type === "deployment"
+      ? deploymentValues.filter(Boolean).length + 1
+      : 0)
   );
 }
 

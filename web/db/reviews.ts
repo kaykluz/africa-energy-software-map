@@ -486,6 +486,15 @@ export async function exportReviewPackage(reviewerEmail: string) {
        ORDER BY occurred_at ASC`,
     )
     .all<AuditEvent>();
+  const approvedCandidates = bulkCandidates.filter((record) =>
+    ["accept", "amend"].includes(record.review?.decision ?? ""),
+  ).length;
+  const heldCandidates = bulkCandidates.filter(
+    (record) => record.review?.decision === "needs_evidence",
+  ).length;
+  const rejectedCandidates = bulkCandidates.filter(
+    (record) => record.review?.decision === "reject",
+  ).length;
   return {
     schemaVersion: "1.1.0",
     batchId: reviewBatchId,
@@ -497,6 +506,9 @@ export async function exportReviewPackage(reviewerEmail: string) {
       bulkCandidateRows: bulkCandidates.length,
       bulkCandidateDecisions: bulkCandidates.filter((record) => record.review)
         .length,
+      bulkCandidatesApproved: approvedCandidates,
+      bulkCandidatesHeld: heldCandidates,
+      bulkCandidatesRejected: rejectedCandidates,
       promotedAssertions: workspace.promotedAssertions.length,
       promotedSources: workspace.promotedSources.length,
       containsPublicDataChanges: false,

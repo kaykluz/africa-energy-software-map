@@ -15,7 +15,7 @@ export async function GET() {
     headers: {
       ...reviewHeaders(),
       "Content-Disposition":
-        'attachment; filename="batch-001-human-review-package.json"',
+        'attachment; filename="aesm-review-package-batch-001.json"',
       "Content-Type": "application/json; charset=utf-8",
     },
   });
