@@ -1,0 +1,6 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_0a99ba7088470e53,Ontec Systems (Pty) Ltd,ontec-systems-pty-ltd,energy_software_provider,africa_built,ZA,ZA,unknown,https://ontec.co.za/,,false,2026-08-02
+org_515b5b14c4e13ea8,ELDO,eldo,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.eldo.co.za/,,false,2026-08-02
+org_6813554323495fa0,Switch Energy,switch-energy,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.switch.org.za/,,false,2026-08-02
+org_d48d027ab1a1011c,Open Access Energy,open-access-energy,energy_software_provider,africa_built,ZA,ZA,unknown,https://openaccess.energy/,,false,2026-08-02
+org_e7a91741bca86f28,SteamaCo,steamaco,energy_software_provider,africa_founded_global_hq,KE,GB,unknown,https://steama.co/,,false,2026-08-02
