@@ -250,7 +250,8 @@ After review:
 2. run `scripts/prepare_review_release.py` to produce a checked keep, amend,
    remove, add-assertion, add-source and source-rights plan;
 3. resolve any missing decisions, evidence needs or source-rights conflicts;
-4. translate the ready plan into the canonical repository tables;
+4. run `scripts/materialize_review_release_shard.py` once per planned shard to
+   translate the ready plan into public, canonical delta tables;
 5. preserve source IDs and assertion-level provenance;
 6. run repository, schema, privacy, and snapshot checks;
 7. open a pull request that links the review batch;
@@ -260,6 +261,12 @@ After review:
 The planning script exits with a blocker status until the review is complete and
 always writes `publicationAuthorised: false`. No API in `/review` edits the
 canonical tables or publishes a release.
+
+The materializer converts temporary `cand_*` identifiers to permanent public
+IDs, retains assertion-level source locators, removes private reviewer identity
+and internal research notes, and refuses output above 25 entities or 100
+assertions. Each shard remains unpublished until it receives independent review
+and is composed into a versioned release.
 
 ## Storage and migration
 

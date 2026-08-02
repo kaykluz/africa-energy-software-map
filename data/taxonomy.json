@@ -81,7 +81,8 @@
     "acquired",
     "merged",
     "inactive",
-    "under_review"
+    "under_review",
+    "unknown"
   ],
   "evidence_statuses": [
     "provider_claim_only",
