@@ -1,0 +1,6 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_36577bb3608ee5a3,Ampersand Energy,ampersand-energy,energy_software_provider,africa_built,RW,,unknown,https://www.ampersand.energy/,,false,2026-08-02
+org_406033f114a69ab6,Pylon,pylon,energy_software_provider,africa_built,EG,EG,unknown,https://pylonump.com/,,false,2026-08-02
+org_7e4e5bedaec641be,SparkMeter / EarthSpark International,sparkmeter-earthspark-international,energy_software_provider,global_deployed_in_africa,US,US,unknown,https://www.sparkmeter.io/,,false,2026-08-02
+org_a05bce318bbf4ea0,ARC Ride,arc-ride,energy_software_provider,africa_built,KE,KE,unknown,https://arcrideglobal.com/,,false,2026-08-02
+org_e7a91741bca86f28,SteamaCo,steamaco,energy_software_provider,africa_founded_global_hq,KE,GB,unknown,https://steama.co/,,false,2026-08-02

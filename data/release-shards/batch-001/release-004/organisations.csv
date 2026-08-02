@@ -1,0 +1,8 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_14ddaae613b81fe5,E-Stations,e-stations,energy_software_provider,africa_built,MA,MA,unknown,https://play.google.com/store/apps/details?id=com.estations.ma,,false,2026-08-02
+org_5d4d39fbfe878d2c,Fekra Technology,fekra-technology,energy_software_provider,africa_built,EG,EG,unknown,https://fekra-egy.com/,,false,2026-08-02
+org_686ef9b185a5a75d,FastVolt,fastvolt,energy_software_provider,africa_built,MA,MA,unknown,https://fastvolt.net/,,false,2026-08-02
+org_6894f264f4bd16ed,ENERGIC,energic,energy_software_provider,africa_built,EG,EG,unknown,https://www.energiccharge.com/,,false,2026-08-02
+org_6d53c1b9743e7ec9,GridCars,gridcars,energy_software_provider,africa_built,ZA,ZA,unknown,https://gridcars.net/,,false,2026-08-02
+org_ccaab0a9973b7404,EV Node,ev-node,energy_software_provider,africa_built,EG,EG,unknown,https://www.ev-node.com/,,false,2026-08-02
+org_df0fd10412aadaab,Kofa Technologies,kofa-technologies,energy_software_provider,africa_built,GH,GH,unknown,https://www.kofa.co/,,false,2026-08-02
