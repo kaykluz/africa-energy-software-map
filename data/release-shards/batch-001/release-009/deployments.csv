@@ -1,0 +1,5 @@
+id,product_id,country_iso2,subnational_area,customer_name,customer_disclosure,lifecycle_status,started_year,ended_year,location_precision,last_checked_at
+dep_4d45ed97e1038e6d,prod_faed4459e7d6ab27,NG,,Ikeja Electric,named,active,,,country,2026-08-02
+dep_5dafb03405e9b7a4,prod_a4f1a4a52c37c33c,ZM,,Kazang Solar,named,active,2022,,country,2026-08-02
+dep_6c7d4295f3f84919,prod_3464ecbd2a2298cc,UG,,Uganda Electricity Distribution Company Limited,named,active,2018,,country,2026-08-02
+dep_8ba702b9e523b312,prod_14d47cbe194106c4,ML,,Bboxx Mali,named,active,2023,,country,2026-08-02
