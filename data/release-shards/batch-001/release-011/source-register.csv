@@ -1,0 +1,4 @@
+id,name,source_family,countries,categories,base_url,discovery_method,automation_permitted,expected_update_frequency,default_independence_class,language,last_checked_at,next_review_at,status,notes
+reg_31fdc6b36c19f321,MeterX,web,,,https://meterx.co.za/,human_reviewed_bulk_intake,false,unknown,provider_authored,,2026-08-02,,active,"Rights treatment: factual metadata, attribution and linking only; source text, imagery and branding are not reused."
+reg_5d32c0903dfe6e9c,Citiq Prepaid,web,,,https://citiqprepaid.co.za/,human_reviewed_bulk_intake,false,unknown,provider_authored,,2026-08-02,,active,"Rights treatment: factual metadata, attribution and linking only; source text, imagery and branding are not reused."
+reg_7db21fe1990b65f6,MyVoltage,web,,,https://www.myvoltage.co.za/,human_reviewed_bulk_intake,false,unknown,provider_authored,,2026-08-02,,active,"Rights treatment: factual metadata, attribution and linking only; source text, imagery and branding are not reused."
