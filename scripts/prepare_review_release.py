@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -14,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SNAPSHOT = ROOT / "web" / "generated" / "registry-snapshot.json"
 DECISIONS = {"accept", "amend", "reject", "needs_evidence"}
 RIGHTS_DECISIONS = {"resolved", "needs_research", "exclude"}
+CANDIDATE_ID_PATTERN = re.compile(r"^cand_(org|prod|dep|src)_(.+)$")
 
 
 class ReviewReleaseError(RuntimeError):
@@ -62,6 +65,10 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
     promoted_sources = _indexed(
         package.get("promotedSources", []), "id", "promoted source"
     )
+    canonical_source_ids = {
+        source_id: canonical_source_id(source)
+        for source_id, source in promoted_sources.items()
+    }
     duplicate_sources = sorted(set(sources) & set(promoted_sources))
     if duplicate_sources:
         raise ReviewReleaseError(
@@ -269,6 +276,9 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
                         assertion,
                         value=proposed_value,
                         evidence_status=amendment["proposedEvidenceStatus"],
+                        source_id=canonical_source_ids.get(
+                            str(assertion.get("sourceId") or "")
+                        ),
                     )
                 )
             elif (
@@ -281,17 +291,63 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
                 amend.append(amendment)
         else:
             if is_promoted:
-                add_assertions.append(canonical_candidate_assertion(assertion))
+                add_assertions.append(
+                    canonical_candidate_assertion(
+                        assertion,
+                        source_id=canonical_source_ids.get(
+                            str(assertion.get("sourceId") or "")
+                        ),
+                    )
+                )
             else:
                 keep.append(assertion_id)
 
+    canonical_subject_collisions = sorted(
+        {
+            item["subjectId"]
+            for item in add_assertions
+            if item["subjectId"] in {
+                subject_id
+                for subject_type in {"organisation", "product", "deployment"}
+                for subject_id in (
+                    assertion["subjectId"]
+                    for assertion in assertions.values()
+                    if assertion.get("subjectType") == subject_type
+                )
+            }
+        }
+    )
+    if canonical_subject_collisions:
+        raise ReviewReleaseError(
+            "promoted subjects collide with the snapshot after canonicalisation: "
+            f"{canonical_subject_collisions}"
+        )
+
     added_source_ids = {item["sourceId"] for item in add_assertions}
+    promoted_sources_by_canonical_id = {
+        canonical_source_id(source): source
+        for source in promoted_sources.values()
+    }
+    source_reviews_by_canonical_id = {
+        canonical_source_id(promoted_sources[source_id]): review
+        for source_id, review in source_reviews.items()
+        if source_id in promoted_sources
+    }
+    canonical_source_collisions = sorted(added_source_ids & set(sources))
+    if canonical_source_collisions:
+        raise ReviewReleaseError(
+            "promoted sources collide with the snapshot after canonicalisation: "
+            f"{canonical_source_collisions}"
+        )
     add_sources = [
         canonical_candidate_source(
-            promoted_sources[source_id], source_reviews.get(source_id)
+            promoted_sources_by_canonical_id[source_id],
+            source_reviews_by_canonical_id.get(source_id),
         )
         for source_id in sorted(added_source_ids)
-        if source_id in promoted_sources and source_id not in excluded_sources
+        if source_id in promoted_sources_by_canonical_id
+        and promoted_sources_by_canonical_id[source_id].get("id")
+        not in excluded_sources
     ]
     release_shards = build_release_shards(add_assertions, promoted_assertions)
     candidate_contexts = []
@@ -477,18 +533,38 @@ def canonical_candidate_assertion(
     *,
     value: str | None = None,
     evidence_status: str | None = None,
+    source_id: str | None = None,
 ) -> dict[str, str]:
+    locator = " ".join(str(assertion.get("locator") or "").split())
+    notes = "Human reviewed."
+    if locator:
+        notes += f" Source locator: {locator}"
+    predicate = str(assertion.get("predicate") or "")
+    assertion_value = (
+        value if value is not None else str(assertion.get("value") or "")
+    )
+    reference_types = {
+        "organisation_id": "organisation",
+        "product_id": "product",
+    }
+    if predicate in reference_types:
+        assertion_value = canonical_subject_id(
+            reference_types[predicate], assertion_value
+        )
     return {
         "id": str(assertion.get("id") or ""),
         "subjectType": str(assertion.get("subjectType") or ""),
-        "subjectId": str(assertion.get("subjectId") or ""),
-        "predicate": str(assertion.get("predicate") or ""),
-        "value": value if value is not None else str(assertion.get("value") or ""),
-        "sourceId": str(assertion.get("sourceId") or ""),
+        "subjectId": canonical_subject_id(
+            str(assertion.get("subjectType") or ""),
+            str(assertion.get("subjectId") or ""),
+        ),
+        "predicate": predicate,
+        "value": assertion_value,
+        "sourceId": source_id or canonical_source_id(assertion),
         "evidenceStatus": evidence_status
         if evidence_status is not None
         else str(assertion.get("evidenceStatus") or ""),
-        "notes": str(assertion.get("notes") or ""),
+        "notes": notes,
     }
 
 
@@ -497,7 +573,7 @@ def canonical_candidate_source(
 ) -> dict[str, Any]:
     review = review or {}
     return {
-        "id": str(source.get("id") or ""),
+        "id": canonical_source_id(source),
         "title": str(source.get("title") or ""),
         "publisher": str(source.get("publisher") or ""),
         "url": str(source.get("url") or ""),
@@ -513,8 +589,35 @@ def canonical_candidate_source(
             or "unknown"
         ),
         "automationPermitted": False,
-        "notes": str(source.get("notes") or ""),
+        "notes": (
+            "Rights treatment: factual metadata, attribution and linking only; "
+            "source text, imagery and branding are not reused."
+        ),
     }
+
+
+def canonical_subject_id(subject_type: str, subject_id: str) -> str:
+    prefixes = {
+        "organisation": "org",
+        "product": "prod",
+        "deployment": "dep",
+    }
+    match = CANDIDATE_ID_PATTERN.fullmatch(subject_id)
+    if not match:
+        return subject_id
+    expected = prefixes.get(subject_type)
+    if not expected or match.group(1) != expected:
+        raise ReviewReleaseError(
+            f"candidate subject ID {subject_id} disagrees with {subject_type}"
+        )
+    return f"{expected}_{match.group(2)}"
+
+
+def canonical_source_id(source: dict[str, Any]) -> str:
+    url = str(source.get("url") or source.get("sourceUrl") or "")
+    if not url:
+        raise ReviewReleaseError("promoted source has no URL")
+    return "src_" + hashlib.sha256(url.encode("utf-8")).hexdigest()[:16]
 
 
 def main() -> int:

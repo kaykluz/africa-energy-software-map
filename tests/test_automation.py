@@ -10,6 +10,10 @@ from scripts.build_review_assist import (
     DEFAULT_SNAPSHOT,
     build_review_assist,
 )
+from scripts.materialize_review_release_shard import (
+    build_release_shard,
+    write_release_shard,
+)
 from scripts.prepare_next_batch import DEFAULT_AUDIT, build_plan
 from scripts.prepare_review_release import build_release_plan
 from scripts.promote_reviewed_batch import (
@@ -26,6 +30,156 @@ from scripts.validate_bulk_template import (
 
 
 class AutomationTests(unittest.TestCase):
+    def test_materializes_a_private_review_as_a_public_bounded_shard(self) -> None:
+        source_url = "https://example.org/source"
+        promoted = []
+        fields = [
+            ("organisation", "cand_org_example", "name", "Example Energy"),
+            (
+                "organisation",
+                "cand_org_example",
+                "origin_classification",
+                "africa_built",
+            ),
+            (
+                "organisation",
+                "cand_org_example",
+                "website",
+                "https://example.org/",
+            ),
+            ("product", "cand_prod_example", "name", "Example Planner"),
+            (
+                "product",
+                "cand_prod_example",
+                "organisation_id",
+                "cand_org_example",
+            ),
+            (
+                "product",
+                "cand_prod_example",
+                "primary_category_id",
+                "cat_planning_geospatial",
+            ),
+            ("product", "cand_prod_example", "lifecycle_status", "active"),
+            (
+                "product",
+                "cand_prod_example",
+                "access_model",
+                "commercial_proprietary",
+            ),
+            (
+                "product",
+                "cand_prod_example",
+                "website",
+                "https://example.org/product",
+            ),
+            (
+                "product",
+                "cand_prod_example",
+                "description",
+                "Planning software.",
+            ),
+        ]
+        for index, (subject_type, subject_id, predicate, value) in enumerate(fields):
+            promoted.append(
+                {
+                    "id": f"asrt_bulk_material_{index:02d}",
+                    "rowId": "bulk_material_001",
+                    "batchId": "bulk_material/batch-01",
+                    "subjectType": subject_type,
+                    "subjectId": subject_id,
+                    "predicate": predicate,
+                    "value": value,
+                    "sourceId": "cand_src_example",
+                    "evidenceStatus": "public_source",
+                    "locator": "Product page, overview section.",
+                }
+            )
+        package = {
+            "schemaVersion": "1.1.0",
+            "batchId": "batch-001",
+            "generatedAt": "2026-08-02T14:06:22.441Z",
+            "status": {
+                "containsPublicDataChanges": False,
+                "publicationAuthorised": False,
+            },
+            "promotedAssertions": promoted,
+            "promotedSources": [
+                {
+                    "id": "cand_src_example",
+                    "title": "Example product page",
+                    "publisher": "Example Energy",
+                    "url": source_url,
+                    "sourceType": "web",
+                    "sourceLicense": "unknown",
+                    "independenceClass": "provider_authored",
+                    "retrieved": "2026-08-02T10:00:00Z",
+                }
+            ],
+            "assertionReviews": [
+                {
+                    "assertionId": item["id"],
+                    "decision": "accept",
+                    "sourceChecked": True,
+                    "safetyChecked": True,
+                    "reviewedAt": "2026-08-02T13:35:32.452Z",
+                }
+                for item in promoted
+            ],
+            "sourceReviews": [
+                {
+                    "sourceId": "cand_src_example",
+                    "rightsStatus": "resolved",
+                    "sourceLicense": "all_rights_reserved",
+                    "independenceClass": "provider_authored",
+                }
+            ],
+            "bulkCandidates": [
+                {
+                    "id": "bulk_material_001",
+                    "importId": "bulk_material",
+                    "rowKey": "example-planner",
+                    "recordType": "product",
+                    "status": "accept",
+                    "effectivePayload": {
+                        "product_name": "Example Planner",
+                        "source_url": source_url,
+                    },
+                    "review": {"decision": "accept"},
+                }
+            ],
+        }
+        snapshot = {
+            "release": {},
+            "organisations": [],
+            "products": [],
+            "assertions": [],
+            "sources": [],
+        }
+        tables, manifest, readme = build_release_shard(
+            package=package,
+            package_hash="0" * 64,
+            snapshot=snapshot,
+            shard_id="release-001",
+            reviewer="kaykluz",
+        )
+        self.assertEqual(manifest["assertionCount"], len(fields))
+        self.assertEqual(manifest["entityCount"], 2)
+        self.assertFalse(manifest["publicationAuthorised"])
+        self.assertEqual(tables["organisations.csv"][0]["id"], "org_example")
+        self.assertEqual(tables["products.csv"][0]["id"], "prod_example")
+        self.assertEqual(
+            tables["products.csv"][0]["organisation_id"], "org_example"
+        )
+        self.assertEqual(
+            tables["sources.csv"][0]["id"], "src_68e9a02c4a4f420f"
+        )
+        self.assertNotIn("@", json.dumps(manifest))
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "release-001"
+            write_release_shard(output, tables, manifest, readme)
+            self.assertTrue((output / "checksums.txt").exists())
+
     def test_review_assist_is_complete_and_cannot_decide(self) -> None:
         snapshot = json.loads(DEFAULT_SNAPSHOT.read_text(encoding="utf-8"))
         assist = build_review_assist(snapshot)
@@ -267,7 +421,12 @@ class AutomationTests(unittest.TestCase):
             "asrt_bulk_example",
         )
         self.assertEqual(
-            plan["actions"]["addSources"][0]["id"], "cand_src_example"
+            plan["actions"]["addSources"][0]["id"],
+            "src_23f8415f3e26dd9c",
+        )
+        self.assertEqual(
+            plan["actions"]["addAssertions"][0]["sourceId"],
+            "src_23f8415f3e26dd9c",
         )
         self.assertEqual(
             plan["actions"]["candidateContexts"][0]["rowId"],

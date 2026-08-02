@@ -108,6 +108,9 @@ release still requires a human-reviewed data pull request.
 The release planner repeats those limits against the assertions actually
 approved. If an older import used a lower estimate, it creates new release
 shards without changing or repeating the completed editorial decisions.
+The shard materializer then writes only factual metadata, resolved source
+records and reviewed assertions to `data/release-shards/`; the private review
+package and reviewer contact data never enter GitHub.
 
 ## Scale-up automation layers
 

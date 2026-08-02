@@ -28,6 +28,8 @@ independent pull-request approval.
   visually validated workbook for private bulk candidate intake
 - [`source-register.csv`](source-register.csv) — canonical approved-source list
 - [`releases/`](releases/) — immutable reviewed release packages and conventions
+- [`release-shards/`](release-shards/) — bounded reviewed deltas awaiting
+  independent approval and composition into the next release
 - [`research-queue/`](research-queue/) — reviewed leads not yet publishable
 - [`imports/`](imports/) — candidate-only migrations from external structured
   sources; not part of a public release

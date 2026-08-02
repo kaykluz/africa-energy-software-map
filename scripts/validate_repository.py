@@ -22,6 +22,7 @@ PUBLIC_REVIEWER_PATTERN = re.compile(
     r"^[a-zA-Z0-9][a-zA-Z0-9_.-]{1,79}$"
 )
 FORMULA_PREFIX = re.compile(r"^[=+@]|^-(?!\d+(?:\.\d+)?$)")
+EMAIL_PATTERN = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.I)
 PRIVATE_HEADER_TOKENS = {
     "email",
     "phone",
@@ -782,6 +783,207 @@ def validate_reviewed_releases(errors: list[str]) -> None:
             )
 
 
+def validate_release_shards(errors: list[str]) -> None:
+    shards_root = ROOT / "data" / "release-shards"
+    if not shards_root.exists():
+        return
+    schema = load_json(ROOT / "schemas" / "tables.json")
+    taxonomy = load_json(ROOT / "data" / "taxonomy.json")
+    category_ids = {
+        category["id"]
+        for stage in taxonomy["stages"]
+        for category in stage["categories"]
+    }
+    category_ids.update(category["id"] for category in taxonomy["cross_cutting"])
+    origin_values = set(taxonomy["origin_classifications"])
+    lifecycle_values = set(taxonomy["lifecycle_statuses"])
+    evidence_values = set(taxonomy["evidence_statuses"])
+    shard_paths = sorted(shards_root.glob("*/release-*"))
+    packages: list[tuple[Path, dict[str, list[dict[str, str]]], dict]] = []
+    global_subjects: dict[str, set[str]] = {
+        "organisation": set(),
+        "product": set(),
+        "deployment": set(),
+    }
+    global_sources: set[str] = set()
+
+    for release_path in sorted((ROOT / "data" / "releases").glob("*/batch-*")):
+        if not release_path.is_dir():
+            continue
+        for subject_type, filename in (
+            ("organisation", "organisations.csv"),
+            ("product", "products.csv"),
+            ("deployment", "deployments.csv"),
+        ):
+            if (release_path / filename).exists():
+                global_subjects[subject_type].update(
+                    row["id"] for row in csv_records(release_path / filename)[1]
+                )
+        if (release_path / "sources.csv").exists():
+            global_sources.update(
+                row["id"] for row in csv_records(release_path / "sources.csv")[1]
+            )
+
+    for package in shard_paths:
+        if not package.is_dir():
+            continue
+        relative = package.relative_to(ROOT)
+        tables: dict[str, list[dict[str, str]]] = {}
+        for filename, definition in schema["tables"].items():
+            path = package / filename
+            if not path.exists():
+                errors.append(f"{relative}: missing {filename}")
+                continue
+            headers, rows = csv_records(path)
+            if headers != definition["fields"]:
+                errors.append(f"{path.relative_to(ROOT)}: header mismatch")
+                continue
+            if any(header.lower() in PRIVATE_HEADER_TOKENS for header in headers):
+                errors.append(f"{path.relative_to(ROOT)}: private header prohibited")
+            id_field = definition.get("id_field")
+            if id_field:
+                ids = [row[id_field] for row in rows]
+                if len(ids) != len(set(ids)):
+                    errors.append(f"{path.relative_to(ROOT)}: duplicate IDs")
+                for value in ids:
+                    if not ID_PATTERN.fullmatch(value):
+                        errors.append(
+                            f"{path.relative_to(ROOT)}: invalid ID {value!r}"
+                        )
+            tables[filename] = rows
+        if set(tables) != set(schema["tables"]):
+            continue
+        manifest_path = package / "manifest.json"
+        readme_path = package / "README.md"
+        if not manifest_path.exists() or not readme_path.exists():
+            errors.append(f"{relative}: manifest.json and README.md are required")
+            continue
+        manifest = load_json(manifest_path)
+        if (
+            manifest.get("status") != "reviewed_delta"
+            or manifest.get("publicationAuthorised") is not False
+            or manifest.get("reviewPackageCommitted") is not False
+            or manifest.get("containsPrivateReviewData") is not False
+            or not SHA256_PATTERN.fullmatch(
+                str(manifest.get("reviewPackageSha256") or "")
+            )
+            or not PUBLIC_REVIEWER_PATTERN.fullmatch(
+                str(manifest.get("publicReviewer") or "")
+            )
+        ):
+            errors.append(f"{manifest_path.relative_to(ROOT)}: unsafe shard boundary")
+        organisations = tables["organisations.csv"]
+        products = tables["products.csv"]
+        deployments = tables["deployments.csv"]
+        sources = tables["sources.csv"]
+        assertions = tables["assertions.csv"]
+        entity_ids = sorted(
+            [row["id"] for row in organisations]
+            + [row["id"] for row in products]
+            + [row["id"] for row in deployments]
+        )
+        if (
+            manifest.get("entityCount") != len(entity_ids)
+            or manifest.get("assertionCount") != len(assertions)
+            or manifest.get("sourceCount") != len(sources)
+            or manifest.get("entityIds") != entity_ids
+            or manifest.get("assertionIds")
+            != sorted(row["id"] for row in assertions)
+            or manifest.get("sourceIds") != sorted(row["id"] for row in sources)
+        ):
+            errors.append(f"{manifest_path.relative_to(ROOT)}: counts or IDs differ")
+        if len(entity_ids) > 25 or len(assertions) > 100:
+            errors.append(f"{relative}: exceeds pull-request limits")
+        text = "\n".join(
+            path.read_text(encoding="utf-8")
+            for path in package.rglob("*")
+            if path.is_file()
+        )
+        if EMAIL_PATTERN.search(text) or "reviewerEmail" in text:
+            errors.append(f"{relative}: contains private reviewer information")
+        global_subjects["organisation"].update(row["id"] for row in organisations)
+        global_subjects["product"].update(row["id"] for row in products)
+        global_subjects["deployment"].update(row["id"] for row in deployments)
+        global_sources.update(row["id"] for row in sources)
+        packages.append((package, tables, manifest))
+        validate_checksums(package, errors)
+
+    for package, tables, _manifest in packages:
+        relative = package.relative_to(ROOT)
+        for line_number, row in enumerate(tables["organisations.csv"], start=2):
+            if row["origin_classification"] not in origin_values:
+                errors.append(
+                    f"{relative}/organisations.csv:{line_number}: invalid origin"
+                )
+            if row["lifecycle_status"] not in lifecycle_values:
+                errors.append(
+                    f"{relative}/organisations.csv:{line_number}: invalid lifecycle"
+                )
+        for line_number, row in enumerate(tables["products.csv"], start=2):
+            if row["organisation_id"] not in global_subjects["organisation"]:
+                errors.append(
+                    f"{relative}/products.csv:{line_number}: unknown organisation"
+                )
+            if row["primary_category_id"] not in category_ids:
+                errors.append(
+                    f"{relative}/products.csv:{line_number}: invalid category"
+                )
+            if row["lifecycle_status"] not in lifecycle_values:
+                errors.append(
+                    f"{relative}/products.csv:{line_number}: invalid lifecycle"
+                )
+        for line_number, row in enumerate(tables["deployments.csv"], start=2):
+            if row["product_id"] not in global_subjects["product"]:
+                errors.append(
+                    f"{relative}/deployments.csv:{line_number}: unknown product"
+                )
+            if not ISO2_PATTERN.fullmatch(row["country_iso2"]):
+                errors.append(
+                    f"{relative}/deployments.csv:{line_number}: invalid country"
+                )
+            if row["lifecycle_status"] not in lifecycle_values:
+                errors.append(
+                    f"{relative}/deployments.csv:{line_number}: invalid lifecycle"
+                )
+        source_independence: dict[str, str] = {}
+        for line_number, row in enumerate(tables["sources.csv"], start=2):
+            expected_id = "src_" + hashlib.sha256(
+                row["url"].encode("utf-8")
+            ).hexdigest()[:16]
+            if row["id"] != expected_id or not valid_url(row["url"]):
+                errors.append(f"{relative}/sources.csv:{line_number}: invalid source")
+            if row["source_license"].strip().lower() in {"", "unknown"}:
+                errors.append(
+                    f"{relative}/sources.csv:{line_number}: unresolved rights"
+                )
+            if row["independence_class"] not in SOURCE_INDEPENDENCE:
+                errors.append(
+                    f"{relative}/sources.csv:{line_number}: invalid independence"
+                )
+            source_independence[row["id"]] = row["independence_class"]
+        for line_number, row in enumerate(tables["assertions.csv"], start=2):
+            if row["subject_type"] not in global_subjects or row["subject_id"] not in global_subjects[row["subject_type"]]:
+                errors.append(
+                    f"{relative}/assertions.csv:{line_number}: unknown subject"
+                )
+            if row["source_id"] not in global_sources:
+                errors.append(
+                    f"{relative}/assertions.csv:{line_number}: unknown source"
+                )
+            if row["evidence_status"] not in evidence_values:
+                errors.append(
+                    f"{relative}/assertions.csv:{line_number}: invalid evidence"
+                )
+            if not row["reviewed_by"] or not valid_iso_date(row["reviewed_at"]):
+                errors.append(
+                    f"{relative}/assertions.csv:{line_number}: review missing"
+                )
+            if source_independence.get(row["source_id"]) == "provider_authored" and row["evidence_status"] in {"independently_evidenced", "customer_confirmed"}:
+                errors.append(
+                    f"{relative}/assertions.csv:{line_number}: provider evidence upgraded"
+                )
+
+
 def validate_interface_artifacts(errors: list[str]) -> None:
     try:
         from build_registry_snapshot import SnapshotError, check_artifacts
@@ -864,6 +1066,7 @@ def main() -> int:
     validate_taxonomy(errors)
     validate_candidate_imports(errors)
     validate_reviewed_releases(errors)
+    validate_release_shards(errors)
     validate_interface_artifacts(errors)
     validate_automation_artifacts(errors)
 
