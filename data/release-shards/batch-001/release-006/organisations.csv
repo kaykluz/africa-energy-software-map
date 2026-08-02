@@ -1,0 +1,6 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_73b14ede2c4a2ead,PyPSA Contributors,pypsa-contributors,energy_software_provider,public_or_open_infrastructure,,,unknown,https://pypsa.org/,,false,2026-08-02
+org_a8add2f3b4fe90af,OSeMOSYS Community,osemosys-community,energy_software_provider,public_or_open_infrastructure,,,unknown,https://osemosys.github.io/,,false,2026-08-02
+org_b4e978f005016067,Climate Compatible Growth,climate-compatible-growth,energy_software_provider,public_or_open_infrastructure,,,unknown,https://climatecompatiblegrowth.com/,,false,2026-08-02
+org_cdc655096c67d97e,Solarmente (Pty) Ltd trading as ArkFlow,solarmente-pty-ltd-trading-as-arkflow,energy_software_provider,africa_built,ZA,ZA,unknown,https://arkflow.co.za/,,false,2026-08-02
+org_d1bdcd4f66807716,PyPSA meets Earth,pypsa-meets-earth,energy_software_provider,public_or_open_infrastructure,,,unknown,https://pypsa-earth.readthedocs.io/,,false,2026-08-02

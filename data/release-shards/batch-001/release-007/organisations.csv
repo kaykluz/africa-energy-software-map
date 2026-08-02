@@ -1,0 +1,7 @@
+id,name,slug,organisation_type,origin_classification,country_of_origin,headquarters_country,lifecycle_status,website,description,provider_profile_confirmed,last_checked_at
+org_60c02033635240b1,International Atomic Energy Agency and Climate Compatible Growth,international-atomic-energy-agency-and-climate-compatible-growth,energy_software_provider,public_or_open_infrastructure,,,unknown,https://climatecompatiblegrowth.com/,,false,2026-08-02
+org_907aa74533dc527b,GE Vernova,ge-vernova,energy_software_provider,global_deployed_in_africa,US,US,unknown,https://www.gevernova.com/,,false,2026-08-02
+org_96eebaf75520bce8,SOLINK (Pty) Ltd,solink-pty-ltd,energy_software_provider,africa_built,ZA,ZA,unknown,https://solink.co.za/about-us/,,false,2026-08-02
+org_b4e978f005016067,Climate Compatible Growth,climate-compatible-growth,energy_software_provider,public_or_open_infrastructure,,,unknown,https://climatecompatiblegrowth.com/,,false,2026-08-02
+org_b5a699ab229742b6,Enerweb,enerweb,energy_software_provider,africa_built,ZA,ZA,unknown,https://www.enerweb.co.za/,,false,2026-08-02
+org_c196bc963028ee6e,Climate Compatible Growth and IRENA,climate-compatible-growth-and-irena,energy_software_provider,public_or_open_infrastructure,,,unknown,https://climatecompatiblegrowth.com/,,false,2026-08-02
