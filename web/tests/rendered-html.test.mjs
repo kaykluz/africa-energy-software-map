@@ -634,6 +634,8 @@ test("review workspace is private and renders for an allowlisted reviewer", asyn
   assert.match(html, /Source rights/);
   assert.match(html, /Contributions/);
   assert.match(html, /Sign out/);
+  assert.match(html, /<button[^>]*>Download package<\/button>/i);
+  assert.doesNotMatch(html, /href="\/api\/review\/export"/i);
 });
 
 test("review API requires an allowlisted ChatGPT identity", async () => {
@@ -844,7 +846,7 @@ test("review export contains decisions and audit history without private contact
   assert.equal(exported.status, 200);
   assert.match(
     exported.headers.get("content-disposition") ?? "",
-    /batch-001-human-review-package\.json/,
+    /aesm-review-package-batch-001\.json/,
   );
   const exportText = await exported.text();
   assert.match(exportText, /"publicationAuthorised": false/);
@@ -1014,6 +1016,9 @@ test("bulk workbooks enter a private candidate queue and cannot upgrade weak evi
   assert.equal(record.rowCount, 1);
   assert.equal(record.entityCount, 3);
   assert.equal(record.plannedBatchCount, 1);
+  assert.equal(record.batches[0].assertionEstimate, 19);
+  assert.equal(record.decisionCounts.candidate, 1);
+  assert.equal(record.decisionCounts.needsEvidence, 0);
   assert.equal(database.count("bulk_imports"), 1);
   assert.equal(database.count("bulk_import_rows"), 1);
   assert.equal(
@@ -1100,6 +1105,25 @@ test("bulk workbooks enter a private candidate queue and cannot upgrade weak evi
   assert.equal(requestedRecord.importStatus, "blocked");
   assert.equal(requestedRecord.promotedAssertionCount, 0);
 
+  const heldWorkspaceResponse = await fetchWorker(
+    "/api/review/workspace",
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  const heldWorkspace = await heldWorkspaceResponse.json();
+  assert.equal(heldWorkspace.bulkImports[0].decisionCounts.needsEvidence, 1);
+  assert.equal(heldWorkspace.bulkImports[0].decisionCounts.accept, 0);
+
+  const heldExportResponse = await fetchWorker(
+    "/api/review/export",
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  const heldExport = await heldExportResponse.json();
+  assert.equal(heldExport.status.bulkCandidatesApproved, 0);
+  assert.equal(heldExport.status.bulkCandidatesHeld, 1);
+  assert.equal(heldExport.status.bulkCandidatesRejected, 0);
+
   const silentAmendment = await fetchWorker(
     `/api/review/bulk-import-rows/${rowId}`,
     reviewRequest({
@@ -1144,6 +1168,10 @@ test("bulk workbooks enter a private candidate queue and cannot upgrade weak evi
   assert.equal(acceptedRecord.importStatus, "reviewed");
   assert.ok(acceptedRecord.promotedAssertionCount > 10);
   assert.equal(
+    acceptedRecord.promotedAssertionCount,
+    record.batches[0].assertionEstimate,
+  );
+  assert.equal(
     database.count("promoted_assertions"),
     acceptedRecord.promotedAssertionCount,
   );
@@ -1155,6 +1183,8 @@ test("bulk workbooks enter a private candidate queue and cannot upgrade weak evi
   );
   assert.equal(workspaceResponse.status, 200);
   const workspace = await workspaceResponse.json();
+  assert.equal(workspace.bulkImports[0].decisionCounts.accept, 1);
+  assert.equal(workspace.bulkImports[0].decisionCounts.needsEvidence, 0);
   assert.equal(
     workspace.promotedAssertions.length,
     acceptedRecord.promotedAssertionCount,
@@ -1285,6 +1315,9 @@ test("bulk workbooks enter a private candidate queue and cannot upgrade weak evi
   assert.equal(bulkExport.schemaVersion, "1.1.0");
   assert.equal(bulkExport.status.bulkCandidateRows, 1);
   assert.equal(bulkExport.status.bulkCandidateDecisions, 1);
+  assert.equal(bulkExport.status.bulkCandidatesApproved, 1);
+  assert.equal(bulkExport.status.bulkCandidatesHeld, 0);
+  assert.equal(bulkExport.status.bulkCandidatesRejected, 0);
   assert.equal(bulkExport.bulkCandidates[0].review.decision, "amend");
   assert.equal(
     bulkExport.promotedAssertions.length,

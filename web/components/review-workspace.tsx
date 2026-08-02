@@ -96,6 +96,8 @@ export function ReviewWorkspace({
   const [tab, setTab] = useState<Tab>("assertions");
   const [workspace, setWorkspace] = useState<WorkspaceState | null>(null);
   const [loadError, setLoadError] = useState("");
+  const [exportError, setExportError] = useState("");
+  const [exporting, setExporting] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const [activeAssertionId, setActiveAssertionId] = useState(
     assertions[0]?.id ?? "",
@@ -195,6 +197,10 @@ export function ReviewWorkspace({
     ? Math.round((reviewedAssertions / combinedAssertions.length) * 100)
     : 0;
   const assertionsPending = combinedAssertions.length - reviewedAssertions;
+  const heldCandidateRows = (workspace?.bulkImports ?? []).reduce(
+    (total, record) => total + record.decisionCounts.needsEvidence,
+    0,
+  );
   const releaseReady =
     manifest.reviewGate.publishable &&
     assertionsPending === 0 &&
@@ -271,6 +277,39 @@ export function ReviewWorkspace({
     });
   }
 
+  async function downloadReviewPackage() {
+    setExporting(true);
+    setExportError("");
+    try {
+      const response = await fetch("/api/review/export", {
+        cache: "no-store",
+        headers: { Accept: "application/json" },
+      });
+      if (!response.ok) {
+        throw new Error(`Package download failed (${response.status}).`);
+      }
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = objectUrl;
+      anchor.download = exportFilename(
+        response.headers.get("content-disposition"),
+      );
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 0);
+    } catch (reason) {
+      setExportError(
+        reason instanceof Error
+          ? reason.message
+          : "The review package could not be downloaded.",
+      );
+    } finally {
+      setExporting(false);
+    }
+  }
+
   return (
     <main className="review-page" id="main-content" tabIndex={-1}>
       <header className="review-header">
@@ -297,9 +336,14 @@ export function ReviewWorkspace({
           >
             Refresh
           </button>
-          <a className="button button-primary" href="/api/review/export">
-            Download package
-          </a>
+          <button
+            className="button button-primary"
+            disabled={exporting}
+            onClick={downloadReviewPackage}
+            type="button"
+          >
+            {exporting ? "Preparing…" : "Download package"}
+          </button>
         </div>
       </header>
 
@@ -342,7 +386,9 @@ export function ReviewWorkspace({
               ? `${assertionsPending} assertions pending`
               : resolvedSources < combinedSources.length
                 ? `${combinedSources.length - resolvedSources} source rights pending`
-                : "review package only"
+                : heldCandidateRows
+                  ? `${heldCandidateRows} candidates held out`
+                  : "review package only"
           }
           value={releaseReady ? "Ready" : "Held"}
         />
@@ -353,6 +399,15 @@ export function ReviewWorkspace({
           <span>{loadError}</span>
           <button onClick={() => setRefreshKey((value) => value + 1)} type="button">
             Retry
+          </button>
+        </div>
+      ) : null}
+
+      {exportError ? (
+        <div className="review-global-error" role="alert">
+          <span>{exportError}</span>
+          <button onClick={downloadReviewPackage} type="button">
+            Try again
           </button>
         </div>
       ) : null}
@@ -398,6 +453,9 @@ export function ReviewWorkspace({
       {workspace && reviewedAssertions === combinedAssertions.length ? (
         <ReviewNextStep
           allSourcesResolved={resolvedSources === combinedSources.length}
+          exporting={exporting}
+          heldCandidateRows={heldCandidateRows}
+          onDownload={downloadReviewPackage}
           onOpenSources={() => setTab("sources")}
         />
       ) : null}
@@ -455,9 +513,15 @@ export function ReviewWorkspace({
 
 function ReviewNextStep({
   allSourcesResolved,
+  exporting,
+  heldCandidateRows,
+  onDownload,
   onOpenSources,
 }: {
   allSourcesResolved: boolean;
+  exporting: boolean;
+  heldCandidateRows: number;
+  onDownload: () => void;
   onOpenSources: () => void;
 }) {
   return (
@@ -468,14 +532,21 @@ function ReviewNextStep({
         </strong>
         <span>
           {allSourcesResolved
-            ? "Download the package for the reviewed data pull request."
+            ? heldCandidateRows
+              ? `The approved set is ready. ${heldCandidateRows} candidates remain held for evidence.`
+              : "Download the package for the reviewed data pull request."
             : "Resolve source rights before preparing the release."}
         </span>
       </div>
       {allSourcesResolved ? (
-        <a className="button button-primary" href="/api/review/export">
-          Download package
-        </a>
+        <button
+          className="button button-primary"
+          disabled={exporting}
+          onClick={onDownload}
+          type="button"
+        >
+          {exporting ? "Preparing…" : "Download package"}
+        </button>
       ) : (
         <button
           className="button button-primary"
@@ -2406,6 +2477,14 @@ function evidenceLabel(value: string) {
   return (
     reviewEvidenceOptions.find((option) => option.value === value)?.label ??
     value.replaceAll("_", " ")
+  );
+}
+
+function exportFilename(contentDisposition: string | null) {
+  const match = contentDisposition?.match(/filename="([^"]+)"/i);
+  return (match?.[1] ?? "aesm-review-package-batch-001.json").replace(
+    /[\\/]/g,
+    "-",
   );
 }
 

@@ -96,6 +96,48 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
         )
 
     blockers: list[dict[str, str]] = []
+    candidate_decision_counts = {decision: 0 for decision in sorted(DECISIONS)}
+    excluded_candidate_rows: list[dict[str, str]] = []
+    bulk_candidates = package.get("bulkCandidates", [])
+    for candidate in bulk_candidates:
+        review = candidate.get("review") or {}
+        decision = review.get("decision")
+        row_id = str(candidate.get("id") or "")
+        if not decision:
+            blockers.append(
+                {
+                    "type": "candidate_decision_missing",
+                    "recordId": row_id,
+                    "message": "Bulk candidate still needs a row decision.",
+                }
+            )
+            continue
+        if decision not in DECISIONS:
+            raise ReviewReleaseError(
+                f"bulk candidate {row_id} has an invalid decision"
+            )
+        if candidate.get("status") and candidate.get("status") != decision:
+            raise ReviewReleaseError(
+                f"bulk candidate {row_id} status disagrees with its review"
+            )
+        candidate_decision_counts[decision] += 1
+        if decision in {"reject", "needs_evidence"}:
+            effective = candidate.get("effectivePayload") or {}
+            excluded_candidate_rows.append(
+                {
+                    "rowId": row_id,
+                    "importId": str(candidate.get("importId") or ""),
+                    "rowKey": str(candidate.get("rowKey") or ""),
+                    "recordType": str(candidate.get("recordType") or ""),
+                    "decision": str(decision),
+                    "label": str(
+                        effective.get("product_name")
+                        or effective.get("organisation_name")
+                        or candidate.get("rowKey")
+                        or row_id
+                    ),
+                }
+            )
     unresolved_assertions = sorted(set(all_assertions) - set(reviews))
     for assertion_id in unresolved_assertions:
         blockers.append(
@@ -229,6 +271,12 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
                         evidence_status=amendment["proposedEvidenceStatus"],
                     )
                 )
+            elif (
+                amendment["proposedValue"] == amendment["currentValue"]
+                and amendment["proposedEvidenceStatus"]
+                == str(assertion.get("evidenceStatus") or "")
+            ):
+                keep.append(assertion_id)
             else:
                 amend.append(amendment)
         else:
@@ -245,8 +293,9 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
         for source_id in sorted(added_source_ids)
         if source_id in promoted_sources and source_id not in excluded_sources
     ]
+    release_shards = build_release_shards(add_assertions, promoted_assertions)
     candidate_contexts = []
-    for candidate in package.get("bulkCandidates", []):
+    for candidate in bulk_candidates:
         review = candidate.get("review") or {}
         if review.get("decision") not in {"accept", "amend"}:
             continue
@@ -285,6 +334,12 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
         "summary": {
             "snapshotAssertions": len(assertions),
             "promotedAssertions": len(promoted_assertions),
+            "bulkCandidates": len(bulk_candidates),
+            "candidateIncluded": len(candidate_contexts),
+            "candidateHeld": candidate_decision_counts["needs_evidence"],
+            "candidateRejected": candidate_decision_counts["reject"],
+            "candidateUndecided": len(bulk_candidates)
+            - sum(candidate_decision_counts.values()),
             "assertionDecisions": len(reviews),
             "accepted": decision_counts["accept"],
             "amended": decision_counts["amend"],
@@ -301,17 +356,120 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
             "removeAssertionIds": remove,
             "sourceUpdates": source_updates,
             "candidateContexts": candidate_contexts,
+            "excludedCandidateRows": excluded_candidate_rows,
             "addSources": add_sources,
             "addAssertions": add_assertions,
+            "releaseShards": release_shards,
         },
         "blockers": blockers,
+        "scopeNote": (
+            f"{candidate_decision_counts['needs_evidence']} candidate "
+            f"row{'s' if candidate_decision_counts['needs_evidence'] != 1 else ''} "
+            f"{'are' if candidate_decision_counts['needs_evidence'] != 1 else 'is'} held "
+            "outside this release pending further evidence."
+            if candidate_decision_counts["needs_evidence"]
+            else "No candidate rows are held for further evidence."
+        ),
         "nextStep": (
             "Resolve the listed review blockers and export a new package."
             if blockers
-            else "Apply these actions to canonical tables in a reviewed data pull request."
+            else "Apply the included actions to canonical tables in reviewed, bounded data pull requests."
         ),
         "publicationAuthorised": False,
     }
+
+
+def build_release_shards(
+    add_assertions: list[dict[str, str]],
+    promoted_assertions: dict[str, dict[str, Any]],
+    *,
+    maximum_assertions: int = 100,
+    maximum_entities: int = 25,
+) -> list[dict[str, Any]]:
+    by_row: dict[str, list[dict[str, str]]] = {}
+    for assertion in add_assertions:
+        original = promoted_assertions.get(assertion["id"])
+        if not original:
+            raise ReviewReleaseError(
+                f"added assertion {assertion['id']} has no promoted record"
+            )
+        row_id = str(original.get("rowId") or "")
+        if not row_id:
+            raise ReviewReleaseError(
+                f"promoted assertion {assertion['id']} has no rowId"
+            )
+        by_row.setdefault(row_id, []).append(assertion)
+
+    row_groups = sorted(
+        by_row.items(),
+        key=lambda item: (
+            str(promoted_assertions[item[1][0]["id"]].get("batchId") or ""),
+            item[0],
+        ),
+    )
+    shards: list[dict[str, Any]] = []
+    current_rows: list[str] = []
+    current_assertions: list[dict[str, str]] = []
+
+    def finish_shard() -> None:
+        if not current_assertions:
+            return
+        originals = [promoted_assertions[item["id"]] for item in current_assertions]
+        entities = sorted(
+            {
+                f"{item.get('subjectType', '')}:{item.get('subjectId', '')}"
+                for item in current_assertions
+            }
+        )
+        source_ids = sorted({item["sourceId"] for item in current_assertions})
+        shards.append(
+            {
+                "id": f"release-{len(shards) + 1:03d}",
+                "sourceBatchIds": sorted(
+                    {str(item.get("batchId") or "") for item in originals}
+                ),
+                "rowIds": list(current_rows),
+                "entityCount": len(entities),
+                "assertionCount": len(current_assertions),
+                "sourceIds": source_ids,
+                "assertionIds": [item["id"] for item in current_assertions],
+            }
+        )
+
+    for row_id, row_assertions in row_groups:
+        row_entities = {
+            f"{item.get('subjectType', '')}:{item.get('subjectId', '')}"
+            for item in row_assertions
+        }
+        if len(row_assertions) > maximum_assertions or len(row_entities) > maximum_entities:
+            raise ReviewReleaseError(
+                f"candidate row {row_id} exceeds the release shard limits"
+            )
+        proposed_assertions = [*current_assertions, *row_assertions]
+        proposed_entities = {
+            f"{item.get('subjectType', '')}:{item.get('subjectId', '')}"
+            for item in proposed_assertions
+        }
+        if current_assertions and (
+            len(proposed_assertions) > maximum_assertions
+            or len(proposed_entities) > maximum_entities
+        ):
+            finish_shard()
+            current_rows = []
+            current_assertions = []
+        current_rows.append(row_id)
+        current_assertions.extend(sorted(row_assertions, key=lambda item: item["id"]))
+    finish_shard()
+
+    assigned_sources: set[str] = set()
+    for shard in shards:
+        shard["addSourceIds"] = [
+            source_id
+            for source_id in shard["sourceIds"]
+            if source_id not in assigned_sources
+        ]
+        assigned_sources.update(shard["sourceIds"])
+    return shards
 
 
 def canonical_candidate_assertion(

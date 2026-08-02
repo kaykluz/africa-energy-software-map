@@ -43,8 +43,11 @@ The top strip answers five questions at a glance:
 - whether contribution intake is active or paused; and
 - whether the candidate batch is released.
 
-The release indicator remains **Held**. There is intentionally no publish
-button.
+The release indicator stays **Held** until the included assertions and sources
+are complete. There is intentionally no publish button. When it changes to
+**Ready**, it applies only to assertions and sources
+included in the package. Candidate rows marked More evidence or Reject remain
+outside that release and their count stays visible beside the Ready state.
 
 Five tabs divide the work:
 
@@ -217,7 +220,9 @@ nofollow`. Write APIs accept small same-origin JSON requests only.
 ## Review package
 
 **Download review package** creates
-`batch-001-human-review-package.json`. It contains:
+`aesm-review-package-batch-001.json`. The workspace fetches the package in-page
+and then starts the browser download, so the private session is retained. It
+contains:
 
 - schema and batch identifiers;
 - assertion and source decisions;
@@ -227,6 +232,11 @@ nofollow`. Write APIs accept small same-origin JSON requests only.
 - the generating reviewer and timestamp; and
 - explicit `containsPublicDataChanges: false` and
   `publicationAuthorised: false` flags.
+
+The package status also records how many bulk candidates are approved, held for
+evidence or rejected. The release planner lists held and rejected candidate rows
+explicitly but does not treat a deliberately held row as part of the approved
+release scope.
 
 It excludes contribution content, contact details, receipt tokens, and public
 registry changes. The package is a handoff and audit artefact, not a release

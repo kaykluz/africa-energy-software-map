@@ -92,7 +92,8 @@ review API. The raw file is not stored. The server:
 3. separates product records from deployment claims;
 4. rejects precise or confidential infrastructure content;
 5. prevents provider sources from claiming independent confirmation;
-6. plans batches within 25 entities and 100 assertions;
+6. plans batches within 25 entities and 100 generated assertions using the same
+   field-level count as promotion;
 7. stores immutable candidate rows and an audit event;
 8. records row decisions and amendments separately;
 9. normalises approved public source URLs;
@@ -103,6 +104,10 @@ Bulk intake is an acceleration path into editorial review, not an alternative
 to it. Source support is confirmed by a human, every promoted assertion receives
 its own decision, unknown source rights are resolved in the Sources queue, and
 release still requires a human-reviewed data pull request.
+
+The release planner repeats those limits against the assertions actually
+approved. If an older import used a lower estimate, it creates new release
+shards without changing or repeating the completed editorial decisions.
 
 ## Scale-up automation layers
 

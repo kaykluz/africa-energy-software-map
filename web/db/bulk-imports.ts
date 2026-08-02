@@ -23,6 +23,13 @@ export type BulkImportRecord = {
     entityCount: number;
     assertionEstimate: number;
   }>;
+  decisionCounts: {
+    candidate: number;
+    accept: number;
+    amend: number;
+    reject: number;
+    needsEvidence: number;
+  };
   version: number;
 };
 
@@ -56,22 +63,65 @@ export async function listBulkImports(): Promise<BulkImportRecord[]> {
          planned_batch_count AS plannedBatchCount,
          warnings_json AS warningsJson,
          batch_plan_json AS batchPlanJson,
+         (
+           SELECT COUNT(*) FROM bulk_import_rows rows
+           WHERE rows.import_id = bulk_imports.id AND rows.status = 'candidate'
+         ) AS candidateRows,
+         (
+           SELECT COUNT(*) FROM bulk_import_rows rows
+           WHERE rows.import_id = bulk_imports.id AND rows.status = 'accept'
+         ) AS acceptedRows,
+         (
+           SELECT COUNT(*) FROM bulk_import_rows rows
+           WHERE rows.import_id = bulk_imports.id AND rows.status = 'amend'
+         ) AS amendedRows,
+         (
+           SELECT COUNT(*) FROM bulk_import_rows rows
+           WHERE rows.import_id = bulk_imports.id AND rows.status = 'reject'
+         ) AS rejectedRows,
+         (
+           SELECT COUNT(*) FROM bulk_import_rows rows
+           WHERE rows.import_id = bulk_imports.id AND rows.status = 'needs_evidence'
+         ) AS needsEvidenceRows,
          version
        FROM bulk_imports
        ORDER BY uploaded_at DESC
        LIMIT 25`,
     )
     .all<
-      Omit<BulkImportRecord, "warnings" | "batches"> & {
+      Omit<BulkImportRecord, "warnings" | "batches" | "decisionCounts"> & {
         warningsJson: string;
         batchPlanJson: string;
+        candidateRows: number;
+        acceptedRows: number;
+        amendedRows: number;
+        rejectedRows: number;
+        needsEvidenceRows: number;
       }
     >();
-  return result.results.map((record) => ({
-    ...record,
-    warnings: parseJsonArray(record.warningsJson),
-    batches: JSON.parse(record.batchPlanJson) as BulkImportRecord["batches"],
-  }));
+  return result.results.map(
+    ({
+      warningsJson,
+      batchPlanJson,
+      candidateRows,
+      acceptedRows,
+      amendedRows,
+      rejectedRows,
+      needsEvidenceRows,
+      ...record
+    }) => ({
+      ...record,
+      warnings: parseJsonArray(warningsJson),
+      batches: JSON.parse(batchPlanJson) as BulkImportRecord["batches"],
+      decisionCounts: {
+        candidate: candidateRows,
+        accept: acceptedRows,
+        amend: amendedRows,
+        reject: rejectedRows,
+        needsEvidence: needsEvidenceRows,
+      },
+    }),
+  );
 }
 
 export async function listBulkImportRows(
@@ -219,6 +269,13 @@ export async function storeBulkImport(
     plannedBatchCount: value.batches.length,
     warnings: value.warnings,
     batches: value.batches,
+    decisionCounts: {
+      candidate: value.rows.length,
+      accept: 0,
+      amend: 0,
+      reject: 0,
+      needsEvidence: 0,
+    },
     version: 1,
   };
   await database.batch([
