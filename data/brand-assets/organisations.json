@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "1.0",
+  "retrievedAt": "2026-08-03",
+  "rightsNotice": "Identification only. Each logo remains the trademark or copyrighted material of its owner and is excluded from the project data and content licences.",
+  "assets": [
+    {
+      "organisationId": "org_001",
+      "name": "Beacon Power Services",
+      "aliases": ["Beacon Power Services"],
+      "localPath": "/brand/organisations/beacon-power-services.png",
+      "sourcePageUrl": "https://beaconpowerservices.com/",
+      "assetSourceUrl": "https://beaconpowerservices.com/_next/static/media/logo_dark.0cdf5df7.png"
+    },
+    {
+      "organisationId": "org_063aba978073ba5d",
+      "name": "Citiq Prepaid",
+      "aliases": ["Citiq Prepaid"],
+      "localPath": "/brand/organisations/citiq-prepaid.png",
+      "sourcePageUrl": "https://citiqprepaid.co.za/",
+      "assetSourceUrl": "https://citiqprepaid.co.za/assets/citiq-logo.png"
+    },
+    {
+      "organisationId": "org_36577bb3608ee5a3",
+      "name": "Ampersand Energy",
+      "aliases": ["Ampersand", "Ampersand Energy"],
+      "localPath": "/brand/organisations/ampersand.png",
+      "sourcePageUrl": "https://www.ampersand.energy/",
+      "assetSourceUrl": "https://static.wixstatic.com/media/85103e_922f122089e647e8951c5898a70620c4~mv2.png/v1/fill/w_422,h_100,al_c,q_85,usm_0.66_1.00_0.01/Horizontal-logo-yellow.png"
+    },
+    {
+      "organisationId": "org_39703db4e82ec396",
+      "name": "Rubicon",
+      "aliases": ["Rubicon"],
+      "localPath": "/brand/organisations/rubicon.svg",
+      "sourcePageUrl": "https://www.rubicon.tech/",
+      "assetSourceUrl": "https://www.rubicon.tech/cdn/shop/files/rubicon-logo-blue.svg?v=1740402313"
+    },
+    {
+      "organisationId": "org_406033f114a69ab6",
+      "name": "Pylon",
+      "aliases": ["Pylon"],
+      "localPath": "/brand/organisations/pylon.png",
+      "sourcePageUrl": "https://pylonump.com/",
+      "assetSourceUrl": "https://pylonump.com/icons/icon-144x144.png?v=e34e68e84e9382ece46fc72ad0e491fb"
+    },
+    {
+      "organisationId": "org_530820839614a2eb",
+      "name": "Esri",
+      "aliases": ["Esri"],
+      "localPath": "/brand/organisations/esri.svg",
+      "sourcePageUrl": "https://www.esri.com/",
+      "assetSourceUrl": "https://www.esri.com/content/dam/esrisites/en-us/common/favicon/esri-favicon.svg"
+    },
+    {
+      "organisationId": "org_63de83960ce6a966",
+      "name": "Bboxx",
+      "aliases": ["Bboxx"],
+      "localPath": "/brand/organisations/bboxx.svg",
+      "sourcePageUrl": "https://www.bboxx.com/",
+      "assetSourceUrl": "https://www.bboxx.com/wp-content/uploads/Logo-Colour.svg"
+    },
+    {
+      "organisationId": "org_6d53c1b9743e7ec9",
+      "name": "GridCars",
+      "aliases": ["GridCars"],
+      "localPath": "/brand/organisations/gridcars.svg",
+      "sourcePageUrl": "https://gridcars.net/",
+      "assetSourceUrl": "https://gridcars.net/wp-content/uploads/2025/01/LOGO-main.svg"
+    },
+    {
+      "organisationId": "org_73b14ede2c4a2ead",
+      "name": "PyPSA Contributors",
+      "aliases": ["PyPSA Contributors", "TU Berlin / PyPSA developers"],
+      "localPath": "/brand/organisations/pypsa.svg",
+      "sourcePageUrl": "https://pypsa.org/",
+      "assetSourceUrl": "https://raw.githubusercontent.com/PyPSA/PyPSA/master/docs/assets/logo/logo.svg"
+    },
+    {
+      "organisationId": "org_7e4e5bedaec641be",
+      "name": "SparkMeter / EarthSpark International",
+      "aliases": ["SparkMeter", "SparkMeter / EarthSpark International"],
+      "localPath": "/brand/organisations/sparkmeter.png",
+      "sourcePageUrl": "https://www.sparkmeter.io/",
+      "assetSourceUrl": "https://www.sparkmeter.io/uploads/1/3/4/4/13442473/sparkmeter-logo.png"
+    },
+    {
+      "organisationId": "org_907aa74533dc527b",
+      "name": "GE Vernova",
+      "aliases": ["GE Vernova"],
+      "localPath": "/brand/organisations/ge-vernova.svg",
+      "sourcePageUrl": "https://www.gevernova.com/",
+      "assetSourceUrl": "https://www.gevernova.com/themes/custom/ge_vernova_unified/logo.svg"
+    },
+    {
+      "organisationId": "org_9df3ccd43710a1e4",
+      "name": "AVEVA Group Limited",
+      "aliases": ["AVEVA", "AVEVA Group Limited"],
+      "localPath": "/brand/organisations/aveva.svg",
+      "sourcePageUrl": "https://www.aveva.com/",
+      "assetSourceUrl": "https://www.aveva.com/content/dam/aveva/images/logos/aveva/header-logo.svg"
+    },
+    {
+      "organisationId": "org_9fb06d7319bc6e76",
+      "name": "Spiro",
+      "aliases": ["Spiro"],
+      "localPath": "/brand/organisations/spiro.png",
+      "sourcePageUrl": "https://www.spironet.com/",
+      "assetSourceUrl": "https://cdn.prod.website-files.com/66b0a72103f05e91497d72b7/66bb1585bd15bc1a5d5591cd_Spiro%20Logo%20Green.png"
+    },
+    {
+      "organisationId": "org_a08b81b7f5f0b23a",
+      "name": "Solar MD",
+      "aliases": ["Solar MD"],
+      "localPath": "/brand/organisations/solar-md.png",
+      "sourcePageUrl": "https://www.solarmd.co.za/",
+      "assetSourceUrl": "https://www.solarmd.co.za/storage/2024/10/Favicon-300x300.png"
+    },
+    {
+      "organisationId": "org_a4f72ab71d53535a",
+      "name": "SHYFT Power Solutions",
+      "aliases": ["SHYFT Power Solutions", "Shyft Power"],
+      "localPath": "/brand/organisations/shyft-power.png",
+      "sourcePageUrl": "https://shyftpower.com/",
+      "assetSourceUrl": "https://images.squarespace-cdn.com/content/v1/5571efa7e4b09ebad2a56de7/ef77e8ae-5e9d-4752-8da5-ae4d307a7f76/shyftpower%20%2813%29.png"
+    },
+    {
+      "organisationId": "org_c538d1eb164e6e41",
+      "name": "AMMP Technologies",
+      "aliases": ["AMMP", "AMMP Technologies"],
+      "localPath": "/brand/organisations/ammp.png",
+      "sourcePageUrl": "https://www.ammp.io/",
+      "assetSourceUrl": "https://www.ammp.io/assets/ammp-logo-Bxea6Jb-.png"
+    },
+    {
+      "organisationId": "org_c60ee59766bb7296",
+      "name": "Plentify",
+      "aliases": ["Plentify"],
+      "localPath": "/brand/organisations/plentify.png",
+      "sourcePageUrl": "https://plentify.io/",
+      "assetSourceUrl": "https://plentify.io/wp-content/uploads/2020/08/Plentify-Logo.png"
+    },
+    {
+      "organisationId": "org_d48d027ab1a1011c",
+      "name": "Open Access Energy",
+      "aliases": ["Open Access Energy"],
+      "localPath": "/brand/organisations/open-access-energy.png",
+      "sourcePageUrl": "https://openaccess.energy/",
+      "assetSourceUrl": "https://openaccess.energy/assets/apple-touch-icon-CwanEDBn.png"
+    },
+    {
+      "organisationId": "org_d8a52b70cf175966",
+      "name": "PowerOptimal",
+      "aliases": ["PowerOptimal", "Power Optimal"],
+      "localPath": "/brand/organisations/poweroptimal.svg",
+      "sourcePageUrl": "https://poweroptimal.com/",
+      "assetSourceUrl": "https://poweroptimal.com/wp-content/uploads/2020/02/Power-Optimal-Logo.svg"
+    },
+    {
+      "organisationId": "org_df0fd10412aadaab",
+      "name": "Kofa Technologies",
+      "aliases": ["Kofa", "Kofa Technologies"],
+      "localPath": "/brand/organisations/kofa.svg",
+      "sourcePageUrl": "https://www.kofa.co/",
+      "assetSourceUrl": "https://cdn.prod.website-files.com/651eeff3c4ae38a410104bdc/6520633aa74c998e1504842e_Nav-Kofa-Logo.svg"
+    }
+  ]
+}

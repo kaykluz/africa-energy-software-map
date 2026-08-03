@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { RegistryExplorer } from "@/components/registry-explorer";
+import { LandscapeExplorer } from "@/components/landscape-explorer";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
   title: "The software powering African energy",
   description:
-    "Browse candidate energy-software records by value-chain stage, category and evidence.",
+    "Search 540 classified software and enabling-infrastructure listings connected to African energy.",
 };
 
 export default async function Home({
@@ -15,16 +15,10 @@ export default async function Home({
 }) {
   const params = await searchParams;
   return (
-    <RegistryExplorer
-      initialCategory={params.category}
-      initialCountry={params.country}
-      initialEvidence={params.evidence}
+    <LandscapeExplorer
       initialQuery={params.q}
-      initialOrigin={params.origin}
-      initialLifecycle={params.lifecycle}
-      initialAccess={params.access}
-      key={JSON.stringify(params)}
-      view="stack"
+      initialView="listings"
+      mode="explore"
     />
   );
 }

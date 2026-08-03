@@ -115,6 +115,19 @@ locally. They are never scraped or hotlinked. Each accepted logo needs an
 official source URL recorded beside it; unapproved brand assets fall back to the
 typographic mark. Logo presence does not affect ordering or prominence.
 
+The first approved local asset batch is registered in
+[`data/brand-assets/organisations.json`](../data/brand-assets/organisations.json).
+It records both the official page on which the mark was found and the exact
+asset URL. The same local file is reused on the wall, organisation atlas and
+related product and organisation profiles. Checksums make silent asset changes
+detectable. A missing, blocked, ambiguous or visually unsuitable mark remains a
+typographic tile; completeness is not a reason to use an unverified image.
+
+The main public views are **Explore**, **Map**, **Data** and **Wall**. Explore
+defaults to the complete 540-listing inclusion catalogue. Data remains the
+reviewed-record view. This is a scope distinction, not a quality score, and the
+interface links directly between the two.
+
 ## Scale-up
 
 The overlay allows future sectors, stages and functions to be added without

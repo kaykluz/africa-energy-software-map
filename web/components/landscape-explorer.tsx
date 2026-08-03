@@ -22,6 +22,7 @@ import {
   type LandscapeKind,
 } from "@/lib/landscape-data";
 import { normaliseQuery } from "@/lib/registry-query";
+import { brandAssetForExactName } from "@/lib/brand-assets";
 import { type CSSProperties, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 
 type LandscapeView = "wall" | "listings" | "deployments" | "history" | "sources";
@@ -44,7 +45,15 @@ const firstPageSize = 48;
 const coreWallPreviewSize = 8;
 const supportingWallPreviewSize = 5;
 
-export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string }) {
+export function LandscapeExplorer({
+  initialQuery = "",
+  initialView = "wall",
+  mode = "wall",
+}: {
+  initialQuery?: string;
+  initialView?: LandscapeView;
+  mode?: "explore" | "wall";
+}) {
   const [query, setQuery] = useState(initialQuery);
   const [kind, setKind] = useState<LandscapeKind | "all">("all");
   const [stage, setStage] = useState("all");
@@ -53,7 +62,7 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
   const [relationship, setRelationship] = useState<EnergyRelationship | "all">("all");
   const [africaUse, setAfricaUse] = useState<AfricaUseAsSubmitted | "all">("all");
   const [displayLimit, setDisplayLimit] = useState(firstPageSize);
-  const [view, setView] = useState<LandscapeView>("wall");
+  const [view, setView] = useState<LandscapeView>(initialView);
   const [selectedItem, setSelectedItem] = useState<LandscapeItem | null>(null);
   const openerRef = useRef<HTMLElement | null>(null);
 
@@ -153,15 +162,15 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
           : landscapeSourceDomains.length;
 
   return (
-    <main className="landscape-page" id="main-content" tabIndex={-1}>
+    <main className={`landscape-page landscape-page-${mode}`} id="main-content" tabIndex={-1}>
       <header className="landscape-intro">
         <div>
-          <h1>Software wall</h1>
-          <p>Browse tools by where they sit in the energy system.</p>
+          <h1>{mode === "explore" ? "The software powering African energy" : "Software wall"}</h1>
+          <p>{mode === "explore" ? "Search the full catalogue." : "Browse tools by where they sit in the energy system."}</p>
         </div>
         <div className="landscape-intro-links">
-          <Link href="/directory">Reviewed data</Link>
-          <Link href="/deployments">Deployment map</Link>
+          <Link href="/organisations">Organisations</Link>
+          <Link href="/deployments">Map</Link>
         </div>
       </header>
 
@@ -171,7 +180,12 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
         <div><strong>{functionOptions.length}</strong><span>functions</span></div>
       </section>
 
-      <nav aria-label="Landscape views" className="landscape-tabs">
+      {mode === "explore" ? (
+        <nav aria-label="Catalogue scope" className="landscape-scope-tabs">
+          <span aria-current="page">All catalogue <b>{landscapeItems.length}</b></span>
+          <Link href="/directory">Reviewed records</Link>
+        </nav>
+      ) : <nav aria-label="Landscape views" className="landscape-tabs">
         {[
           ["wall", "Wall", landscapeItems.length],
           ["listings", "List", landscapeItems.length],
@@ -188,7 +202,7 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
             {label} <span>{count}</span>
           </button>
         ))}
-      </nav>
+      </nav>}
 
       {view === "wall" || view === "listings" ? (
         <LandscapeControls
@@ -208,6 +222,7 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
           setSector={setSector}
           setStage={setStage}
           stage={stage}
+          searchLabel={mode === "explore" ? "Search the catalogue" : "Search the wall"}
         />
       ) : null}
 
@@ -315,6 +330,7 @@ function LandscapeControls({
   setRelationship,
   setSector,
   setStage,
+  searchLabel,
   stage,
 }: {
   africaUse: AfricaUseAsSubmitted | "all";
@@ -332,6 +348,7 @@ function LandscapeControls({
   setRelationship: (value: EnergyRelationship | "all") => void;
   setSector: (value: string) => void;
   setStage: (value: string) => void;
+  searchLabel: string;
   stage: string;
 }) {
   return (
@@ -341,7 +358,7 @@ function LandscapeControls({
         <i aria-hidden="true">⌕</i>
         <input
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search the wall"
+          placeholder={searchLabel}
           type="search"
           value={query}
         />
@@ -693,8 +710,11 @@ function IdentityTile({
 }
 
 function IdentityMark({ item }: { item: LandscapeItem }) {
-  if (item.logoPath) {
-    return <Image alt="" height={36} src={item.logoPath} unoptimized width={36} />;
+  const brandAsset = brandAssetForExactName(item.parent) ??
+    (item.kind === "organisation" ? brandAssetForExactName(item.name) : undefined);
+  const logoPath = item.logoPath ?? brandAsset?.localPath;
+  if (logoPath) {
+    return <Image alt="" height={36} src={logoPath} unoptimized width={36} />;
   }
   return <i aria-hidden="true">{initials(item.name)}</i>;
 }

@@ -20,6 +20,7 @@ import {
   LifecycleTag,
   OriginLabel,
 } from "@/components/semantic-tags";
+import { OrganisationMark } from "@/components/brand-mark";
 
 export function ProductProfile({ slug }: { slug: string }) {
   const product = productBySlug(slug);
@@ -49,6 +50,12 @@ export function ProductProfile({ slug }: { slug: string }) {
       </nav>
       <header className="record-header">
         <div>
+          <OrganisationMark
+            className="record-brand-mark"
+            name={product.organisation}
+            organisationId={product.organisationId}
+            size={88}
+          />
           <span className="eyebrow">Product record · candidate</span>
           <h1>{product.name}</h1>
           <Link className="record-owner" href={`/organisations/${organisation?.slug ?? ""}`}>
@@ -227,6 +234,12 @@ export function OrganisationProfile({ slug }: { slug: string }) {
       </nav>
       <header className="record-header">
         <div>
+          <OrganisationMark
+            className="record-brand-mark"
+            name={organisation.name}
+            organisationId={organisation.id}
+            size={88}
+          />
           <span className="eyebrow">Organisation record · candidate</span>
           <h1>{organisation.name}</h1>
           <p>{organisation.description}</p>

@@ -23,6 +23,7 @@ export default async function Deployments({
       initialOrigin={params.origin}
       initialLifecycle={params.lifecycle}
       initialAccess={params.access}
+      initialObject={params.object}
       key={JSON.stringify(params)}
       view="deployments"
     />
