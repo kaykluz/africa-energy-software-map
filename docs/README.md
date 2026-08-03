@@ -28,6 +28,7 @@
 - [25 — Production backend, admin and custom domain](25-production-backend-admin-and-domain.md)
 - [27 — Moderated accessibility and user testing](27-moderated-accessibility-user-testing.md)
 - [28 — Classification and software wall](28-classification-and-software-wall.md)
+- [29 — Organisation directory and market graph](29-organisation-directory-and-market-graph.md)
 
 ## Operations and governance
 
