@@ -70,11 +70,17 @@
       "kind": "research_lead",
       "stageIds": ["stage_finance_procure", "stage_generate_store"],
       "categoryIds": ["cat_finance_procurement_underwriting", "cat_generation_storage_operations"],
-      "sectorIds": ["sector_markets_finance_carbon", "sector_generation_storage"],
-      "geographies": ["Africa"],
+      "sectorIds": ["sector_markets_finance_carbon", "sector_generation_storage", "sector_power_utilities"],
+      "geographies": ["Africa", "UK"],
       "statusAsSubmitted": "African deployment not supplied",
       "summaryAsSubmitted": "Renewable-energy software platform lead.",
-      "sourceDomains": []
+      "sourceDomains": ["enian.co"],
+      "sourceUrls": ["https://enian.co"],
+      "segmentsAsSubmitted": ["utility-scale"],
+      "deliveryModelsAsSubmitted": ["cloud SaaS"],
+      "commercialModelAsSubmitted": "subscription",
+      "africaUseAsSubmitted": "africa_usage_likely_unverified",
+      "asOfDate": "2026-08-02"
     },
     {
       "id": "land_lead_holley",

@@ -27,8 +27,21 @@ export type LandscapeItem = {
   statusAsSubmitted: string;
   summaryAsSubmitted: string;
   sourceDomains: string[];
+  sourceUrls?: string[];
+  websiteAsSubmitted?: string;
+  segmentsAsSubmitted?: string[];
+  deliveryModelsAsSubmitted?: string[];
+  commercialModelAsSubmitted?: string;
+  africaUseAsSubmitted?: AfricaUseAsSubmitted;
+  asOfDate?: string;
   canonicalHref?: string;
 };
+
+export type AfricaUseAsSubmitted =
+  | "confirmed_deployment"
+  | "marketed_to_africa"
+  | "africa_usage_likely_unverified"
+  | "no_africa_evidence_found";
 
 export type LandscapeDeploymentLead = {
   id: string;
@@ -40,6 +53,7 @@ export type LandscapeDeploymentLead = {
   scaleAsSubmitted: string;
   dateAsSubmitted: string;
   sourceDomains: string[];
+  sourceUrls?: string[];
 };
 
 export type LandscapeRelationship = {
@@ -126,4 +140,20 @@ export const landscapeCategoryLabels: Record<string, string> = {
   cat_trading_wheeling_settlement: "Trading, wheeling and settlement",
   cat_carbon_mrv_reporting: "Carbon, MRV and reporting",
   cat_data_interoperability_security: "Data, interoperability and security",
+};
+
+export const landscapeSectorLabels: Record<string, string> = {
+  sector_power_utilities: "Power networks and utilities",
+  sector_distributed_energy_access: "Distributed energy and energy access",
+  sector_generation_storage: "Generation and storage",
+  sector_commercial_industrial: "Commercial and industrial energy",
+  sector_emobility_batteries: "E-mobility and battery networks",
+  sector_markets_finance_carbon: "Markets, finance and carbon",
+};
+
+export const landscapeAfricaUseLabels: Record<AfricaUseAsSubmitted, string> = {
+  confirmed_deployment: "African use supplied",
+  marketed_to_africa: "Marketed to Africa",
+  africa_usage_likely_unverified: "Possible African use",
+  no_africa_evidence_found: "No African source supplied",
 };

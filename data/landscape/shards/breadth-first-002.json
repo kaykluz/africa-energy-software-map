@@ -149,10 +149,16 @@
       "stageIds": ["stage_meter_serve"],
       "categoryIds": ["cat_retail_metering_billing_payments"],
       "sectorIds": ["sector_power_utilities"],
-      "geographies": ["South Africa"],
+      "geographies": ["South Africa", "Africa"],
       "statusAsSubmitted": "Active",
       "summaryAsSubmitted": "Consumer electricity-status application and API.",
-      "sourceDomains": ["sepush.co.za"]
+      "sourceDomains": ["sepush.co.za"],
+      "sourceUrls": ["https://sepush.co.za"],
+      "segmentsAsSubmitted": ["residential", "information"],
+      "deliveryModelsAsSubmitted": ["mobile app", "API"],
+      "commercialModelAsSubmitted": "freemium;ads",
+      "africaUseAsSubmitted": "confirmed_deployment",
+      "asOfDate": "2026-08-02"
     },
     {
       "id": "land_org_spiro",

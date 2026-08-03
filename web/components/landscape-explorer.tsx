@@ -2,14 +2,17 @@
 
 import Link from "next/link";
 import {
+  landscapeAfricaUseLabels,
   landscapeCategoryLabels,
   landscapeDeploymentLeads,
   landscapeItems,
   landscapeKindLabels,
   landscapeRelationships,
+  landscapeSectorLabels,
   landscapeSourceDomains,
   landscapeSourceAsOf,
   landscapeStageLabels,
+  type AfricaUseAsSubmitted,
   type LandscapeItem,
   type LandscapeKind,
 } from "@/lib/landscape-data";
@@ -23,11 +26,22 @@ const kindOptions = Object.entries(landscapeKindLabels) as [
   string,
 ][];
 const stageOptions = Object.entries(landscapeStageLabels);
+const categoryOptions = Object.entries(landscapeCategoryLabels);
+const sectorOptions = Object.entries(landscapeSectorLabels);
+const africaUseOptions = Object.entries(landscapeAfricaUseLabels) as [
+  AfricaUseAsSubmitted,
+  string,
+][];
+const firstPageSize = 48;
 
 export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string }) {
   const [query, setQuery] = useState(initialQuery);
   const [kind, setKind] = useState<LandscapeKind | "all">("all");
   const [stage, setStage] = useState("all");
+  const [category, setCategory] = useState("all");
+  const [sector, setSector] = useState("all");
+  const [africaUse, setAfricaUse] = useState<AfricaUseAsSubmitted | "all">("all");
+  const [displayLimit, setDisplayLimit] = useState(firstPageSize);
   const [view, setView] = useState<LandscapeView>("listings");
 
   const filteredItems = useMemo(() => {
@@ -35,6 +49,9 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
     return landscapeItems.filter((item) => {
       if (kind !== "all" && item.kind !== kind) return false;
       if (stage !== "all" && !item.stageIds.includes(stage)) return false;
+      if (category !== "all" && !item.categoryIds.includes(category)) return false;
+      if (sector !== "all" && !item.sectorIds.includes(sector)) return false;
+      if (africaUse !== "all" && item.africaUseAsSubmitted !== africaUse) return false;
       if (!term) return true;
       return normaliseQuery(
         [
@@ -48,7 +65,19 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
         ].join(" "),
       ).includes(term);
     });
-  }, [kind, query, stage]);
+  }, [africaUse, category, kind, query, sector, stage]);
+
+  const visibleItems = filteredItems.slice(0, displayLimit);
+
+  function resetListings() {
+    setQuery("");
+    setKind("all");
+    setStage("all");
+    setCategory("all");
+    setSector("all");
+    setAfricaUse("all");
+    setDisplayLimit(firstPageSize);
+  }
 
   function download(format: "csv" | "json") {
     const rows =
@@ -131,7 +160,7 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
               <span className="sr-only">Search all listings</span>
               <i aria-hidden="true">⌕</i>
               <input
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={(event) => { setQuery(event.target.value); setDisplayLimit(firstPageSize); }}
                 placeholder="Search names, places or categories"
                 type="search"
                 value={query}
@@ -139,22 +168,43 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
             </label>
             <label>
               <span>Type</span>
-              <select onChange={(event) => setKind(event.target.value as LandscapeKind | "all")} value={kind}>
+              <select onChange={(event) => { setKind(event.target.value as LandscapeKind | "all"); setDisplayLimit(firstPageSize); }} value={kind}>
                 <option value="all">All types</option>
                 {kindOptions.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
               </select>
             </label>
             <label>
               <span>Stage</span>
-              <select onChange={(event) => setStage(event.target.value)} value={stage}>
+              <select onChange={(event) => { setStage(event.target.value); setDisplayLimit(firstPageSize); }} value={stage}>
                 <option value="all">All stages</option>
                 {stageOptions.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
               </select>
             </label>
+            <label>
+              <span>Category</span>
+              <select onChange={(event) => { setCategory(event.target.value); setDisplayLimit(firstPageSize); }} value={category}>
+                <option value="all">All categories</option>
+                {categoryOptions.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+              </select>
+            </label>
+            <label>
+              <span>Sector</span>
+              <select onChange={(event) => { setSector(event.target.value); setDisplayLimit(firstPageSize); }} value={sector}>
+                <option value="all">All sectors</option>
+                {sectorOptions.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+              </select>
+            </label>
+            <label>
+              <span>Africa link</span>
+              <select onChange={(event) => { setAfricaUse(event.target.value as AfricaUseAsSubmitted | "all"); setDisplayLimit(firstPageSize); }} value={africaUse}>
+                <option value="all">All listings</option>
+                {africaUseOptions.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+              </select>
+            </label>
             <button
               className="landscape-clear"
-              disabled={!query && kind === "all" && stage === "all"}
-              onClick={() => { setQuery(""); setKind("all"); setStage("all"); }}
+              disabled={!query && kind === "all" && stage === "all" && category === "all" && sector === "all" && africaUse === "all"}
+              onClick={resetListings}
               type="button"
             >
               Clear
@@ -168,14 +218,19 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
             </div>
             {filteredItems.length ? (
               <div className="landscape-grid">
-                {filteredItems.map((item, index) => <LandscapeCard index={index} item={item} key={item.id} />)}
+                {visibleItems.map((item, index) => <LandscapeCard index={index} item={item} key={item.id} />)}
               </div>
             ) : (
               <div className="landscape-empty">
                 <strong>No match</strong>
-                <button onClick={() => { setQuery(""); setKind("all"); setStage("all"); }} type="button">Show all listings</button>
+                <button onClick={resetListings} type="button">Show all listings</button>
               </div>
             )}
+            {visibleItems.length < filteredItems.length ? (
+              <button className="landscape-load-more" onClick={() => setDisplayLimit((value) => value + firstPageSize)} type="button">
+                Show more · {filteredItems.length - visibleItems.length} remaining
+              </button>
+            ) : null}
           </section>
         </>
       ) : view === "deployments" ? (
@@ -246,7 +301,11 @@ function LandscapeCard({ item, index }: { item: LandscapeItem; index: number }) 
         <dl>
           <div><dt>Places</dt><dd>{item.geographies.join(", ") || "Not supplied"}</dd></div>
           <div><dt>Status supplied</dt><dd>{item.statusAsSubmitted || "Not supplied"}</dd></div>
-          <div><dt>Sources supplied</dt><dd>{item.sourceDomains.join(", ") || "None"}</dd></div>
+          {item.africaUseAsSubmitted ? <div><dt>Africa link supplied</dt><dd>{landscapeAfricaUseLabels[item.africaUseAsSubmitted]}</dd></div> : null}
+          {item.segmentsAsSubmitted?.length ? <div><dt>Used by</dt><dd>{item.segmentsAsSubmitted.join(", ")}</dd></div> : null}
+          {item.deliveryModelsAsSubmitted?.length ? <div><dt>Delivery</dt><dd>{item.deliveryModelsAsSubmitted.join(", ")}</dd></div> : null}
+          {item.commercialModelAsSubmitted ? <div><dt>Access</dt><dd>{item.commercialModelAsSubmitted}</dd></div> : null}
+          <div><dt>Sources supplied</dt><dd>{item.sourceUrls?.length ? item.sourceUrls.map((url) => <a href={url} key={url} rel="noreferrer" target="_blank">{new URL(url).hostname.replace(/^www\./, "")}</a>) : item.sourceDomains.join(", ") || "None"}</dd></div>
         </dl>
       </details>
       {item.canonicalHref ? <Link href={item.canonicalHref}>Open reviewed record →</Link> : null}
@@ -274,6 +333,14 @@ function exportItem(item: LandscapeItem) {
     status_as_submitted: item.statusAsSubmitted,
     summary_as_submitted: item.summaryAsSubmitted,
     source_domains: item.sourceDomains,
+    source_urls: item.sourceUrls ?? [],
+    website_as_submitted: item.websiteAsSubmitted ?? "",
+    sectors: item.sectorIds.map((id) => landscapeSectorLabels[id] ?? id),
+    segments_as_submitted: item.segmentsAsSubmitted ?? [],
+    delivery_models_as_submitted: item.deliveryModelsAsSubmitted ?? [],
+    commercial_model_as_submitted: item.commercialModelAsSubmitted ?? "",
+    africa_use_as_submitted: item.africaUseAsSubmitted ?? "",
+    as_of_date: item.asOfDate ?? "",
     reviewed_record: item.canonicalHref ?? "",
   };
 }
