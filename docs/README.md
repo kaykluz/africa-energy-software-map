@@ -27,6 +27,7 @@
 - [24 — Sector, geography and bulk intake](24-sector-geography-and-bulk-intake.md)
 - [25 — Production backend, admin and custom domain](25-production-backend-admin-and-domain.md)
 - [27 — Moderated accessibility and user testing](27-moderated-accessibility-user-testing.md)
+- [28 — Classification and software wall](28-classification-and-software-wall.md)
 
 ## Operations and governance
 

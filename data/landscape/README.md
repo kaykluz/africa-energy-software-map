@@ -29,6 +29,20 @@ The public interface imports every catalogue shard and offers filtered CSV and
 JSON exports. The schema lives at
 [`../../schemas/landscape-catalogue.schema.json`](../../schemas/landscape-catalogue.schema.json).
 
+`classifications.json` is a complete one-to-one overlay for the listings. It
+keeps two editorial judgements out of the source-shaped records:
+
+- `energyRelationship` says whether a listing is built for energy, applied in
+  energy, enabling infrastructure, operator-owned, public/research, or still to
+  classify; and
+- `functionIds` records the work it does at a more useful level than the broad
+  value-chain category.
+
+Relationship is not a rating. A payment rail such as Paystack remains listed
+under payment infrastructure and Meter and serve, but is not described as
+energy software. The overlay is validated against every current listing, so a
+new item cannot silently appear without a classification.
+
 ## Publication boundary
 
 Catalogue imports use an explicit public-field allowlist. Free-form research
@@ -40,4 +54,6 @@ phrasing if it appears in a public catalogue record.
 The Phase 1 CSV import is reproducible with
 `scripts/import_phase1_landscape.py`. Its source workbooks stay outside the
 repository; generated shards retain the public factual metadata, categories and
-source links needed by the catalogue.
+source links needed by the catalogue. The same import regenerates the complete
+classification overlay from the source category plus explicit, documented
+rules.

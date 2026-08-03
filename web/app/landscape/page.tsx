@@ -3,8 +3,8 @@ import { LandscapeExplorer } from "@/components/landscape-explorer";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/landscape" },
-  title: "Full list",
-  description: "Browse every organisation, product, tool and research lead submitted to the Africa Energy Software Map.",
+  title: "Software wall",
+  description: "Browse software and enabling infrastructure across the African energy value chain.",
 };
 
 export default async function Landscape({
@@ -15,4 +15,3 @@ export default async function Landscape({
   const params = await searchParams;
   return <LandscapeExplorer initialQuery={params.q} />;
 }
-

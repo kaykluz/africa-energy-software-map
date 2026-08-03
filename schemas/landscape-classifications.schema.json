@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://map.kaykluz.com/schemas/landscape-classifications.schema.json",
+  "title": "Africa Energy Software Map landscape classifications",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "method", "items"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "method": { "type": "string", "minLength": 1 },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/classification" }
+    }
+  },
+  "$defs": {
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["itemId", "energyRelationship", "functionIds"],
+      "properties": {
+        "itemId": { "type": "string", "pattern": "^land_[a-z0-9_]+$" },
+        "energyRelationship": {
+          "enum": [
+            "energy_native",
+            "energy_applied",
+            "enabling_infrastructure",
+            "operator_owned",
+            "public_research",
+            "unclassified"
+          ]
+        },
+        "functionIds": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^func_[a-z0-9_]+$" },
+          "uniqueItems": true
+        },
+        "logoPath": { "type": "string", "pattern": "^/logos/[a-z0-9_./-]+$" },
+        "logoSourceUrl": { "type": "string", "format": "uri" }
+      }
+    }
+  }
+}

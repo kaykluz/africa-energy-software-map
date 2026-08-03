@@ -324,7 +324,7 @@ export function DataPage() {
         </div>
       </section>
       <section className="data-section two-column-copy">
-        <div><h2>Full landscape list</h2><p>Browse and export every submitted name, including research leads that are not yet part of the reviewed release.</p><Link href="/landscape">Open the full list →</Link></div>
+        <div><h2>Software wall</h2><p>Browse and export every submitted name across the value chain.</p><Link href="/landscape">Open the wall →</Link></div>
         <div><h2>Versioning and provenance</h2><p>Every immutable release states its version, date, Git commit, record counts, limitations, checksums and licence.</p></div>
       </section>
     </main>

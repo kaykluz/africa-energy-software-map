@@ -27,7 +27,7 @@ const primaryNavigation = [
 ] as const;
 
 const projectNavigation = [
-  { href: "/landscape", label: "Full list" },
+  { href: "/landscape", label: "Software wall" },
   { href: "/review", label: "Admin" },
   { href: "/methodology", label: "Method" },
   { href: "/data", label: "Downloads" },
@@ -415,7 +415,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <span className="mono">{release.version}</span>
         </div>
         <nav aria-label="Footer">
-          <Link href="/landscape">Full list</Link>
+          <Link href="/landscape">Software wall</Link>
           <Link href="/methodology">Method</Link>
           <Link href="/data">Downloads</Link>
           <Link href="/licence">Licence</Link>

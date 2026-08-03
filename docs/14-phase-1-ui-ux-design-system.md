@@ -9,8 +9,9 @@ accessible, measurable product system.
 **Public registry meets editorial cartography.**
 
 The product must feel authoritative, calm, legible, and inspectable. It is not a
-marketing site, startup-logo landscape, or conventional pin map. Evidence,
-freshness, and geographic honesty are part of the interface.
+marketing site or conventional pin map. The broad landscape uses a structured
+software wall for recognition; the reviewed views keep evidence, freshness and
+geographic honesty in the interface.
 
 ## Experience principles
 
@@ -42,6 +43,7 @@ freshness, and geographic honesty are part of the interface.
 | `/` | Canonical Stack homepage |
 | `/deployments` | Deployment, claimed, headquarters, and founded-in geography |
 | `/directory` | Structured filtering, sorting, and export |
+| `/landscape` | Inclusive software wall and full catalogue export |
 | `/search?q=` | Shareable global results |
 | `/products/{slug}` | Product record |
 | `/organisations/{slug}` | Organisation record |
@@ -65,7 +67,7 @@ freshness, and geographic honesty are part of the interface.
 
 ### Desktop header
 
-64px high. Order: wordmark, Stack, Deployments, Directory, Methodology, flexible
+64px high. Order: wordmark, Stack, Deployments, Directory, Software wall, Methodology, flexible
 space, Search, Contribute. Active route uses cobalt text and a 2px underline;
 navigation is not a row of filled pills. Contribute is the sole outlined header
 action.

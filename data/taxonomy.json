@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "stages": [
     {
       "id": "stage_plan_design",
@@ -59,6 +59,50 @@
   ],
   "cross_cutting": [
     {"id": "cat_data_interoperability_security", "name": "Data, interoperability and security"}
+  ],
+  "energy_relationships": [
+    {"id": "energy_native", "name": "Built for energy", "description": "Energy is the software's primary product domain."},
+    {"id": "energy_applied", "name": "Applied in energy", "description": "A broader product has a distinct energy or utility use."},
+    {"id": "enabling_infrastructure", "name": "Enabling infrastructure", "description": "Horizontal infrastructure used by energy organisations, including payments, cloud, connectivity and enterprise systems."},
+    {"id": "operator_owned", "name": "Operator-owned", "description": "Software operated by an energy company, utility, market operator or programme for its own service."},
+    {"id": "public_research", "name": "Public and research", "description": "Public-interest, open, academic or research infrastructure."},
+    {"id": "unclassified", "name": "To classify", "description": "Included in the catalogue; its relationship to energy still needs classification."}
+  ],
+  "functions": [
+    {"id": "func_electrification_geospatial", "name": "Electrification and geospatial planning", "stageIds": ["stage_plan_design"]},
+    {"id": "func_engineering_power_systems", "name": "Power-system engineering", "stageIds": ["stage_plan_design"]},
+    {"id": "func_pv_design", "name": "Solar design and simulation", "stageIds": ["stage_plan_design"]},
+    {"id": "func_hybrid_offgrid_design", "name": "Hybrid and off-grid design", "stageIds": ["stage_plan_design"]},
+    {"id": "func_resource_generation_storage_design", "name": "Resource, generation and storage design", "stageIds": ["stage_plan_design"]},
+    {"id": "func_project_finance_modelling", "name": "Project finance and modelling", "stageIds": ["stage_finance_procure"]},
+    {"id": "func_procurement_marketplaces", "name": "Procurement and marketplaces", "stageIds": ["stage_finance_procure"]},
+    {"id": "func_grant_rbf_administration", "name": "Grant and RBF administration", "stageIds": ["stage_finance_procure"]},
+    {"id": "func_asset_monitoring_apm", "name": "Asset monitoring and performance", "stageIds": ["stage_generate_store"]},
+    {"id": "func_scada_ems_adms", "name": "SCADA, EMS and ADMS", "stageIds": ["stage_transmit_distribute"]},
+    {"id": "func_outage_gis_workforce", "name": "Outage, GIS and field workforce", "stageIds": ["stage_transmit_distribute"]},
+    {"id": "func_loss_reduction_revenue_protection", "name": "Loss reduction and revenue protection", "stageIds": ["stage_transmit_distribute"]},
+    {"id": "func_forecasting", "name": "Energy and weather forecasting", "stageIds": ["stage_transmit_distribute"]},
+    {"id": "func_derms_orchestration", "name": "DERMS and energy orchestration", "stageIds": ["stage_transmit_distribute", "stage_meter_serve"]},
+    {"id": "func_minigrid_operations", "name": "Mini-grid operations", "stageIds": ["stage_generate_store", "stage_meter_serve"]},
+    {"id": "func_paygo_consumer_finance", "name": "PAYGo and consumer finance", "stageIds": ["stage_finance_procure", "stage_meter_serve"]},
+    {"id": "func_metering_ami_hes", "name": "Metering, AMI and head-end systems", "stageIds": ["stage_meter_serve"]},
+    {"id": "func_customer_apps_engagement", "name": "Customer apps and engagement", "stageIds": ["stage_meter_serve"]},
+    {"id": "func_utility_cis_billing", "name": "Utility CIS and billing", "stageIds": ["stage_meter_serve"]},
+    {"id": "func_utility_vending_collections", "name": "Utility vending and collections", "stageIds": ["stage_meter_serve"]},
+    {"id": "func_payment_infrastructure", "name": "Payment infrastructure", "stageIds": ["stage_meter_serve"]},
+    {"id": "func_clean_cooking", "name": "Clean-cooking platforms", "stageIds": ["stage_meter_serve", "stage_trade_report"]},
+    {"id": "func_building_energy_management", "name": "Building and facility energy", "stageIds": ["stage_meter_serve"]},
+    {"id": "func_telecom_power_management", "name": "Telecom and critical-infrastructure power", "stageIds": ["stage_generate_store", "stage_meter_serve"]},
+    {"id": "func_emobility_fleet_charging", "name": "E-mobility, fleets and charging", "stageIds": ["stage_meter_serve"]},
+    {"id": "func_productive_use_energy", "name": "Productive-use energy", "stageIds": ["stage_meter_serve"]},
+    {"id": "func_market_settlement_trading", "name": "Market settlement and trading", "stageIds": ["stage_trade_report"]},
+    {"id": "func_ppa_wheeling_retail", "name": "PPA, wheeling and retail", "stageIds": ["stage_trade_report"]},
+    {"id": "func_carbon_mrv_registry", "name": "Carbon MRV and registries", "stageIds": ["stage_trade_report"]},
+    {"id": "func_energy_data_reporting", "name": "Energy data and reporting", "stageIds": ["stage_trade_report"]},
+    {"id": "func_iot_connectivity_platforms", "name": "IoT and connectivity platforms", "stageIds": []},
+    {"id": "func_energy_interoperability", "name": "Energy interoperability and standards", "stageIds": []},
+    {"id": "func_grid_cybersecurity", "name": "Grid and OT cybersecurity", "stageIds": []},
+    {"id": "func_enterprise_business_systems", "name": "Enterprise business systems", "stageIds": []}
   ],
   "sectors": [
     {"id": "sector_power_utilities", "name": "Power networks and utilities", "order": 1},
