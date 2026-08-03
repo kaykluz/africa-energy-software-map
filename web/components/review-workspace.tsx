@@ -79,6 +79,12 @@ type ReviewCataloguePage = {
   }>;
   options: { roles: string[]; segments: string[] };
 };
+type CanonicalOrganisationTarget = {
+  id: string;
+  name: string;
+  href: string;
+  aliases: string[];
+};
 type BulkReviewSaveResult = {
   review: BulkRowReviewRecord;
   status: string;
@@ -268,7 +274,7 @@ export function ReviewWorkspace({
   const organisationCatalogueCanonical =
     organisationCatalogueSummary.reviewedMatches +
     Array.from(organisationCatalogueReviewMap.values()).filter(
-      (review) => review.canonicalHref,
+      (review) => ["accept", "amend"].includes(review.decision),
     ).length;
   const organisationCataloguePending = Math.max(
     0,
@@ -917,6 +923,13 @@ function OrganisationCatalogueReviewForm({
   const [classificationsConfirmed, setClassificationsConfirmed] = useState(Boolean(review?.classificationsConfirmed));
   const [safetyChecked, setSafetyChecked] = useState(Boolean(review?.safetyChecked));
   const [notes, setNotes] = useState(review?.notes ?? "");
+  const [canonicalOrganisationId, setCanonicalOrganisationId] = useState(
+    review?.decision === "duplicate" ? review.canonicalOrganisationId ?? "" : "",
+  );
+  const [canonicalTargetQuery, setCanonicalTargetQuery] = useState(
+    review?.decision === "duplicate" ? review.canonicalOrganisationId ?? "" : "",
+  );
+  const [canonicalTargets, setCanonicalTargets] = useState<CanonicalOrganisationTarget[]>([]);
   const [amendField, setAmendField] = useState<OrganisationCatalogueAmendableField>(
     (Object.keys(review?.amendments ?? {})[0] as OrganisationCatalogueAmendableField) || "name",
   );
@@ -925,6 +938,48 @@ function OrganisationCatalogueReviewForm({
   );
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (decision !== "duplicate" || !canonicalTargetQuery.trim()) {
+      return;
+    }
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => {
+      const params = new URLSearchParams({
+        targets: "1",
+        q: canonicalTargetQuery.trim(),
+        excludeCandidate: record.id,
+      });
+      fetch(`/api/review/organisation-catalogue?${params}`, {
+        cache: "no-store",
+        signal: controller.signal,
+      })
+        .then(async (response) => {
+          const result = (await response.json()) as
+            | { records: CanonicalOrganisationTarget[] }
+            | ApiError;
+          if (!response.ok || "error" in result) {
+            throw new Error("error" in result ? result.error?.message : "Canonical organisations could not be loaded.");
+          }
+          setCanonicalTargets(result.records);
+          const selected = result.records.find(
+            (target) => target.id === canonicalOrganisationId,
+          );
+          if (selected && canonicalTargetQuery === canonicalOrganisationId) {
+            setCanonicalTargetQuery(selected.name);
+          }
+        })
+        .catch((reason: unknown) => {
+          if (!controller.signal.aborted) {
+            setError(reason instanceof Error ? reason.message : "Canonical organisations could not be loaded.");
+          }
+        });
+    }, 180);
+    return () => {
+      controller.abort();
+      window.clearTimeout(timer);
+    };
+  }, [canonicalOrganisationId, canonicalTargetQuery, decision, record.id]);
 
   async function submit(event: FormEvent) {
     event.preventDefault();
@@ -938,6 +993,7 @@ function OrganisationCatalogueReviewForm({
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             decision,
+            canonicalOrganisationId: decision === "duplicate" ? canonicalOrganisationId.trim() : "",
             amendments: decision === "amend" && amendValue.trim()
               ? { [amendField]: amendValue.trim() }
               : {},
@@ -1000,6 +1056,56 @@ function OrganisationCatalogueReviewForm({
           </label>
         </div>
       ) : null}
+      {decision === "duplicate" ? (
+        <div className="review-catalogue-duplicate-target">
+          <label className="review-catalogue-source-input">
+            <span>Merge into existing organisation</span>
+            <input
+              aria-controls={`canonical-targets-${record.id}`}
+              aria-describedby={`duplicate-help-${record.id}`}
+              onChange={(event) => {
+                setCanonicalTargetQuery(event.target.value);
+                setCanonicalOrganisationId("");
+                if (!event.target.value.trim()) setCanonicalTargets([]);
+              }}
+              placeholder="Search by organisation name"
+              type="search"
+              value={canonicalTargetQuery}
+            />
+            <small id={`duplicate-help-${record.id}`}>
+              Select the existing company. The catalogue name, classifications and sources will join that profile without creating another organisation.
+            </small>
+          </label>
+          {canonicalTargets.length && !canonicalOrganisationId ? (
+            <select
+              aria-label="Choose the canonical organisation"
+              className="review-canonical-targets"
+              id={`canonical-targets-${record.id}`}
+              onChange={(event) => {
+                const target = canonicalTargets.find((item) => item.id === event.target.value);
+                if (!target) return;
+                setCanonicalOrganisationId(target.id);
+                setCanonicalTargetQuery(target.name);
+              }}
+              size={Math.min(6, canonicalTargets.length)}
+              value=""
+            >
+              <option disabled value="">Select an organisation</option>
+              {canonicalTargets.map((target) => (
+                <option key={target.id} value={target.id}>
+                  {target.name}{target.aliases.length ? ` · ${target.aliases.slice(0, 2).join(" · ")}` : ""}
+                </option>
+              ))}
+            </select>
+          ) : null}
+          {canonicalOrganisationId ? (
+            <p className="review-canonical-selected">
+              <strong>Selected:</strong> {canonicalTargetQuery}
+              <Link href={canonicalTargets.find((target) => target.id === canonicalOrganisationId)?.href ?? `/organisations`}>Open ↗</Link>
+            </p>
+          ) : null}
+        </div>
+      ) : null}
       <label className="review-catalogue-source-input">
         <span>Direct source URL</span>
         <input onChange={(event) => setSourceUrl(event.target.value)} type="url" value={sourceUrl} />
@@ -1014,16 +1120,22 @@ function OrganisationCatalogueReviewForm({
         <span>Review note</span>
         <textarea
           onChange={(event) => setNotes(event.target.value)}
-          placeholder={decision === "duplicate" ? "Existing canonical profile URL or ID, and why these are the same identity" : "What did you confirm, change or still need?"}
+          placeholder={decision === "duplicate" ? "Why are these the same legal or operating identity?" : "What did you confirm, change or still need?"}
           rows={3}
           value={notes}
         />
       </label>
       {error ? <p className="review-form-error" role="alert">{error}</p> : null}
-      <button className="button button-primary" disabled={saving} type="submit">
+      <button
+        className="button button-primary"
+        disabled={saving || (decision === "duplicate" && !canonicalOrganisationId)}
+        type="submit"
+      >
         {saving
           ? "Saving…"
-          : ["accept", "amend"].includes(decision)
+          : decision === "duplicate"
+            ? "Merge duplicate"
+            : ["accept", "amend"].includes(decision)
             ? review ? "Update canonical profile" : "Publish canonical profile"
             : review ? "Update decision" : "Save decision"}
       </button>

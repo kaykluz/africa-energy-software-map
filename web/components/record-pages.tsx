@@ -27,12 +27,15 @@ import {
   organisationDirectory,
   organisationDirectoryRecord,
   organisationEcosystemGroups,
+  organisationRoleName,
+  publicOrganisationDescription,
   relatedOrganisations,
   organisationSegmentName,
   organisationSectorName,
   softwareStageName,
   type OrganisationDirectoryRecord,
 } from "@/lib/organisation-data";
+import { buildOrganisationProfileGraph } from "@/lib/organisation-graph";
 import {
   organisationLinkIndex,
   resolveOrganisationHref,
@@ -248,28 +251,28 @@ export function ProductProfile({
 }
 
 export function OrganisationProfile({
+  directory = organisationDirectory,
   directoryRecord: suppliedDirectoryRecord,
   slug,
 }: {
+  directory?: OrganisationDirectoryRecord[];
   directoryRecord?: OrganisationDirectoryRecord;
   slug: string;
 }) {
   const organisation = suppliedDirectoryRecord?.organisation ?? organisationBySlug(slug);
   if (!organisation) return <NotFoundRecord type="organisation" />;
   const directoryRecord = suppliedDirectoryRecord ?? organisationDirectoryRecord(organisation.id);
-  const organisationProducts = directoryRecord?.ownedProducts ?? products.filter(
+  const organisationLinks = organisationLinkIndex(directory);
+  const organisationDescription = publicOrganisationDescription(organisation.description);
+  const graph = directoryRecord
+    ? buildOrganisationProfileGraph(directoryRecord, directory)
+    : null;
+  const organisationProducts = graph?.canonicalProducts ?? products.filter(
     (product) => product.organisationId === organisation.id,
   );
-  const directlyOwnedProductIds = new Set(
-    products
-      .filter((product) => product.organisationId === organisation.id)
-      .map((product) => product.id),
-  );
-  const organisationDeployments = deployments.filter((deployment) =>
-    directlyOwnedProductIds.has(deployment.productId),
-  );
+  const organisationDeployments = graph?.deployments ?? [];
   const deploymentCountries = Array.from(
-    new Set(organisationDeployments.map((deployment) => deployment.country)),
+    new Set(organisationDeployments.map(({ deployment }) => deployment.country)),
   );
   const aliasNames = suppliedDirectoryRecord
     ? suppliedDirectoryRecord.aliases
@@ -297,7 +300,7 @@ export function OrganisationProfile({
               Also known as {aliasNames.join(", ")}
             </p>
           ) : null}
-          {organisation.description ? <p>{organisation.description}</p> : null}
+          {organisationDescription ? <p>{organisationDescription}</p> : null}
           <div className="record-labels">
             <span className="origin-label"><span className="origin-mark" aria-hidden="true" />{organisation.origin}</span>
             <LifecycleTag value={organisation.lifecycle.toLowerCase()} />
@@ -334,10 +337,15 @@ export function OrganisationProfile({
             <ProfileSection heading="Actor type and markets">
               <div className="organisation-profile-classification">
                 <div>
-                  <span>Specific role</span>
-                  <Link href={`/organisations?view=ecosystem&role=${directoryRecord.primaryRole.id}`}>
-                    {directoryRecord.primaryRole.name}
-                  </Link>
+                  <span>Specific roles</span>
+                  <div>
+                    {directoryRecord.roleIds.map((roleId) => (
+                      <Link href={`/organisations?view=ecosystem&role=${roleId}`} key={roleId}>
+                        {organisationRoleName(roleId)}
+                        {roleId === directoryRecord.primaryRole.id ? " · primary" : ""}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
                 <div>
                   <span>Actor type</span>
@@ -377,9 +385,55 @@ export function OrganisationProfile({
               </small>
             </ProfileSection>
           ) : null}
+          {directoryRecord?.catalogueListings.length ? (
+            <ProfileSection heading="Merged catalogue records">
+              <div className="organisation-graph-list catalogue">
+                {directoryRecord.catalogueListings.map((listing) => (
+                  <article key={listing.id}>
+                    <div>
+                      <span>One canonical identity · catalogue record {listing.id}</span>
+                      <h3>{listing.name}</h3>
+                      <div className="organisation-catalogue-links">
+                        {listing.roles.map((role) => (
+                          <Link href={`/organisations?view=catalogue&role=${encodeURIComponent(role)}`} key={`role-${role}`}>{role}</Link>
+                        ))}
+                        {listing.segments.map((segment) => (
+                          <Link href={`/organisations?view=catalogue&segment=${encodeURIComponent(segment)}`} key={`segment-${segment}`}>{segment}</Link>
+                        ))}
+                        {listing.technologies.map((technology) => (
+                          <Link href={`/landscape?q=${encodeURIComponent(technology)}`} key={`technology-${technology}`}>{technology}</Link>
+                        ))}
+                        {listing.countriesActive.map((country) => (
+                          <span key={`country-${country}`}><CountryNameLink name={country} /></span>
+                        ))}
+                      </div>
+                      {listing.parent ? (
+                        <p>Parent / group · <OrganisationNameLink index={organisationLinks} name={listing.parent} searchFallback /></p>
+                      ) : null}
+                    </div>
+                    <div>
+                      <span>{listing.lastReviewed || "Review date not documented"}</span>
+                      {listing.sourceUrls[0] ? <a href={listing.sourceUrls[0]} rel="noreferrer" target="_blank">Source ↗</a> : null}
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <small className="organisation-derived-note">
+                Names and source-listed classifications from duplicate catalogue rows are retained here, but they resolve to this single organisation profile.
+              </small>
+            </ProfileSection>
+          ) : null}
           <ProfileSection heading="Linked software">
-            <div className="linked-product-list">
-              {organisationProducts.map((product) => (
+            {organisationProducts.length ? (
+              <div className="linked-product-list">
+                {organisationProducts.map((product) => {
+                  const productDeployments = graph?.deployments.filter(
+                    ({ deployment }) => deployment.productId === product.id,
+                  ).length ?? product.deploymentCountries.length;
+                  const relationship = product.organisationId === organisation.id
+                    ? "Owner"
+                    : "Linked organisation";
+                  return (
                 <article key={product.id}>
                   <ProductMark
                     organisationId={product.organisationId}
@@ -390,12 +444,54 @@ export function OrganisationProfile({
                   />
                   <span>
                     <Link href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
-                    <Link href={`/?category=${product.categoryId}`}><small>{product.category}</small></Link>
+                    <small>
+                      <Link href={`/directory?category=${product.categoryId}`}>{product.category}</Link>
+                      {" · "}{relationship}
+                    </small>
                   </span>
-                  <Link href={`/products/${product.slug}`}>{product.deploymentCountries.length} evidenced countries →</Link>
+                  <Link href={`/products/${product.slug}`}>{productDeployments} deployment {productDeployments === 1 ? "record" : "records"} →</Link>
                 </article>
-              ))}
-            </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p>No reviewed software relationship is published for this organisation.</p>
+            )}
+            {graph?.catalogueSoftware.length ? (
+              <div className="organisation-catalogue-software">
+                <header>
+                  <strong>Additional catalogue software</strong>
+                  <span>{graph.catalogueSoftware.length} distinct listings</span>
+                </header>
+                {graph.catalogueSoftware.map((item) => (
+                  <article key={item.id}>
+                    <div>
+                      <h3><Link href={item.href}>{item.name}</Link></h3>
+                      <p>{item.summary || item.status}</p>
+                      <div>
+                        {item.categoryIds.map((categoryId) => {
+                          const category = categories.find((value) => value.id === categoryId);
+                          return category ? (
+                            <Link href={`/landscape?q=${encodeURIComponent(category.name)}`} key={`category-${category.id}`}>{category.name}</Link>
+                          ) : null;
+                        })}
+                        {item.stageIds.map((stageId) => (
+                          <Link href={`/landscape?stage=${stageId}`} key={`stage-${stageId}`}>{softwareStageName(stageId)}</Link>
+                        ))}
+                        {item.sectorIds.map((sectorId) => (
+                          <Link href={`/landscape?sector=${sectorId}`} key={`sector-${sectorId}`}>{organisationSectorName(sectorId)}</Link>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <span>Catalogue · not yet canonical</span>
+                      {item.website ? <a href={item.website} rel="noreferrer" target="_blank">Website ↗</a> : null}
+                      {item.sourceUrls[0] ? <a href={item.sourceUrls[0]} rel="noreferrer" target="_blank">Source ↗</a> : null}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ) : null}
           </ProfileSection>
           {directoryRecord?.stageIds.length ? (
             <ProfileSection heading="Software coverage">
@@ -472,8 +568,86 @@ export function OrganisationProfile({
               <Link href={`/directory?q=${encodeURIComponent(organisation.name)}`}>View software records →</Link>
             </div>
           </ProfileSection>
+          {graph?.deployments.length ? (
+            <ProfileSection heading="Deployments and parties">
+              <div className="organisation-graph-list">
+                {graph.deployments.map(({ deployment, product, relationshipLabels, source }) => (
+                  <article key={deployment.id}>
+                    <div>
+                      <span>{relationshipLabels.join(" · ")}</span>
+                      <h3>
+                        {product ? <Link href={`/products/${product.slug}`}>{product.name}</Link> : deployment.id}
+                      </h3>
+                      <p>
+                        <Link href={`/countries/${deployment.countryIso2.toLowerCase()}`}>{deployment.country}</Link>
+                        {" · "}{deployment.year || "Year not documented"}
+                        {" · "}<OrganisationNameLink
+                          index={organisationLinks}
+                          name={deployment.customer}
+                          searchFallback={deployment.customerDisclosure === "named"}
+                        />
+                      </p>
+                    </div>
+                    <div>
+                      <EvidenceStatusLabel status={deployment.evidence} />
+                      {source ? <a href={source.url} rel="noreferrer" target="_blank">Source ↗</a> : null}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </ProfileSection>
+          ) : null}
+          {graph && (graph.projectFocus.length || graph.researchLeads.length) ? (
+            <ProfileSection heading="Projects and deployment leads">
+              {graph.projectFocus.length ? (
+                <div className="organisation-project-focus">
+                  {graph.projectFocus.map((focus) => <span key={focus}>{focus}</span>)}
+                </div>
+              ) : null}
+              {graph.researchLeads.length ? (
+                <div className="organisation-graph-list catalogue">
+                  {graph.researchLeads.map((lead) => (
+                    <article key={lead.id}>
+                      <div>
+                        <span>Catalogue lead · {lead.relationshipLabels.join(" · ")}</span>
+                        <h3><Link href={`/landscape?q=${encodeURIComponent(lead.product || lead.name)}`}>{lead.name}</Link></h3>
+                        <p>
+                          {[lead.product, lead.customer, lead.countries.join(", "), lead.date]
+                            .filter(Boolean)
+                            .join(" · ")}
+                        </p>
+                      </div>
+                      <div>
+                        <span>Requires project-level review</span>
+                        {lead.sourceUrls[0] ? <a href={lead.sourceUrls[0]} rel="noreferrer" target="_blank">Source ↗</a> : null}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              ) : null}
+              <small className="organisation-derived-note">
+                Catalogue leads and portfolio descriptions stay separate from reviewed named projects, transactions and operational deployments.
+              </small>
+            </ProfileSection>
+          ) : null}
+          {graph?.relatedParties.length ? (
+            <ProfileSection heading="Related parties">
+              <div className="organisation-party-grid">
+                {graph.relatedParties.map(({ organisation: related, labels }) => (
+                  <article key={related.id}>
+                    <OrganisationMark name={related.name} organisationId={related.id} size={38} />
+                    <div>
+                      <h3><Link href={`/organisations/${related.slug}`}>{related.name}</Link></h3>
+                      <p>{labels.join(" · ")}</p>
+                    </div>
+                    <Link aria-label={`Open ${related.name}`} href={`/organisations/${related.slug}`}>→</Link>
+                  </article>
+                ))}
+              </div>
+            </ProfileSection>
+          ) : null}
           <ProfileSection heading="Organisation history">
-            {corporateRelationships.length ? (
+            {corporateRelationships.length || graph?.historyLeads.length ? (
               <div className="source-list">
                 {corporateRelationships.map(({ record, organisation: related, label }) => (
                   <article key={record.id}>
@@ -503,11 +677,42 @@ export function OrganisationProfile({
                     </div>
                   </article>
                 ))}
+                {graph?.historyLeads.map((lead) => (
+                  <article key={lead.id}>
+                    <div>
+                      <span>Relationship catalogue lead</span>
+                      <h3>{lead.name}</h3>
+                      <p>{[lead.event, lead.date].filter(Boolean).join(" · ")}</p>
+                    </div>
+                    {lead.sourceUrls[0] ? (
+                      <a href={lead.sourceUrls[0]} rel="noreferrer" target="_blank">Source ↗</a>
+                    ) : null}
+                  </article>
+                ))}
               </div>
             ) : (
               <p>No sourced rename, merger or acquisition history is recorded in the current release.</p>
             )}
           </ProfileSection>
+          {graph?.sources.length ? (
+            <ProfileSection heading="Sources">
+              <div className="organisation-source-ledger">
+                {graph.sources.map((source) => (
+                  <article key={source.id}>
+                    <div>
+                      <span>{source.contexts.join(" · ")}</span>
+                      <h3><a href={source.url} rel="noreferrer" target="_blank">{source.title}</a></h3>
+                      <p>
+                        <OrganisationNameLink index={organisationLinks} name={source.publisher} />
+                        {" · "}{source.independence}
+                      </p>
+                    </div>
+                    <a href={source.url} rel="noreferrer" target="_blank">Open ↗</a>
+                  </article>
+                ))}
+              </div>
+            </ProfileSection>
+          ) : null}
         </article>
         <aside className="record-rail">
           {organisation.website ? (

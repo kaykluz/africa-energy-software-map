@@ -65,6 +65,7 @@ export async function PUT(
       await saveOrganisationCatalogueReview({
         candidateId: id,
         decision: decision as OrganisationCatalogueDecision,
+        canonicalOrganisationId: textValue(body.value, "canonicalOrganisationId", 120),
         amendments,
         sourceUrl: textValue(body.value, "sourceUrl", 2_000),
         sourceOpened: booleanValue(body.value, "sourceOpened"),
