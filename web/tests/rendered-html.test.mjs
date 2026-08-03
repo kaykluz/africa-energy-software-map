@@ -317,6 +317,7 @@ test("server-renders the classified software wall", async () => {
   const html = await response.text();
   assert.match(html, /<h1[^>]*>Software wall<\/h1>/i);
   assert.match(html, /Browse tools by where they sit in the energy system/);
+  assert.match(html, /Core energy software/);
   assert.match(html, /SteamaCo/);
   assert.match(html, /Plan and design/);
   assert.match(html, /Deployment map/);
@@ -330,6 +331,8 @@ test("classifies a horizontal payment rail without presenting it as energy softw
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /Paystack/);
+  assert.match(html, /Software applied to energy/);
+  assert.match(html, /Horizontal infrastructure/);
   assert.match(html, /Payment infrastructure/);
   assert.match(html, /Enabling infrastructure/);
 });
