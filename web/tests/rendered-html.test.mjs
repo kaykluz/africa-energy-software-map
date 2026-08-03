@@ -34,7 +34,7 @@ async function fetchWorker(pathname = "/", init = {}, environment = {}) {
 }
 
 async function render(pathname = "/") {
-  return fetchWorker(pathname);
+  return fetchWorker(pathname, {}, { DB: new MemoryD1() });
 }
 
 class MemoryD1 {
@@ -510,7 +510,7 @@ test("server search includes organisation records", async () => {
   assert.match(html, /Open record/);
 });
 
-test("surfaces the full organisation inclusion catalogue separately from reviewed profiles", async () => {
+test("surfaces the full organisation inclusion catalogue separately from canonical profiles", async () => {
   const response = await render("/organisations");
   assert.equal(response.status, 200);
   const html = await response.text();
@@ -518,11 +518,12 @@ test("surfaces the full organisation inclusion catalogue separately from reviewe
   assert.match(html, /inclusion catalogue/i);
   assert.match(html, /Review pending/);
   assert.match(html, /10000 Children Care Uganda/);
-  assert.match(html, /reviewed profiles/i);
+  assert.match(html, /canonical profiles/i);
 
   const api = await fetchWorker(
     "/api/organisation-catalogue?role=Financier&pageSize=10",
     { headers: { accept: "application/json" } },
+    { DB: new MemoryD1() },
   );
   assert.equal(api.status, 200);
   const payload = await api.json();
@@ -533,6 +534,7 @@ test("surfaces the full organisation inclusion catalogue separately from reviewe
   const csv = await fetchWorker(
     "/api/organisation-catalogue?scope=reviewed&format=csv",
     { headers: { accept: "text/csv" } },
+    { DB: new MemoryD1() },
   );
   assert.equal(csv.status, 200);
   assert.match(csv.headers.get("content-disposition") ?? "", /inclusion-catalogue\.csv/);
@@ -558,6 +560,7 @@ test("surfaces the full organisation inclusion catalogue separately from reviewe
   const gambia = await fetchWorker(
     "/api/organisation-catalogue?country=The%20Gambia&pageSize=10",
     { headers: { accept: "application/json" } },
+    { DB: new MemoryD1() },
   );
   assert.equal(gambia.status, 200);
   assert.ok((await gambia.json()).total > 0);
@@ -982,23 +985,127 @@ test("organisation catalogue candidates are visible and decisions persist in rev
     { DB: database },
   );
   assert.equal(saved.status, 200);
-  assert.equal((await saved.json()).decision, "accept");
+  const savedReview = await saved.json();
+  assert.equal(savedReview.decision, "accept");
+  assert.equal(savedReview.canonicalHref, "/organisations/3e-afr-0002");
   assert.equal(database.count("organisation_catalogue_reviews"), 1);
 
+  const publicCatalogue = await fetchWorker(
+    "/api/organisation-catalogue?q=3E&scope=reviewed",
+    { headers: { accept: "application/json" } },
+    { DB: database },
+  );
+  assert.equal(publicCatalogue.status, 200);
+  const publicCataloguePayload = await publicCatalogue.json();
+  assert.equal(publicCataloguePayload.total, 1);
+  assert.equal(publicCataloguePayload.records[0].reviewState, "reviewed");
+  assert.equal(
+    publicCataloguePayload.records[0].reconciliation.canonicalHref,
+    "/organisations/3e-afr-0002",
+  );
+  assert.equal(publicCataloguePayload.counts.reviewedMatches, 19);
+
+  const canonicalProfile = await fetchWorker(
+    "/organisations/3e-afr-0002",
+    {},
+    { DB: database },
+  );
+  assert.equal(canonicalProfile.status, 200);
+  const canonicalHtml = await canonicalProfile.text();
+  assert.match(canonicalHtml, /Reviewed organisation record/);
+  assert.match(canonicalHtml, /<h1[^>]*>3E<\/h1>/);
+  assert.match(canonicalHtml, /Open reviewed source/);
+
+  const canonicalDirectory = await fetchWorker(
+    "/organisations?view=directory&q=3E",
+    {},
+    { DB: database },
+  );
+  assert.equal(canonicalDirectory.status, 200);
+  const canonicalDirectoryHtml = await canonicalDirectory.text();
+  assert.match(canonicalDirectoryHtml, /<strong>65<\/strong><span>organisations<\/span>/);
+  assert.match(canonicalDirectoryHtml, /href="\/organisations\/3e-afr-0002"/);
+
+  const amended = await fetchWorker(
+    `/api/review/organisation-catalogue/${candidateId}`,
+    reviewRequest({
+      decision: "amend",
+      amendments: {
+        name: "3E Africa",
+        countriesActive: "Nigeria; Ghana",
+      },
+      sourceUrl: "https://www.3e.eu/",
+      sourceOpened: true,
+      identityConfirmed: true,
+      classificationsConfirmed: true,
+      safetyChecked: true,
+      notes: "Published name and country coverage corrected.",
+      expectedVersion: 1,
+    }),
+    { DB: database },
+  );
+  assert.equal(amended.status, 200);
+  assert.equal((await amended.json()).canonicalHref, "/organisations/3e-afr-0002");
+  const amendedProfile = await fetchWorker(
+    "/organisations/3e-afr-0002",
+    {},
+    { DB: database },
+  );
+  assert.match(await amendedProfile.text(), /<h1[^>]*>3E Africa<\/h1>/);
+
+  const nigeriaMap = await fetchWorker(
+    "/deployments?object=organisations&presence=catalogue&country=NG",
+    {},
+    { DB: database },
+  );
+  const nigeriaMapHtml = await nigeriaMap.text();
+  assert.match(nigeriaMapHtml, /href="\/organisations\/3e-afr-0002"/);
+
   const accepted = await fetchWorker(
-    "/api/review/organisation-catalogue?status=accept",
+    "/api/review/organisation-catalogue?status=amend",
     { headers: reviewerHeaders },
     { DB: database },
   );
   const acceptedPayload = await accepted.json();
   assert.equal(acceptedPayload.total, 1);
   assert.equal(acceptedPayload.records[0].record.id, candidateId);
-  assert.equal(acceptedPayload.records[0].review.decision, "accept");
+  assert.equal(acceptedPayload.records[0].review.decision, "amend");
+
+  const held = await fetchWorker(
+    `/api/review/organisation-catalogue/${candidateId}`,
+    reviewRequest({
+      decision: "needs_evidence",
+      amendments: {},
+      sourceUrl: "https://www.3e.eu/",
+      sourceOpened: true,
+      identityConfirmed: true,
+      classificationsConfirmed: true,
+      safetyChecked: true,
+      notes: "Country coverage needs a stronger source.",
+      expectedVersion: 2,
+    }),
+    { DB: database },
+  );
+  assert.equal(held.status, 200);
+  assert.equal((await held.json()).canonicalHref, undefined);
+
+  const removedFromCanonical = await fetchWorker(
+    "/api/organisation-catalogue?q=3E&scope=reviewed",
+    { headers: { accept: "application/json" } },
+    { DB: database },
+  );
+  assert.equal((await removedFromCanonical.json()).total, 0);
+  const removedProfile = await fetchWorker(
+    "/organisations/3e-afr-0002",
+    {},
+    { DB: database },
+  );
+  assert.doesNotMatch(await removedProfile.text(), /Reviewed organisation record/);
   assert.equal(
     database.get(
       "SELECT COUNT(*) AS count FROM review_audit_events WHERE record_type = 'organisation_catalogue'",
     ).count,
-    1,
+    3,
   );
 });
 
@@ -1642,7 +1749,7 @@ test("bulk workbooks enter a private candidate queue and cannot upgrade weak evi
   );
   assert.equal(bulkExportResponse.status, 200);
   const bulkExport = await bulkExportResponse.json();
-  assert.equal(bulkExport.schemaVersion, "1.2.0");
+  assert.equal(bulkExport.schemaVersion, "1.3.0");
   assert.equal(bulkExport.status.bulkCandidateRows, 1);
   assert.equal(bulkExport.status.bulkCandidateDecisions, 1);
   assert.equal(bulkExport.status.bulkCandidatesApproved, 1);

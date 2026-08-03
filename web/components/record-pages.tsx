@@ -31,6 +31,7 @@ import {
   organisationSegmentName,
   organisationSectorName,
   softwareStageName,
+  type OrganisationDirectoryRecord,
 } from "@/lib/organisation-data";
 
 export function ProductProfile({ slug }: { slug: string }) {
@@ -226,10 +227,16 @@ export function ProductProfile({ slug }: { slug: string }) {
   );
 }
 
-export function OrganisationProfile({ slug }: { slug: string }) {
-  const organisation = organisationBySlug(slug);
+export function OrganisationProfile({
+  directoryRecord: suppliedDirectoryRecord,
+  slug,
+}: {
+  directoryRecord?: OrganisationDirectoryRecord;
+  slug: string;
+}) {
+  const organisation = suppliedDirectoryRecord?.organisation ?? organisationBySlug(slug);
   if (!organisation) return <NotFoundRecord type="organisation" />;
-  const directoryRecord = organisationDirectoryRecord(organisation.id);
+  const directoryRecord = suppliedDirectoryRecord ?? organisationDirectoryRecord(organisation.id);
   const organisationProducts = directoryRecord?.ownedProducts ?? products.filter(
     (product) => product.organisationId === organisation.id,
   );
@@ -244,7 +251,9 @@ export function OrganisationProfile({ slug }: { slug: string }) {
   const deploymentCountries = Array.from(
     new Set(organisationDeployments.map((deployment) => deployment.country)),
   );
-  const aliases = organisationAliases(organisation.id);
+  const aliasNames = suppliedDirectoryRecord
+    ? suppliedDirectoryRecord.aliases
+    : organisationAliases(organisation.id).map((item) => item.alias);
   const corporateRelationships = relatedOrganisations(organisation.id);
 
   return (
@@ -263,12 +272,12 @@ export function OrganisationProfile({ slug }: { slug: string }) {
           />
           <span className="eyebrow">Reviewed organisation record</span>
           <h1>{organisation.name}</h1>
-          {aliases.length ? (
+          {aliasNames.length ? (
             <p className="record-aliases">
-              Also known as {aliases.map((item) => item.alias).join(", ")}
+              Also known as {aliasNames.join(", ")}
             </p>
           ) : null}
-          <p>{organisation.description}</p>
+          {organisation.description ? <p>{organisation.description}</p> : null}
           <div className="record-labels">
             <span className="origin-label"><span className="origin-mark" aria-hidden="true" />{organisation.origin}</span>
             <LifecycleTag value={organisation.lifecycle.toLowerCase()} />
@@ -399,6 +408,29 @@ export function OrganisationProfile({ slug }: { slug: string }) {
                   );
                 })}
               </div>
+            ) : directoryRecord?.catalogueCountryIso2s.length ? (
+              <div className="organisation-presence-list">
+                {directoryRecord.catalogueCountryIso2s.map((countryIso2) => {
+                  const country = africanCountries.find(([iso2]) => iso2 === countryIso2)?.[1] ?? countryIso2;
+                  return (
+                    <article key={countryIso2}>
+                      <div>
+                        <h3><Link href={`/countries/${countryIso2.toLowerCase()}`}>{country}</Link></h3>
+                        <p>Documented catalogue coverage</p>
+                      </div>
+                      <div>
+                        {directoryRecord.catalogueSourceUrl ? (
+                          <a href={directoryRecord.catalogueSourceUrl} rel="noreferrer" target="_blank">View source ↗</a>
+                        ) : null}
+                        <small>Reviewed {organisation.lastChecked}</small>
+                      </div>
+                    </article>
+                  );
+                })}
+                <small className="organisation-derived-note">
+                  Catalogue coverage is not automatically a deployment, office or independently evidenced activity.
+                </small>
+              </div>
             ) : (
               <div className="inline-empty compact">
                 <strong>No explicit organisation-presence record is published yet.</strong>
@@ -455,10 +487,19 @@ export function OrganisationProfile({ slug }: { slug: string }) {
           </ProfileSection>
         </article>
         <aside className="record-rail">
-          <div className="rail-card">
-            <span className="eyebrow">Public website</span>
-            <a href={organisation.website} rel="noreferrer" target="_blank">{organisation.website.replace("https://", "")} ↗</a>
-          </div>
+          {organisation.website ? (
+            <div className="rail-card">
+              <span className="eyebrow">Public website</span>
+              <a href={organisation.website} rel="noreferrer" target="_blank">{organisation.website.replace("https://", "")} ↗</a>
+            </div>
+          ) : null}
+          {directoryRecord?.catalogueSourceUrl ? (
+            <div className="rail-card">
+              <span className="eyebrow">Canonical source</span>
+              <a href={directoryRecord.catalogueSourceUrl} rel="noreferrer" target="_blank">Open reviewed source ↗</a>
+              <p>Accepted through the human review workspace.</p>
+            </div>
+          ) : null}
           <div className="rail-card">
             <span className="eyebrow">Important distinction</span>
             <strong>Claiming is not verification</strong>
@@ -470,7 +511,13 @@ export function OrganisationProfile({ slug }: { slug: string }) {
   );
 }
 
-export function CountryProfile({ iso2 }: { iso2: string }) {
+export function CountryProfile({
+  directory = organisationDirectory,
+  iso2,
+}: {
+  directory?: OrganisationDirectoryRecord[];
+  iso2: string;
+}) {
   const countryIso2 = iso2.toUpperCase();
   const countryName =
     africanCountries.find(([code]) => code === countryIso2)?.[1] ??
@@ -478,7 +525,7 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
   const summary = countrySummaries.find(
     (item) => item.countryIso2 === countryIso2,
   );
-  const countryOrganisationRecords = organisationDirectory.filter((record) =>
+  const countryOrganisationRecords = directory.filter((record) =>
     record.countryIso2s.includes(countryIso2),
   );
   if (!summary && !countryOrganisationRecords.length) {
@@ -592,14 +639,15 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
                   const companyStatedOnly =
                     record.companyStatedCountryIso2s.includes(countryIso2) &&
                     !record.evidencedCountryIso2s.includes(countryIso2);
+                  const catalogueListed = record.catalogueCountryIso2s.includes(countryIso2);
                   return (
                     <article key={record.organisation.id}>
                       <OrganisationMark name={record.organisation.name} organisationId={record.organisation.id} size={38} />
                       <div>
                         <h3><Link href={`/organisations/${record.organisation.slug}`}>{record.organisation.name}</Link></h3>
-                        <p>{labels.length ? labels.join(" · ") : "Software deployment linked"}</p>
+                        <p>{labels.length ? labels.join(" · ") : catalogueListed ? "Documented catalogue coverage" : "Software deployment linked"}</p>
                       </div>
-                      <span>{companyStatedOnly ? "Company-stated" : presences.length ? "Evidenced" : "Software-linked"}</span>
+                      <span>{companyStatedOnly ? "Company-stated" : presences.length ? "Evidenced" : catalogueListed ? "Canonical listing" : "Software-linked"}</span>
                     </article>
                   );
                 })}

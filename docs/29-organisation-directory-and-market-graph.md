@@ -39,15 +39,22 @@ The catalogue is deliberately separate from the canonical reviewed release:
   discovery record. It is not an endorsement or a verified profile.
 - **Reviewed match** means the workbook identity reconciles to an existing
   canonical organisation profile.
-- **Accepted in `/review`** records an editorial decision but still does not
-  publish a canonical profile. Promotion requires a bounded repository data
-  pull request and independent review.
+- **Accepted or amended in `/review`** immediately materialises a live canonical
+  profile with a stable ID and URL. A bounded repository data pull request and
+  independent review are still required to include that record in an immutable
+  GitHub release snapshot.
 
 The private review workspace exposes every catalogue row. Editors can search
 and filter the full queue, open the direct source, then accept, amend, reject,
 mark duplicate or request more evidence. Accept and Amend require explicit
 source-opened, identity, classification and publication-safety checks. All
 decisions use optimistic versions and append-only audit events.
+
+Canonical therefore means one deduplicated, human-approved, source-linked
+identity that can be addressed by a stable internal ID and profile URL. It does
+not mean every statement about that organisation is independently evidenced.
+Deployment, office, availability and other presence claims keep their own
+evidence classes.
 
 Private editorial cells matching employment, ownership, competitor or
 conflict-style language were omitted when the public-safe catalogue was

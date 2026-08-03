@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { RegistryExplorer } from "@/components/registry-explorer";
 import { buildOrganisationCatalogueMapData } from "@/lib/organisation-catalogue";
 import { africanCountries } from "@/lib/registry-data";
+import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/deployments" },
@@ -16,9 +19,11 @@ export default async function Deployments({
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const params = await searchParams;
+  const { canonicalDirectory, catalogueRecords } = await loadPublicOrganisationRegistry();
   return (
     <RegistryExplorer
-      catalogueMapData={buildOrganisationCatalogueMapData(africanCountries)}
+      catalogueMapData={buildOrganisationCatalogueMapData(africanCountries, catalogueRecords)}
+      canonicalOrganisationDirectory={canonicalDirectory}
       initialCategory={params.category}
       initialCountry={params.country}
       initialEvidence={params.evidence}

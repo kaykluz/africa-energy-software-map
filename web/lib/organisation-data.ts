@@ -106,14 +106,28 @@ export type OrganisationDirectoryRecord = {
   officeCountryIso2s: string[];
   availabilityCountryIso2s: string[];
   softwareLinkedCountryIso2s: string[];
+  catalogueCountryIso2s: string[];
   countryIso2s: string[];
   countryNames: string[];
   productCount: number;
   countryCount: number;
+  catalogueCandidateId?: string;
+  catalogueSourceUrl?: string;
+  canonicalReviewVersion?: number;
+};
+
+export type OrganisationDirectoryOverrides = {
+  aliases?: string[];
+  catalogueCandidateId?: string;
+  catalogueCountryIso2s?: string[];
+  catalogueSourceUrl?: string;
+  canonicalReviewVersion?: number;
+  roleIds?: string[];
+  segmentIds?: string[];
 };
 
 export const organisationDirectory: OrganisationDirectoryRecord[] = organisations
-  .map(buildOrganisationRecord)
+  .map((organisation) => buildOrganisationDirectoryRecord(organisation))
   .sort((left, right) =>
     left.organisation.name.localeCompare(right.organisation.name),
   );
@@ -178,8 +192,9 @@ export function relatedOrganisations(organisationId: string) {
   });
 }
 
-function buildOrganisationRecord(
+export function buildOrganisationDirectoryRecord(
   organisation: Organisation,
+  overrides: OrganisationDirectoryOverrides = {},
 ): OrganisationDirectoryRecord {
   const directlyOwnedProducts = products.filter(
     (product) => product.organisationId === organisation.id,
@@ -196,11 +211,14 @@ function buildOrganisationRecord(
   const explicitRoles = organisationRoleRecords
     .filter((record) => record.organisationId === organisation.id && rolesById.has(record.roleId))
     .sort((left, right) => Number(right.isPrimary) - Number(left.isPrimary));
-  const roleIds = explicitRoles.length
-    ? Array.from(new Set(explicitRoles.map((record) => record.roleId)))
-    : ownedProducts.length
-      ? ["org_role_software_developer"]
-      : ["org_role_to_classify"];
+  const overriddenRoleIds = (overrides.roleIds ?? []).filter((roleId) => rolesById.has(roleId));
+  const roleIds = overriddenRoleIds.length
+    ? Array.from(new Set(overriddenRoleIds))
+    : explicitRoles.length
+      ? Array.from(new Set(explicitRoles.map((record) => record.roleId)))
+      : ownedProducts.length
+        ? ["org_role_software_developer"]
+        : ["org_role_to_classify"];
   const primaryRole = rolesById.get(roleIds[0]);
   if (!primaryRole) throw new Error(`Unknown organisation role: ${roleIds[0]}`);
   const ecosystemGroupIds = Array.from(
@@ -216,13 +234,18 @@ function buildOrganisationRecord(
           Array.from(sectorIdsByProduct.get(product.id) ?? []),
         ),
   )).sort(byTaxonomyOrder(organisationSectors));
+  const overriddenSegmentIds = (overrides.segmentIds ?? []).filter((segmentId) =>
+    organisationSegments.some((item) => item.id === segmentId),
+  );
   const segmentIds = Array.from(new Set(
-    organisationSegmentRecords
-      .filter((record) =>
-        record.organisationId === organisation.id &&
-        organisationSegments.some((item) => item.id === record.segmentId),
-      )
-      .map((record) => record.segmentId),
+    overriddenSegmentIds.length
+      ? overriddenSegmentIds
+      : organisationSegmentRecords
+          .filter((record) =>
+            record.organisationId === organisation.id &&
+            organisationSegments.some((item) => item.id === record.segmentId),
+          )
+          .map((record) => record.segmentId),
   )).sort(byTaxonomyOrder(organisationSegments));
   const stageIds = Array.from(
     new Set(ownedProducts.map((product) => product.stageId)),
@@ -261,10 +284,14 @@ function buildOrganisationRecord(
       .filter((record) => record.presenceType === "product_availability")
       .map((record) => record.countryIso2),
   )));
+  const catalogueCountryIso2s = sortCountries(Array.from(new Set(
+    overrides.catalogueCountryIso2s ?? [],
+  )));
   const countryIso2s = sortCountries(Array.from(new Set([
     ...evidencedCountryIso2s,
     ...companyStatedCountryIso2s,
     ...softwareLinkedCountryIso2s,
+    ...catalogueCountryIso2s,
   ])));
 
   return {
@@ -282,7 +309,7 @@ function buildOrganisationRecord(
         ...explicitSoftwareRelationships.map((record) => record.relationshipType),
       ],
     )),
-    aliases: organisationAliasRecords
+    aliases: overrides.aliases ?? organisationAliasRecords
       .filter((record) => record.organisationId === organisation.id)
       .map((record) => record.alias),
     presenceRecords,
@@ -291,10 +318,14 @@ function buildOrganisationRecord(
     officeCountryIso2s,
     availabilityCountryIso2s,
     softwareLinkedCountryIso2s,
+    catalogueCountryIso2s,
     countryIso2s,
     countryNames: countryIso2s.map((iso2) => countriesByIso2.get(iso2) ?? iso2),
     productCount: ownedProducts.length,
     countryCount: countryIso2s.length,
+    catalogueCandidateId: overrides.catalogueCandidateId,
+    catalogueSourceUrl: overrides.catalogueSourceUrl,
+    canonicalReviewVersion: overrides.canonicalReviewVersion,
   };
 }
 

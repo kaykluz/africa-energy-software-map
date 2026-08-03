@@ -155,8 +155,8 @@ chooses one of five decisions:
 
 | Decision | Meaning |
 | --- | --- |
-| Accept | The supplied identity and classifications may enter a bounded data proposal |
-| Amend | One or more stated fields require a recorded correction |
+| Accept | Publish the reviewed listing as a live canonical organisation profile |
+| Amend | Publish a canonical profile using the recorded corrected values |
 | More evidence | The candidate remains listed but cannot be promoted from the current source |
 | Duplicate | The identity should be reconciled to another record rather than created again |
 | Reject | The row should not enter the canonical registry |
@@ -164,8 +164,15 @@ chooses one of five decisions:
 Accept and Amend require the reviewer to confirm that the source was opened,
 the identity was checked, roles and markets were checked, and the record is safe
 to publish. Amendments are stored separately from the immutable imported row.
-All other decisions require a note. Decisions are versioned, auditable and
-included in the review package, but none of them writes to the public registry.
+All other decisions require a note. Decisions are versioned and auditable.
+Accept and Amend immediately materialise a stable canonical ID, profile URL and
+directory record from the immutable listing plus its reviewed amendments.
+Reject and More evidence do not create a canonical record; Duplicate resolves
+to an existing identity rather than creating one.
+
+Live canonical materialisation is distinct from an immutable GitHub data
+release. The review record remains the D1 source of truth until a bounded data
+pull request snapshots the accepted record into the repository release tables.
 
 ## Operations
 
@@ -260,13 +267,15 @@ contains:
   organisations, products, deployments, aliases, corporate relationships and
   organisation-to-software links;
 - organisation-catalogue decisions and amendments;
+- live canonical organisation IDs and profile URLs created by Accept or Amend;
 - promoted candidate assertions;
 - the assertion, source and bulk-promotion audit trail;
 - the generating reviewer and timestamp; and
-- explicit `containsPublicDataChanges: false` and
-  `publicationAuthorised: false` flags.
+- explicit flags showing that the package itself does not authorise an
+  immutable versioned release.
 
-The package status also records how many bulk candidates are approved, held for
+The package status also records how many organisation decisions are live in the
+canonical registry and how many bulk candidates are approved, held for
 evidence or rejected. The release planner lists held and rejected candidate rows
 explicitly but does not treat a deliberately held row as part of the approved
 release scope.
@@ -275,7 +284,11 @@ It excludes contribution content, contact details, receipt tokens, and public
 registry changes. The package is a handoff and audit artefact, not a release
 file.
 
-## Promotion to public data
+## Promotion to versioned repository data
+
+Organisation-catalogue Accept and Amend decisions are already visible in the
+live canonical registry. The steps below snapshot those decisions, plus the
+separately reviewed assertion and bulk work, into immutable GitHub data.
 
 After review:
 
@@ -292,8 +305,8 @@ After review:
 9. merge and run the documented release process.
 
 The planning script exits with a blocker status until the review is complete and
-always writes `publicationAuthorised: false`. No API in `/review` edits the
-canonical tables or publishes a release.
+always writes `publicationAuthorised: false`. No API in `/review` publishes or
+merges an immutable GitHub release.
 
 The materializer converts temporary `cand_*` identifiers to permanent public
 IDs, retains assertion-level source locators, removes private reviewer identity

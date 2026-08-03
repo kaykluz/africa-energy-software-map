@@ -133,6 +133,7 @@
     {"id": "org_family_public", "name": "Public institutions", "order": 8}
   ],
   "organisation_roles": [
+    {"id": "org_role_financier", "name": "Financier", "familyId": "org_family_capital", "ecosystemGroupIds": ["org_group_capital"]},
     {"id": "org_role_development_finance", "name": "DFI or development bank", "familyId": "org_family_capital", "ecosystemGroupIds": ["org_group_capital"]},
     {"id": "org_role_lender", "name": "Bank or lender", "familyId": "org_family_capital", "ecosystemGroupIds": ["org_group_capital"]},
     {"id": "org_role_investor_fund", "name": "Investor or fund", "familyId": "org_family_capital", "ecosystemGroupIds": ["org_group_capital"]},
@@ -148,15 +149,19 @@
     {"id": "org_role_epc", "name": "EPC", "familyId": "org_family_epcs", "ecosystemGroupIds": ["org_group_epcs"]},
     {"id": "org_role_installer", "name": "Installer", "familyId": "org_family_epcs", "ecosystemGroupIds": ["org_group_epcs"]},
     {"id": "org_role_system_integrator", "name": "System integrator", "familyId": "org_family_epcs", "ecosystemGroupIds": ["org_group_epcs"]},
+    {"id": "org_role_operator", "name": "Operator", "familyId": "org_family_operators", "ecosystemGroupIds": ["org_group_operators"]},
     {"id": "org_role_operator_utility", "name": "Operator or utility", "familyId": "org_family_operators", "ecosystemGroupIds": ["org_group_operators"]},
     {"id": "org_role_om_asset_manager", "name": "O&M or asset manager", "familyId": "org_family_operators", "ecosystemGroupIds": ["org_group_operators"]},
     {"id": "org_role_energy_retailer", "name": "Energy retailer or service provider", "familyId": "org_family_operators", "ecosystemGroupIds": ["org_group_operators"]},
+    {"id": "org_role_software_data", "name": "Software or data provider", "familyId": "org_family_software", "ecosystemGroupIds": ["org_group_software"]},
     {"id": "org_role_software_developer", "name": "Software developer or platform", "familyId": "org_family_software", "ecosystemGroupIds": ["org_group_software"]},
     {"id": "org_role_data_provider", "name": "Data or analytics provider", "familyId": "org_family_software", "ecosystemGroupIds": ["org_group_software"]},
+    {"id": "org_role_enabler", "name": "Enabler", "familyId": "org_family_enablers", "ecosystemGroupIds": ["org_group_enablers"]},
     {"id": "org_role_adviser", "name": "Professional adviser", "familyId": "org_family_enablers", "ecosystemGroupIds": ["org_group_enablers"]},
     {"id": "org_role_research_institution", "name": "Research institution", "familyId": "org_family_enablers", "ecosystemGroupIds": ["org_group_enablers"]},
     {"id": "org_role_association_standards", "name": "Association or standards body", "familyId": "org_family_enablers", "ecosystemGroupIds": ["org_group_enablers"]},
     {"id": "org_role_programme_facility", "name": "Programme or facility", "familyId": "org_family_enablers", "ecosystemGroupIds": ["org_group_enablers"]},
+    {"id": "org_role_public_institution", "name": "Public institution", "familyId": "org_family_public", "ecosystemGroupIds": ["org_group_public"]},
     {"id": "org_role_regulator_market_operator", "name": "Regulator or market operator", "familyId": "org_family_public", "ecosystemGroupIds": ["org_group_public"]},
     {"id": "org_role_ministry_agency", "name": "Ministry or public agency", "familyId": "org_family_public", "ecosystemGroupIds": ["org_group_public"]},
     {"id": "org_role_to_classify", "name": "Role not yet classified", "familyId": "org_family_enablers", "ecosystemGroupIds": []}
