@@ -22,7 +22,7 @@ import {
   type LandscapeKind,
 } from "@/lib/landscape-data";
 import { normaliseQuery } from "@/lib/registry-query";
-import { type CSSProperties, useEffect, useMemo, useRef, useState } from "react";
+import { type CSSProperties, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 
 type LandscapeView = "wall" | "listings" | "deployments" | "history" | "sources";
 
@@ -41,7 +41,8 @@ const africaUseOptions = Object.entries(landscapeAfricaUseLabels) as [
   string,
 ][];
 const firstPageSize = 48;
-const wallPreviewSize = 12;
+const coreWallPreviewSize = 8;
+const supportingWallPreviewSize = 5;
 
 export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string }) {
   const [query, setQuery] = useState(initialQuery);
@@ -114,8 +115,9 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
     requestAnimationFrame(() => openerRef.current?.focus());
   }
 
-  function showStage(stageId: string) {
+  function showStage(stageId: string, relationshipId: EnergyRelationship) {
     setStage(stageId);
+    setRelationship(relationshipId);
     setDisplayLimit(firstPageSize);
     setView("listings");
   }
@@ -211,6 +213,7 @@ export function LandscapeExplorer({ initialQuery = "" }: { initialQuery?: string
 
       {view === "wall" ? (
         <LandscapeWall
+          hasFilters={hasFilters}
           items={filteredItems}
           onOpen={openItem}
           onShowStage={showStage}
@@ -404,28 +407,29 @@ function LandscapeControls({
 }
 
 function LandscapeWall({
+  hasFilters,
   items,
   onOpen,
   onShowStage,
   reset,
 }: {
+  hasFilters: boolean;
   items: LandscapeItem[];
   onOpen: (item: LandscapeItem, element: HTMLElement) => void;
-  onShowStage: (stageId: string) => void;
+  onShowStage: (stageId: string, relationship: EnergyRelationship) => void;
   reset: () => void;
 }) {
   const wallItems = [...items]
     .filter((item) => item.kind !== "source_directory")
     .sort((left, right) => left.name.localeCompare(right.name));
-  const crossCutting = wallItems.filter((item) => item.stageIds.length === 0);
-  const stageGroups = stageOptions
-    .map(([stageId, label], stageIndex) => ({
-      items: wallItems.filter((item) => item.stageIds.includes(stageId)),
-      label,
-      stageId,
-      stageIndex,
-    }))
-    .filter((group) => group.items.length > 0);
+  const byRelationship = (relationshipId: EnergyRelationship) =>
+    wallItems.filter((item) => item.energyRelationship === relationshipId);
+  const coreItems = byRelationship("energy_native");
+  const appliedItems = byRelationship("energy_applied");
+  const infrastructureItems = byRelationship("enabling_infrastructure");
+  const operatorItems = byRelationship("operator_owned");
+  const publicItems = byRelationship("public_research");
+  const unclassifiedItems = byRelationship("unclassified");
 
   if (!wallItems.length) {
     return (
@@ -437,7 +441,179 @@ function LandscapeWall({
   }
 
   return (
-    <section className="landscape-wall" aria-label="Software across the value chain">
+    <section className="landscape-wall" aria-label="Software grouped by its relationship to energy">
+      <RelationshipSection
+        count={coreItems.length}
+        defaultOpen
+        key={`core-${hasFilters}`}
+        title="Core energy software"
+        tone="core"
+      >
+        <StageWall
+          items={coreItems}
+          onOpen={onOpen}
+          onShowStage={onShowStage}
+          previewSize={coreWallPreviewSize}
+          relationship="energy_native"
+        />
+      </RelationshipSection>
+
+      <RelationshipSection
+        count={appliedItems.length + infrastructureItems.length}
+        defaultOpen
+        key={`applied-${hasFilters}`}
+        title="Software applied to energy"
+        tone="applied"
+      >
+        <RelationshipSubsection count={appliedItems.length} title="Energy-focused versions">
+          <StageWall
+            compact
+            headingLevel={4}
+            items={appliedItems}
+            onOpen={onOpen}
+            onShowStage={onShowStage}
+            previewSize={supportingWallPreviewSize}
+            relationship="energy_applied"
+          />
+        </RelationshipSubsection>
+        <RelationshipSubsection count={infrastructureItems.length} title="Horizontal infrastructure">
+          <StageWall
+            compact
+            headingLevel={4}
+            items={infrastructureItems}
+            onOpen={onOpen}
+            onShowStage={onShowStage}
+            previewSize={supportingWallPreviewSize}
+            relationship="enabling_infrastructure"
+          />
+        </RelationshipSubsection>
+      </RelationshipSection>
+
+      <RelationshipSection
+        count={operatorItems.length + publicItems.length}
+        defaultOpen={hasFilters}
+        key={`supporting-${hasFilters}`}
+        title="Operator and public systems"
+        tone="supporting"
+      >
+        <RelationshipSubsection count={operatorItems.length} title="Operator-owned">
+          <StageWall
+            compact
+            headingLevel={4}
+            items={operatorItems}
+            onOpen={onOpen}
+            onShowStage={onShowStage}
+            previewSize={supportingWallPreviewSize}
+            relationship="operator_owned"
+          />
+        </RelationshipSubsection>
+        <RelationshipSubsection count={publicItems.length} title="Public and research">
+          <StageWall
+            compact
+            headingLevel={4}
+            items={publicItems}
+            onOpen={onOpen}
+            onShowStage={onShowStage}
+            previewSize={supportingWallPreviewSize}
+            relationship="public_research"
+          />
+        </RelationshipSubsection>
+      </RelationshipSection>
+
+      <RelationshipSection
+        count={unclassifiedItems.length}
+        defaultOpen={hasFilters}
+        key={`unclassified-${hasFilters}`}
+        title="To classify"
+        tone="review"
+      >
+        <StageWall
+          compact
+          items={unclassifiedItems}
+          onOpen={onOpen}
+          onShowStage={onShowStage}
+          previewSize={supportingWallPreviewSize}
+          relationship="unclassified"
+        />
+      </RelationshipSection>
+    </section>
+  );
+}
+
+function RelationshipSection({
+  children,
+  count,
+  defaultOpen,
+  title,
+  tone,
+}: {
+  children: ReactNode;
+  count: number;
+  defaultOpen: boolean;
+  title: string;
+  tone: "core" | "applied" | "supporting" | "review";
+}) {
+  if (!count) return null;
+  return (
+    <details className={`landscape-relationship-section landscape-relationship-${tone}`} open={defaultOpen}>
+      <summary>
+        <h2>{title}</h2>
+        <span>{count}</span>
+        <i aria-hidden="true">⌄</i>
+      </summary>
+      <div className="landscape-relationship-content">{children}</div>
+    </details>
+  );
+}
+
+function RelationshipSubsection({
+  children,
+  count,
+  title,
+}: {
+  children: ReactNode;
+  count: number;
+  title: string;
+}) {
+  if (!count) return null;
+  return (
+    <section className="landscape-relationship-subsection">
+      <header><h3>{title}</h3><span>{count}</span></header>
+      {children}
+    </section>
+  );
+}
+
+function StageWall({
+  compact = false,
+  headingLevel = 3,
+  items,
+  onOpen,
+  onShowStage,
+  previewSize,
+  relationship,
+}: {
+  compact?: boolean;
+  headingLevel?: 3 | 4;
+  items: LandscapeItem[];
+  onOpen: (item: LandscapeItem, element: HTMLElement) => void;
+  onShowStage: (stageId: string, relationship: EnergyRelationship) => void;
+  previewSize: number;
+  relationship: EnergyRelationship;
+}) {
+  const StageHeading = headingLevel === 4 ? "h4" : "h3";
+  const crossCutting = items.filter((item) => item.stageIds.length === 0);
+  const stageGroups = stageOptions
+    .map(([stageId, label], stageIndex) => ({
+      items: items.filter((item) => item.stageIds.includes(stageId)),
+      label,
+      stageId,
+      stageIndex,
+    }))
+    .filter((group) => group.items.length > 0);
+
+  return (
+    <div className={`landscape-stage-matrix${compact ? " landscape-stage-matrix-compact" : ""}`}>
       {stageGroups.length > 1 ? <div className="landscape-wall-route" aria-hidden="true"><i /></div> : null}
       {stageGroups.length ? (
         <div
@@ -448,16 +624,21 @@ function LandscapeWall({
             <section className="landscape-wall-stage" key={stageId}>
               <header>
                 <span>{String(stageIndex + 1).padStart(2, "0")}</span>
-                <h2>{label}</h2>
+                <StageHeading>{label}</StageHeading>
                 <b>{stageItems.length}</b>
               </header>
               <div className="landscape-wall-tiles">
-                {stageItems.slice(0, wallPreviewSize).map((item) => (
-                  <IdentityTile item={item} key={`${stageId}-${item.id}`} onOpen={onOpen} />
+                {stageItems.slice(0, previewSize).map((item) => (
+                  <IdentityTile item={item} key={`${relationship}-${stageId}-${item.id}`} onOpen={onOpen} />
                 ))}
               </div>
-              {stageItems.length > wallPreviewSize ? (
-                <button className="landscape-stage-all" onClick={() => onShowStage(stageId)} type="button">
+              {stageItems.length > previewSize ? (
+                <button
+                  aria-label={`View all ${stageItems.length} ${landscapeEnergyRelationshipLabels[relationship]} listings in ${label}`}
+                  className="landscape-stage-all"
+                  onClick={() => onShowStage(stageId, relationship)}
+                  type="button"
+                >
                   View all {stageItems.length} <span aria-hidden="true">→</span>
                 </button>
               ) : null}
@@ -468,15 +649,15 @@ function LandscapeWall({
 
       {crossCutting.length ? (
         <section className="landscape-wall-crosscutting">
-          <header><span>＋</span><h2>Cross-cutting</h2><b>{crossCutting.length}</b></header>
+          <header><span>＋</span><StageHeading>Cross-cutting</StageHeading><b>{crossCutting.length}</b></header>
           <div className="landscape-wall-tiles landscape-wall-tiles-wide">
-            {crossCutting.slice(0, wallPreviewSize * 2).map((item) => (
-              <IdentityTile item={item} key={`cross-${item.id}`} onOpen={onOpen} />
+            {crossCutting.slice(0, previewSize * 2).map((item) => (
+              <IdentityTile item={item} key={`${relationship}-cross-${item.id}`} onOpen={onOpen} />
             ))}
           </div>
         </section>
       ) : null}
-    </section>
+    </div>
   );
 }
 
