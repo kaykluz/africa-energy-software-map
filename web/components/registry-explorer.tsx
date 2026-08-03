@@ -81,6 +81,7 @@ export function RegistryExplorer({
   initialObject = "software",
   initialPresence = "software_linked",
   catalogueMapData,
+  canonicalOrganisationDirectory = organisationDirectory,
 }: {
   view: RegistryView;
   initialQuery?: string;
@@ -93,6 +94,7 @@ export function RegistryExplorer({
   initialObject?: string;
   initialPresence?: string;
   catalogueMapData?: OrganisationCatalogueMapData;
+  canonicalOrganisationDirectory?: OrganisationDirectoryRecord[];
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -335,6 +337,7 @@ export function RegistryExplorer({
       {view === "deployments" ? (
         <DeploymentsView
           catalogueMapData={catalogueMapData ?? emptyCatalogueMapData}
+          organisationRecords={canonicalOrganisationDirectory}
           filteredProducts={filteredProducts}
           initialCountry={countryFilter}
           initialObject={initialObject}
@@ -794,6 +797,7 @@ function DeploymentsView({
   initialCountry,
   initialObject,
   initialPresence,
+  organisationRecords,
   onOpenProduct,
   preservedSearch,
 }: {
@@ -802,6 +806,7 @@ function DeploymentsView({
   initialCountry: string;
   initialObject: string;
   initialPresence: string;
+  organisationRecords: OrganisationDirectoryRecord[];
   onOpenProduct: (product: Product, element: HTMLElement) => void;
   preservedSearch: string;
 }) {
@@ -824,7 +829,7 @@ function DeploymentsView({
     ? new Set(catalogueMapData.assessedIso2s)
     : objectMode === "software" || organisationLayer === "software_linked"
       ? new Set(deployments.map((deployment) => deployment.countryIso2))
-      : new Set(organisationDirectory.flatMap((record) => organisationLayerCountries(record, organisationLayer)));
+      : new Set(organisationRecords.flatMap((record) => organisationLayerCountries(record, organisationLayer)));
   function countryObjectIds(iso2: string) {
     const countryDeployments = visibleDeployments.filter(
       (deployment) => deployment.countryIso2 === iso2,
@@ -836,7 +841,7 @@ function DeploymentsView({
       return new Set<string>();
     }
     return new Set(
-      organisationDirectory
+      organisationRecords
         .filter((record) => organisationLayerCountries(record, organisationLayer).includes(iso2))
         .map((record) => record.organisation.id),
     );
@@ -868,7 +873,7 @@ function DeploymentsView({
         .map((product) => [product.id, product]),
     ).values(),
   );
-  const selectedOrganisationRecords = organisationDirectory.filter((record) =>
+  const selectedOrganisationRecords = organisationRecords.filter((record) =>
     organisationLayerCountries(record, organisationLayer).includes(selectedCountry),
   );
   const selectedOrganisations = selectedOrganisationRecords.map((record) => record.organisation);
@@ -950,7 +955,7 @@ function DeploymentsView({
                 ? `${new Set(visibleDeployments.map((item) => item.productId)).size} software records`
                 : organisationLayer === "catalogue"
                   ? `${catalogueMapData.totalWithDocumentedCountry} organisations with itemised country coverage`
-                  : `${new Set(organisationDirectory.flatMap((record) => organisationLayerCountries(record, organisationLayer).length ? [record.organisation.id] : [])).size} ${organisationMapLayerLabel(organisationLayer).toLowerCase()} organisations`}
+                  : `${new Set(organisationRecords.flatMap((record) => organisationLayerCountries(record, organisationLayer).length ? [record.organisation.id] : [])).size} ${organisationMapLayerLabel(organisationLayer).toLowerCase()} organisations`}
             </strong>
           </div>
 

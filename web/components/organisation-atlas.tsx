@@ -5,7 +5,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { OrganisationMark } from "@/components/brand-mark";
 import {
-  organisationDirectory,
   organisationEcosystemGroupName,
   organisationEcosystemGroups,
   organisationRoles,
@@ -16,7 +15,7 @@ import {
   organisationSectorName,
   type OrganisationDirectoryRecord,
 } from "@/lib/organisation-data";
-import { africanCountries, organisations, products } from "@/lib/registry-data";
+import { africanCountries, products } from "@/lib/registry-data";
 import { normaliseQuery } from "@/lib/registry-query";
 import type {
   OrganisationCataloguePage,
@@ -33,6 +32,7 @@ export type OrganisationPresenceLayer =
   | "software_linked";
 
 type OrganisationAtlasProps = {
+  canonicalDirectory: OrganisationDirectoryRecord[];
   initialCatalogue: OrganisationCataloguePage;
   initialCatalogueCountry?: string;
   initialQuery?: string;
@@ -47,6 +47,7 @@ type OrganisationAtlasProps = {
 };
 
 export function OrganisationAtlas({
+  canonicalDirectory,
   initialCatalogue,
   initialCatalogueCountry = "all",
   initialQuery = "",
@@ -69,7 +70,11 @@ export function OrganisationAtlas({
   const [country, setCountry] = useState(
     africanCountries.some(([iso2]) => iso2 === initialCountry) ? initialCountry : "all",
   );
-  const origins = Array.from(new Set(organisations.map((item) => item.origin))).sort();
+  const canonicalOrganisations = useMemo(
+    () => canonicalDirectory.map((record) => record.organisation),
+    [canonicalDirectory],
+  );
+  const origins = Array.from(new Set(canonicalOrganisations.map((item) => item.origin))).sort();
   const [origin, setOrigin] = useState(origins.includes(initialOrigin) ? initialOrigin : "all");
   const [presence, setPresence] = useState<OrganisationPresenceLayer>(
     isPresenceLayer(initialPresence) ? initialPresence : "all",
@@ -79,8 +84,8 @@ export function OrganisationAtlas({
   );
 
   const withoutGroup = useMemo(
-    () => filterRecords(organisationDirectory, { query, role, sector, segment, country, origin, presence }),
-    [country, origin, presence, query, role, sector, segment],
+    () => filterRecords(canonicalDirectory, { query, role, sector, segment, country, origin, presence }),
+    [canonicalDirectory, country, origin, presence, query, role, sector, segment],
   );
   const rows = useMemo(
     () => group === "all"
@@ -97,7 +102,7 @@ export function OrganisationAtlas({
   const segmentCounts = new Map(
     organisationSegments.map((item) => [
       item.id,
-      organisationDirectory.filter((record) => record.segmentIds.includes(item.id)).length,
+      canonicalDirectory.filter((record) => record.segmentIds.includes(item.id)).length,
     ]),
   );
 
@@ -229,12 +234,12 @@ export function OrganisationAtlas({
           aria-current={view === "ecosystem" ? "page" : undefined}
           onClick={() => { setView("ecosystem"); updateUrl({ view: "ecosystem" }); }}
           type="button"
-        >Reviewed ecosystem</button>
+        >Canonical ecosystem</button>
         <button
           aria-current={view === "directory" ? "page" : undefined}
           onClick={() => { setView("directory"); updateUrl({ view: "directory" }); }}
           type="button"
-        >Reviewed directory</button>
+        >Canonical directory</button>
         <Link href={`/deployments?${mapParams.toString()}`}>Map</Link>
       </nav>
 
@@ -243,11 +248,12 @@ export function OrganisationAtlas({
           initial={initialCatalogue}
           initialCountry={initialCatalogueCountry}
           initialQuery={initialQuery}
+          reviewedCount={canonicalDirectory.length}
         />
       ) : (
         <>
       <section className="organisation-atlas-stats" aria-label="Organisation totals">
-        <div><strong>{organisations.length}</strong><span>organisations</span></div>
+        <div><strong>{canonicalDirectory.length}</strong><span>organisations</span></div>
         <div><strong>{organisationEcosystemGroups.length}</strong><span>actor types</span></div>
         <div><strong>{organisationSegments.length}</strong><span>energy markets</span></div>
       </section>
@@ -409,7 +415,7 @@ export function OrganisationAtlas({
       ) : <EmptyState />}
 
       <footer className="organisation-coverage-note">
-        <span>Current release</span>
+        <span>Live canonical registry</span>
         <p>{products.length} reviewed software records. Add missing developers, EPCs, OEMs, financiers and operators.</p>
         <Link href="/contribute/organisation">Add an organisation →</Link>
       </footer>
@@ -423,10 +429,12 @@ function PublicOrganisationCatalogue({
   initial,
   initialCountry,
   initialQuery,
+  reviewedCount,
 }: {
   initial: OrganisationCataloguePage;
   initialCountry: string;
   initialQuery: string;
+  reviewedCount: number;
 }) {
   const [query, setQuery] = useState(initialQuery);
   const [role, setRole] = useState("all");
@@ -482,7 +490,7 @@ function PublicOrganisationCatalogue({
       <section className="organisation-atlas-stats organisation-catalogue-stats" aria-label="Organisation catalogue totals">
         <div><strong>{cataloguePage.counts.total.toLocaleString()}</strong><span>listings</span></div>
         <div><strong>{cataloguePage.counts.africaHeadquartered.toLocaleString()}</strong><span>Africa-headquartered</span></div>
-        <div><strong>{organisations.length}</strong><span>reviewed profiles</span></div>
+        <div><strong>{reviewedCount}</strong><span>canonical profiles</span></div>
       </section>
 
       <div className="organisation-catalogue-notice">
@@ -522,7 +530,7 @@ function PublicOrganisationCatalogue({
           <option value="all">All listings</option>
           <option value="africa_hq">Africa-headquartered</option>
           <option value="international">International, active in Africa</option>
-          <option value="reviewed">Reviewed matches</option>
+          <option value="reviewed">Canonical profiles</option>
           <option value="pending">Review pending</option>
         </select>
         <span aria-live="polite">{loading ? "Loading…" : `${cataloguePage.total.toLocaleString()} shown`}</span>
@@ -568,7 +576,7 @@ function PublicOrganisationCard({ record }: { record: OrganisationCatalogueRecor
           </h2>
           <p>{record.primaryRole || record.organisationType || "Role not classified"}</p>
         </div>
-        <span data-status={record.reviewState}>{record.reviewState === "reviewed" ? "Reviewed" : "Review pending"}</span>
+        <span data-status={record.reviewState}>{record.reviewState === "reviewed" ? "Canonical" : "Review pending"}</span>
       </header>
       <div className="organisation-catalogue-card-tags">
         {record.segments.slice(0, 3).map((value) => <span key={value}>{value}</span>)}

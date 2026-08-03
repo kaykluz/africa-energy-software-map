@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { MethodologyPage } from "@/components/content-pages";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   alternates: { canonical: "/methodology" },
   title: "Methodology",

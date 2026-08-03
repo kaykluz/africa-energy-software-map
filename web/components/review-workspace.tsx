@@ -265,6 +265,11 @@ export function ReviewWorkspace({
   const organisationCatalogueDecided =
     organisationCatalogueSummary.reviewedMatches +
     organisationCatalogueReviewMap.size;
+  const organisationCatalogueCanonical =
+    organisationCatalogueSummary.reviewedMatches +
+    Array.from(organisationCatalogueReviewMap.values()).filter(
+      (review) => review.canonicalHref,
+    ).length;
   const organisationCataloguePending = Math.max(
     0,
     organisationCatalogueSummary.total - organisationCatalogueDecided,
@@ -577,6 +582,7 @@ export function ReviewWorkspace({
 
       {tab === "organisations" && workspace ? (
         <OrganisationCatalogueWorkspace
+          canonical={organisationCatalogueCanonical}
           decided={organisationCatalogueDecided}
           onSaved={replaceOrganisationCatalogueReview}
           summary={organisationCatalogueSummary}
@@ -660,10 +666,12 @@ function ReviewNextStep({
 }
 
 function OrganisationCatalogueWorkspace({
+  canonical,
   decided,
   summary,
   onSaved,
 }: {
+  canonical: number;
   decided: number;
   summary: { total: number; reviewedMatches: number; needsReview: number; africaHeadquartered: number };
   onSaved: (review: OrganisationCatalogueReviewRecord) => void;
@@ -733,13 +741,13 @@ function OrganisationCatalogueWorkspace({
           <span>Inclusion catalogue</span>
           <h2>{summary.total.toLocaleString()} organisations</h2>
           <p>
-            {decided.toLocaleString()} reconciled or decided ·{" "}
+            {canonical.toLocaleString()} canonical · {decided.toLocaleString()} decided ·{" "}
             {(summary.total - decided).toLocaleString()} awaiting review
           </p>
         </div>
         <div className="review-catalogue-boundary">
           <strong>Listed ≠ reviewed</strong>
-          <span>Identity, source, roles, markets and relationships are checked here before release promotion.</span>
+          <span>Accept or Amend publishes a canonical profile immediately. Other decisions stay outside canonical.</span>
         </div>
       </header>
 
@@ -833,6 +841,8 @@ function OrganisationCatalogueWorkspace({
               </div>
               {active.reconciliation.status === "reviewed_match" ? (
                 <Link href={active.reconciliation.canonicalHref}>Open reviewed record ↗</Link>
+              ) : activeItem?.review?.canonicalHref ? (
+                <Link href={activeItem.review.canonicalHref}>Open canonical profile ↗</Link>
               ) : active.website ? (
                 <a href={active.website} rel="noreferrer" target="_blank">Website ↗</a>
               ) : null}
@@ -1002,11 +1012,20 @@ function OrganisationCatalogueReviewForm({
       </div>
       <label>
         <span>Review note</span>
-        <textarea onChange={(event) => setNotes(event.target.value)} placeholder="What did you confirm, change or still need?" rows={3} value={notes} />
+        <textarea
+          onChange={(event) => setNotes(event.target.value)}
+          placeholder={decision === "duplicate" ? "Existing canonical profile URL or ID, and why these are the same identity" : "What did you confirm, change or still need?"}
+          rows={3}
+          value={notes}
+        />
       </label>
       {error ? <p className="review-form-error" role="alert">{error}</p> : null}
       <button className="button button-primary" disabled={saving} type="submit">
-        {saving ? "Saving…" : review ? "Update decision" : "Save decision"}
+        {saving
+          ? "Saving…"
+          : ["accept", "amend"].includes(decision)
+            ? review ? "Update canonical profile" : "Publish canonical profile"
+            : review ? "Update decision" : "Save decision"}
       </button>
     </form>
   );
@@ -3052,8 +3071,8 @@ function bulkDecisionLabel(value: string) {
 function catalogueDecisionLabel(value: string) {
   return (
     {
-      accept: "Accept",
-      amend: "Amend",
+      accept: "Accept & publish",
+      amend: "Amend & publish",
       reject: "Reject",
       needs_evidence: "More evidence",
       duplicate: "Duplicate",
