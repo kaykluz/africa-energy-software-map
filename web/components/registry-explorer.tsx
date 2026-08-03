@@ -28,6 +28,7 @@ import {
   LifecycleTag,
   OriginLabel,
 } from "@/components/semantic-tags";
+import { OrganisationMark, ProductMark } from "@/components/brand-mark";
 import {
   type CSSProperties,
   Fragment,
@@ -577,7 +578,7 @@ function StackView({
 
   return (
     <section className="v2-stack-canvas">
-      <div className="v2-stage-route" aria-label="Energy value-chain stages">
+      <div className="v2-stage-route" aria-label="Software functional stages">
         <div className="v2-route-line" aria-hidden="true">
           <i style={{ width: `${(selectedIndex / (stages.length - 1)) * 100}%` }} />
         </div>
@@ -748,6 +749,13 @@ function ProductOrb({
   ).length;
   return (
     <article className="v2-product-orb">
+      <ProductMark
+        organisationId={product.organisationId}
+        organisationName={product.organisation}
+        productId={product.id}
+        productName={product.name}
+        size={34}
+      />
       <span>
         <Link href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
         <small><OrganisationLink product={product} /></small>
@@ -887,7 +895,7 @@ function DeploymentsView({
             <strong>
               {objectMode === "software"
                 ? `${new Set(visibleDeployments.map((item) => item.productId)).size} software records`
-                : `${new Set(visibleDeployments.map((item) => productById(item.productId)?.organisationId).filter(Boolean)).size} organisations`}
+                : `${new Set(visibleDeployments.map((item) => productById(item.productId)?.organisationId).filter(Boolean)).size} software-linked organisations`}
             </strong>
           </div>
 
@@ -972,7 +980,7 @@ function DeploymentsView({
               <h2><Link href={`/countries/${selectedCountry.toLowerCase()}`}>{selected?.[1] ?? selectedCountry}</Link></h2>
               <p>
                 {selectedCountryAssessed
-                    ? `${selectedObjectCount} ${objectMode === "software" ? "software" : "organisations"}`
+                    ? `${selectedObjectCount} ${objectMode === "software" ? "software" : "software-linked organisations"}`
                     : "Coverage not assessed"}
               </p>
             </div>
@@ -982,7 +990,7 @@ function DeploymentsView({
             <>
               <div className="v2-country-score">
                 <span style={{ "--score": "78%" } as CSSProperties} />
-                <small>Current candidate coverage</small>
+                <small>Current reviewed coverage</small>
               </div>
               <div className="v2-deployment-list">
                 {objectMode === "software" ? selectedProducts.slice(0, 5).map((product, index) => {
@@ -992,9 +1000,18 @@ function DeploymentsView({
                       key={product.id}
                     >
                       <span>{String(index + 1).padStart(2, "0")}</span>
-                      <span>
-                        <Link href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
-                        <small>{deployment.customer}</small>
+                      <span className="v2-deployment-entity">
+                        <ProductMark
+                          organisationId={product.organisationId}
+                          organisationName={product.organisation}
+                          productId={product.id}
+                          productName={product.name}
+                          size={30}
+                        />
+                        <span>
+                          <Link href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
+                          <small>{deployment.customer}</small>
+                        </span>
                       </span>
                       <b>{deployment.year}</b>
                       <button
@@ -1007,9 +1024,12 @@ function DeploymentsView({
                 }) : selectedOrganisations.slice(0, 5).map((organisation, index) => (
                   <article key={organisation.id}>
                     <span>{String(index + 1).padStart(2, "0")}</span>
-                    <span>
-                      <Link href={`/organisations/${organisation.slug}`}><strong>{organisation.name}</strong></Link>
-                      <small>{organisation.type}</small>
+                    <span className="v2-deployment-entity">
+                      <OrganisationMark name={organisation.name} organisationId={organisation.id} size={30} />
+                      <span>
+                        <Link href={`/organisations/${organisation.slug}`}><strong>{organisation.name}</strong></Link>
+                        <small>{organisation.type}</small>
+                      </span>
                     </span>
                     <b>{selectedProducts.filter((product) => product.organisationId === organisation.id).length} SW</b>
                     <Link aria-label={`Open ${organisation.name}`} href={`/organisations/${organisation.slug}`}><i aria-hidden="true">→</i></Link>
@@ -1323,7 +1343,7 @@ function DirectoryView({
         <div className="v2-data-table-wrap">
           <table className="v2-data-table">
             <caption>
-              {rows.length} candidate products, sorted by{" "}
+              {rows.length} reviewed products, sorted by{" "}
               {sort.replace("_", " ")}
             </caption>
             <thead>
@@ -1342,12 +1362,19 @@ function DirectoryView({
               {pageData.items.map((product, index) => (
                 <tr key={product.id}>
                   <th scope="row">
-                    <span>
-                      {String(
-                        (pageData.page - 1) * pageData.pageSize + index + 1,
-                      ).padStart(2, "0")}
+                    <span className="v2-data-product-cell">
+                      <ProductMark
+                        organisationId={product.organisationId}
+                        organisationName={product.organisation}
+                        productId={product.id}
+                        productName={product.name}
+                        size={32}
+                      />
+                      <span>
+                        <small>{String((pageData.page - 1) * pageData.pageSize + index + 1).padStart(2, "0")}</small>
+                        <Link href={`/products/${product.slug}`}>{product.name}</Link>
+                      </span>
                     </span>
-                    <Link href={`/products/${product.slug}`}>{product.name}</Link>
                   </th>
                   {visibleColumns.includes("organisation") ? <td><OrganisationLink product={product} /></td> : null}
                   {visibleColumns.includes("category") ? <td><Link href={`/?category=${product.categoryId}`}>{product.category}</Link></td> : null}
@@ -1389,6 +1416,13 @@ function DirectoryView({
                   (pageData.page - 1) * pageData.pageSize + index + 1,
                 ).padStart(2, "0")}
               </span>
+              <ProductMark
+                organisationId={product.organisationId}
+                organisationName={product.organisation}
+                productId={product.id}
+                productName={product.name}
+                size={48}
+              />
               <Link className="v2-data-card-product" href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
               <OrganisationLink product={product} />
               <Link className="v2-data-card-category" href={`/?category=${product.categoryId}`}>{product.category}</Link>
@@ -1463,7 +1497,7 @@ function DirectoryView({
               <input checked={includeSources} onChange={(event) => setIncludeSources(event.target.checked)} type="checkbox" />
               Include source URLs
             </label>
-            <p>Candidate data · editorial review required</p>
+            <p>Reviewed release {release.version} · source links included on request</p>
             <button className="v2-panel-apply" onClick={downloadExport} type="button">
               Download {exportFormat.toUpperCase()} <span aria-hidden="true">↓</span>
             </button>
@@ -1499,6 +1533,13 @@ function ProductPreview({
           <button onClick={close} type="button">Close</button>
         </div>
         <header className="v2-preview-head">
+          <ProductMark
+            organisationId={product.organisationId}
+            organisationName={product.organisation}
+            productId={product.id}
+            productName={product.name}
+            size={64}
+          />
           <Link href={`/?category=${product.categoryId}`}>{product.category}</Link>
           <h2 id="v2-preview-title"><Link href={`/products/${product.slug}`}>{product.name}</Link></h2>
           <OrganisationLink product={product} suffix=" ↗" />

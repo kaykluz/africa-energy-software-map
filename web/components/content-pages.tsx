@@ -13,6 +13,7 @@ import {
 } from "@/lib/registry-data";
 import { normaliseQuery } from "@/lib/registry-query";
 import { EvidenceStatusLabel } from "@/components/semantic-tags";
+import { OrganisationMark, ProductMark } from "@/components/brand-mark";
 
 export function MethodologyPage() {
   const sections = [
@@ -23,6 +24,7 @@ export function MethodologyPage() {
     ["origin", "Origin and lifecycle"],
     ["market-condition", "Market-condition findings"],
     ["ai-use", "AI use and human review"],
+    ["current-release", "Current release"],
     ["sensitive-infrastructure", "Sensitive infrastructure"],
     ["licence-exports", "Licence and exports"],
   ] as const;
@@ -50,23 +52,27 @@ export function MethodologyPage() {
           <ContentSection id="scope" heading="Scope and exclusions">
             <p>
               Phase 1 covers African-built and global software used in African
-              energy systems: products, organisations, capabilities, deployments,
-              sources and assertions. It excludes general service-company lists,
-              physical-asset mapping, exact non-public coordinates, paid inclusion,
-              subjective rankings and unmoderated editing.
+              energy systems, plus a source-led organisation directory for
+              financiers, developers, OEMs, EPCs, operators, software providers,
+              enablers and public institutions. Products, organisations, markets,
+              deployments, sources and assertions remain separate objects. The map
+              excludes exact non-public coordinates, paid inclusion, subjective
+              rankings and unmoderated editing.
             </p>
           </ContentSection>
           <ContentSection id="taxonomy" heading="Entities and taxonomy">
             <p>
               Stable identifiers connect a product to its owner, capabilities,
-              deployments and assertion-level evidence. The public stack uses six
-              value-chain stages plus one cross-cutting band. A product has one
-              primary category and may later carry additional capabilities.
+              deployments and assertion-level evidence. The software stack uses six
+              functional stages plus one cross-cutting band. A product has one
+              primary category and may carry additional capabilities. Organisations
+              use eight parallel actor types and eleven independently filterable
+              energy markets; actor type is not a sequential value chain.
             </p>
             <div className="methodology-stat-grid">
-              <span><strong>6</strong> value-chain stages</span>
-              <span><strong>14</strong> Phase 1 categories</span>
-              <span><strong>4</strong> evidence states</span>
+              <span><strong>6</strong> software stages</span>
+              <span><strong>8</strong> organisation actor types</span>
+              <span><strong>11</strong> energy markets</span>
             </div>
           </ContentSection>
           <ContentSection id="deployment-definition" heading="Deployment definition">
@@ -133,12 +139,13 @@ export function MethodologyPage() {
               <li><strong>Release</strong><span>Versioned, traceable, reversible dataset publication</span></li>
             </ol>
           </ContentSection>
-          <ContentSection id="prototype-data" heading="Prototype-data status">
+          <ContentSection id="current-release" heading="Current release">
             <p>
-              This interactive build uses the first five candidate products and four
-              candidate deployments from the workbook migration. They are displayed
-              to validate page behaviour and are marked “editorial review required”.
-              Interface labels do not promote them to a public release.
+              Release {release.version} contains {products.length} reviewed products,
+              {" "}{organisations.length} organisations, {deployments.length} country-safe
+              deployment records and {sources.length} rights-resolved sources. The
+              wider software wall also contains classified submitted listings that
+              are kept distinct from canonical reviewed records.
             </p>
           </ContentSection>
           <ContentSection id="sensitive-infrastructure" heading="Sensitive infrastructure">
@@ -174,22 +181,29 @@ export function ContributeHubPage() {
       evidence: "Product or organisation source",
     },
     {
-      href: "/contribute/deployment",
+      href: "/contribute/organisation",
       number: "02",
+      title: "Submit an organisation",
+      copy: "Add a financier, developer, OEM, EPC, operator or enabler.",
+      evidence: "Direct source for its role and energy markets",
+    },
+    {
+      href: "/contribute/deployment",
+      number: "03",
       title: "Add a deployment",
       copy: "Connect software to a country and source.",
       evidence: "Customer, official or independent source",
     },
     {
       href: "/contribute/correction",
-      number: "03",
+      number: "04",
       title: "Correct a record",
       copy: "Replace an exact field with sourced information.",
       evidence: "Source for the correction",
     },
     {
       href: "/contribute/claim",
-      number: "04",
+      number: "05",
       title: "Claim a profile",
       copy: "Confirm your relationship and propose updates.",
       evidence: "Organisation-domain email",
@@ -237,7 +251,8 @@ export function DataPage() {
           Export a filtered view or inspect versioned release packages.
         </p>
         <div className="intro-actions">
-          <Link className="button button-primary" href="/directory">Create a filtered export</Link>
+          <Link className="button button-primary" href="/directory">Export software</Link>
+          <Link className="button button-outline" href="/organisations?view=directory">Export organisations</Link>
           <a className="button button-outline" href="https://github.com/kaykluz/africa-energy-software-map/tree/main/data" target="_blank" rel="noreferrer">
             Inspect data on GitHub ↗
           </a>
@@ -286,7 +301,7 @@ export function DataPage() {
           <p>
             {release.mode === "published"
               ? "Versioned tables, assertions and country-safe deployment data."
-              : "These files reproduce the prototype. They remain candidate data until editorial review is complete."}
+              : "These files form a pre-publication candidate package and remain private until editorial review is complete."}
           </p>
         </div>
         <div className="download-list">
@@ -324,7 +339,7 @@ export function DataPage() {
         </div>
       </section>
       <section className="data-section two-column-copy">
-        <div><h2>Software wall</h2><p>Browse and export every submitted name across the value chain.</p><Link href="/landscape">Open the wall →</Link></div>
+        <div><h2>Software wall</h2><p>Browse classified software and enabling infrastructure by function, stage and sector.</p><Link href="/landscape">Open the wall →</Link></div>
         <div><h2>Versioning and provenance</h2><p>Every immutable release states its version, date, Git commit, record counts, limitations, checksums and licence.</p></div>
       </section>
     </main>
@@ -335,10 +350,10 @@ function distributionDescription(id: string) {
   return {
     csv_package: "Normalised tables, metadata, licence and checksums.",
     registry_json: "The complete snapshot used by this interface.",
-    assertions_jsonl: "One source-linked candidate assertion per line.",
+    assertions_jsonl: "One source-linked reviewed assertion per line.",
     deployments_geojson: "Country-safe geography without precise coordinates.",
     download_manifest: "Counts, review status, file sizes and hashes.",
-  }[id] ?? "Candidate dataset file.";
+  }[id] ?? "Versioned release file.";
 }
 
 export function SearchResultsPage({ query }: { query: string }) {
@@ -398,6 +413,13 @@ export function SearchResultsPage({ query }: { query: string }) {
                 const organisation = organisations.find((item) => item.id === product.organisationId);
                 return (
                   <article className="search-entity-row" key={product.id}>
+                    <ProductMark
+                      organisationId={product.organisationId}
+                      organisationName={product.organisation}
+                      productId={product.id}
+                      productName={product.name}
+                      size={42}
+                    />
                     <span>
                       <Link href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
                       {organisation ? <Link href={`/organisations/${organisation.slug}`}><small>{product.organisation}</small></Link> : <small>{product.organisation}</small>}
@@ -416,6 +438,7 @@ export function SearchResultsPage({ query }: { query: string }) {
                   href={`/organisations/${organisation.slug}`}
                   key={organisation.id}
                 >
+                  <OrganisationMark name={organisation.name} organisationId={organisation.id} size={42} />
                   <span>
                     <strong>{organisation.name}</strong>
                     <small>{organisation.type}</small>
@@ -484,7 +507,7 @@ export function PolicyPage({
       {sections.map((section) => (
         <section key={section.heading}><h2>{section.heading}</h2><p>{section.body}</p></section>
       ))}
-      <p className="policy-date">Draft for prototype review · 30 July 2026</p>
+      <p className="policy-date">Last reviewed · 3 August 2026</p>
     </main>
   );
 }

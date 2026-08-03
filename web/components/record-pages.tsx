@@ -20,7 +20,7 @@ import {
   LifecycleTag,
   OriginLabel,
 } from "@/components/semantic-tags";
-import { OrganisationMark } from "@/components/brand-mark";
+import { OrganisationMark, ProductMark } from "@/components/brand-mark";
 import {
   organisationDirectoryRecord,
   organisationEcosystemGroups,
@@ -57,13 +57,15 @@ export function ProductProfile({ slug }: { slug: string }) {
       </nav>
       <header className="record-header">
         <div>
-          <OrganisationMark
+          <ProductMark
             className="record-brand-mark"
-            name={product.organisation}
             organisationId={product.organisationId}
+            organisationName={product.organisation}
+            productId={product.id}
+            productName={product.name}
             size={88}
           />
-          <span className="eyebrow">Product record · candidate</span>
+          <span className="eyebrow">Reviewed product record</span>
           <h1>{product.name}</h1>
           <Link className="record-owner" href={`/organisations/${organisation?.slug ?? ""}`}>
             {product.organisation}
@@ -148,7 +150,7 @@ export function ProductProfile({ slug }: { slug: string }) {
               </div>
             ) : (
               <div className="inline-empty">
-                <strong>No evidenced deployment in this candidate batch.</strong>
+                <strong>No evidenced deployment in the current release.</strong>
                 <p>
                   A product page or provider statement can show availability, but it
                   does not prove an African deployment.
@@ -188,8 +190,8 @@ export function ProductProfile({ slug }: { slug: string }) {
           </ProfileSection>
           <ProfileSection heading="Record history">
             <ol className="history-list">
-              <li><span className="mono">{release.date}</span><p>Candidate record generated from the selected migration batch.</p></li>
-              <li><span className="mono">{product.lastChecked}</span><p>Source material last checked in the workbook review.</p></li>
+              <li><span className="mono">{release.date}</span><p>Published in reviewed release {release.version}.</p></li>
+              <li><span className="mono">{product.lastChecked}</span><p>Source material last checked during editorial review.</p></li>
             </ol>
           </ProfileSection>
         </article>
@@ -197,10 +199,10 @@ export function ProductProfile({ slug }: { slug: string }) {
         <aside className="record-rail">
           <div className="rail-card">
             <span className="eyebrow">Record status</span>
-            <strong>Editorial review required</strong>
+            <strong>{release.status}</strong>
             <p>
-              This prototype renders candidate records to test the information
-              architecture. It does not publish them.
+              Assertions in this record passed the release review gate. Evidence
+              strength and unknown fields remain visible rather than being flattened.
             </p>
           </div>
           <div className="rail-card">
@@ -253,7 +255,7 @@ export function OrganisationProfile({ slug }: { slug: string }) {
             organisationId={organisation.id}
             size={88}
           />
-          <span className="eyebrow">Organisation record · candidate</span>
+          <span className="eyebrow">Reviewed organisation record</span>
           <h1>{organisation.name}</h1>
           <p>{organisation.description}</p>
           <div className="record-labels">
@@ -289,10 +291,10 @@ export function OrganisationProfile({ slug }: { slug: string }) {
             </dl>
           </ProfileSection>
           {directoryRecord ? (
-            <ProfileSection heading="Role and sectors">
+            <ProfileSection heading="Actor type and markets">
               <div className="organisation-profile-classification">
                 <div>
-                  <span>Role</span>
+                  <span>Specific role</span>
                   <Link href={`/organisations?role=${directoryRecord.primaryRole.id}`}>
                     {directoryRecord.primaryRole.name}
                   </Link>
@@ -308,7 +310,7 @@ export function OrganisationProfile({ slug }: { slug: string }) {
                   </div>
                 </div>
                 <div>
-                  <span>Sectors</span>
+                  <span>Broad sectors</span>
                   <div>
                     {directoryRecord.sectorIds.length ? directoryRecord.sectorIds.map((sectorId) => (
                       <Link href={`/organisations?sector=${sectorId}`} key={sectorId}>
@@ -319,7 +321,7 @@ export function OrganisationProfile({ slug }: { slug: string }) {
                 </div>
                 {directoryRecord.segmentIds.length ? (
                   <div>
-                    <span>Market segments</span>
+                    <span>Energy markets</span>
                     <div>
                       {directoryRecord.segmentIds.map((segmentId) => (
                         <Link href={`/organisations?segment=${segmentId}`} key={segmentId}>
@@ -331,7 +333,7 @@ export function OrganisationProfile({ slug }: { slug: string }) {
                 ) : null}
               </div>
               <small className="organisation-derived-note">
-                Current classifications follow the reviewed software linked to this organisation.
+                Classifications come from reviewed organisation data or reviewed software relationships.
               </small>
             </ProfileSection>
           ) : null}
@@ -339,6 +341,13 @@ export function OrganisationProfile({ slug }: { slug: string }) {
             <div className="linked-product-list">
               {organisationProducts.map((product) => (
                 <Link href={`/products/${product.slug}`} key={product.id}>
+                  <ProductMark
+                    organisationId={product.organisationId}
+                    organisationName={product.organisation}
+                    productId={product.id}
+                    productName={product.name}
+                    size={38}
+                  />
                   <span><strong>{product.name}</strong><small>{product.category}</small></span>
                   <span>{product.deploymentCountries.length} evidenced countries →</span>
                 </Link>
@@ -356,7 +365,7 @@ export function OrganisationProfile({ slug }: { slug: string }) {
           ) : null}
           <ProfileSection heading="Evidenced African presence">
             <p>
-              {organisationDeployments.length} candidate deployment{" "}
+              {organisationDeployments.length} reviewed deployment{" "}
               {organisationDeployments.length === 1 ? "record" : "records"}
               {deploymentCountries.length ? " across " : ""}
               {deploymentCountries.length ? <CountryNameLinks names={deploymentCountries} /> : null}.
@@ -369,7 +378,7 @@ export function OrganisationProfile({ slug }: { slug: string }) {
             </Link>
           </ProfileSection>
           <ProfileSection heading="Organisation history">
-            <p>No sourced rename, merger or acquisition history is recorded in this candidate batch.</p>
+            <p>No sourced rename, merger or acquisition history is recorded in the current release.</p>
           </ProfileSection>
         </article>
         <aside className="record-rail">
@@ -402,7 +411,7 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
         <span className="eyebrow">Country record</span>
         <h1>{countryName}</h1>
         <div className="inline-empty">
-          <strong>No country summary in the prototype dataset.</strong>
+          <strong>No country summary in the current release.</strong>
           <p>
             This is an unknown research state, not evidence of zero deployments.
           </p>
@@ -435,7 +444,7 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
       </nav>
       <header className="record-header country-record-header">
         <div>
-          <span className="eyebrow">Country record · candidate evidence</span>
+          <span className="eyebrow">Reviewed country evidence</span>
           <h1>{countryName}</h1>
           <p>
             Evidence-led software index. This page is not a complete energy-market
@@ -474,7 +483,18 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
                 return (
                   <article key={deployment.id}>
                     <header>
-                      <div>{product ? <h3><Link href={`/products/${product.slug}`}>{product.name}</Link></h3> : null}<span>{deployment.area}</span></div>
+                      <div className="profile-deployment-product">
+                        {product ? (
+                          <ProductMark
+                            organisationId={product.organisationId}
+                            organisationName={product.organisation}
+                            productId={product.id}
+                            productName={product.name}
+                            size={36}
+                          />
+                        ) : null}
+                        <div>{product ? <h3><Link href={`/products/${product.slug}`}>{product.name}</Link></h3> : null}<small>{deployment.area}</small></div>
+                      </div>
                       <LifecycleTag value={deployment.lifecycle} />
                     </header>
                     <dl>
@@ -489,7 +509,7 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
           </ProfileSection>
           <ProfileSection heading="Research coverage">
             <p>
-              {countrySourceCount.size} source-linked candidate{" "}
+              {countrySourceCount.size} source-linked reviewed{" "}
               {countrySourceCount.size === 1
                 ? "record supports"
                 : "records support"}{" "}

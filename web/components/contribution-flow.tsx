@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { africanCountries, categories, products } from "@/lib/registry-data";
+import { organisationEcosystemGroups } from "@/lib/organisation-data";
 import { type FormEvent, useEffect, useState } from "react";
 
-type FlowType = "product" | "deployment" | "correction" | "claim";
+type FlowType = "product" | "organisation" | "deployment" | "correction" | "claim";
 type Receipt = {
   id: string;
   status: string;
@@ -28,6 +29,13 @@ const flowContent: Record<
     intro: "Propose a product and owning organisation for editorial research.",
     steps: ["Product", "Purpose", "Sources", "Review"],
     submit: "Send product for review",
+  },
+  organisation: {
+    eyebrow: "Contribute · new organisation",
+    title: "Submit an organisation",
+    intro: "Propose a market participant and the source for its role in African energy.",
+    steps: ["Organisation", "Role and markets", "Sources", "Review"],
+    submit: "Send organisation for review",
   },
   deployment: {
     eyebrow: "Contribute · evidence",
@@ -225,6 +233,12 @@ function FirstStep({ form, type, update }: StepProps) {
       <div className="duplicate-notice"><strong>Duplicate check</strong><p>Existing candidate products will be compared before intake. If this is an update, use Correct a record instead.</p></div>
     </>;
   }
+  if (type === "organisation") {
+    return <>
+      <Field helper="Use the current legal or trading name." label="Organisation name" required><input onChange={(event) => update("organisation", event.target.value)} required value={form.organisation} /></Field>
+      <div className="duplicate-notice"><strong>Duplicate check</strong><p>Existing organisations and aliases will be compared before intake. If this is an update, use Correct a record instead.</p></div>
+    </>;
+  }
   if (type === "claim") {
     return <>
       <Field label="Organisation" required><select onChange={(event) => update("organisation", event.target.value)} required value={form.organisation}><option value="">Select organisation</option><option>Beacon Power Services</option><option>PAM Africa</option><option>PowerLabs</option></select></Field>
@@ -247,6 +261,10 @@ function DetailStep({ form, type, update }: StepProps) {
     </>;
   }
   if (type === "correction") return <Field helper="State the replacement exactly as it should appear." label="Proposed value" required><textarea onChange={(event) => update("proposedValue", event.target.value)} required rows={4} value={form.proposedValue} /></Field>;
+  if (type === "organisation") return <>
+    <Field label="Primary actor type" required><select onChange={(event) => update("category", event.target.value)} required value={form.category}><option disabled value="">Select actor type</option>{organisationEcosystemGroups.map((group) => <option key={group.id}>{group.name}</option>)}</select></Field>
+    <Field helper="Include the specific role and relevant markets, for example: EPC working in C&I and mini-grids in Ghana." label="Specific role and energy markets" required><textarea onChange={(event) => update("notes", event.target.value)} required rows={5} value={form.notes} /></Field>
+  </>;
   if (type === "claim") return <><Field label="Role and authority" required><textarea onChange={(event) => update("authority", event.target.value)} required rows={4} value={form.authority} /></Field><div className="claim-notice"><strong>Claiming grants no direct editing rights.</strong><p>It also does not independently verify deployments or outcomes.</p></div></>;
   return <><Field label="What does the product do?" required><textarea onChange={(event) => update("notes", event.target.value)} required rows={5} value={form.notes} /></Field><Field label="Primary category" required><select onChange={(event) => update("category", event.target.value)} required value={form.category}><option disabled value="">Select category</option>{categories.map((category) => <option key={category.id}>{category.name}</option>)}</select></Field></>;
 }
@@ -256,13 +274,13 @@ function EvidenceStep({ form, type, update }: StepProps) {
     <Field helper="Use a direct public page, document or repository URL. Search results and generated summaries are not evidence." label="Source URL" required><input onChange={(event) => update("source", event.target.value)} placeholder="https://" required type="url" value={form.source} /></Field>
     <Field label="Your relationship to this source or record"><select onChange={(event) => update("relationship", event.target.value)} value={form.relationship}><option value="">Select relationship</option><option value="provider">Product provider</option><option value="customer">Customer or user</option><option value="researcher">Independent researcher</option><option value="public">Public-source contributor</option></select></Field>
     {type !== "claim" ? <Field helper="Optional. Stored privately and separately from the contribution." label="Contact email"><input onChange={(event) => update("email", event.target.value)} type="email" value={form.email} /></Field> : null}
-    <Field helper="Do not paste confidential excerpts, personal contacts or credentials." label="Notes for the reviewer"><textarea onChange={(event) => update("notes", event.target.value)} rows={4} value={form.notes} /></Field>
+    {type !== "organisation" ? <Field helper="Do not paste confidential excerpts, personal contacts or credentials." label="Notes for the reviewer"><textarea onChange={(event) => update("notes", event.target.value)} rows={4} value={form.notes} /></Field> : null}
     {type === "deployment" ? <label className="source-toggle sensitive-check"><input checked={form.sensitiveConfirmed} onChange={(event) => update("sensitiveConfirmed", event.target.checked)} required type="checkbox" /><span><strong>I have not included sensitive infrastructure data</strong><small>No exact non-public coordinates, vulnerabilities, credentials or confidential identity clues.</small></span></label> : null}
   </>;
 }
 
 function ReviewStep({ form, type }: Omit<StepProps, "update">) {
-  return <div className="review-card"><p>Review the publishable summary. A human editor will assess the source, wording, independence and privacy.</p><dl>{form.product ? <div><dt>{type === "product" ? "Product" : "Record"}</dt><dd>{form.product}</dd></div> : null}{form.organisation ? <div><dt>Organisation</dt><dd>{form.organisation}</dd></div> : null}{form.category ? <div><dt>Category</dt><dd>{form.category}</dd></div> : null}{form.country ? <div><dt>Country</dt><dd>{form.country}</dd></div> : null}{form.customer ? <div><dt>Customer disclosure</dt><dd>{form.customerDisclosure === "undisclosed" ? "Customer undisclosed" : form.customer}</dd></div> : null}{form.field ? <div><dt>Field</dt><dd>{form.field}</dd></div> : null}{form.proposedValue ? <div><dt>Proposed value</dt><dd>{form.proposedValue}</dd></div> : null}{form.source ? <div><dt>Source</dt><dd>{form.source}</dd></div> : null}</dl><div className="dialog-notice"><strong>Submission status</strong><p>The submission enters editorial review. It is not published or verified automatically.</p></div></div>;
+  return <div className="review-card"><p>Review the publishable summary. A human editor will assess the source, wording, independence and privacy.</p><dl>{form.product ? <div><dt>{type === "product" ? "Product" : "Record"}</dt><dd>{form.product}</dd></div> : null}{form.organisation ? <div><dt>Organisation</dt><dd>{form.organisation}</dd></div> : null}{form.category ? <div><dt>{type === "organisation" ? "Actor type" : "Category"}</dt><dd>{form.category}</dd></div> : null}{type === "organisation" && form.notes ? <div><dt>Role and markets</dt><dd>{form.notes}</dd></div> : null}{type === "deployment" && form.country ? <div><dt>Country</dt><dd>{form.country}</dd></div> : null}{type === "deployment" && form.customer ? <div><dt>Customer disclosure</dt><dd>{form.customerDisclosure === "undisclosed" ? "Customer undisclosed" : form.customer}</dd></div> : null}{form.field ? <div><dt>Field</dt><dd>{form.field}</dd></div> : null}{form.proposedValue ? <div><dt>Proposed value</dt><dd>{form.proposedValue}</dd></div> : null}{form.source ? <div><dt>Source</dt><dd>{form.source}</dd></div> : null}</dl><div className="dialog-notice"><strong>Submission status</strong><p>The submission enters editorial review. It is not published or verified automatically.</p></div></div>;
 }
 
 type StepProps = {

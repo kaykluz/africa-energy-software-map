@@ -2,10 +2,9 @@
 
 An open, evidence-backed map of the software powering African energy systems.
 
-The project will document what each product does, who built it, where it is
+The project documents what each product does, who built it, where it is
 deployed, and the evidence behind every published claim. It is designed as a
-living public record rather than a logo wall or a conventional startup
-directory.
+living public record whose visual walls always lead to sourced, dated records.
 
 ## Project status
 
@@ -19,13 +18,18 @@ No dataset in this repository should yet be treated as a complete census.
 
 ## Product experience
 
-One database supports three connected public modes:
+One connected data model supports five public modes:
 
-1. **Explore** — a visual route through software across the energy value chain.
+1. **Explore** — the complete classified catalogue.
 2. **Map** — where products are evidenced as being used, rather than
    merely where their providers are headquartered.
-3. **Data** — searchable, filterable, and exportable records for academics and
+3. **Data** — searchable, filterable, and exportable reviewed software records
+   for academics and
    power users.
+4. **Wall** — a visual software landscape organised by relationship to energy,
+   function, software stage and sector.
+5. **Organisations** — actor types such as financiers, developers, OEMs, EPCs,
+   operators, software providers and enablers, filterable by energy market.
 
 Every material deployment and market claim will link to evidence and display a
 last-checked date.
@@ -58,7 +62,8 @@ readiness, and the bounded Batch 002 plan are documented in
 
 ## Core principles
 
-- Product-level records, not company logos.
+- Product-level records remain primary; product or owner logos are visual
+  navigation aids, never substitutes for records.
 - Deployment geography is distinct from headquarters and claimed availability.
 - Anyone may submit; editors decide what is published.
 - AI may discover and structure claims, but it may not verify or publish them.
@@ -78,7 +83,7 @@ readiness, and the bounded Batch 002 plan are documented in
 | [`schemas/`](schemas/) | Machine-readable table and agent-output contracts |
 | [`agent/`](agent/) | AI research prompts, policy, configuration, and adapter contract |
 | [`scripts/`](scripts/) | Repository and data validation |
-| [`web/`](web/) | Responsive Phase 1 interactive prototype and route tests |
+| [`web/`](web/) | Responsive public application, review workspace and route tests |
 | [`.github/`](.github/) | Contribution templates, ownership, and automated checks |
 
 ## Start here
@@ -100,7 +105,7 @@ readiness, and the bounded Batch 002 plan are documented in
 - [Automation and review assist](docs/23-automation-and-review-assist.md)
 - [Sector, geography and bulk intake](docs/24-sector-geography-and-bulk-intake.md)
 - [Production backend, admin and custom domain](docs/25-production-backend-admin-and-domain.md)
-- [Interactive prototype](web/README.md)
+- [Public web application](web/README.md)
 - [Contributing](CONTRIBUTING.md)
 
 ## Contributing

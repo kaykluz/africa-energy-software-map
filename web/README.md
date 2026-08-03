@@ -1,8 +1,8 @@
-# Africa Energy Software Map web prototype
+# Africa Energy Software Map web application
 
-Responsive Phase 1 interface for the public registry. Its version 2 direction
-combines a visual Explore mode, an interactive Map and a precise Data workspace,
-with detail revealed progressively through search, previews and full records.
+Responsive interface for the public registry. Explore, Map, Data, Wall and
+Organisations share one interlinked record model, with detail revealed
+progressively through search, previews and full records.
 
 The implementation contract is
 [`docs/17-visual-interaction-redesign.md`](../docs/17-visual-interaction-redesign.md).
@@ -125,7 +125,7 @@ python3 scripts/build_registry_snapshot.py --check
 - Stack, Deployments and Directory use one filter vocabulary;
 - category and country previews stay bounded as the registry grows;
 - the Directory pages the full filtered set at 25, 50 or 100 rows;
-- exports state the visible record set and prototype status;
+- exports state the visible record set and release status;
 - country views avoid precise non-public infrastructure coordinates;
 - browsing, search, export and correction require no account; and
 - no autonomous process can publish without human editorial review.

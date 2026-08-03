@@ -46,6 +46,7 @@ export async function storeContribution({
   const database = await getD1Database();
   const isDeployment = contribution.type === "deployment";
   const isProduct = contribution.type === "product";
+  const isOrganisation = contribution.type === "organisation";
   const isCorrection = contribution.type === "correction";
   const isClaim = contribution.type === "claim";
   const statements: D1PreparedStatement[] = [
@@ -67,8 +68,8 @@ export async function storeContribution({
         now,
         isDeployment || isCorrection ? contribution.product : null,
         isProduct ? contribution.product : null,
-        isProduct || isClaim ? contribution.organisation : null,
-        isProduct ? contribution.category : null,
+        isProduct || isOrganisation || isClaim ? contribution.organisation : null,
+        isProduct || isOrganisation ? contribution.category : null,
         isDeployment ? contribution.country : null,
         isDeployment ? contribution.customerDisclosure : null,
         isDeployment ? contribution.customer : null,

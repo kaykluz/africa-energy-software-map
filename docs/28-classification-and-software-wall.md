@@ -109,14 +109,17 @@ The wall is a navigation surface, not a ranking:
 - source directories stay in the list and export views rather than the software
   wall.
 
-The wall uses a restrained typographic identity mark until an approved logo is
-available. Logos are optional classification metadata and must be stored
-locally. They are never scraped or hotlinked. Each accepted logo needs an
-official source URL recorded beside it; unapproved brand assets fall back to the
-typographic mark. Logo presence does not affect ordering or prominence.
+The wall uses a product mark when an approved standalone product logo exists.
+Otherwise it inherits the owning organisation's approved mark; when neither is
+available it uses a restrained typographic identity. Logos are optional
+classification metadata and must be stored locally. They are never hotlinked.
+Each accepted logo needs an official source URL recorded beside it. Logo
+presence does not affect ordering or prominence.
 
 The first approved local asset batch is registered in
 [`data/brand-assets/organisations.json`](../data/brand-assets/organisations.json).
+Standalone product assets use the parallel
+[`data/brand-assets/products.json`](../data/brand-assets/products.json) register.
 It records both the official page on which the mark was found and the exact
 asset URL. The same local file is reused on the wall, organisation atlas and
 related product and organisation profiles. Checksums make silent asset changes

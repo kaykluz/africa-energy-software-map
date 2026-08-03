@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Applied the organisation actor/market model across profiles, methodology,
+  contribution intake and review labels; removed obsolete five-record prototype
+  wording from public release pages; and added a dedicated sourced organisation
+  submission route.
+- Added a consistent product identity cascade across profiles, the stack,
+  directory, map, search and preview surfaces: approved product mark first,
+  approved owning-organisation mark second, then a typographic fallback.
 - Replaced the organisation process-chain treatment with eight parallel actor
   groups: financiers, developers and owners, OEMs and suppliers, EPCs and
   installers, operators and service providers, software and data, enablers and

@@ -9,6 +9,7 @@ import {
   organisationEcosystemGroupName,
   organisationEcosystemGroups,
   organisationRoles,
+  organisationRoleName,
   organisationSegments,
   organisationSegmentName,
   organisationSectors,
@@ -147,6 +148,30 @@ export function OrganisationAtlas({
     if (key === "origin") { setOrigin("all"); updateUrl({ origin: "all" }); }
   }
 
+  function downloadExport() {
+    const records = rows.map((record) => ({
+      organisation: record.organisation.name,
+      actor_types: record.ecosystemGroupIds.map(organisationEcosystemGroupName),
+      specific_roles: record.roleIds.map(organisationRoleName),
+      energy_markets: record.segmentIds.map(organisationSegmentName),
+      broad_sectors: record.sectorIds.map(organisationSectorName),
+      evidenced_countries: record.countryNames,
+      origin: record.organisation.origin,
+      country_of_origin: record.organisation.countryOfOrigin,
+      headquarters: record.organisation.headquarters,
+      linked_software: record.productCount,
+      last_checked: record.organisation.lastChecked,
+      website: record.organisation.website,
+    }));
+    const blob = new Blob([organisationCsv(records)], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "africa-energy-organisations.csv";
+    anchor.click();
+    URL.revokeObjectURL(url);
+  }
+
   const mapParams = new URLSearchParams({ object: "organisations" });
   if (country !== "all") mapParams.set("country", country);
 
@@ -157,7 +182,7 @@ export function OrganisationAtlas({
           <h1>Organisations</h1>
           <p>Who does what across African energy.</p>
         </div>
-        <Link href="/contribute">Add an organisation</Link>
+        <Link href="/contribute/organisation">Add an organisation</Link>
       </header>
 
       <nav aria-label="Organisation views" className="organisation-view-tabs">
@@ -259,6 +284,9 @@ export function OrganisationAtlas({
           </div>
         </details>
         <span aria-live="polite">{rows.length} shown</span>
+        <button className="organisation-export" onClick={downloadExport} type="button">
+          Export CSV <span aria-hidden="true">↓</span>
+        </button>
       </section>
 
       {activeFilters.length ? (
@@ -320,7 +348,7 @@ export function OrganisationAtlas({
       <footer className="organisation-coverage-note">
         <span>Current release</span>
         <p>{products.length} reviewed software records. Add missing developers, EPCs, OEMs, financiers and operators.</p>
-        <Link href="/contribute">Add an organisation →</Link>
+        <Link href="/contribute/organisation">Add an organisation →</Link>
       </footer>
     </main>
   );
@@ -390,7 +418,7 @@ function EmptyState() {
   return (
     <section className="landscape-empty">
       <strong>No organisations listed here yet.</strong>
-      <Link href="/contribute">Add one →</Link>
+      <Link href="/contribute/organisation">Add one →</Link>
     </section>
   );
 }
@@ -423,4 +451,29 @@ function filterRecords(
       ...record.countryNames,
     ].join(" ")).includes(term);
   });
+}
+
+function organisationCsv(rows: Array<Record<string, string | string[] | number>>) {
+  const headers = [
+    "organisation",
+    "actor_types",
+    "specific_roles",
+    "energy_markets",
+    "broad_sectors",
+    "evidenced_countries",
+    "origin",
+    "country_of_origin",
+    "headquarters",
+    "linked_software",
+    "last_checked",
+    "website",
+  ];
+  const escape = (value: string | string[] | number) => {
+    const text = Array.isArray(value) ? value.join(" | ") : String(value ?? "");
+    return `"${text.replaceAll('"', '""')}"`;
+  };
+  return [
+    headers.map(escape).join(","),
+    ...rows.map((row) => headers.map((header) => escape(row[header])).join(",")),
+  ].join("\n");
 }

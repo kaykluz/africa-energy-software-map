@@ -1,5 +1,8 @@
 import Image from "next/image";
-import { brandAssetForOrganisation } from "@/lib/brand-assets";
+import {
+  brandAssetForOrganisation,
+  brandAssetForProduct,
+} from "@/lib/brand-assets";
 
 export function OrganisationMark({
   className = "",
@@ -15,7 +18,10 @@ export function OrganisationMark({
   const asset = brandAssetForOrganisation(organisationId);
   if (asset) {
     return (
-      <span className={`organisation-mark has-logo ${className}`.trim()}>
+      <span
+        className={`organisation-mark has-logo ${className}`.trim()}
+        style={{ height: size, width: size }}
+      >
         <Image
           alt={`${name} logo`}
           height={size}
@@ -26,19 +32,73 @@ export function OrganisationMark({
       </span>
     );
   }
-  const initials = name
+  const initials = markInitials(name);
+  return (
+    <span
+      aria-hidden="true"
+      className={`organisation-mark is-type ${className}`.trim()}
+      style={{ height: size, width: size }}
+    >
+      {initials}
+    </span>
+  );
+}
+
+export function ProductMark({
+  className = "",
+  organisationId,
+  organisationName,
+  productId,
+  productName,
+  size = 48,
+}: {
+  className?: string;
+  organisationId: string;
+  organisationName: string;
+  productId: string;
+  productName: string;
+  size?: number;
+}) {
+  const productAsset = brandAssetForProduct(productId);
+  const organisationAsset = brandAssetForOrganisation(organisationId);
+  const asset = productAsset ?? organisationAsset;
+  if (asset) {
+    const inherited = !productAsset && Boolean(organisationAsset);
+    return (
+      <span
+        className={`organisation-mark product-mark has-logo ${className}`.trim()}
+        data-brand-source={inherited ? "organisation" : "product"}
+        style={{ height: size, width: size }}
+        title={inherited ? `${organisationName} identity` : `${productName} identity`}
+      >
+        <Image
+          alt=""
+          height={size}
+          src={asset.localPath}
+          unoptimized
+          width={size}
+        />
+      </span>
+    );
+  }
+  return (
+    <span
+      aria-hidden="true"
+      className={`organisation-mark product-mark is-type ${className}`.trim()}
+      data-brand-source="type"
+      style={{ height: size, width: size }}
+    >
+      {markInitials(productName)}
+    </span>
+  );
+}
+
+function markInitials(name: string) {
+  return name
     .split(/\s+/)
     .filter(Boolean)
     .slice(0, 2)
     .map((word) => word[0])
     .join("")
     .toUpperCase();
-  return (
-    <span
-      aria-hidden="true"
-      className={`organisation-mark is-type ${className}`.trim()}
-    >
-      {initials}
-    </span>
-  );
 }
