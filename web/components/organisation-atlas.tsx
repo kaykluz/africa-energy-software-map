@@ -445,6 +445,7 @@ function filterRecords(
       record.organisation.countryOfOrigin,
       record.organisation.headquarters,
       record.primaryRole.name,
+      ...record.aliases,
       ...record.ecosystemGroupIds.map(organisationEcosystemGroupName),
       ...record.sectorIds.map(organisationSectorName),
       ...record.segmentIds.map(organisationSegmentName),

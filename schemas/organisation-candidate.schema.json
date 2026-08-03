@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/kaykluz/africa-energy-software-map/schemas/organisation-candidate.schema.json",
+  "title": "Organisation inventory candidate batch",
+  "type": "object",
+  "required": ["schemaVersion", "batchId", "status", "source", "inventorySummary", "candidates"],
+  "properties": {
+    "schemaVersion": {"const": "1.0.0"},
+    "batchId": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "status": {
+      "type": "object",
+      "required": ["candidateOnly", "publicationAuthorised", "humanReviewRequired"],
+      "properties": {
+        "candidateOnly": {"const": true},
+        "publicationAuthorised": {"const": false},
+        "humanReviewRequired": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": ["kind", "asOf", "sha256"],
+      "properties": {
+        "kind": {"const": "user_supplied_inventory"},
+        "asOf": {"type": "string", "format": "date"},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "inventorySummary": {
+      "type": "object",
+      "required": ["rowsParsed", "canonicalMatches", "catalogueMatches", "newCandidates", "ambiguous", "needsSplit"],
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "candidates": {
+      "type": "array",
+      "maxItems": 25,
+      "items": {
+        "type": "object",
+        "required": [
+          "candidateId", "sourceRow", "submittedName", "submittedWebsite",
+          "submittedHeadquarters", "submittedStakeholderType", "submittedSegments",
+          "submittedOwnershipType", "submittedScaleIndicator", "submittedNotes",
+          "recordShape", "suggestedActorGroupId", "suggestedRoleIds",
+          "suggestedSegmentIds", "sourceLeads", "reconciliation", "reviewState"
+        ],
+        "properties": {
+          "candidateId": {"type": "string", "pattern": "^cand_org_[a-z0-9_]+$"},
+          "sourceRow": {"type": "integer", "minimum": 1},
+          "submittedName": {"type": "string", "minLength": 1},
+          "submittedWebsite": {"type": "string"},
+          "submittedHeadquarters": {"type": "string"},
+          "submittedStakeholderType": {"type": "string"},
+          "submittedSegments": {"type": "array", "items": {"type": "string"}},
+          "submittedOwnershipType": {"type": "string"},
+          "submittedScaleIndicator": {"type": "string"},
+          "submittedNotes": {"type": "string"},
+          "recordShape": {"enum": ["organisation", "capital_vehicle", "programme_or_facility", "relationship_event", "grouped_row"]},
+          "suggestedActorGroupId": {"type": "string"},
+          "suggestedRoleIds": {"type": "array", "items": {"type": "string"}},
+          "suggestedSegmentIds": {"type": "array", "items": {"type": "string"}},
+          "sourceLeads": {"type": "array", "items": {"type": "string", "format": "uri"}},
+          "reconciliation": {
+            "type": "object",
+            "required": ["status", "matchedOn"],
+            "properties": {
+              "status": {"enum": ["canonical_match", "catalogue_match", "new_candidate", "ambiguous", "needs_split"]},
+              "matchedOn": {"enum": ["canonical_name", "canonical_domain", "registered_alias", "catalogue_name", "none"]},
+              "canonicalOrganisationId": {"type": "string"},
+              "catalogueItemIds": {"type": "array", "items": {"type": "string"}}
+            },
+            "additionalProperties": false
+          },
+          "reviewState": {"const": "needs_source_review"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

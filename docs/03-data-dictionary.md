@@ -30,6 +30,19 @@ An organisation may have an origin and headquarters outside Africa. It remains
 eligible when a product has a sourced African deployment. Headquarters, origin,
 availability and deployment geography are never substituted for one another.
 
+### Organisation aliases and relationships
+
+Aliases preserve former names, trading names, acronyms, local-language names and
+spelling variants without creating duplicate organisations. Renames retain the
+same canonical organisation ID.
+
+Corporate relationships are directional, dated records between two canonical
+organisation IDs. They cover subsidiaries, affiliates, acquisitions, joint
+ventures, spin-outs, mergers, managers, brands, divisions and memberships. The
+interface derives the inverse label; the data does not duplicate inverse rows.
+Acquisition and subsidiary status are distinct claims and are never inferred from
+one another.
+
 ## Product
 
 Key fields include organisation ID, name, description, primary category,

@@ -4,6 +4,7 @@ import {
   categories,
   dataDistributions,
   deployments,
+  organisationAliasRecords,
   organisations,
   products,
   release,
@@ -381,6 +382,9 @@ export function SearchResultsPage({ query }: { query: string }) {
             organisation.origin,
             organisation.countryOfOrigin,
             organisation.headquarters,
+            ...organisationAliasRecords
+              .filter((alias) => alias.organisationId === organisation.id)
+              .map((alias) => alias.alias),
           ].join(" "),
         ).includes(term),
       )

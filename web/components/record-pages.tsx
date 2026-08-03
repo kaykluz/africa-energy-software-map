@@ -22,8 +22,10 @@ import {
 } from "@/components/semantic-tags";
 import { OrganisationMark, ProductMark } from "@/components/brand-mark";
 import {
+  organisationAliases,
   organisationDirectoryRecord,
   organisationEcosystemGroups,
+  relatedOrganisations,
   organisationSegmentName,
   organisationSectorName,
   softwareStageName,
@@ -240,6 +242,8 @@ export function OrganisationProfile({ slug }: { slug: string }) {
   const deploymentCountries = Array.from(
     new Set(organisationDeployments.map((deployment) => deployment.country)),
   );
+  const aliases = organisationAliases(organisation.id);
+  const corporateRelationships = relatedOrganisations(organisation.id);
 
   return (
     <main className="profile-page profile-width" id="main-content" tabIndex={-1}>
@@ -257,6 +261,11 @@ export function OrganisationProfile({ slug }: { slug: string }) {
           />
           <span className="eyebrow">Reviewed organisation record</span>
           <h1>{organisation.name}</h1>
+          {aliases.length ? (
+            <p className="record-aliases">
+              Also known as {aliases.map((item) => item.alias).join(", ")}
+            </p>
+          ) : null}
           <p>{organisation.description}</p>
           <div className="record-labels">
             <span className="origin-label"><span className="origin-mark" aria-hidden="true" />{organisation.origin}</span>
@@ -378,7 +387,40 @@ export function OrganisationProfile({ slug }: { slug: string }) {
             </Link>
           </ProfileSection>
           <ProfileSection heading="Organisation history">
-            <p>No sourced rename, merger or acquisition history is recorded in the current release.</p>
+            {corporateRelationships.length ? (
+              <div className="source-list">
+                {corporateRelationships.map(({ record, organisation: related, label }) => (
+                  <article key={record.id}>
+                    <div>
+                      <span>{label}</span>
+                      <h3><Link href={`/organisations/${related.slug}`}>{related.name}</Link></h3>
+                      <p>
+                        {record.validFrom ? `From ${record.validFrom}` : "Start date not documented"}
+                        {record.validTo ? ` · to ${record.validTo}` : ""}
+                      </p>
+                    </div>
+                    <div>
+                      <Link href={`/organisations/${related.slug}`}>View profile →</Link>
+                      {sources
+                        .filter((source) => assertions.some(
+                          (assertion) =>
+                            assertion.subjectType === "organisation_relationship" &&
+                            assertion.subjectId === record.id &&
+                            assertion.sourceId === source.id,
+                        ))
+                        .slice(0, 1)
+                        .map((source) => (
+                          <a href={source.url} key={source.id} rel="noreferrer" target="_blank">
+                            Source ↗
+                          </a>
+                        ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <p>No sourced rename, merger or acquisition history is recorded in the current release.</p>
+            )}
           </ProfileSection>
         </article>
         <aside className="record-rail">

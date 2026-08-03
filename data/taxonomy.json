@@ -1,5 +1,5 @@
 {
-  "version": "1.3.0",
+  "version": "1.4.0",
   "stages": [
     {
       "id": "stage_plan_design",
@@ -182,6 +182,25 @@
     {"id": "org_software_implements", "name": "Implements"},
     {"id": "org_software_integrates", "name": "Integrates"},
     {"id": "org_software_resells", "name": "Resells"}
+  ],
+  "organisation_alias_types": [
+    {"id": "org_alias_former_name", "name": "Former name"},
+    {"id": "org_alias_trading_name", "name": "Trading name"},
+    {"id": "org_alias_acronym", "name": "Acronym"},
+    {"id": "org_alias_local_name", "name": "Local-language name"},
+    {"id": "org_alias_spelling_variant", "name": "Spelling variant"}
+  ],
+  "organisation_relationships": [
+    {"id": "org_relationship_subsidiary_of", "name": "Subsidiary of", "inverseName": "Parent of", "ownershipRelationship": true},
+    {"id": "org_relationship_affiliate_of", "name": "Affiliate of", "inverseName": "Affiliate of", "ownershipRelationship": false},
+    {"id": "org_relationship_acquired_by", "name": "Acquired by", "inverseName": "Acquired", "ownershipRelationship": true},
+    {"id": "org_relationship_joint_venture_of", "name": "Joint venture of", "inverseName": "Joint-venture parent of", "ownershipRelationship": true},
+    {"id": "org_relationship_spun_out_from", "name": "Spun out from", "inverseName": "Origin of spin-out", "ownershipRelationship": false},
+    {"id": "org_relationship_merged_into", "name": "Merged into", "inverseName": "Successor to", "ownershipRelationship": true},
+    {"id": "org_relationship_managed_by", "name": "Managed by", "inverseName": "Manager of", "ownershipRelationship": false},
+    {"id": "org_relationship_brand_of", "name": "Brand of", "inverseName": "Owns brand", "ownershipRelationship": true},
+    {"id": "org_relationship_division_of", "name": "Division of", "inverseName": "Has division", "ownershipRelationship": true},
+    {"id": "org_relationship_member_of", "name": "Member of", "inverseName": "Has member", "ownershipRelationship": false}
   ],
   "origin_classifications": [
     "africa_built",

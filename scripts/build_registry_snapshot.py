@@ -40,6 +40,8 @@ OPTIONAL_CSV_TABLES = (
     "organisation-sectors.csv",
     "organisation-segments.csv",
     "organisation-software-relationships.csv",
+    "organisation-aliases.csv",
+    "organisation-relationships.csv",
 )
 
 
@@ -434,6 +436,34 @@ def build_snapshot(config_path: Path = DEFAULT_CONFIG) -> dict[str, object]:
             }
             for row in optional_organisation_tables[
                 "organisation-software-relationships.csv"
+            ]
+        ]
+    if "organisation-aliases.csv" in optional_organisation_tables:
+        snapshot["organisationAliases"] = [
+            {
+                "id": row["id"],
+                "organisationId": row["organisation_id"],
+                "alias": row["alias"],
+                "aliasType": row["alias_type"],
+                "validFrom": row["valid_from"],
+                "validTo": row["valid_to"],
+                "lastCheckedAt": row["last_checked_at"],
+            }
+            for row in optional_organisation_tables["organisation-aliases.csv"]
+        ]
+    if "organisation-relationships.csv" in optional_organisation_tables:
+        snapshot["organisationRelationships"] = [
+            {
+                "id": row["id"],
+                "organisationId": row["organisation_id"],
+                "relatedOrganisationId": row["related_organisation_id"],
+                "relationshipType": row["relationship_type"],
+                "validFrom": row["valid_from"],
+                "validTo": row["valid_to"],
+                "lastCheckedAt": row["last_checked_at"],
+            }
+            for row in optional_organisation_tables[
+                "organisation-relationships.csv"
             ]
         ]
     return snapshot
