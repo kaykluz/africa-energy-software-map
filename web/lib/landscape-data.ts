@@ -8,6 +8,7 @@ import shard007 from "../../data/landscape/shards/breadth-first-007.json";
 import shard008 from "../../data/landscape/shards/breadth-first-008.json";
 import phase1001 from "../../data/landscape/shards/phase1-catalogue-001.json";
 import phase1002 from "../../data/landscape/shards/phase1-catalogue-002.json";
+import phase1003 from "../../data/landscape/shards/phase1-catalogue-003.json";
 
 export type LandscapeKind =
   | "organisation"
@@ -88,6 +89,7 @@ export const landscapeShards = [
   shard008,
   phase1001,
   phase1002,
+  phase1003,
 ] as LandscapeShard[];
 
 export const landscapeItems = landscapeShards.flatMap((shard) => shard.items);
