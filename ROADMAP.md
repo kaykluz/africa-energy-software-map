@@ -33,6 +33,11 @@
 
 - Developers, owners, EPCs, O&M providers, OEMs, advisers, utilities, regulators,
   programmes, and associations
+- One canonical organisation graph with multi-role, segment, country and
+  software relationships; see
+  [the Phase 2 design contract](docs/29-organisation-directory-and-market-graph.md)
+- Organisation Atlas, Map and List views with common filters and exports
+- Capital vehicles and facilities as the first role-specific extension
 
 ## Phase 3 — Projects and assets
 
