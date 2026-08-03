@@ -84,15 +84,28 @@ rule must update the tests and regenerate the overlay.
 
 ## Software wall
 
-The landscape opens on a compact wall arranged across the six value-chain
-stages, followed by a cross-cutting band. It is a navigation surface, not a
-ranking:
+The landscape opens on separate relationship lanes before arranging products
+across the six value-chain stages. This prevents a horizontal platform from
+being presented as though it were energy software. The visible hierarchy is:
+
+1. **Core energy software** — products built for the energy system.
+2. **Software applied to energy** — split into energy-focused versions and
+   horizontal infrastructure. Paystack belongs in the horizontal
+   infrastructure subsection.
+3. **Operator and public systems** — split into operator-owned and public or
+   research tools.
+4. **To classify** — visible, but kept outside the settled lanes.
+
+Each lane has its own value-chain wall and cross-cutting band. Core and applied
+software are open by default. The supporting and review lanes use progressive
+disclosure, but open automatically when a search or filter returns matches.
+The wall is a navigation surface, not a ranking:
 
 - every tile has equal visual weight;
 - the default order is alphabetical;
 - relationship and function can be filtered;
 - selecting a tile opens the full catalogue detail without losing the wall;
-- each stage links to the corresponding filtered list; and
+- each stage links to a list filtered by both stage and relationship; and
 - source directories stay in the list and export views rather than the software
   wall.
 
