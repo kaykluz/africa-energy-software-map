@@ -1,7 +1,7 @@
 # Sector, geography and bulk intake
 
 Status: scale-up implementation contract
-Last updated: 30 July 2026
+Last updated: 3 August 2026
 
 ## Inclusion is based on African use, not headquarters
 
@@ -80,16 +80,32 @@ The standard workbook is available at:
 
 `/downloads/templates/africa-energy-software-map-bulk-import.xlsx`
 
-Only the `Bulk Records` sheet is imported. It uses one row per product or
-deployment claim and supplies controlled values for countries, categories,
-sectors, lifecycle, evidence and source independence.
+Only the `Bulk Records` sheet is imported. It uses one row per atomic record
+and supports six record types:
+
+1. organisation;
+2. product;
+3. deployment;
+4. organisation alias;
+5. organisation-to-organisation relationship; and
+6. organisation-to-software relationship.
+
+Organisation rows keep the canonical identity separate from many-to-many roles,
+energy sectors and market segments. Pipe-separated controlled IDs are promoted
+to individual, source-linked relationship records. Alias rows preserve former,
+trading, acronym, local-language and spelling-variant names without replacing
+the canonical name. Corporate relationships require stable IDs at both ends and
+can record parent, subsidiary, affiliate, acquisition, merger, brand, division,
+joint-venture and management links with optional validity dates. Software links
+separately record ownership, development, internal operation, use,
+implementation, integration or resale.
 
 The browser reads the workbook locally and sends structured rows to the private
 review API. The raw file is not stored. The server:
 
 1. revalidates every field;
 2. rejects formulas and altered headers while ignoring non-import sheets;
-3. separates product records from deployment claims;
+3. separates canonical entities from classifications, aliases and relationships;
 4. rejects precise or confidential infrastructure content;
 5. prevents provider sources from claiming independent confirmation;
 6. plans batches within 25 entities and 100 generated assertions using the same
@@ -108,9 +124,10 @@ release still requires a human-reviewed data pull request.
 The release planner repeats those limits against the assertions actually
 approved. If an older import used a lower estimate, it creates new release
 shards without changing or repeating the completed editorial decisions.
-The shard materializer then writes only factual metadata, resolved source
-records and reviewed assertions to `data/release-shards/`; the private review
-package and reviewer contact data never enter GitHub.
+The shard materializer then writes canonical entities and their optional
+organisation relationship tables alongside factual metadata, resolved sources
+and reviewed assertions in `data/release-shards/`; the private review package
+and reviewer contact data never enter GitHub.
 
 ## Scale-up automation layers
 

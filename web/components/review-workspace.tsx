@@ -64,6 +64,26 @@ type BulkReviewSaveResult = {
   importStatus: string;
   importVersion: number;
 };
+type BulkRecordType =
+  | "organisation"
+  | "product"
+  | "deployment"
+  | "organisation_alias"
+  | "organisation_relationship"
+  | "organisation_software_relationship";
+
+const bulkRecordTypeOptions: Array<{
+  value: "all" | BulkRecordType;
+  label: string;
+}> = [
+  { value: "all", label: "All" },
+  { value: "organisation", label: "Organisations" },
+  { value: "product", label: "Products" },
+  { value: "deployment", label: "Deployments" },
+  { value: "organisation_alias", label: "Aliases" },
+  { value: "organisation_relationship", label: "Relationships" },
+  { value: "organisation_software_relationship", label: "Software links" },
+];
 
 export function ReviewWorkspace({
   assertions,
@@ -578,9 +598,7 @@ function BulkImportPanel({
   const [rowsLoading, setRowsLoading] = useState(false);
   const [rowsError, setRowsError] = useState("");
   const [rowQuery, setRowQuery] = useState("");
-  const [rowType, setRowType] = useState<"all" | "product" | "deployment">(
-    "all",
-  );
+  const [rowType, setRowType] = useState<"all" | BulkRecordType>("all");
   const [batchFilter, setBatchFilter] = useState<number | "all">("all");
   const activeImport = imports.find((record) => record.id === activeImportId);
   const decidedRows = rows.filter((row) => row.review).length;
@@ -602,6 +620,12 @@ function BulkImportPanel({
         row.rowKey,
         value.organisation_name,
         value.product_name,
+        value.organisation_alias,
+        value.related_organisation_id,
+        value.organisation_software_relationship_type,
+        value.existing_product_id,
+        value.primary_organisation_role_id,
+        value.organisation_segment_ids,
         value.customer_name,
         value.deployment_country_iso2,
         value.country_of_origin,
@@ -704,7 +728,7 @@ function BulkImportPanel({
       <header>
         <div>
           <h2>Bulk intake</h2>
-          <p>Products and deployments enter review as candidates.</p>
+          <p>Organisations, software, deployments and corporate links enter as candidates.</p>
         </div>
         <a
           className="button button-outline"
@@ -862,25 +886,21 @@ function BulkImportPanel({
                         <span>Find a record</span>
                         <input
                           onChange={(event) => setRowQuery(event.target.value)}
-                          placeholder="Product, organisation or country"
+                          placeholder="Organisation, product, role or country"
                           type="search"
                           value={rowQuery}
                         />
                       </label>
                       <div aria-label="Record type" role="group">
-                        {(["all", "product", "deployment"] as const).map(
-                          (value) => (
+                        {bulkRecordTypeOptions.map(
+                          (option) => (
                             <button
-                              aria-pressed={rowType === value}
-                              key={value}
-                              onClick={() => setRowType(value)}
+                              aria-pressed={rowType === option.value}
+                              key={option.value}
+                              onClick={() => setRowType(option.value)}
                               type="button"
                             >
-                              {value === "all"
-                                ? "All"
-                                : value === "product"
-                                  ? "Products"
-                                  : "Deployments"}
+                              {option.label}
                             </button>
                           ),
                         )}
@@ -924,24 +944,98 @@ function BulkImportPanel({
   );
 }
 
-const bulkEditFields: Array<{
+type BulkEditField = {
   field: BulkAmendableField;
   label: string;
   wide?: boolean;
-}> = [
-  { field: "organisation_name", label: "Organisation" },
-  { field: "product_name", label: "Product" },
-  { field: "deployment_country_iso2", label: "Deployment country" },
-  { field: "customer_name", label: "Customer" },
-  { field: "started_year", label: "Started" },
-  { field: "primary_category_id", label: "Category" },
-  { field: "product_lifecycle_status", label: "Product status" },
-  { field: "deployment_lifecycle_status", label: "Deployment status" },
+};
+
+const sourceEditFields: BulkEditField[] = [
   { field: "source_publisher", label: "Publisher" },
   { field: "source_title", label: "Source title", wide: true },
   { field: "source_locator", label: "Source locator", wide: true },
   { field: "notes", label: "Record notes", wide: true },
 ];
+
+const bulkEditFieldsByType: Record<BulkRecordType, BulkEditField[]> = {
+  organisation: [
+    { field: "organisation_name", label: "Organisation" },
+    { field: "existing_organisation_id", label: "Existing ID" },
+    { field: "organisation_website", label: "Website" },
+    { field: "organisation_description", label: "Description", wide: true },
+    { field: "country_of_origin", label: "Origin country" },
+    { field: "headquarters_country", label: "Headquarters" },
+    { field: "origin_classification", label: "Origin class" },
+    { field: "organisation_lifecycle_status", label: "Lifecycle" },
+    { field: "primary_organisation_role_id", label: "Primary role" },
+    { field: "additional_organisation_role_ids", label: "Other roles", wide: true },
+    { field: "organisation_sector_ids", label: "Sectors", wide: true },
+    { field: "organisation_segment_ids", label: "Segments", wide: true },
+  ],
+  product: [
+    { field: "organisation_name", label: "Organisation" },
+    { field: "existing_organisation_id", label: "Existing organisation ID" },
+    { field: "product_name", label: "Product" },
+    { field: "existing_product_id", label: "Existing product ID" },
+    { field: "primary_category_id", label: "Category" },
+    { field: "sector_id", label: "Sector" },
+    { field: "product_lifecycle_status", label: "Product status" },
+  ],
+  deployment: [
+    { field: "organisation_name", label: "Organisation" },
+    { field: "existing_organisation_id", label: "Existing organisation ID" },
+    { field: "product_name", label: "Product" },
+    { field: "existing_product_id", label: "Existing product ID" },
+    { field: "deployment_country_iso2", label: "Deployment country" },
+    { field: "customer_name", label: "Customer" },
+    { field: "started_year", label: "Started" },
+    { field: "deployment_lifecycle_status", label: "Deployment status" },
+  ],
+  organisation_alias: [
+    { field: "existing_organisation_id", label: "Organisation ID" },
+    { field: "organisation_alias", label: "Alias" },
+    { field: "organisation_alias_type", label: "Alias type" },
+    { field: "valid_from", label: "Valid from" },
+    { field: "valid_to", label: "Valid to" },
+  ],
+  organisation_relationship: [
+    { field: "existing_organisation_id", label: "Organisation ID" },
+    { field: "related_organisation_id", label: "Related organisation ID" },
+    { field: "organisation_relationship_type", label: "Relationship" },
+    { field: "valid_from", label: "Valid from" },
+    { field: "valid_to", label: "Valid to" },
+  ],
+  organisation_software_relationship: [
+    { field: "existing_organisation_id", label: "Organisation ID" },
+    { field: "existing_product_id", label: "Product ID" },
+    { field: "organisation_software_relationship_type", label: "Software relationship" },
+    { field: "valid_from", label: "Valid from" },
+    { field: "valid_to", label: "Valid to" },
+  ],
+};
+
+function bulkRecordLabel(recordType: string) {
+  return ({
+    organisation: "O",
+    product: "P",
+    deployment: "D",
+    organisation_alias: "A",
+    organisation_relationship: "R",
+    organisation_software_relationship: "S",
+  } as Record<string, string>)[recordType] ?? "?";
+}
+
+function bulkCandidateTitle(recordType: string, value: BulkImportRowRecord["effectivePayload"]) {
+  if (recordType === "organisation") return value.organisation_name;
+  if (recordType === "organisation_alias") return value.organisation_alias;
+  if (recordType === "organisation_relationship") {
+    return `${value.organisation_name || value.existing_organisation_id} → ${value.related_organisation_id}`;
+  }
+  if (recordType === "organisation_software_relationship") {
+    return `${value.organisation_name || value.existing_organisation_id} → ${value.product_name || value.existing_product_id}`;
+  }
+  return value.product_name;
+}
 
 function BulkCandidateRow({
   row,
@@ -987,6 +1081,10 @@ function BulkCandidateRow({
     value.country_of_origin ||
     value.headquarters_country ||
     "—";
+  const editFields = [
+    ...(bulkEditFieldsByType[row.recordType as BulkRecordType] ?? []),
+    ...sourceEditFields,
+  ];
 
   function updateField(field: BulkAmendableField, next: string) {
     setAmendments((current) => {
@@ -1068,11 +1166,15 @@ function BulkCandidateRow({
     <details className="review-bulk-candidate">
       <summary>
         <span className="review-bulk-record-type">
-          {row.recordType === "deployment" ? "D" : "P"}
+          {bulkRecordLabel(row.recordType)}
         </span>
         <span>
-          <strong>{value.product_name}</strong>
-          <small>{value.organisation_name}</small>
+          <strong>{bulkCandidateTitle(row.recordType, value)}</strong>
+          <small>
+            {row.recordType === "organisation"
+              ? value.primary_organisation_role_id
+              : value.organisation_name || value.existing_organisation_id}
+          </small>
         </span>
         <span>{country}</span>
         <span>{evidenceLabel(value.evidence_status)}</span>
@@ -1104,7 +1206,7 @@ function BulkCandidateRow({
         <details className="review-bulk-amendments">
           <summary>Edit candidate</summary>
           <div>
-            {bulkEditFields.map(({ field, label, wide }) => (
+            {editFields.map(({ field, label, wide }) => (
               <label className={wide ? "wide" : undefined} key={field}>
                 <span>{label}</span>
                 {wide ? (

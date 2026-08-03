@@ -1,4 +1,5 @@
 import { africanCountries, categories as registryCategories } from "@/lib/registry-data";
+import taxonomyJson from "../../data/taxonomy.json";
 
 export const bulkImportFields = [
   "row_key",
@@ -6,9 +7,22 @@ export const bulkImportFields = [
   "organisation_name",
   "existing_organisation_id",
   "organisation_website",
+  "organisation_description",
   "country_of_origin",
   "headquarters_country",
   "origin_classification",
+  "organisation_lifecycle_status",
+  "primary_organisation_role_id",
+  "additional_organisation_role_ids",
+  "organisation_sector_ids",
+  "organisation_segment_ids",
+  "organisation_alias",
+  "organisation_alias_type",
+  "related_organisation_id",
+  "organisation_relationship_type",
+  "organisation_software_relationship_type",
+  "valid_from",
+  "valid_to",
   "product_name",
   "existing_product_id",
   "product_website",
@@ -62,6 +76,26 @@ export type BulkImportValidation =
   | { ok: true; value: ValidatedBulkImport }
   | { ok: false; errors: string[] };
 
+export const bulkImportRecordTypes = [
+  "organisation",
+  "product",
+  "deployment",
+  "organisation_alias",
+  "organisation_relationship",
+  "organisation_software_relationship",
+] as const;
+
+type OrganisationTaxonomy = {
+  sectors: Array<{ id: string }>;
+  organisation_roles: Array<{ id: string }>;
+  organisation_segments: Array<{ id: string }>;
+  organisation_alias_types: Array<{ id: string }>;
+  organisation_relationships: Array<{ id: string }>;
+  organisation_software_relationships: Array<{ id: string }>;
+};
+
+const organisationTaxonomy = taxonomyJson as OrganisationTaxonomy;
+
 export const bulkSectorIds = [
   "sector_power_utilities",
   "sector_distributed_energy_access",
@@ -78,6 +112,24 @@ const categories = new Set(
   registryCategories.map((category) => category.id),
 );
 const sectors = new Set<string>(bulkSectorIds);
+const organisationRoles = new Set(
+  organisationTaxonomy.organisation_roles.map((item) => item.id),
+);
+const organisationSectors = new Set(
+  organisationTaxonomy.sectors.map((item) => item.id),
+);
+const organisationSegments = new Set(
+  organisationTaxonomy.organisation_segments.map((item) => item.id),
+);
+const organisationAliasTypes = new Set(
+  organisationTaxonomy.organisation_alias_types.map((item) => item.id),
+);
+const organisationRelationshipTypes = new Set(
+  organisationTaxonomy.organisation_relationships.map((item) => item.id),
+);
+const organisationSoftwareRelationshipTypes = new Set(
+  organisationTaxonomy.organisation_software_relationships.map((item) => item.id),
+);
 const origins = new Set([
   "africa_built",
   "africa_founded_global_hq",
@@ -92,6 +144,7 @@ const lifecycles = new Set([
   "merged",
   "inactive",
   "under_review",
+  "unknown",
 ]);
 const evidenceStatuses = new Set([
   "provider_claim_only",
@@ -99,7 +152,7 @@ const evidenceStatuses = new Set([
   "independently_evidenced",
   "customer_confirmed",
 ]);
-const recordTypes = new Set(["product", "deployment"]);
+const recordTypes = new Set<string>(bulkImportRecordTypes);
 const accessModels = new Set([
   "",
   "commercial",
@@ -216,12 +269,6 @@ function validateRow(
   required(row, label, errors, [
     "row_key",
     "record_type",
-    "organisation_name",
-    "origin_classification",
-    "product_name",
-    "primary_category_id",
-    "sector_id",
-    "product_lifecycle_status",
     "source_url",
     "source_title",
     "source_publisher",
@@ -238,6 +285,7 @@ function validateRow(
   for (const field of [
     "existing_organisation_id",
     "existing_product_id",
+    "related_organisation_id",
   ] as const) {
     if (row[field] && !entityIdPattern.test(row[field])) {
       errors.push(`${label}: ${field} is not a valid registry ID.`);
@@ -250,16 +298,25 @@ function validateRow(
     }
   }
   row.deployment_country_iso2 = row.deployment_country_iso2.toUpperCase();
-  if (!origins.has(row.origin_classification)) {
+  if (row.origin_classification && !origins.has(row.origin_classification)) {
     errors.push(`${label}: origin_classification is not recognised.`);
   }
-  if (!categories.has(row.primary_category_id)) {
+  if (row.primary_category_id && !categories.has(row.primary_category_id)) {
     errors.push(`${label}: primary_category_id is not recognised.`);
   }
-  if (!sectors.has(row.sector_id)) {
+  if (row.sector_id && !sectors.has(row.sector_id)) {
     errors.push(`${label}: sector_id is not recognised.`);
   }
-  if (!lifecycles.has(row.product_lifecycle_status)) {
+  if (
+    row.organisation_lifecycle_status &&
+    !lifecycles.has(row.organisation_lifecycle_status)
+  ) {
+    errors.push(`${label}: organisation_lifecycle_status is not recognised.`);
+  }
+  if (
+    row.product_lifecycle_status &&
+    !lifecycles.has(row.product_lifecycle_status)
+  ) {
     errors.push(`${label}: product_lifecycle_status is not recognised.`);
   }
   if (!accessModels.has(row.access_model)) {
@@ -280,6 +337,14 @@ function validateRow(
     if (row[field] && !isHttpUrl(row[field])) {
       errors.push(`${label}: ${field} must be a direct http or https URL.`);
     }
+  }
+  for (const field of ["valid_from", "valid_to"] as const) {
+    if (row[field] && !datePattern.test(row[field])) {
+      errors.push(`${label}: ${field} must use yyyy-mm-dd.`);
+    }
+  }
+  if (row.valid_from && row.valid_to && row.valid_from > row.valid_to) {
+    errors.push(`${label}: valid_to cannot be earlier than valid_from.`);
   }
   if (row.source_publication_date && !datePattern.test(row.source_publication_date)) {
     errors.push(`${label}: source_publication_date must use yyyy-mm-dd.`);
@@ -303,6 +368,118 @@ function validateRow(
   }
   if (!row.source_license) {
     warnings.push("One or more sources need a rights or licence decision.");
+  }
+
+  const organisationRecord = ["organisation", "product", "deployment"].includes(
+    row.record_type,
+  );
+  if (organisationRecord) {
+    required(row, label, errors, ["organisation_name", "origin_classification"]);
+  }
+  if (row.record_type === "organisation") {
+    required(row, label, errors, [
+      "organisation_lifecycle_status",
+      "primary_organisation_role_id",
+      "organisation_sector_ids",
+    ]);
+  }
+  validatePipeValues(
+    row.primary_organisation_role_id,
+    organisationRoles,
+    "primary_organisation_role_id",
+    label,
+    errors,
+    false,
+  );
+  validatePipeValues(
+    row.additional_organisation_role_ids,
+    organisationRoles,
+    "additional_organisation_role_ids",
+    label,
+    errors,
+  );
+  validatePipeValues(
+    row.organisation_sector_ids,
+    organisationSectors,
+    "organisation_sector_ids",
+    label,
+    errors,
+  );
+  validatePipeValues(
+    row.organisation_segment_ids,
+    organisationSegments,
+    "organisation_segment_ids",
+    label,
+    errors,
+  );
+  if (
+    row.primary_organisation_role_id &&
+    splitPipe(row.additional_organisation_role_ids).includes(
+      row.primary_organisation_role_id,
+    )
+  ) {
+    errors.push(`${label}: the primary organisation role must not be repeated.`);
+  }
+
+  if (["product", "deployment"].includes(row.record_type)) {
+    required(row, label, errors, [
+      "product_name",
+      "primary_category_id",
+      "sector_id",
+      "product_lifecycle_status",
+    ]);
+  }
+
+  if (row.record_type === "organisation_alias") {
+    required(row, label, errors, [
+      "existing_organisation_id",
+      "organisation_alias",
+      "organisation_alias_type",
+    ]);
+    if (!organisationAliasTypes.has(row.organisation_alias_type)) {
+      errors.push(`${label}: organisation_alias_type is not recognised.`);
+    }
+  } else if (row.organisation_alias || row.organisation_alias_type) {
+    errors.push(`${label}: alias fields require record_type organisation_alias.`);
+  }
+
+  if (row.record_type === "organisation_relationship") {
+    required(row, label, errors, [
+      "existing_organisation_id",
+      "related_organisation_id",
+      "organisation_relationship_type",
+    ]);
+    if (!organisationRelationshipTypes.has(row.organisation_relationship_type)) {
+      errors.push(`${label}: organisation_relationship_type is not recognised.`);
+    }
+    if (row.existing_organisation_id === row.related_organisation_id) {
+      errors.push(`${label}: an organisation cannot relate to itself.`);
+    }
+  } else if (row.related_organisation_id || row.organisation_relationship_type) {
+    errors.push(
+      `${label}: relationship fields require record_type organisation_relationship.`,
+    );
+  }
+
+  if (row.record_type === "organisation_software_relationship") {
+    required(row, label, errors, [
+      "existing_organisation_id",
+      "existing_product_id",
+      "organisation_software_relationship_type",
+    ]);
+    if (
+      !organisationSoftwareRelationshipTypes.has(
+        row.organisation_software_relationship_type,
+      )
+    ) {
+      errors.push(
+        `${label}: organisation_software_relationship_type is not recognised.`,
+      );
+    }
+  } else if (row.organisation_software_relationship_type) {
+    errors.push(
+      `${label}: software relationship fields require record_type organisation_software_relationship.`,
+    );
   }
 
   if (row.record_type === "deployment") {
@@ -343,6 +520,8 @@ function validateRow(
   }
 
   const publishableText = [
+    row.organisation_description,
+    row.organisation_alias,
     row.product_description,
     row.customer_name,
     row.source_locator,
@@ -391,14 +570,24 @@ function batchRecord(number: number, rows: BulkImportRow[]): BulkImportBatch {
 function uniqueEntities(rows: BulkImportRow[]) {
   const entities = new Set<string>();
   for (const row of rows) {
-    entities.add(
-      `org:${row.existing_organisation_id || row.organisation_name.toLowerCase()}`,
-    );
-    entities.add(
-      `product:${row.existing_product_id || `${row.organisation_name}:${row.product_name}`.toLowerCase()}`,
-    );
+    if (["organisation", "product", "deployment"].includes(row.record_type)) {
+      entities.add(
+        `org:${row.existing_organisation_id || row.organisation_name.toLowerCase()}`,
+      );
+    }
+    if (["product", "deployment"].includes(row.record_type)) {
+      entities.add(
+        `product:${row.existing_product_id || `${row.organisation_name}:${row.product_name}`.toLowerCase()}`,
+      );
+    }
     if (row.record_type === "deployment") {
       entities.add(`deployment:${row.row_key}`);
+    } else if (row.record_type === "organisation_alias") {
+      entities.add(`organisation_alias:${row.row_key}`);
+    } else if (row.record_type === "organisation_relationship") {
+      entities.add(`organisation_relationship:${row.row_key}`);
+    } else if (row.record_type === "organisation_software_relationship") {
+      entities.add(`organisation_software_relationship:${row.row_key}`);
     }
   }
   return entities;
@@ -415,9 +604,11 @@ export function promotedAssertionCount(row: BulkImportRow) {
   const organisationValues = [
     row.organisation_name,
     row.organisation_website,
+    row.organisation_description,
     row.country_of_origin,
     row.headquarters_country,
     row.origin_classification,
+    row.organisation_lifecycle_status,
   ];
   const productValues = [
     row.product_name,
@@ -436,14 +627,71 @@ export function promotedAssertionCount(row: BulkImportRow) {
     row.deployment_lifecycle_status,
     row.started_year,
   ];
-  return (
-    organisationValues.filter(Boolean).length +
-    productValues.filter(Boolean).length +
-    1 +
+  const organisationCore =
+    ["organisation", "product", "deployment"].includes(row.record_type) &&
+    !row.existing_organisation_id
+      ? organisationValues.filter(Boolean).length
+      : 0;
+  const productCore =
+    ["product", "deployment"].includes(row.record_type) &&
+    !row.existing_product_id
+      ? productValues.filter(Boolean).length + 1
+      : 0;
+  const roleCount = unique([
+    row.primary_organisation_role_id,
+    ...splitPipe(row.additional_organisation_role_ids),
+  ]).filter(Boolean).length;
+  const classifications =
+    roleCount * (3 + Number(Boolean(row.valid_from)) + Number(Boolean(row.valid_to))) +
+    (splitPipe(row.organisation_sector_ids).length +
+      splitPipe(row.organisation_segment_ids).length) *
+      (2 + Number(Boolean(row.valid_from)) + Number(Boolean(row.valid_to)));
+  const alias = row.record_type === "organisation_alias"
+    ? 3 + Number(Boolean(row.valid_from)) + Number(Boolean(row.valid_to))
+    : 0;
+  const relationship = row.record_type === "organisation_relationship"
+    ? 3 + Number(Boolean(row.valid_from)) + Number(Boolean(row.valid_to))
+    : 0;
+  const softwareRelationship = row.record_type === "organisation_software_relationship"
+    ? 3 + Number(Boolean(row.valid_from)) + Number(Boolean(row.valid_to))
+    : 0;
+  return organisationCore + productCore + classifications + alias + relationship +
+    softwareRelationship +
     (row.record_type === "deployment"
       ? deploymentValues.filter(Boolean).length + 1
-      : 0)
+      : 0);
+}
+
+export function splitPipe(value: string) {
+  return unique(
+    value
+      .split("|")
+      .map((item) => item.trim())
+      .filter(Boolean),
   );
+}
+
+function unique(values: string[]) {
+  return Array.from(new Set(values));
+}
+
+function validatePipeValues(
+  value: string,
+  allowed: Set<string>,
+  field: BulkImportField,
+  label: string,
+  errors: string[],
+  allowMany = true,
+) {
+  const values = splitPipe(value);
+  if (!allowMany && values.length > 1) {
+    errors.push(`${label}: ${field} accepts one value only.`);
+  }
+  for (const item of values) {
+    if (!allowed.has(item)) {
+      errors.push(`${label}: ${field} contains unrecognised value ${item}.`);
+    }
+  }
 }
 
 function required(
@@ -459,7 +707,14 @@ function required(
 
 function maximumLength(field: BulkImportField) {
   if (field.endsWith("_url")) return 2_048;
-  if (["product_description", "notes", "source_locator"].includes(field)) {
+  if (
+    [
+      "organisation_description",
+      "product_description",
+      "notes",
+      "source_locator",
+    ].includes(field)
+  ) {
     return 3_000;
   }
   return 320;

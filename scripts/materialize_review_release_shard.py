@@ -30,6 +30,39 @@ SUBJECT_TABLES = {
     "organisation": "organisations.csv",
     "product": "products.csv",
     "deployment": "deployments.csv",
+    "organisation_role": "organisation-roles.csv",
+    "organisation_sector": "organisation-sectors.csv",
+    "organisation_segment": "organisation-segments.csv",
+    "organisation_alias": "organisation-aliases.csv",
+    "organisation_relationship": "organisation-relationships.csv",
+    "organisation_software_relationship": "organisation-software-relationships.csv",
+}
+SHARD_TABLE_FIELDS = {
+    **TABLE_FIELDS,
+    "organisation-roles.csv": [
+        "id", "organisation_id", "role_id", "is_primary", "valid_from",
+        "valid_to", "last_checked_at",
+    ],
+    "organisation-sectors.csv": [
+        "id", "organisation_id", "sector_id", "valid_from", "valid_to",
+        "last_checked_at",
+    ],
+    "organisation-segments.csv": [
+        "id", "organisation_id", "segment_id", "valid_from", "valid_to",
+        "last_checked_at",
+    ],
+    "organisation-aliases.csv": [
+        "id", "organisation_id", "alias", "alias_type", "valid_from",
+        "valid_to", "last_checked_at",
+    ],
+    "organisation-relationships.csv": [
+        "id", "organisation_id", "related_organisation_id",
+        "relationship_type", "valid_from", "valid_to", "last_checked_at",
+    ],
+    "organisation-software-relationships.csv": [
+        "id", "organisation_id", "product_id", "relationship_type",
+        "valid_from", "valid_to", "last_checked_at",
+    ],
 }
 
 
@@ -196,6 +229,12 @@ def build_release_shard(
     organisations: list[dict[str, str]] = []
     products: list[dict[str, str]] = []
     deployments: list[dict[str, str]] = []
+    organisation_roles: list[dict[str, str]] = []
+    organisation_sectors: list[dict[str, str]] = []
+    organisation_segments: list[dict[str, str]] = []
+    organisation_aliases: list[dict[str, str]] = []
+    organisation_relationships: list[dict[str, str]] = []
+    organisation_software_relationships: list[dict[str, str]] = []
     for (subject_type, subject_id), values in sorted(subject_values.items()):
         if subject_type == "organisation":
             for required in ("name", "origin_classification"):
@@ -208,13 +247,13 @@ def build_release_shard(
                     "id": subject_id,
                     "name": values["name"],
                     "slug": organisation_slugs[subject_id],
-                    "organisation_type": "energy_software_provider",
+                    "organisation_type": "energy_ecosystem_organisation",
                     "origin_classification": values["origin_classification"],
                     "country_of_origin": values.get("country_of_origin", ""),
                     "headquarters_country": values.get("headquarters_country", ""),
-                    "lifecycle_status": "unknown",
+                    "lifecycle_status": values.get("lifecycle_status", "unknown"),
                     "website": values.get("website", ""),
-                    "description": "",
+                    "description": values.get("description", ""),
                     "provider_profile_confirmed": "false",
                     "last_checked_at": last_checked(subject_type, subject_id),
                 }
@@ -270,6 +309,108 @@ def build_release_shard(
                     "started_year": values.get("started_year", ""),
                     "ended_year": values.get("ended_year", ""),
                     "location_precision": "country",
+                    "last_checked_at": last_checked(subject_type, subject_id),
+                }
+            )
+        elif subject_type == "organisation_role":
+            for required in ("organisation_id", "role_id", "is_primary"):
+                if not values.get(required):
+                    raise ShardMaterializationError(
+                        f"organisation role {subject_id} lacks {required}"
+                    )
+            organisation_roles.append(
+                {
+                    "id": subject_id,
+                    "organisation_id": values["organisation_id"],
+                    "role_id": values["role_id"],
+                    "is_primary": values["is_primary"],
+                    "valid_from": values.get("valid_from", ""),
+                    "valid_to": values.get("valid_to", ""),
+                    "last_checked_at": last_checked(subject_type, subject_id),
+                }
+            )
+        elif subject_type == "organisation_sector":
+            for required in ("organisation_id", "sector_id"):
+                if not values.get(required):
+                    raise ShardMaterializationError(
+                        f"organisation sector {subject_id} lacks {required}"
+                    )
+            organisation_sectors.append(
+                {
+                    "id": subject_id,
+                    "organisation_id": values["organisation_id"],
+                    "sector_id": values["sector_id"],
+                    "valid_from": values.get("valid_from", ""),
+                    "valid_to": values.get("valid_to", ""),
+                    "last_checked_at": last_checked(subject_type, subject_id),
+                }
+            )
+        elif subject_type == "organisation_segment":
+            for required in ("organisation_id", "segment_id"):
+                if not values.get(required):
+                    raise ShardMaterializationError(
+                        f"organisation segment {subject_id} lacks {required}"
+                    )
+            organisation_segments.append(
+                {
+                    "id": subject_id,
+                    "organisation_id": values["organisation_id"],
+                    "segment_id": values["segment_id"],
+                    "valid_from": values.get("valid_from", ""),
+                    "valid_to": values.get("valid_to", ""),
+                    "last_checked_at": last_checked(subject_type, subject_id),
+                }
+            )
+        elif subject_type == "organisation_alias":
+            for required in ("organisation_id", "alias", "alias_type"):
+                if not values.get(required):
+                    raise ShardMaterializationError(
+                        f"organisation alias {subject_id} lacks {required}"
+                    )
+            organisation_aliases.append(
+                {
+                    "id": subject_id,
+                    "organisation_id": values["organisation_id"],
+                    "alias": values["alias"],
+                    "alias_type": values["alias_type"],
+                    "valid_from": values.get("valid_from", ""),
+                    "valid_to": values.get("valid_to", ""),
+                    "last_checked_at": last_checked(subject_type, subject_id),
+                }
+            )
+        elif subject_type == "organisation_relationship":
+            for required in (
+                "organisation_id", "related_organisation_id", "relationship_type"
+            ):
+                if not values.get(required):
+                    raise ShardMaterializationError(
+                        f"organisation relationship {subject_id} lacks {required}"
+                    )
+            organisation_relationships.append(
+                {
+                    "id": subject_id,
+                    "organisation_id": values["organisation_id"],
+                    "related_organisation_id": values["related_organisation_id"],
+                    "relationship_type": values["relationship_type"],
+                    "valid_from": values.get("valid_from", ""),
+                    "valid_to": values.get("valid_to", ""),
+                    "last_checked_at": last_checked(subject_type, subject_id),
+                }
+            )
+        elif subject_type == "organisation_software_relationship":
+            for required in ("organisation_id", "product_id", "relationship_type"):
+                if not values.get(required):
+                    raise ShardMaterializationError(
+                        f"organisation software relationship {subject_id} lacks {required}"
+                    )
+            organisation_software_relationships.append(
+                {
+                    "id": subject_id,
+                    "organisation_id": values["organisation_id"],
+                    "product_id": values["product_id"],
+                    "relationship_type": values["relationship_type"],
+                    "valid_from": values.get("valid_from", ""),
+                    "valid_to": values.get("valid_to", ""),
                     "last_checked_at": last_checked(subject_type, subject_id),
                 }
             )
@@ -343,10 +484,18 @@ def build_release_shard(
             )
         source_register_by_id.setdefault(register_id, register_row)
 
-    tables = {filename: [] for filename in TABLE_FIELDS}
+    tables = {filename: [] for filename in SHARD_TABLE_FIELDS}
     tables["organisations.csv"] = organisations
     tables["products.csv"] = products
     tables["deployments.csv"] = deployments
+    tables["organisation-roles.csv"] = organisation_roles
+    tables["organisation-sectors.csv"] = organisation_sectors
+    tables["organisation-segments.csv"] = organisation_segments
+    tables["organisation-aliases.csv"] = organisation_aliases
+    tables["organisation-relationships.csv"] = organisation_relationships
+    tables["organisation-software-relationships.csv"] = (
+        organisation_software_relationships
+    )
     tables["sources.csv"] = sources
     tables["assertions.csv"] = sorted(assertion_rows, key=lambda item: item["id"])
     tables["source-register.csv"] = [
@@ -406,7 +555,7 @@ def write_release_shard(
     if output.exists():
         raise ShardMaterializationError(f"output already exists: {output}")
     output.mkdir(parents=True)
-    for filename, fields in TABLE_FIELDS.items():
+    for filename, fields in SHARD_TABLE_FIELDS.items():
         write_csv(output / filename, fields, tables[filename])
     (output / "manifest.json").write_text(
         json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",

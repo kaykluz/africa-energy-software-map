@@ -226,7 +226,9 @@ contains:
 
 - schema and batch identifiers;
 - assertion and source decisions;
-- bulk import summaries, immutable candidate rows and row decisions;
+- bulk import summaries, immutable candidate rows and row decisions for
+  organisations, products, deployments, aliases, corporate relationships and
+  organisation-to-software links;
 - promoted candidate assertions;
 - the assertion, source and bulk-promotion audit trail;
 - the generating reviewer and timestamp; and
