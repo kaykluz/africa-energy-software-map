@@ -379,6 +379,16 @@ test("server-renders the classified software wall", async () => {
   assert.match(inheritedMarkHtml, /src="\/brand\/organisations\/ammp\.png"/);
 });
 
+test("uses Kaykluz.com as the map publisher", async () => {
+  const response = await render("/landscape?q=Kaykluz.com");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Africa Energy Software Map/);
+  assert.match(html, /VATR/);
+  assert.match(html, /ATARA/);
+  assert.match(html, /DealGrid/);
+});
+
 test("server-renders local brand assets and the organisation atlas", async () => {
   const organisationResponse = await render("/organisations?view=ecosystem");
   assert.equal(organisationResponse.status, 200);

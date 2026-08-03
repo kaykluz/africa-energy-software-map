@@ -462,13 +462,14 @@
       "geographies": ["Nigeria/UK", "Africa"],
       "statusAsSubmitted": "active",
       "summaryAsSubmitted": "Open catalogue of software used in the African energy sector",
-      "sourceDomains": [],
+      "sourceDomains": ["kaykluz.com"],
       "segmentsAsSubmitted": ["all segments"],
       "deliveryModelsAsSubmitted": ["cloud SaaS", "open data"],
       "commercialModelAsSubmitted": "free",
       "africaUseAsSubmitted": "confirmed_deployment",
       "asOfDate": "2026-08-02",
-      "parent": "KIISHA / kaykluz.com"
+      "parent": "Kaykluz.com",
+      "sourceUrls": ["https://kaykluz.com"]
     }
   ],
   "deploymentLeads": [],
