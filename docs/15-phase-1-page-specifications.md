@@ -45,12 +45,24 @@ across views.
 
 ### Anatomy
 
-Header/H1, filters, geography mode (Evidenced, Claimed, Headquarters, Founded
-in), representation mode (Map, Country grid, Ranked list), legend, dominant
-visual/list, selected country panel, methodology note.
+Header/H1, an object switch (Software or Organisations), contextual filters,
+organisation-presence mode, representation mode (Map, Country grid, Ranked
+list), legend, dominant visual/list, selected country panel, methodology note.
 
-Desktop defaults to evidenced + map. Mobile defaults to evidenced + ranked list,
-then Country grid. Persist preferred representation locally.
+Software filters are search, country, stage, category, evidence, origin,
+lifecycle and access. Canonical organisation filters are search, actor group,
+specific role, broad sector, energy market and origin. Catalogue coverage uses
+search, role, energy market, headquarters and review scope because catalogue
+classifications are not silently upgraded to canonical taxonomy.
+
+Every filter constrains the map, equal-area grid, ranked list, totals and country
+panel from the same result set. The current object, presence layer, filters,
+focused country and representation are encoded in the URL. The country panel
+and Filtered directory action preserve compatible filters when opening Data or
+Organisations; changing representation never clears them.
+
+Desktop defaults to software evidence + map. Alternative representations are
+explicit, shareable URL state on every viewport.
 
 Country panel: country, separate evidenced/claimed totals, category counts,
 three to five deployments, View all in Directory, Open country page. Selecting a
@@ -315,4 +327,3 @@ Run two rounds of 5–7 participants and a private beta around 15 users. Release
 threshold: ≥80% unassisted completion of the first seven tasks, no systematic
 origin/lifecycle/evidence confusion, all keyboard tasks complete, no blocker at
 320px/200% zoom, and clear unknown-versus-zero comprehension.
-
