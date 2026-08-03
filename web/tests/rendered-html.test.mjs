@@ -48,6 +48,7 @@ class MemoryD1 {
       "../drizzle/0002_aspiring_whistler.sql",
       "../drizzle/0003_deep_magneto.sql",
       "../drizzle/0004_curious_magma.sql",
+      "../drizzle/0005_pale_epoch.sql",
     ]) {
       const sql = readFileSync(new URL(migration, import.meta.url), "utf8");
       for (const statement of sql.split("--> statement-breakpoint")) {
@@ -379,7 +380,7 @@ test("server-renders the classified software wall", async () => {
 });
 
 test("server-renders local brand assets and the organisation atlas", async () => {
-  const organisationResponse = await render("/organisations");
+  const organisationResponse = await render("/organisations?view=ecosystem");
   assert.equal(organisationResponse.status, 200);
   const organisationHtml = await organisationResponse.text();
   assert.match(organisationHtml, /<h1[^>]*>Organisations<\/h1>/i);
@@ -404,7 +405,7 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   assert.doesNotMatch(organisationHtml, /src="https?:\/\//i);
 
   const sectorResponse = await render(
-    "/organisations?sector=sector_emobility_batteries",
+    "/organisations?view=ecosystem&sector=sector_emobility_batteries",
   );
   assert.equal(sectorResponse.status, 200);
   const sectorHtml = await sectorResponse.text();
@@ -424,22 +425,22 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   assert.match(organisationProfileHtml, /Software-linked footprint/);
   assert.match(
     organisationProfileHtml,
-    /href="\/organisations\?sector=sector_emobility_batteries"/,
+    /href="\/organisations\?view=ecosystem&amp;sector=sector_emobility_batteries"/,
   );
   assert.match(
     organisationProfileHtml,
-    /href="\/organisations\?group=org_group_software"/,
+    /href="\/organisations\?view=ecosystem&amp;group=org_group_software"/,
   );
 
   const softwareGroupResponse = await render(
-    "/organisations?group=org_group_software",
+    "/organisations?view=ecosystem&group=org_group_software",
   );
   assert.equal(softwareGroupResponse.status, 200);
   const softwareGroupHtml = await softwareGroupResponse.text();
   assert.match(softwareGroupHtml, /Bboxx/);
 
   const epcGroupResponse = await render(
-    "/organisations?group=org_group_epcs",
+    "/organisations?view=ecosystem&group=org_group_epcs",
   );
   assert.equal(epcGroupResponse.status, 200);
   const epcGroupHtml = await epcGroupResponse.text();
@@ -507,6 +508,59 @@ test("server search includes organisation records", async () => {
   assert.match(html, /Organisations/);
   assert.match(html, /Beacon Power Services/);
   assert.match(html, /Open record/);
+});
+
+test("surfaces the full organisation inclusion catalogue separately from reviewed profiles", async () => {
+  const response = await render("/organisations");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /1,953/);
+  assert.match(html, /inclusion catalogue/i);
+  assert.match(html, /Review pending/);
+  assert.match(html, /10000 Children Care Uganda/);
+  assert.match(html, /reviewed profiles/i);
+
+  const api = await fetchWorker(
+    "/api/organisation-catalogue?role=Financier&pageSize=10",
+    { headers: { accept: "application/json" } },
+  );
+  assert.equal(api.status, 200);
+  const payload = await api.json();
+  assert.equal(payload.records.length, 10);
+  assert.ok(payload.total > 100);
+  assert.ok(payload.records.every((record) => record.roles.includes("Financier")));
+
+  const csv = await fetchWorker(
+    "/api/organisation-catalogue?scope=reviewed&format=csv",
+    { headers: { accept: "text/csv" } },
+  );
+  assert.equal(csv.status, 200);
+  assert.match(csv.headers.get("content-disposition") ?? "", /inclusion-catalogue\.csv/);
+  assert.match(await csv.text(), /catalogue_status/);
+
+  const map = await render(
+    "/deployments?object=organisations&presence=catalogue&country=NG",
+  );
+  assert.equal(map.status, 200);
+  const mapHtml = await map.text();
+  assert.match(mapHtml, /Catalogue coverage/);
+  assert.match(mapHtml, /organisations with itemised country coverage/);
+  assert.match(mapHtml, /Documented catalogue coverage/);
+  assert.match(mapHtml, /Nigeria: 310 catalogued organisations/);
+  assert.match(mapHtml, /href="\/organisations\?country=NG"/);
+
+  const nigeria = await render("/organisations?country=NG");
+  assert.equal(nigeria.status, 200);
+  const nigeriaHtml = await nigeria.text();
+  assert.match(nigeriaHtml, /310 shown/);
+  assert.match(nigeriaHtml, /A4&amp;T Power Solutions/);
+
+  const gambia = await fetchWorker(
+    "/api/organisation-catalogue?country=The%20Gambia&pageSize=10",
+    { headers: { accept: "application/json" } },
+  );
+  assert.equal(gambia.status, 200);
+  assert.ok((await gambia.json()).total > 0);
 });
 
 test("server-renders a source-linked product profile", async () => {
@@ -895,6 +949,57 @@ test("review API requires an allowlisted ChatGPT identity", async () => {
   assert.deepEqual(workspace.assertionReviews, []);
   assert.deepEqual(workspace.sourceReviews, []);
   assert.deepEqual(workspace.contributions, []);
+  assert.deepEqual(workspace.organisationCatalogueReviews, []);
+});
+
+test("organisation catalogue candidates are visible and decisions persist in review", async () => {
+  const database = new MemoryD1();
+  const queue = await fetchWorker(
+    "/api/review/organisation-catalogue?status=pending&pageSize=20",
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  assert.equal(queue.status, 200);
+  const queuePayload = await queue.json();
+  assert.equal(queuePayload.counts.total, 1953);
+  assert.equal(queuePayload.records.length, 20);
+  assert.ok(queuePayload.total > 1900);
+
+  const candidateId = "listing_afr_0002";
+  const saved = await fetchWorker(
+    `/api/review/organisation-catalogue/${candidateId}`,
+    reviewRequest({
+      decision: "accept",
+      amendments: {},
+      sourceUrl: "https://www.3e.eu/",
+      sourceOpened: true,
+      identityConfirmed: true,
+      classificationsConfirmed: true,
+      safetyChecked: true,
+      notes: "Official site opened; identity, roles and markets checked.",
+      expectedVersion: 0,
+    }),
+    { DB: database },
+  );
+  assert.equal(saved.status, 200);
+  assert.equal((await saved.json()).decision, "accept");
+  assert.equal(database.count("organisation_catalogue_reviews"), 1);
+
+  const accepted = await fetchWorker(
+    "/api/review/organisation-catalogue?status=accept",
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  const acceptedPayload = await accepted.json();
+  assert.equal(acceptedPayload.total, 1);
+  assert.equal(acceptedPayload.records[0].record.id, candidateId);
+  assert.equal(acceptedPayload.records[0].review.decision, "accept");
+  assert.equal(
+    database.get(
+      "SELECT COUNT(*) AS count FROM review_audit_events WHERE record_type = 'organisation_catalogue'",
+    ).count,
+    1,
+  );
 });
 
 test("assertion review records decisions, audits changes, and detects conflicts", async () => {
@@ -1537,7 +1642,7 @@ test("bulk workbooks enter a private candidate queue and cannot upgrade weak evi
   );
   assert.equal(bulkExportResponse.status, 200);
   const bulkExport = await bulkExportResponse.json();
-  assert.equal(bulkExport.schemaVersion, "1.1.0");
+  assert.equal(bulkExport.schemaVersion, "1.2.0");
   assert.equal(bulkExport.status.bulkCandidateRows, 1);
   assert.equal(bulkExport.status.bulkCandidateDecisions, 1);
   assert.equal(bulkExport.status.bulkCandidatesApproved, 1);

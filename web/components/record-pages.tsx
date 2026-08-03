@@ -306,7 +306,7 @@ export function OrganisationProfile({ slug }: { slug: string }) {
               <div className="organisation-profile-classification">
                 <div>
                   <span>Specific role</span>
-                  <Link href={`/organisations?role=${directoryRecord.primaryRole.id}`}>
+                  <Link href={`/organisations?view=ecosystem&role=${directoryRecord.primaryRole.id}`}>
                     {directoryRecord.primaryRole.name}
                   </Link>
                 </div>
@@ -314,7 +314,7 @@ export function OrganisationProfile({ slug }: { slug: string }) {
                   <span>Actor type</span>
                   <div>
                     {directoryRecord.ecosystemGroupIds.map((groupId) => (
-                      <Link href={`/organisations?group=${groupId}`} key={groupId}>
+                      <Link href={`/organisations?view=ecosystem&group=${groupId}`} key={groupId}>
                         {organisationEcosystemGroups.find((item) => item.id === groupId)?.name ?? groupId}
                       </Link>
                     ))}
@@ -324,7 +324,7 @@ export function OrganisationProfile({ slug }: { slug: string }) {
                   <span>Broad sectors</span>
                   <div>
                     {directoryRecord.sectorIds.length ? directoryRecord.sectorIds.map((sectorId) => (
-                      <Link href={`/organisations?sector=${sectorId}`} key={sectorId}>
+                      <Link href={`/organisations?view=ecosystem&sector=${sectorId}`} key={sectorId}>
                         {organisationSectorName(sectorId)}
                       </Link>
                     )) : <em>Not yet classified</em>}
@@ -335,7 +335,7 @@ export function OrganisationProfile({ slug }: { slug: string }) {
                     <span>Energy markets</span>
                     <div>
                       {directoryRecord.segmentIds.map((segmentId) => (
-                        <Link href={`/organisations?segment=${segmentId}`} key={segmentId}>
+                        <Link href={`/organisations?view=ecosystem&segment=${segmentId}`} key={segmentId}>
                           {organisationSegmentName(segmentId)}
                         </Link>
                       ))}
@@ -605,7 +605,7 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
                 })}
               </div>
             ) : <p>No organisation-presence record is published for this country yet.</p>}
-            <Link href={`/organisations?country=${countryIso2}`}>View filtered organisations →</Link>
+            <Link href={`/organisations?view=ecosystem&country=${countryIso2}`}>View filtered organisations →</Link>
           </ProfileSection>
           <ProfileSection heading="Research coverage">
             <p>

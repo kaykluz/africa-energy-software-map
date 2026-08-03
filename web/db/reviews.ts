@@ -6,6 +6,7 @@ import {
   promotedAssertionBatchId,
 } from "./bulk-reviews";
 import { getOperationsStatus } from "./operations";
+import { listOrganisationCatalogueReviews } from "./organisation-catalogue-reviews";
 import { reviewBatchId } from "@/lib/review-data";
 
 export type AssertionReviewRecord = {
@@ -86,6 +87,7 @@ export async function loadReviewWorkspace() {
     bulkImports,
     promotedAssertions,
     promotedSources,
+    organisationCatalogueReviews,
   ] =
     await Promise.all([
       database
@@ -156,6 +158,7 @@ export async function loadReviewWorkspace() {
       listBulkImports(),
       listPromotedAssertions(),
       listPromotedSources(),
+      listOrganisationCatalogueReviews(),
     ]);
 
   return {
@@ -169,6 +172,7 @@ export async function loadReviewWorkspace() {
     bulkImports,
     promotedAssertions,
     promotedSources,
+    organisationCatalogueReviews,
   };
 }
 
@@ -481,7 +485,8 @@ export async function exportReviewPackage(reviewerEmail: string) {
         occurred_at AS occurredAt
        FROM review_audit_events
        WHERE record_type IN (
-         'assertion', 'source', 'bulk_import_row', 'promoted_assertion'
+         'assertion', 'source', 'bulk_import_row', 'promoted_assertion',
+         'organisation_catalogue'
        )
        ORDER BY occurred_at ASC`,
     )
@@ -496,7 +501,7 @@ export async function exportReviewPackage(reviewerEmail: string) {
     (record) => record.review?.decision === "reject",
   ).length;
   return {
-    schemaVersion: "1.1.0",
+    schemaVersion: "1.2.0",
     batchId: reviewBatchId,
     generatedAt: new Date().toISOString(),
     generatedBy: reviewerEmail,
@@ -511,6 +516,7 @@ export async function exportReviewPackage(reviewerEmail: string) {
       bulkCandidatesRejected: rejectedCandidates,
       promotedAssertions: workspace.promotedAssertions.length,
       promotedSources: workspace.promotedSources.length,
+      organisationCatalogueDecisions: workspace.organisationCatalogueReviews.length,
       containsPublicDataChanges: false,
       publicationAuthorised: false,
     },
@@ -520,6 +526,7 @@ export async function exportReviewPackage(reviewerEmail: string) {
     bulkCandidates,
     promotedAssertions: workspace.promotedAssertions,
     promotedSources: workspace.promotedSources,
+    organisationCatalogueReviews: workspace.organisationCatalogueReviews,
     audit: audit.results,
   };
 }

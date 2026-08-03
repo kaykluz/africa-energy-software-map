@@ -16,6 +16,10 @@ import {
 import { normaliseQuery } from "@/lib/registry-query";
 import { EvidenceStatusLabel } from "@/components/semantic-tags";
 import { OrganisationMark, ProductMark } from "@/components/brand-mark";
+import {
+  organisationCatalogue,
+  organisationCatalogueRecords,
+} from "@/lib/organisation-catalogue";
 
 export function MethodologyPage() {
   const sections = [
@@ -23,6 +27,7 @@ export function MethodologyPage() {
     ["taxonomy", "Entities and taxonomy"],
     ["deployment-definition", "Deployment definition"],
     ["organisation-presence", "Organisation presence"],
+    ["organisation-catalogue", "Organisation catalogue"],
     ["evidence", "Evidence and source independence"],
     ["origin", "Origin and lifecycle"],
     ["market-condition", "Market-condition findings"],
@@ -102,6 +107,20 @@ export function MethodologyPage() {
               <div><strong>Independent evidence</strong><p>A customer, official or independent source can support an evidenced presence record. It does not automatically prove a software deployment.</p></div>
             </div>
           </ContentSection>
+          <ContentSection id="organisation-catalogue" heading="Organisation catalogue">
+            <p>
+              The inclusion catalogue is a broad, source-linked discovery layer. It
+              currently contains {organisationCatalogue.counts.total.toLocaleString()} listings,
+              including international organisations whose documented products,
+              investments, memberships or operations connect them to African energy
+              markets. Catalogue inclusion is not an endorsement, a deployment claim
+              or a reviewed profile.
+            </p>
+            <div className="definition-pair">
+              <div><strong>Listed</strong><p>Imported from a named directory or direct source and clearly marked when editorial review remains open.</p></div>
+              <div><strong>Reviewed</strong><p>Identity, source, classifications, relationships and publication safety have passed the human review workflow.</p></div>
+            </div>
+          </ContentSection>
           <ContentSection id="evidence" heading="Evidence and source independence">
             <p>
               Evidence is attached to atomic assertions. A profile may mix
@@ -157,7 +176,9 @@ export function MethodologyPage() {
           <ContentSection id="current-release" heading="Current release">
             <p>
               Release {release.version} contains {products.length} reviewed products,
-              {" "}{organisations.length} organisations, {deployments.length} country-safe
+              {" "}{organisations.length} reviewed organisations and{" "}
+              {organisationCatalogue.counts.total.toLocaleString()} inclusion-catalogue listings,
+              {" "}{deployments.length} country-safe
               deployment records, {organisationPresenceRecords.length} explicit organisation-presence
               records and {sources.length} rights-resolved sources. The
               wider software wall also contains classified submitted listings that
@@ -268,7 +289,7 @@ export function DataPage() {
         </p>
         <div className="intro-actions">
           <Link className="button button-primary" href="/directory">Export software</Link>
-          <Link className="button button-outline" href="/organisations?view=directory">Export organisations</Link>
+          <Link className="button button-outline" href="/organisations">Export organisations</Link>
           <a className="button button-outline" href="https://github.com/kaykluz/africa-energy-software-map/tree/main/data" target="_blank" rel="noreferrer">
             Inspect data on GitHub ↗
           </a>
@@ -282,7 +303,8 @@ export function DataPage() {
         </div>
         <dl>
           <div><dt>Products</dt><dd>{products.length}</dd></div>
-          <div><dt>Organisations</dt><dd>{organisations.length}</dd></div>
+          <div><dt>Organisation listings</dt><dd>{organisationCatalogue.counts.total.toLocaleString()}</dd></div>
+          <div><dt>Reviewed organisations</dt><dd>{organisations.length}</dd></div>
           <div><dt>Deployments</dt><dd>{deployments.length}</dd></div>
           <div><dt>Sources</dt><dd>{sources.length}</dd></div>
         </dl>
@@ -356,7 +378,7 @@ export function DataPage() {
       </section>
       <section className="data-section two-column-copy">
         <div><h2>Software wall</h2><p>Browse classified software and enabling infrastructure by function, stage and sector.</p><Link href="/landscape">Open the wall →</Link></div>
-        <div><h2>Organisation presence</h2><p>Organisation exports keep evidenced, company-stated, office, availability and software-linked countries in separate columns.</p><Link href="/organisations?view=directory">Open organisations →</Link></div>
+        <div><h2>Organisation catalogue</h2><p>Browse all listings by actor role, energy market, headquarters and documented country coverage. Reviewed profiles remain clearly separate.</p><Link href="/organisations">Open organisations →</Link></div>
         <div><h2>Versioning and provenance</h2><p>Every immutable release states its version, date, Git commit, record counts, limitations, checksums and licence.</p></div>
       </section>
     </main>
@@ -410,6 +432,22 @@ export function SearchResultsPage({ query }: { query: string }) {
         normaliseQuery(category.name).includes(term),
       )
     : [];
+  const catalogueResults = term
+    ? organisationCatalogueRecords
+        .filter((record) => record.reviewState === "needs_review")
+        .filter((record) =>
+          normaliseQuery([
+            record.name,
+            ...record.aliases,
+            record.parent,
+            record.primaryRole,
+            ...record.roles,
+            ...record.segments,
+            ...record.countriesActive,
+            record.headquartersCountry,
+          ].join(" ")).includes(term),
+        )
+    : [];
   return (
     <main className="standard-width search-page" id="main-content" tabIndex={-1}>
       <header className="page-intro">
@@ -425,7 +463,8 @@ export function SearchResultsPage({ query }: { query: string }) {
         <div className="inline-empty"><strong>Enter at least two characters.</strong><p>Try “metering”, “Nigeria” or “PAYGo”.</p></div>
       ) : productResults.length ||
         organisationResults.length ||
-        categoryResults.length ? (
+        categoryResults.length ||
+        catalogueResults.length ? (
         <div className="search-groups">
           {productResults.length ? (
             <section><h2>Products <span>{productResults.length}</span></h2>
@@ -466,6 +505,22 @@ export function SearchResultsPage({ query }: { query: string }) {
                   <span>Open record →</span>
                 </Link>
               ))}
+            </section>
+          ) : null}
+          {catalogueResults.length ? (
+            <section>
+              <h2>Organisation listings <span>{catalogueResults.length}</span></h2>
+              {catalogueResults.slice(0, 100).map((record) => (
+                <Link href={`/organisations?q=${encodeURIComponent(record.name)}`} key={record.id}>
+                  <OrganisationMark name={record.name} organisationId={record.id} size={42} />
+                  <span>
+                    <strong>{record.name}</strong>
+                    <small>{[record.primaryRole, record.headquartersCountry, "Review pending"].filter(Boolean).join(" · ")}</small>
+                  </span>
+                  <span>View listing →</span>
+                </Link>
+              ))}
+              {catalogueResults.length > 100 ? <p>Showing the first 100 matches. Narrow the search or open the full organisation catalogue.</p> : null}
             </section>
           ) : null}
           {categoryResults.length ? (
