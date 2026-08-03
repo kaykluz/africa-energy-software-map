@@ -156,8 +156,8 @@ def validate_taxonomy(errors: list[str]) -> None:
     ids.extend(relationship_ids)
     sector_ids = [sector["id"] for sector in taxonomy.get("sectors", [])]
     ids.extend(sector_ids)
-    organisation_chain_ids = [
-        item["id"] for item in taxonomy.get("organisation_value_chain", [])
+    organisation_group_ids = [
+        item["id"] for item in taxonomy.get("organisation_ecosystem_groups", [])
     ]
     organisation_family_ids = [
         item["id"] for item in taxonomy.get("organisation_role_families", [])
@@ -172,7 +172,7 @@ def validate_taxonomy(errors: list[str]) -> None:
         item["id"]
         for item in taxonomy.get("organisation_software_relationships", [])
     ]
-    ids.extend(organisation_chain_ids)
+    ids.extend(organisation_group_ids)
     ids.extend(organisation_family_ids)
     ids.extend(organisation_role_ids)
     ids.extend(organisation_segment_ids)
@@ -197,11 +197,11 @@ def validate_taxonomy(errors: list[str]) -> None:
         errors.append(
             "data/taxonomy.json: exactly six energy relationship IDs are required"
         )
-    if len(organisation_chain_ids) != 6:
+    if len(organisation_group_ids) != 8:
         errors.append(
-            "data/taxonomy.json: exactly six organisation value-chain IDs are required"
+            "data/taxonomy.json: exactly eight organisation ecosystem-group IDs are required"
         )
-    organisation_chain_id_set = set(organisation_chain_ids)
+    organisation_group_id_set = set(organisation_group_ids)
     organisation_family_id_set = set(organisation_family_ids)
     for role in taxonomy.get("organisation_roles", []):
         if role.get("familyId") not in organisation_family_id_set:
@@ -209,11 +209,11 @@ def validate_taxonomy(errors: list[str]) -> None:
                 f"data/taxonomy.json: {role.get('id', 'organisation role')} has an invalid role family"
             )
         if any(
-            value not in organisation_chain_id_set
-            for value in role.get("valueChainIds", [])
+            value not in organisation_group_id_set
+            for value in role.get("ecosystemGroupIds", [])
         ):
             errors.append(
-                f"data/taxonomy.json: {role.get('id', 'organisation role')} has an invalid value-chain position"
+                f"data/taxonomy.json: {role.get('id', 'organisation role')} has an invalid ecosystem group"
             )
     stage_ids = {stage["id"] for stage in taxonomy["stages"]}
     for function in taxonomy.get("functions", []):

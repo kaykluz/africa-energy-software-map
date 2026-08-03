@@ -44,7 +44,8 @@ The compact global navigation should evolve to:
 - **Map** remains the prominent geographic entry point and receives software
   and organisation layers.
 - **Software** opens the classified software wall.
-- **Organisations** opens an organisation atlas with Atlas, Map and List views.
+- **Organisations** opens an organisation atlas with Ecosystem, Map and
+  Directory views.
 - **Data** provides exact tables, column selection and exports for either object
   type.
 - **Method** explains inclusion, evidence, freshness and conflicts.
@@ -54,8 +55,8 @@ On narrow screens, the primary navigation is Map, Software, Organisations and
 More. Contribute remains reachable from the header and contextual empty states.
 
 Do not add permanent top-level tabs for every role or segment. URLs such as
-`/organisations?role=epc&segment=c_and_i&country=GH` provide the useful view
-without creating a new page to maintain.
+`/organisations?role=org_role_epc&segment=org_segment_commercial_industrial&country=GH`
+provides the useful view without creating a new page to maintain.
 
 ## Hyperlink and graph-navigation contract
 
@@ -67,7 +68,7 @@ stable internal destination, its visible name links to that destination.
 | Product or software listing | Canonical product record |
 | Organisation | Canonical organisation record |
 | Country | Country record |
-| Role or role family | Filtered Organisations view |
+| Actor type or specific role | Filtered Organisations view |
 | Segment or technology | Filtered Software or Organisations view, according to context |
 | Category or value-chain stage | Filtered Software view |
 | Project or transaction | Canonical project or transaction record when introduced |
@@ -107,44 +108,50 @@ fuzzy name matching.
 
 ## Organisation taxonomy
 
-### Organisation value chain
+### Ecosystem actor groups
 
-The organisation atlas uses its own market chain. It does not reuse the six
-software stages, because a financier, EPC, utility and software provider play
-different organisational roles even when they support the same product stage.
+The organisation atlas is arranged by **what kind of market participant an
+organisation is**. These are actor groups, not sequential value-chain stages:
+a financier does not sit "before" a developer, and software may support every
+part of the market. The organisation taxonomy therefore remains independent of
+the six software-function stages.
 
-| Position | Covers |
+| Actor group | Covers |
 | --- | --- |
-| Govern and coordinate | Regulators, market operators, ministries, public agencies, programmes, associations and standards bodies |
-| Finance and de-risk | Investors, lenders, grant and RBF providers, guarantors, insurers and carbon finance providers |
-| Develop and own | Developers, IPPs, asset owners, portfolio owners and energy-service companies |
-| Supply and build | EPCs, OEMs, equipment suppliers, installers, distributors and system integrators |
-| Operate and serve | Utilities, operators, O&M providers, asset managers, retailers and customer-facing energy services |
-| Enable and advise | Software, data, research and professional services |
+| Financiers | DFIs and development banks, lenders, investors and funds, grant and RBF providers, guarantors, insurers and carbon-finance providers |
+| Developers and owners | Developers, IPPs, asset and portfolio owners and energy-service companies |
+| OEMs and suppliers | Manufacturers, equipment suppliers and distributors |
+| EPCs and installers | EPCs, installers and system integrators |
+| Operators and service providers | Utilities, operators, O&M providers, asset managers, retailers and customer-facing energy services |
+| Software and data | Software developers, platforms, data providers and analytics companies |
+| Enablers and advisers | Professional advisers, research institutions, programmes, associations and standards bodies |
+| Public institutions | Regulators, market operators, ministries, agencies and public offtakers |
 
-An organisation may occupy more than one position through separately reviewed
-roles. The position is derived from the role vocabulary and is used for visual
-grouping only. It is not a ranking, score or assertion of capability.
+An organisation may belong to more than one group through separately reviewed
+roles. Its primary group is used only for default visual placement. It is not a
+ranking, quality judgment or assertion of capability.
 
 The first reviewed release is software-led. Current role and sector displays
 therefore follow existing reviewed product relationships; they do not claim
 that the wider EPC, developer, capital or institutional landscape is complete.
 
-### Role families
+### Specific roles
 
-Role families organise the atlas. Specific roles do the filtering. An
+Each actor group contains a controlled vocabulary of more precise roles. An
 organisation may have several roles, but one reviewed role may be marked primary
 for default visual grouping. Primary means presentation only; it is not a rank
 or statement of importance.
 
-| Role family | Initial controlled roles |
+| Actor group | Initial controlled roles |
 | --- | --- |
-| Project ownership | Developer, independent power producer, asset owner, portfolio owner, energy-service company |
-| Delivery and operations | EPC, O&M provider, operator, installer, OEM, distributor, system integrator |
-| Capital and risk | DFI or development bank, commercial bank, equity investor, debt fund, blended-finance facility, grant or RBF facility, guarantor, insurer, carbon finance provider |
-| Digital and enabling services | Software and data provider, research institution |
-| Professional services | Legal adviser, financial or transaction adviser, technical adviser or owner's engineer, ESG or impact adviser, market research or data provider |
-| Market institutions | Utility, offtaker, regulator, ministry or agency, programme or facility, association, research institution, standards body |
+| Financiers | DFI or development bank, bank or lender, investor or fund, grant or RBF provider, guarantor or insurer, carbon-finance provider |
+| Developers and owners | Developer or IPP, asset or portfolio owner, energy-service company |
+| OEMs and suppliers | OEM or manufacturer, equipment supplier, distributor |
+| EPCs and installers | EPC, installer, system integrator |
+| Operators and service providers | Operator or utility, O&M or asset manager, energy retailer or service provider |
+| Software and data | Software developer or platform, data or analytics provider |
+| Enablers and advisers | Professional adviser, research institution, association or standards body, programme or facility |
+| Public institutions | Regulator or market operator, ministry or public agency |
 
 The taxonomy describes what an organisation does. It does not imply quality,
 capacity, availability or a completed project.
@@ -159,15 +166,17 @@ Segments describe where an organisation plays and remain independent of role:
 - off-grid solar, SHS and PAYGo;
 - C&I and distributed energy;
 - e-mobility, charging and battery swapping;
+- energy storage;
 - clean cooking;
 - energy efficiency and demand services;
 - productive use of energy; and
 - carbon and environmental markets.
 
-Storage is normally a cross-cutting technology tag because it appears in
-utility-scale, mini-grid, C&I, SHS and e-mobility contexts. Solar, wind, hydro,
-geothermal, bioenergy, thermal generation and hydrogen are also technology
-tags, not substitutes for market segment.
+Energy storage is available as a market filter and may also be attached as a
+cross-cutting technology because it appears in utility-scale, mini-grid, C&I,
+SHS and e-mobility contexts. Solar, wind, hydro, geothermal, bioenergy, thermal
+generation and hydrogen are technology tags, not substitutes for market
+segment.
 
 Segment membership is a sourced classification. It does not by itself establish
 a project, customer or operating presence.
@@ -234,10 +243,10 @@ Route: `/organisations`
 Do not use a large hero, an eyebrow or explanatory paragraphs. Method detail is
 one link away.
 
-### Default Atlas view
+### Default Ecosystem view
 
 The atlas is the organisation equivalent of the software wall. It is grouped by
-role family and ordered alphabetically within each group.
+ecosystem actor group and ordered alphabetically within each group.
 
 Each tile contains only:
 
@@ -252,9 +261,9 @@ status and commercial relationship never affect order or prominence. An
 organisation appears once in the default atlas. Selecting a secondary role
 filter may return the same canonical organisation in that saved view.
 
-Project ownership and delivery sections open by default. Capital, professional
-services and market institutions use compact progressive disclosure. Active
-searches open every section containing a match.
+All eight actor groups remain visible as a compact overview. Selecting a group
+filters the page to that actor type. An empty group is an honest coverage gap
+and provides a direct contribution action rather than disappearing.
 
 ### Map view
 
@@ -276,23 +285,23 @@ software” percentage while research coverage is incomplete.
 Selecting a country opens a side panel with:
 
 - unique organisation count;
-- role-family breakdown;
+- actor-group breakdown;
 - segment breakdown;
 - organisations that own or develop listed software;
 - organisations with other reviewed software relationships;
 - organisations whose software relationship is not reviewed; and
-- a link to the filtered List view.
+- a link to the filtered Directory view.
 
 Counts may overlap across roles and segments, so the panel labels them as
 breakdowns rather than summing them into a false total.
 
-### List view
+### Directory view
 
 The list is the precise working surface. Desktop defaults to rows; mobile uses
 cards. Default columns are:
 
 - organisation;
-- primary role;
+- primary actor type and specific role;
 - other roles;
 - segments;
 - evidenced African countries;
@@ -310,14 +319,15 @@ page.
 Keep the first row short:
 
 - Search;
-- Role;
-- Segment;
+- Actor type;
+- Energy market;
 - Country; and
 - More.
 
 The More panel contains:
 
-- role family and specific multi-role selection;
+- specific role selection;
+- broad sector;
 - presence type: operates, project, office, claimed;
 - origin and headquarters;
 - Africa relationship;
@@ -330,7 +340,7 @@ The More panel contains:
 
 Active filters appear as removable chips and are encoded in the URL. A user can
 share or cite a view such as “EPCs working in C&I in Ghana.” Filters apply
-identically to Atlas, Map, List and export.
+identically to Ecosystem, Map, Directory and export.
 
 Sorting options are alphabetical, recently checked and number of evidenced
 African countries. Search relevance is available only during a text search.
@@ -342,7 +352,7 @@ Selecting a tile, map result or row opens the same preview sheet without losing
 filters. The preview contains:
 
 - name, identity mark and lifecycle;
-- primary role plus secondary roles;
+- primary actor type plus specific and secondary roles;
 - segments;
 - evidenced African country count;
 - software-relationship summary;
@@ -507,7 +517,7 @@ yet researched. They must not claim completeness.
 
 ### 3. Public directory
 
-- ship `/organisations` with Atlas and List views;
+- ship `/organisations` with Ecosystem and Directory views;
 - add preview sheets and expanded profiles;
 - add URL-persistent filters and organisation exports; and
 - expose reviewed software relationships.
@@ -535,7 +545,7 @@ Do not publish the expanded directory until:
 - a missing relationship is never rendered as “does not have”;
 - an organisation can hold multiple roles without duplicate canonical records;
 - evidenced and claimed market presence remain separate;
-- Atlas, Map, List and export return the same filtered population;
+- Ecosystem, Map, Directory and export return the same filtered population;
 - all counts use unique organisations and explain overlapping breakdowns;
 - filters and view state survive sharing, Back and route changes;
 - unknown, not reviewed, not found and not applicable remain distinct;

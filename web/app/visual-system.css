@@ -2552,37 +2552,36 @@ body {
 }
 .organisation-active-filters button i { font: normal .8rem/1 sans-serif; }
 .organisation-active-filters button.clear { padding-inline: 0; border: 0; border-bottom: 1px solid currentColor; border-radius: 0; background: transparent; }
-.organisation-chain-route {
+.organisation-group-route {
   position: relative;
   display: grid;
   margin: 8px 0 34px;
   border: 1px solid var(--v2-line-dark);
   border-radius: 16px;
   overflow: hidden;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
-.organisation-chain-route button {
+.organisation-group-route button {
   position: relative;
   display: grid;
-  min-height: 94px;
+  min-height: 78px;
   padding: 14px;
   border: 0;
   border-right: 1px solid var(--v2-line);
   background: rgb(251 250 246 / 70%);
   grid-template-columns: 1fr auto;
-  grid-template-rows: auto 1fr;
   text-align: left;
   cursor: pointer;
   transition: color .18s, background .18s;
 }
-.organisation-chain-route button:last-child { border-right: 0; }
-.organisation-chain-route button:hover,
-.organisation-chain-route button[aria-pressed="true"] { color: #fff; background: var(--v2-ink); }
-.organisation-chain-route i { color: var(--muted); font: normal .56rem var(--font-mono); }
-.organisation-chain-route strong { align-self: end; max-width: 110px; font-size: .8rem; line-height: 1.08; }
-.organisation-chain-route small { color: inherit; font: .64rem var(--font-mono); }
-.organisation-chain-groups { display: grid; gap: 46px; }
-.organisation-chain-group > header {
+.organisation-group-route button:nth-child(4n) { border-right: 0; }
+.organisation-group-route button:nth-child(-n + 4) { border-bottom: 1px solid var(--v2-line); }
+.organisation-group-route button:hover,
+.organisation-group-route button[aria-pressed="true"] { color: #fff; background: var(--v2-ink); }
+.organisation-group-route strong { align-self: end; max-width: 160px; font-size: .8rem; line-height: 1.08; }
+.organisation-group-route small { color: inherit; font: .64rem var(--font-mono); }
+.organisation-group-sections { display: grid; gap: 46px; }
+.organisation-group-section > header {
   display: grid;
   align-items: end;
   padding-bottom: 12px;
@@ -2590,11 +2589,9 @@ body {
   grid-template-columns: minmax(250px, .7fr) minmax(260px, 1fr) auto;
   gap: 28px;
 }
-.organisation-chain-group > header > div { display: flex; align-items: baseline; gap: 12px; }
-.organisation-chain-group > header span { color: var(--v2-blue); font: .6rem var(--font-mono); }
-.organisation-chain-group > header h2 { margin: 0; font-size: clamp(1.55rem, 2.4vw, 2.25rem); letter-spacing: -.04em; }
-.organisation-chain-group > header p { margin: 0; color: var(--muted); font-size: .76rem; }
-.organisation-chain-group > header > strong { font: 700 .72rem var(--font-mono); }
+.organisation-group-section > header h2 { margin: 0; font-size: clamp(1.55rem, 2.4vw, 2.25rem); letter-spacing: -.04em; }
+.organisation-group-section > header p { margin: 0; color: var(--muted); font-size: .76rem; }
+.organisation-group-section > header > strong { font: 700 .72rem var(--font-mono); }
 .organisation-atlas-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .organisation-atlas-grid article { min-height: 245px; }
 .organisation-atlas-grid article > div:nth-child(2) { align-self: end; }
@@ -2633,6 +2630,9 @@ body {
 .organisation-directory-name > span { display: grid; min-width: 0; gap: 3px; }
 .organisation-directory-name a { color: inherit; font-size: .9rem; font-weight: 760; text-decoration: none; }
 .organisation-directory-name small { color: var(--muted); font-size: .6rem; }
+.organisation-directory-table article > span:nth-child(2) { display: grid; gap: 3px; }
+.organisation-directory-table article > span:nth-child(2) a { color: inherit; font-weight: 720; text-decoration: none; }
+.organisation-directory-table article > span:nth-child(2) small { color: var(--muted); font-size: .58rem; }
 .organisation-directory-sectors { display: flex; flex-wrap: wrap; gap: 4px; }
 .organisation-directory-sectors a,
 .organisation-directory-sectors span {
@@ -2694,10 +2694,10 @@ body {
 }
 
 @media (max-width: 820px) {
-  .organisation-chain-route { display: flex; overflow-x: auto; scroll-snap-type: x proximity; }
-  .organisation-chain-route button { min-width: 145px; border-right: 1px solid var(--v2-line); scroll-snap-align: start; }
-  .organisation-chain-group > header { align-items: start; grid-template-columns: 1fr auto; gap: 8px 18px; }
-  .organisation-chain-group > header p { grid-column: 1 / -1; }
+  .organisation-group-route { display: flex; overflow-x: auto; scroll-snap-type: x proximity; }
+  .organisation-group-route button { min-width: 155px; border-right: 1px solid var(--v2-line); border-bottom: 0; scroll-snap-align: start; }
+  .organisation-group-section > header { align-items: start; grid-template-columns: 1fr auto; gap: 8px 18px; }
+  .organisation-group-section > header p { grid-column: 1 / -1; }
   .organisation-atlas-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .organisation-directory-table { overflow-x: auto; }
   .organisation-directory-head,
@@ -2710,7 +2710,7 @@ body {
   .organisation-more-panel { right: auto; left: 0; }
   .organisation-atlas-controls > span { justify-self: end; }
   .organisation-active-filters { margin-top: 0; }
-  .organisation-chain-route { margin-top: 12px; }
+  .organisation-group-route { margin-top: 12px; }
   .organisation-atlas-grid { grid-template-columns: 1fr; }
   .organisation-profile-classification > div { align-items: start; grid-template-columns: 1fr; gap: 8px; }
   .organisation-coverage-note { align-items: start; grid-template-columns: 1fr; gap: 8px; }

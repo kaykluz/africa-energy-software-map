@@ -6,25 +6,26 @@ import { useMemo, useState } from "react";
 import { OrganisationMark } from "@/components/brand-mark";
 import {
   organisationDirectory,
+  organisationEcosystemGroupName,
+  organisationEcosystemGroups,
   organisationRoles,
   organisationSegments,
   organisationSegmentName,
   organisationSectors,
   organisationSectorName,
-  organisationValueChain,
   type OrganisationDirectoryRecord,
 } from "@/lib/organisation-data";
 import { africanCountries, organisations, products } from "@/lib/registry-data";
 import { normaliseQuery } from "@/lib/registry-query";
 
-type OrganisationView = "chain" | "directory";
+type OrganisationView = "ecosystem" | "directory";
 
 type OrganisationAtlasProps = {
   initialQuery?: string;
+  initialGroup?: string;
   initialRole?: string;
   initialSector?: string;
   initialSegment?: string;
-  initialChain?: string;
   initialCountry?: string;
   initialOrigin?: string;
   initialView?: string;
@@ -32,115 +33,120 @@ type OrganisationAtlasProps = {
 
 export function OrganisationAtlas({
   initialQuery = "",
+  initialGroup = "all",
   initialRole = "all",
   initialSector = "all",
   initialSegment = "all",
-  initialChain = "all",
   initialCountry = "all",
   initialOrigin = "all",
-  initialView = "chain",
+  initialView = "ecosystem",
 }: OrganisationAtlasProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [query, setQuery] = useState(initialQuery);
+  const [group, setGroup] = useState(validId(initialGroup, organisationEcosystemGroups));
   const [role, setRole] = useState(validId(initialRole, organisationRoles));
   const [sector, setSector] = useState(validId(initialSector, organisationSectors));
   const [segment, setSegment] = useState(validId(initialSegment, organisationSegments));
-  const [chain, setChain] = useState(validId(initialChain, organisationValueChain));
   const [country, setCountry] = useState(
     africanCountries.some(([iso2]) => iso2 === initialCountry) ? initialCountry : "all",
   );
   const origins = Array.from(new Set(organisations.map((item) => item.origin))).sort();
   const [origin, setOrigin] = useState(origins.includes(initialOrigin) ? initialOrigin : "all");
   const [view, setView] = useState<OrganisationView>(
-    initialView === "directory" ? "directory" : "chain",
+    initialView === "directory" ? "directory" : "ecosystem",
   );
 
-  const withoutChain = useMemo(
+  const withoutGroup = useMemo(
     () => filterRecords(organisationDirectory, { query, role, sector, segment, country, origin }),
     [country, origin, query, role, sector, segment],
   );
   const rows = useMemo(
-    () => chain === "all"
-      ? withoutChain
-      : withoutChain.filter((record) => record.valueChainIds.includes(chain)),
-    [chain, withoutChain],
+    () => group === "all"
+      ? withoutGroup
+      : withoutGroup.filter((record) => record.ecosystemGroupIds.includes(group)),
+    [group, withoutGroup],
   );
-  const chainCounts = new Map(
-    organisationValueChain.map((item) => [
+  const groupCounts = new Map(
+    organisationEcosystemGroups.map((item) => [
       item.id,
-      withoutChain.filter((record) => record.valueChainIds.includes(item.id)).length,
+      withoutGroup.filter((record) => record.ecosystemGroupIds.includes(item.id)).length,
     ]),
   );
-  const coveredSectors = new Set(organisationDirectory.flatMap((record) => record.sectorIds)).size;
-  const coveredCountries = new Set(organisationDirectory.flatMap((record) => record.countryIso2s)).size;
+  const segmentCounts = new Map(
+    organisationSegments.map((item) => [
+      item.id,
+      organisationDirectory.filter((record) => record.segmentIds.includes(item.id)).length,
+    ]),
+  );
 
   function updateUrl(next: Partial<{
     q: string;
+    group: string;
     role: string;
     sector: string;
     segment: string;
-    chain: string;
     country: string;
     origin: string;
     view: OrganisationView;
   }>) {
     const values = {
       q: next.q ?? query,
+      group: next.group ?? group,
       role: next.role ?? role,
       sector: next.sector ?? sector,
       segment: next.segment ?? segment,
-      chain: next.chain ?? chain,
       country: next.country ?? country,
       origin: next.origin ?? origin,
       view: next.view ?? view,
     };
     const params = new URLSearchParams();
     if (values.q.trim()) params.set("q", values.q.trim());
+    if (values.group !== "all") params.set("group", values.group);
     if (values.role !== "all") params.set("role", values.role);
     if (values.sector !== "all") params.set("sector", values.sector);
     if (values.segment !== "all") params.set("segment", values.segment);
-    if (values.chain !== "all") params.set("chain", values.chain);
     if (values.country !== "all") params.set("country", values.country);
     if (values.origin !== "all") params.set("origin", values.origin);
-    if (values.view !== "chain") params.set("view", values.view);
+    if (values.view !== "ecosystem") params.set("view", values.view);
     const search = params.toString();
     router.replace(search ? `${pathname}?${search}` : pathname, { scroll: false });
   }
 
   function clearFilters() {
     setQuery("");
+    setGroup("all");
     setRole("all");
     setSector("all");
     setSegment("all");
-    setChain("all");
     setCountry("all");
     setOrigin("all");
-    router.replace(view === "chain" ? pathname : `${pathname}?view=${view}`, { scroll: false });
+    router.replace(view === "ecosystem" ? pathname : `${pathname}?view=${view}`, { scroll: false });
   }
 
   const activeFilters = [
     query.trim() ? { key: "q", label: `“${query.trim()}”` } : null,
+    group !== "all" ? { key: "group", label: organisationEcosystemGroupName(group) } : null,
     role !== "all" ? { key: "role", label: organisationRoles.find((item) => item.id === role)?.name ?? role } : null,
-    sector !== "all" ? { key: "sector", label: organisationSectorName(sector) } : null,
     segment !== "all" ? { key: "segment", label: organisationSegmentName(segment) } : null,
-    chain !== "all" ? { key: "chain", label: organisationValueChain.find((item) => item.id === chain)?.name ?? chain } : null,
+    sector !== "all" ? { key: "sector", label: organisationSectorName(sector) } : null,
     country !== "all" ? { key: "country", label: africanCountries.find(([iso2]) => iso2 === country)?.[1] ?? country } : null,
     origin !== "all" ? { key: "origin", label: origin } : null,
   ].filter(Boolean) as Array<{
-    key: "q" | "role" | "sector" | "segment" | "chain" | "country" | "origin";
+    key: "q" | "group" | "role" | "segment" | "sector" | "country" | "origin";
     label: string;
   }>;
 
   function removeFilter(key: (typeof activeFilters)[number]["key"]) {
     if (key === "q") { setQuery(""); updateUrl({ q: "" }); }
+    if (key === "group") { setGroup("all"); updateUrl({ group: "all" }); }
     if (key === "role") { setRole("all"); updateUrl({ role: "all" }); }
-    if (key === "sector") { setSector("all"); updateUrl({ sector: "all" }); }
     if (key === "segment") { setSegment("all"); updateUrl({ segment: "all" }); }
-    if (key === "chain") { setChain("all"); updateUrl({ chain: "all" }); }
+    if (key === "sector") { setSector("all"); updateUrl({ sector: "all" }); }
     if (key === "country") { setCountry("all"); updateUrl({ country: "all" }); }
     if (key === "origin") { setOrigin("all"); updateUrl({ origin: "all" }); }
   }
+
   const mapParams = new URLSearchParams({ object: "organisations" });
   if (country !== "all") mapParams.set("country", country);
 
@@ -149,17 +155,17 @@ export function OrganisationAtlas({
       <header className="organisation-atlas-intro">
         <div>
           <h1>Organisations</h1>
-          <p>Who shapes, funds, builds and runs African energy.</p>
+          <p>Who does what across African energy.</p>
         </div>
         <Link href="/contribute">Add an organisation</Link>
       </header>
 
       <nav aria-label="Organisation views" className="organisation-view-tabs">
         <button
-          aria-current={view === "chain" ? "page" : undefined}
-          onClick={() => { setView("chain"); updateUrl({ view: "chain" }); }}
+          aria-current={view === "ecosystem" ? "page" : undefined}
+          onClick={() => { setView("ecosystem"); updateUrl({ view: "ecosystem" }); }}
           type="button"
-        >Value chain</button>
+        >Ecosystem</button>
         <button
           aria-current={view === "directory" ? "page" : undefined}
           onClick={() => { setView("directory"); updateUrl({ view: "directory" }); }}
@@ -170,8 +176,8 @@ export function OrganisationAtlas({
 
       <section className="organisation-atlas-stats" aria-label="Organisation totals">
         <div><strong>{organisations.length}</strong><span>organisations</span></div>
-        <div><strong>{coveredSectors}</strong><span>sectors represented</span></div>
-        <div><strong>{coveredCountries}</strong><span>countries evidenced</span></div>
+        <div><strong>{organisationEcosystemGroups.length}</strong><span>actor types</span></div>
+        <div><strong>{organisationSegments.length}</strong><span>energy markets</span></div>
       </section>
 
       <section className="organisation-atlas-controls" aria-label="Filter organisations">
@@ -186,22 +192,26 @@ export function OrganisationAtlas({
           />
         </label>
         <select
-          aria-label="Filter by role"
-          onChange={(event) => { setRole(event.target.value); updateUrl({ role: event.target.value }); }}
-          value={role}
+          aria-label="Filter by actor type"
+          onChange={(event) => { setGroup(event.target.value); updateUrl({ group: event.target.value }); }}
+          value={group}
         >
-          <option value="all">All roles</option>
-          {organisationRoles.filter((item) => item.id !== "org_role_to_classify").map((item) => (
+          <option value="all">All actor types</option>
+          {organisationEcosystemGroups.map((item) => (
             <option key={item.id} value={item.id}>{item.name}</option>
           ))}
         </select>
         <select
-          aria-label="Filter by sector"
-          onChange={(event) => { setSector(event.target.value); updateUrl({ sector: event.target.value }); }}
-          value={sector}
+          aria-label="Filter by energy market"
+          onChange={(event) => { setSegment(event.target.value); updateUrl({ segment: event.target.value }); }}
+          value={segment}
         >
-          <option value="all">All sectors</option>
-          {organisationSectors.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
+          <option value="all">All energy markets</option>
+          {organisationSegments.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.name}{segmentCounts.get(item.id) ? ` · ${segmentCounts.get(item.id)}` : ""}
+            </option>
+          ))}
         </select>
         <select
           aria-label="Filter by evidenced country"
@@ -215,13 +225,25 @@ export function OrganisationAtlas({
           <summary>More</summary>
           <div className="organisation-more-panel">
             <label>
-              <span>Market segment</span>
+              <span>Specific role</span>
               <select
-                onChange={(event) => { setSegment(event.target.value); updateUrl({ segment: event.target.value }); }}
-                value={segment}
+                onChange={(event) => { setRole(event.target.value); updateUrl({ role: event.target.value }); }}
+                value={role}
               >
-                <option value="all">All market segments</option>
-                {organisationSegments.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
+                <option value="all">All specific roles</option>
+                {organisationRoles.filter((item) => item.id !== "org_role_to_classify").map((item) => (
+                  <option key={item.id} value={item.id}>{item.name}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span>Broad sector</span>
+              <select
+                onChange={(event) => { setSector(event.target.value); updateUrl({ sector: event.target.value }); }}
+                value={sector}
+              >
+                <option value="all">All broad sectors</option>
+                {organisationSectors.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
               </select>
             </label>
             <label>
@@ -251,37 +273,36 @@ export function OrganisationAtlas({
         </div>
       ) : null}
 
-      {view === "chain" ? (
+      {view === "ecosystem" ? (
         <>
-          <nav aria-label="Organisation value chain" className="organisation-chain-route">
-            {organisationValueChain.map((item, index) => (
+          <nav aria-label="Organisation actor types" className="organisation-group-route">
+            {organisationEcosystemGroups.map((item) => (
               <button
-                aria-pressed={chain === item.id}
+                aria-pressed={group === item.id}
                 key={item.id}
                 onClick={() => {
-                  const next = chain === item.id ? "all" : item.id;
-                  setChain(next);
-                  updateUrl({ chain: next });
+                  const next = group === item.id ? "all" : item.id;
+                  setGroup(next);
+                  updateUrl({ group: next });
                 }}
                 type="button"
               >
-                <i>{String(index + 1).padStart(2, "0")}</i>
                 <strong>{item.name}</strong>
-                <small>{chainCounts.get(item.id) ?? 0}</small>
+                <small>{groupCounts.get(item.id) ?? 0}</small>
               </button>
             ))}
           </nav>
           {rows.length ? (
-            <div className="organisation-chain-groups">
-              {organisationValueChain
-                .filter((item) => chain === "all" ? chainCounts.get(item.id) : item.id === chain)
+            <div className="organisation-group-sections">
+              {organisationEcosystemGroups
+                .filter((item) => group === "all" ? groupCounts.get(item.id) : item.id === group)
                 .map((item) => {
-                  const groupRows = rows.filter((record) => record.valueChainIds.includes(item.id));
+                  const groupRows = rows.filter((record) => record.ecosystemGroupIds.includes(item.id));
                   if (!groupRows.length) return null;
                   return (
-                    <section className="organisation-chain-group" key={item.id}>
+                    <section className="organisation-group-section" key={item.id}>
                       <header>
-                        <div><span>{String(item.order).padStart(2, "0")}</span><h2>{item.name}</h2></div>
+                        <h2>{item.name}</h2>
                         <p>{item.description}</p>
                         <strong>{groupRows.length}</strong>
                       </header>
@@ -298,8 +319,8 @@ export function OrganisationAtlas({
 
       <footer className="organisation-coverage-note">
         <span>Current release</span>
-        <p>{products.length} reviewed software records. Organisation roles and sectors expand through sourced contributions.</p>
-        <Link href="/contribute">Add what is missing →</Link>
+        <p>{products.length} reviewed software records. Add missing developers, EPCs, OEMs, financiers and operators.</p>
+        <Link href="/contribute">Add an organisation →</Link>
       </footer>
     </main>
   );
@@ -308,32 +329,31 @@ export function OrganisationAtlas({
 function OrganisationCardGrid({ rows }: { rows: OrganisationDirectoryRecord[] }) {
   return (
     <div className="organisation-atlas-grid">
-      {rows.map((record) => (
-        <article key={record.organisation.id}>
-          <OrganisationMark
-            name={record.organisation.name}
-            organisationId={record.organisation.id}
-            size={64}
-          />
-          <div>
-            <h3><Link href={`/organisations/${record.organisation.slug}`}>{record.organisation.name}</Link></h3>
-            <p>{record.primaryRole.name}</p>
-            <div className="organisation-sector-tags">
-              {record.sectorIds.slice(0, 2).map((sectorId) => (
-                <Link href={`/organisations?sector=${sectorId}`} key={sectorId}>
-                  {organisationSectorName(sectorId)}
-                </Link>
-              ))}
-              {record.sectorIds.length > 2 ? <span>+{record.sectorIds.length - 2}</span> : null}
+      {rows.map((record) => {
+        const tags = record.segmentIds.length
+          ? record.segmentIds.map((id) => ({ id, label: organisationSegmentName(id), key: "segment" }))
+          : record.sectorIds.map((id) => ({ id, label: organisationSectorName(id), key: "sector" }));
+        return (
+          <article key={record.organisation.id}>
+            <OrganisationMark name={record.organisation.name} organisationId={record.organisation.id} size={64} />
+            <div>
+              <h3><Link href={`/organisations/${record.organisation.slug}`}>{record.organisation.name}</Link></h3>
+              <p>{record.primaryRole.name}</p>
+              <div className="organisation-sector-tags">
+                {tags.slice(0, 2).map((tag) => (
+                  <Link href={`/organisations?${tag.key}=${tag.id}`} key={tag.id}>{tag.label}</Link>
+                ))}
+                {tags.length > 2 ? <span>+{tags.length - 2}</span> : null}
+              </div>
             </div>
-          </div>
-          <dl>
-            <div><dt>Software</dt><dd>{record.productCount}</dd></div>
-            <div><dt>Countries</dt><dd>{record.countryCount || "—"}</dd></div>
-          </dl>
-          <Link aria-label={`Open ${record.organisation.name}`} href={`/organisations/${record.organisation.slug}`}>→</Link>
-        </article>
-      ))}
+            <dl>
+              <div><dt>Software</dt><dd>{record.productCount || "—"}</dd></div>
+              <div><dt>Countries</dt><dd>{record.countryCount || "—"}</dd></div>
+            </dl>
+            <Link aria-label={`Open ${record.organisation.name}`} href={`/organisations/${record.organisation.slug}`}>→</Link>
+          </article>
+        );
+      })}
     </div>
   );
 }
@@ -342,7 +362,7 @@ function OrganisationDirectoryTable({ rows }: { rows: OrganisationDirectoryRecor
   return (
     <section className="organisation-directory-table" aria-label="Organisation directory">
       <div className="organisation-directory-head" aria-hidden="true">
-        <span>Organisation</span><span>Role</span><span>Sectors</span><span>Presence</span><span>Software</span>
+        <span>Organisation</span><span>Actor type</span><span>Markets</span><span>Presence</span><span>Software</span>
       </div>
       {rows.map((record) => (
         <article key={record.organisation.id}>
@@ -350,14 +370,16 @@ function OrganisationDirectoryTable({ rows }: { rows: OrganisationDirectoryRecor
             <OrganisationMark name={record.organisation.name} organisationId={record.organisation.id} size={44} />
             <span><Link href={`/organisations/${record.organisation.slug}`}>{record.organisation.name}</Link><small>{record.organisation.countryOfOrigin}</small></span>
           </div>
-          <Link href={`/organisations?role=${record.primaryRole.id}`}>{record.primaryRole.name}</Link>
+          <span><Link href={`/organisations?group=${record.ecosystemGroupIds[0]}`}>{organisationEcosystemGroupName(record.ecosystemGroupIds[0])}</Link><small>{record.primaryRole.name}</small></span>
           <div className="organisation-directory-sectors">
-            {record.sectorIds.length ? record.sectorIds.slice(0, 2).map((sectorId) => (
+            {record.segmentIds.length ? record.segmentIds.slice(0, 2).map((segmentId) => (
+              <Link href={`/organisations?segment=${segmentId}`} key={segmentId}>{organisationSegmentName(segmentId)}</Link>
+            )) : record.sectorIds.length ? record.sectorIds.slice(0, 2).map((sectorId) => (
               <Link href={`/organisations?sector=${sectorId}`} key={sectorId}>{organisationSectorName(sectorId)}</Link>
             )) : <span>Not yet classified</span>}
           </div>
           <span>{record.countryCount ? `${record.countryCount} countries` : "Not yet evidenced"}</span>
-          <span>{record.productCount} linked</span>
+          <span>{record.productCount ? `${record.productCount} linked` : "Not reviewed"}</span>
         </article>
       ))}
     </section>
@@ -367,8 +389,8 @@ function OrganisationDirectoryTable({ rows }: { rows: OrganisationDirectoryRecor
 function EmptyState() {
   return (
     <section className="landscape-empty">
-      <strong>No organisations match.</strong>
-      <Link href="/contribute">Suggest one →</Link>
+      <strong>No organisations listed here yet.</strong>
+      <Link href="/contribute">Add one →</Link>
     </section>
   );
 }
@@ -395,6 +417,7 @@ function filterRecords(
       record.organisation.countryOfOrigin,
       record.organisation.headquarters,
       record.primaryRole.name,
+      ...record.ecosystemGroupIds.map(organisationEcosystemGroupName),
       ...record.sectorIds.map(organisationSectorName),
       ...record.segmentIds.map(organisationSegmentName),
       ...record.countryNames,
