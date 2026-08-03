@@ -64,7 +64,7 @@ type AssertionFilter =
   | "amend"
   | "reject"
   | "needs_evidence";
-type ApiError = { error?: { message?: string; details?: string[] } };
+type ApiError = { error: { message?: string; details?: string[] } };
 type ReviewCataloguePage = {
   counts: { total: number; reviewedMatches: number; needsReview: number; africaHeadquartered: number };
   decisions: number;
