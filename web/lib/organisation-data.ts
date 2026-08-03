@@ -23,13 +23,13 @@ type TaxonomyItem = {
 
 type OrganisationRole = TaxonomyItem & {
   familyId: string;
-  valueChainIds: string[];
+  ecosystemGroupIds: string[];
 };
 
 type OrganisationTaxonomy = {
   sectors: TaxonomyItem[];
   stages: TaxonomyItem[];
-  organisation_value_chain: TaxonomyItem[];
+  organisation_ecosystem_groups: TaxonomyItem[];
   organisation_role_families: TaxonomyItem[];
   organisation_roles: OrganisationRole[];
   organisation_segments: TaxonomyItem[];
@@ -38,7 +38,7 @@ type OrganisationTaxonomy = {
 
 const taxonomy = taxonomyJson as OrganisationTaxonomy;
 
-export const organisationValueChain = [...taxonomy.organisation_value_chain].sort(
+export const organisationEcosystemGroups = [...taxonomy.organisation_ecosystem_groups].sort(
   (left, right) => (left.order ?? 0) - (right.order ?? 0),
 );
 export const organisationRoles = taxonomy.organisation_roles;
@@ -75,7 +75,7 @@ export type OrganisationDirectoryRecord = {
   ownedProducts: Product[];
   roleIds: string[];
   primaryRole: OrganisationRole;
-  valueChainIds: string[];
+  ecosystemGroupIds: string[];
   sectorIds: string[];
   segmentIds: string[];
   stageIds: string[];
@@ -102,6 +102,10 @@ export function organisationDirectoryRecord(
 
 export function organisationRoleName(roleId: string) {
   return rolesById.get(roleId)?.name ?? roleId;
+}
+
+export function organisationEcosystemGroupName(groupId: string) {
+  return organisationEcosystemGroups.find((item) => item.id === groupId)?.name ?? groupId;
 }
 
 export function organisationSectorName(sectorId: string) {
@@ -137,12 +141,12 @@ function buildOrganisationRecord(
   const roleIds = explicitRoles.length
     ? Array.from(new Set(explicitRoles.map((record) => record.roleId)))
     : ownedProducts.length
-      ? ["org_role_software_data_provider"]
+      ? ["org_role_software_developer"]
       : ["org_role_to_classify"];
   const primaryRole = rolesById.get(roleIds[0]);
   if (!primaryRole) throw new Error(`Unknown organisation role: ${roleIds[0]}`);
-  const valueChainIds = Array.from(
-    new Set(roleIds.flatMap((roleId) => rolesById.get(roleId)?.valueChainIds ?? [])),
+  const ecosystemGroupIds = Array.from(
+    new Set(roleIds.flatMap((roleId) => rolesById.get(roleId)?.ecosystemGroupIds ?? [])),
   );
   const explicitSectorIds = organisationSectorRecords
     .filter((record) => record.organisationId === organisation.id && sectorsById.has(record.sectorId))
@@ -180,7 +184,7 @@ function buildOrganisationRecord(
     ownedProducts,
     roleIds,
     primaryRole,
-    valueChainIds,
+    ecosystemGroupIds,
     sectorIds,
     segmentIds,
     stageIds,

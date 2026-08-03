@@ -15,7 +15,7 @@ export default async function OrganisationsPage({
   const params = await searchParams;
   return (
     <OrganisationAtlas
-      initialChain={params.chain}
+      initialGroup={params.group}
       initialCountry={params.country}
       initialOrigin={params.origin}
       initialQuery={params.q}

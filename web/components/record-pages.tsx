@@ -23,9 +23,9 @@ import {
 import { OrganisationMark } from "@/components/brand-mark";
 import {
   organisationDirectoryRecord,
+  organisationEcosystemGroups,
   organisationSegmentName,
   organisationSectorName,
-  organisationValueChain,
   softwareStageName,
 } from "@/lib/organisation-data";
 
@@ -298,11 +298,11 @@ export function OrganisationProfile({ slug }: { slug: string }) {
                   </Link>
                 </div>
                 <div>
-                  <span>Organisation value chain</span>
+                  <span>Actor type</span>
                   <div>
-                    {directoryRecord.valueChainIds.map((chainId) => (
-                      <Link href={`/organisations?chain=${chainId}`} key={chainId}>
-                        {organisationValueChain.find((item) => item.id === chainId)?.name ?? chainId}
+                    {directoryRecord.ecosystemGroupIds.map((groupId) => (
+                      <Link href={`/organisations?group=${groupId}`} key={groupId}>
+                        {organisationEcosystemGroups.find((item) => item.id === groupId)?.name ?? groupId}
                       </Link>
                     ))}
                   </div>

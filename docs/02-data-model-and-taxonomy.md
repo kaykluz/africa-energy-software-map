@@ -4,7 +4,7 @@
 
 ```text
 Organisation → Product → Capability
-      ├──────→ Role → Organisation value-chain position
+      ├──────→ Role → Ecosystem actor group
       ├──────→ Sector / Segment
       ├──────→ Software relationship → Product
                     ↓
@@ -50,10 +50,23 @@ changing identity.
 
 Products receive one primary category and any number of secondary capabilities.
 
-Organisations use a separate six-position market chain: Govern and coordinate;
-Finance and de-risk; Develop and own; Supply and build; Operate and serve; and
-Enable and advise. Organisation positions are derived from reviewed roles and
-must never be substituted for the software value-chain stages above.
+Organisations use a separate actor taxonomy: Financiers; Developers and owners;
+OEMs and suppliers; EPCs and installers; Operators and service providers;
+Software and data; Enablers and advisers; and Public institutions. These are
+parallel market-participant types, not stages in a chain. Actor groups are
+derived from reviewed organisation roles and must never be substituted for the
+software value-chain stages above.
+
+The three dimensions answer different questions:
+
+- **Actor type** — who the organisation is in the market;
+- **Energy market** — where it works, such as mini-grids, C&I, SHS/PAYGo,
+  utility scale, storage or e-mobility; and
+- **Software value chain** — what a software product does.
+
+They remain independently filterable. For example, an EPC may work in both C&I
+and mini-grids, while one software platform may support developers, operators
+and financiers across several markets.
 
 The inclusive landscape adds a granular function layer and one primary energy
 relationship. These answer different questions from the reviewed category:

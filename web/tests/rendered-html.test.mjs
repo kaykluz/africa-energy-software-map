@@ -337,11 +337,19 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   const organisationHtml = await organisationResponse.text();
   assert.match(organisationHtml, /<h1[^>]*>Organisations<\/h1>/i);
   assert.match(organisationHtml, /64<\/strong><span>organisations/);
-  assert.match(organisationHtml, /Govern and coordinate/);
-  assert.match(organisationHtml, /Finance and de-risk/);
-  assert.match(organisationHtml, /Enable and advise/);
-  assert.match(organisationHtml, /Software and data provider/);
-  assert.match(organisationHtml, /Filter by sector/);
+  assert.match(organisationHtml, /Financiers/);
+  assert.match(organisationHtml, /Developers and owners/);
+  assert.match(organisationHtml, /OEMs and suppliers/);
+  assert.match(organisationHtml, /EPCs and installers/);
+  assert.match(organisationHtml, /Software and data/);
+  assert.match(organisationHtml, /Enablers and advisers/);
+  assert.match(organisationHtml, /Public institutions/);
+  assert.match(organisationHtml, /Software developer or platform/);
+  assert.match(organisationHtml, /Filter by actor type/);
+  assert.match(organisationHtml, /Filter by energy market/);
+  assert.match(organisationHtml, /Mini-grids/);
+  assert.match(organisationHtml, /Off-grid solar, SHS and PAYGo/);
+  assert.match(organisationHtml, /C&amp;I and distributed energy/);
   assert.match(organisationHtml, /href="\/organisations\/bboxx"/);
   assert.match(organisationHtml, /src="\/brand\/organisations\/bboxx\.svg"/);
   assert.doesNotMatch(organisationHtml, /src="https?:\/\//i);
@@ -360,12 +368,32 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   assert.equal(organisationProfileResponse.status, 200);
   const organisationProfileHtml = await organisationProfileResponse.text();
   assert.match(organisationProfileHtml, /Role and sectors/);
+  assert.match(organisationProfileHtml, /Actor type/);
   assert.match(organisationProfileHtml, /E-mobility and battery networks/);
   assert.match(organisationProfileHtml, /Software coverage/);
   assert.match(
     organisationProfileHtml,
     /href="\/organisations\?sector=sector_emobility_batteries"/,
   );
+  assert.match(
+    organisationProfileHtml,
+    /href="\/organisations\?group=org_group_software"/,
+  );
+
+  const softwareGroupResponse = await render(
+    "/organisations?group=org_group_software",
+  );
+  assert.equal(softwareGroupResponse.status, 200);
+  const softwareGroupHtml = await softwareGroupResponse.text();
+  assert.match(softwareGroupHtml, /Bboxx/);
+
+  const epcGroupResponse = await render(
+    "/organisations?group=org_group_epcs",
+  );
+  assert.equal(epcGroupResponse.status, 200);
+  const epcGroupHtml = await epcGroupResponse.text();
+  assert.match(epcGroupHtml, /No organisations listed here yet/);
+  assert.doesNotMatch(epcGroupHtml, /href="\/organisations\/bboxx"/);
 
   const productResponse = await render("/products/ammp-os");
   assert.equal(productResponse.status, 200);

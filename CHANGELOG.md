@@ -2,11 +2,14 @@
 
 ## Unreleased
 
-- Added a separate organisation market chain, role and segment vocabularies,
-  filterable sector and evidenced-country views, a compact directory view and
-  linked role/sector/software coverage on organisation profiles. Optional
-  relationship tables make future EPC, developer, capital, utility and adviser
-  imports possible without duplicating canonical organisations.
+- Replaced the organisation process-chain treatment with eight parallel actor
+  groups: financiers, developers and owners, OEMs and suppliers, EPCs and
+  installers, operators and service providers, software and data, enablers and
+  advisers, and public institutions. Energy markets such as mini-grids, C&I,
+  SHS/PAYGo, utility scale, storage and e-mobility remain a separate filter, with
+  specific roles, broad sectors and evidenced countries available as additional
+  dimensions. Optional relationship tables support future organisation imports
+  without duplicating canonical records or inventing classifications.
 - Made the 540-listing catalogue the default Explore surface, promoted Wall to
   a primary view, added a first-class Organisations atlas, replaced the map
   grid default with clickable Natural Earth country geometry and introduced a
