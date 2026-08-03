@@ -46,6 +46,54 @@ Do not add permanent top-level tabs for every role or segment. URLs such as
 `/organisations?role=epc&segment=c_and_i&country=GH` provide the useful view
 without creating a new page to maintain.
 
+## Hyperlink and graph-navigation contract
+
+The public interface is a navigable graph. Whenever a displayed entity has a
+stable internal destination, its visible name links to that destination.
+
+| Displayed object | Destination |
+| --- | --- |
+| Product or software listing | Canonical product record |
+| Organisation | Canonical organisation record |
+| Country | Country record |
+| Role or role family | Filtered Organisations view |
+| Segment or technology | Filtered Software or Organisations view, according to context |
+| Category or value-chain stage | Filtered Software view |
+| Project or transaction | Canonical project or transaction record when introduced |
+| Source title or publisher | Direct source URL or a future internal source record |
+
+Names are linked in tables, cards, previews, map panels, relationship lists,
+profiles, search results and change history. A relationship should be traversable
+in both directions: an organisation profile links to its software, and a
+software profile links back to its organisation; a country links to matching
+organisations and their profiles link back to the country view.
+
+Link only known identities. Do not guess a destination from a matching string,
+silently link a customer name to the wrong organisation, or treat two similar
+names as the same entity. Records without a stable destination remain plain text
+and enter the identity-resolution queue.
+
+Interaction rules:
+
+- the entity name is a semantic anchor with a real URL, so it supports open in
+  new tab, copy link, keyboard navigation and search indexing;
+- a card that also supports quick preview uses a separate labelled preview
+  button rather than nesting a link inside a button;
+- a whole card may be a link only when it has one destination and no nested
+  controls;
+- Browser Back returns to the prior filters and scroll position; preview sheets
+  remain the fastest way to inspect records without leaving a view;
+- internal links are visually quiet and gain underline or contrast on hover and
+  focus rather than making every surface blue;
+- external source or official-site links are identified with an external-link
+  cue and never replace the internal canonical record; and
+- the final item in a breadcrumb and the current page heading are not
+  self-links.
+
+The data model therefore needs stable canonical URLs or entity IDs on every
+relationship edge. Public rendering must use those identifiers rather than
+fuzzy name matching.
+
 ## Organisation taxonomy
 
 ### Role families
