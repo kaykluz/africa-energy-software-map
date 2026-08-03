@@ -70,7 +70,8 @@ type BulkRecordType =
   | "deployment"
   | "organisation_alias"
   | "organisation_relationship"
-  | "organisation_software_relationship";
+  | "organisation_software_relationship"
+  | "organisation_presence";
 
 const bulkRecordTypeOptions: Array<{
   value: "all" | BulkRecordType;
@@ -83,6 +84,7 @@ const bulkRecordTypeOptions: Array<{
   { value: "organisation_alias", label: "Aliases" },
   { value: "organisation_relationship", label: "Relationships" },
   { value: "organisation_software_relationship", label: "Software links" },
+  { value: "organisation_presence", label: "Country presence" },
 ];
 
 export function ReviewWorkspace({
@@ -628,6 +630,8 @@ function BulkImportPanel({
         value.organisation_segment_ids,
         value.customer_name,
         value.deployment_country_iso2,
+        value.organisation_presence_country_iso2,
+        value.organisation_presence_type,
         value.country_of_origin,
         value.source_publisher,
         value.primary_category_id,
@@ -1012,6 +1016,14 @@ const bulkEditFieldsByType: Record<BulkRecordType, BulkEditField[]> = {
     { field: "valid_from", label: "Valid from" },
     { field: "valid_to", label: "Valid to" },
   ],
+  organisation_presence: [
+    { field: "existing_organisation_id", label: "Organisation ID" },
+    { field: "organisation_presence_country_iso2", label: "Country" },
+    { field: "organisation_presence_type", label: "Presence type" },
+    { field: "organisation_presence_lifecycle_status", label: "Presence status" },
+    { field: "valid_from", label: "Valid from" },
+    { field: "valid_to", label: "Valid to" },
+  ],
 };
 
 function bulkRecordLabel(recordType: string) {
@@ -1022,6 +1034,7 @@ function bulkRecordLabel(recordType: string) {
     organisation_alias: "A",
     organisation_relationship: "R",
     organisation_software_relationship: "S",
+    organisation_presence: "C",
   } as Record<string, string>)[recordType] ?? "?";
 }
 
@@ -1033,6 +1046,9 @@ function bulkCandidateTitle(recordType: string, value: BulkImportRowRecord["effe
   }
   if (recordType === "organisation_software_relationship") {
     return `${value.organisation_name || value.existing_organisation_id} → ${value.product_name || value.existing_product_id}`;
+  }
+  if (recordType === "organisation_presence") {
+    return `${value.organisation_name || value.existing_organisation_id} · ${value.organisation_presence_country_iso2}`;
   }
   return value.product_name;
 }
@@ -1078,6 +1094,7 @@ function BulkCandidateRow({
   };
   const country =
     value.deployment_country_iso2 ||
+    value.organisation_presence_country_iso2 ||
     value.country_of_origin ||
     value.headquarters_country ||
     "—";

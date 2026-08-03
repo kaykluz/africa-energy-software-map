@@ -138,6 +138,29 @@ export type OrganisationRelationshipRecord = {
   lastCheckedAt: string;
 };
 
+export type OrganisationPresenceType =
+  | "operations"
+  | "project_participation"
+  | "office"
+  | "legal_entity"
+  | "product_deployment"
+  | "product_availability";
+
+export type OrganisationPresenceRecord = {
+  id: string;
+  organisationId: string;
+  countryIso2: string;
+  country: string;
+  presenceType: OrganisationPresenceType;
+  lifecycleStatus: "active" | "planned" | "historical" | "unknown";
+  validFrom: string;
+  validTo: string;
+  lastCheckedAt: string;
+  lastChecked: string;
+  evidenceStatus: EvidenceStatus;
+  sourceId: string;
+};
+
 export type Source = {
   id: string;
   title: string;
@@ -230,6 +253,18 @@ type SnapshotData = {
   organisationSoftwareRelationships?: OrganisationSoftwareRelationshipRecord[];
   organisationAliases?: OrganisationAliasRecord[];
   organisationRelationships?: OrganisationRelationshipRecord[];
+  organisationPresences?: Array<{
+    id: string;
+    organisationId: string;
+    countryIso2: string;
+    presenceType: OrganisationPresenceType;
+    lifecycleStatus: OrganisationPresenceRecord["lifecycleStatus"];
+    validFrom: string;
+    validTo: string;
+    lastCheckedAt: string;
+    evidenceStatus: EvidenceStatus;
+    sourceId: string;
+  }>;
   products: Array<{
     id: string;
     organisationId: string;
@@ -314,6 +349,15 @@ export const originLabels: Record<OriginClassification, string> = {
   africa_founded_global_hq: "Africa-founded, global HQ",
   global_deployed_in_africa: "Global, deployed in Africa",
   public_or_open_infrastructure: "Public or open infrastructure",
+};
+
+export const organisationPresenceLabels: Record<OrganisationPresenceType, string> = {
+  operations: "Operations",
+  project_participation: "Project participation",
+  office: "Office",
+  legal_entity: "Registered entity",
+  product_deployment: "Product deployment",
+  product_availability: "Product available",
 };
 
 const countriesByIso2 = new Map(
@@ -421,6 +465,12 @@ export const organisationSoftwareRelationshipRecords =
 export const organisationAliasRecords = snapshot.organisationAliases ?? [];
 export const organisationRelationshipRecords =
   snapshot.organisationRelationships ?? [];
+export const organisationPresenceRecords: OrganisationPresenceRecord[] =
+  (snapshot.organisationPresences ?? []).map((record) => ({
+    ...record,
+    country: countryName(record.countryIso2),
+    lastChecked: displayDate(record.lastCheckedAt),
+  }));
 export const stages = snapshot.stages;
 export const categories = snapshot.categories;
 export const countrySummaries = snapshot.countrySummaries;
@@ -450,6 +500,7 @@ export const registrySnapshot = {
   organisationSoftwareRelationshipRecords,
   organisationAliasRecords,
   organisationRelationshipRecords,
+  organisationPresenceRecords,
   products,
   deployments,
   sources,

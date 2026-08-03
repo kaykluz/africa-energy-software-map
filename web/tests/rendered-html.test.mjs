@@ -134,6 +134,7 @@ const validProductContribution = {
   customer: "",
   year: "",
   lifecycle: "pilot",
+  presenceType: "",
   field: "",
   proposedValue: "",
   source: "https://example.com/product",
@@ -191,6 +192,9 @@ const bulkHeaders = [
   "source_locator",
   "notes",
   "confirms_no_sensitive_data",
+  "organisation_presence_country_iso2",
+  "organisation_presence_type",
+  "organisation_presence_lifecycle_status",
 ];
 
 const validBulkDeployment = {
@@ -338,6 +342,11 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
   assert.match(mapHtml, /Software/);
   assert.match(mapHtml, /Organisations/);
   assert.match(mapHtml, /aria-live="polite"/i);
+  const organisationMapResponse = await render("/deployments?object=organisations");
+  const organisationMapHtml = await organisationMapResponse.text();
+  assert.match(organisationMapHtml, /aria-label="Organisation presence layer"/i);
+  assert.match(organisationMapHtml, /Company-stated/);
+  assert.match(organisationMapHtml, /Offices and entities/);
 
   const styles = ["../app/globals.css", "../app/visual-system.css"]
     .map((filename) => readFileSync(new URL(filename, import.meta.url), "utf8"))
@@ -385,6 +394,7 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   assert.match(organisationHtml, /Software developer or platform/);
   assert.match(organisationHtml, /Filter by actor type/);
   assert.match(organisationHtml, /Filter by energy market/);
+  assert.match(organisationHtml, /Choose organisation presence layer/);
   assert.match(organisationHtml, /Export CSV/);
   assert.match(organisationHtml, /Mini-grids/);
   assert.match(organisationHtml, /Off-grid solar, SHS and PAYGo/);
@@ -410,6 +420,8 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   assert.match(organisationProfileHtml, /Actor type/);
   assert.match(organisationProfileHtml, /E-mobility and battery networks/);
   assert.match(organisationProfileHtml, /Software coverage/);
+  assert.match(organisationProfileHtml, /African presence/);
+  assert.match(organisationProfileHtml, /Software-linked footprint/);
   assert.match(
     organisationProfileHtml,
     /href="\/organisations\?sector=sector_emobility_batteries"/,
@@ -562,6 +574,8 @@ test("server-renders a country profile from the generated snapshot", async () =>
   assert.match(html, /href="\/directory\?category=/);
   assert.match(html, /View in Data/);
   assert.match(html, /href="\/directory\?country=NG"/);
+  assert.match(html, /<h2[^>]*>Organisations<\/h2>/i);
+  assert.match(html, /View filtered organisations/);
 });
 
 test("server-renders the methodology AI disclosure", async () => {
@@ -609,6 +623,9 @@ test("organisation contributions enter the moderated queue with an actor type", 
       product: "",
       organisation: "Example Solar EPC",
       category: "EPCs and installers",
+      country: "GH",
+      presenceType: "operations",
+      lifecycle: "active",
       source: "https://example.com/about",
       notes: "EPC working in C&I and mini-grids in Ghana.",
     }),
@@ -618,12 +635,15 @@ test("organisation contributions enter the moderated queue with an actor type", 
   const receipt = await response.json();
   assert.match(receipt.id, /^AEM-ORG-\d{8}-[A-F0-9]{16}$/);
   const stored = database.get(
-    "SELECT submission_type AS submissionType, organisation_name AS organisationName, category, notes FROM contributions WHERE id = ?",
+    "SELECT submission_type AS submissionType, organisation_name AS organisationName, category, country_iso2 AS countryIso2, field_name AS presenceType, lifecycle, notes FROM contributions WHERE id = ?",
     receipt.id,
   );
   assert.equal(stored.submissionType, "organisation");
   assert.equal(stored.organisationName, "Example Solar EPC");
   assert.equal(stored.category, "EPCs and installers");
+  assert.equal(stored.countryIso2, "GH");
+  assert.equal(stored.presenceType, "operations");
+  assert.equal(stored.lifecycle, "active");
   assert.equal(stored.notes, "EPC working in C&I and mini-grids in Ghana.");
 });
 
@@ -1625,6 +1645,16 @@ test("organisation intake preserves roles, segments, aliases and corporate relat
       organisation_software_relationship_type: "org_software_operates_internally",
       ...sharedSource,
     }),
+    bulkRow({
+      row_key: "example-capital-ghana-presence",
+      record_type: "organisation_presence",
+      organisation_name: "Example Capital Partner",
+      existing_organisation_id: "org_existing_capital",
+      organisation_presence_country_iso2: "GH",
+      organisation_presence_type: "operations",
+      organisation_presence_lifecycle_status: "active",
+      ...sharedSource,
+    }),
   ];
   const imported = await fetchWorker(
     "/api/review/bulk-imports",
@@ -1641,9 +1671,9 @@ test("organisation intake preserves roles, segments, aliases and corporate relat
   );
   assert.equal(imported.status, 201);
   const importRecord = await imported.json();
-  assert.equal(importRecord.rowCount, 4);
-  assert.equal(importRecord.entityCount, 4);
-  assert.equal(importRecord.batches[0].assertionEstimate, 30);
+  assert.equal(importRecord.rowCount, 5);
+  assert.equal(importRecord.entityCount, 5);
+  assert.equal(importRecord.batches[0].assertionEstimate, 34);
 
   const candidatesResponse = await fetchWorker(
     `/api/review/bulk-import-rows?importId=${encodeURIComponent(importRecord.id)}`,
@@ -1658,6 +1688,7 @@ test("organisation intake preserves roles, segments, aliases and corporate relat
       "organisation_alias",
       "organisation_relationship",
       "organisation_software_relationship",
+      "organisation_presence",
     ],
   );
   for (const candidate of candidates) {
@@ -1678,7 +1709,7 @@ test("organisation intake preserves roles, segments, aliases and corporate relat
     );
     assert.equal(response.status, 200);
   }
-  assert.equal(database.count("promoted_assertions"), 30);
+  assert.equal(database.count("promoted_assertions"), 34);
   assert.equal(
     database.get(
       "SELECT COUNT(*) AS count FROM promoted_assertions WHERE subject_type = 'organisation_role'",
@@ -1708,5 +1739,11 @@ test("organisation intake preserves roles, segments, aliases and corporate relat
       "SELECT COUNT(*) AS count FROM promoted_assertions WHERE subject_type = 'organisation_software_relationship'",
     ).count,
     3,
+  );
+  assert.equal(
+    database.get(
+      "SELECT COUNT(*) AS count FROM promoted_assertions WHERE subject_type = 'organisation_presence'",
+    ).count,
+    4,
   );
 });

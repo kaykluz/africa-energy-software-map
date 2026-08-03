@@ -27,6 +27,7 @@ PROMOTED_SUBJECT_TYPES = {
     "organisation_software_relationship",
     "organisation_alias",
     "organisation_relationship",
+    "organisation_presence",
 }
 
 

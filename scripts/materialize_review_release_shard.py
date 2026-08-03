@@ -36,6 +36,7 @@ SUBJECT_TABLES = {
     "organisation_alias": "organisation-aliases.csv",
     "organisation_relationship": "organisation-relationships.csv",
     "organisation_software_relationship": "organisation-software-relationships.csv",
+    "organisation_presence": "organisation-presences.csv",
 }
 SHARD_TABLE_FIELDS = {
     **TABLE_FIELDS,
@@ -62,6 +63,10 @@ SHARD_TABLE_FIELDS = {
     "organisation-software-relationships.csv": [
         "id", "organisation_id", "product_id", "relationship_type",
         "valid_from", "valid_to", "last_checked_at",
+    ],
+    "organisation-presences.csv": [
+        "id", "organisation_id", "country_iso2", "presence_type",
+        "lifecycle_status", "valid_from", "valid_to", "last_checked_at",
     ],
 }
 
@@ -235,6 +240,7 @@ def build_release_shard(
     organisation_aliases: list[dict[str, str]] = []
     organisation_relationships: list[dict[str, str]] = []
     organisation_software_relationships: list[dict[str, str]] = []
+    organisation_presences: list[dict[str, str]] = []
     for (subject_type, subject_id), values in sorted(subject_values.items()):
         if subject_type == "organisation":
             for required in ("name", "origin_classification"):
@@ -414,6 +420,26 @@ def build_release_shard(
                     "last_checked_at": last_checked(subject_type, subject_id),
                 }
             )
+        elif subject_type == "organisation_presence":
+            for required in (
+                "organisation_id", "country_iso2", "presence_type", "lifecycle_status"
+            ):
+                if not values.get(required):
+                    raise ShardMaterializationError(
+                        f"organisation presence {subject_id} lacks {required}"
+                    )
+            organisation_presences.append(
+                {
+                    "id": subject_id,
+                    "organisation_id": values["organisation_id"],
+                    "country_iso2": values["country_iso2"],
+                    "presence_type": values["presence_type"],
+                    "lifecycle_status": values["lifecycle_status"],
+                    "valid_from": values.get("valid_from", ""),
+                    "valid_to": values.get("valid_to", ""),
+                    "last_checked_at": last_checked(subject_type, subject_id),
+                }
+            )
         else:
             raise ShardMaterializationError(
                 f"unsupported promoted subject type: {subject_type}"
@@ -515,6 +541,7 @@ def build_release_shard(
     tables["organisation-software-relationships.csv"] = (
         organisation_software_relationships
     )
+    tables["organisation-presences.csv"] = organisation_presences
     tables["sources.csv"] = sources
     tables["assertions.csv"] = sorted(assertion_rows, key=lambda item: item["id"])
     tables["source-register.csv"] = [

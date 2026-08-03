@@ -47,6 +47,9 @@ export const bulkImportFields = [
   "source_locator",
   "notes",
   "confirms_no_sensitive_data",
+  "organisation_presence_country_iso2",
+  "organisation_presence_type",
+  "organisation_presence_lifecycle_status",
 ] as const;
 
 export type BulkImportField = (typeof bulkImportFields)[number];
@@ -83,6 +86,7 @@ export const bulkImportRecordTypes = [
   "organisation_alias",
   "organisation_relationship",
   "organisation_software_relationship",
+  "organisation_presence",
 ] as const;
 
 type OrganisationTaxonomy = {
@@ -167,6 +171,22 @@ const disclosureStates = new Set([
   "unknown",
   "confidential",
 ]);
+export const organisationPresenceTypes = [
+  "operations",
+  "project_participation",
+  "office",
+  "legal_entity",
+  "product_deployment",
+  "product_availability",
+] as const;
+export const organisationPresenceLifecycleStatuses = [
+  "active",
+  "planned",
+  "historical",
+  "unknown",
+] as const;
+const presenceTypes = new Set<string>(organisationPresenceTypes);
+const presenceLifecycles = new Set<string>(organisationPresenceLifecycleStatuses);
 const independenceClasses = new Set([
   "customer_or_official",
   "independent_primary",
@@ -298,6 +318,8 @@ function validateRow(
     }
   }
   row.deployment_country_iso2 = row.deployment_country_iso2.toUpperCase();
+  row.organisation_presence_country_iso2 =
+    row.organisation_presence_country_iso2.toUpperCase();
   if (row.origin_classification && !origins.has(row.origin_classification)) {
     errors.push(`${label}: origin_classification is not recognised.`);
   }
@@ -493,6 +515,36 @@ function validateRow(
     );
   }
 
+  if (row.record_type === "organisation_presence") {
+    required(row, label, errors, [
+      "existing_organisation_id",
+      "organisation_presence_country_iso2",
+      "organisation_presence_type",
+      "organisation_presence_lifecycle_status",
+    ]);
+    if (!allowedAfricanCountries.has(row.organisation_presence_country_iso2)) {
+      errors.push(`${label}: organisation_presence_country_iso2 must be an African country.`);
+    }
+    if (!presenceTypes.has(row.organisation_presence_type)) {
+      errors.push(`${label}: organisation_presence_type is not recognised.`);
+    }
+    if (!presenceLifecycles.has(row.organisation_presence_lifecycle_status)) {
+      errors.push(`${label}: organisation_presence_lifecycle_status is not recognised.`);
+    }
+    if (
+      row.source_independence_class === "provider_authored" &&
+      row.evidence_status !== "provider_claim_only"
+    ) {
+      errors.push(`${label}: a company-authored presence source must remain company-stated.`);
+    }
+  } else if (
+    row.organisation_presence_country_iso2 ||
+    row.organisation_presence_type ||
+    row.organisation_presence_lifecycle_status
+  ) {
+    errors.push(`${label}: organisation presence fields require record_type organisation_presence.`);
+  }
+
   if (row.record_type === "deployment") {
     required(row, label, errors, [
       "deployment_country_iso2",
@@ -599,6 +651,8 @@ function uniqueEntities(rows: BulkImportRow[]) {
       entities.add(`organisation_relationship:${row.row_key}`);
     } else if (row.record_type === "organisation_software_relationship") {
       entities.add(`organisation_software_relationship:${row.row_key}`);
+    } else if (row.record_type === "organisation_presence") {
+      entities.add(`organisation_presence:${row.row_key}`);
     }
   }
   return entities;
@@ -666,8 +720,11 @@ export function promotedAssertionCount(row: BulkImportRow) {
   const softwareRelationship = row.record_type === "organisation_software_relationship"
     ? 3 + Number(Boolean(row.valid_from)) + Number(Boolean(row.valid_to))
     : 0;
+  const presence = row.record_type === "organisation_presence"
+    ? 4 + Number(Boolean(row.valid_from)) + Number(Boolean(row.valid_to))
+    : 0;
   return organisationCore + productCore + classifications + alias + relationship +
-    softwareRelationship +
+    softwareRelationship + presence +
     (row.record_type === "deployment"
       ? deploymentValues.filter(Boolean).length + 1
       : 0);

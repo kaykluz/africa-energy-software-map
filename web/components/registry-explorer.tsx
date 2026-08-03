@@ -38,6 +38,10 @@ import {
   useState,
 } from "react";
 import africaMapJson from "@/generated/africa-map-paths.json";
+import {
+  organisationDirectory,
+  type OrganisationDirectoryRecord,
+} from "@/lib/organisation-data";
 
 export type RegistryView = "stack" | "deployments" | "directory";
 
@@ -68,6 +72,7 @@ export function RegistryExplorer({
   initialLifecycle = "all",
   initialAccess = "all",
   initialObject = "software",
+  initialPresence = "software_linked",
 }: {
   view: RegistryView;
   initialQuery?: string;
@@ -78,6 +83,7 @@ export function RegistryExplorer({
   initialLifecycle?: string;
   initialAccess?: string;
   initialObject?: string;
+  initialPresence?: string;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -322,6 +328,7 @@ export function RegistryExplorer({
           filteredProducts={filteredProducts}
           initialCountry={countryFilter}
           initialObject={initialObject}
+          initialPresence={initialPresence}
           onOpenProduct={openProduct}
           preservedSearch={preservedSearch}
         />
@@ -775,17 +782,22 @@ function DeploymentsView({
   filteredProducts,
   initialCountry,
   initialObject,
+  initialPresence,
   onOpenProduct,
   preservedSearch,
 }: {
   filteredProducts: Product[];
   initialCountry: string;
   initialObject: string;
+  initialPresence: string;
   onOpenProduct: (product: Product, element: HTMLElement) => void;
   preservedSearch: string;
 }) {
   const [objectMode, setObjectMode] = useState<"software" | "organisations">(
     initialObject === "organisations" ? "organisations" : "software",
+  );
+  const [organisationLayer, setOrganisationLayer] = useState<OrganisationMapLayer>(
+    isOrganisationMapLayer(initialPresence) ? initialPresence : "software_linked",
   );
   const [representation, setRepresentation] = useState<"map" | "grid" | "ranked">(
     "map",
@@ -796,9 +808,9 @@ function DeploymentsView({
   const visibleDeployments = deployments.filter((deployment) =>
     filteredProducts.some((product) => product.id === deployment.productId),
   );
-  const assessedCountries = new Set(
-    deployments.map((deployment) => deployment.countryIso2),
-  );
+  const assessedCountries = objectMode === "software" || organisationLayer === "software_linked"
+    ? new Set(deployments.map((deployment) => deployment.countryIso2))
+    : new Set(organisationDirectory.flatMap((record) => organisationLayerCountries(record, organisationLayer)));
   function countryObjectIds(iso2: string) {
     const countryDeployments = visibleDeployments.filter(
       (deployment) => deployment.countryIso2 === iso2,
@@ -807,9 +819,9 @@ function DeploymentsView({
       return new Set(countryDeployments.map((deployment) => deployment.productId));
     }
     return new Set(
-      countryDeployments
-        .map((deployment) => productById(deployment.productId)?.organisationId)
-        .filter(Boolean),
+      organisationDirectory
+        .filter((record) => organisationLayerCountries(record, organisationLayer).includes(iso2))
+        .map((record) => record.organisation.id),
     );
   }
   const rankedCountries = africanCountries
@@ -833,14 +845,10 @@ function DeploymentsView({
         .map((product) => [product.id, product]),
     ).values(),
   );
-  const selectedOrganisations = Array.from(
-    new Map(
-      selectedProducts
-        .map((product) => organisationById(product.organisationId))
-        .filter((organisation) => Boolean(organisation))
-        .map((organisation) => [organisation!.id, organisation!]),
-    ).values(),
+  const selectedOrganisationRecords = organisationDirectory.filter((record) =>
+    organisationLayerCountries(record, organisationLayer).includes(selectedCountry),
   );
+  const selectedOrganisations = selectedOrganisationRecords.map((record) => record.organisation);
   const selectedObjectCount = objectMode === "software"
     ? selectedProducts.length
     : selectedOrganisations.length;
@@ -863,6 +871,20 @@ function DeploymentsView({
             </button>
           ))}
         </div>
+        {objectMode === "organisations" ? (
+          <label className="v2-map-layer-select">
+            <span>Presence</span>
+            <select
+              aria-label="Organisation presence layer"
+              onChange={(event) => setOrganisationLayer(event.target.value as OrganisationMapLayer)}
+              value={organisationLayer}
+            >
+              {organisationMapLayers.map(([value, label]) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
+            </select>
+          </label>
+        ) : null}
         <div className="v2-representation-switch" role="group" aria-label="Map representation">
           <button
             aria-pressed={representation === "map"}
@@ -895,7 +917,7 @@ function DeploymentsView({
             <strong>
               {objectMode === "software"
                 ? `${new Set(visibleDeployments.map((item) => item.productId)).size} software records`
-                : `${new Set(visibleDeployments.map((item) => productById(item.productId)?.organisationId).filter(Boolean)).size} software-linked organisations`}
+                : `${new Set(organisationDirectory.flatMap((record) => organisationLayerCountries(record, organisationLayer).length ? [record.organisation.id] : [])).size} ${organisationMapLayerLabel(organisationLayer).toLowerCase()} organisations`}
             </strong>
           </div>
 
@@ -968,7 +990,7 @@ function DeploymentsView({
           )}
 
           <div className="v2-map-legend">
-            <span><i className="known" /> evidenced {objectMode}</span>
+            <span><i className="known" /> {objectMode === "software" ? "evidenced software" : organisationMapLayerLabel(organisationLayer).toLowerCase()}</span>
             <span><i className="unknown" /> not assessed</span>
           </div>
         </section>
@@ -980,7 +1002,7 @@ function DeploymentsView({
               <h2><Link href={`/countries/${selectedCountry.toLowerCase()}`}>{selected?.[1] ?? selectedCountry}</Link></h2>
               <p>
                 {selectedCountryAssessed
-                    ? `${selectedObjectCount} ${objectMode === "software" ? "software" : "software-linked organisations"}`
+                    ? `${selectedObjectCount} ${objectMode === "software" ? "software" : organisationMapLayerLabel(organisationLayer).toLowerCase()}`
                     : "Coverage not assessed"}
               </p>
             </div>
@@ -1031,7 +1053,7 @@ function DeploymentsView({
                         <small>{organisation.type}</small>
                       </span>
                     </span>
-                    <b>{selectedProducts.filter((product) => product.organisationId === organisation.id).length} SW</b>
+                    <b>{organisationMapLayerShortLabel(organisationLayer)}</b>
                     <Link aria-label={`Open ${organisation.name}`} href={`/organisations/${organisation.slug}`}><i aria-hidden="true">→</i></Link>
                   </article>
                 ))}
@@ -1045,7 +1067,7 @@ function DeploymentsView({
                           "country",
                           selectedCountry,
                         )
-                      : `/organisations?country=${selectedCountry}`}
+                      : `/organisations?country=${selectedCountry}&presence=${organisationLayer}`}
                   >
                     View all {selectedObjectCount} {objectMode}
                     <span aria-hidden="true">→</span>
@@ -1061,7 +1083,7 @@ function DeploymentsView({
                     ? "No evidence matches the current filters."
                     : "Coverage has not been assessed."}
               </strong>
-              <Link href="/contribute/deployment">Add evidence →</Link>
+              <Link href={objectMode === "software" ? "/contribute/deployment" : "/contribute/organisation"}>Add evidence →</Link>
             </div>
           )}
 
@@ -1083,6 +1105,61 @@ type MapCountryRow = {
   count: number;
   assessed: boolean;
 };
+
+type OrganisationMapLayer =
+  | "evidenced"
+  | "company_stated"
+  | "software_linked"
+  | "offices"
+  | "availability"
+  | "headquarters"
+  | "origin";
+
+const organisationMapLayers: Array<[OrganisationMapLayer, string]> = [
+  ["evidenced", "Evidenced activity"],
+  ["company_stated", "Company-stated"],
+  ["software_linked", "Software deployed"],
+  ["offices", "Offices and entities"],
+  ["availability", "Product availability"],
+  ["headquarters", "Headquarters"],
+  ["origin", "Country of origin"],
+];
+
+function isOrganisationMapLayer(value: string): value is OrganisationMapLayer {
+  return organisationMapLayers.some(([id]) => id === value);
+}
+
+function organisationMapLayerLabel(layer: OrganisationMapLayer) {
+  return organisationMapLayers.find(([id]) => id === layer)?.[1] ?? layer;
+}
+
+function organisationMapLayerShortLabel(layer: OrganisationMapLayer) {
+  return {
+    evidenced: "Evidence",
+    company_stated: "Stated",
+    software_linked: "Software",
+    offices: "Office",
+    availability: "Available",
+    headquarters: "HQ",
+    origin: "Origin",
+  }[layer];
+}
+
+function organisationLayerCountries(
+  record: OrganisationDirectoryRecord,
+  layer: OrganisationMapLayer,
+) {
+  if (layer === "evidenced") return record.evidencedCountryIso2s;
+  if (layer === "company_stated") return record.companyStatedCountryIso2s;
+  if (layer === "software_linked") return record.softwareLinkedCountryIso2s;
+  if (layer === "offices") return record.officeCountryIso2s;
+  if (layer === "availability") return record.availabilityCountryIso2s;
+  const countryName = layer === "headquarters"
+    ? record.organisation.headquarters
+    : record.organisation.countryOfOrigin;
+  const iso2 = africanCountries.find(([, name]) => name === countryName)?.[0];
+  return iso2 ? [iso2] : [];
+}
 
 type AfricaMapCountry = {
   iso2: string;

@@ -85,8 +85,9 @@ alone.
    changes or 100 assertions per pull request.
 4. Add capital vehicles and programmes as linked objects after their own schema
    and review cadence are implemented.
-5. Add sourced organisation-presence records so Map, Directory and exports share
-   the same geography rather than inheriting presence from a logo or headquarters.
+5. Sourced organisation-presence records now have a shared schema, review path,
+   Map layer, Directory filter, profile display and export contract. Population
+   remains subject to normal human source review.
 
 This intake model is reusable for later spreadsheets and community submissions;
 new lists pass through the same identity index before they create review work.

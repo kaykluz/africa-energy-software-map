@@ -58,6 +58,9 @@ export const bulkAmendableFields = [
   "evidence_status",
   "source_locator",
   "notes",
+  "organisation_presence_country_iso2",
+  "organisation_presence_type",
+  "organisation_presence_lifecycle_status",
 ] as const;
 
 export type BulkRowDecision = (typeof bulkRowDecisions)[number];
@@ -726,6 +729,18 @@ async function buildPromotedAssertions({
     add("organisation_software_relationship", relationshipId, label, productId, organisationHref, "relationship_type", row.organisation_software_relationship_type);
     add("organisation_software_relationship", relationshipId, label, productId, organisationHref, "valid_from", row.valid_from);
     add("organisation_software_relationship", relationshipId, label, productId, organisationHref, "valid_to", row.valid_to);
+  }
+  if (row.record_type === "organisation_presence") {
+    const presenceId = `orgpresence_${await shortHash(
+      `${organisationId}\n${row.organisation_presence_country_iso2}\n${row.organisation_presence_type}`,
+    )}`;
+    const label = `${row.organisation_name || organisationId} · ${row.organisation_presence_country_iso2}`;
+    add("organisation_presence", presenceId, label, "Organisation presence", organisationHref, "organisation_id", organisationId);
+    add("organisation_presence", presenceId, label, "Organisation presence", organisationHref, "country_iso2", row.organisation_presence_country_iso2);
+    add("organisation_presence", presenceId, label, "Organisation presence", organisationHref, "presence_type", row.organisation_presence_type);
+    add("organisation_presence", presenceId, label, "Organisation presence", organisationHref, "lifecycle_status", row.organisation_presence_lifecycle_status);
+    add("organisation_presence", presenceId, label, "Organisation presence", organisationHref, "valid_from", row.valid_from);
+    add("organisation_presence", presenceId, label, "Organisation presence", organisationHref, "valid_to", row.valid_to);
   }
   if (row.record_type === "deployment") {
     const deploymentContext = `${row.deployment_country_iso2} · ${row.customer_name || "Undisclosed customer"}`;

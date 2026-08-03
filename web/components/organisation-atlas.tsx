@@ -20,6 +20,13 @@ import { africanCountries, organisations, products } from "@/lib/registry-data";
 import { normaliseQuery } from "@/lib/registry-query";
 
 type OrganisationView = "ecosystem" | "directory";
+export type OrganisationPresenceLayer =
+  | "all"
+  | "evidenced"
+  | "company_stated"
+  | "offices"
+  | "availability"
+  | "software_linked";
 
 type OrganisationAtlasProps = {
   initialQuery?: string;
@@ -29,6 +36,7 @@ type OrganisationAtlasProps = {
   initialSegment?: string;
   initialCountry?: string;
   initialOrigin?: string;
+  initialPresence?: string;
   initialView?: string;
 };
 
@@ -40,6 +48,7 @@ export function OrganisationAtlas({
   initialSegment = "all",
   initialCountry = "all",
   initialOrigin = "all",
+  initialPresence = "all",
   initialView = "ecosystem",
 }: OrganisationAtlasProps) {
   const router = useRouter();
@@ -54,13 +63,16 @@ export function OrganisationAtlas({
   );
   const origins = Array.from(new Set(organisations.map((item) => item.origin))).sort();
   const [origin, setOrigin] = useState(origins.includes(initialOrigin) ? initialOrigin : "all");
+  const [presence, setPresence] = useState<OrganisationPresenceLayer>(
+    isPresenceLayer(initialPresence) ? initialPresence : "all",
+  );
   const [view, setView] = useState<OrganisationView>(
     initialView === "directory" ? "directory" : "ecosystem",
   );
 
   const withoutGroup = useMemo(
-    () => filterRecords(organisationDirectory, { query, role, sector, segment, country, origin }),
-    [country, origin, query, role, sector, segment],
+    () => filterRecords(organisationDirectory, { query, role, sector, segment, country, origin, presence }),
+    [country, origin, presence, query, role, sector, segment],
   );
   const rows = useMemo(
     () => group === "all"
@@ -90,6 +102,7 @@ export function OrganisationAtlas({
     country: string;
     origin: string;
     view: OrganisationView;
+    presence: OrganisationPresenceLayer;
   }>) {
     const values = {
       q: next.q ?? query,
@@ -100,6 +113,7 @@ export function OrganisationAtlas({
       country: next.country ?? country,
       origin: next.origin ?? origin,
       view: next.view ?? view,
+      presence: next.presence ?? presence,
     };
     const params = new URLSearchParams();
     if (values.q.trim()) params.set("q", values.q.trim());
@@ -110,6 +124,7 @@ export function OrganisationAtlas({
     if (values.country !== "all") params.set("country", values.country);
     if (values.origin !== "all") params.set("origin", values.origin);
     if (values.view !== "ecosystem") params.set("view", values.view);
+    if (values.presence !== "all") params.set("presence", values.presence);
     const search = params.toString();
     router.replace(search ? `${pathname}?${search}` : pathname, { scroll: false });
   }
@@ -122,6 +137,7 @@ export function OrganisationAtlas({
     setSegment("all");
     setCountry("all");
     setOrigin("all");
+    setPresence("all");
     router.replace(view === "ecosystem" ? pathname : `${pathname}?view=${view}`, { scroll: false });
   }
 
@@ -133,8 +149,9 @@ export function OrganisationAtlas({
     sector !== "all" ? { key: "sector", label: organisationSectorName(sector) } : null,
     country !== "all" ? { key: "country", label: africanCountries.find(([iso2]) => iso2 === country)?.[1] ?? country } : null,
     origin !== "all" ? { key: "origin", label: origin } : null,
+    presence !== "all" ? { key: "presence", label: presenceLayerLabel(presence) } : null,
   ].filter(Boolean) as Array<{
-    key: "q" | "group" | "role" | "segment" | "sector" | "country" | "origin";
+    key: "q" | "group" | "role" | "segment" | "sector" | "country" | "origin" | "presence";
     label: string;
   }>;
 
@@ -146,6 +163,7 @@ export function OrganisationAtlas({
     if (key === "sector") { setSector("all"); updateUrl({ sector: "all" }); }
     if (key === "country") { setCountry("all"); updateUrl({ country: "all" }); }
     if (key === "origin") { setOrigin("all"); updateUrl({ origin: "all" }); }
+    if (key === "presence") { setPresence("all"); updateUrl({ presence: "all" }); }
   }
 
   function downloadExport() {
@@ -155,7 +173,11 @@ export function OrganisationAtlas({
       specific_roles: record.roleIds.map(organisationRoleName),
       energy_markets: record.segmentIds.map(organisationSegmentName),
       broad_sectors: record.sectorIds.map(organisationSectorName),
-      evidenced_countries: record.countryNames,
+      evidenced_countries: countryNames(record.evidencedCountryIso2s),
+      company_stated_countries: countryNames(record.companyStatedCountryIso2s),
+      office_countries: countryNames(record.officeCountryIso2s),
+      product_availability_countries: countryNames(record.availabilityCountryIso2s),
+      software_linked_countries: countryNames(record.softwareLinkedCountryIso2s),
       origin: record.organisation.origin,
       country_of_origin: record.organisation.countryOfOrigin,
       headquarters: record.organisation.headquarters,
@@ -174,6 +196,7 @@ export function OrganisationAtlas({
 
   const mapParams = new URLSearchParams({ object: "organisations" });
   if (country !== "all") mapParams.set("country", country);
+  mapParams.set("presence", presence === "all" ? "software_linked" : presence);
 
   return (
     <main className="organisation-atlas" id="main-content" tabIndex={-1}>
@@ -239,11 +262,27 @@ export function OrganisationAtlas({
           ))}
         </select>
         <select
-          aria-label="Filter by evidenced country"
+          aria-label="Choose organisation presence layer"
+          onChange={(event) => {
+            const next = event.target.value as OrganisationPresenceLayer;
+            setPresence(next);
+            updateUrl({ presence: next });
+          }}
+          value={presence}
+        >
+          <option value="all">All presence types</option>
+          <option value="evidenced">Evidenced activity</option>
+          <option value="company_stated">Company-stated</option>
+          <option value="offices">Offices and entities</option>
+          <option value="availability">Product availability</option>
+          <option value="software_linked">Software deployments</option>
+        </select>
+        <select
+          aria-label={`Filter by country in ${presenceLayerLabel(presence).toLowerCase()}`}
           onChange={(event) => { setCountry(event.target.value); updateUrl({ country: event.target.value }); }}
           value={country}
         >
-          <option value="all">All evidenced countries</option>
+          <option value="all">All countries</option>
           {africanCountries.map(([iso2, name]) => <option key={iso2} value={iso2}>{name}</option>)}
         </select>
         <details className="organisation-more-filters">
@@ -376,7 +415,7 @@ function OrganisationCardGrid({ rows }: { rows: OrganisationDirectoryRecord[] })
             </div>
             <dl>
               <div><dt>Software</dt><dd>{record.productCount || "—"}</dd></div>
-              <div><dt>Countries</dt><dd>{record.countryCount || "—"}</dd></div>
+              <div><dt>Presence</dt><dd>{presenceSummary(record)}</dd></div>
             </dl>
             <Link aria-label={`Open ${record.organisation.name}`} href={`/organisations/${record.organisation.slug}`}>→</Link>
           </article>
@@ -406,7 +445,7 @@ function OrganisationDirectoryTable({ rows }: { rows: OrganisationDirectoryRecor
               <Link href={`/organisations?sector=${sectorId}`} key={sectorId}>{organisationSectorName(sectorId)}</Link>
             )) : <span>Not yet classified</span>}
           </div>
-          <span>{record.countryCount ? `${record.countryCount} countries` : "Not yet evidenced"}</span>
+          <span>{presenceSummary(record, true)}</span>
           <span>{record.productCount ? `${record.productCount} linked` : "Not reviewed"}</span>
         </article>
       ))}
@@ -429,14 +468,14 @@ function validId(value: string, options: Array<{ id: string }>) {
 
 function filterRecords(
   records: OrganisationDirectoryRecord[],
-  filters: { query: string; role: string; sector: string; segment: string; country: string; origin: string },
+  filters: { query: string; role: string; sector: string; segment: string; country: string; origin: string; presence: OrganisationPresenceLayer },
 ) {
   const term = normaliseQuery(filters.query);
   return records.filter((record) => {
     if (filters.role !== "all" && !record.roleIds.includes(filters.role)) return false;
     if (filters.sector !== "all" && !record.sectorIds.includes(filters.sector)) return false;
     if (filters.segment !== "all" && !record.segmentIds.includes(filters.segment)) return false;
-    if (filters.country !== "all" && !record.countryIso2s.includes(filters.country)) return false;
+    if (filters.country !== "all" && !presenceCountries(record, filters.presence).includes(filters.country)) return false;
     if (filters.origin !== "all" && record.organisation.origin !== filters.origin) return false;
     if (!term) return true;
     return normaliseQuery([
@@ -462,6 +501,10 @@ function organisationCsv(rows: Array<Record<string, string | string[] | number>>
     "energy_markets",
     "broad_sectors",
     "evidenced_countries",
+    "company_stated_countries",
+    "office_countries",
+    "product_availability_countries",
+    "software_linked_countries",
     "origin",
     "country_of_origin",
     "headquarters",
@@ -477,4 +520,45 @@ function organisationCsv(rows: Array<Record<string, string | string[] | number>>
     headers.map(escape).join(","),
     ...rows.map((row) => headers.map((header) => escape(row[header])).join(",")),
   ].join("\n");
+}
+
+function isPresenceLayer(value: string): value is OrganisationPresenceLayer {
+  return ["all", "evidenced", "company_stated", "offices", "availability", "software_linked"].includes(value);
+}
+
+function presenceCountries(record: OrganisationDirectoryRecord, layer: OrganisationPresenceLayer) {
+  if (layer === "evidenced") return record.evidencedCountryIso2s;
+  if (layer === "company_stated") return record.companyStatedCountryIso2s;
+  if (layer === "offices") return record.officeCountryIso2s;
+  if (layer === "availability") return record.availabilityCountryIso2s;
+  if (layer === "software_linked") return record.softwareLinkedCountryIso2s;
+  return record.countryIso2s;
+}
+
+function presenceLayerLabel(layer: OrganisationPresenceLayer) {
+  return {
+    all: "All presence types",
+    evidenced: "Evidenced activity",
+    company_stated: "Company-stated",
+    offices: "Offices and entities",
+    availability: "Product availability",
+    software_linked: "Software deployments",
+  }[layer];
+}
+
+function presenceSummary(record: OrganisationDirectoryRecord, long = false) {
+  const pieces = [
+    record.evidencedCountryIso2s.length ? `${record.evidencedCountryIso2s.length} evidenced` : "",
+    record.companyStatedCountryIso2s.length ? `${record.companyStatedCountryIso2s.length} stated` : "",
+  ].filter(Boolean);
+  if (pieces.length) return pieces.join(" · ");
+  if (record.softwareLinkedCountryIso2s.length) {
+    return `${record.softwareLinkedCountryIso2s.length} software${long ? "-linked" : ""}`;
+  }
+  return long ? "Not yet documented" : "—";
+}
+
+function countryNames(iso2s: string[]) {
+  const names = new Map(africanCountries);
+  return iso2s.map((iso2) => names.get(iso2) ?? iso2);
 }

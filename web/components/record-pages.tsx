@@ -7,6 +7,7 @@ import {
   countrySummaries,
   deployments,
   organisationBySlug,
+  organisationPresenceLabels,
   organisations,
   productById,
   productBySlug,
@@ -23,6 +24,7 @@ import {
 import { OrganisationMark, ProductMark } from "@/components/brand-mark";
 import {
   organisationAliases,
+  organisationDirectory,
   organisationDirectoryRecord,
   organisationEcosystemGroups,
   relatedOrganisations,
@@ -372,19 +374,48 @@ export function OrganisationProfile({ slug }: { slug: string }) {
               </div>
             </ProfileSection>
           ) : null}
-          <ProfileSection heading="Evidenced African presence">
-            <p>
-              {organisationDeployments.length} reviewed deployment{" "}
-              {organisationDeployments.length === 1 ? "record" : "records"}
-              {deploymentCountries.length ? " across " : ""}
-              {deploymentCountries.length ? <CountryNameLinks names={deploymentCountries} /> : null}.
-              Claimed presence is not added to this total.
-            </p>
-            <Link
-              href={`/directory?q=${encodeURIComponent(organisation.name)}`}
-            >
-              View filtered Directory →
-            </Link>
+          <ProfileSection heading="African presence">
+            {directoryRecord?.presenceRecords.length ? (
+              <div className="organisation-presence-list">
+                {directoryRecord.presenceRecords.map((presence) => {
+                  const source = sources.find((item) => item.id === presence.sourceId);
+                  const isCompanySource = source?.independenceClass === "provider_authored";
+                  return (
+                    <article key={presence.id}>
+                      <div>
+                        <h3><Link href={`/countries/${presence.countryIso2.toLowerCase()}`}>{presence.country}</Link></h3>
+                        <p>{organisationPresenceLabels[presence.presenceType]} · {capitalise(presence.lifecycleStatus)}</p>
+                      </div>
+                      <div>
+                        <EvidenceStatusLabel status={presence.evidenceStatus} />
+                        {source ? (
+                          <a href={source.url} rel="noreferrer" target="_blank">
+                            {isCompanySource ? "Company source" : "View source"} ↗
+                          </a>
+                        ) : null}
+                        <small>Checked {presence.lastChecked}</small>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="inline-empty compact">
+                <strong>No explicit organisation-presence record is published yet.</strong>
+                <p>A company website can support a company-stated record. Independent and customer sources remain visibly stronger.</p>
+                <Link href={`/contribute/organisation?organisation=${organisation.slug}`}>Add sourced presence →</Link>
+              </div>
+            )}
+            <div className="organisation-software-presence">
+              <strong>Software-linked footprint</strong>
+              <p>
+                {organisationDeployments.length} reviewed software deployment{" "}
+                {organisationDeployments.length === 1 ? "record" : "records"}
+                {deploymentCountries.length ? " across " : ""}
+                {deploymentCountries.length ? <CountryNameLinks names={deploymentCountries} /> : " in the current release"}.
+              </p>
+              <Link href={`/directory?q=${encodeURIComponent(organisation.name)}`}>View software records →</Link>
+            </div>
           </ProfileSection>
           <ProfileSection heading="Organisation history">
             {corporateRelationships.length ? (
@@ -447,7 +478,10 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
   const summary = countrySummaries.find(
     (item) => item.countryIso2 === countryIso2,
   );
-  if (!summary) {
+  const countryOrganisationRecords = organisationDirectory.filter((record) =>
+    record.countryIso2s.includes(countryIso2),
+  );
+  if (!summary && !countryOrganisationRecords.length) {
     return (
       <main className="reading-page reading-width" id="main-content" tabIndex={-1}>
         <span className="eyebrow">Country record</span>
@@ -465,7 +499,7 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
   const countryDeployments = deployments.filter(
     (deployment) => deployment.countryIso2 === countryIso2,
   );
-  const categoryRows = Object.entries(summary.categoryCounts)
+  const categoryRows = Object.entries(summary?.categoryCounts ?? {})
     .map(([categoryId, count]) => ({
       category: categories.find((item) => item.id === categoryId),
       count,
@@ -494,30 +528,26 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
           </p>
         </div>
         <div className="country-stat-row">
-          <Stat value={String(summary.deploymentCount)} label="Deployments" />
-          <Stat value={String(summary.productCount)} label="Products" />
-          <Stat value={String(categoryRows.length)} label="Categories" />
+          <Stat value={String(summary?.deploymentCount ?? 0)} label="Deployments" />
+          <Stat value={String(summary?.productCount ?? 0)} label="Products" />
+          <Stat value={String(countryOrganisationRecords.length)} label="Organisations" />
         </div>
       </header>
       <div className="record-layout">
         <article className="record-main">
-          <ProfileSection heading="Category distribution">
-            <div className="distribution-bars">
-              {categoryRows.map(({ category, count }) => (
-                <div key={category?.id}>
-                  {category ? <Link href={`/directory?category=${category.id}&country=${countryIso2}`}>{category.name}</Link> : null}
-                  <i>
-                    <b
-                      style={{
-                        width: `${(count / maxCategoryCount) * 100}%`,
-                      }}
-                    />
-                  </i>
-                  <strong>{count}</strong>
-                </div>
-              ))}
-            </div>
-          </ProfileSection>
+          {categoryRows.length ? (
+            <ProfileSection heading="Category distribution">
+              <div className="distribution-bars">
+                {categoryRows.map(({ category, count }) => (
+                  <div key={category?.id}>
+                    {category ? <Link href={`/directory?category=${category.id}&country=${countryIso2}`}>{category.name}</Link> : null}
+                    <i><b style={{ width: `${(count / maxCategoryCount) * 100}%` }} /></i>
+                    <strong>{count}</strong>
+                  </div>
+                ))}
+              </div>
+            </ProfileSection>
+          ) : null}
           <ProfileSection heading="Evidenced deployments">
             <div className="profile-deployment-list">
               {countryDeployments.map((deployment) => {
@@ -548,6 +578,34 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
                 );
               })}
             </div>
+          </ProfileSection>
+          <ProfileSection heading="Organisations">
+            {countryOrganisationRecords.length ? (
+              <div className="country-organisation-list">
+                {countryOrganisationRecords.map((record) => {
+                  const presences = record.presenceRecords.filter(
+                    (item) => item.countryIso2 === countryIso2,
+                  );
+                  const labels = Array.from(new Set(
+                    presences.map((item) => organisationPresenceLabels[item.presenceType]),
+                  ));
+                  const companyStatedOnly =
+                    record.companyStatedCountryIso2s.includes(countryIso2) &&
+                    !record.evidencedCountryIso2s.includes(countryIso2);
+                  return (
+                    <article key={record.organisation.id}>
+                      <OrganisationMark name={record.organisation.name} organisationId={record.organisation.id} size={38} />
+                      <div>
+                        <h3><Link href={`/organisations/${record.organisation.slug}`}>{record.organisation.name}</Link></h3>
+                        <p>{labels.length ? labels.join(" · ") : "Software deployment linked"}</p>
+                      </div>
+                      <span>{companyStatedOnly ? "Company-stated" : presences.length ? "Evidenced" : "Software-linked"}</span>
+                    </article>
+                  );
+                })}
+              </div>
+            ) : <p>No organisation-presence record is published for this country yet.</p>}
+            <Link href={`/organisations?country=${countryIso2}`}>View filtered organisations →</Link>
           </ProfileSection>
           <ProfileSection heading="Research coverage">
             <p>

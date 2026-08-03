@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.3.0",
   "tables": {
     "organisations.csv": {
       "id_field": "id",
@@ -34,6 +34,11 @@
       "id_field": "id",
       "package_required": false,
       "fields": ["id", "organisation_id", "related_organisation_id", "relationship_type", "valid_from", "valid_to", "last_checked_at"]
+    },
+    "organisation-presences.csv": {
+      "id_field": "id",
+      "package_required": false,
+      "fields": ["id", "organisation_id", "country_iso2", "presence_type", "lifecycle_status", "valid_from", "valid_to", "last_checked_at"]
     },
     "products.csv": {
       "id_field": "id",
