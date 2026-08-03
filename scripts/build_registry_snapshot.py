@@ -35,6 +35,12 @@ CSV_TABLES = (
     "changes.csv",
     "source-register.csv",
 )
+OPTIONAL_CSV_TABLES = (
+    "organisation-roles.csv",
+    "organisation-sectors.csv",
+    "organisation-segments.csv",
+    "organisation-software-relationships.csv",
+)
 
 
 class SnapshotError(RuntimeError):
@@ -150,6 +156,11 @@ def build_snapshot(config_path: Path = DEFAULT_CONFIG) -> dict[str, object]:
     deployments_raw = csv_rows(batch / "deployments.csv")
     sources_raw = csv_rows(batch / "sources.csv")
     assertions_raw = csv_rows(batch / "assertions.csv")
+    optional_organisation_tables = {
+        filename: csv_rows(batch / filename)
+        for filename in OPTIONAL_CSV_TABLES
+        if (batch / filename).is_file()
+    }
 
     package_status = migration_report.get("status")
     if package_status not in {"candidate_only", "reviewed_release"}:
@@ -338,7 +349,7 @@ def build_snapshot(config_path: Path = DEFAULT_CONFIG) -> dict[str, object]:
     ]
     distributions = distribution_records(config["version"], config["mode"])
 
-    return {
+    snapshot = {
         "schemaVersion": config["schema_version"],
         "release": {
             "mode": config["mode"],
@@ -373,6 +384,59 @@ def build_snapshot(config_path: Path = DEFAULT_CONFIG) -> dict[str, object]:
         "countrySummaries": country_summaries,
         "distributions": distributions,
     }
+    if "organisation-roles.csv" in optional_organisation_tables:
+        snapshot["organisationRoles"] = [
+            {
+                "id": row["id"],
+                "organisationId": row["organisation_id"],
+                "roleId": row["role_id"],
+                "isPrimary": row["is_primary"] == "true",
+                "validFrom": row["valid_from"],
+                "validTo": row["valid_to"],
+                "lastCheckedAt": row["last_checked_at"],
+            }
+            for row in optional_organisation_tables["organisation-roles.csv"]
+        ]
+    if "organisation-sectors.csv" in optional_organisation_tables:
+        snapshot["organisationSectors"] = [
+            {
+                "id": row["id"],
+                "organisationId": row["organisation_id"],
+                "sectorId": row["sector_id"],
+                "validFrom": row["valid_from"],
+                "validTo": row["valid_to"],
+                "lastCheckedAt": row["last_checked_at"],
+            }
+            for row in optional_organisation_tables["organisation-sectors.csv"]
+        ]
+    if "organisation-segments.csv" in optional_organisation_tables:
+        snapshot["organisationSegments"] = [
+            {
+                "id": row["id"],
+                "organisationId": row["organisation_id"],
+                "segmentId": row["segment_id"],
+                "validFrom": row["valid_from"],
+                "validTo": row["valid_to"],
+                "lastCheckedAt": row["last_checked_at"],
+            }
+            for row in optional_organisation_tables["organisation-segments.csv"]
+        ]
+    if "organisation-software-relationships.csv" in optional_organisation_tables:
+        snapshot["organisationSoftwareRelationships"] = [
+            {
+                "id": row["id"],
+                "organisationId": row["organisation_id"],
+                "productId": row["product_id"],
+                "relationshipType": row["relationship_type"],
+                "validFrom": row["valid_from"],
+                "validTo": row["valid_to"],
+                "lastCheckedAt": row["last_checked_at"],
+            }
+            for row in optional_organisation_tables[
+                "organisation-software-relationships.csv"
+            ]
+        ]
+    return snapshot
 
 
 def build_taxonomy(
@@ -603,6 +667,9 @@ def build_csv_zip(
     batch = repository_path(config["source_batch"], "source_batch")
     published = snapshot["release"]["mode"] == "published"
     package_suffix = "reviewed" if published else "candidate"
+    csv_tables = CSV_TABLES + tuple(
+        name for name in OPTIONAL_CSV_TABLES if (batch / name).is_file()
+    )
     datapackage = {
         "profile": "tabular-data-package",
         "name": f"africa-energy-software-map-{package_suffix}",
@@ -612,11 +679,11 @@ def build_csv_zip(
         "licenses": [{"name": "CC-BY-4.0", "path": "DATA-LICENSE.md"}],
         "resources": [
             {"name": name.removesuffix(".csv"), "path": name}
-            for name in CSV_TABLES
+            for name in csv_tables
         ],
     }
     entries: dict[str, bytes] = {
-        name: (batch / name).read_bytes() for name in CSV_TABLES
+        name: (batch / name).read_bytes() for name in csv_tables
     }
     entries.update(
         {

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Added a separate organisation market chain, role and segment vocabularies,
+  filterable sector and evidenced-country views, a compact directory view and
+  linked role/sector/software coverage on organisation profiles. Optional
+  relationship tables make future EPC, developer, capital, utility and adviser
+  imports possible without duplicating canonical organisations.
 - Made the 540-listing catalogue the default Explore surface, promoted Wall to
   a primary view, added a first-class Organisations atlas, replaced the map
   grid default with clickable Natural Earth country geometry and introduced a

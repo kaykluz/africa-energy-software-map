@@ -4,6 +4,9 @@
 
 ```text
 Organisation → Product → Capability
+      ├──────→ Role → Organisation value-chain position
+      ├──────→ Sector / Segment
+      ├──────→ Software relationship → Product
                     ↓
                 Deployment → Party
                     ↓
@@ -19,6 +22,10 @@ changing identity.
 | Entity | Purpose |
 | --- | --- |
 | Organisation | Provider, customer, partner, utility, programme, or other party |
+| Organisation role | Sourced role with one primary display role and optional secondary roles |
+| Organisation sector | Broad energy-sector relationship, independent of role |
+| Organisation segment | Granular market segment, independent of role and geography |
+| Organisation software relationship | Owns, develops, operates, uses, implements, integrates or resells a product |
 | Product | A named software product, platform, protocol, or public system |
 | Capability | A reusable function or secondary tag |
 | Product capability | Many-to-many product classification |
@@ -42,6 +49,11 @@ changing identity.
 | Cross-cutting | Data, interoperability and security |
 
 Products receive one primary category and any number of secondary capabilities.
+
+Organisations use a separate six-position market chain: Govern and coordinate;
+Finance and de-risk; Develop and own; Supply and build; Operate and serve; and
+Enable and advise. Organisation positions are derived from reviewed roles and
+must never be substituted for the software value-chain stages above.
 
 The inclusive landscape adds a granular function layer and one primary energy
 relationship. These answer different questions from the reviewed category:
@@ -85,6 +97,8 @@ The following must not be collapsed into one status:
 - **Market condition** — category-level analysis, never a vendor rating.
 - **Energy relationship** — how a landscape listing relates to energy, never a
   vendor rating.
+- **Organisation role** — what a market actor does, independent of product
+  function, sector, geography and evidence strength.
 
 ## Unknown-state discipline
 

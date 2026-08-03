@@ -1,6 +1,6 @@
 # Organisation directory and market graph
 
-Status: Phase 2 design contract
+Status: Foundation implemented; wider organisation population remains Phase 2
 
 ## Decision
 
@@ -107,6 +107,29 @@ fuzzy name matching.
 
 ## Organisation taxonomy
 
+### Organisation value chain
+
+The organisation atlas uses its own market chain. It does not reuse the six
+software stages, because a financier, EPC, utility and software provider play
+different organisational roles even when they support the same product stage.
+
+| Position | Covers |
+| --- | --- |
+| Govern and coordinate | Regulators, market operators, ministries, public agencies, programmes, associations and standards bodies |
+| Finance and de-risk | Investors, lenders, grant and RBF providers, guarantors, insurers and carbon finance providers |
+| Develop and own | Developers, IPPs, asset owners, portfolio owners and energy-service companies |
+| Supply and build | EPCs, OEMs, equipment suppliers, installers, distributors and system integrators |
+| Operate and serve | Utilities, operators, O&M providers, asset managers, retailers and customer-facing energy services |
+| Enable and advise | Software, data, research and professional services |
+
+An organisation may occupy more than one position through separately reviewed
+roles. The position is derived from the role vocabulary and is used for visual
+grouping only. It is not a ranking, score or assertion of capability.
+
+The first reviewed release is software-led. Current role and sector displays
+therefore follow existing reviewed product relationships; they do not claim
+that the wider EPC, developer, capital or institutional landscape is complete.
+
 ### Role families
 
 Role families organise the atlas. Specific roles do the filtering. An
@@ -119,6 +142,7 @@ or statement of importance.
 | Project ownership | Developer, independent power producer, asset owner, portfolio owner, energy-service company |
 | Delivery and operations | EPC, O&M provider, operator, installer, OEM, distributor, system integrator |
 | Capital and risk | DFI or development bank, commercial bank, equity investor, debt fund, blended-finance facility, grant or RBF facility, guarantor, insurer, carbon finance provider |
+| Digital and enabling services | Software and data provider, research institution |
 | Professional services | Legal adviser, financial or transaction adviser, technical adviser or owner's engineer, ESG or impact adviser, market research or data provider |
 | Market institutions | Utility, offtaker, regulator, ministry or agency, programme or facility, association, research institution, standards body |
 
@@ -422,6 +446,17 @@ Add first-class relationship records rather than delimited fields:
 
 Every relationship record can be the subject of atomic assertions and sources.
 Names and classifications may change without changing the organisation ID.
+
+The canonical optional table templates are:
+
+- `organisation-roles.csv`;
+- `organisation-sectors.csv`;
+- `organisation-segments.csv`; and
+- `organisation-software-relationships.csv`.
+
+Older release packages remain valid without these optional tables. A future
+package that includes one must use the controlled IDs in `data/taxonomy.json`;
+repository validation checks identities, vocabulary values and dates.
 
 Do not expose private reviewer conflict notes, submitter contact details or
 commercial disclosures in any public table, snapshot, API response or export.

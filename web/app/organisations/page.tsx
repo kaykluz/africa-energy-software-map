@@ -13,5 +13,16 @@ export default async function OrganisationsPage({
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const params = await searchParams;
-  return <OrganisationAtlas initialCountry={params.country} />;
+  return (
+    <OrganisationAtlas
+      initialChain={params.chain}
+      initialCountry={params.country}
+      initialOrigin={params.origin}
+      initialQuery={params.q}
+      initialRole={params.role}
+      initialSector={params.sector}
+      initialSegment={params.segment}
+      initialView={params.view}
+    />
+  );
 }

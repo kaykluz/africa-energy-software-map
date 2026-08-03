@@ -47,16 +47,22 @@ const supportingWallPreviewSize = 5;
 
 export function LandscapeExplorer({
   initialQuery = "",
+  initialStage = "all",
   initialView = "wall",
   mode = "wall",
 }: {
   initialQuery?: string;
+  initialStage?: string;
   initialView?: LandscapeView;
   mode?: "explore" | "wall";
 }) {
   const [query, setQuery] = useState(initialQuery);
   const [kind, setKind] = useState<LandscapeKind | "all">("all");
-  const [stage, setStage] = useState("all");
+  const [stage, setStage] = useState(
+    initialStage === "all" || Object.hasOwn(landscapeStageLabels, initialStage)
+      ? initialStage
+      : "all",
+  );
   const [functionId, setFunctionId] = useState("all");
   const [sector, setSector] = useState("all");
   const [relationship, setRelationship] = useState<EnergyRelationship | "all">("all");

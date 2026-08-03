@@ -1,9 +1,29 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tables": {
     "organisations.csv": {
       "id_field": "id",
       "fields": ["id", "name", "slug", "organisation_type", "origin_classification", "country_of_origin", "headquarters_country", "lifecycle_status", "website", "description", "provider_profile_confirmed", "last_checked_at"]
+    },
+    "organisation-roles.csv": {
+      "id_field": "id",
+      "package_required": false,
+      "fields": ["id", "organisation_id", "role_id", "is_primary", "valid_from", "valid_to", "last_checked_at"]
+    },
+    "organisation-sectors.csv": {
+      "id_field": "id",
+      "package_required": false,
+      "fields": ["id", "organisation_id", "sector_id", "valid_from", "valid_to", "last_checked_at"]
+    },
+    "organisation-segments.csv": {
+      "id_field": "id",
+      "package_required": false,
+      "fields": ["id", "organisation_id", "segment_id", "valid_from", "valid_to", "last_checked_at"]
+    },
+    "organisation-software-relationships.csv": {
+      "id_field": "id",
+      "package_required": false,
+      "fields": ["id", "organisation_id", "product_id", "relationship_type", "valid_from", "valid_to", "last_checked_at"]
     },
     "products.csv": {
       "id_field": "id",
@@ -47,4 +67,3 @@
     }
   }
 }
-
