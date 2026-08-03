@@ -9,6 +9,7 @@ import {
   products,
   release,
 } from "@/lib/registry-data";
+import { landscapeItems } from "@/lib/landscape-data";
 import { normaliseQuery } from "@/lib/registry-query";
 import {
   type KeyboardEvent,
@@ -26,6 +27,7 @@ const primaryNavigation = [
 ] as const;
 
 const projectNavigation = [
+  { href: "/landscape", label: "Full list" },
   { href: "/review", label: "Admin" },
   { href: "/methodology", label: "Method" },
   { href: "/data", label: "Downloads" },
@@ -123,6 +125,25 @@ export function SiteShell({ children }: { children: ReactNode }) {
           name,
           context: iso2,
           href: `/countries/${iso2.toLowerCase()}`,
+        })),
+      ...landscapeItems
+        .filter((item) =>
+          normaliseQuery(
+            [
+              item.name,
+              item.parent ?? "",
+              ...(item.aliases ?? []),
+              item.summaryAsSubmitted,
+              ...item.geographies,
+            ].join(" "),
+          ).includes(aliases),
+        )
+        .slice(0, 4)
+        .map((item) => ({
+          type: "Listing",
+          name: item.name,
+          context: "Full list",
+          href: `/landscape?q=${encodeURIComponent(item.name)}`,
         })),
     ].slice(0, 10);
   }, [query]);
@@ -394,6 +415,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <span className="mono">{release.version}</span>
         </div>
         <nav aria-label="Footer">
+          <Link href="/landscape">Full list</Link>
           <Link href="/methodology">Method</Link>
           <Link href="/data">Downloads</Link>
           <Link href="/licence">Licence</Link>

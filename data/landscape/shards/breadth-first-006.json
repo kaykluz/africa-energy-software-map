@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "breadth-first-006",
+  "sourceLabel": "Contributor breadth-first build",
+  "sourceAsOf": "2026-07-31",
+  "items": [],
+  "deploymentLeads": [
+    {
+      "id": "land_dep_beacon_ecg_ghana",
+      "name": "Adora at ECG",
+      "organisation": "Beacon Power Services",
+      "product": "Adora",
+      "countries": ["Ghana"],
+      "customerAsSubmitted": "Electricity Company of Ghana",
+      "scaleAsSubmitted": "Billing delivery, computation and revenue metrics reported by the provider",
+      "dateAsSubmitted": "Around 2024",
+      "sourceDomains": ["beaconpowerservices.com"]
+    },
+    {
+      "id": "land_dep_steamaco_aba_power_nigeria",
+      "name": "Nimbus AMI at Aba Power",
+      "organisation": "SteamaCo",
+      "product": "Nimbus AMI",
+      "countries": ["Nigeria"],
+      "customerAsSubmitted": "Aba Power",
+      "scaleAsSubmitted": "Grid-connected metering with loss detection",
+      "dateAsSubmitted": "2024",
+      "sourceDomains": ["steama.co"]
+    },
+    {
+      "id": "land_dep_sparkmeter_necsom_somalia",
+      "name": "SparkMeter at NECSOM",
+      "organisation": "SparkMeter",
+      "product": "Metering and grid software",
+      "countries": ["Somalia"],
+      "customerAsSubmitted": "NECSOM",
+      "scaleAsSubmitted": "Described as first utility-scale contract",
+      "dateAsSubmitted": "2023–2024",
+      "sourceDomains": ["prnewswire.com"]
+    },
+    {
+      "id": "land_dep_powergen_rea_nigeria",
+      "name": "PowerGen mini-grids in Nigeria",
+      "organisation": "PowerGen Renewable Energy",
+      "product": "Mini-grid operations",
+      "countries": ["Nigeria"],
+      "customerAsSubmitted": "REA / CrossBoundary",
+      "scaleAsSubmitted": "28 mini-grids and about 55,000 people",
+      "dateAsSubmitted": "2022",
+      "sourceDomains": ["microgridknowledge.com"]
+    },
+    {
+      "id": "land_dep_odyssey_mozambique",
+      "name": "Odyssey monitoring in Mozambique",
+      "organisation": "Odyssey Energy Solutions",
+      "product": "Remote monitoring",
+      "countries": ["Mozambique"],
+      "customerAsSubmitted": "Developer not named",
+      "scaleAsSubmitted": "25 mini-grids",
+      "dateAsSubmitted": "2024",
+      "sourceDomains": ["odysseyenergysolutions.com"]
+    },
+    {
+      "id": "land_dep_circle_gas_mgas_kenya",
+      "name": "M-Gas in Kenya",
+      "organisation": "Circle Gas",
+      "product": "M-Gas",
+      "countries": ["Kenya"],
+      "customerAsSubmitted": "Consumers via Safaricom",
+      "scaleAsSubmitted": "About 1.5 million households estimated in the submission",
+      "dateAsSubmitted": "2020 onward",
+      "sourceDomains": ["gsma.com"]
+    },
+    {
+      "id": "land_dep_equatorial_power_lolwe_uganda",
+      "name": "Ferntech monitoring on Lolwe",
+      "organisation": "Equatorial Power",
+      "product": "Ferntech monitoring",
+      "countries": ["Uganda"],
+      "customerAsSubmitted": "Lolwe island mini-grid",
+      "scaleAsSubmitted": "One mini-grid",
+      "dateAsSubmitted": "2021",
+      "sourceDomains": ["factore.com"]
+    },
+    {
+      "id": "land_dep_mezzanine_sola_south_africa",
+      "name": "Mezzanine virtual wheeling with SOLA",
+      "organisation": "Vodacom / Mezzanine",
+      "product": "Virtual wheeling",
+      "countries": ["South Africa"],
+      "customerAsSubmitted": "SOLA Group PPA",
+      "scaleAsSubmitted": "Described as first fully operational virtual wheeling",
+      "dateAsSubmitted": "2024",
+      "sourceDomains": ["vodacom.com"]
+    },
+    {
+      "id": "land_dep_spiro_swap_network_africa",
+      "name": "Spiro battery-swap network",
+      "organisation": "Spiro",
+      "product": "Battery-swap network",
+      "countries": ["Benin", "Togo", "Kenya", "Uganda", "Rwanda", "Nigeria"],
+      "customerAsSubmitted": "Riders",
+      "scaleAsSubmitted": "80,000+ motorcycles, 2,500+ swap stations and 30 million swaps",
+      "dateAsSubmitted": "2025",
+      "sourceDomains": ["barchart.com"]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "land_rel_koko_insolvency",
+      "name": "KOKO Networks insolvency",
+      "subject": "KOKO Networks",
+      "eventAsSubmitted": "Kenyan operations shut, staff laid off and insolvency filed; UK arm entered administration",
+      "dateAsSubmitted": "31 January–19 February 2026",
+      "sourceDomains": ["the-star.co.ke", "bloomberg.com", "ecofinagency.com", "techweez.com"]
+    },
+    {
+      "id": "land_rel_sparkmeter_honeywell_assets",
+      "name": "SparkMeter software assets acquired by Honeywell",
+      "subject": "SparkMeter",
+      "eventAsSubmitted": "Praxis, GridScan and GridFin acquired by Honeywell for Forge Performance+",
+      "dateAsSubmitted": "20 August 2025",
+      "sourceDomains": ["honeywell.com", "prnewswire.com"]
+    },
+    {
+      "id": "land_rel_shyft_steamaco_merger",
+      "name": "SHYFT and SteamaCo merger",
+      "subject": "SHYFT Power Solutions",
+      "eventAsSubmitted": "Merged into SteamaCo",
+      "dateAsSubmitted": "December 2024",
+      "sourceDomains": ["madeforplanet.com"]
+    },
+    {
+      "id": "land_rel_peg_bboxx_acquisition",
+      "name": "PEG Africa acquired by Bboxx",
+      "subject": "PEG Africa",
+      "eventAsSubmitted": "Acquired by Bboxx, adding Senegal, Côte d’Ivoire, Ghana and Mali",
+      "dateAsSubmitted": "September 2022",
+      "sourceDomains": ["bboxx.com", "pv-tech.org"]
+    },
+    {
+      "id": "land_rel_mobisol_engie",
+      "name": "Mobisol absorbed by ENGIE",
+      "subject": "Mobisol",
+      "eventAsSubmitted": "Insolvency followed by absorption into ENGIE Energy Access",
+      "dateAsSubmitted": "2019",
+      "sourceDomains": ["tandfonline.com"]
+    },
+    {
+      "id": "land_rel_fenix_engie",
+      "name": "Fenix acquired by ENGIE",
+      "subject": "Fenix International",
+      "eventAsSubmitted": "Acquired by ENGIE and became part of ENGIE Energy Access",
+      "dateAsSubmitted": "2018–2019",
+      "sourceDomains": ["tandfonline.com"]
+    },
+    {
+      "id": "land_rel_ferntech_odyssey",
+      "name": "Ferntech acquired by Odyssey",
+      "subject": "Ferntech",
+      "eventAsSubmitted": "Acquired by Odyssey Energy Solutions",
+      "dateAsSubmitted": "September 2021",
+      "sourceDomains": ["odysseyenergysolutions.com"]
+    },
+    {
+      "id": "land_rel_kopagas_circle_gas",
+      "name": "KOPAGAS technology acquired by Circle Gas",
+      "subject": "KOPAGAS",
+      "eventAsSubmitted": "Technology acquired by Circle Gas",
+      "dateAsSubmitted": "January 2020",
+      "sourceDomains": ["gsma.com"]
+    },
+    {
+      "id": "land_rel_qotto_izili",
+      "name": "Qotto acquired by Izili",
+      "subject": "Qotto",
+      "eventAsSubmitted": "Acquired by Izili Group",
+      "dateAsSubmitted": "January 2026",
+      "sourceDomains": ["ecofinagency.com"]
+    },
+    {
+      "id": "land_rel_rensource_pivot",
+      "name": "Rensource business-model pivot",
+      "subject": "Rensource Energy",
+      "eventAsSubmitted": "Pivoted from consumer solar mini-utilities toward market and merchant power",
+      "dateAsSubmitted": "Around 2020",
+      "sourceDomains": ["qz.com"]
+    }
+  ]
+}

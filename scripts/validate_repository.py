@@ -160,6 +160,93 @@ def validate_taxonomy(errors: list[str]) -> None:
         errors.append(f"bulk intake template: {exc}")
 
 
+def validate_landscape_catalogue(errors: list[str]) -> None:
+    landscape_dir = ROOT / "data" / "landscape" / "shards"
+    if not landscape_dir.is_dir():
+        errors.append("data/landscape/shards: missing landscape catalogue")
+        return
+
+    taxonomy = load_json(ROOT / "data" / "taxonomy.json")
+    stage_ids = {stage["id"] for stage in taxonomy["stages"]}
+    category_ids = {
+        category["id"]
+        for stage in taxonomy["stages"]
+        for category in stage["categories"]
+    }
+    category_ids.update(item["id"] for item in taxonomy["cross_cutting"])
+    sector_ids = {item["id"] for item in taxonomy.get("sectors", [])}
+    allowed_kinds = {
+        "organisation",
+        "product",
+        "public_tool",
+        "research_lead",
+        "source_directory",
+    }
+    seen: set[str] = set()
+    domain_pattern = re.compile(
+        r"^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}(?:/[a-z0-9._~!$&'()*+,;=:@%/-]*)?$",
+        re.I,
+    )
+    coordinate_pattern = re.compile(r"-?\d{1,2}\.\d{3,}\s*[,/]\s*-?\d{1,3}\.\d{3,}")
+
+    for path in sorted(landscape_dir.glob("*.json")):
+        relative = path.relative_to(ROOT)
+        shard = load_json(path)
+        if shard.get("schemaVersion") != "1.0.0":
+            errors.append(f"{relative}: unsupported schemaVersion")
+        try:
+            date.fromisoformat(shard.get("sourceAsOf", ""))
+        except ValueError:
+            errors.append(f"{relative}: invalid sourceAsOf")
+
+        groups = [
+            ("items", shard.get("items", []), "land_"),
+            ("deploymentLeads", shard.get("deploymentLeads", []), "land_dep_"),
+            ("relationships", shard.get("relationships", []), "land_rel_"),
+        ]
+        total = sum(len(rows) for _, rows, _ in groups if isinstance(rows, list))
+        if total > 25:
+            errors.append(f"{relative}: exceeds the 25-record shard limit")
+
+        for group_name, rows, prefix in groups:
+            if not isinstance(rows, list):
+                errors.append(f"{relative}: {group_name} must be an array")
+                continue
+            for index, row in enumerate(rows, start=1):
+                label = f"{relative}:{group_name}[{index}]"
+                record_id = row.get("id", "")
+                if not record_id.startswith(prefix) or not ID_PATTERN.fullmatch(record_id):
+                    errors.append(f"{label}: invalid ID")
+                elif record_id in seen:
+                    errors.append(f"{label}: duplicate ID {record_id}")
+                seen.add(record_id)
+                if not row.get("name", "").strip():
+                    errors.append(f"{label}: missing name")
+                domains = row.get("sourceDomains", [])
+                if not isinstance(domains, list) or any(
+                    not domain_pattern.fullmatch(value) for value in domains
+                ):
+                    errors.append(f"{label}: invalid source domain")
+                if coordinate_pattern.search(json.dumps(row)):
+                    errors.append(f"{label}: precise coordinates are prohibited")
+
+                if group_name != "items":
+                    continue
+                if row.get("kind") not in allowed_kinds:
+                    errors.append(f"{label}: invalid listing kind")
+                if any(value not in stage_ids for value in row.get("stageIds", [])):
+                    errors.append(f"{label}: invalid stage ID")
+                if any(value not in category_ids for value in row.get("categoryIds", [])):
+                    errors.append(f"{label}: invalid category ID")
+                if any(value not in sector_ids for value in row.get("sectorIds", [])):
+                    errors.append(f"{label}: invalid sector ID")
+                if "evidenceStatus" in row or "verified" in row:
+                    errors.append(f"{label}: a listing cannot carry a verification verdict")
+                canonical = row.get("canonicalHref", "")
+                if canonical and not canonical.startswith("/"):
+                    errors.append(f"{label}: canonicalHref must be repository-relative")
+
+
 def csv_records(path: Path) -> tuple[list[str], list[dict[str, str]]]:
     with path.open(newline="", encoding="utf-8") as handle:
         reader = csv.DictReader(handle)
@@ -1064,6 +1151,7 @@ def main() -> int:
     validate_json_files(errors)
     validate_csv_templates(errors)
     validate_taxonomy(errors)
+    validate_landscape_catalogue(errors)
     validate_candidate_imports(errors)
     validate_reviewed_releases(errors)
     validate_release_shards(errors)
