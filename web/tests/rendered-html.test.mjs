@@ -377,6 +377,9 @@ test("server-renders the classified software wall", async () => {
   const inheritedMarkHtml = await inheritedMarkResponse.text();
   assert.match(inheritedMarkHtml, /AMMP OS/);
   assert.match(inheritedMarkHtml, /src="\/brand\/organisations\/ammp\.png"/);
+  assert.match(inheritedMarkHtml, /href="\/products\/ammp-os"/);
+  assert.match(inheritedMarkHtml, /href="\/landscape\?stage=stage_generate_store"/);
+  assert.match(inheritedMarkHtml, /href="\/landscape\?function=/);
 });
 
 test("server-renders local brand assets and the organisation atlas", async () => {
@@ -508,6 +511,19 @@ test("server search includes organisation records", async () => {
   assert.match(html, /Organisations/);
   assert.match(html, /Beacon Power Services/);
   assert.match(html, /Open record/);
+
+  const countryResponse = await render("/search?q=Nigeria");
+  assert.equal(countryResponse.status, 200);
+  const countryHtml = await countryResponse.text();
+  assert.match(countryHtml, /<h2>Countries/);
+  assert.match(countryHtml, /href="\/countries\/ng"/);
+
+  const listingResponse = await render("/search?q=ArcGIS%20Utility%20Network");
+  assert.equal(listingResponse.status, 200);
+  const listingHtml = await listingResponse.text();
+  assert.match(listingHtml, /<h2>Software wall/);
+  assert.match(listingHtml, /href="\/landscape\?q=ArcGIS%20Utility%20Network"/);
+  assert.match(listingHtml, /href="\/organisations\/esri"/);
 });
 
 test("surfaces the full organisation inclusion catalogue separately from canonical profiles", async () => {
@@ -557,6 +573,11 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   assert.match(nigeriaHtml, /310 shown/);
   assert.match(nigeriaHtml, /A4&amp;T Power Solutions/);
 
+  const role = await render("/organisations?role=Financier");
+  assert.equal(role.status, 200);
+  const roleHtml = await role.text();
+  assert.match(roleHtml, /<option value="Financier" selected="">Financier<\/option>/);
+
   const gambia = await fetchWorker(
     "/api/organisation-catalogue?country=The%20Gambia&pageSize=10",
     { headers: { accept: "application/json" } },
@@ -576,6 +597,14 @@ test("server-renders a source-linked product profile", async () => {
   assert.match(html, /Assertion-level evidence and sources/);
   assert.match(html, /Proparco/);
   assert.match(html, /href="\/organisations\/beacon-power-services"/);
+  assert.match(
+    html,
+    /href="\/organisations\/beacon-power-services">Beacon Power Services<\/a> · retrieved/,
+  );
+  assert.match(
+    html,
+    /href="\/organisations\?q=Abuja%20Electricity%20Distribution%20Company%20\(AEDC\)"/,
+  );
   assert.match(html, /href="\/countries\/ng"/);
   assert.match(html, /Reviewed beta · Expanded Batch 001/);
 });
@@ -631,6 +660,10 @@ test("server-renders a country profile from the generated snapshot", async () =>
   assert.match(html, /href="\/directory\?category=/);
   assert.match(html, /View in Data/);
   assert.match(html, /href="\/directory\?country=NG"/);
+  assert.match(
+    html,
+    /href="\/organisations\?q=Abuja%20Electricity%20Distribution%20Company%20\(AEDC\)"/,
+  );
   assert.match(html, /<h2[^>]*>Organisations<\/h2>/i);
   assert.match(html, /View filtered organisations/);
 });

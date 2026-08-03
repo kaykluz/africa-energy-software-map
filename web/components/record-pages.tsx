@@ -33,8 +33,19 @@ import {
   softwareStageName,
   type OrganisationDirectoryRecord,
 } from "@/lib/organisation-data";
+import {
+  organisationLinkIndex,
+  resolveOrganisationHref,
+  type ExactLinkIndex,
+} from "@/lib/entity-links";
 
-export function ProductProfile({ slug }: { slug: string }) {
+export function ProductProfile({
+  directory = organisationDirectory,
+  slug,
+}: {
+  directory?: OrganisationDirectoryRecord[];
+  slug: string;
+}) {
   const product = productBySlug(slug);
   if (!product) return <NotFoundRecord type="product" />;
   const productDeployments = deployments.filter(
@@ -43,6 +54,8 @@ export function ProductProfile({ slug }: { slug: string }) {
   const organisation = organisations.find(
     (record) => record.id === product.organisationId,
   );
+  const organisationLinks = organisationLinkIndex(directory);
+  const ownerHref = resolveOrganisationHref(product.organisation, organisationLinks);
   const relatedSubjectIds = new Set([
     product.id,
     ...productDeployments.map((deployment) => deployment.id),
@@ -72,9 +85,9 @@ export function ProductProfile({ slug }: { slug: string }) {
           />
           <span className="eyebrow">Reviewed product record</span>
           <h1>{product.name}</h1>
-          <Link className="record-owner" href={`/organisations/${organisation?.slug ?? ""}`}>
-            {product.organisation}
-          </Link>
+          {ownerHref ? (
+            <Link className="record-owner" href={ownerHref}>{product.organisation}</Link>
+          ) : <span className="record-owner">{product.organisation}</span>}
           <p>{product.description}</p>
           <div className="record-labels">
             <OriginLabel value={product.origin} />
@@ -136,7 +149,14 @@ export function ProductProfile({ slug }: { slug: string }) {
                       <LifecycleTag value={deployment.lifecycle} />
                     </header>
                     <dl>
-                      <Fact label="Customer" value={deployment.customer} />
+                      <Fact
+                        label="Customer"
+                        value={<OrganisationNameLink
+                          index={organisationLinks}
+                          name={deployment.customer}
+                          searchFallback={deployment.customerDisclosure === "named"}
+                        />}
+                      />
                       <Fact label="Year" value={deployment.year} />
                       <Fact
                         label="Disclosure"
@@ -184,7 +204,7 @@ export function ProductProfile({ slug }: { slug: string }) {
                     <div>
                       <span className="eyebrow">{source.independence}</span>
                       <h3><a href={source.url} rel="noreferrer" target="_blank">{source.title}</a></h3>
-                      <p>{source.publisher} · retrieved {source.retrieved}</p>
+                      <p><OrganisationNameLink index={organisationLinks} name={source.publisher} /> · retrieved {source.retrieved}</p>
                     </div>
                     <a href={source.url} rel="noreferrer" target="_blank">
                       Open source ↗
@@ -214,7 +234,7 @@ export function ProductProfile({ slug }: { slug: string }) {
             <span className="eyebrow">Owning organisation</span>
             {organisation ? <Link href={`/organisations/${organisation.slug}`}><strong>{organisation.name}</strong></Link> : null}
             <p>{organisation?.description}</p>
-            <Link href={`/organisations/${organisation?.slug}`}>View organisation →</Link>
+            {organisation ? <Link href={`/organisations/${organisation.slug}`}>View organisation →</Link> : null}
           </div>
           <div className="rail-card">
             <span className="eyebrow">Source website</span>
@@ -360,7 +380,7 @@ export function OrganisationProfile({
           <ProfileSection heading="Linked software">
             <div className="linked-product-list">
               {organisationProducts.map((product) => (
-                <Link href={`/products/${product.slug}`} key={product.id}>
+                <article key={product.id}>
                   <ProductMark
                     organisationId={product.organisationId}
                     organisationName={product.organisation}
@@ -368,9 +388,12 @@ export function OrganisationProfile({
                     productName={product.name}
                     size={38}
                   />
-                  <span><strong>{product.name}</strong><small>{product.category}</small></span>
-                  <span>{product.deploymentCountries.length} evidenced countries →</span>
-                </Link>
+                  <span>
+                    <Link href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
+                    <Link href={`/?category=${product.categoryId}`}><small>{product.category}</small></Link>
+                  </span>
+                  <Link href={`/products/${product.slug}`}>{product.deploymentCountries.length} evidenced countries →</Link>
+                </article>
               ))}
             </div>
           </ProfileSection>
@@ -528,6 +551,7 @@ export function CountryProfile({
   const countryOrganisationRecords = directory.filter((record) =>
     record.countryIso2s.includes(countryIso2),
   );
+  const organisationLinks = organisationLinkIndex(directory);
   if (!summary && !countryOrganisationRecords.length) {
     return (
       <main className="reading-page reading-width" id="main-content" tabIndex={-1}>
@@ -617,7 +641,14 @@ export function CountryProfile({
                       <LifecycleTag value={deployment.lifecycle} />
                     </header>
                     <dl>
-                      <Fact label="Customer" value={deployment.customer} />
+                      <Fact
+                        label="Customer"
+                        value={<OrganisationNameLink
+                          index={organisationLinks}
+                          name={deployment.customer}
+                          searchFallback={deployment.customerDisclosure === "named"}
+                        />}
+                      />
                       <Fact label="Year" value={deployment.year} />
                       <div><dt>Evidence</dt><dd><EvidenceStatusLabel status={deployment.evidence} /></dd></div>
                     </dl>
@@ -746,6 +777,23 @@ function CountryIsoLinks({ iso2s }: { iso2s: string[] }) {
 function CountryNameLink({ name }: { name: string }) {
   const country = africanCountries.find(([, countryName]) => countryName === name);
   return country ? <Link href={`/countries/${country[0].toLowerCase()}`}>{name}</Link> : <>{name}</>;
+}
+
+function OrganisationNameLink({
+  index,
+  name,
+  searchFallback = false,
+}: {
+  index: ExactLinkIndex;
+  name: string;
+  searchFallback?: boolean;
+}) {
+  const href = resolveOrganisationHref(name, index);
+  if (href) return <Link href={href}>{name}</Link>;
+  if (searchFallback && name && !/not disclosed|not documented|confidential|unknown/i.test(name)) {
+    return <Link href={`/organisations?q=${encodeURIComponent(name)}`}>{name}</Link>;
+  }
+  return <>{name}</>;
 }
 
 function CountryNameLinks({ names }: { names: string[] }) {
