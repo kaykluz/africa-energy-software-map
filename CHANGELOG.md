@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Added a source-linked organisation country-presence model across the public
+  atlas, organisation and country profiles, interactive map, contribution form,
+  bulk workbook, private review queue and reviewed-release pipeline. Evidenced
+  activity, company-stated presence, offices or legal entities, product
+  availability and software deployments remain separate layers; a company
+  website can support a provider-authored presence claim but not independent
+  corroboration.
 - Applied the organisation actor/market model across profiles, methodology,
   contribution intake and review labels; removed obsolete five-record prototype
   wording from public release pages; and added a dedicated sourced organisation

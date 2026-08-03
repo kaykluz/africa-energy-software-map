@@ -42,6 +42,7 @@ OPTIONAL_CSV_TABLES = (
     "organisation-software-relationships.csv",
     "organisation-aliases.csv",
     "organisation-relationships.csv",
+    "organisation-presences.csv",
 )
 
 
@@ -466,6 +467,36 @@ def build_snapshot(config_path: Path = DEFAULT_CONFIG) -> dict[str, object]:
                 "organisation-relationships.csv"
             ]
         ]
+    if "organisation-presences.csv" in optional_organisation_tables:
+        presence_rows = []
+        for row in optional_organisation_tables["organisation-presences.csv"]:
+            material_assertions = assertions_by_subject[row["id"]]
+            evidence = sorted(
+                {item["evidence_status"] for item in material_assertions},
+                key=lambda value: EVIDENCE_PRIORITY[value],
+            )
+            source_ids = sorted(
+                {item["source_id"] for item in material_assertions if item["source_id"]}
+            )
+            if not evidence or not source_ids:
+                raise SnapshotError(
+                    f"organisation presence {row['id']} lacks evidence or a source"
+                )
+            presence_rows.append(
+                {
+                    "id": row["id"],
+                    "organisationId": row["organisation_id"],
+                    "countryIso2": row["country_iso2"],
+                    "presenceType": row["presence_type"],
+                    "lifecycleStatus": row["lifecycle_status"],
+                    "validFrom": row["valid_from"],
+                    "validTo": row["valid_to"],
+                    "lastCheckedAt": row["last_checked_at"],
+                    "evidenceStatus": evidence[0],
+                    "sourceId": source_ids[0],
+                }
+            )
+        snapshot["organisationPresences"] = presence_rows
     return snapshot
 
 

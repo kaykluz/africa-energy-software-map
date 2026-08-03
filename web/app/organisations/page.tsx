@@ -18,6 +18,7 @@ export default async function OrganisationsPage({
       initialGroup={params.group}
       initialCountry={params.country}
       initialOrigin={params.origin}
+      initialPresence={params.presence}
       initialQuery={params.q}
       initialRole={params.role}
       initialSector={params.sector}

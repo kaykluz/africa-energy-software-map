@@ -176,6 +176,30 @@ class AutomationTests(unittest.TestCase):
                 "relationship_type",
                 "org_software_develops",
             ),
+            (
+                "organisation_presence",
+                "orgpresence_example",
+                "organisation_id",
+                "cand_org_example",
+            ),
+            (
+                "organisation_presence",
+                "orgpresence_example",
+                "country_iso2",
+                "GH",
+            ),
+            (
+                "organisation_presence",
+                "orgpresence_example",
+                "presence_type",
+                "operations",
+            ),
+            (
+                "organisation_presence",
+                "orgpresence_example",
+                "lifecycle_status",
+                "active",
+            ),
         ]
         for index, (subject_type, subject_id, predicate, value) in enumerate(fields):
             promoted.append(
@@ -293,6 +317,13 @@ class AutomationTests(unittest.TestCase):
         self.assertEqual(
             tables["organisation-software-relationships.csv"][0]["product_id"],
             "prod_example",
+        )
+        self.assertEqual(
+            tables["organisation-presences.csv"][0]["organisation_id"],
+            "org_example",
+        )
+        self.assertEqual(
+            tables["organisation-presences.csv"][0]["country_iso2"], "GH"
         )
         self.assertEqual(
             tables["sources.csv"][0]["id"], "src_68e9a02c4a4f420f"

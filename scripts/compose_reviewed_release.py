@@ -34,6 +34,12 @@ RELATION_SORT_FIELDS = {
     "product-capabilities.csv": ("product_id", "capability_id", "is_primary"),
     "deployment-parties.csv": ("deployment_id", "organisation_id", "role"),
 }
+OPTIONAL_TABLE_FIELDS = {
+    "organisation-presences.csv": [
+        "id", "organisation_id", "country_iso2", "presence_type",
+        "lifecycle_status", "valid_from", "valid_to", "last_checked_at",
+    ],
+}
 
 
 class CompositionError(RuntimeError):
@@ -169,10 +175,12 @@ def load_manifests(
 
 
 def merge_table(filename: str, packages: list[Path]) -> list[dict[str, str]]:
-    fields = TABLE_FIELDS[filename]
+    fields = TABLE_FIELDS[filename] if filename in TABLE_FIELDS else OPTIONAL_TABLE_FIELDS[filename]
     rows: list[dict[str, str]] = []
     for package in packages:
         path = package / filename
+        if not path.is_file():
+            continue
         package_rows = read_csv(path)
         if package_rows and list(package_rows[0]) != fields:
             raise CompositionError(f"{path}: header differs from the canonical schema")
@@ -240,6 +248,10 @@ def write_release(
     output.mkdir(parents=True)
     for filename, fields in TABLE_FIELDS.items():
         write_csv(output / filename, fields, candidate.tables[filename])
+    for filename, fields in OPTIONAL_TABLE_FIELDS.items():
+        rows = candidate.tables.get(filename, [])
+        if rows:
+            write_csv(output / filename, fields, rows)
     write_csv(output / "legacy-id-map.csv", LEGACY_ID_FIELDS, legacy_ids)
     write_json(output / "migration-report.json", report)
     write_json(output / "review-summary.json", summary)
@@ -321,6 +333,10 @@ def main() -> int:
     candidate.tables = {
         filename: merge_table(filename, packages) for filename in TABLE_FIELDS
     }
+    candidate.tables.update({
+        filename: merge_table(filename, packages)
+        for filename in OPTIONAL_TABLE_FIELDS
+    })
     legacy_ids = read_csv(baseline / "legacy-id-map.csv")
     assertion_count = len(candidate.tables["assertions.csv"])
     if args.accepted + args.amended != assertion_count:

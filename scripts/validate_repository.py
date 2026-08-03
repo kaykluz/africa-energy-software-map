@@ -513,6 +513,9 @@ def validate_data_package(
     origin_values = set(taxonomy["origin_classifications"])
     lifecycle_values = set(taxonomy["lifecycle_statuses"])
     evidence_values = set(taxonomy["evidence_statuses"])
+    country_ids = {
+        item["iso2"] for item in load_json(ROOT / "data" / "african-countries.json")
+    }
     relative_package = package.relative_to(ROOT)
 
     tables: dict[str, list[dict[str, str]]] = {}
@@ -582,6 +585,7 @@ def validate_data_package(
         "organisation_software_relationship": "organisation-software-relationships.csv",
         "organisation_alias": "organisation-aliases.csv",
         "organisation_relationship": "organisation-relationships.csv",
+        "organisation_presence": "organisation-presences.csv",
     }
     for subject_type, filename in relationship_subjects.items():
         subject_ids[subject_type] = {
@@ -666,6 +670,36 @@ def validate_data_package(
             if filename == "organisation-aliases.csv" and not row["alias"].strip():
                 errors.append(
                     f"{relative_package}/{filename}:{line_number}: alias is required"
+                )
+
+    presence_types = {
+        "operations", "project_participation", "office", "legal_entity",
+        "product_deployment", "product_availability",
+    }
+    presence_lifecycles = {"active", "planned", "historical", "unknown"}
+    for line_number, row in enumerate(
+        tables.get("organisation-presences.csv", []), start=2
+    ):
+        if row["organisation_id"] not in organisations:
+            errors.append(
+                f"{relative_package}/organisation-presences.csv:{line_number}: unknown organisation_id"
+            )
+        if row["country_iso2"] not in country_ids:
+            errors.append(
+                f"{relative_package}/organisation-presences.csv:{line_number}: invalid country_iso2"
+            )
+        if row["presence_type"] not in presence_types:
+            errors.append(
+                f"{relative_package}/organisation-presences.csv:{line_number}: invalid presence_type"
+            )
+        if row["lifecycle_status"] not in presence_lifecycles:
+            errors.append(
+                f"{relative_package}/organisation-presences.csv:{line_number}: invalid lifecycle_status"
+            )
+        for field in ("valid_from", "valid_to", "last_checked_at"):
+            if row[field] and not valid_iso_date(row[field]):
+                errors.append(
+                    f"{relative_package}/organisation-presences.csv:{line_number}: invalid {field}"
                 )
 
     for line_number, row in enumerate(tables["organisations.csv"], start=2):
@@ -1157,6 +1191,9 @@ def validate_release_shards(errors: list[str]) -> None:
     origin_values = set(taxonomy["origin_classifications"])
     lifecycle_values = set(taxonomy["lifecycle_statuses"])
     evidence_values = set(taxonomy["evidence_statuses"])
+    country_ids = {
+        item["iso2"] for item in load_json(ROOT / "data" / "african-countries.json")
+    }
     shard_paths = sorted(shards_root.glob("*/release-*"))
     packages: list[tuple[Path, dict[str, list[dict[str, str]]], dict]] = []
     global_subjects: dict[str, set[str]] = {
@@ -1169,6 +1206,7 @@ def validate_release_shards(errors: list[str]) -> None:
         "organisation_software_relationship": set(),
         "organisation_alias": set(),
         "organisation_relationship": set(),
+        "organisation_presence": set(),
     }
     global_sources: set[str] = set()
 
@@ -1188,6 +1226,7 @@ def validate_release_shards(errors: list[str]) -> None:
             ),
             ("organisation_alias", "organisation-aliases.csv"),
             ("organisation_relationship", "organisation-relationships.csv"),
+            ("organisation_presence", "organisation-presences.csv"),
         ):
             if (release_path / filename).exists():
                 global_subjects[subject_type].update(
@@ -1335,6 +1374,33 @@ def validate_release_shards(errors: list[str]) -> None:
                     errors.append(
                         f"{relative}/{filename}:{line_number}: alias is required"
                     )
+        for line_number, row in enumerate(
+            tables.get("organisation-presences.csv", []), start=2
+        ):
+            if row["organisation_id"] not in available_organisation_ids:
+                errors.append(
+                    f"{relative}/organisation-presences.csv:{line_number}: unknown organisation_id"
+                )
+            if row["country_iso2"] not in country_ids:
+                errors.append(
+                    f"{relative}/organisation-presences.csv:{line_number}: invalid country_iso2"
+                )
+            if row["presence_type"] not in {
+                "operations", "project_participation", "office", "legal_entity",
+                "product_deployment", "product_availability",
+            }:
+                errors.append(
+                    f"{relative}/organisation-presences.csv:{line_number}: invalid presence_type"
+                )
+            if row["lifecycle_status"] not in {"active", "planned", "historical", "unknown"}:
+                errors.append(
+                    f"{relative}/organisation-presences.csv:{line_number}: invalid lifecycle_status"
+                )
+            for field in ("valid_from", "valid_to", "last_checked_at"):
+                if row[field] and not valid_iso_date(row[field]):
+                    errors.append(
+                        f"{relative}/organisation-presences.csv:{line_number}: invalid {field}"
+                    )
         entity_ids = sorted(
             [row["id"] for row in organisations]
             + [row["id"] for row in products]
@@ -1365,6 +1431,7 @@ def validate_release_shards(errors: list[str]) -> None:
             ),
             ("organisation_alias", "organisation-aliases.csv"),
             ("organisation_relationship", "organisation-relationships.csv"),
+            ("organisation_presence", "organisation-presences.csv"),
         ):
             for row in tables.get(filename, []):
                 if (subject_type, row["id"]) not in shard_assertion_subjects:
@@ -1391,6 +1458,7 @@ def validate_release_shards(errors: list[str]) -> None:
             ),
             ("organisation_alias", "organisation-aliases.csv"),
             ("organisation_relationship", "organisation-relationships.csv"),
+            ("organisation_presence", "organisation-presences.csv"),
         ):
             global_subjects[subject_type].update(
                 row["id"] for row in tables.get(filename, [])

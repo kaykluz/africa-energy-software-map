@@ -75,7 +75,8 @@ export function ContributionFlow({ type }: { type: FlowType }) {
     customerDisclosure: "named",
     customer: "",
     year: "",
-    lifecycle: "pilot",
+    lifecycle: type === "organisation" ? "active" : "pilot",
+    presenceType: "operations",
     field: "",
     proposedValue: "",
     source: "",
@@ -263,6 +264,11 @@ function DetailStep({ form, type, update }: StepProps) {
   if (type === "correction") return <Field helper="State the replacement exactly as it should appear." label="Proposed value" required><textarea onChange={(event) => update("proposedValue", event.target.value)} required rows={4} value={form.proposedValue} /></Field>;
   if (type === "organisation") return <>
     <Field label="Primary actor type" required><select onChange={(event) => update("category", event.target.value)} required value={form.category}><option disabled value="">Select actor type</option>{organisationEcosystemGroups.map((group) => <option key={group.id}>{group.name}</option>)}</select></Field>
+    <div className="field-row">
+      <Field helper="Choose the African country supported by this source. Headquarters and origin are recorded separately." label="Country presence" required><select onChange={(event) => update("country", event.target.value)} required value={form.country}>{africanCountries.map(([iso2, name]) => <option key={iso2} value={iso2}>{name}</option>)}</select></Field>
+      <Field label="Presence type" required><select onChange={(event) => update("presenceType", event.target.value)} required value={form.presenceType}><option value="operations">Operations</option><option value="project_participation">Project participation</option><option value="office">Office</option><option value="legal_entity">Registered entity</option><option value="product_deployment">Product deployment</option><option value="product_availability">Product availability</option></select></Field>
+    </div>
+    <Field label="Presence status" required><select onChange={(event) => update("lifecycle", event.target.value)} required value={form.lifecycle}><option value="active">Active</option><option value="planned">Planned</option><option value="historical">Historical</option><option value="unknown">Unknown</option></select></Field>
     <Field helper="Include the specific role and relevant markets, for example: EPC working in C&I and mini-grids in Ghana." label="Specific role and energy markets" required><textarea onChange={(event) => update("notes", event.target.value)} required rows={5} value={form.notes} /></Field>
   </>;
   if (type === "claim") return <><Field label="Role and authority" required><textarea onChange={(event) => update("authority", event.target.value)} required rows={4} value={form.authority} /></Field><div className="claim-notice"><strong>Claiming grants no direct editing rights.</strong><p>It also does not independently verify deployments or outcomes.</p></div></>;
@@ -280,13 +286,13 @@ function EvidenceStep({ form, type, update }: StepProps) {
 }
 
 function ReviewStep({ form, type }: Omit<StepProps, "update">) {
-  return <div className="review-card"><p>Review the publishable summary. A human editor will assess the source, wording, independence and privacy.</p><dl>{form.product ? <div><dt>{type === "product" ? "Product" : "Record"}</dt><dd>{form.product}</dd></div> : null}{form.organisation ? <div><dt>Organisation</dt><dd>{form.organisation}</dd></div> : null}{form.category ? <div><dt>{type === "organisation" ? "Actor type" : "Category"}</dt><dd>{form.category}</dd></div> : null}{type === "organisation" && form.notes ? <div><dt>Role and markets</dt><dd>{form.notes}</dd></div> : null}{type === "deployment" && form.country ? <div><dt>Country</dt><dd>{form.country}</dd></div> : null}{type === "deployment" && form.customer ? <div><dt>Customer disclosure</dt><dd>{form.customerDisclosure === "undisclosed" ? "Customer undisclosed" : form.customer}</dd></div> : null}{form.field ? <div><dt>Field</dt><dd>{form.field}</dd></div> : null}{form.proposedValue ? <div><dt>Proposed value</dt><dd>{form.proposedValue}</dd></div> : null}{form.source ? <div><dt>Source</dt><dd>{form.source}</dd></div> : null}</dl><div className="dialog-notice"><strong>Submission status</strong><p>The submission enters editorial review. It is not published or verified automatically.</p></div></div>;
+  return <div className="review-card"><p>Review the publishable summary. A human editor will assess the source, wording, independence and privacy.</p><dl>{form.product ? <div><dt>{type === "product" ? "Product" : "Record"}</dt><dd>{form.product}</dd></div> : null}{form.organisation ? <div><dt>Organisation</dt><dd>{form.organisation}</dd></div> : null}{form.category ? <div><dt>{type === "organisation" ? "Actor type" : "Category"}</dt><dd>{form.category}</dd></div> : null}{type === "organisation" ? <><div><dt>Country presence</dt><dd>{form.country}</dd></div><div><dt>Presence</dt><dd>{form.presenceType.replaceAll("_", " ")} · {form.lifecycle}</dd></div></> : null}{type === "organisation" && form.notes ? <div><dt>Role and markets</dt><dd>{form.notes}</dd></div> : null}{type === "deployment" && form.country ? <div><dt>Country</dt><dd>{form.country}</dd></div> : null}{type === "deployment" && form.customer ? <div><dt>Customer disclosure</dt><dd>{form.customerDisclosure === "undisclosed" ? "Customer undisclosed" : form.customer}</dd></div> : null}{form.field ? <div><dt>Field</dt><dd>{form.field}</dd></div> : null}{form.proposedValue ? <div><dt>Proposed value</dt><dd>{form.proposedValue}</dd></div> : null}{form.source ? <div><dt>Source</dt><dd>{form.source}</dd></div> : null}</dl><div className="dialog-notice"><strong>Submission status</strong><p>The submission enters editorial review. It is not published or verified automatically.</p></div></div>;
 }
 
 type StepProps = {
   form: {
     product: string; organisation: string; category: string; country: string; customerDisclosure: string;
-    customer: string; year: string; lifecycle: string; field: string; proposedValue: string;
+    customer: string; year: string; lifecycle: string; presenceType: string; field: string; proposedValue: string;
     source: string; relationship: string; authority: string; email: string; notes: string; sensitiveConfirmed: boolean; companyWebsite: string;
   };
   type: FlowType;

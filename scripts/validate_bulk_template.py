@@ -77,6 +77,9 @@ BULK_FIELDS = [
     "source_locator",
     "notes",
     "confirms_no_sensitive_data",
+    "organisation_presence_country_iso2",
+    "organisation_presence_type",
+    "organisation_presence_lifecycle_status",
 ]
 
 

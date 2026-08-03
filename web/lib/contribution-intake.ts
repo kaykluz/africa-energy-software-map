@@ -20,7 +20,14 @@ export type ContributionInput = {
   customerDisclosure: "named" | "undisclosed";
   customer: string;
   year: string;
-  lifecycle: "live" | "pilot" | "historical";
+  lifecycle: "live" | "pilot" | "active" | "planned" | "historical" | "unknown";
+  presenceType:
+    | "operations"
+    | "project_participation"
+    | "office"
+    | "legal_entity"
+    | "product_deployment"
+    | "product_availability";
   field: string;
   proposedValue: string;
   source: string;
@@ -43,7 +50,15 @@ const allowedRelationships = new Set([
   "researcher",
   "public",
 ]);
-const allowedLifecycles = new Set(["live", "pilot", "historical"]);
+const allowedLifecycles = new Set(["live", "pilot", "active", "planned", "historical", "unknown"]);
+const allowedPresenceTypes = new Set([
+  "operations",
+  "project_participation",
+  "office",
+  "legal_entity",
+  "product_deployment",
+  "product_availability",
+]);
 const allowedDisclosures = new Set(["named", "undisclosed"]);
 const allowedCountries = new Set(africanCountries.map(([iso2]) => iso2));
 const allowedCategories = new Set(categories.map((category) => category.name));
@@ -75,6 +90,7 @@ export function validateContribution(input: unknown): IntakeValidation {
     customer: text(record.customer, 240),
     year: text(record.year, 4),
     lifecycle: text(record.lifecycle, 20) as ContributionInput["lifecycle"],
+    presenceType: text(record.presenceType, 40) as ContributionInput["presenceType"],
     field: text(record.field, 120),
     proposedValue: text(record.proposedValue, 2000),
     source: text(record.source, 2048),
@@ -146,6 +162,14 @@ export function validateContribution(input: unknown): IntakeValidation {
       value.notes,
       "Describe the organisation’s specific role and energy markets.",
     );
+    required(fields, "country", value.country, "Choose the country this source supports.");
+    required(fields, "presenceType", value.presenceType, "Choose the type of presence.");
+    if (value.presenceType && !allowedPresenceTypes.has(value.presenceType)) {
+      fields.presenceType = "Choose a supported presence type.";
+    }
+    if (!["active", "planned", "historical", "unknown"].includes(value.lifecycle)) {
+      fields.lifecycle = "Choose an organisation-presence status.";
+    }
   }
   if (type === "deployment") {
     required(fields, "product", value.product, "Choose the product.");

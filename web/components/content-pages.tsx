@@ -5,6 +5,7 @@ import {
   dataDistributions,
   deployments,
   organisationAliasRecords,
+  organisationPresenceRecords,
   organisations,
   products,
   release,
@@ -21,6 +22,7 @@ export function MethodologyPage() {
     ["scope", "Scope and exclusions"],
     ["taxonomy", "Entities and taxonomy"],
     ["deployment-definition", "Deployment definition"],
+    ["organisation-presence", "Organisation presence"],
     ["evidence", "Evidence and source independence"],
     ["origin", "Origin and lifecycle"],
     ["market-condition", "Market-condition findings"],
@@ -32,7 +34,7 @@ export function MethodologyPage() {
   return (
     <main className="methodology-page standard-width" id="main-content" tabIndex={-1}>
       <header className="page-intro reading-intro">
-        <span className="eyebrow">Methodology 1.0 · effective 30 July 2026</span>
+        <span className="eyebrow">Methodology 1.1 · effective 3 August 2026</span>
         <h1>How the map decides what to show</h1>
         <p>
           The public rules for evidence, uncertainty and editorial review.
@@ -86,6 +88,18 @@ export function MethodologyPage() {
             <div className="definition-pair">
               <div><strong>Counts as evidence</strong><p>A customer or independent primary source connects product, place and use.</p></div>
               <div><strong>Does not count</strong><p>A provider lists a market, says “available in Africa” or names a partner without use.</p></div>
+            </div>
+          </ContentSection>
+          <ContentSection id="organisation-presence" heading="Organisation presence">
+            <p>
+              Organisation presence is recorded separately from software deployment,
+              headquarters and origin. Each country record states what is present—an
+              operation, project role, office, legal entity, product deployment or
+              product availability—and whether it is active, planned, historical or unknown.
+            </p>
+            <div className="definition-pair">
+              <div><strong>Company source</strong><p>An official company page may support company-stated presence. It stays provider-authored until corroborated.</p></div>
+              <div><strong>Independent evidence</strong><p>A customer, official or independent source can support an evidenced presence record. It does not automatically prove a software deployment.</p></div>
             </div>
           </ContentSection>
           <ContentSection id="evidence" heading="Evidence and source independence">
@@ -144,7 +158,8 @@ export function MethodologyPage() {
             <p>
               Release {release.version} contains {products.length} reviewed products,
               {" "}{organisations.length} organisations, {deployments.length} country-safe
-              deployment records and {sources.length} rights-resolved sources. The
+              deployment records, {organisationPresenceRecords.length} explicit organisation-presence
+              records and {sources.length} rights-resolved sources. The
               wider software wall also contains classified submitted listings that
               are kept distinct from canonical reviewed records.
             </p>
@@ -341,6 +356,7 @@ export function DataPage() {
       </section>
       <section className="data-section two-column-copy">
         <div><h2>Software wall</h2><p>Browse classified software and enabling infrastructure by function, stage and sector.</p><Link href="/landscape">Open the wall →</Link></div>
+        <div><h2>Organisation presence</h2><p>Organisation exports keep evidenced, company-stated, office, availability and software-linked countries in separate columns.</p><Link href="/organisations?view=directory">Open organisations →</Link></div>
         <div><h2>Versioning and provenance</h2><p>Every immutable release states its version, date, Git commit, record counts, limitations, checksums and licence.</p></div>
       </section>
     </main>
@@ -484,6 +500,7 @@ export function ChangesPage() {
         <p>Trace additions, corrections, evidence changes and methodology decisions to public review.</p>
       </header>
       <div className="change-list">
+        <article><time dateTime="2026-08-03">3 August 2026</time><div><span className="semantic-tag">Organisation presence</span><h2>Country presence separated into sourced layers</h2><p>Added distinct views for evidenced activity, company-stated presence, offices and entities, product availability, and software deployments. Company websites may support company-stated records but do not become independent evidence.</p><a href="https://github.com/kaykluz/africa-energy-software-map/pulls" target="_blank" rel="noreferrer">View pull requests ↗</a></div></article>
         <article><time dateTime="2026-07-30">30 July 2026</time><div><span className="semantic-tag">Prototype</span><h2>Interactive design workstream opened</h2><p>Added a candidate-data interface for review. No records were published.</p><a href="https://github.com/kaykluz/africa-energy-software-map/pulls" target="_blank" rel="noreferrer">View pull requests ↗</a></div></article>
         <article><time dateTime="2026-07-30">30 July 2026</time><div><span className="semantic-tag">Evidence review</span><h2>Batch 001 source-linked review proposed</h2><p>Completed source records and assertion corrections remain pending human editorial review.</p><a href="https://github.com/kaykluz/africa-energy-software-map/pull/3" target="_blank" rel="noreferrer">View proposal ↗</a></div></article>
         <article><time dateTime="2026-07-29">29 July 2026</time><div><span className="semantic-tag">Foundation</span><h2>Repository and governance created</h2><p>Established schemas, contribution rules, AI safeguards and the Phase 1 UI/UX contract.</p><a href="https://github.com/kaykluz/africa-energy-software-map" target="_blank" rel="noreferrer">View repository ↗</a></div></article>

@@ -6,12 +6,15 @@ import {
   organisationRoleRecords,
   organisationAliasRecords,
   organisationRelationshipRecords,
+  organisationPresenceRecords,
   organisationSectorRecords,
   organisationSegmentRecords,
   organisationSoftwareRelationshipRecords,
   organisations,
   products,
+  sources,
   type Organisation,
+  type OrganisationPresenceRecord,
   type Product,
 } from "@/lib/registry-data";
 
@@ -68,6 +71,11 @@ const rolesById = new Map(organisationRoles.map((item) => [item.id, item]));
 const sectorsById = new Map(organisationSectors.map((item) => [item.id, item]));
 const stagesById = new Map(softwareStages.map((item) => [item.id, item]));
 const countriesByIso2 = new Map(africanCountries);
+const providerSourceIds = new Set(
+  sources
+    .filter((source) => source.independenceClass === "provider_authored")
+    .map((source) => source.id),
+);
 
 const sectorIdsByProduct = new Map<string, Set<string>>();
 for (const assertion of assertions) {
@@ -92,6 +100,12 @@ export type OrganisationDirectoryRecord = {
   stageIds: string[];
   softwareRelationshipTypes: string[];
   aliases: string[];
+  presenceRecords: OrganisationPresenceRecord[];
+  evidencedCountryIso2s: string[];
+  companyStatedCountryIso2s: string[];
+  officeCountryIso2s: string[];
+  availabilityCountryIso2s: string[];
+  softwareLinkedCountryIso2s: string[];
   countryIso2s: string[];
   countryNames: string[];
   productCount: number;
@@ -213,15 +227,45 @@ function buildOrganisationRecord(
   const stageIds = Array.from(
     new Set(ownedProducts.map((product) => product.stageId)),
   ).sort(byTaxonomyOrder(softwareStages));
-  const countryIso2s = Array.from(
-    new Set(
-      deployments
-        .filter((deployment) => productIds.has(deployment.productId))
-        .map((deployment) => deployment.countryIso2),
-    ),
-  ).sort((left, right) =>
-    (countriesByIso2.get(left) ?? left).localeCompare(countriesByIso2.get(right) ?? right),
+  const presenceRecords = organisationPresenceRecords.filter(
+    (record) => record.organisationId === organisation.id,
   );
+  const softwareLinkedCountryIso2s = sortCountries(Array.from(new Set(
+    deployments
+      .filter((deployment) => productIds.has(deployment.productId))
+      .map((deployment) => deployment.countryIso2),
+  )));
+  const evidencedCountryIso2s = sortCountries(Array.from(new Set(
+    presenceRecords
+      .filter((record) =>
+        record.evidenceStatus !== "provider_claim_only" &&
+        !providerSourceIds.has(record.sourceId),
+      )
+      .map((record) => record.countryIso2),
+  )));
+  const companyStatedCountryIso2s = sortCountries(Array.from(new Set(
+    presenceRecords
+      .filter((record) =>
+        record.evidenceStatus === "provider_claim_only" ||
+        providerSourceIds.has(record.sourceId),
+      )
+      .map((record) => record.countryIso2),
+  )));
+  const officeCountryIso2s = sortCountries(Array.from(new Set(
+    presenceRecords
+      .filter((record) => ["office", "legal_entity"].includes(record.presenceType))
+      .map((record) => record.countryIso2),
+  )));
+  const availabilityCountryIso2s = sortCountries(Array.from(new Set(
+    presenceRecords
+      .filter((record) => record.presenceType === "product_availability")
+      .map((record) => record.countryIso2),
+  )));
+  const countryIso2s = sortCountries(Array.from(new Set([
+    ...evidencedCountryIso2s,
+    ...companyStatedCountryIso2s,
+    ...softwareLinkedCountryIso2s,
+  ])));
 
   return {
     organisation,
@@ -241,11 +285,23 @@ function buildOrganisationRecord(
     aliases: organisationAliasRecords
       .filter((record) => record.organisationId === organisation.id)
       .map((record) => record.alias),
+    presenceRecords,
+    evidencedCountryIso2s,
+    companyStatedCountryIso2s,
+    officeCountryIso2s,
+    availabilityCountryIso2s,
+    softwareLinkedCountryIso2s,
     countryIso2s,
     countryNames: countryIso2s.map((iso2) => countriesByIso2.get(iso2) ?? iso2),
     productCount: ownedProducts.length,
     countryCount: countryIso2s.length,
   };
+}
+
+function sortCountries(values: string[]) {
+  return values.sort((left, right) =>
+    (countriesByIso2.get(left) ?? left).localeCompare(countriesByIso2.get(right) ?? right),
+  );
 }
 
 function byTaxonomyOrder(items: TaxonomyItem[]) {
