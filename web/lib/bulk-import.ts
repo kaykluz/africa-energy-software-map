@@ -374,14 +374,25 @@ function validateRow(
     row.record_type,
   );
   if (organisationRecord) {
-    required(row, label, errors, ["organisation_name", "origin_classification"]);
+    required(row, label, errors, ["organisation_name"]);
+    if (!row.origin_classification) {
+      warnings.push(
+        "One or more organisations need origin classification before release.",
+      );
+    }
   }
   if (row.record_type === "organisation") {
-    required(row, label, errors, [
-      "organisation_lifecycle_status",
-      "primary_organisation_role_id",
-      "organisation_sector_ids",
-    ]);
+    required(row, label, errors, ["organisation_lifecycle_status"]);
+    if (!row.primary_organisation_role_id) {
+      warnings.push(
+        "One or more organisations need a primary role before release.",
+      );
+    }
+    if (!row.organisation_sector_ids) {
+      warnings.push(
+        "One or more organisations need a sector classification before release.",
+      );
+    }
   }
   validatePipeValues(
     row.primary_organisation_role_id,

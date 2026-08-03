@@ -1,0 +1,848 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "phase2-directory-official-sites-001",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "user_supplied_inventory",
+    "asOf": "2026-08-03",
+    "sha256": "12a137b24e12dd8b7b5da8061496cda3d1cc48d670727bbc54abbd90a4f88a64"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1953,
+    "canonicalMatches": 18,
+    "catalogueMatches": 79,
+    "newCandidates": 1828,
+    "ambiguous": 28,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_3e_aa19d079",
+      "sourceRow": 6,
+      "submittedName": "3E",
+      "submittedWebsite": "https://www.3e.eu/",
+      "submittedHeadquarters": "Belgium",
+      "submittedStakeholderType": "Software/Data",
+      "submittedSegments": [
+        "Utility-scale",
+        "C&I",
+        "Storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_software",
+      "suggestedRoleIds": [
+        "org_role_data_provider"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.3e.eu/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_abb_c625fbcb",
+      "sourceRow": 11,
+      "submittedName": "ABB",
+      "submittedWebsite": "https://global.abb/group/en",
+      "submittedHeadquarters": "Switzerland",
+      "submittedStakeholderType": "OEM",
+      "submittedSegments": [
+        "T&D",
+        "C&I",
+        "E-mobility",
+        "Efficiency"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_oem_manufacturer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_efficiency_demand",
+        "org_segment_emobility",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://global.abb/group/en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_acciona_energ_a_073a5209",
+      "sourceRow": 22,
+      "submittedName": "ACCIONA Energía",
+      "submittedWebsite": "https://www.acciona-energia.com/",
+      "submittedHeadquarters": "Spain",
+      "submittedStakeholderType": "Developer",
+      "submittedSegments": [
+        "Utility-scale",
+        "Storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_energy_storage",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.acciona-energia.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_actom_f29f5bfa",
+      "sourceRow": 37,
+      "submittedName": "ACTOM",
+      "submittedWebsite": "https://www.actom.co.za/",
+      "submittedHeadquarters": "South Africa",
+      "submittedStakeholderType": "OEM",
+      "submittedSegments": [
+        "Utility-scale",
+        "T&D"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_oem_manufacturer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_transmission_distribution",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.actom.co.za/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_acumen_e0bd1d99",
+      "sourceRow": 39,
+      "submittedName": "Acumen",
+      "submittedWebsite": "https://acumen.org/",
+      "submittedHeadquarters": "United States",
+      "submittedStakeholderType": "Financier",
+      "submittedSegments": [
+        "Mini-grids",
+        "SHS/PAYGo",
+        "Clean Cooking",
+        "Productive Use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_clean_cooking",
+        "org_segment_minigrids",
+        "org_segment_productive_use",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://acumen.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_acwa_power_bd7af2d0",
+      "sourceRow": 40,
+      "submittedName": "ACWA Power",
+      "submittedWebsite": "https://www.acwapower.com/",
+      "submittedHeadquarters": "Saudi Arabia",
+      "submittedStakeholderType": "Financier",
+      "submittedSegments": [
+        "Utility-scale",
+        "Storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_energy_storage",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.acwapower.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_aera_group_b15f191b",
+      "sourceRow": 49,
+      "submittedName": "Aera Group",
+      "submittedWebsite": "https://aera-group.fr/",
+      "submittedHeadquarters": "France",
+      "submittedStakeholderType": "Developer",
+      "submittedSegments": [
+        "Clean Cooking",
+        "Carbon Markets"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_carbon_markets",
+        "org_segment_clean_cooking"
+      ],
+      "sourceLeads": [
+        "https://aera-group.fr/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_afreximbank_25bf9e8e",
+      "sourceRow": 52,
+      "submittedName": "Afreximbank",
+      "submittedWebsite": "https://www.afreximbank.com/",
+      "submittedHeadquarters": "Egypt",
+      "submittedStakeholderType": "Financier",
+      "submittedSegments": [
+        "Utility-scale",
+        "T&D",
+        "C&I",
+        "E-mobility",
+        "Storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_emobility",
+        "org_segment_energy_storage",
+        "org_segment_transmission_distribution",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.afreximbank.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_africa_carbon_markets_initiative_acmi_92395afd",
+      "sourceRow": 53,
+      "submittedName": "Africa Carbon Markets Initiative (ACMI)",
+      "submittedWebsite": "https://africacarbonmarkets.org/",
+      "submittedHeadquarters": "Africa-wide",
+      "submittedStakeholderType": "Financier",
+      "submittedSegments": [
+        "Carbon Markets"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "programme_or_facility",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_carbon_markets"
+      ],
+      "sourceLeads": [
+        "https://africacarbonmarkets.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_africa_e_mobility_alliance_05907781",
+      "sourceRow": 58,
+      "submittedName": "Africa E-Mobility Alliance",
+      "submittedWebsite": "https://africaema.org/",
+      "submittedHeadquarters": "Kenya",
+      "submittedStakeholderType": "Enabler",
+      "submittedSegments": [
+        "E-mobility"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_enablers",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_emobility"
+      ],
+      "sourceLeads": [
+        "https://africaema.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_africa_finance_corporation_cc385ca8",
+      "sourceRow": 61,
+      "submittedName": "Africa Finance Corporation",
+      "submittedWebsite": "https://www.africafc.org/",
+      "submittedHeadquarters": "Nigeria",
+      "submittedStakeholderType": "Financier",
+      "submittedSegments": [
+        "Utility-scale",
+        "T&D",
+        "C&I",
+        "Storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage",
+        "org_segment_transmission_distribution",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.africafc.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_africa_minigrid_developers_association_amda_69b64e2a",
+      "sourceRow": 66,
+      "submittedName": "Africa Minigrid Developers Association (AMDA)",
+      "submittedWebsite": "https://www.africamda.org/",
+      "submittedHeadquarters": "Kenya",
+      "submittedStakeholderType": "Enabler",
+      "submittedSegments": [
+        "Mini-grids",
+        "Productive Use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_enablers",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://www.africamda.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_africa_solar_industry_association_afsia_64eadefc",
+      "sourceRow": 68,
+      "submittedName": "Africa Solar Industry Association (AFSIA)",
+      "submittedWebsite": "https://www.afsiasolar.com/",
+      "submittedHeadquarters": "Rwanda",
+      "submittedStakeholderType": "Enabler",
+      "submittedSegments": [
+        "Utility-scale",
+        "Mini-grids",
+        "SHS/PAYGo",
+        "C&I",
+        "Storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_enablers",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage",
+        "org_segment_minigrids",
+        "org_segment_shs_paygo",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.afsiasolar.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_africa50_04afa043",
+      "sourceRow": 71,
+      "submittedName": "Africa50",
+      "submittedWebsite": "https://www.africa50.com/",
+      "submittedHeadquarters": "Morocco",
+      "submittedStakeholderType": "Financier",
+      "submittedSegments": [
+        "Utility-scale",
+        "T&D",
+        "C&I",
+        "Storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage",
+        "org_segment_transmission_distribution",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.africa50.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_africagogreen_fund_8c4eb64d",
+      "sourceRow": 72,
+      "submittedName": "AfricaGoGreen Fund",
+      "submittedWebsite": "https://www.africagogreenfund.com/",
+      "submittedHeadquarters": "Rwanda",
+      "submittedStakeholderType": "Financier",
+      "submittedSegments": [
+        "C&I",
+        "E-mobility",
+        "Storage",
+        "Efficiency",
+        "Carbon Markets"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "capital_vehicle",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_carbon_markets",
+        "org_segment_commercial_industrial",
+        "org_segment_efficiency_demand",
+        "org_segment_emobility",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "https://www.africagogreenfund.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_african_clean_energy_ace_ffaefe59",
+      "sourceRow": 77,
+      "submittedName": "African Clean Energy (ACE)",
+      "submittedWebsite": "https://africancleanenergy.com/",
+      "submittedHeadquarters": "Lesotho",
+      "submittedStakeholderType": "Developer",
+      "submittedSegments": [
+        "SHS/PAYGo",
+        "Clean Cooking",
+        "Carbon Markets"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_carbon_markets",
+        "org_segment_clean_cooking",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://africancleanenergy.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_african_clean_energy_developments_aced_e6089799",
+      "sourceRow": 78,
+      "submittedName": "African Clean Energy Developments (ACED)",
+      "submittedWebsite": "https://www.aced.co.za/",
+      "submittedHeadquarters": "South Africa",
+      "submittedStakeholderType": "Developer",
+      "submittedSegments": [
+        "Utility-scale"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.aced.co.za/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_african_export_import_bank_fund_for_export_devel_746cde53",
+      "sourceRow": 84,
+      "submittedName": "African Export-Import Bank Fund for Export Development in Africa (FEDA)",
+      "submittedWebsite": "https://www.fedagroup.org/",
+      "submittedHeadquarters": "Egypt",
+      "submittedStakeholderType": "Financier",
+      "submittedSegments": [
+        "Utility-scale",
+        "C&I",
+        "E-mobility",
+        "Storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "capital_vehicle",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_emobility",
+        "org_segment_energy_storage",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.fedagroup.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_african_guarantee_fund_9064f125",
+      "sourceRow": 86,
+      "submittedName": "African Guarantee Fund",
+      "submittedWebsite": "https://africanguaranteefund.com/",
+      "submittedHeadquarters": "Kenya",
+      "submittedStakeholderType": "Financier",
+      "submittedSegments": [
+        "Mini-grids",
+        "SHS/PAYGo",
+        "C&I",
+        "Efficiency",
+        "Productive Use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_efficiency_demand",
+        "org_segment_minigrids",
+        "org_segment_productive_use",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://africanguaranteefund.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_agence_fran_aise_de_d_veloppement_afd_9cffe7ef",
+      "sourceRow": 103,
+      "submittedName": "Agence Française de Développement (AFD)",
+      "submittedWebsite": "https://www.afd.fr/en",
+      "submittedHeadquarters": "France",
+      "submittedStakeholderType": "Financier",
+      "submittedSegments": [
+        "Utility-scale",
+        "T&D",
+        "Mini-grids",
+        "Storage",
+        "Efficiency"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_efficiency_demand",
+        "org_segment_energy_storage",
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.afd.fr/en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_aggreko_43fa5d11",
+      "sourceRow": 114,
+      "submittedName": "Aggreko",
+      "submittedWebsite": "https://www.aggreko.com/",
+      "submittedHeadquarters": "United Kingdom",
+      "submittedStakeholderType": "EPC",
+      "submittedSegments": [
+        "Utility-scale",
+        "Mini-grids",
+        "C&I",
+        "Storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage",
+        "org_segment_minigrids",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.aggreko.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_aiko_1ae0cd33",
+      "sourceRow": 125,
+      "submittedName": "AIKO",
+      "submittedWebsite": "https://aikosolar.com/",
+      "submittedHeadquarters": "China",
+      "submittedStakeholderType": "OEM",
+      "submittedSegments": [
+        "Utility-scale",
+        "C&I"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_oem_manufacturer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://aikosolar.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_alliance_for_renewable_electrification_are_154abfb2",
+      "sourceRow": 139,
+      "submittedName": "Alliance for Renewable Electrification (ARE)",
+      "submittedWebsite": "https://renewelec.org/",
+      "submittedHeadquarters": "Belgium",
+      "submittedStakeholderType": "Enabler",
+      "submittedSegments": [
+        "Mini-grids",
+        "SHS/PAYGo",
+        "Productive Use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_enablers",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_productive_use",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://renewelec.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_alliedoffsets_5d40a5ec",
+      "sourceRow": 141,
+      "submittedName": "AlliedOffsets",
+      "submittedWebsite": "https://alliedoffsets.com/",
+      "submittedHeadquarters": "United Kingdom",
+      "submittedStakeholderType": "Developer",
+      "submittedSegments": [
+        "Carbon Markets"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_carbon_markets"
+      ],
+      "sourceLeads": [
+        "https://alliedoffsets.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_amea_power_572a20fc",
+      "sourceRow": 148,
+      "submittedName": "AMEA Power",
+      "submittedWebsite": "https://www.ameapower.com/",
+      "submittedHeadquarters": "United Arab Emirates",
+      "submittedStakeholderType": "Developer",
+      "submittedSegments": [
+        "Utility-scale",
+        "Storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_energy_storage",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.ameapower.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

@@ -29,6 +29,8 @@
 - [27 — Moderated accessibility and user testing](27-moderated-accessibility-user-testing.md)
 - [28 — Classification and software wall](28-classification-and-software-wall.md)
 - [29 — Organisation directory and market graph](29-organisation-directory-and-market-graph.md)
+- [30 — Organisation identity, relationships and intake](30-organisation-identity-relationships-and-intake.md)
+- [31 — Capital, project and portfolio graph](31-capital-project-portfolio-graph.md)
 
 ## Operations and governance
 

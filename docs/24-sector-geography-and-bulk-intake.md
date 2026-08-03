@@ -121,6 +121,13 @@ to it. Source support is confirmed by a human, every promoted assertion receives
 its own decision, unknown source rights are resolved in the Sources queue, and
 release still requires a human-reviewed data pull request.
 
+Candidate organisation rows may leave origin, primary role or sector blank when
+the source does not establish them. Intake records a visible warning instead of
+inventing a classification. Public release remains stricter: a newly
+materialised organisation requires reviewed origin, a reviewed primary role and
+at least one reviewed sector. `unknown` is used only where it is a supported
+controlled value, never as a substitute for missing evidence.
+
 The release planner repeats those limits against the assertions actually
 approved. If an older import used a lower estimate, it creates new release
 shards without changing or repeating the completed editorial decisions.
