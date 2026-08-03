@@ -80,6 +80,44 @@ export type Organisation = {
   providerProfileConfirmed: boolean;
 };
 
+export type OrganisationRoleRecord = {
+  id: string;
+  organisationId: string;
+  roleId: string;
+  isPrimary: boolean;
+  validFrom: string;
+  validTo: string;
+  lastCheckedAt: string;
+};
+
+export type OrganisationSectorRecord = {
+  id: string;
+  organisationId: string;
+  sectorId: string;
+  validFrom: string;
+  validTo: string;
+  lastCheckedAt: string;
+};
+
+export type OrganisationSegmentRecord = {
+  id: string;
+  organisationId: string;
+  segmentId: string;
+  validFrom: string;
+  validTo: string;
+  lastCheckedAt: string;
+};
+
+export type OrganisationSoftwareRelationshipRecord = {
+  id: string;
+  organisationId: string;
+  productId: string;
+  relationshipType: string;
+  validFrom: string;
+  validTo: string;
+  lastCheckedAt: string;
+};
+
 export type Source = {
   id: string;
   title: string;
@@ -166,6 +204,10 @@ type SnapshotData = {
     providerProfileConfirmed: boolean;
     lastCheckedAt: string;
   }>;
+  organisationRoles?: OrganisationRoleRecord[];
+  organisationSectors?: OrganisationSectorRecord[];
+  organisationSegments?: OrganisationSegmentRecord[];
+  organisationSoftwareRelationships?: OrganisationSoftwareRelationshipRecord[];
   products: Array<{
     id: string;
     organisationId: string;
@@ -349,6 +391,11 @@ export const sources: Source[] = snapshot.sources.map((record) => ({
 }));
 
 export const assertions = snapshot.assertions;
+export const organisationRoleRecords = snapshot.organisationRoles ?? [];
+export const organisationSectorRecords = snapshot.organisationSectors ?? [];
+export const organisationSegmentRecords = snapshot.organisationSegments ?? [];
+export const organisationSoftwareRelationshipRecords =
+  snapshot.organisationSoftwareRelationships ?? [];
 export const stages = snapshot.stages;
 export const categories = snapshot.categories;
 export const countrySummaries = snapshot.countrySummaries;
@@ -372,6 +419,10 @@ export const registrySnapshot = {
   release,
   manifest: registryManifest,
   organisations,
+  organisationRoleRecords,
+  organisationSectorRecords,
+  organisationSegmentRecords,
+  organisationSoftwareRelationshipRecords,
   products,
   deployments,
   sources,

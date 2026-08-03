@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "stages": [
     {
       "id": "stage_plan_design",
@@ -111,6 +111,66 @@
     {"id": "sector_commercial_industrial", "name": "Commercial and industrial energy", "order": 4},
     {"id": "sector_emobility_batteries", "name": "E-mobility and battery networks", "order": 5},
     {"id": "sector_markets_finance_carbon", "name": "Markets, finance and carbon", "order": 6}
+  ],
+  "organisation_value_chain": [
+    {"id": "org_chain_govern_coordinate", "name": "Govern and coordinate", "shortName": "Govern", "order": 1, "description": "Public and market institutions that set, administer or coordinate the operating environment."},
+    {"id": "org_chain_finance_derisk", "name": "Finance and de-risk", "shortName": "Finance", "order": 2, "description": "Capital, grant, guarantee, insurance and risk providers."},
+    {"id": "org_chain_develop_own", "name": "Develop and own", "shortName": "Develop", "order": 3, "description": "Organisations that originate, develop, own or hold energy projects and portfolios."},
+    {"id": "org_chain_supply_build", "name": "Supply and build", "shortName": "Build", "order": 4, "description": "Equipment, engineering, construction, installation and integration organisations."},
+    {"id": "org_chain_operate_serve", "name": "Operate and serve", "shortName": "Operate", "order": 5, "description": "Utilities, operators, maintainers, retailers and energy-service organisations."},
+    {"id": "org_chain_enable_advise", "name": "Enable and advise", "shortName": "Enable", "order": 6, "description": "Software, data, research and professional services that support the market."}
+  ],
+  "organisation_role_families": [
+    {"id": "org_family_market_institutions", "name": "Market institutions", "order": 1},
+    {"id": "org_family_capital_risk", "name": "Capital and risk", "order": 2},
+    {"id": "org_family_project_ownership", "name": "Project ownership", "order": 3},
+    {"id": "org_family_delivery_operations", "name": "Delivery and operations", "order": 4},
+    {"id": "org_family_digital_enabling", "name": "Digital and enabling services", "order": 5},
+    {"id": "org_family_professional_services", "name": "Professional services", "order": 6}
+  ],
+  "organisation_roles": [
+    {"id": "org_role_regulator_market_operator", "name": "Regulator or market operator", "familyId": "org_family_market_institutions", "valueChainIds": ["org_chain_govern_coordinate"]},
+    {"id": "org_role_ministry_agency", "name": "Ministry or public agency", "familyId": "org_family_market_institutions", "valueChainIds": ["org_chain_govern_coordinate"]},
+    {"id": "org_role_programme_facility", "name": "Programme or facility", "familyId": "org_family_market_institutions", "valueChainIds": ["org_chain_govern_coordinate", "org_chain_finance_derisk"]},
+    {"id": "org_role_association_standards", "name": "Association or standards body", "familyId": "org_family_market_institutions", "valueChainIds": ["org_chain_govern_coordinate", "org_chain_enable_advise"]},
+    {"id": "org_role_financier_investor", "name": "Financier or investor", "familyId": "org_family_capital_risk", "valueChainIds": ["org_chain_finance_derisk"]},
+    {"id": "org_role_grant_rbf_provider", "name": "Grant or RBF provider", "familyId": "org_family_capital_risk", "valueChainIds": ["org_chain_finance_derisk"]},
+    {"id": "org_role_guarantee_insurance", "name": "Guarantee or insurance provider", "familyId": "org_family_capital_risk", "valueChainIds": ["org_chain_finance_derisk"]},
+    {"id": "org_role_carbon_finance", "name": "Carbon finance provider", "familyId": "org_family_capital_risk", "valueChainIds": ["org_chain_finance_derisk"]},
+    {"id": "org_role_developer_ipp", "name": "Developer or IPP", "familyId": "org_family_project_ownership", "valueChainIds": ["org_chain_develop_own"]},
+    {"id": "org_role_asset_portfolio_owner", "name": "Asset or portfolio owner", "familyId": "org_family_project_ownership", "valueChainIds": ["org_chain_develop_own"]},
+    {"id": "org_role_energy_service_company", "name": "Energy-service company", "familyId": "org_family_project_ownership", "valueChainIds": ["org_chain_develop_own", "org_chain_operate_serve"]},
+    {"id": "org_role_epc_integrator", "name": "EPC or system integrator", "familyId": "org_family_delivery_operations", "valueChainIds": ["org_chain_supply_build"]},
+    {"id": "org_role_oem_supplier", "name": "OEM or equipment supplier", "familyId": "org_family_delivery_operations", "valueChainIds": ["org_chain_supply_build"]},
+    {"id": "org_role_installer_distributor", "name": "Installer or distributor", "familyId": "org_family_delivery_operations", "valueChainIds": ["org_chain_supply_build"]},
+    {"id": "org_role_operator_utility", "name": "Operator or utility", "familyId": "org_family_delivery_operations", "valueChainIds": ["org_chain_operate_serve"]},
+    {"id": "org_role_om_asset_manager", "name": "O&M or asset manager", "familyId": "org_family_delivery_operations", "valueChainIds": ["org_chain_operate_serve"]},
+    {"id": "org_role_energy_retailer", "name": "Energy retailer or service provider", "familyId": "org_family_delivery_operations", "valueChainIds": ["org_chain_operate_serve"]},
+    {"id": "org_role_software_data_provider", "name": "Software and data provider", "familyId": "org_family_digital_enabling", "valueChainIds": ["org_chain_enable_advise"]},
+    {"id": "org_role_research_institution", "name": "Research institution", "familyId": "org_family_digital_enabling", "valueChainIds": ["org_chain_enable_advise"]},
+    {"id": "org_role_adviser", "name": "Professional adviser", "familyId": "org_family_professional_services", "valueChainIds": ["org_chain_enable_advise"]},
+    {"id": "org_role_to_classify", "name": "Role not yet classified", "familyId": "org_family_digital_enabling", "valueChainIds": []}
+  ],
+  "organisation_segments": [
+    {"id": "org_segment_utility_generation", "name": "Utility-scale generation", "order": 1},
+    {"id": "org_segment_transmission_distribution", "name": "Transmission and distribution", "order": 2},
+    {"id": "org_segment_minigrids", "name": "Mini-grids", "order": 3},
+    {"id": "org_segment_shs_paygo", "name": "Off-grid solar, SHS and PAYGo", "order": 4},
+    {"id": "org_segment_commercial_industrial", "name": "C&I and distributed energy", "order": 5},
+    {"id": "org_segment_emobility", "name": "E-mobility, charging and swapping", "order": 6},
+    {"id": "org_segment_clean_cooking", "name": "Clean cooking", "order": 7},
+    {"id": "org_segment_efficiency_demand", "name": "Energy efficiency and demand services", "order": 8},
+    {"id": "org_segment_productive_use", "name": "Productive use of energy", "order": 9},
+    {"id": "org_segment_carbon_markets", "name": "Carbon and environmental markets", "order": 10}
+  ],
+  "organisation_software_relationships": [
+    {"id": "org_software_owns", "name": "Owns"},
+    {"id": "org_software_develops", "name": "Develops"},
+    {"id": "org_software_operates_internally", "name": "Operates internally"},
+    {"id": "org_software_uses", "name": "Uses"},
+    {"id": "org_software_implements", "name": "Implements"},
+    {"id": "org_software_integrates", "name": "Integrates"},
+    {"id": "org_software_resells", "name": "Resells"}
   ],
   "origin_classifications": [
     "africa_built",

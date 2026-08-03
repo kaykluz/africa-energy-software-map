@@ -13,5 +13,12 @@ export default async function Landscape({
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const params = await searchParams;
-  return <LandscapeExplorer initialQuery={params.q} initialView="wall" mode="wall" />;
+  return (
+    <LandscapeExplorer
+      initialQuery={params.q}
+      initialStage={params.stage}
+      initialView="wall"
+      mode="wall"
+    />
+  );
 }

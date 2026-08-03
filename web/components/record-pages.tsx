@@ -21,6 +21,13 @@ import {
   OriginLabel,
 } from "@/components/semantic-tags";
 import { OrganisationMark } from "@/components/brand-mark";
+import {
+  organisationDirectoryRecord,
+  organisationSegmentName,
+  organisationSectorName,
+  organisationValueChain,
+  softwareStageName,
+} from "@/lib/organisation-data";
 
 export function ProductProfile({ slug }: { slug: string }) {
   const product = productBySlug(slug);
@@ -216,11 +223,17 @@ export function ProductProfile({ slug }: { slug: string }) {
 export function OrganisationProfile({ slug }: { slug: string }) {
   const organisation = organisationBySlug(slug);
   if (!organisation) return <NotFoundRecord type="organisation" />;
-  const organisationProducts = products.filter(
+  const directoryRecord = organisationDirectoryRecord(organisation.id);
+  const organisationProducts = directoryRecord?.ownedProducts ?? products.filter(
     (product) => product.organisationId === organisation.id,
   );
+  const directlyOwnedProductIds = new Set(
+    products
+      .filter((product) => product.organisationId === organisation.id)
+      .map((product) => product.id),
+  );
   const organisationDeployments = deployments.filter((deployment) =>
-    organisationProducts.some((product) => product.id === deployment.productId),
+    directlyOwnedProductIds.has(deployment.productId),
   );
   const deploymentCountries = Array.from(
     new Set(organisationDeployments.map((deployment) => deployment.country)),
@@ -275,7 +288,54 @@ export function OrganisationProfile({ slug }: { slug: string }) {
               />
             </dl>
           </ProfileSection>
-          <ProfileSection heading="Products">
+          {directoryRecord ? (
+            <ProfileSection heading="Role and sectors">
+              <div className="organisation-profile-classification">
+                <div>
+                  <span>Role</span>
+                  <Link href={`/organisations?role=${directoryRecord.primaryRole.id}`}>
+                    {directoryRecord.primaryRole.name}
+                  </Link>
+                </div>
+                <div>
+                  <span>Organisation value chain</span>
+                  <div>
+                    {directoryRecord.valueChainIds.map((chainId) => (
+                      <Link href={`/organisations?chain=${chainId}`} key={chainId}>
+                        {organisationValueChain.find((item) => item.id === chainId)?.name ?? chainId}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <span>Sectors</span>
+                  <div>
+                    {directoryRecord.sectorIds.length ? directoryRecord.sectorIds.map((sectorId) => (
+                      <Link href={`/organisations?sector=${sectorId}`} key={sectorId}>
+                        {organisationSectorName(sectorId)}
+                      </Link>
+                    )) : <em>Not yet classified</em>}
+                  </div>
+                </div>
+                {directoryRecord.segmentIds.length ? (
+                  <div>
+                    <span>Market segments</span>
+                    <div>
+                      {directoryRecord.segmentIds.map((segmentId) => (
+                        <Link href={`/organisations?segment=${segmentId}`} key={segmentId}>
+                          {organisationSegmentName(segmentId)}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+              <small className="organisation-derived-note">
+                Current classifications follow the reviewed software linked to this organisation.
+              </small>
+            </ProfileSection>
+          ) : null}
+          <ProfileSection heading="Linked software">
             <div className="linked-product-list">
               {organisationProducts.map((product) => (
                 <Link href={`/products/${product.slug}`} key={product.id}>
@@ -285,6 +345,15 @@ export function OrganisationProfile({ slug }: { slug: string }) {
               ))}
             </div>
           </ProfileSection>
+          {directoryRecord?.stageIds.length ? (
+            <ProfileSection heading="Software coverage">
+              <div className="organisation-software-stages">
+                {directoryRecord.stageIds.map((stageId) => (
+                  <Link href={`/landscape?stage=${stageId}`} key={stageId}>{softwareStageName(stageId)}</Link>
+                ))}
+              </div>
+            </ProfileSection>
+          ) : null}
           <ProfileSection heading="Evidenced African presence">
             <p>
               {organisationDeployments.length} candidate deployment{" "}

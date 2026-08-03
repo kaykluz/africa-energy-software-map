@@ -60,6 +60,10 @@
       "additionalProperties": {"type": "integer", "minimum": 0}
     },
     "organisations": {"type": "array", "items": {"type": "object", "required": ["id", "name", "slug"]}},
+    "organisationRoles": {"type": "array", "items": {"type": "object", "required": ["id", "organisationId", "roleId", "isPrimary", "lastCheckedAt"]}},
+    "organisationSectors": {"type": "array", "items": {"type": "object", "required": ["id", "organisationId", "sectorId", "lastCheckedAt"]}},
+    "organisationSegments": {"type": "array", "items": {"type": "object", "required": ["id", "organisationId", "segmentId", "lastCheckedAt"]}},
+    "organisationSoftwareRelationships": {"type": "array", "items": {"type": "object", "required": ["id", "organisationId", "productId", "relationshipType", "lastCheckedAt"]}},
     "products": {"type": "array", "items": {"type": "object", "required": ["id", "organisationId", "name", "slug", "categoryId"]}},
     "deployments": {"type": "array", "items": {"type": "object", "required": ["id", "productId", "countryIso2", "evidenceStatus", "sourceId"]}},
     "sources": {"type": "array", "items": {"type": "object", "required": ["id", "url", "title", "independenceClass"]}},

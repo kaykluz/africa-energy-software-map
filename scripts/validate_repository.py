@@ -156,6 +156,27 @@ def validate_taxonomy(errors: list[str]) -> None:
     ids.extend(relationship_ids)
     sector_ids = [sector["id"] for sector in taxonomy.get("sectors", [])]
     ids.extend(sector_ids)
+    organisation_chain_ids = [
+        item["id"] for item in taxonomy.get("organisation_value_chain", [])
+    ]
+    organisation_family_ids = [
+        item["id"] for item in taxonomy.get("organisation_role_families", [])
+    ]
+    organisation_role_ids = [
+        item["id"] for item in taxonomy.get("organisation_roles", [])
+    ]
+    organisation_segment_ids = [
+        item["id"] for item in taxonomy.get("organisation_segments", [])
+    ]
+    organisation_software_relationship_ids = [
+        item["id"]
+        for item in taxonomy.get("organisation_software_relationships", [])
+    ]
+    ids.extend(organisation_chain_ids)
+    ids.extend(organisation_family_ids)
+    ids.extend(organisation_role_ids)
+    ids.extend(organisation_segment_ids)
+    ids.extend(organisation_software_relationship_ids)
 
     duplicates = sorted({value for value in ids if ids.count(value) > 1})
     if duplicates:
@@ -176,6 +197,24 @@ def validate_taxonomy(errors: list[str]) -> None:
         errors.append(
             "data/taxonomy.json: exactly six energy relationship IDs are required"
         )
+    if len(organisation_chain_ids) != 6:
+        errors.append(
+            "data/taxonomy.json: exactly six organisation value-chain IDs are required"
+        )
+    organisation_chain_id_set = set(organisation_chain_ids)
+    organisation_family_id_set = set(organisation_family_ids)
+    for role in taxonomy.get("organisation_roles", []):
+        if role.get("familyId") not in organisation_family_id_set:
+            errors.append(
+                f"data/taxonomy.json: {role.get('id', 'organisation role')} has an invalid role family"
+            )
+        if any(
+            value not in organisation_chain_id_set
+            for value in role.get("valueChainIds", [])
+        ):
+            errors.append(
+                f"data/taxonomy.json: {role.get('id', 'organisation role')} has an invalid value-chain position"
+            )
     stage_ids = {stage["id"] for stage in taxonomy["stages"]}
     for function in taxonomy.get("functions", []):
         if any(value not in stage_ids for value in function.get("stageIds", [])):
@@ -472,7 +511,8 @@ def validate_data_package(
     for filename, definition in schema["tables"].items():
         path = package / filename
         if not path.exists():
-            errors.append(f"{relative_package}: missing {filename}")
+            if definition.get("package_required", True):
+                errors.append(f"{relative_package}: missing {filename}")
             continue
         headers, rows = csv_records(path)
         if headers != definition["fields"]:
@@ -509,8 +549,12 @@ def validate_data_package(
                 seen.add(value)
         tables[filename] = rows
 
-    required_table_names = set(schema["tables"])
-    if set(tables) != required_table_names:
+    required_table_names = {
+        filename
+        for filename, definition in schema["tables"].items()
+        if definition.get("package_required", True)
+    }
+    if not required_table_names.issubset(tables):
         return
 
     organisations = {row["id"]: row for row in tables["organisations.csv"]}
@@ -523,6 +567,66 @@ def validate_data_package(
         "deployment": set(deployments),
         "source": set(sources),
     }
+    relationship_subjects = {
+        "organisation_role": "organisation-roles.csv",
+        "organisation_sector": "organisation-sectors.csv",
+        "organisation_segment": "organisation-segments.csv",
+        "organisation_software_relationship": "organisation-software-relationships.csv",
+    }
+    for subject_type, filename in relationship_subjects.items():
+        subject_ids[subject_type] = {
+            row["id"] for row in tables.get(filename, [])
+        }
+
+    organisation_role_ids = {
+        item["id"] for item in taxonomy.get("organisation_roles", [])
+    }
+    organisation_segment_ids = {
+        item["id"] for item in taxonomy.get("organisation_segments", [])
+    }
+    organisation_software_relationship_ids = {
+        item["id"]
+        for item in taxonomy.get("organisation_software_relationships", [])
+    }
+    sector_ids = {item["id"] for item in taxonomy.get("sectors", [])}
+    for filename, vocabulary_field, allowed_values in (
+        ("organisation-roles.csv", "role_id", organisation_role_ids),
+        ("organisation-sectors.csv", "sector_id", sector_ids),
+        ("organisation-segments.csv", "segment_id", organisation_segment_ids),
+        (
+            "organisation-software-relationships.csv",
+            "relationship_type",
+            organisation_software_relationship_ids,
+        ),
+    ):
+        for line_number, row in enumerate(tables.get(filename, []), start=2):
+            if row["organisation_id"] not in organisations:
+                errors.append(
+                    f"{relative_package}/{filename}:{line_number}: unknown organisation_id"
+                )
+            if row[vocabulary_field] not in allowed_values:
+                errors.append(
+                    f"{relative_package}/{filename}:{line_number}: invalid {vocabulary_field}"
+                )
+            for field in ("valid_from", "valid_to", "last_checked_at"):
+                if row[field] and not valid_iso_date(row[field]):
+                    errors.append(
+                        f"{relative_package}/{filename}:{line_number}: invalid {field}"
+                    )
+            if (
+                filename == "organisation-roles.csv"
+                and row["is_primary"] not in {"true", "false"}
+            ):
+                errors.append(
+                    f"{relative_package}/{filename}:{line_number}: is_primary must be true or false"
+                )
+            if (
+                filename == "organisation-software-relationships.csv"
+                and row["product_id"] not in products
+            ):
+                errors.append(
+                    f"{relative_package}/{filename}:{line_number}: unknown product_id"
+                )
 
     for line_number, row in enumerate(tables["organisations.csv"], start=2):
         if row["origin_classification"] not in origin_values:
@@ -1041,7 +1145,8 @@ def validate_release_shards(errors: list[str]) -> None:
         for filename, definition in schema["tables"].items():
             path = package / filename
             if not path.exists():
-                errors.append(f"{relative}: missing {filename}")
+                if definition.get("package_required", True):
+                    errors.append(f"{relative}: missing {filename}")
                 continue
             headers, rows = csv_records(path)
             if headers != definition["fields"]:
@@ -1060,7 +1165,12 @@ def validate_release_shards(errors: list[str]) -> None:
                             f"{path.relative_to(ROOT)}: invalid ID {value!r}"
                         )
             tables[filename] = rows
-        if set(tables) != set(schema["tables"]):
+        required_table_names = {
+            filename
+            for filename, definition in schema["tables"].items()
+            if definition.get("package_required", True)
+        }
+        if not required_table_names.issubset(tables):
             continue
         manifest_path = package / "manifest.json"
         readme_path = package / "README.md"
@@ -1086,6 +1196,56 @@ def validate_release_shards(errors: list[str]) -> None:
         deployments = tables["deployments.csv"]
         sources = tables["sources.csv"]
         assertions = tables["assertions.csv"]
+        available_organisation_ids = global_subjects["organisation"] | {
+            row["id"] for row in organisations
+        }
+        available_product_ids = global_subjects["product"] | {
+            row["id"] for row in products
+        }
+        optional_relationship_contracts = (
+            (
+                "organisation-roles.csv",
+                "role_id",
+                {item["id"] for item in taxonomy.get("organisation_roles", [])},
+            ),
+            (
+                "organisation-sectors.csv",
+                "sector_id",
+                {item["id"] for item in taxonomy.get("sectors", [])},
+            ),
+            (
+                "organisation-segments.csv",
+                "segment_id",
+                {item["id"] for item in taxonomy.get("organisation_segments", [])},
+            ),
+            (
+                "organisation-software-relationships.csv",
+                "relationship_type",
+                {
+                    item["id"]
+                    for item in taxonomy.get(
+                        "organisation_software_relationships", []
+                    )
+                },
+            ),
+        )
+        for filename, vocabulary_field, allowed_values in optional_relationship_contracts:
+            for line_number, row in enumerate(tables.get(filename, []), start=2):
+                if row["organisation_id"] not in available_organisation_ids:
+                    errors.append(
+                        f"{relative}/{filename}:{line_number}: unknown organisation_id"
+                    )
+                if row[vocabulary_field] not in allowed_values:
+                    errors.append(
+                        f"{relative}/{filename}:{line_number}: invalid {vocabulary_field}"
+                    )
+                if (
+                    filename == "organisation-software-relationships.csv"
+                    and row["product_id"] not in available_product_ids
+                ):
+                    errors.append(
+                        f"{relative}/{filename}:{line_number}: unknown product_id"
+                    )
         entity_ids = sorted(
             [row["id"] for row in organisations]
             + [row["id"] for row in products]
