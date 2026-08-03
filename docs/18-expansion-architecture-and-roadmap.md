@@ -269,17 +269,20 @@ The information architecture is in place, but these areas are not yet complete:
 3. The organisation map is derived from reviewed software deployments. Separate
    sourced layers for operating presence, headquarters, country of origin and
    provider-claimed markets are still required.
-4. The 540-listing catalogue and 94-record reviewed registry need an ongoing
+4. Geographic evidence remains materially below the next coverage target: the
+   current release has 20 country-safe deployment records, against a target of
+   75–100 across at least 25 countries.
+5. The 540-listing catalogue and 94-record reviewed registry need an ongoing
    identity-resolution workflow so more listings can become canonical records
    without conflating similarly named products or companies.
-5. Product-specific and organisation logos remain partial. The identity cascade
+6. Product-specific and organisation logos remain partial. The identity cascade
    is product mark, then owner mark, then initials; only approved local assets may
    enter the first two levels.
-6. Transactions, capital facilities, programmes and country market-structure
+7. Transactions, capital facilities, programmes and country market-structure
    pages are future linked datasets, not unfinished fields on a software record.
-7. Independent accessibility assessment, moderated user testing and synthetic
+8. Independent accessibility assessment, moderated user testing and synthetic
    scale/performance testing remain release-hardening work.
-8. Organisation-specific bulk import, review and promotion should reuse the
+9. Organisation-specific bulk import, review and promotion should reuse the
    existing review gate but still needs a dedicated template and field mapping.
 
 ## Contribution growth
