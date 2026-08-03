@@ -25,7 +25,7 @@ one stable canonical organisation ID and source-linked records around it.
   into either parent.
 - A fund, capital vehicle, programme or facility is not forced into an
   organisation row. It becomes a linked object with a `managed_by` relationship
-  when that model is introduced.
+  under the [capital, project and portfolio graph](31-capital-project-portfolio-graph.md).
 
 ## Directional relationship model
 

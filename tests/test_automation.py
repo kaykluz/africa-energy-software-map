@@ -11,6 +11,7 @@ from scripts.build_review_assist import (
     build_review_assist,
 )
 from scripts.materialize_review_release_shard import (
+    ShardMaterializationError,
     build_release_shard,
     write_release_shard,
 )
@@ -297,6 +298,32 @@ class AutomationTests(unittest.TestCase):
             tables["sources.csv"][0]["id"], "src_68e9a02c4a4f420f"
         )
         self.assertNotIn("@", json.dumps(manifest))
+        incomplete = json.loads(json.dumps(package))
+        excluded_ids = {
+            item["id"]
+            for item in incomplete["promotedAssertions"]
+            if item["subjectType"] in {"organisation_role", "organisation_sector"}
+        }
+        incomplete["promotedAssertions"] = [
+            item
+            for item in incomplete["promotedAssertions"]
+            if item["id"] not in excluded_ids
+        ]
+        incomplete["assertionReviews"] = [
+            item
+            for item in incomplete["assertionReviews"]
+            if item["assertionId"] not in excluded_ids
+        ]
+        with self.assertRaisesRegex(
+            ShardMaterializationError, "lacks a reviewed primary role"
+        ):
+            build_release_shard(
+                package=incomplete,
+                package_hash="0" * 64,
+                snapshot=snapshot,
+                shard_id="release-001",
+                reviewer="kaykluz",
+            )
         with tempfile.TemporaryDirectory() as temporary:
             output = Path(temporary) / "release-001"
             write_release_shard(output, tables, manifest, readme)

@@ -419,6 +419,25 @@ def build_release_shard(
                 f"unsupported promoted subject type: {subject_type}"
             )
 
+    primary_role_organisations = {
+        row["organisation_id"]
+        for row in organisation_roles
+        if row["is_primary"].lower() == "true"
+    }
+    sector_organisations = {
+        row["organisation_id"] for row in organisation_sectors
+    }
+    for organisation in organisations:
+        organisation_id = organisation["id"]
+        if organisation_id not in primary_role_organisations:
+            raise ShardMaterializationError(
+                f"organisation {organisation_id} lacks a reviewed primary role"
+            )
+        if organisation_id not in sector_organisations:
+            raise ShardMaterializationError(
+                f"organisation {organisation_id} lacks a reviewed sector"
+            )
+
     plan_sources = {item["id"]: item for item in plan["actions"]["addSources"]}
     promoted_sources = package.get("promotedSources", [])
     promoted_by_url = {str(item.get("url") or ""): item for item in promoted_sources}

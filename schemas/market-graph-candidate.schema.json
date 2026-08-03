@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/kaykluz/africa-energy-software-map/schemas/market-graph-candidate.schema.json",
+  "title": "Capital, project and portfolio candidate package",
+  "type": "object",
+  "required": ["schemaVersion", "packageId", "status", "objects", "relationships", "assertions", "sources"],
+  "properties": {
+    "schemaVersion": {"const": "1.0.0"},
+    "packageId": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{2,95}$"},
+    "status": {
+      "type": "object",
+      "required": ["candidateOnly", "publicationAuthorised", "humanReviewRequired"],
+      "properties": {
+        "candidateOnly": {"const": true},
+        "publicationAuthorised": {"const": false},
+        "humanReviewRequired": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "objects": {
+      "type": "array",
+      "maxItems": 25,
+      "items": {"$ref": "#/$defs/object"}
+    },
+    "relationships": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {"$ref": "#/$defs/relationship"}
+    },
+    "assertions": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {"$ref": "#/$defs/assertion"}
+    },
+    "sources": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/source"}
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{2,95}$"},
+    "date": {"type": "string", "format": "date"},
+    "object": {
+      "type": "object",
+      "required": ["candidateId", "objectType", "submittedName", "identityState", "reviewState"],
+      "properties": {
+        "candidateId": {"$ref": "#/$defs/id"},
+        "objectType": {
+          "enum": ["organisation", "capital_vehicle", "project", "portfolio", "client", "site", "transaction", "product"]
+        },
+        "submittedName": {"type": "string", "minLength": 1, "maxLength": 320},
+        "canonicalId": {"$ref": "#/$defs/id"},
+        "identityState": {"enum": ["new_candidate", "canonical_match", "possible_duplicate", "needs_split", "held"]},
+        "countryIso2": {"type": "string", "pattern": "^[A-Z]{2}$"},
+        "locationPrecision": {"enum": ["country", "region", "city", "public_approximate_site", "not_published"]},
+        "lifecycleStatus": {"enum": ["announced", "awarded", "contracted", "financial_close", "construction", "operational", "suspended", "cancelled", "historical", "unknown"]},
+        "reviewState": {"enum": ["needs_identity_review", "needs_source_review", "needs_relationship_review", "more_evidence", "rejected"]}
+      },
+      "additionalProperties": false
+    },
+    "relationship": {
+      "type": "object",
+      "required": ["candidateId", "subjectId", "relationshipType", "objectId", "sourceIds", "reviewState"],
+      "properties": {
+        "candidateId": {"$ref": "#/$defs/id"},
+        "subjectId": {"$ref": "#/$defs/id"},
+        "relationshipType": {
+          "enum": [
+            "managed_by", "member_of_portfolio", "finances", "guarantees", "insures",
+            "develops_project", "sponsors_project", "owns_project", "client_of_project",
+            "offtakes_from_project", "benefits_from_project", "epc_for", "installs_for",
+            "integrates_for", "operates_for", "maintains_for", "supplies_equipment_to",
+            "advises", "enables", "regulates", "develops_product", "provides_product_to",
+            "implements_product_for", "integrates_product_for", "uses_product_on",
+            "delivered_at", "subsidiary_of", "affiliate_of", "acquired_by", "brand_of"
+          ]
+        },
+        "objectId": {"$ref": "#/$defs/id"},
+        "validFrom": {"$ref": "#/$defs/date"},
+        "validTo": {"$ref": "#/$defs/date"},
+        "sourceIds": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/id"}},
+        "reviewState": {"enum": ["needs_source_review", "needs_relationship_review", "more_evidence", "rejected"]}
+      },
+      "additionalProperties": false
+    },
+    "assertion": {
+      "type": "object",
+      "required": ["candidateId", "subjectId", "predicate", "sourceIds", "evidenceStatus", "reviewState"],
+      "properties": {
+        "candidateId": {"$ref": "#/$defs/id"},
+        "subjectId": {"$ref": "#/$defs/id"},
+        "predicate": {
+          "enum": [
+            "name", "description", "website", "lifecycle_status", "country_iso2",
+            "target_size", "first_close", "final_close", "conditional_commitment",
+            "committed_capital", "deployed_capital", "transaction_value",
+            "announced_capacity", "awarded_capacity", "contracted_capacity",
+            "financed_capacity", "operational_capacity", "site_count", "connection_count",
+            "customer_count", "technology", "portfolio_aggregate"
+          ]
+        },
+        "value": {"type": ["string", "number", "integer"]},
+        "unit": {"enum": ["EUR", "USD", "GBP", "ZAR", "KES", "NGN", "GHS", "MW", "MWp", "MWh", "sites", "connections", "customers", "projects", "countries"]},
+        "claimStatus": {"enum": ["announced", "conditional", "committed", "closed", "deployed", "cancelled", "unknown"]},
+        "asOfDate": {"$ref": "#/$defs/date"},
+        "sourceIds": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/id"}},
+        "evidenceStatus": {"enum": ["provider_claim_only", "public_source", "independently_evidenced", "customer_confirmed"]},
+        "reviewState": {"enum": ["needs_source_review", "needs_value_review", "more_evidence", "rejected"]}
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": ["candidateId", "url", "title", "publisher", "independenceClass", "rightsState", "locator", "reviewState"],
+      "properties": {
+        "candidateId": {"$ref": "#/$defs/id"},
+        "url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+        "title": {"type": "string", "minLength": 1},
+        "publisher": {"type": "string", "minLength": 1},
+        "publicationDate": {"$ref": "#/$defs/date"},
+        "independenceClass": {"enum": ["customer_or_official", "independent_primary", "independent_secondary", "provider_authored", "aggregator", "community_submission"]},
+        "rightsState": {"enum": ["unreviewed", "resolved", "restricted", "not_usable"]},
+        "locator": {"type": "string", "minLength": 1},
+        "reviewState": {"enum": ["needs_source_review", "resolved", "rejected"]}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

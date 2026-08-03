@@ -19,7 +19,7 @@ Organisation ── role ──────────────── Role
       ├──────── segment ───────────── Segment
       ├──────── presence ──────────── Country
       ├──────── software relation ─── Product
-      └──────── project party ─────── Project / transaction (later phase)
+      └──────── project party ─────── Project / transaction (see document 31)
 ```
 
 Tabs and routes represent durable object types. Roles and segments are
@@ -107,6 +107,11 @@ Interaction rules:
 The data model therefore needs stable canonical URLs or entity IDs on every
 relationship edge. Public rendering must use those identifiers rather than
 fuzzy name matching.
+
+Capital vehicles, projects, portfolios, clients, sites and financing events use
+the separate object and edge contract in
+[31 — Capital, project and portfolio graph](31-capital-project-portfolio-graph.md).
+They are not flattened into organisation rows.
 
 ## Organisation taxonomy
 
