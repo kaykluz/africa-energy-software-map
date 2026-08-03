@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
+  africanCountries,
   categories,
   dataDistributions,
   deployments,
@@ -19,6 +20,12 @@ import {
   organisationCatalogue,
 } from "@/lib/organisation-catalogue";
 import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
+import { landscapeItems } from "@/lib/landscape-data";
+import {
+  organisationLinkIndex,
+  resolveLandscapeItemHref,
+  resolveOrganisationHref,
+} from "@/lib/entity-links";
 
 export async function MethodologyPage() {
   const { canonicalDirectory } = await loadPublicOrganisationRegistry();
@@ -402,6 +409,7 @@ export async function SearchResultsPage({ query }: { query: string }) {
   const canonicalDirectoryById = new Map(
     canonicalDirectory.map((record) => [record.organisation.id, record]),
   );
+  const canonicalOrganisationLinks = organisationLinkIndex(canonicalDirectory);
   const term = normaliseQuery(query);
   const productResults = term
     ? products.filter((product) =>
@@ -436,6 +444,31 @@ export async function SearchResultsPage({ query }: { query: string }) {
         normaliseQuery(category.name).includes(term),
       )
     : [];
+  const countryResults = term
+    ? africanCountries.filter(([, name]) => normaliseQuery(name).includes(term))
+    : [];
+  const canonicalResultHrefs = new Set([
+    ...productResults.map((product) => `/products/${product.slug}`),
+    ...organisationResults.map((organisation) => `/organisations/${organisation.slug}`),
+  ]);
+  const landscapeResults = term
+    ? landscapeItems
+        .filter((item) => normaliseQuery([
+          item.name,
+          item.parent ?? "",
+          ...(item.aliases ?? []),
+          item.summaryAsSubmitted,
+          ...item.geographies,
+        ].join(" ")).includes(term))
+        .map((item) => ({
+          href: resolveLandscapeItemHref(item, canonicalOrganisationLinks) ?? `/landscape?q=${encodeURIComponent(item.name)}`,
+          item,
+          parentHref: item.parent
+            ? resolveOrganisationHref(item.parent, canonicalOrganisationLinks)
+            : undefined,
+        }))
+        .filter((result) => !canonicalResultHrefs.has(result.href))
+    : [];
   const catalogueResults = term
     ? catalogueRecords
         .filter((record) => record.reviewState === "needs_review")
@@ -468,6 +501,8 @@ export async function SearchResultsPage({ query }: { query: string }) {
       ) : productResults.length ||
         organisationResults.length ||
         categoryResults.length ||
+        countryResults.length ||
+        landscapeResults.length ||
         catalogueResults.length ? (
         <div className="search-groups">
           {productResults.length ? (
@@ -531,6 +566,28 @@ export async function SearchResultsPage({ query }: { query: string }) {
             <section><h2>Capabilities <span>{categoryResults.length}</span></h2>
               {categoryResults.map((category) => (
                 <Link href={`/?category=${category.id}`} key={category.id}><span><strong>{category.name}</strong><small>Value-chain category</small></span><span>View in Explore →</span></Link>
+              ))}
+            </section>
+          ) : null}
+          {countryResults.length ? (
+            <section><h2>Countries <span>{countryResults.length}</span></h2>
+              {countryResults.map(([iso2, name]) => (
+                <Link href={`/countries/${iso2.toLowerCase()}`} key={iso2}><span><strong>{name}</strong><small>{iso2}</small></span><span>Open country →</span></Link>
+              ))}
+            </section>
+          ) : null}
+          {landscapeResults.length ? (
+            <section><h2>Software wall <span>{landscapeResults.length}</span></h2>
+              {landscapeResults.slice(0, 100).map(({ href, item, parentHref }) => (
+                <article className="search-entity-row" key={item.id}>
+                  <span>
+                    <Link href={href}><strong>{item.name}</strong></Link>
+                    {item.parent ? (
+                      parentHref ? <Link href={parentHref}><small>{item.parent}</small></Link> : <small>{item.parent}</small>
+                    ) : <small>Full catalogue listing</small>}
+                  </span>
+                  <Link href={href}>Open listing →</Link>
+                </article>
               ))}
             </section>
           ) : null}

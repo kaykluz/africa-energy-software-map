@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { ProductProfile } from "@/components/record-pages";
+import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
 import { productBySlug } from "@/lib/registry-data";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -22,5 +25,6 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  return <ProductProfile slug={slug} />;
+  const { canonicalDirectory } = await loadPublicOrganisationRegistry();
+  return <ProductProfile directory={canonicalDirectory} slug={slug} />;
 }

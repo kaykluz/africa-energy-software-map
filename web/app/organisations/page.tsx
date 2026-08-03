@@ -21,7 +21,14 @@ export default async function OrganisationsPage({
   const catalogueCountry = africanCountries.find(([iso2]) => iso2 === params.country)?.[1] ?? "all";
   const { canonicalDirectory, catalogueRecords } = await loadPublicOrganisationRegistry();
   const initialCatalogue = queryOrganisationCatalogue(
-    { query: params.q, country: catalogueCountry },
+    {
+      country: catalogueCountry,
+      headquarters: params.headquarters,
+      query: params.q,
+      role: params.role,
+      scope: params.scope,
+      segment: params.segment,
+    },
     catalogueRecords,
   );
   return (
@@ -29,6 +36,10 @@ export default async function OrganisationsPage({
       canonicalDirectory={canonicalDirectory}
       initialCatalogue={initialCatalogue}
       initialCatalogueCountry={catalogueCountry}
+      initialCatalogueHeadquarters={params.headquarters}
+      initialCatalogueRole={params.role}
+      initialCatalogueScope={params.scope}
+      initialCatalogueSegment={params.segment}
       initialGroup={params.group}
       initialCountry={params.country}
       initialOrigin={params.origin}

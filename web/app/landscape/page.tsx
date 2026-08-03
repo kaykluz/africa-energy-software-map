@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { LandscapeExplorer } from "@/components/landscape-explorer";
+import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/landscape" },
@@ -13,9 +16,22 @@ export default async function Landscape({
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const params = await searchParams;
+  const { canonicalDirectory } = await loadPublicOrganisationRegistry();
   return (
     <LandscapeExplorer
+      canonicalOrganisations={canonicalDirectory.map((record) => ({
+        aliases: record.aliases,
+        organisation: {
+          name: record.organisation.name,
+          slug: record.organisation.slug,
+        },
+      }))}
+      initialAfricaUse={params.africaUse}
+      initialFunction={params.function}
+      initialKind={params.kind}
       initialQuery={params.q}
+      initialRelationship={params.relationship}
+      initialSector={params.sector}
       initialStage={params.stage}
       initialView="wall"
       mode="wall"

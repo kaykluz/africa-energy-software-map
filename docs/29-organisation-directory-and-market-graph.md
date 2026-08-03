@@ -113,7 +113,8 @@ stable internal destination, its visible name links to that destination.
 | Segment or technology | Filtered Software or Organisations view, according to context |
 | Category or value-chain stage | Filtered Software view |
 | Project or transaction | Canonical project or transaction record when introduced |
-| Source title or publisher | Direct source URL or a future internal source record |
+| Source title | Direct source URL |
+| Source publisher | Canonical organisation record when the publisher identity is resolved |
 
 Names are linked in tables, cards, previews, map panels, relationship lists,
 profiles, search results and change history. A relationship should be traversable
@@ -125,6 +126,16 @@ Link only known identities. Do not guess a destination from a matching string,
 silently link a customer name to the wrong organisation, or treat two similar
 names as the same entity. Records without a stable destination remain plain text
 and enter the identity-resolution queue.
+
+The implemented resolver uses canonical names and reviewed aliases, normalises
+only punctuation, accents, case and spacing, and requires an exact result. When
+the same normalised label points to different product or organisation records,
+the label remains unresolved unless the field itself establishes the object
+type. Named customers without a canonical profile may link to an exact catalogue
+search result, but the interface does not present that search link as a resolved
+identity. Organisations accepted or amended in `/review` join the live canonical
+link index immediately; immutable release snapshots still follow the repository
+promotion workflow described above.
 
 Interaction rules:
 

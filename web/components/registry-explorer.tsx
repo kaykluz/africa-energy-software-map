@@ -43,6 +43,11 @@ import {
   type OrganisationDirectoryRecord,
 } from "@/lib/organisation-data";
 import type { OrganisationCatalogueMapData } from "@/lib/organisation-catalogue";
+import {
+  organisationLinkIndex,
+  resolveOrganisationHref,
+  type ExactLinkIndex,
+} from "@/lib/entity-links";
 
 export type RegistryView = "stack" | "deployments" | "directory";
 
@@ -108,6 +113,10 @@ export function RegistryExplorer({
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const openerRef = useRef<HTMLElement | null>(null);
+  const canonicalOrganisationLinks = useMemo(
+    () => organisationLinkIndex(canonicalOrganisationDirectory),
+    [canonicalOrganisationDirectory],
+  );
 
   useEffect(() => {
     const close = (event: KeyboardEvent) => {
@@ -338,6 +347,7 @@ export function RegistryExplorer({
         <DeploymentsView
           catalogueMapData={catalogueMapData ?? emptyCatalogueMapData}
           organisationRecords={canonicalOrganisationDirectory}
+          organisationLinks={canonicalOrganisationLinks}
           filteredProducts={filteredProducts}
           initialCountry={countryFilter}
           initialObject={initialObject}
@@ -361,6 +371,7 @@ export function RegistryExplorer({
             openerRef.current?.focus();
           }}
           product={selectedProduct}
+          organisationLinks={canonicalOrganisationLinks}
         />
       ) : null}
     </main>
@@ -798,6 +809,7 @@ function DeploymentsView({
   initialObject,
   initialPresence,
   organisationRecords,
+  organisationLinks,
   onOpenProduct,
   preservedSearch,
 }: {
@@ -807,6 +819,7 @@ function DeploymentsView({
   initialObject: string;
   initialPresence: string;
   organisationRecords: OrganisationDirectoryRecord[];
+  organisationLinks: ExactLinkIndex;
   onOpenProduct: (product: Product, element: HTMLElement) => void;
   preservedSearch: string;
 }) {
@@ -1072,7 +1085,11 @@ function DeploymentsView({
                         />
                         <span>
                           <Link href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
-                          <small>{deployment.customer}</small>
+                          <small><OrganisationReferenceLink
+                            index={organisationLinks}
+                            name={deployment.customer}
+                            searchFallback={deployment.customerDisclosure === "named"}
+                          /></small>
                         </span>
                       </span>
                       <b>{deployment.year}</b>
@@ -1652,9 +1669,11 @@ function DirectoryView({
 
 function ProductPreview({
   close,
+  organisationLinks,
   product,
 }: {
   close: () => void;
+  organisationLinks: ExactLinkIndex;
   product: Product;
 }) {
   const [tab, setTab] = useState<"overview" | "evidence">("overview");
@@ -1736,7 +1755,11 @@ function ProductPreview({
                 <div key={deployment.id}>
                   <span>{String(index + 1).padStart(2, "0")}</span>
                   <Link href={`/countries/${deployment.countryIso2.toLowerCase()}`}><strong>{deployment.country}</strong></Link>
-                  <small>{deployment.customer}</small>
+                  <small><OrganisationReferenceLink
+                    index={organisationLinks}
+                    name={deployment.customer}
+                    searchFallback={deployment.customerDisclosure === "named"}
+                  /></small>
                   <b>{deployment.year}</b>
                   <EvidenceStatusLabel compact status={deployment.evidence} />
                 </div>
@@ -1780,6 +1803,23 @@ function OrganisationLink({
   const organisation = organisationById(product.organisationId);
   if (!organisation) return <span>{product.organisation}{suffix}</span>;
   return <Link href={`/organisations/${organisation.slug}`}>{product.organisation}{suffix}</Link>;
+}
+
+function OrganisationReferenceLink({
+  index,
+  name,
+  searchFallback = false,
+}: {
+  index: ExactLinkIndex;
+  name: string;
+  searchFallback?: boolean;
+}) {
+  const href = resolveOrganisationHref(name, index);
+  if (href) return <Link href={href}>{name}</Link>;
+  if (searchFallback && name && !/not disclosed|not documented|confidential|unknown/i.test(name)) {
+    return <Link href={`/organisations?q=${encodeURIComponent(name)}`}>{name}</Link>;
+  }
+  return <>{name}</>;
 }
 
 function countryLabel(iso2: string) {
