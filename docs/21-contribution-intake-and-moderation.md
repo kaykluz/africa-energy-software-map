@@ -2,9 +2,10 @@
 
 ## Status
 
-Phase 1 has durable intake for four public routes:
+Phase 1 has durable intake for five public routes:
 
 - submit a product;
+- submit an organisation with a primary actor type, specific role and energy markets;
 - add deployment evidence;
 - correct a record; and
 - claim an organisation profile.
@@ -22,7 +23,7 @@ change and release. See [Review workspace](22-review-workspace.md).
 
 ## Contributor experience
 
-1. The contributor chooses one of the four routes.
+1. The contributor chooses one of the five routes.
 2. The form reveals only the fields needed for that route.
 3. The contributor supplies a direct public source.
 4. Deployment contributors confirm that no sensitive infrastructure data is
@@ -65,9 +66,10 @@ The server, rather than the browser, is authoritative. It:
 
 - accepts JSON only and caps request bodies at 20 KB;
 - requires a same-origin browser request;
-- permits only the four documented submission types;
+- permits only the five documented submission types;
 - checks required fields by route;
-- accepts only taxonomy categories and African country codes;
+- accepts only product categories, organisation actor types and African country
+  codes from the controlled taxonomies;
 - accepts only direct HTTP or HTTPS source URLs;
 - limits lengths and normalises strings before storage;
 - rejects exact coordinate patterns, credentials, tokens, passwords, and

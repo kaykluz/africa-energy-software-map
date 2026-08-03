@@ -2202,7 +2202,7 @@ function ContributionReviewPanel({
         <DataRow label="Received" value={formatDate(contribution.submittedAt)} />
         <DataRow label="Product" value={contribution.relatedEntityId || contribution.productName} />
         <DataRow label="Organisation" value={contribution.organisationName} />
-        <DataRow label="Category" value={contribution.category} />
+        <DataRow label={contribution.submissionType === "organisation" ? "Actor type" : "Category"} value={contribution.category} />
         <DataRow label="Country" value={contribution.countryIso2} />
         <DataRow label="Customer" value={contribution.customerPublic} />
         <DataRow label="Proposed value" value={contribution.proposedValue} />

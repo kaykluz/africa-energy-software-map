@@ -1,6 +1,8 @@
 # Organisation directory and market graph
 
-Status: Foundation implemented; wider organisation population remains Phase 2
+Status: Public foundation implemented; wider organisation population remains
+outstanding
+Last updated: 3 August 2026
 
 ## Decision
 
@@ -37,22 +39,22 @@ organisation does not infer a role such as EPC, developer or financier. Those
 roles remain future filterable fields on the organisation record, so adding
 market actors later will not create a tab for every role-by-sector combination.
 
-The compact global navigation should evolve to:
+The compact global navigation is:
 
-**Map · Software · Organisations · Data · Method · Contribute**
+**Explore · Map · Data · Wall · Organisations**
 
-- **Map** remains the prominent geographic entry point and receives software
-  and organisation layers.
-- **Software** opens the classified software wall.
+- **Explore** searches the complete classified catalogue.
+- **Map** remains the prominent geographic entry point and switches between
+  software and software-linked organisations.
+- **Data** opens the precise reviewed software directory and filtered export.
+- **Wall** opens the classified visual software landscape.
 - **Organisations** opens an organisation atlas with Ecosystem, Map and
   Directory views.
-- **Data** provides exact tables, column selection and exports for either object
-  type.
-- **Method** explains inclusion, evidence, freshness and conflicts.
-- **Contribute** remains a visible action rather than a passive footer link.
+- **Method**, downloads, changes, accessibility, admin and contribution remain
+  available through project navigation and contextual actions.
 
-On narrow screens, the primary navigation is Map, Software, Organisations and
-More. Contribute remains reachable from the header and contextual empty states.
+On narrow screens, the same routes remain available through the compact menu.
+Contribute remains reachable from the header and contextual empty states.
 
 Do not add permanent top-level tabs for every role or segment. URLs such as
 `/organisations?role=org_role_epc&segment=org_segment_commercial_industrial&country=GH`
@@ -267,8 +269,9 @@ and provides a direct contribution action rather than disappearing.
 
 ### Map view
 
-The map reuses the accessible Africa country grid and eventual licensed
-geographic view. It never uses office or project coordinates.
+The organisation Map action opens the shared accessible geographic map with the
+organisation object layer selected. It never uses office or project
+coordinates.
 
 Primary layer controls:
 
@@ -298,21 +301,19 @@ breakdowns rather than summing them into a false total.
 ### Directory view
 
 The list is the precise working surface. Desktop defaults to rows; mobile uses
-cards. Default columns are:
+cards. Current columns are:
 
 - organisation;
-- primary actor type and specific role;
-- other roles;
-- segments;
+- actor type;
+- energy markets;
 - evidenced African countries;
-- software relationship;
-- lifecycle;
-- last checked; and
-- evidence state.
+- linked software count; and
+- direct profile access.
 
-Users may add origin, headquarters, technology tags and source count through
-column selection. Exports contain all matching records, not only the visible
-page.
+Filtered CSV export also includes specific roles, broad sectors, origin,
+headquarters, last checked and website. Column selection, evidence-state fields
+and technology tags remain future refinements. Exports contain all matching
+records, not only the visible page.
 
 ### Layered filters
 
@@ -348,8 +349,8 @@ There is no quality, popularity or sponsored sort.
 
 ## Organisation preview and profile
 
-Selecting a tile, map result or row opens the same preview sheet without losing
-filters. The preview contains:
+Tiles and rows currently link to the canonical organisation profile. A future
+quick-preview sheet may contain:
 
 - name, identity mark and lifecycle;
 - primary actor type plus specific and secondary roles;
@@ -475,12 +476,16 @@ commercial disclosures in any public table, snapshot, API response or export.
 
 The organisation form asks for:
 
-- organisation name and website;
-- proposed roles and segments;
-- African countries and type of presence;
-- any named software relationship;
+- organisation name;
+- primary actor type;
+- specific role, energy markets and relevant African geography in one
+  publishable proposal;
 - mandatory direct source URL; and
-- optional public-safe note.
+- optional private contact email stored separately from the candidate record.
+
+Structured multi-role, presence and software-relationship fields belong in the
+future organisation bulk template rather than making the public contribution
+form long and difficult to complete.
 
 Contributions create candidates. They never update a public profile directly.
 Contributors provide facts and sources; reviewers decide field wording,
@@ -506,6 +511,10 @@ yet researched. They must not claim completeness.
 - extend private review and bulk-import flows; and
 - generate organisation records from the same reviewed release pipeline.
 
+Actor, role, market and relationship vocabularies, optional release tables and
+snapshot generation are implemented. A dedicated organisation bulk workbook
+and promotion mapping remain outstanding.
+
 ### 2. Seed and reconcile
 
 - extract candidate organisations from current product owners and standalone
@@ -515,6 +524,9 @@ yet researched. They must not claim completeness.
 - link existing products through Owns or Develops relationships; and
 - keep private disclosures out of all candidate and release artefacts.
 
+Current reviewed software owners are seeded and reconciled. Population of the
+wider actor ecosystem is outstanding.
+
 ### 3. Public directory
 
 - ship `/organisations` with Ecosystem and Directory views;
@@ -522,12 +534,20 @@ yet researched. They must not claim completeness.
 - add URL-persistent filters and organisation exports; and
 - expose reviewed software relationships.
 
+Ecosystem and Directory views, URL filters, canonical profiles, contribution
+intake and filtered CSV export are implemented. Quick preview and richer direct
+organisation assertions remain outstanding.
+
 ### 4. Map layer
 
 - add evidenced and claimed organisation-presence layers;
 - add the software-connected layer;
 - reconcile country-panel counts with filtered exports; and
-- retain country-grid and keyboard alternatives.
+- retain geographic, equal-area grid and ranked keyboard alternatives.
+
+The software-connected organisation layer is implemented. Independent
+evidenced-presence, claimed-presence, headquarters and origin layers still need
+sourced organisation-presence records.
 
 ### 5. Deep role views
 

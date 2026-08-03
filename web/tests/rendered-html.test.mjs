@@ -329,6 +329,12 @@ test("server-renders the classified software wall", async () => {
   assert.match(html, /CSV/);
   assert.match(html, /JSON/);
   assert.match(html, /Sources/);
+
+  const inheritedMarkResponse = await render("/landscape?q=AMMP%20OS");
+  assert.equal(inheritedMarkResponse.status, 200);
+  const inheritedMarkHtml = await inheritedMarkResponse.text();
+  assert.match(inheritedMarkHtml, /AMMP OS/);
+  assert.match(inheritedMarkHtml, /src="\/brand\/organisations\/ammp\.png"/);
 });
 
 test("server-renders local brand assets and the organisation atlas", async () => {
@@ -347,6 +353,7 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   assert.match(organisationHtml, /Software developer or platform/);
   assert.match(organisationHtml, /Filter by actor type/);
   assert.match(organisationHtml, /Filter by energy market/);
+  assert.match(organisationHtml, /Export CSV/);
   assert.match(organisationHtml, /Mini-grids/);
   assert.match(organisationHtml, /Off-grid solar, SHS and PAYGo/);
   assert.match(organisationHtml, /C&amp;I and distributed energy/);
@@ -367,7 +374,7 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   );
   assert.equal(organisationProfileResponse.status, 200);
   const organisationProfileHtml = await organisationProfileResponse.text();
-  assert.match(organisationProfileHtml, /Role and sectors/);
+  assert.match(organisationProfileHtml, /Actor type and markets/);
   assert.match(organisationProfileHtml, /Actor type/);
   assert.match(organisationProfileHtml, /E-mobility and battery networks/);
   assert.match(organisationProfileHtml, /Software coverage/);
@@ -399,6 +406,14 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   assert.equal(productResponse.status, 200);
   const productHtml = await productResponse.text();
   assert.match(productHtml, /src="\/brand\/organisations\/ammp\.png"/);
+  assert.match(productHtml, /data-brand-source="organisation"/);
+  assert.match(productHtml, /Reviewed product record/);
+
+  const directoryLogoResponse = await render("/directory?q=AMMP%20OS");
+  assert.equal(directoryLogoResponse.status, 200);
+  const directoryLogoHtml = await directoryLogoResponse.text();
+  assert.match(directoryLogoHtml, /data-brand-source="organisation"/);
+  assert.match(directoryLogoHtml, /src="\/brand\/organisations\/ammp\.png"/);
 });
 
 test("classifies a horizontal payment rail without presenting it as energy software", async () => {
@@ -461,7 +476,7 @@ test("server-renders a source-linked product profile", async () => {
   assert.match(html, /Proparco/);
   assert.match(html, /href="\/organisations\/beacon-power-services"/);
   assert.match(html, /href="\/countries\/ng"/);
-  assert.match(html, /Editorial review required/);
+  assert.match(html, /Reviewed beta · Expanded Batch 001/);
 });
 
 test("server-renders corrected product identity and source-backed fields", async () => {
@@ -525,6 +540,10 @@ test("server-renders the methodology AI disclosure", async () => {
   assert.match(html, /AI use and human review/);
   assert.match(html, /AI output is never evidence/);
   assert.match(html, /no autonomous process may publish/);
+  assert.match(html, /organisation actor types/);
+  assert.match(html, /energy markets/);
+  assert.match(html, /94(?:<!-- -->)? reviewed products/);
+  assert.doesNotMatch(html, /first five candidate products/);
 });
 
 test("server-renders durable contribution and private receipt routes", async () => {
@@ -535,11 +554,45 @@ test("server-renders durable contribution and private receipt routes", async () 
   assert.match(formHtml, /Nothing is published automatically/);
   assert.match(formHtml, /Contact email/);
 
+  const organisationFormResponse = await render("/contribute/organisation");
+  assert.equal(organisationFormResponse.status, 200);
+  const organisationFormHtml = await organisationFormResponse.text();
+  assert.match(organisationFormHtml, /Submit an organisation/);
+  assert.match(organisationFormHtml, /Role and markets/);
+
   const receiptResponse = await render(
     "/contribute/status/AEM-PRO-20260730-ABCDEF1234567890?token=abc",
   );
   assert.equal(receiptResponse.status, 200);
   assert.match(await receiptResponse.text(), /Contribution receipt/);
+});
+
+test("organisation contributions enter the moderated queue with an actor type", async () => {
+  const database = new MemoryD1();
+  const response = await fetchWorker(
+    "/api/contributions",
+    contributionRequest({
+      ...validProductContribution,
+      type: "organisation",
+      product: "",
+      organisation: "Example Solar EPC",
+      category: "EPCs and installers",
+      source: "https://example.com/about",
+      notes: "EPC working in C&I and mini-grids in Ghana.",
+    }),
+    { DB: database },
+  );
+  assert.equal(response.status, 201);
+  const receipt = await response.json();
+  assert.match(receipt.id, /^AEM-ORG-\d{8}-[A-F0-9]{16}$/);
+  const stored = database.get(
+    "SELECT submission_type AS submissionType, organisation_name AS organisationName, category, notes FROM contributions WHERE id = ?",
+    receipt.id,
+  );
+  assert.equal(stored.submissionType, "organisation");
+  assert.equal(stored.organisationName, "Example Solar EPC");
+  assert.equal(stored.category, "EPCs and installers");
+  assert.equal(stored.notes, "EPC working in C&I and mini-grids in Ghana.");
 });
 
 test("contribution API stores moderated content and private contact separately", async () => {

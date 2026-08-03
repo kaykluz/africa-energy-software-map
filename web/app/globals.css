@@ -2088,9 +2088,29 @@ dd {
   text-decoration: none;
 }
 
-.linked-product-list a span:first-child {
+.linked-product-list .product-mark {
+  flex: 0 0 auto;
+  border-radius: 10px;
+}
+
+.linked-product-list a > span:nth-child(2) {
   display: flex;
   flex-direction: column;
+}
+
+.profile-deployment-product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-deployment-product > div {
+  display: grid;
+  gap: 3px;
+}
+
+.profile-deployment-product .product-mark {
+  border-radius: 9px;
 }
 
 .linked-product-list small,
@@ -2602,10 +2622,19 @@ dd {
   border-top: 1px solid var(--border);
 }
 
+.search-entity-row > .product-mark,
+.search-groups section > a > .organisation-mark {
+  flex: 0 0 auto;
+  border-radius: 10px;
+}
+
 .search-entity-row > span {
   display: flex;
   flex-direction: column;
+  margin-right: auto;
 }
+
+.search-groups section > a > .organisation-mark + span { margin-right: auto; }
 
 .search-entity-row a {
   color: var(--ink);

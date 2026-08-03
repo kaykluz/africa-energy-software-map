@@ -1,7 +1,9 @@
 import { africanCountries, categories } from "@/lib/registry-data";
+import { organisationEcosystemGroups } from "@/lib/organisation-data";
 
 export const contributionTypes = [
   "product",
+  "organisation",
   "deployment",
   "correction",
   "claim",
@@ -45,6 +47,9 @@ const allowedLifecycles = new Set(["live", "pilot", "historical"]);
 const allowedDisclosures = new Set(["named", "undisclosed"]);
 const allowedCountries = new Set(africanCountries.map(([iso2]) => iso2));
 const allowedCategories = new Set(categories.map((category) => category.name));
+const allowedActorGroups = new Set(
+  organisationEcosystemGroups.map((group) => group.name),
+);
 const coordinatePattern =
   /[-+]?\d{1,2}\.\d{4,}\s*[,;]\s*[-+]?\d{1,3}\.\d{4,}/;
 const secretPattern =
@@ -124,6 +129,24 @@ export function validateContribution(input: unknown): IntakeValidation {
     }
     required(fields, "notes", value.notes, "Describe what the product does.");
   }
+  if (type === "organisation") {
+    required(
+      fields,
+      "organisation",
+      value.organisation,
+      "Enter the organisation name.",
+    );
+    required(fields, "category", value.category, "Choose an actor type.");
+    if (value.category && !allowedActorGroups.has(value.category)) {
+      fields.category = "Choose an actor type from the organisation taxonomy.";
+    }
+    required(
+      fields,
+      "notes",
+      value.notes,
+      "Describe the organisation’s specific role and energy markets.",
+    );
+  }
   if (type === "deployment") {
     required(fields, "product", value.product, "Choose the product.");
     required(fields, "country", value.country, "Choose the country.");
@@ -195,6 +218,7 @@ export function createReceipt(type: ContributionType, now = new Date()) {
   const day = now.toISOString().slice(0, 10).replaceAll("-", "");
   const prefix = {
     product: "PRO",
+    organisation: "ORG",
     deployment: "DEP",
     correction: "COR",
     claim: "CLA",
