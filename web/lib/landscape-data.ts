@@ -6,6 +6,24 @@ import shard005 from "../../data/landscape/shards/breadth-first-005.json";
 import shard006 from "../../data/landscape/shards/breadth-first-006.json";
 import shard007 from "../../data/landscape/shards/breadth-first-007.json";
 import shard008 from "../../data/landscape/shards/breadth-first-008.json";
+import phase1001 from "../../data/landscape/shards/phase1-catalogue-001.json";
+import phase1002 from "../../data/landscape/shards/phase1-catalogue-002.json";
+import phase1003 from "../../data/landscape/shards/phase1-catalogue-003.json";
+import phase1004 from "../../data/landscape/shards/phase1-catalogue-004.json";
+import phase1005 from "../../data/landscape/shards/phase1-catalogue-005.json";
+import phase1006 from "../../data/landscape/shards/phase1-catalogue-006.json";
+import phase1007 from "../../data/landscape/shards/phase1-catalogue-007.json";
+import phase1008 from "../../data/landscape/shards/phase1-catalogue-008.json";
+import phase1009 from "../../data/landscape/shards/phase1-catalogue-009.json";
+import phase1010 from "../../data/landscape/shards/phase1-catalogue-010.json";
+import phase1011 from "../../data/landscape/shards/phase1-catalogue-011.json";
+import phase1012 from "../../data/landscape/shards/phase1-catalogue-012.json";
+import phase1013 from "../../data/landscape/shards/phase1-catalogue-013.json";
+import phase1014 from "../../data/landscape/shards/phase1-catalogue-014.json";
+import phase1015 from "../../data/landscape/shards/phase1-catalogue-015.json";
+import phase1016 from "../../data/landscape/shards/phase1-catalogue-016.json";
+import phase1017 from "../../data/landscape/shards/phase1-catalogue-017.json";
+import phase1018 from "../../data/landscape/shards/phase1-catalogue-018.json";
 
 export type LandscapeKind =
   | "organisation"
@@ -27,8 +45,21 @@ export type LandscapeItem = {
   statusAsSubmitted: string;
   summaryAsSubmitted: string;
   sourceDomains: string[];
+  sourceUrls?: string[];
+  websiteAsSubmitted?: string;
+  segmentsAsSubmitted?: string[];
+  deliveryModelsAsSubmitted?: string[];
+  commercialModelAsSubmitted?: string;
+  africaUseAsSubmitted?: AfricaUseAsSubmitted;
+  asOfDate?: string;
   canonicalHref?: string;
 };
+
+export type AfricaUseAsSubmitted =
+  | "confirmed_deployment"
+  | "marketed_to_africa"
+  | "africa_usage_likely_unverified"
+  | "no_africa_evidence_found";
 
 export type LandscapeDeploymentLead = {
   id: string;
@@ -40,6 +71,7 @@ export type LandscapeDeploymentLead = {
   scaleAsSubmitted: string;
   dateAsSubmitted: string;
   sourceDomains: string[];
+  sourceUrls?: string[];
 };
 
 export type LandscapeRelationship = {
@@ -70,6 +102,24 @@ export const landscapeShards = [
   shard006,
   shard007,
   shard008,
+  phase1001,
+  phase1002,
+  phase1003,
+  phase1004,
+  phase1005,
+  phase1006,
+  phase1007,
+  phase1008,
+  phase1009,
+  phase1010,
+  phase1011,
+  phase1012,
+  phase1013,
+  phase1014,
+  phase1015,
+  phase1016,
+  phase1017,
+  phase1018,
 ] as LandscapeShard[];
 
 export const landscapeItems = landscapeShards.flatMap((shard) => shard.items);
@@ -126,4 +176,20 @@ export const landscapeCategoryLabels: Record<string, string> = {
   cat_trading_wheeling_settlement: "Trading, wheeling and settlement",
   cat_carbon_mrv_reporting: "Carbon, MRV and reporting",
   cat_data_interoperability_security: "Data, interoperability and security",
+};
+
+export const landscapeSectorLabels: Record<string, string> = {
+  sector_power_utilities: "Power networks and utilities",
+  sector_distributed_energy_access: "Distributed energy and energy access",
+  sector_generation_storage: "Generation and storage",
+  sector_commercial_industrial: "Commercial and industrial energy",
+  sector_emobility_batteries: "E-mobility and battery networks",
+  sector_markets_finance_carbon: "Markets, finance and carbon",
+};
+
+export const landscapeAfricaUseLabels: Record<AfricaUseAsSubmitted, string> = {
+  confirmed_deployment: "African use supplied",
+  marketed_to_africa: "Marketed to Africa",
+  africa_usage_likely_unverified: "Possible African use",
+  no_africa_evidence_found: "No African source supplied",
 };

@@ -25,7 +25,19 @@ The files in `shards/` follow the pull-request limit of 25 entity changes. Empty
 numbered shards are intentional: each can be populated in an independently
 reviewable follow-up without changing the interface code.
 
-The public interface imports every numbered shard and offers filtered CSV and
+The public interface imports every catalogue shard and offers filtered CSV and
 JSON exports. The schema lives at
 [`../../schemas/landscape-catalogue.schema.json`](../../schemas/landscape-catalogue.schema.json).
 
+## Publication boundary
+
+Catalogue imports use an explicit public-field allowlist. Free-form research
+notes, confidence scores, contributor relationships and other private editorial
+metadata are not stored in these shards, included in site exports or sent to the
+application database. Repository validation blocks common private-editorial
+phrasing if it appears in a public catalogue record.
+
+The Phase 1 CSV import is reproducible with
+`scripts/import_phase1_landscape.py`. Its source workbooks stay outside the
+repository; generated shards retain the public factual metadata, categories and
+source links needed by the catalogue.

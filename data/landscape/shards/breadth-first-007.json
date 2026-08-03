@@ -154,11 +154,18 @@
       "kind": "source_directory",
       "stageIds": ["stage_finance_procure"],
       "categoryIds": ["cat_finance_procurement_underwriting"],
-      "sectorIds": ["sector_markets_finance_carbon", "sector_distributed_energy_access"],
-      "geographies": ["Africa"],
+      "sectorIds": ["sector_markets_finance_carbon", "sector_distributed_energy_access", "sector_power_utilities", "sector_commercial_industrial"],
+      "geographies": ["Africa", "USA"],
       "statusAsSubmitted": "Named in source register",
       "summaryAsSubmitted": "Procurement-platform source for distributed-energy research.",
-      "sourceDomains": ["procure.odyssey.energy"]
+      "sourceDomains": ["procure.odyssey.energy"],
+      "sourceUrls": ["https://procure.odyssey.energy"],
+      "segmentsAsSubmitted": ["mini-grid", "C&I", "SHS"],
+      "deliveryModelsAsSubmitted": ["cloud SaaS"],
+      "commercialModelAsSubmitted": "transaction fee",
+      "africaUseAsSubmitted": "confirmed_deployment",
+      "asOfDate": "2026-08-02",
+      "parent": "Odyssey Energy Solutions"
     },
     {
       "id": "land_source_yicai_global",

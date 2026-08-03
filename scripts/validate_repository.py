@@ -23,6 +23,18 @@ PUBLIC_REVIEWER_PATTERN = re.compile(
 )
 FORMULA_PREFIX = re.compile(r"^[=+@]|^-(?!\d+(?:\.\d+)?$)")
 EMAIL_PATTERN = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.I)
+PRIVATE_EDITORIAL_PATTERNS = [
+    re.compile(r"\b(?:map|dataset|project) maintainer\b", re.I),
+    re.compile(r"\bmaintainer(?:'s)? (?:product|company|organisation)\b", re.I),
+    re.compile(r"\b(?:owned|founded|built) by (?:me|the maintainer)\b", re.I),
+    re.compile(r"\b(?:i|we) own\b", re.I),
+    re.compile(r"\b(?:our|my) (?:company|product|competitor)\b", re.I),
+    re.compile(r"\bcompetitor(?: of| to)? (?:the map|maintainer|us|me)\b", re.I),
+    re.compile(r"\brecus(?:e|al|ed)\b", re.I),
+    re.compile(r"\bconflict of interest\b", re.I),
+    re.compile(r"\bnot graded\b", re.I),
+    re.compile(r"\bdisclosure:\s", re.I),
+]
 PRIVATE_HEADER_TOKENS = {
     "email",
     "phone",
@@ -189,11 +201,22 @@ def validate_landscape_catalogue(errors: list[str]) -> None:
     )
     coordinate_pattern = re.compile(r"-?\d{1,2}\.\d{3,}\s*[,/]\s*-?\d{1,3}\.\d{3,}")
 
+    def contains_private_editorial_metadata(value: object) -> bool:
+        if isinstance(value, dict):
+            return any(contains_private_editorial_metadata(item) for item in value.values())
+        if isinstance(value, list):
+            return any(contains_private_editorial_metadata(item) for item in value)
+        return isinstance(value, str) and any(
+            pattern.search(value) for pattern in PRIVATE_EDITORIAL_PATTERNS
+        )
+
     for path in sorted(landscape_dir.glob("*.json")):
         relative = path.relative_to(ROOT)
         shard = load_json(path)
         if shard.get("schemaVersion") != "1.0.0":
             errors.append(f"{relative}: unsupported schemaVersion")
+        if contains_private_editorial_metadata(shard):
+            errors.append(f"{relative}: private editorial metadata is prohibited")
         try:
             date.fromisoformat(shard.get("sourceAsOf", ""))
         except ValueError:
@@ -229,11 +252,30 @@ def validate_landscape_catalogue(errors: list[str]) -> None:
                     errors.append(f"{label}: invalid source domain")
                 if coordinate_pattern.search(json.dumps(row)):
                     errors.append(f"{label}: precise coordinates are prohibited")
+                source_urls = row.get("sourceUrls", [])
+                if not isinstance(source_urls, list) or any(
+                    not valid_url(value) for value in source_urls
+                ):
+                    errors.append(f"{label}: invalid source URL")
 
                 if group_name != "items":
                     continue
                 if row.get("kind") not in allowed_kinds:
                     errors.append(f"{label}: invalid listing kind")
+                website = row.get("websiteAsSubmitted", "")
+                if website and not valid_url(website):
+                    errors.append(f"{label}: invalid submitted website")
+                as_of_date = row.get("asOfDate", "")
+                if as_of_date and not valid_iso_date(as_of_date):
+                    errors.append(f"{label}: invalid as-of date")
+                africa_use = row.get("africaUseAsSubmitted", "")
+                if africa_use and africa_use not in {
+                    "confirmed_deployment",
+                    "marketed_to_africa",
+                    "africa_usage_likely_unverified",
+                    "no_africa_evidence_found",
+                }:
+                    errors.append(f"{label}: invalid Africa-use value")
                 if any(value not in stage_ids for value in row.get("stageIds", [])):
                     errors.append(f"{label}: invalid stage ID")
                 if any(value not in category_ids for value in row.get("categoryIds", [])):

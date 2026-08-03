@@ -58,6 +58,20 @@
         "statusAsSubmitted": { "type": "string" },
         "summaryAsSubmitted": { "type": "string" },
         "sourceDomains": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "sourceUrls": { "type": "array", "items": { "type": "string", "format": "uri" }, "uniqueItems": true },
+        "websiteAsSubmitted": { "type": "string", "format": "uri" },
+        "segmentsAsSubmitted": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "deliveryModelsAsSubmitted": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "commercialModelAsSubmitted": { "type": "string" },
+        "africaUseAsSubmitted": {
+          "enum": [
+            "confirmed_deployment",
+            "marketed_to_africa",
+            "africa_usage_likely_unverified",
+            "no_africa_evidence_found"
+          ]
+        },
+        "asOfDate": { "type": "string", "format": "date" },
         "canonicalHref": { "type": "string", "pattern": "^/" }
       }
     },
@@ -74,7 +88,8 @@
         "customerAsSubmitted": { "type": "string" },
         "scaleAsSubmitted": { "type": "string" },
         "dateAsSubmitted": { "type": "string" },
-        "sourceDomains": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+        "sourceDomains": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "sourceUrls": { "type": "array", "items": { "type": "string", "format": "uri" }, "uniqueItems": true }
       }
     },
     "relationship": {
