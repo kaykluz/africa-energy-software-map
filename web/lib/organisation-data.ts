@@ -4,6 +4,8 @@ import {
   assertions,
   deployments,
   organisationRoleRecords,
+  organisationAliasRecords,
+  organisationRelationshipRecords,
   organisationSectorRecords,
   organisationSegmentRecords,
   organisationSoftwareRelationshipRecords,
@@ -26,6 +28,11 @@ type OrganisationRole = TaxonomyItem & {
   ecosystemGroupIds: string[];
 };
 
+type OrganisationRelationship = TaxonomyItem & {
+  inverseName: string;
+  ownershipRelationship: boolean;
+};
+
 type OrganisationTaxonomy = {
   sectors: TaxonomyItem[];
   stages: TaxonomyItem[];
@@ -34,6 +41,8 @@ type OrganisationTaxonomy = {
   organisation_roles: OrganisationRole[];
   organisation_segments: TaxonomyItem[];
   organisation_software_relationships: TaxonomyItem[];
+  organisation_alias_types: TaxonomyItem[];
+  organisation_relationships: OrganisationRelationship[];
 };
 
 const taxonomy = taxonomyJson as OrganisationTaxonomy;
@@ -46,6 +55,8 @@ export const organisationRoleFamilies = taxonomy.organisation_role_families;
 export const organisationSegments = taxonomy.organisation_segments;
 export const organisationSoftwareRelationships =
   taxonomy.organisation_software_relationships;
+export const organisationAliasTypes = taxonomy.organisation_alias_types;
+export const organisationRelationships = taxonomy.organisation_relationships;
 export const organisationSectors = [...taxonomy.sectors].sort(
   (left, right) => (left.order ?? 0) - (right.order ?? 0),
 );
@@ -80,6 +91,7 @@ export type OrganisationDirectoryRecord = {
   segmentIds: string[];
   stageIds: string[];
   softwareRelationshipTypes: string[];
+  aliases: string[];
   countryIso2s: string[];
   countryNames: string[];
   productCount: number;
@@ -118,6 +130,38 @@ export function organisationSegmentName(segmentId: string) {
 
 export function softwareStageName(stageId: string) {
   return stagesById.get(stageId)?.name ?? stageId;
+}
+
+export function organisationAliases(organisationId: string) {
+  return organisationAliasRecords.filter(
+    (record) => record.organisationId === organisationId,
+  );
+}
+
+export function relatedOrganisations(organisationId: string) {
+  return organisationRelationshipRecords.flatMap((record) => {
+    const relationship = organisationRelationships.find(
+      (item) => item.id === record.relationshipType,
+    );
+    if (!relationship) return [];
+    if (record.organisationId === organisationId) {
+      const relatedOrganisation = organisations.find(
+        (item) => item.id === record.relatedOrganisationId,
+      );
+      return relatedOrganisation
+        ? [{ record, organisation: relatedOrganisation, label: relationship.name }]
+        : [];
+    }
+    if (record.relatedOrganisationId === organisationId) {
+      const relatedOrganisation = organisations.find(
+        (item) => item.id === record.organisationId,
+      );
+      return relatedOrganisation
+        ? [{ record, organisation: relatedOrganisation, label: relationship.inverseName }]
+        : [];
+    }
+    return [];
+  });
 }
 
 function buildOrganisationRecord(
@@ -194,6 +238,9 @@ function buildOrganisationRecord(
         ...explicitSoftwareRelationships.map((record) => record.relationshipType),
       ],
     )),
+    aliases: organisationAliasRecords
+      .filter((record) => record.organisationId === organisation.id)
+      .map((record) => record.alias),
     countryIso2s,
     countryNames: countryIso2s.map((iso2) => countriesByIso2.get(iso2) ?? iso2),
     productCount: ownedProducts.length,

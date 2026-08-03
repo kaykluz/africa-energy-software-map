@@ -463,11 +463,17 @@ The canonical optional table templates are:
 - `organisation-roles.csv`;
 - `organisation-sectors.csv`;
 - `organisation-segments.csv`; and
-- `organisation-software-relationships.csv`.
+- `organisation-software-relationships.csv`;
+- `organisation-aliases.csv`; and
+- `organisation-relationships.csv`.
 
 Older release packages remain valid without these optional tables. A future
 package that includes one must use the controlled IDs in `data/taxonomy.json`;
 repository validation checks identities, vocabulary values and dates.
+
+Aliases resolve former and trading names to one stable profile. Corporate
+relationships are dated graph edges; acquisitions do not silently overwrite the
+acquired organisation, and affiliate or membership links never imply ownership.
 
 Do not expose private reviewer conflict notes, submitter contact details or
 commercial disclosures in any public table, snapshot, API response or export.

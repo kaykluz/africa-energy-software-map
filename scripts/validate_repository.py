@@ -172,11 +172,19 @@ def validate_taxonomy(errors: list[str]) -> None:
         item["id"]
         for item in taxonomy.get("organisation_software_relationships", [])
     ]
+    organisation_alias_type_ids = [
+        item["id"] for item in taxonomy.get("organisation_alias_types", [])
+    ]
+    organisation_relationship_ids = [
+        item["id"] for item in taxonomy.get("organisation_relationships", [])
+    ]
     ids.extend(organisation_group_ids)
     ids.extend(organisation_family_ids)
     ids.extend(organisation_role_ids)
     ids.extend(organisation_segment_ids)
     ids.extend(organisation_software_relationship_ids)
+    ids.extend(organisation_alias_type_ids)
+    ids.extend(organisation_relationship_ids)
 
     duplicates = sorted({value for value in ids if ids.count(value) > 1})
     if duplicates:
@@ -572,6 +580,8 @@ def validate_data_package(
         "organisation_sector": "organisation-sectors.csv",
         "organisation_segment": "organisation-segments.csv",
         "organisation_software_relationship": "organisation-software-relationships.csv",
+        "organisation_alias": "organisation-aliases.csv",
+        "organisation_relationship": "organisation-relationships.csv",
     }
     for subject_type, filename in relationship_subjects.items():
         subject_ids[subject_type] = {
@@ -588,6 +598,12 @@ def validate_data_package(
         item["id"]
         for item in taxonomy.get("organisation_software_relationships", [])
     }
+    organisation_alias_type_ids = {
+        item["id"] for item in taxonomy.get("organisation_alias_types", [])
+    }
+    organisation_relationship_ids = {
+        item["id"] for item in taxonomy.get("organisation_relationships", [])
+    }
     sector_ids = {item["id"] for item in taxonomy.get("sectors", [])}
     for filename, vocabulary_field, allowed_values in (
         ("organisation-roles.csv", "role_id", organisation_role_ids),
@@ -597,6 +613,12 @@ def validate_data_package(
             "organisation-software-relationships.csv",
             "relationship_type",
             organisation_software_relationship_ids,
+        ),
+        ("organisation-aliases.csv", "alias_type", organisation_alias_type_ids),
+        (
+            "organisation-relationships.csv",
+            "relationship_type",
+            organisation_relationship_ids,
         ),
     ):
         for line_number, row in enumerate(tables.get(filename, []), start=2):
@@ -626,6 +648,24 @@ def validate_data_package(
             ):
                 errors.append(
                     f"{relative_package}/{filename}:{line_number}: unknown product_id"
+                )
+            if (
+                filename == "organisation-relationships.csv"
+                and row["related_organisation_id"] not in organisations
+            ):
+                errors.append(
+                    f"{relative_package}/{filename}:{line_number}: unknown related_organisation_id"
+                )
+            if (
+                filename == "organisation-relationships.csv"
+                and row["related_organisation_id"] == row["organisation_id"]
+            ):
+                errors.append(
+                    f"{relative_package}/{filename}:{line_number}: organisation cannot relate to itself"
+                )
+            if filename == "organisation-aliases.csv" and not row["alias"].strip():
+                errors.append(
+                    f"{relative_package}/{filename}:{line_number}: alias is required"
                 )
 
     for line_number, row in enumerate(tables["organisations.csv"], start=2):
@@ -807,6 +847,12 @@ def validate_data_package(
             if missing:
                 errors.append(
                     f"{relative_package}: {subject_type} {subject_id} missing assertions {sorted(missing)}"
+                )
+    for subject_type in relationship_subjects:
+        for subject_id in subject_ids[subject_type]:
+            if (subject_type, subject_id) not in assertions_by_subject:
+                errors.append(
+                    f"{relative_package}: {subject_type} {subject_id} has no source-linked assertion"
                 )
 
     report: dict = {}
@@ -1117,6 +1163,12 @@ def validate_release_shards(errors: list[str]) -> None:
         "organisation": set(),
         "product": set(),
         "deployment": set(),
+        "organisation_role": set(),
+        "organisation_sector": set(),
+        "organisation_segment": set(),
+        "organisation_software_relationship": set(),
+        "organisation_alias": set(),
+        "organisation_relationship": set(),
     }
     global_sources: set[str] = set()
 
@@ -1127,6 +1179,15 @@ def validate_release_shards(errors: list[str]) -> None:
             ("organisation", "organisations.csv"),
             ("product", "products.csv"),
             ("deployment", "deployments.csv"),
+            ("organisation_role", "organisation-roles.csv"),
+            ("organisation_sector", "organisation-sectors.csv"),
+            ("organisation_segment", "organisation-segments.csv"),
+            (
+                "organisation_software_relationship",
+                "organisation-software-relationships.csv",
+            ),
+            ("organisation_alias", "organisation-aliases.csv"),
+            ("organisation_relationship", "organisation-relationships.csv"),
         ):
             if (release_path / filename).exists():
                 global_subjects[subject_type].update(
@@ -1228,6 +1289,16 @@ def validate_release_shards(errors: list[str]) -> None:
                     )
                 },
             ),
+            (
+                "organisation-aliases.csv",
+                "alias_type",
+                {item["id"] for item in taxonomy.get("organisation_alias_types", [])},
+            ),
+            (
+                "organisation-relationships.csv",
+                "relationship_type",
+                {item["id"] for item in taxonomy.get("organisation_relationships", [])},
+            ),
         )
         for filename, vocabulary_field, allowed_values in optional_relationship_contracts:
             for line_number, row in enumerate(tables.get(filename, []), start=2):
@@ -1246,6 +1317,24 @@ def validate_release_shards(errors: list[str]) -> None:
                     errors.append(
                         f"{relative}/{filename}:{line_number}: unknown product_id"
                     )
+                if (
+                    filename == "organisation-relationships.csv"
+                    and row["related_organisation_id"] not in available_organisation_ids
+                ):
+                    errors.append(
+                        f"{relative}/{filename}:{line_number}: unknown related_organisation_id"
+                    )
+                if (
+                    filename == "organisation-relationships.csv"
+                    and row["related_organisation_id"] == row["organisation_id"]
+                ):
+                    errors.append(
+                        f"{relative}/{filename}:{line_number}: organisation cannot relate to itself"
+                    )
+                if filename == "organisation-aliases.csv" and not row["alias"].strip():
+                    errors.append(
+                        f"{relative}/{filename}:{line_number}: alias is required"
+                    )
         entity_ids = sorted(
             [row["id"] for row in organisations]
             + [row["id"] for row in products]
@@ -1263,6 +1352,25 @@ def validate_release_shards(errors: list[str]) -> None:
             errors.append(f"{manifest_path.relative_to(ROOT)}: counts or IDs differ")
         if len(entity_ids) > 25 or len(assertions) > 100:
             errors.append(f"{relative}: exceeds pull-request limits")
+        shard_assertion_subjects = {
+            (row["subject_type"], row["subject_id"]) for row in assertions
+        }
+        for subject_type, filename in (
+            ("organisation_role", "organisation-roles.csv"),
+            ("organisation_sector", "organisation-sectors.csv"),
+            ("organisation_segment", "organisation-segments.csv"),
+            (
+                "organisation_software_relationship",
+                "organisation-software-relationships.csv",
+            ),
+            ("organisation_alias", "organisation-aliases.csv"),
+            ("organisation_relationship", "organisation-relationships.csv"),
+        ):
+            for row in tables.get(filename, []):
+                if (subject_type, row["id"]) not in shard_assertion_subjects:
+                    errors.append(
+                        f"{relative}: {subject_type} {row['id']} has no source-linked assertion"
+                    )
         text = "\n".join(
             path.read_text(encoding="utf-8")
             for path in package.rglob("*")
@@ -1273,6 +1381,20 @@ def validate_release_shards(errors: list[str]) -> None:
         global_subjects["organisation"].update(row["id"] for row in organisations)
         global_subjects["product"].update(row["id"] for row in products)
         global_subjects["deployment"].update(row["id"] for row in deployments)
+        for subject_type, filename in (
+            ("organisation_role", "organisation-roles.csv"),
+            ("organisation_sector", "organisation-sectors.csv"),
+            ("organisation_segment", "organisation-segments.csv"),
+            (
+                "organisation_software_relationship",
+                "organisation-software-relationships.csv",
+            ),
+            ("organisation_alias", "organisation-aliases.csv"),
+            ("organisation_relationship", "organisation-relationships.csv"),
+        ):
+            global_subjects[subject_type].update(
+                row["id"] for row in tables.get(filename, [])
+            )
         global_sources.update(row["id"] for row in sources)
         packages.append((package, tables, manifest))
         validate_checksums(package, errors)
@@ -1428,6 +1550,77 @@ def validate_automation_artifacts(errors: list[str]) -> None:
         errors.append(f"automation artifacts: {exc}")
 
 
+def validate_organisation_intake(errors: list[str]) -> None:
+    intake_root = ROOT / "data" / "intake" / "organisations"
+    if not intake_root.exists():
+        return
+    taxonomy = load_json(ROOT / "data" / "taxonomy.json")
+    snapshot = load_json(ROOT / "web" / "generated" / "registry-snapshot.json")
+    group_ids = {
+        item["id"] for item in taxonomy.get("organisation_ecosystem_groups", [])
+    }
+    role_ids = {item["id"] for item in taxonomy.get("organisation_roles", [])}
+    segment_ids = {
+        item["id"] for item in taxonomy.get("organisation_segments", [])
+    }
+    organisation_ids = {item["id"] for item in snapshot.get("organisations", [])}
+    allowed_shapes = {
+        "organisation", "capital_vehicle", "programme_or_facility",
+        "relationship_event", "grouped_row",
+    }
+    allowed_matches = {
+        "canonical_match", "catalogue_match", "new_candidate", "ambiguous",
+        "needs_split",
+    }
+    for path in sorted(intake_root.rglob("*.json")):
+        payload = load_json(path)
+        label = path.relative_to(ROOT)
+        status = payload.get("status", {})
+        if (
+            payload.get("schemaVersion") != "1.0.0"
+            or status.get("candidateOnly") is not True
+            or status.get("publicationAuthorised") is not False
+            or status.get("humanReviewRequired") is not True
+        ):
+            errors.append(f"{label}: unsafe organisation-intake status")
+        candidates = payload.get("candidates", [])
+        if not isinstance(candidates, list) or not 1 <= len(candidates) <= 25:
+            errors.append(f"{label}: candidate batch must contain 1..25 rows")
+            continue
+        candidate_ids = [item.get("candidateId", "") for item in candidates]
+        if len(candidate_ids) != len(set(candidate_ids)) or any(
+            not ID_PATTERN.fullmatch(value) for value in candidate_ids
+        ):
+            errors.append(f"{label}: candidate IDs must be unique and valid")
+        text = json.dumps(payload, ensure_ascii=False)
+        if EMAIL_PATTERN.search(text) or any(
+            pattern.search(text) for pattern in PRIVATE_EDITORIAL_PATTERNS
+        ):
+            errors.append(f"{label}: contains private editorial information")
+        for index, item in enumerate(candidates, start=1):
+            item_label = f"{label}:candidates[{index}]"
+            if item.get("recordShape") not in allowed_shapes:
+                errors.append(f"{item_label}: invalid record shape")
+            group_id = item.get("suggestedActorGroupId", "")
+            if group_id and group_id not in group_ids:
+                errors.append(f"{item_label}: invalid actor group")
+            if any(value not in role_ids for value in item.get("suggestedRoleIds", [])):
+                errors.append(f"{item_label}: invalid role suggestion")
+            if any(value not in segment_ids for value in item.get("suggestedSegmentIds", [])):
+                errors.append(f"{item_label}: invalid segment suggestion")
+            reconciliation = item.get("reconciliation", {})
+            match_status = reconciliation.get("status")
+            if match_status not in allowed_matches:
+                errors.append(f"{item_label}: invalid reconciliation status")
+            canonical_id = reconciliation.get("canonicalOrganisationId")
+            if canonical_id and canonical_id not in organisation_ids:
+                errors.append(f"{item_label}: unknown canonical organisation")
+            if match_status == "canonical_match" and not canonical_id:
+                errors.append(f"{item_label}: canonical match has no target")
+            if item.get("reviewState") != "needs_source_review":
+                errors.append(f"{item_label}: candidate cannot bypass source review")
+
+
 def main() -> int:
     errors: list[str] = []
     validate_json_files(errors)
@@ -1439,6 +1632,7 @@ def main() -> int:
     validate_release_shards(errors)
     validate_interface_artifacts(errors)
     validate_automation_artifacts(errors)
+    validate_organisation_intake(errors)
 
     if errors:
         print("Repository validation failed:")

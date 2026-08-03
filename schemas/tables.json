@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "tables": {
     "organisations.csv": {
       "id_field": "id",
@@ -24,6 +24,16 @@
       "id_field": "id",
       "package_required": false,
       "fields": ["id", "organisation_id", "product_id", "relationship_type", "valid_from", "valid_to", "last_checked_at"]
+    },
+    "organisation-aliases.csv": {
+      "id_field": "id",
+      "package_required": false,
+      "fields": ["id", "organisation_id", "alias", "alias_type", "valid_from", "valid_to", "last_checked_at"]
+    },
+    "organisation-relationships.csv": {
+      "id_field": "id",
+      "package_required": false,
+      "fields": ["id", "organisation_id", "related_organisation_id", "relationship_type", "valid_from", "valid_to", "last_checked_at"]
     },
     "products.csv": {
       "id_field": "id",

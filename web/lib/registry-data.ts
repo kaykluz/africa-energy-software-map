@@ -118,6 +118,26 @@ export type OrganisationSoftwareRelationshipRecord = {
   lastCheckedAt: string;
 };
 
+export type OrganisationAliasRecord = {
+  id: string;
+  organisationId: string;
+  alias: string;
+  aliasType: string;
+  validFrom: string;
+  validTo: string;
+  lastCheckedAt: string;
+};
+
+export type OrganisationRelationshipRecord = {
+  id: string;
+  organisationId: string;
+  relatedOrganisationId: string;
+  relationshipType: string;
+  validFrom: string;
+  validTo: string;
+  lastCheckedAt: string;
+};
+
 export type Source = {
   id: string;
   title: string;
@@ -208,6 +228,8 @@ type SnapshotData = {
   organisationSectors?: OrganisationSectorRecord[];
   organisationSegments?: OrganisationSegmentRecord[];
   organisationSoftwareRelationships?: OrganisationSoftwareRelationshipRecord[];
+  organisationAliases?: OrganisationAliasRecord[];
+  organisationRelationships?: OrganisationRelationshipRecord[];
   products: Array<{
     id: string;
     organisationId: string;
@@ -396,6 +418,9 @@ export const organisationSectorRecords = snapshot.organisationSectors ?? [];
 export const organisationSegmentRecords = snapshot.organisationSegments ?? [];
 export const organisationSoftwareRelationshipRecords =
   snapshot.organisationSoftwareRelationships ?? [];
+export const organisationAliasRecords = snapshot.organisationAliases ?? [];
+export const organisationRelationshipRecords =
+  snapshot.organisationRelationships ?? [];
 export const stages = snapshot.stages;
 export const categories = snapshot.categories;
 export const countrySummaries = snapshot.countrySummaries;
@@ -423,6 +448,8 @@ export const registrySnapshot = {
   organisationSectorRecords,
   organisationSegmentRecords,
   organisationSoftwareRelationshipRecords,
+  organisationAliasRecords,
+  organisationRelationshipRecords,
   products,
   deployments,
   sources,

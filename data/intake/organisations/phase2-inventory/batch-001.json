@@ -1,0 +1,767 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "phase2-organisations-001",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "user_supplied_inventory",
+    "asOf": "2026-08-03",
+    "sha256": "a875916aa5aac55f865cc0f9bdce9bed48e4258731c534636af9eed83cdd6446"
+  },
+  "inventorySummary": {
+    "rowsParsed": 264,
+    "canonicalMatches": 6,
+    "catalogueMatches": 10,
+    "newCandidates": 235,
+    "ambiguous": 0,
+    "needsSplit": 13
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_sustainable_energy_fund_for_africa_sefa_812367f1",
+      "sourceRow": 15,
+      "submittedName": "Sustainable Energy Fund for Africa (SEFA)",
+      "submittedWebsite": "afdb.org",
+      "submittedHeadquarters": "Cote d'Ivoire (AfDB)",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "mini_grid",
+        "utility_scale",
+        "energy_efficiency"
+      ],
+      "submittedOwnershipType": "donor_created",
+      "submittedScaleIndicator": "~$121m committed base; $76m across 56 projects in 30 countries",
+      "submittedNotes": "AfDB-managed; converted to concessional special fund; NORAD+GEAPP added $64m",
+      "recordShape": "capital_vehicle",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_efficiency_demand",
+        "org_segment_minigrids",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://afdb.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_african_development_bank_afdb_e479e62e",
+      "sourceRow": 16,
+      "submittedName": "African Development Bank (AfDB)",
+      "submittedWebsite": "afdb.org",
+      "submittedHeadquarters": "Cote d'Ivoire",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "all"
+      ],
+      "submittedOwnershipType": "development_finance_institution",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Mission 300 anchor",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://afdb.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_global_energy_alliance_for_people_and_planet_gea_637db75b",
+      "sourceRow": 17,
+      "submittedName": "Global Energy Alliance for People and Planet (GEAPP)",
+      "submittedWebsite": "energyalliance.org",
+      "submittedHeadquarters": "USA (global)",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "mini_grid",
+        "storage",
+        "utility_scale"
+      ],
+      "submittedOwnershipType": "donor_created",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "co-funds SEFA, Nithio, SunCulture",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_energy_storage",
+        "org_segment_minigrids",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://energyalliance.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_mirova_sunfunder_mirova_gigaton_fund_b223fe8b",
+      "sourceRow": 18,
+      "submittedName": "Mirova SunFunder / Mirova Gigaton Fund",
+      "submittedWebsite": "mirova.com",
+      "submittedHeadquarters": "France",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "shs_paygo",
+        "productive_use",
+        "mini_grid"
+      ],
+      "submittedOwnershipType": "subsidiary",
+      "submittedScaleIndicator": "Gigaton target $500m, $282m closed",
+      "submittedNotes": "Natixis affiliate",
+      "recordShape": "grouped_row",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_productive_use",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://mirova.com/"
+      ],
+      "reconciliation": {
+        "status": "needs_split",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_nithio_7abba8d8",
+      "sourceRow": 19,
+      "submittedName": "Nithio",
+      "submittedWebsite": "nithio.com",
+      "submittedHeadquarters": "USA",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "shs_paygo",
+        "e_mobility",
+        "productive_use"
+      ],
+      "submittedOwnershipType": "independent",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AI credit-risk; backed SunCulture, Spiro",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_emobility",
+        "org_segment_productive_use",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://nithio.com/"
+      ],
+      "reconciliation": {
+        "status": "catalogue_match",
+        "matchedOn": "catalogue_name",
+        "catalogueItemIds": [
+          "land_org_nithio"
+        ]
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_triodos_investment_management_3270d6c3",
+      "sourceRow": 20,
+      "submittedName": "Triodos Investment Management",
+      "submittedWebsite": "triodos-im.com",
+      "submittedHeadquarters": "Netherlands",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "shs_paygo",
+        "productive_use"
+      ],
+      "submittedOwnershipType": "independent",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "co-lender with Mirova",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://triodos-im.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_crossboundary_advisory_access_arm_59c9d376",
+      "sourceRow": 21,
+      "submittedName": "CrossBoundary (advisory/access arm)",
+      "submittedWebsite": "crossboundary.com",
+      "submittedHeadquarters": "USA",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "mini_grid",
+        "utility_scale"
+      ],
+      "submittedOwnershipType": "independent",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "blended-finance platform",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://crossboundary.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_eaaif_emerging_africa_asia_infrastructure_fund_4f747159",
+      "sourceRow": 22,
+      "submittedName": "EAAIF (Emerging Africa & Asia Infrastructure Fund)",
+      "submittedWebsite": "eaif.com",
+      "submittedHeadquarters": "UK (PIDG)",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "utility_scale",
+        "commercial_industrial"
+      ],
+      "submittedOwnershipType": "development_finance_institution",
+      "submittedScaleIndicator": "$45m to CrossBoundary Energy",
+      "submittedNotes": "managed by Ninety One",
+      "recordShape": "capital_vehicle",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://eaif.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_pidg_infraco_africa_e0ff9098",
+      "sourceRow": 23,
+      "submittedName": "PIDG / InfraCo Africa",
+      "submittedWebsite": "pidg.org",
+      "submittedHeadquarters": "UK",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "mini_grid",
+        "clean_cooking"
+      ],
+      "submittedOwnershipType": "donor_created",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "invested in Supamoto",
+      "recordShape": "grouped_row",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_clean_cooking",
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://pidg.org/"
+      ],
+      "reconciliation": {
+        "status": "needs_split",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_edfi_management_company_electrifi_4c4f365d",
+      "sourceRow": 24,
+      "submittedName": "EDFI Management Company / ElectriFI",
+      "submittedWebsite": "edfimc.eu",
+      "submittedHeadquarters": "Belgium",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "shs_paygo",
+        "clean_cooking",
+        "mini_grid"
+      ],
+      "submittedOwnershipType": "donor_created",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Supamoto, Zambia window",
+      "recordShape": "grouped_row",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_clean_cooking",
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://edfimc.eu/"
+      ],
+      "reconciliation": {
+        "status": "needs_split",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ifc_73633948",
+      "sourceRow": 25,
+      "submittedName": "IFC",
+      "submittedWebsite": "ifc.org",
+      "submittedHeadquarters": "USA",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "all"
+      ],
+      "submittedOwnershipType": "development_finance_institution",
+      "submittedScaleIndicator": "$10m equity CrossBoundary Access (Jun 2025)",
+      "submittedNotes": "World Bank Group",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://ifc.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_miga_120605dc",
+      "sourceRow": 26,
+      "submittedName": "MIGA",
+      "submittedWebsite": "miga.org",
+      "submittedHeadquarters": "USA",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "utility_scale",
+        "commercial_industrial"
+      ],
+      "submittedOwnershipType": "development_finance_institution",
+      "submittedScaleIndicator": "$495m CBE portfolio guarantee, approved 27 Jun 2025, executed 14 Jul 2025; up to 20 countries; backed by up to $61.5m IDA PSW first-loss + $37.6m Renewable Energy Catalyst Trust Fund",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://miga.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_norfund_0234f044",
+      "sourceRow": 27,
+      "submittedName": "Norfund",
+      "submittedWebsite": "norfund.no",
+      "submittedHeadquarters": "Norway",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "commercial_industrial",
+        "utility_scale"
+      ],
+      "submittedOwnershipType": "development_finance_institution",
+      "submittedScaleIndicator": "$40m re-up CBE Jan 2025",
+      "submittedNotes": "",
+      "recordShape": "capital_vehicle",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://norfund.no/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_impact_fund_denmark_cb3e17c4",
+      "sourceRow": 28,
+      "submittedName": "Impact Fund Denmark",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "Denmark",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "commercial_industrial",
+        "storage"
+      ],
+      "submittedOwnershipType": "development_finance_institution",
+      "submittedScaleIndicator": "$40m to CBE",
+      "submittedNotes": "",
+      "recordShape": "capital_vehicle",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_cygnum_capital_399f9104",
+      "sourceRow": 29,
+      "submittedName": "Cygnum Capital",
+      "submittedWebsite": "cygnumcapital.com",
+      "submittedHeadquarters": "UK",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "e_mobility",
+        "mini_grid"
+      ],
+      "submittedOwnershipType": "independent",
+      "submittedScaleIndicator": "manages Africa Go Green Fund",
+      "submittedNotes": "advised CBE; backed Spiro",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_emobility",
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://cygnumcapital.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_afreximbank_feda_19b59831",
+      "sourceRow": 30,
+      "submittedName": "Afreximbank / FEDA",
+      "submittedWebsite": "afreximbank.com",
+      "submittedHeadquarters": "Egypt",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "e_mobility"
+      ],
+      "submittedOwnershipType": "development_finance_institution",
+      "submittedScaleIndicator": "led $100m Spiro (Oct 2025) and $50m (Feb 2026)",
+      "submittedNotes": "",
+      "recordShape": "grouped_row",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_emobility"
+      ],
+      "sourceLeads": [
+        "https://afreximbank.com/"
+      ],
+      "reconciliation": {
+        "status": "needs_split",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_trade_and_development_bank_tdb_group_410190b7",
+      "sourceRow": 31,
+      "submittedName": "Trade and Development Bank (TDB) Group",
+      "submittedWebsite": "tdbgroup.org",
+      "submittedHeadquarters": "regional (Eastern/Southern Africa)",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "clean_cooking"
+      ],
+      "submittedOwnershipType": "development_finance_institution",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "BURN 430,000-household deal (Jun 2025)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_clean_cooking"
+      ],
+      "sourceLeads": [
+        "https://tdbgroup.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_standard_bank_dbb8dc64",
+      "sourceRow": 32,
+      "submittedName": "Standard Bank",
+      "submittedWebsite": "standardbank.com",
+      "submittedHeadquarters": "South Africa",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "commercial_industrial",
+        "utility_scale"
+      ],
+      "submittedOwnershipType": "listed",
+      "submittedScaleIndicator": "lead arranger up to $300m CBE senior debt (Jul 2025); $200m to M-KOPA",
+      "submittedNotes": "energy desk",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://standardbank.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_absa_mcb_fei_deg_fmo_86af3f12",
+      "sourceRow": 33,
+      "submittedName": "Absa; MCB; FEI; DEG; FMO",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "multiple",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "commercial_industrial",
+        "utility_scale"
+      ],
+      "submittedOwnershipType": "mixed",
+      "submittedScaleIndicator": "co-lenders in CBE's $200m senior debt close (Nov 2025)",
+      "submittedNotes": "",
+      "recordShape": "grouped_row",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [],
+      "reconciliation": {
+        "status": "needs_split",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kcb_co_operative_bank_kenya_citi_stanbic_kenya_6b8f2c3d",
+      "sourceRow": 34,
+      "submittedName": "KCB; Co-operative Bank Kenya; Citi; Stanbic Kenya",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "Kenya/multiple",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "shs_paygo"
+      ],
+      "submittedOwnershipType": "listed",
+      "submittedScaleIndicator": "Sun King $156m securitisation (Jul 2024)",
+      "submittedNotes": "",
+      "recordShape": "grouped_row",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [],
+      "reconciliation": {
+        "status": "needs_split",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_all_on_d8683175",
+      "sourceRow": 35,
+      "submittedName": "All On",
+      "submittedWebsite": "allon.com",
+      "submittedHeadquarters": "Nigeria",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "shs_paygo",
+        "mini_grid",
+        "commercial_industrial"
+      ],
+      "submittedOwnershipType": "donor_created",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Shell-funded; backed Auxano",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://allon.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_shell_foundation_a1eb64ce",
+      "sourceRow": 36,
+      "submittedName": "Shell Foundation",
+      "submittedWebsite": "shellfoundation.org",
+      "submittedHeadquarters": "UK",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "shs_paygo",
+        "mini_grid"
+      ],
+      "submittedOwnershipType": "non_profit",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "backed AMDA, Mirova SunFunder",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://shellfoundation.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_swedfund_6d9d1913",
+      "sourceRow": 37,
+      "submittedName": "Swedfund",
+      "submittedWebsite": "swedfund.se",
+      "submittedHeadquarters": "Sweden",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "shs_paygo"
+      ],
+      "submittedOwnershipType": "development_finance_institution",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Gigaton LP",
+      "recordShape": "capital_vehicle",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://swedfund.se/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_eib_f3fc286f",
+      "sourceRow": 38,
+      "submittedName": "EIB",
+      "submittedWebsite": "eib.org",
+      "submittedHeadquarters": "Luxembourg",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "shs_paygo",
+        "utility_scale"
+      ],
+      "submittedOwnershipType": "development_finance_institution",
+      "submittedScaleIndicator": "$75m + EUR5m to Gigaton",
+      "submittedNotes": "",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://eib.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_fsd_africa_79582ffe",
+      "sourceRow": 39,
+      "submittedName": "FSD Africa",
+      "submittedWebsite": "fsdafrica.org",
+      "submittedHeadquarters": "Kenya",
+      "submittedStakeholderType": "financier",
+      "submittedSegments": [
+        "shs_paygo",
+        "carbon_markets"
+      ],
+      "submittedOwnershipType": "donor_created",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "backed Nithio, BURN green bond",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_capital",
+      "suggestedRoleIds": [],
+      "suggestedSegmentIds": [
+        "org_segment_carbon_markets",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://fsdafrica.org/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}
