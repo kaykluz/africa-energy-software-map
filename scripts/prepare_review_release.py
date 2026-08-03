@@ -17,6 +17,17 @@ DEFAULT_SNAPSHOT = ROOT / "web" / "generated" / "registry-snapshot.json"
 DECISIONS = {"accept", "amend", "reject", "needs_evidence"}
 RIGHTS_DECISIONS = {"resolved", "needs_research", "exclude"}
 CANDIDATE_ID_PATTERN = re.compile(r"^cand_(org|prod|dep|src)_(.+)$")
+PROMOTED_SUBJECT_TYPES = {
+    "organisation",
+    "product",
+    "deployment",
+    "organisation_role",
+    "organisation_sector",
+    "organisation_segment",
+    "organisation_software_relationship",
+    "organisation_alias",
+    "organisation_relationship",
+}
 
 
 class ReviewReleaseError(RuntimeError):
@@ -308,7 +319,7 @@ def build_release_plan(snapshot: dict, package: dict) -> dict:
             for item in add_assertions
             if item["subjectId"] in {
                 subject_id
-                for subject_type in {"organisation", "product", "deployment"}
+                for subject_type in PROMOTED_SUBJECT_TYPES
                 for subject_id in (
                     assertion["subjectId"]
                     for assertion in assertions.values()
@@ -545,6 +556,7 @@ def canonical_candidate_assertion(
     )
     reference_types = {
         "organisation_id": "organisation",
+        "related_organisation_id": "organisation",
         "product_id": "product",
     }
     if predicate in reference_types:

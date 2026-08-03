@@ -282,8 +282,9 @@ The information architecture is in place, but these areas are not yet complete:
    pages are future linked datasets, not unfinished fields on a software record.
 8. Independent accessibility assessment, moderated user testing and synthetic
    scale/performance testing remain release-hardening work.
-9. Organisation-specific bulk import, review and promotion should reuse the
-   existing review gate but still needs a dedicated template and field mapping.
+9. Organisation-specific bulk import, review and promotion now reuse the
+   existing review gate. Population, identity matching and editorial review of
+   the Phase 2 inventory remain outstanding data work.
 
 ## Contribution growth
 

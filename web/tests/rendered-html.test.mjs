@@ -151,9 +151,22 @@ const bulkHeaders = [
   "organisation_name",
   "existing_organisation_id",
   "organisation_website",
+  "organisation_description",
   "country_of_origin",
   "headquarters_country",
   "origin_classification",
+  "organisation_lifecycle_status",
+  "primary_organisation_role_id",
+  "additional_organisation_role_ids",
+  "organisation_sector_ids",
+  "organisation_segment_ids",
+  "organisation_alias",
+  "organisation_alias_type",
+  "related_organisation_id",
+  "organisation_relationship_type",
+  "organisation_software_relationship_type",
+  "valid_from",
+  "valid_to",
   "product_name",
   "existing_product_id",
   "product_website",
@@ -186,9 +199,22 @@ const validBulkDeployment = {
   organisation_name: "Example Global Grid",
   existing_organisation_id: "",
   organisation_website: "https://example.com",
+  organisation_description: "",
   country_of_origin: "GB",
   headquarters_country: "US",
   origin_classification: "global_deployed_in_africa",
+  organisation_lifecycle_status: "",
+  primary_organisation_role_id: "",
+  additional_organisation_role_ids: "",
+  organisation_sector_ids: "",
+  organisation_segment_ids: "",
+  organisation_alias: "",
+  organisation_alias_type: "",
+  related_organisation_id: "",
+  organisation_relationship_type: "",
+  organisation_software_relationship_type: "",
+  valid_from: "",
+  valid_to: "",
   product_name: "Example Grid Suite",
   existing_product_id: "",
   product_website: "https://example.com/grid",
@@ -214,6 +240,12 @@ const validBulkDeployment = {
   notes: "",
   confirms_no_sensitive_data: "true",
 };
+
+function bulkRow(values) {
+  return Object.fromEntries(
+    bulkHeaders.map((field) => [field, values[field] ?? ""]),
+  );
+}
 
 function contributionRequest(body, headers = {}) {
   return {
@@ -1532,4 +1564,149 @@ test("bulk workbooks enter a private candidate queue and cannot upgrade weak evi
   assert.equal(invalid.status, 422);
   assert.match(JSON.stringify(await invalid.json()), /cannot independently/i);
   assert.equal(database.count("bulk_imports"), 1);
+});
+
+test("organisation intake preserves roles, segments, aliases and corporate relationships", async () => {
+  const database = new MemoryD1();
+  const sharedSource = {
+    source_url: "https://example.org/organisation-register",
+    source_title: "Organisation register",
+    source_publisher: "Example public institution",
+    source_publication_date: "2026-07-31",
+    source_independence_class: "customer_or_official",
+    source_license: "unknown",
+    evidence_status: "public_source",
+    source_locator: "Organisation profile",
+  };
+  const rows = [
+    bulkRow({
+      row_key: "example-capital-partner",
+      record_type: "organisation",
+      organisation_name: "Example Capital Partner",
+      organisation_website: "https://example.org/capital",
+      organisation_description: "Finances energy infrastructure projects.",
+      country_of_origin: "KE",
+      headquarters_country: "KE",
+      origin_classification: "africa_built",
+      organisation_lifecycle_status: "active",
+      primary_organisation_role_id: "org_role_investor_fund",
+      additional_organisation_role_ids: "org_role_lender",
+      organisation_sector_ids: "sector_markets_finance_carbon",
+      organisation_segment_ids:
+        "org_segment_minigrids|org_segment_commercial_industrial",
+      ...sharedSource,
+    }),
+    bulkRow({
+      row_key: "example-capital-former-name",
+      record_type: "organisation_alias",
+      existing_organisation_id: "org_existing_capital",
+      organisation_alias: "Example Capital Oldco",
+      organisation_alias_type: "org_alias_former_name",
+      valid_to: "2024-12-31",
+      ...sharedSource,
+    }),
+    bulkRow({
+      row_key: "example-capital-subsidiary",
+      record_type: "organisation_relationship",
+      organisation_name: "Example Capital Services",
+      existing_organisation_id: "org_existing_services",
+      related_organisation_id: "org_existing_capital",
+      organisation_relationship_type: "org_relationship_subsidiary_of",
+      valid_from: "2025-01-01",
+      ...sharedSource,
+    }),
+    bulkRow({
+      row_key: "example-capital-software-link",
+      record_type: "organisation_software_relationship",
+      organisation_name: "Example Capital Partner",
+      existing_organisation_id: "org_existing_capital",
+      product_name: "Example Portfolio Platform",
+      existing_product_id: "prod_existing_portfolio",
+      organisation_software_relationship_type: "org_software_operates_internally",
+      ...sharedSource,
+    }),
+  ];
+  const imported = await fetchWorker(
+    "/api/review/bulk-imports",
+    {
+      ...reviewRequest({
+        filename: "africa-energy-map-organisations.xlsx",
+        workbookHash: "c".repeat(64),
+        headers: bulkHeaders,
+        rows,
+      }),
+      method: "POST",
+    },
+    { DB: database },
+  );
+  assert.equal(imported.status, 201);
+  const importRecord = await imported.json();
+  assert.equal(importRecord.rowCount, 4);
+  assert.equal(importRecord.entityCount, 4);
+  assert.equal(importRecord.batches[0].assertionEstimate, 30);
+
+  const candidatesResponse = await fetchWorker(
+    `/api/review/bulk-import-rows?importId=${encodeURIComponent(importRecord.id)}`,
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  const candidates = await candidatesResponse.json();
+  assert.deepEqual(
+    candidates.map((item) => item.recordType),
+    [
+      "organisation",
+      "organisation_alias",
+      "organisation_relationship",
+      "organisation_software_relationship",
+    ],
+  );
+  for (const candidate of candidates) {
+    const response = await fetchWorker(
+      `/api/review/bulk-import-rows/${candidate.id}`,
+      reviewRequest({
+        decision: "accept",
+        amendments: {},
+        sourceUrl: sharedSource.source_url,
+        sourceOpened: true,
+        sourceDirect: true,
+        sourceSupports: true,
+        safetyChecked: true,
+        notes: "Direct source checked.",
+        expectedVersion: 0,
+      }),
+      { DB: database },
+    );
+    assert.equal(response.status, 200);
+  }
+  assert.equal(database.count("promoted_assertions"), 30);
+  assert.equal(
+    database.get(
+      "SELECT COUNT(*) AS count FROM promoted_assertions WHERE subject_type = 'organisation_role'",
+    ).count,
+    6,
+  );
+  assert.equal(
+    database.get(
+      "SELECT COUNT(*) AS count FROM promoted_assertions WHERE subject_type = 'organisation_segment'",
+    ).count,
+    4,
+  );
+  assert.equal(
+    database.get(
+      "SELECT COUNT(*) AS count FROM promoted_assertions WHERE subject_type = 'organisation_alias'",
+    ).count,
+    4,
+  );
+  assert.equal(
+    database.get(
+      "SELECT COUNT(*) AS count FROM promoted_assertions WHERE subject_type = 'organisation_relationship'",
+    ).count,
+    4,
+  );
+  assert.equal(
+    database.get(
+      "SELECT COUNT(*) AS count FROM promoted_assertions WHERE subject_type = 'organisation_software_relationship'",
+    ).count,
+    3,
+  );
 });

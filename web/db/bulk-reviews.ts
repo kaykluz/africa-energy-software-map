@@ -3,6 +3,7 @@ import type { ReviewAssertion } from "@/lib/review-data";
 import type { Source } from "@/lib/registry-data";
 import {
   bulkImportFields,
+  splitPipe,
   validateBulkImport,
   type BulkImportRow,
 } from "@/lib/bulk-import";
@@ -17,11 +18,26 @@ export const bulkRowDecisions = [
 
 export const bulkAmendableFields = [
   "organisation_name",
+  "existing_organisation_id",
   "organisation_website",
+  "organisation_description",
   "country_of_origin",
   "headquarters_country",
   "origin_classification",
+  "organisation_lifecycle_status",
+  "primary_organisation_role_id",
+  "additional_organisation_role_ids",
+  "organisation_sector_ids",
+  "organisation_segment_ids",
+  "organisation_alias",
+  "organisation_alias_type",
+  "related_organisation_id",
+  "organisation_relationship_type",
+  "organisation_software_relationship_type",
+  "valid_from",
+  "valid_to",
   "product_name",
+  "existing_product_id",
   "product_website",
   "open_source_url",
   "product_description",
@@ -561,10 +577,14 @@ async function buildPromotedAssertions({
 }) {
   const organisationId =
     row.existing_organisation_id ||
-    `cand_org_${await shortHash(`${row.organisation_name}\n${row.organisation_website}`)}`;
+    (row.organisation_name
+      ? `cand_org_${await shortHash(`${row.organisation_name}\n${row.organisation_website}`)}`
+      : "");
   const productId =
     row.existing_product_id ||
-    `cand_prod_${await shortHash(`${organisationId}\n${row.product_name}`)}`;
+    (row.product_name
+      ? `cand_prod_${await shortHash(`${organisationId}\n${row.product_name}`)}`
+      : "");
   const deploymentId = `cand_dep_${await shortHash(`${importId}\n${rowKey}`)}`;
   const sourceId = `cand_src_${await shortHash(row.source_url)}`;
   const batchId = `${importId}/batch-${String(batchNumber).padStart(2, "0")}`;
@@ -621,20 +641,92 @@ async function buildPromotedAssertions({
     }
   };
   const organisationContext = "Organisation candidate";
-  add("organisation", organisationId, row.organisation_name, organisationContext, "/directory", "name", row.organisation_name);
-  add("organisation", organisationId, row.organisation_name, organisationContext, "/directory", "website", row.organisation_website);
-  add("organisation", organisationId, row.organisation_name, organisationContext, "/directory", "country_of_origin", row.country_of_origin);
-  add("organisation", organisationId, row.organisation_name, organisationContext, "/directory", "headquarters_country", row.headquarters_country);
-  add("organisation", organisationId, row.organisation_name, organisationContext, "/directory", "origin_classification", row.origin_classification);
-  add("product", productId, row.product_name, row.organisation_name, "/directory", "name", row.product_name);
-  add("product", productId, row.product_name, row.organisation_name, "/directory", "organisation_id", organisationId);
-  add("product", productId, row.product_name, row.organisation_name, "/directory", "website", row.product_website);
-  add("product", productId, row.product_name, row.organisation_name, "/directory", "open_source_url", row.open_source_url);
-  add("product", productId, row.product_name, row.organisation_name, "/directory", "description", row.product_description);
-  add("product", productId, row.product_name, row.organisation_name, "/directory", "primary_category_id", row.primary_category_id);
-  add("product", productId, row.product_name, row.organisation_name, "/directory", "sector_id", row.sector_id);
-  add("product", productId, row.product_name, row.organisation_name, "/directory", "lifecycle_status", row.product_lifecycle_status);
-  add("product", productId, row.product_name, row.organisation_name, "/directory", "access_model", row.access_model);
+  const organisationHref = row.existing_organisation_id
+    ? `/organisations/${row.existing_organisation_id}`
+    : "/companies";
+  if (
+    ["organisation", "product", "deployment"].includes(row.record_type) &&
+    !row.existing_organisation_id
+  ) {
+    add("organisation", organisationId, row.organisation_name, organisationContext, organisationHref, "name", row.organisation_name);
+    add("organisation", organisationId, row.organisation_name, organisationContext, organisationHref, "website", row.organisation_website);
+    add("organisation", organisationId, row.organisation_name, organisationContext, organisationHref, "description", row.organisation_description);
+    add("organisation", organisationId, row.organisation_name, organisationContext, organisationHref, "country_of_origin", row.country_of_origin);
+    add("organisation", organisationId, row.organisation_name, organisationContext, organisationHref, "headquarters_country", row.headquarters_country);
+    add("organisation", organisationId, row.organisation_name, organisationContext, organisationHref, "origin_classification", row.origin_classification);
+    add("organisation", organisationId, row.organisation_name, organisationContext, organisationHref, "lifecycle_status", row.organisation_lifecycle_status);
+  }
+  if (
+    ["product", "deployment"].includes(row.record_type) &&
+    !row.existing_product_id
+  ) {
+    add("product", productId, row.product_name, row.organisation_name, "/directory", "name", row.product_name);
+    add("product", productId, row.product_name, row.organisation_name, "/directory", "organisation_id", organisationId);
+    add("product", productId, row.product_name, row.organisation_name, "/directory", "website", row.product_website);
+    add("product", productId, row.product_name, row.organisation_name, "/directory", "open_source_url", row.open_source_url);
+    add("product", productId, row.product_name, row.organisation_name, "/directory", "description", row.product_description);
+    add("product", productId, row.product_name, row.organisation_name, "/directory", "primary_category_id", row.primary_category_id);
+    add("product", productId, row.product_name, row.organisation_name, "/directory", "sector_id", row.sector_id);
+    add("product", productId, row.product_name, row.organisation_name, "/directory", "lifecycle_status", row.product_lifecycle_status);
+    add("product", productId, row.product_name, row.organisation_name, "/directory", "access_model", row.access_model);
+  }
+  const roles = Array.from(
+    new Set([
+      row.primary_organisation_role_id,
+      ...splitPipe(row.additional_organisation_role_ids),
+    ].filter(Boolean)),
+  );
+  for (const roleId of roles) {
+    const relationshipId = `orgrole_${await shortHash(`${organisationId}\n${roleId}`)}`;
+    const label = `${row.organisation_name || organisationId} · ${roleId}`;
+    add("organisation_role", relationshipId, label, "Organisation role", organisationHref, "organisation_id", organisationId);
+    add("organisation_role", relationshipId, label, "Organisation role", organisationHref, "role_id", roleId);
+    add("organisation_role", relationshipId, label, "Organisation role", organisationHref, "is_primary", roleId === row.primary_organisation_role_id ? "true" : "false");
+    add("organisation_role", relationshipId, label, "Organisation role", organisationHref, "valid_from", row.valid_from);
+    add("organisation_role", relationshipId, label, "Organisation role", organisationHref, "valid_to", row.valid_to);
+  }
+  for (const sectorId of splitPipe(row.organisation_sector_ids)) {
+    const relationshipId = `orgsector_${await shortHash(`${organisationId}\n${sectorId}`)}`;
+    const label = `${row.organisation_name || organisationId} · ${sectorId}`;
+    add("organisation_sector", relationshipId, label, "Organisation sector", organisationHref, "organisation_id", organisationId);
+    add("organisation_sector", relationshipId, label, "Organisation sector", organisationHref, "sector_id", sectorId);
+    add("organisation_sector", relationshipId, label, "Organisation sector", organisationHref, "valid_from", row.valid_from);
+    add("organisation_sector", relationshipId, label, "Organisation sector", organisationHref, "valid_to", row.valid_to);
+  }
+  for (const segmentId of splitPipe(row.organisation_segment_ids)) {
+    const relationshipId = `orgsegment_${await shortHash(`${organisationId}\n${segmentId}`)}`;
+    const label = `${row.organisation_name || organisationId} · ${segmentId}`;
+    add("organisation_segment", relationshipId, label, "Organisation segment", organisationHref, "organisation_id", organisationId);
+    add("organisation_segment", relationshipId, label, "Organisation segment", organisationHref, "segment_id", segmentId);
+    add("organisation_segment", relationshipId, label, "Organisation segment", organisationHref, "valid_from", row.valid_from);
+    add("organisation_segment", relationshipId, label, "Organisation segment", organisationHref, "valid_to", row.valid_to);
+  }
+  if (row.record_type === "organisation_alias") {
+    const aliasId = `orgalias_${await shortHash(`${organisationId}\n${row.organisation_alias}\n${row.organisation_alias_type}`)}`;
+    add("organisation_alias", aliasId, row.organisation_alias, organisationId, organisationHref, "organisation_id", organisationId);
+    add("organisation_alias", aliasId, row.organisation_alias, organisationId, organisationHref, "alias", row.organisation_alias);
+    add("organisation_alias", aliasId, row.organisation_alias, organisationId, organisationHref, "alias_type", row.organisation_alias_type);
+    add("organisation_alias", aliasId, row.organisation_alias, organisationId, organisationHref, "valid_from", row.valid_from);
+    add("organisation_alias", aliasId, row.organisation_alias, organisationId, organisationHref, "valid_to", row.valid_to);
+  }
+  if (row.record_type === "organisation_relationship") {
+    const relationshipId = `orgrel_${await shortHash(`${organisationId}\n${row.related_organisation_id}\n${row.organisation_relationship_type}`)}`;
+    const label = `${row.organisation_name || organisationId} · ${row.organisation_relationship_type}`;
+    add("organisation_relationship", relationshipId, label, row.related_organisation_id, organisationHref, "organisation_id", organisationId);
+    add("organisation_relationship", relationshipId, label, row.related_organisation_id, organisationHref, "related_organisation_id", row.related_organisation_id);
+    add("organisation_relationship", relationshipId, label, row.related_organisation_id, organisationHref, "relationship_type", row.organisation_relationship_type);
+    add("organisation_relationship", relationshipId, label, row.related_organisation_id, organisationHref, "valid_from", row.valid_from);
+    add("organisation_relationship", relationshipId, label, row.related_organisation_id, organisationHref, "valid_to", row.valid_to);
+  }
+  if (row.record_type === "organisation_software_relationship") {
+    const relationshipId = `orgsoft_${await shortHash(`${organisationId}\n${productId}\n${row.organisation_software_relationship_type}`)}`;
+    const label = `${row.organisation_name || organisationId} · ${row.organisation_software_relationship_type}`;
+    add("organisation_software_relationship", relationshipId, label, productId, organisationHref, "organisation_id", organisationId);
+    add("organisation_software_relationship", relationshipId, label, productId, organisationHref, "product_id", productId);
+    add("organisation_software_relationship", relationshipId, label, productId, organisationHref, "relationship_type", row.organisation_software_relationship_type);
+    add("organisation_software_relationship", relationshipId, label, productId, organisationHref, "valid_from", row.valid_from);
+    add("organisation_software_relationship", relationshipId, label, productId, organisationHref, "valid_to", row.valid_to);
+  }
   if (row.record_type === "deployment") {
     const deploymentContext = `${row.deployment_country_iso2} · ${row.customer_name || "Undisclosed customer"}`;
     add("deployment", deploymentId, row.product_name, deploymentContext, "/deployments", "product_id", productId);
