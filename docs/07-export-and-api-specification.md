@@ -15,6 +15,10 @@ underlying records without scraping the website.
 - Versioned release archive
 - Changelog and data dictionary
 
+The inclusive `/landscape` CSV and JSON exports keep energy relationship,
+granular function, value-chain stage, sector and Africa-use fields separate. A
+broad listing never inherits a reviewed deployment verdict through export.
+
 ## Release package
 
 ```text
@@ -72,4 +76,3 @@ requiring the internal database to use RDF.
 
 GeoJSON exports exclude non-public precise infrastructure coordinates. Location
 precision and disclosure status travel with every deployment.
-

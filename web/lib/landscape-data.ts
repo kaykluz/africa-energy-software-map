@@ -24,6 +24,8 @@ import phase1015 from "../../data/landscape/shards/phase1-catalogue-015.json";
 import phase1016 from "../../data/landscape/shards/phase1-catalogue-016.json";
 import phase1017 from "../../data/landscape/shards/phase1-catalogue-017.json";
 import phase1018 from "../../data/landscape/shards/phase1-catalogue-018.json";
+import landscapeClassificationData from "../../data/landscape/classifications.json";
+import taxonomyData from "../../data/taxonomy.json";
 
 export type LandscapeKind =
   | "organisation"
@@ -32,7 +34,7 @@ export type LandscapeKind =
   | "research_lead"
   | "source_directory";
 
-export type LandscapeItem = {
+type LandscapeItemRecord = {
   id: string;
   name: string;
   kind: LandscapeKind;
@@ -54,6 +56,24 @@ export type LandscapeItem = {
   asOfDate?: string;
   canonicalHref?: string;
 };
+
+export type EnergyRelationship =
+  | "energy_native"
+  | "energy_applied"
+  | "enabling_infrastructure"
+  | "operator_owned"
+  | "public_research"
+  | "unclassified";
+
+export type LandscapeClassification = {
+  itemId: string;
+  energyRelationship: EnergyRelationship;
+  functionIds: string[];
+  logoPath?: string;
+  logoSourceUrl?: string;
+};
+
+export type LandscapeItem = LandscapeItemRecord & LandscapeClassification;
 
 export type AfricaUseAsSubmitted =
   | "confirmed_deployment"
@@ -88,7 +108,7 @@ type LandscapeShard = {
   batchId: string;
   sourceLabel: string;
   sourceAsOf: string;
-  items: LandscapeItem[];
+  items: LandscapeItemRecord[];
   deploymentLeads: LandscapeDeploymentLead[];
   relationships: LandscapeRelationship[];
 };
@@ -122,7 +142,19 @@ export const landscapeShards = [
   phase1018,
 ] as LandscapeShard[];
 
-export const landscapeItems = landscapeShards.flatMap((shard) => shard.items);
+const classifications = landscapeClassificationData.items as LandscapeClassification[];
+const classificationById = new Map(
+  classifications.map((classification) => [classification.itemId, classification]),
+);
+
+export const landscapeItems = landscapeShards.flatMap((shard) => shard.items).map((item) => ({
+  ...item,
+  ...(classificationById.get(item.id) ?? {
+    itemId: item.id,
+    energyRelationship: "unclassified" as const,
+    functionIds: [],
+  }),
+}));
 export const landscapeDeploymentLeads = landscapeShards.flatMap(
   (shard) => shard.deploymentLeads,
 );
@@ -151,6 +183,26 @@ export const landscapeKindLabels: Record<LandscapeKind, string> = {
   research_lead: "Research lead",
   source_directory: "Source lead",
 };
+
+export const landscapeEnergyRelationshipLabels: Record<EnergyRelationship, string> =
+  Object.fromEntries(
+    taxonomyData.energy_relationships.map((relationship) => [
+      relationship.id,
+      relationship.name,
+    ]),
+  ) as Record<EnergyRelationship, string>;
+
+export const landscapeEnergyRelationshipDescriptions: Record<EnergyRelationship, string> =
+  Object.fromEntries(
+    taxonomyData.energy_relationships.map((relationship) => [
+      relationship.id,
+      relationship.description,
+    ]),
+  ) as Record<EnergyRelationship, string>;
+
+export const landscapeFunctionLabels: Record<string, string> = Object.fromEntries(
+  taxonomyData.functions.map((item) => [item.id, item.name]),
+);
 
 export const landscapeStageLabels: Record<string, string> = {
   stage_plan_design: "Plan and design",

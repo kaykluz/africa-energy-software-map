@@ -1,0 +1,2706 @@
+{
+  "schemaVersion": "1.0.0",
+  "method": "orthogonal-energy-relationship-and-function-taxonomy-v1",
+  "items": [
+    {
+      "itemId": "land_directory_afsia",
+      "energyRelationship": "public_research",
+      "functionIds": []
+    },
+    {
+      "itemId": "land_directory_clean_cooking_alliance",
+      "energyRelationship": "public_research",
+      "functionIds": []
+    },
+    {
+      "itemId": "land_directory_gogla",
+      "energyRelationship": "public_research",
+      "functionIds": []
+    },
+    {
+      "itemId": "land_lead_azuri_technologies",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_lead_buypower_ng",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_lead_efactory_ng",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_lead_enian",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_project_finance_modelling"]
+    },
+    {
+      "itemId": "land_lead_eskom_prepaid_app",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_lead_flouci",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_lead_gosolr",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_asset_monitoring_apm", "func_building_energy_management"]
+    },
+    {
+      "itemId": "land_lead_holley",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_lead_jaza_energy",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_asset_monitoring_apm", "func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_lead_lumos_global",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_lead_onee_mobile_app",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_lead_paysmart_tn",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_lead_powerhive",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_asset_monitoring_apm", "func_minigrid_operations"]
+    },
+    {
+      "itemId": "land_lead_redavia",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_asset_monitoring_apm", "func_building_energy_management"]
+    },
+    {
+      "itemId": "land_lead_salpha_energy",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_asset_monitoring_apm", "func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_lead_solarafrica",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_project_finance_modelling", "func_asset_monitoring_apm", "func_building_energy_management"]
+    },
+    {
+      "itemId": "land_lead_solarise_africa",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_project_finance_modelling", "func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_lead_sonabel_app",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_lead_steg_espace_client",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_lead_tanesco_luku",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_lead_vtu_ng",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_lead_wattnow",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_lead_webgram_smartmifin",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_project_finance_modelling", "func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_lead_winch_energy",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_asset_monitoring_apm", "func_minigrid_operations"]
+    },
+    {
+      "itemId": "land_lead_zola_electric",
+      "energyRelationship": "unclassified",
+      "functionIds": ["func_asset_monitoring_apm", "func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_african_clean_energy",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_energy_interoperability", "func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_org_ammp",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_org_ampersand",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_org_angaza",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_anka_madagascar",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_org_arnergy",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_asset_monitoring_apm", "func_building_energy_management"]
+    },
+    {
+      "itemId": "land_org_bboxx",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_beacon_power_services",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_scada_ems_adms", "func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_org_circle_gas",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_org_conlog",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_org_crossboundary_energy_access",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_project_finance_modelling", "func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_org_dlight",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_equatorial_power",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_org_eskomsepush",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_org_ferntech",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_org_hexing",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_org_honeywell",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms", "func_energy_interoperability"]
+    },
+    {
+      "itemId": "land_org_husk_power",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_org_inhemeter",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_org_izili_group",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_kofa",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_org_koko_networks",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_metering_ami_hes", "func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_org_landis_gyr",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_org_masunga",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_max",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_org_memmcol",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_org_mezzanine",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_ppa_wheeling_retail"]
+    },
+    {
+      "itemId": "land_org_mojec",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_org_nanoe",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_asset_monitoring_apm", "func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_nithio",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_project_finance_modelling"]
+    },
+    {
+      "itemId": "land_org_nuru_drc",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_org_nuru_grids_africa",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm", "func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_org_odyssey",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_procurement_marketplaces", "func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_org_oolu_solar",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_paygee",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_powergen",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_org_powertech_nigeria",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_org_pylon",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms", "func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_org_qotto",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_shyft_power",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration", "func_building_energy_management"]
+    },
+    {
+      "itemId": "land_org_solarworks",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_asset_monitoring_apm", "func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_sparkmeter",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms", "func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_org_spiro",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_org_steamaco",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms", "func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_sun_king",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_ul_solutions",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_org_upya",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_org_welight",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_org_wetility",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm", "func_building_energy_management"]
+    },
+    {
+      "itemId": "land_phase1_00bc86d4",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_procurement_marketplaces"]
+    },
+    {
+      "itemId": "land_phase1_013d6075",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_hybrid_offgrid_design"]
+    },
+    {
+      "itemId": "land_phase1_02374006",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_project_finance_modelling"]
+    },
+    {
+      "itemId": "land_phase1_0284f74a",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_grid_cybersecurity"]
+    },
+    {
+      "itemId": "land_phase1_032a9610",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_grid_cybersecurity"]
+    },
+    {
+      "itemId": "land_phase1_03ecdeab",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_0478b4ca",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_energy_interoperability"]
+    },
+    {
+      "itemId": "land_phase1_04c5a424",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_payment_infrastructure"]
+    },
+    {
+      "itemId": "land_phase1_050cc51c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_hybrid_offgrid_design"]
+    },
+    {
+      "itemId": "land_phase1_05de45f6",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_060f7964",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_phase1_06207f44",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_0671c72c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_0708ca2c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_0723a538",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_0749eac8",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_clean_cooking"]
+    },
+    {
+      "itemId": "land_phase1_07541dd0",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_telecom_power_management"]
+    },
+    {
+      "itemId": "land_phase1_0781cc13",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_079d10a0",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_08c93886",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_0bff7a0a",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_minigrid_operations"]
+    },
+    {
+      "itemId": "land_phase1_0c606c28",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_project_finance_modelling"]
+    },
+    {
+      "itemId": "land_phase1_0d0cccf7",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_iot_connectivity_platforms"]
+    },
+    {
+      "itemId": "land_phase1_0d404445",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_0dc264e6",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_0fd81900",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_102c1383",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_phase1_10553baa",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_hybrid_offgrid_design"]
+    },
+    {
+      "itemId": "land_phase1_11306dd8",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_resource_generation_storage_design"]
+    },
+    {
+      "itemId": "land_phase1_11953012",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_grant_rbf_administration"]
+    },
+    {
+      "itemId": "land_phase1_129f7fdc",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_12c842e3",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_ppa_wheeling_retail"]
+    },
+    {
+      "itemId": "land_phase1_12ccca9d",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_cis_billing"]
+    },
+    {
+      "itemId": "land_phase1_135b5454",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_13f6d23e",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_loss_reduction_revenue_protection"]
+    },
+    {
+      "itemId": "land_phase1_14014f92",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_148244b5",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_cis_billing"]
+    },
+    {
+      "itemId": "land_phase1_1572ee32",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_resource_generation_storage_design"]
+    },
+    {
+      "itemId": "land_phase1_15831b79",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_15c62e58",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_15d46ea5",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_16b03d8b",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_payment_infrastructure"]
+    },
+    {
+      "itemId": "land_phase1_17917b57",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_outage_gis_workforce"]
+    },
+    {
+      "itemId": "land_phase1_1822eb6c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_outage_gis_workforce"]
+    },
+    {
+      "itemId": "land_phase1_18649820",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_18b5bf20",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_18b94c50",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_iot_connectivity_platforms"]
+    },
+    {
+      "itemId": "land_phase1_19037440",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_outage_gis_workforce"]
+    },
+    {
+      "itemId": "land_phase1_19ae5b31",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_1a47b447",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_outage_gis_workforce"]
+    },
+    {
+      "itemId": "land_phase1_1ab2215f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_1c92df6e",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_1cef3725",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_1e8d86e3",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_energy_data_reporting"]
+    },
+    {
+      "itemId": "land_phase1_1eb23bc3",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_1eeec2a5",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_building_energy_management"]
+    },
+    {
+      "itemId": "land_phase1_1f8dddb8",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_payment_infrastructure"]
+    },
+    {
+      "itemId": "land_phase1_20b41401",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_22cdab34",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_phase1_23124dcf",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_2534197c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_25d492a4",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_26912d27",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_26d57902",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_phase1_27235a62",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_276a288c",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_payment_infrastructure"]
+    },
+    {
+      "itemId": "land_phase1_27d8049b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_298e46a1",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_resource_generation_storage_design"]
+    },
+    {
+      "itemId": "land_phase1_2b0349a9",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_2cb9f556",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_2d2816b9",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_2d290f0b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_clean_cooking"]
+    },
+    {
+      "itemId": "land_phase1_2d9ba1c6",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_project_finance_modelling"]
+    },
+    {
+      "itemId": "land_phase1_2dbd8f16",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_2e6dd822",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_2f3420e7",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_2fc62770",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_cis_billing"]
+    },
+    {
+      "itemId": "land_phase1_30564f73",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_317467f2",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_325f3810",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_forecasting"]
+    },
+    {
+      "itemId": "land_phase1_32c438aa",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_332d9dd3",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_resource_generation_storage_design"]
+    },
+    {
+      "itemId": "land_phase1_334f57b2",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_34cebf23",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_project_finance_modelling"]
+    },
+    {
+      "itemId": "land_phase1_34fe4aab",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_35d16233",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_35f5b966",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_phase1_373e38e7",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_37a24517",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_38037cda",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_3901dd62",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_energy_data_reporting"]
+    },
+    {
+      "itemId": "land_phase1_39e63a1f",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_phase1_3b2436af",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_3bd9f0e6",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_procurement_marketplaces"]
+    },
+    {
+      "itemId": "land_phase1_3c2225cd",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_3cf5dddc",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_3d1c2ae6",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_3e3a6e45",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_3f2b1341",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_3f51c955",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_40a073f8",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_productive_use_energy"]
+    },
+    {
+      "itemId": "land_phase1_40c2da6a",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_telecom_power_management"]
+    },
+    {
+      "itemId": "land_phase1_428d5f9c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_forecasting"]
+    },
+    {
+      "itemId": "land_phase1_43174dcd",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_4391ba4b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_43a972ca",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_productive_use_energy"]
+    },
+    {
+      "itemId": "land_phase1_43b9cee0",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_procurement_marketplaces"]
+    },
+    {
+      "itemId": "land_phase1_43ca221d",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_project_finance_modelling"]
+    },
+    {
+      "itemId": "land_phase1_4417399b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_45338cfd",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_455fb64c",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_457fd03d",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_45fdab20",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_470c8ff0",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_47429318",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_resource_generation_storage_design"]
+    },
+    {
+      "itemId": "land_phase1_48330824",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_48985127",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_hybrid_offgrid_design"]
+    },
+    {
+      "itemId": "land_phase1_496251fd",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_49867a2e",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_minigrid_operations"]
+    },
+    {
+      "itemId": "land_phase1_4a5d5de2",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_ppa_wheeling_retail"]
+    },
+    {
+      "itemId": "land_phase1_4b5773af",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_4b7e2d8f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_4bd82bb8",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_iot_connectivity_platforms"]
+    },
+    {
+      "itemId": "land_phase1_4cd67ad0",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_4e0a7ecf",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_4e166189",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_procurement_marketplaces"]
+    },
+    {
+      "itemId": "land_phase1_4e723664",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_4ea0a595",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_4eb5d788",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_502451a3",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_50775195",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_50a2450d",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_50cb9427",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_50e77f8b",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_51746e36",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_payment_infrastructure"]
+    },
+    {
+      "itemId": "land_phase1_520ec625",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_524f086e",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_569274fa",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_energy_data_reporting"]
+    },
+    {
+      "itemId": "land_phase1_56b9d23c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_ppa_wheeling_retail"]
+    },
+    {
+      "itemId": "land_phase1_56d3c1c7",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_577a9fc9",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_57ac0151",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_energy_data_reporting"]
+    },
+    {
+      "itemId": "land_phase1_58a142bc",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_58e13730",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_5946694c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_5a4ff214",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_5aa55278",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_hybrid_offgrid_design"]
+    },
+    {
+      "itemId": "land_phase1_5afa18ab",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_5bab73a2",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_hybrid_offgrid_design"]
+    },
+    {
+      "itemId": "land_phase1_5c4e84f9",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_5cc4fa60",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_5d985047",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_5db7f925",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_resource_generation_storage_design"]
+    },
+    {
+      "itemId": "land_phase1_5df46919",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_5e502ee2",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_forecasting"]
+    },
+    {
+      "itemId": "land_phase1_5e64e401",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_5ec0c692",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_iot_connectivity_platforms"]
+    },
+    {
+      "itemId": "land_phase1_5f3362d1",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_hybrid_offgrid_design"]
+    },
+    {
+      "itemId": "land_phase1_6030b8e2",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_60358cd2",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_building_energy_management"]
+    },
+    {
+      "itemId": "land_phase1_625e33ef",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_6308e816",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_payment_infrastructure"]
+    },
+    {
+      "itemId": "land_phase1_644f98f7",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_project_finance_modelling"]
+    },
+    {
+      "itemId": "land_phase1_6555b56b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_655c428d",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_resource_generation_storage_design"]
+    },
+    {
+      "itemId": "land_phase1_66255167",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_6658c8e4",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_6758e071",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_loss_reduction_revenue_protection"]
+    },
+    {
+      "itemId": "land_phase1_69431ada",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_6db9f93b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_hybrid_offgrid_design"]
+    },
+    {
+      "itemId": "land_phase1_6e7d3df9",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_iot_connectivity_platforms"]
+    },
+    {
+      "itemId": "land_phase1_70a4163c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_resource_generation_storage_design"]
+    },
+    {
+      "itemId": "land_phase1_70bd2ecd",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_energy_data_reporting"]
+    },
+    {
+      "itemId": "land_phase1_712e4aa1",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_72bc6117",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_hybrid_offgrid_design"]
+    },
+    {
+      "itemId": "land_phase1_72ef0ef9",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_building_energy_management"]
+    },
+    {
+      "itemId": "land_phase1_732a6b11",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_73d9eab0",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_building_energy_management"]
+    },
+    {
+      "itemId": "land_phase1_73e84e7f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_74512f29",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_74e44709",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_752453e7",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_75a55d9f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_760481fd",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_7775c27e",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_resource_generation_storage_design"]
+    },
+    {
+      "itemId": "land_phase1_7778e2ec",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_78179179",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_forecasting"]
+    },
+    {
+      "itemId": "land_phase1_78cbbabb",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_grid_cybersecurity"]
+    },
+    {
+      "itemId": "land_phase1_79840a0f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_79d9fc65",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_7a3d5ee3",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_7a4fbb61",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_ppa_wheeling_retail"]
+    },
+    {
+      "itemId": "land_phase1_7b27fc58",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_7ba109c4",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_7bff6a7a",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_clean_cooking"]
+    },
+    {
+      "itemId": "land_phase1_7c673591",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_building_energy_management"]
+    },
+    {
+      "itemId": "land_phase1_7dab816c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_procurement_marketplaces"]
+    },
+    {
+      "itemId": "land_phase1_7f8a8784",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_energy_data_reporting"]
+    },
+    {
+      "itemId": "land_phase1_7ff8bbdc",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_8027f276",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_8190d4a8",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_81a21d1e",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_phase1_822628b0",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_phase1_82a66d7f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_83060568",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_8313140b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_83e76f0a",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_8459814b",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_84bd6c56",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_84bff1be",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_859447f3",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_85af66e9",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_867c8947",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_8685aa8e",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_8753a8fb",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_phase1_889d5a88",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_896b3c56",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_energy_data_reporting"]
+    },
+    {
+      "itemId": "land_phase1_8a008308",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_energy_data_reporting"]
+    },
+    {
+      "itemId": "land_phase1_8aa002d3",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_8bc1036b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_8c1d2894",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_forecasting"]
+    },
+    {
+      "itemId": "land_phase1_8ca32dec",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_8d36b759",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_8ddcb9b7",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_clean_cooking"]
+    },
+    {
+      "itemId": "land_phase1_8e436927",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_8e4643d1",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_phase1_8e90436f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_productive_use_energy"]
+    },
+    {
+      "itemId": "land_phase1_8f55fe6b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_ppa_wheeling_retail"]
+    },
+    {
+      "itemId": "land_phase1_8fcae4ac",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_clean_cooking"]
+    },
+    {
+      "itemId": "land_phase1_8fec9f36",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_909a79b2",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_resource_generation_storage_design"]
+    },
+    {
+      "itemId": "land_phase1_90f05c0f",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_hybrid_offgrid_design"]
+    },
+    {
+      "itemId": "land_phase1_92f970ad",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_94a45efa",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_94cd43a2",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_9887360f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_productive_use_energy"]
+    },
+    {
+      "itemId": "land_phase1_9895cca6",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_loss_reduction_revenue_protection"]
+    },
+    {
+      "itemId": "land_phase1_98f60a58",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_procurement_marketplaces"]
+    },
+    {
+      "itemId": "land_phase1_9912d27a",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_998a1f17",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_99916755",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_99d1c4b8",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_9a1d983b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_9aba2386",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_9b4a93b7",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_9c92ecbf",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_9d077f02",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_hybrid_offgrid_design"]
+    },
+    {
+      "itemId": "land_phase1_9ddb268b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_9e1b856d",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_iot_connectivity_platforms"]
+    },
+    {
+      "itemId": "land_phase1_9e57f757",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_9ea7d322",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_a0ccc075",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_grant_rbf_administration"]
+    },
+    {
+      "itemId": "land_phase1_a2849baf",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_phase1_a2cfab74",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_payment_infrastructure"]
+    },
+    {
+      "itemId": "land_phase1_a2d01ee8",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_a2e98415",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_a2fc1f6a",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_a3507d9d",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_cis_billing"]
+    },
+    {
+      "itemId": "land_phase1_a3c9eaf3",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_a46aa9f9",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_phase1_a4b49e21",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_a5000057",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_phase1_a527e5af",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_payment_infrastructure"]
+    },
+    {
+      "itemId": "land_phase1_a67e50af",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_a7060ee6",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_a7669a1e",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_phase1_a776cbb0",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_a7846d7e",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_a83e880d",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_a854ac10",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_forecasting"]
+    },
+    {
+      "itemId": "land_phase1_a8955fb7",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_aad9abd7",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_ab7af610",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_aba3047c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_outage_gis_workforce"]
+    },
+    {
+      "itemId": "land_phase1_abcf38f4",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_abec0384",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_forecasting"]
+    },
+    {
+      "itemId": "land_phase1_ac342df3",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_resource_generation_storage_design"]
+    },
+    {
+      "itemId": "land_phase1_ac8ae628",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_acc65016",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_adeb7b68",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_ae4ed85b",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_resource_generation_storage_design"]
+    },
+    {
+      "itemId": "land_phase1_ae864dd8",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_energy_data_reporting"]
+    },
+    {
+      "itemId": "land_phase1_aeac161c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_af96fd4e",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_b021b80d",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_energy_data_reporting"]
+    },
+    {
+      "itemId": "land_phase1_b0451add",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_procurement_marketplaces"]
+    },
+    {
+      "itemId": "land_phase1_b15409f5",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_building_energy_management"]
+    },
+    {
+      "itemId": "land_phase1_b1989655",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_resource_generation_storage_design"]
+    },
+    {
+      "itemId": "land_phase1_b1c5082f",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_b1e52f26",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_b463a18d",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_telecom_power_management"]
+    },
+    {
+      "itemId": "land_phase1_b619bf65",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_cis_billing"]
+    },
+    {
+      "itemId": "land_phase1_b639c1ea",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_b6526024",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_enterprise_business_systems"]
+    },
+    {
+      "itemId": "land_phase1_b6b0283a",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_b7b1b332",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_payment_infrastructure"]
+    },
+    {
+      "itemId": "land_phase1_b855eae2",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_building_energy_management"]
+    },
+    {
+      "itemId": "land_phase1_b85d022e",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_utility_vending_collections"]
+    },
+    {
+      "itemId": "land_phase1_b9643df6",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_loss_reduction_revenue_protection"]
+    },
+    {
+      "itemId": "land_phase1_ba40a4b9",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_ppa_wheeling_retail"]
+    },
+    {
+      "itemId": "land_phase1_baf98f93",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_outage_gis_workforce"]
+    },
+    {
+      "itemId": "land_phase1_bb0441ca",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_bb9b725d",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_minigrid_operations"]
+    },
+    {
+      "itemId": "land_phase1_bb9cd692",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_bbaf6e72",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_bbbfbf7b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_hybrid_offgrid_design"]
+    },
+    {
+      "itemId": "land_phase1_bc3f4b55",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_bc703c1c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_bdbd9af6",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_be2ec2de",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_minigrid_operations"]
+    },
+    {
+      "itemId": "land_phase1_bf0a18eb",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_bf5358af",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_cis_billing"]
+    },
+    {
+      "itemId": "land_phase1_bf73f5b7",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_bfd9f93a",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_cis_billing"]
+    },
+    {
+      "itemId": "land_phase1_bff3797a",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_energy_data_reporting"]
+    },
+    {
+      "itemId": "land_phase1_c07641df",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_outage_gis_workforce"]
+    },
+    {
+      "itemId": "land_phase1_c0fb6a85",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_c0fffc62",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_c1c5b192",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_c221d3e7",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_c2d60244",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_c33603b6",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_c3bbb8ac",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_grid_cybersecurity"]
+    },
+    {
+      "itemId": "land_phase1_c3f7bd1c",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_grant_rbf_administration"]
+    },
+    {
+      "itemId": "land_phase1_c4560762",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_c4970f76",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_c56673ed",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_c5a6eadd",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_c5b1ebdc",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_c6145c67",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_c7a03183",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_c7ad4113",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_enterprise_business_systems"]
+    },
+    {
+      "itemId": "land_phase1_c7bfc0a6",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_c7f192f7",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_payment_infrastructure"]
+    },
+    {
+      "itemId": "land_phase1_c8c89643",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_c8dca889",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_c9438079",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_c9a177b7",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_cac7125b",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_phase1_cb40c974",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_cb7bca1b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_cc2e67df",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_ccc70261",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_cd121536",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_cdee077e",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_cf393e8b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms"]
+    },
+    {
+      "itemId": "land_phase1_cfae3528",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_hybrid_offgrid_design"]
+    },
+    {
+      "itemId": "land_phase1_cfdb8cf7",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_cff6b905",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_d11a57c3",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_d1db9910",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_telecom_power_management"]
+    },
+    {
+      "itemId": "land_phase1_d20a5207",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_project_finance_modelling"]
+    },
+    {
+      "itemId": "land_phase1_d31208be",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_d4cd906f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_productive_use_energy"]
+    },
+    {
+      "itemId": "land_phase1_d62f5bc5",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_d683dd16",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_d71159c1",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_d7cf4721",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_d7ff873e",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_d9640066",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_da6045ff",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_da8c6dff",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_dc5e290d",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_dd5fe7e4",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_ddb2d2fd",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_outage_gis_workforce"]
+    },
+    {
+      "itemId": "land_phase1_de560d3c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_phase1_dee31f2f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_df1c5128",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_ppa_wheeling_retail"]
+    },
+    {
+      "itemId": "land_phase1_df44792a",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_energy_data_reporting"]
+    },
+    {
+      "itemId": "land_phase1_e1f03bfd",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_e288172c",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_e3233077",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_iot_connectivity_platforms"]
+    },
+    {
+      "itemId": "land_phase1_e379a48f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_e3cc7a90",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_e4354425",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_e45123d8",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_e4af9a83",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_forecasting"]
+    },
+    {
+      "itemId": "land_phase1_e4e77972",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_e5b032a0",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_e6f1e144",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_e7093cdc",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_clean_cooking"]
+    },
+    {
+      "itemId": "land_phase1_e725541b",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_payment_infrastructure"]
+    },
+    {
+      "itemId": "land_phase1_e792e97b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_e87235c6",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_e90e966b",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_phase1_e99f6df3",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_iot_connectivity_platforms"]
+    },
+    {
+      "itemId": "land_phase1_eab1e069",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_eb82d95a",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_ebaa5778",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_ec81a353",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_iot_connectivity_platforms"]
+    },
+    {
+      "itemId": "land_phase1_ed235e41",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_loss_reduction_revenue_protection"]
+    },
+    {
+      "itemId": "land_phase1_ed853c37",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_ppa_wheeling_retail"]
+    },
+    {
+      "itemId": "land_phase1_edbfe22f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_ee069ed8",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_eee5ac0f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_eee8023e",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_minigrid_operations"]
+    },
+    {
+      "itemId": "land_phase1_f03f8677",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_f1eb3a17",
+      "energyRelationship": "enabling_infrastructure",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_f28a1fe0",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_phase1_f3bd1d83",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_f3f605de",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_f4433a3b",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_outage_gis_workforce"]
+    },
+    {
+      "itemId": "land_phase1_f4b80a98",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_outage_gis_workforce"]
+    },
+    {
+      "itemId": "land_phase1_f5728a51",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_pv_design"]
+    },
+    {
+      "itemId": "land_phase1_f5b6cc93",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_f63f7339",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_f6e065df",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_f7b56336",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_f7ba63a9",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_f7c40809",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_f7d6b343",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_f7e8bf59",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_phase1_f7f0b21c",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_phase1_f8056cb9",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_forecasting"]
+    },
+    {
+      "itemId": "land_phase1_f950cf0b",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_phase1_fa52799e",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_fab92377",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_fb7670f2",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_phase1_fbc78094",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_phase1_fc1133a7",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_fc28839f",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_loss_reduction_revenue_protection"]
+    },
+    {
+      "itemId": "land_phase1_fc4822f8",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_phase1_fcdec674",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_ff46d4f2",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_outage_gis_workforce"]
+    },
+    {
+      "itemId": "land_phase1_ffbf63c2",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_phase1_ffe401cd",
+      "energyRelationship": "operator_owned",
+      "functionIds": ["func_customer_apps_engagement"]
+    },
+    {
+      "itemId": "land_prod_ace_connect",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_prod_adora",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_loss_reduction_revenue_protection"]
+    },
+    {
+      "itemId": "land_prod_amperops",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_prod_aurora_ai",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_minigrid_operations"]
+    },
+    {
+      "itemId": "land_prod_bboxx_pulse",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_prod_energy_hub_activator",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance", "func_energy_interoperability"]
+    },
+    {
+      "itemId": "land_prod_inergy",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_clean_cooking"]
+    },
+    {
+      "itemId": "land_prod_memmcol_ecmi_ugo",
+      "energyRelationship": "energy_applied",
+      "functionIds": ["func_utility_cis_billing"]
+    },
+    {
+      "itemId": "land_prod_nimbus_ami",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_minigrid_operations"]
+    },
+    {
+      "itemId": "land_prod_nithio_risk_analytics",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_project_finance_modelling", "func_energy_interoperability"]
+    },
+    {
+      "itemId": "land_prod_odyssey_platform",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_procurement_marketplaces", "func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_prod_paygops",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_paygo_consumer_finance"]
+    },
+    {
+      "itemId": "land_prod_powergen_amini",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_minigrid_operations"]
+    },
+    {
+      "itemId": "land_prod_pylon_smaas",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_prod_sparkmeter_praxis_suite",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_minigrid_operations"]
+    },
+    {
+      "itemId": "land_source_climate_policy_initiative",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_project_finance_modelling"]
+    },
+    {
+      "itemId": "land_source_disrupt_africa",
+      "energyRelationship": "public_research",
+      "functionIds": []
+    },
+    {
+      "itemId": "land_source_ecg_ghana",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_scada_ems_adms", "func_metering_ami_hes"]
+    },
+    {
+      "itemId": "land_source_esa_business",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_source_fcdo_devtracker",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_asset_monitoring_apm"]
+    },
+    {
+      "itemId": "land_source_forbes_middle_east",
+      "energyRelationship": "public_research",
+      "functionIds": []
+    },
+    {
+      "itemId": "land_source_honeywell_investor",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_scada_ems_adms", "func_energy_interoperability"]
+    },
+    {
+      "itemId": "land_source_iea",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial", "func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_source_intellinews",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_market_settlement_trading"]
+    },
+    {
+      "itemId": "land_source_kioi",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_metering_ami_hes", "func_carbon_mrv_registry"]
+    },
+    {
+      "itemId": "land_source_mercom_capital",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_project_finance_modelling"]
+    },
+    {
+      "itemId": "land_source_microgrid_news",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_asset_monitoring_apm", "func_minigrid_operations"]
+    },
+    {
+      "itemId": "land_source_odyssey_procure",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_procurement_marketplaces"]
+    },
+    {
+      "itemId": "land_source_yicai_global",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_emobility_fleet_charging"]
+    },
+    {
+      "itemId": "land_tool_africa_electricity_grids_explorer",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial", "func_energy_data_reporting"]
+    },
+    {
+      "itemId": "land_tool_crossboundary_finance_tools",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_project_finance_modelling"]
+    },
+    {
+      "itemId": "land_tool_energy_access_explorer",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_tool_irena_flextool",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems", "func_derms_orchestration"]
+    },
+    {
+      "itemId": "land_tool_onsset",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_tool_openpaygo_token",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_energy_interoperability"]
+    },
+    {
+      "itemId": "land_tool_pypsa_africa_earth",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_engineering_power_systems"]
+    },
+    {
+      "itemId": "land_tool_vida",
+      "energyRelationship": "public_research",
+      "functionIds": ["func_electrification_geospatial"]
+    }
+  ]
+}

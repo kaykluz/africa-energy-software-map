@@ -311,18 +311,27 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
   assert.match(styles, /min-width:\s*320px/);
 });
 
-test("server-renders the inclusive landscape as a separate searchable list", async () => {
+test("server-renders the classified software wall", async () => {
   const response = await render("/landscape?q=SteamaCo");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /<h1[^>]*>The full list<\/h1>/i);
-  assert.match(html, /Every organisation, product and research lead/);
+  assert.match(html, /<h1[^>]*>Software wall<\/h1>/i);
+  assert.match(html, /Browse tools by where they sit in the energy system/);
   assert.match(html, /SteamaCo/);
-  assert.match(html, /Listed means included/);
+  assert.match(html, /Plan and design/);
   assert.match(html, /Deployment map/);
   assert.match(html, /CSV/);
   assert.match(html, /JSON/);
-  assert.match(html, /Sources supplied/);
+  assert.match(html, /Sources/);
+});
+
+test("classifies a horizontal payment rail without presenting it as energy software", async () => {
+  const response = await render("/landscape?q=Paystack");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Paystack/);
+  assert.match(html, /Payment infrastructure/);
+  assert.match(html, /Enabling infrastructure/);
 });
 
 test("server-renders an imported Phase 1 catalogue record", async () => {
@@ -330,7 +339,7 @@ test("server-renders an imported Phase 1 catalogue record", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /The Solar Labs/);
-  assert.match(html, /Category/);
+  assert.match(html, /Function/);
   assert.match(html, /Sector/);
   assert.match(html, /Africa link/);
   assert.doesNotMatch(html, /private editorial metadata/i);

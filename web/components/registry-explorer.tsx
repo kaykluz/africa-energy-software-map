@@ -1300,7 +1300,7 @@ function DirectoryView({
       <div className="v2-data-foot">
         <span>{release.version} · {release.date}</span>
         <div>
-          <Link href="/landscape">Open the full list →</Link>
+          <Link href="/landscape">Open the software wall →</Link>
           <Link href="/data">Dataset notes →</Link>
         </div>
       </div>

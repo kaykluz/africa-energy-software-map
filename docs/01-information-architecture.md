@@ -4,12 +4,22 @@
 
 Phase 1 navigation is intentionally small:
 
-**Stack · Deployments · Directory · Methodology**
+**Stack · Deployments · Directory · Software wall · Methodology**
 
 Global search and Contribute remain available across all views. Data downloads
 live in the Directory. Organisation and country pages are reached contextually.
 
-## One database, three views
+### Software wall
+
+Answers: **What software and enabling infrastructure appears across the wider
+landscape?**
+
+The wall arranges catalogue identities across the six value-chain stages and a
+cross-cutting band. Selecting a tile opens the listing detail in place. Wall,
+list, deployment leads, history, sources and exports share the same catalogue
+route. Broad inclusion does not create a reviewed deployment claim.
+
+## Reviewed database, three views
 
 ### Stack
 
@@ -53,6 +63,7 @@ export of the current result set.
 /
 /deployments
 /directory
+/landscape
 /methodology
 /products/{slug}
 /organisations/{slug}

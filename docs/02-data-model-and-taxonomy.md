@@ -43,6 +43,18 @@ changing identity.
 
 Products receive one primary category and any number of secondary capabilities.
 
+The inclusive landscape adds a granular function layer and one primary energy
+relationship. These answer different questions from the reviewed category:
+
+- **Function** describes the specific work, such as payment infrastructure,
+  utility vending, AMI, CIS and billing, or IoT connectivity.
+- **Energy relationship** distinguishes Built for energy, Applied in energy,
+  Enabling infrastructure, Operator-owned, Public and research, and To
+  classify.
+
+Relationship is not a quality, evidence or inclusion verdict. See
+[Classification and software wall](28-classification-and-software-wall.md).
+
 ## Sector lens
 
 The value chain describes what a product does. Sectors describe where it is
@@ -71,6 +83,8 @@ The following must not be collapsed into one status:
   confirmation.
 - **Freshness** — current, review due, stale, or historical.
 - **Market condition** — category-level analysis, never a vendor rating.
+- **Energy relationship** — how a landscape listing relates to energy, never a
+  vendor rating.
 
 ## Unknown-state discipline
 

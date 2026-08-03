@@ -148,6 +148,12 @@ def validate_taxonomy(errors: list[str]) -> None:
         ids.append(stage["id"])
         ids.extend(category["id"] for category in stage["categories"])
     ids.extend(category["id"] for category in taxonomy["cross_cutting"])
+    function_ids = [item["id"] for item in taxonomy.get("functions", [])]
+    relationship_ids = [
+        item["id"] for item in taxonomy.get("energy_relationships", [])
+    ]
+    ids.extend(function_ids)
+    ids.extend(relationship_ids)
     sector_ids = [sector["id"] for sector in taxonomy.get("sectors", [])]
     ids.extend(sector_ids)
 
@@ -163,6 +169,19 @@ def validate_taxonomy(errors: list[str]) -> None:
         errors.append(
             "data/taxonomy.json: exactly six sector IDs are required"
         )
+    if len(relationship_ids) != 6 or any(
+        not value.startswith(("energy_", "enabling_", "operator_", "public_", "unclassified"))
+        for value in relationship_ids
+    ):
+        errors.append(
+            "data/taxonomy.json: exactly six energy relationship IDs are required"
+        )
+    stage_ids = {stage["id"] for stage in taxonomy["stages"]}
+    for function in taxonomy.get("functions", []):
+        if any(value not in stage_ids for value in function.get("stageIds", [])):
+            errors.append(
+                f"data/taxonomy.json: {function.get('id', 'function')} has an invalid stage"
+            )
 
     try:
         from validate_bulk_template import DEFAULT_TEMPLATE, validate_template
@@ -187,6 +206,10 @@ def validate_landscape_catalogue(errors: list[str]) -> None:
     }
     category_ids.update(item["id"] for item in taxonomy["cross_cutting"])
     sector_ids = {item["id"] for item in taxonomy.get("sectors", [])}
+    function_ids = {item["id"] for item in taxonomy.get("functions", [])}
+    energy_relationship_ids = {
+        item["id"] for item in taxonomy.get("energy_relationships", [])
+    }
     allowed_kinds = {
         "organisation",
         "product",
@@ -195,6 +218,7 @@ def validate_landscape_catalogue(errors: list[str]) -> None:
         "source_directory",
     }
     seen: set[str] = set()
+    seen_item_ids: set[str] = set()
     domain_pattern = re.compile(
         r"^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}(?:/[a-z0-9._~!$&'()*+,;=:@%/-]*)?$",
         re.I,
@@ -243,6 +267,8 @@ def validate_landscape_catalogue(errors: list[str]) -> None:
                 elif record_id in seen:
                     errors.append(f"{label}: duplicate ID {record_id}")
                 seen.add(record_id)
+                if group_name == "items":
+                    seen_item_ids.add(record_id)
                 if not row.get("name", "").strip():
                     errors.append(f"{label}: missing name")
                 domains = row.get("sourceDomains", [])
@@ -287,6 +313,60 @@ def validate_landscape_catalogue(errors: list[str]) -> None:
                 canonical = row.get("canonicalHref", "")
                 if canonical and not canonical.startswith("/"):
                     errors.append(f"{label}: canonicalHref must be repository-relative")
+
+    classification_path = landscape_dir.parent / "classifications.json"
+    if not classification_path.exists():
+        errors.append("data/landscape/classifications.json: missing classification overlay")
+        return
+    classifications = load_json(classification_path)
+    if classifications.get("schemaVersion") != "1.0.0":
+        errors.append("data/landscape/classifications.json: unsupported schemaVersion")
+    rows = classifications.get("items", [])
+    if not isinstance(rows, list):
+        errors.append("data/landscape/classifications.json: items must be an array")
+        return
+    classified_ids: list[str] = []
+    for index, row in enumerate(rows, start=1):
+        label = f"data/landscape/classifications.json:items[{index}]"
+        item_id = row.get("itemId", "")
+        classified_ids.append(item_id)
+        if row.get("energyRelationship") not in energy_relationship_ids:
+            errors.append(f"{label}: invalid energy relationship")
+        functions = row.get("functionIds", [])
+        if not isinstance(functions, list) or any(
+            value not in function_ids for value in functions
+        ):
+            errors.append(f"{label}: invalid function ID")
+        if len(functions) != len(set(functions)):
+            errors.append(f"{label}: duplicate function ID")
+        logo_path = row.get("logoPath", "")
+        if logo_path and not re.fullmatch(r"/logos/[a-z0-9_./-]+", logo_path):
+            errors.append(f"{label}: invalid logo path")
+        logo_source = row.get("logoSourceUrl", "")
+        if logo_source and not valid_url(logo_source):
+            errors.append(f"{label}: invalid logo source URL")
+        if bool(logo_path) != bool(logo_source):
+            errors.append(f"{label}: logo path and official source URL must appear together")
+        if logo_path and not (ROOT / "web" / "public" / logo_path.lstrip("/")).is_file():
+            errors.append(f"{label}: logo asset is missing")
+    duplicate_classifications = sorted(
+        {value for value in classified_ids if classified_ids.count(value) > 1}
+    )
+    if duplicate_classifications:
+        errors.append(
+            "data/landscape/classifications.json: duplicate item IDs: "
+            f"{duplicate_classifications}"
+        )
+    missing = sorted(seen_item_ids - set(classified_ids))
+    extra = sorted(set(classified_ids) - seen_item_ids)
+    if missing:
+        errors.append(
+            f"data/landscape/classifications.json: missing {len(missing)} listing classifications"
+        )
+    if extra:
+        errors.append(
+            f"data/landscape/classifications.json: {len(extra)} unknown listing classifications"
+        )
 
 
 def csv_records(path: Path) -> tuple[list[str], list[dict[str, str]]]:
