@@ -233,6 +233,39 @@ export const bulkRowReviews = sqliteTable(
   (table) => [index("bulk_row_reviews_decision_idx").on(table.decision)],
 );
 
+export const organisationCatalogueReviews = sqliteTable(
+  "organisation_catalogue_reviews",
+  {
+    candidateId: text("candidate_id").primaryKey(),
+    decision: text("decision").notNull(),
+    amendmentsJson: text("amendments_json"),
+    normalizedSourceUrl: text("normalized_source_url").notNull(),
+    sourceOpened: integer("source_opened", { mode: "boolean" })
+      .notNull()
+      .default(false),
+    identityConfirmed: integer("identity_confirmed", { mode: "boolean" })
+      .notNull()
+      .default(false),
+    classificationsConfirmed: integer("classifications_confirmed", {
+      mode: "boolean",
+    })
+      .notNull()
+      .default(false),
+    safetyChecked: integer("safety_checked", { mode: "boolean" })
+      .notNull()
+      .default(false),
+    notes: text("notes"),
+    reviewerEmail: text("reviewer_email").notNull(),
+    reviewedAt: text("reviewed_at").notNull(),
+    updatedAt: text("updated_at").notNull(),
+    version: integer("version").notNull().default(1),
+  },
+  (table) => [
+    index("organisation_catalogue_reviews_decision_idx").on(table.decision),
+    index("organisation_catalogue_reviews_updated_idx").on(table.updatedAt),
+  ],
+);
+
 export const promotedAssertions = sqliteTable(
   "promoted_assertions",
   {

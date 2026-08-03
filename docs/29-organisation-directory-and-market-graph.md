@@ -1,7 +1,6 @@
 # Organisation directory and market graph
 
-Status: Public foundation implemented; wider organisation population remains
-outstanding
+Status: Public inclusion catalogue and reviewed profile layer implemented
 Last updated: 3 August 2026
 
 ## Decision
@@ -25,6 +24,39 @@ Organisation ── role ──────────────── Role
 Tabs and routes represent durable object types. Roles and segments are
 filterable dimensions and saved views. This avoids duplicate company records,
 contradictory updates and a role-by-segment navigation matrix.
+
+## Implemented catalogue boundary
+
+The Organisations route now opens on **All listings**. This inclusion-first
+catalogue contains 1,953 source-linked organisation listings from the 3 August
+2026 research workbook. It is filterable by role, market, documented country,
+headquarters and Africa-headquartered status, and the filtered result can be
+exported as CSV.
+
+The catalogue is deliberately separate from the canonical reviewed release:
+
+- **Listed / review pending** means a named source or direct website supplied a
+  discovery record. It is not an endorsement or a verified profile.
+- **Reviewed match** means the workbook identity reconciles to an existing
+  canonical organisation profile.
+- **Accepted in `/review`** records an editorial decision but still does not
+  publish a canonical profile. Promotion requires a bounded repository data
+  pull request and independent review.
+
+The private review workspace exposes every catalogue row. Editors can search
+and filter the full queue, open the direct source, then accept, amend, reject,
+mark duplicate or request more evidence. Accept and Amend require explicit
+source-opened, identity, classification and publication-safety checks. All
+decisions use optimistic versions and append-only audit events.
+
+Private editorial cells matching employment, ownership, competitor or
+conflict-style language were omitted when the public-safe catalogue was
+generated. The generator rejects those patterns on every rebuild; it does not
+replace them with a visible placeholder or store them in D1.
+
+The generated layer also omits workbook narrative descriptions and project-focus
+prose. It publishes factual metadata, attribution and direct links only, so
+third-party directory or company copy is not silently republished.
 
 ## What changes in the public information architecture
 
@@ -250,7 +282,15 @@ Route: `/organisations`
 Do not use a large hero, an eyebrow or explanatory paragraphs. Method detail is
 one link away.
 
-### Default Ecosystem view
+### Default All listings view
+
+The broad inclusion catalogue is the default route because it answers the
+discovery question most visitors bring. It remains visually quiet and carries a
+compact boundary note rather than repeating caveats on every card. The view is
+paginated and backed by a server-side query endpoint so the full workbook is not
+shipped in the browser bundle.
+
+### Reviewed Ecosystem view
 
 The atlas is the organisation equivalent of the software wall. It is grouped by
 ecosystem actor group and ordered alphabetically within each group.

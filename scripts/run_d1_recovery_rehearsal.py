@@ -30,6 +30,7 @@ EXPECTED_TABLES = {
     "contribution_rate_limits",
     "contributions",
     "maintenance_runs",
+    "organisation_catalogue_reviews",
     "promoted_assertions",
     "review_audit_events",
     "source_reviews",
@@ -216,6 +217,29 @@ def seed_synthetic_fixture(database: sqlite3.Connection) -> None:
         ),
     )
     database.execute(
+        """INSERT INTO organisation_catalogue_reviews (
+             candidate_id, decision, amendments_json, normalized_source_url,
+             source_opened, identity_confirmed, classifications_confirmed,
+             safety_checked, notes, reviewer_email, reviewed_at, updated_at,
+             version
+           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        (
+            "listing_afr_0002",
+            "accept",
+            "{}",
+            "https://example.invalid/organisation",
+            1,
+            1,
+            1,
+            1,
+            "Synthetic recovery fixture",
+            "editor@example.invalid",
+            now,
+            now,
+            1,
+        ),
+    )
+    database.execute(
         """INSERT INTO promoted_assertions (
              id, row_id, import_id, batch_id, subject_type, subject_id,
              subject_label, subject_context, subject_href, predicate, value,
@@ -326,6 +350,7 @@ def run_rehearsal(rto_seconds: float = 900) -> dict[str, object]:
         source.execute("DELETE FROM contribution_contacts")
         source.execute("DELETE FROM contributions")
         source.execute("DELETE FROM bulk_import_rows")
+        source.execute("DELETE FROM organisation_catalogue_reviews")
         source.execute(
             "UPDATE system_settings SET value = 'damaged' WHERE key = 'intake_paused'"
         )

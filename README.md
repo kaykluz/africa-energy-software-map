@@ -29,7 +29,9 @@ One connected data model supports five public modes:
 4. **Wall** — a visual software landscape organised by relationship to energy,
    function, software stage and sector.
 5. **Organisations** — actor types such as financiers, developers, OEMs, EPCs,
-   operators, software providers and enablers, filterable by energy market.
+   operators, software providers and enablers. The route separates a broad
+   1,953-record inclusion catalogue from canonical reviewed profiles and is
+   filterable by role, energy market, headquarters, country and review status.
 
 Every material deployment and market claim will link to evidence and display a
 last-checked date.
@@ -56,6 +58,9 @@ Bulk candidates can be accepted, amended, rejected or held for more evidence.
 Approved rows become source-linked atomic assertions in that same private
 workspace and still require assertion-level review before a release pull
 request can be prepared.
+The same workspace now exposes every organisation-catalogue row in a dedicated
+queue. Organisation decisions are versioned and audited but still require a
+bounded, independently reviewed data pull request before canonical publication.
 Scheduled retention, source-first review preparation, proposal-only research
 readiness, and the bounded Batch 002 plan are documented in
 [automation and review assist](docs/23-automation-and-review-assist.md).

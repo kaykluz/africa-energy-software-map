@@ -23,7 +23,13 @@ import type {
   BulkRowDecision,
   BulkRowReviewRecord,
 } from "@/db/bulk-reviews";
+import type {
+  OrganisationCatalogueAmendableField,
+  OrganisationCatalogueDecision,
+  OrganisationCatalogueReviewRecord,
+} from "@/db/organisation-catalogue-reviews";
 import { parseBulkWorkbook } from "@/lib/bulk-xlsx-client";
+import type { OrganisationCatalogueRecord } from "@/lib/organisation-catalogue";
 import type {
   ReviewAssertion,
 } from "@/lib/review-data";
@@ -41,11 +47,13 @@ type WorkspaceState = {
   contributions: ModerationContribution[];
   operations: OperationsStatus;
   bulkImports: BulkImportRecord[];
+  organisationCatalogueReviews: OrganisationCatalogueReviewRecord[];
 };
 
 type Tab =
   | "assertions"
   | "sources"
+  | "organisations"
   | "contributions"
   | "bulk"
   | "operations";
@@ -57,6 +65,20 @@ type AssertionFilter =
   | "reject"
   | "needs_evidence";
 type ApiError = { error?: { message?: string; details?: string[] } };
+type ReviewCataloguePage = {
+  counts: { total: number; reviewedMatches: number; needsReview: number; africaHeadquartered: number };
+  decisions: number;
+  reconciledOrDecided: number;
+  total: number;
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  records: Array<{
+    record: OrganisationCatalogueRecord;
+    review: OrganisationCatalogueReviewRecord | null;
+  }>;
+  options: { roles: string[]; segments: string[] };
+};
 type BulkReviewSaveResult = {
   review: BulkRowReviewRecord;
   status: string;
@@ -91,6 +113,7 @@ export function ReviewWorkspace({
   assertions,
   sources,
   manifest,
+  organisationCatalogueSummary,
   batchId,
   reviewer,
   signOutHref,
@@ -110,6 +133,12 @@ export function ReviewWorkspace({
       sources: number;
       assertions: number;
     };
+  };
+  organisationCatalogueSummary: {
+    total: number;
+    reviewedMatches: number;
+    needsReview: number;
+    africaHeadquartered: number;
   };
   batchId: string;
   reviewer: { displayName: string; email: string };
@@ -223,6 +252,23 @@ export function ReviewWorkspace({
     (total, record) => total + record.decisionCounts.needsEvidence,
     0,
   );
+  const organisationCatalogueReviewMap = useMemo(
+    () =>
+      new Map(
+        (workspace?.organisationCatalogueReviews ?? []).map((review) => [
+          review.candidateId,
+          review,
+        ]),
+      ),
+    [workspace?.organisationCatalogueReviews],
+  );
+  const organisationCatalogueDecided =
+    organisationCatalogueSummary.reviewedMatches +
+    organisationCatalogueReviewMap.size;
+  const organisationCataloguePending = Math.max(
+    0,
+    organisationCatalogueSummary.total - organisationCatalogueDecided,
+  );
   const releaseReady =
     manifest.reviewGate.publishable &&
     assertionsPending === 0 &&
@@ -286,6 +332,21 @@ export function ReviewWorkspace({
   function replaceOperations(operations: OperationsStatus) {
     if (!workspace) return;
     setWorkspace({ ...workspace, operations });
+  }
+
+  function replaceOrganisationCatalogueReview(
+    review: OrganisationCatalogueReviewRecord,
+  ) {
+    if (!workspace) return;
+    setWorkspace({
+      ...workspace,
+      organisationCatalogueReviews: [
+        review,
+        ...workspace.organisationCatalogueReviews.filter(
+          (item) => item.candidateId !== review.candidateId,
+        ),
+      ],
+    });
   }
 
   function addBulkImport(record: BulkImportRecord) {
@@ -410,7 +471,9 @@ export function ReviewWorkspace({
                 ? `${combinedSources.length - resolvedSources} source rights pending`
                 : heldCandidateRows
                   ? `${heldCandidateRows} candidates held out`
-                  : "review package only"
+                  : organisationCataloguePending
+                    ? `core ready · ${organisationCataloguePending.toLocaleString()} catalogue listings open`
+                    : "review package only"
           }
           value={releaseReady ? "Ready" : "Held"}
         />
@@ -446,6 +509,12 @@ export function ReviewWorkspace({
           count={combinedSources.length}
           label="Sources"
           onClick={() => setTab("sources")}
+        />
+        <TabButton
+          active={tab === "organisations"}
+          count={organisationCatalogueSummary.total}
+          label="Organisations"
+          onClick={() => setTab("organisations")}
         />
         <TabButton
           active={tab === "contributions"}
@@ -503,6 +572,14 @@ export function ReviewWorkspace({
           onSelect={setActiveSourceId}
           reviewMap={sourceReviewMap}
           sources={combinedSources}
+        />
+      ) : null}
+
+      {tab === "organisations" && workspace ? (
+        <OrganisationCatalogueWorkspace
+          decided={organisationCatalogueDecided}
+          onSaved={replaceOrganisationCatalogueReview}
+          summary={organisationCatalogueSummary}
         />
       ) : null}
 
@@ -579,6 +656,359 @@ function ReviewNextStep({
         </button>
       )}
     </section>
+  );
+}
+
+function OrganisationCatalogueWorkspace({
+  decided,
+  summary,
+  onSaved,
+}: {
+  decided: number;
+  summary: { total: number; reviewedMatches: number; needsReview: number; africaHeadquartered: number };
+  onSaved: (review: OrganisationCatalogueReviewRecord) => void;
+}) {
+  const [query, setQuery] = useState("");
+  const [status, setStatus] = useState("pending");
+  const [role, setRole] = useState("all");
+  const [segment, setSegment] = useState("all");
+  const [page, setPage] = useState(1);
+  const [activeId, setActiveId] = useState("");
+  const [result, setResult] = useState<ReviewCataloguePage | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => {
+      setLoading(true);
+      const params = new URLSearchParams({ status, page: String(page), pageSize: "40" });
+      if (query.trim()) params.set("q", query.trim());
+      if (role !== "all") params.set("role", role);
+      if (segment !== "all") params.set("segment", segment);
+      fetch(`/api/review/organisation-catalogue?${params}`, {
+        cache: "no-store",
+        signal: controller.signal,
+      })
+        .then(async (response) => {
+          const value = (await response.json()) as ReviewCataloguePage | ApiError;
+          if (!response.ok || "error" in value) {
+            throw new Error("error" in value ? value.error?.message : "The organisation queue could not be loaded.");
+          }
+          setResult(value);
+          setActiveId((current) =>
+            value.records.some((item) => item.record.id === current)
+              ? current
+              : value.records[0]?.record.id ?? "",
+          );
+          setError("");
+        })
+        .catch((reason: unknown) => {
+          if (!controller.signal.aborted) {
+            setError(reason instanceof Error ? reason.message : "The organisation queue could not be loaded.");
+          }
+        })
+        .finally(() => {
+          if (!controller.signal.aborted) setLoading(false);
+        });
+    }, query ? 180 : 0);
+    return () => {
+      controller.abort();
+      window.clearTimeout(timer);
+    };
+  }, [page, query, refreshKey, role, segment, status]);
+
+  const activeItem = result?.records.find((item) => item.record.id === activeId) ?? result?.records[0];
+  const active = activeItem?.record;
+
+  function resetPage() {
+    setPage(1);
+  }
+
+  return (
+    <section className="review-catalogue-section">
+      <header className="review-catalogue-header">
+        <div>
+          <span>Inclusion catalogue</span>
+          <h2>{summary.total.toLocaleString()} organisations</h2>
+          <p>
+            {decided.toLocaleString()} reconciled or decided ·{" "}
+            {(summary.total - decided).toLocaleString()} awaiting review
+          </p>
+        </div>
+        <div className="review-catalogue-boundary">
+          <strong>Listed ≠ reviewed</strong>
+          <span>Identity, source, roles, markets and relationships are checked here before release promotion.</span>
+        </div>
+      </header>
+
+      <div className="review-catalogue-filters">
+        <label>
+          <span className="sr-only">Search organisation candidates</span>
+          <input
+            onChange={(event) => { setQuery(event.target.value); resetPage(); }}
+            placeholder={`Search ${summary.total.toLocaleString()} organisations`}
+            type="search"
+            value={query}
+          />
+        </label>
+        <select
+          aria-label="Filter organisation review status"
+          onChange={(event) => { setStatus(event.target.value); resetPage(); }}
+          value={status}
+        >
+          <option value="pending">Awaiting review</option>
+          <option value="decided">Decided in workspace</option>
+          <option value="reviewed">Matched to reviewed release</option>
+          <option value="accept">Accepted</option>
+          <option value="amend">Amended</option>
+          <option value="needs_evidence">More evidence</option>
+          <option value="duplicate">Duplicate</option>
+          <option value="reject">Rejected</option>
+          <option value="all">All</option>
+        </select>
+        <select
+          aria-label="Filter by organisation role"
+          onChange={(event) => { setRole(event.target.value); resetPage(); }}
+          value={role}
+        >
+          <option value="all">All roles</option>
+          {(result?.options.roles ?? []).map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+        <select
+          aria-label="Filter by market segment"
+          onChange={(event) => { setSegment(event.target.value); resetPage(); }}
+          value={segment}
+        >
+          <option value="all">All markets</option>
+          {(result?.options.segments ?? []).map((value) => <option key={value} value={value}>{value}</option>)}
+        </select>
+        <span>{loading ? "Loading…" : `${(result?.total ?? 0).toLocaleString()} shown`}</span>
+      </div>
+
+      {error ? <div className="review-global-error" role="alert">{error}</div> : null}
+
+      <div className="review-catalogue-workspace">
+        <aside aria-label="Organisation candidates" className="review-catalogue-list">
+          {(result?.records ?? []).map(({ record, review }) => {
+            return (
+              <button
+                aria-current={record.id === active?.id ? "true" : undefined}
+                key={record.id}
+                onClick={() => setActiveId(record.id)}
+                type="button"
+              >
+                <span>
+                  <strong>{record.name}</strong>
+                  <small>{record.primaryRole || record.organisationType || "Role not classified"}</small>
+                </span>
+                <i data-status={review?.decision ?? record.reviewState}>
+                  {review
+                    ? catalogueDecisionLabel(review.decision)
+                    : record.reviewState === "reviewed"
+                      ? "Reviewed"
+                      : "Open"}
+                </i>
+              </button>
+            );
+          })}
+          {!loading && !result?.records.length ? <p className="review-catalogue-empty">No matching organisations.</p> : null}
+          {(result?.pageCount ?? 1) > 1 ? (
+            <nav aria-label="Organisation candidate pages" className="review-catalogue-pagination">
+              <button disabled={result?.page === 1 || loading} onClick={() => setPage((result?.page ?? 1) - 1)} type="button">Previous</button>
+              <span>{result?.page} / {result?.pageCount}</span>
+              <button disabled={result?.page === result?.pageCount || loading} onClick={() => setPage((result?.page ?? 1) + 1)} type="button">Next</button>
+            </nav>
+          ) : null}
+        </aside>
+
+        {active ? (
+          <article className="review-catalogue-detail">
+            <header>
+              <div>
+                <span>{active.workbookId} · row {active.sourceRow}</span>
+                <h2>{active.name}</h2>
+                <p>{[active.primaryRole, active.headquartersCountry].filter(Boolean).join(" · ")}</p>
+              </div>
+              {active.reconciliation.status === "reviewed_match" ? (
+                <Link href={active.reconciliation.canonicalHref}>Open reviewed record ↗</Link>
+              ) : active.website ? (
+                <a href={active.website} rel="noreferrer" target="_blank">Website ↗</a>
+              ) : null}
+            </header>
+            <CatalogueFacts record={active} />
+            {active.reviewState === "reviewed" ? (
+              <div className="review-catalogue-reviewed-note">
+                <strong>Already reconciled</strong>
+                <span>This listing matches an organisation in the reviewed release.</span>
+              </div>
+            ) : (
+              <OrganisationCatalogueReviewForm
+                key={`${active.id}-${activeItem?.review?.version ?? 0}`}
+                onSaved={(review) => {
+                  onSaved(review);
+                  setRefreshKey((value) => value + 1);
+                }}
+                record={active}
+                review={activeItem?.review ?? null}
+              />
+            )}
+          </article>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
+function CatalogueFacts({ record }: { record: OrganisationCatalogueRecord }) {
+  const facts = [
+    ["Actor roles", record.roles.join(" · ")],
+    ["Energy markets", record.segments.join(" · ")],
+    ["Countries", record.countriesActive.join(" · ")],
+    ["Parent / group", record.parent],
+    ["Technologies", record.technologies.join(" · ")],
+    ["Status", record.lifecycle],
+    ["Evidence", `${record.confidence} · ${record.inclusionBasis}`],
+    ["Last checked", record.lastReviewed],
+  ].filter(([, value]) => value);
+  return (
+    <dl className="review-catalogue-facts">
+      {facts.map(([label, value]) => (
+        <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
+      ))}
+      {record.description ? <div className="wide"><dt>Description</dt><dd>{record.description}</dd></div> : null}
+      {record.coverageNotes ? <div className="wide"><dt>Coverage note</dt><dd>{record.coverageNotes}</dd></div> : null}
+      <div className="wide">
+        <dt>Primary source</dt>
+        <dd>
+          {record.sourceUrl ? (
+            <a href={record.sourceUrl} rel="noreferrer" target="_blank">{record.sourceUrl} ↗</a>
+          ) : "No direct URL supplied"}
+        </dd>
+      </div>
+    </dl>
+  );
+}
+
+function OrganisationCatalogueReviewForm({
+  record,
+  review,
+  onSaved,
+}: {
+  record: OrganisationCatalogueRecord;
+  review: OrganisationCatalogueReviewRecord | null;
+  onSaved: (review: OrganisationCatalogueReviewRecord) => void;
+}) {
+  const [decision, setDecision] = useState<OrganisationCatalogueDecision>(review?.decision ?? "accept");
+  const [sourceUrl, setSourceUrl] = useState(review?.normalizedSourceUrl ?? record.sourceUrl ?? record.website);
+  const [sourceOpened, setSourceOpened] = useState(Boolean(review?.sourceOpened));
+  const [identityConfirmed, setIdentityConfirmed] = useState(Boolean(review?.identityConfirmed));
+  const [classificationsConfirmed, setClassificationsConfirmed] = useState(Boolean(review?.classificationsConfirmed));
+  const [safetyChecked, setSafetyChecked] = useState(Boolean(review?.safetyChecked));
+  const [notes, setNotes] = useState(review?.notes ?? "");
+  const [amendField, setAmendField] = useState<OrganisationCatalogueAmendableField>(
+    (Object.keys(review?.amendments ?? {})[0] as OrganisationCatalogueAmendableField) || "name",
+  );
+  const [amendValue, setAmendValue] = useState(
+    Object.values(review?.amendments ?? {})[0] ?? "",
+  );
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+
+  async function submit(event: FormEvent) {
+    event.preventDefault();
+    setSaving(true);
+    setError("");
+    try {
+      const response = await fetch(
+        `/api/review/organisation-catalogue/${encodeURIComponent(record.id)}`,
+        {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            decision,
+            amendments: decision === "amend" && amendValue.trim()
+              ? { [amendField]: amendValue.trim() }
+              : {},
+            sourceUrl,
+            sourceOpened,
+            identityConfirmed,
+            classificationsConfirmed,
+            safetyChecked,
+            notes,
+            expectedVersion: review?.version ?? 0,
+          }),
+        },
+      );
+      const result = (await response.json()) as OrganisationCatalogueReviewRecord | ApiError;
+      if (!response.ok || "error" in result) {
+        throw new Error("error" in result ? result.error?.message : "The review could not be saved.");
+      }
+      onSaved(result);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "The review could not be saved.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <form className="review-catalogue-form" onSubmit={submit}>
+      <fieldset>
+        <legend>Decision</legend>
+        {(["accept", "amend", "needs_evidence", "duplicate", "reject"] as OrganisationCatalogueDecision[]).map((value) => (
+          <label key={value}>
+            <input checked={decision === value} name={`decision-${record.id}`} onChange={() => setDecision(value)} type="radio" />
+            <span>{catalogueDecisionLabel(value)}</span>
+          </label>
+        ))}
+      </fieldset>
+      {decision === "amend" ? (
+        <div className="review-catalogue-amendment">
+          <label>
+            <span>Field to correct</span>
+            <select onChange={(event) => setAmendField(event.target.value as OrganisationCatalogueAmendableField)} value={amendField}>
+              <option value="name">Name</option>
+              <option value="website">Website</option>
+              <option value="parent">Parent / group</option>
+              <option value="primaryRole">Primary role</option>
+              <option value="roles">Roles</option>
+              <option value="segments">Energy markets</option>
+              <option value="headquartersCountry">HQ country</option>
+              <option value="countriesActive">Countries active</option>
+              <option value="lifecycle">Status</option>
+              <option value="description">Description</option>
+              <option value="sourceUrl">Source URL</option>
+              <option value="confidence">Confidence</option>
+              <option value="coverageNotes">Coverage note</option>
+            </select>
+          </label>
+          <label>
+            <span>Corrected value</span>
+            <textarea onChange={(event) => setAmendValue(event.target.value)} rows={2} value={amendValue} />
+          </label>
+        </div>
+      ) : null}
+      <label className="review-catalogue-source-input">
+        <span>Direct source URL</span>
+        <input onChange={(event) => setSourceUrl(event.target.value)} type="url" value={sourceUrl} />
+      </label>
+      <div className="review-catalogue-checks">
+        <label><input checked={sourceOpened} onChange={(event) => setSourceOpened(event.target.checked)} type="checkbox" />Source opened</label>
+        <label><input checked={identityConfirmed} onChange={(event) => setIdentityConfirmed(event.target.checked)} type="checkbox" />Identity checked</label>
+        <label><input checked={classificationsConfirmed} onChange={(event) => setClassificationsConfirmed(event.target.checked)} type="checkbox" />Roles and markets checked</label>
+        <label><input checked={safetyChecked} onChange={(event) => setSafetyChecked(event.target.checked)} type="checkbox" />Safe to publish</label>
+      </div>
+      <label>
+        <span>Review note</span>
+        <textarea onChange={(event) => setNotes(event.target.value)} placeholder="What did you confirm, change or still need?" rows={3} value={notes} />
+      </label>
+      {error ? <p className="review-form-error" role="alert">{error}</p> : null}
+      <button className="button button-primary" disabled={saving} type="submit">
+        {saving ? "Saving…" : review ? "Update decision" : "Save decision"}
+      </button>
+    </form>
   );
 }
 
@@ -2615,6 +3045,18 @@ function bulkDecisionLabel(value: string) {
       amend: "Amended",
       reject: "Rejected",
       needs_evidence: "More evidence",
+    }[value] ?? value.replaceAll("_", " ")
+  );
+}
+
+function catalogueDecisionLabel(value: string) {
+  return (
+    {
+      accept: "Accept",
+      amend: "Amend",
+      reject: "Reject",
+      needs_evidence: "More evidence",
+      duplicate: "Duplicate",
     }[value] ?? value.replaceAll("_", " ")
   );
 }

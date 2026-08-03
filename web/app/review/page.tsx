@@ -9,6 +9,7 @@ import {
   reviewSources,
 } from "@/lib/review-data";
 import { registryManifest } from "@/lib/registry-data";
+import { organisationCatalogue } from "@/lib/organisation-catalogue";
 
 export const dynamic = "force-dynamic";
 
@@ -55,6 +56,7 @@ async function ReviewGate() {
       assertions={reviewAssertions}
       batchId={reviewBatchId}
       manifest={registryManifest}
+      organisationCatalogueSummary={organisationCatalogue.counts}
       reviewer={{
         displayName: access.user.displayName,
         email: access.user.email,

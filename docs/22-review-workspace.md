@@ -49,12 +49,13 @@ are complete. There is intentionally no publish button. When it changes to
 included in the package. Candidate rows marked More evidence or Reject remain
 outside that release and their count stays visible beside the Ready state.
 
-Five tabs divide the work:
+Six tabs divide the work:
 
 | Tab | Use |
 | --- | --- |
 | Assertions | Review one atomic candidate claim against its linked source |
 | Sources | Record rights, licence treatment, and source independence |
+| Organisations | Reconcile and decide every inclusion-catalogue listing |
 | Contributions | Triage private public submissions and inspect their supplied evidence |
 | Bulk | Import, check and decide workbook candidates batch by batch |
 | Operations | Check retention runs and pause or resume contribution intake |
@@ -139,6 +140,33 @@ event without copying the email into that event. The live deletion date is shown
 beside the email; it is set at 150 days so managed recovery history cannot push
 potential contact retention past 180 days.
 
+## Reviewing the organisation catalogue
+
+The Organisations tab contains every row in the inclusion-first research
+catalogue, including rows already reconciled to reviewed profiles and rows still
+awaiting review. Search and filters cover status, actor role and energy market;
+the queue is server-paginated so the 1,953-record dataset is not loaded into the
+browser at once.
+
+Each candidate presents the submitted identity, parent or group, actor roles,
+energy markets, headquarters, documented country coverage, technology labels,
+status, source basis, confidence, review date and direct source URL. A reviewer
+chooses one of five decisions:
+
+| Decision | Meaning |
+| --- | --- |
+| Accept | The supplied identity and classifications may enter a bounded data proposal |
+| Amend | One or more stated fields require a recorded correction |
+| More evidence | The candidate remains listed but cannot be promoted from the current source |
+| Duplicate | The identity should be reconciled to another record rather than created again |
+| Reject | The row should not enter the canonical registry |
+
+Accept and Amend require the reviewer to confirm that the source was opened,
+the identity was checked, roles and markets were checked, and the record is safe
+to publish. Amendments are stored separately from the immutable imported row.
+All other decisions require a note. Decisions are versioned, auditable and
+included in the review package, but none of them writes to the public registry.
+
 ## Operations
 
 The Operations tab shows the latest maintenance run, expired-contact count,
@@ -209,6 +237,8 @@ request; downloading it does not publish.
 | Immutable bulk candidate rows | Yes | Bulk tab only | Yes | No |
 | Bulk decisions and amendments | Yes | Bulk tab only | Yes | No |
 | Promoted candidate assertions | Yes | Assertions and Bulk tabs | Yes | No |
+| Organisation-catalogue decisions and amendments | Yes | Organisations tab | Yes | No |
+| Public-safe inclusion catalogue | Repository-generated file | Organisations tab context | No | Listed with review status |
 | Contribution content | Yes | Yes | No | No |
 | Contribution contact email | Separate table | No | No | No |
 | Plaintext receipt token | Never | Never | Never | No |
@@ -229,6 +259,7 @@ contains:
 - bulk import summaries, immutable candidate rows and row decisions for
   organisations, products, deployments, aliases, corporate relationships and
   organisation-to-software links;
+- organisation-catalogue decisions and amendments;
 - promoted candidate assertions;
 - the assertion, source and bulk-promotion audit trail;
 - the generating reviewer and timestamp; and

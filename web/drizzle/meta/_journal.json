@@ -36,6 +36,13 @@
       "when": 1785605669759,
       "tag": "0004_curious_magma",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1785794031629,
+      "tag": "0005_pale_epoch",
+      "breakpoints": true
     }
   ]
 }

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { RegistryExplorer } from "@/components/registry-explorer";
+import { buildOrganisationCatalogueMapData } from "@/lib/organisation-catalogue";
+import { africanCountries } from "@/lib/registry-data";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/deployments" },
@@ -16,6 +18,7 @@ export default async function Deployments({
   const params = await searchParams;
   return (
     <RegistryExplorer
+      catalogueMapData={buildOrganisationCatalogueMapData(africanCountries)}
       initialCategory={params.category}
       initialCountry={params.country}
       initialEvidence={params.evidence}
