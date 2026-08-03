@@ -322,6 +322,7 @@ test("server-renders the inclusive landscape as a separate searchable list", asy
   assert.match(html, /Deployment map/);
   assert.match(html, /CSV/);
   assert.match(html, /JSON/);
+  assert.match(html, /Sources supplied/);
 });
 
 test("server-renders the Directory and its export action", async () => {
