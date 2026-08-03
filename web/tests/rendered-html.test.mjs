@@ -325,6 +325,17 @@ test("server-renders the inclusive landscape as a separate searchable list", asy
   assert.match(html, /Sources supplied/);
 });
 
+test("server-renders an imported Phase 1 catalogue record", async () => {
+  const response = await render("/landscape?q=The%20Solar%20Labs");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /The Solar Labs/);
+  assert.match(html, /Category/);
+  assert.match(html, /Sector/);
+  assert.match(html, /Africa link/);
+  assert.doesNotMatch(html, /private editorial metadata/i);
+});
+
 test("server-renders the Directory and its export action", async () => {
   const response = await render("/directory?country=NG");
   assert.equal(response.status, 200);
