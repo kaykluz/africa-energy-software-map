@@ -394,9 +394,18 @@ export function SearchResultsPage({ query }: { query: string }) {
         <div className="search-groups">
           {productResults.length ? (
             <section><h2>Products <span>{productResults.length}</span></h2>
-              {productResults.map((product) => (
-                <Link href={`/products/${product.slug}`} key={product.id}><span><strong>{product.name}</strong><small>{product.organisation}</small></span><span>{product.category} →</span></Link>
-              ))}
+              {productResults.map((product) => {
+                const organisation = organisations.find((item) => item.id === product.organisationId);
+                return (
+                  <article className="search-entity-row" key={product.id}>
+                    <span>
+                      <Link href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
+                      {organisation ? <Link href={`/organisations/${organisation.slug}`}><small>{product.organisation}</small></Link> : <small>{product.organisation}</small>}
+                    </span>
+                    <Link href={`/?category=${product.categoryId}`}>{product.category} →</Link>
+                  </article>
+                );
+              })}
             </section>
           ) : null}
           {organisationResults.length ? (

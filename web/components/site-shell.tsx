@@ -35,6 +35,14 @@ const projectNavigation = [
   { href: "/accessibility", label: "Accessibility" },
 ] as const;
 
+type SearchResult = {
+  type: string;
+  name: string;
+  context: string;
+  href: string;
+  contextHref?: string;
+};
+
 export function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [searchOpen, setSearchOpen] = useState(false);
@@ -66,7 +74,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     return () => document.removeEventListener("keydown", closeOnEscape);
   }, [menuOpen, searchOpen]);
 
-  const searchResults = useMemo(() => {
+  const searchResults = useMemo<SearchResult[]>(() => {
     const normalised = normaliseQuery(query);
     if (normalised.length < 2) return [];
     const aliases = normalised;
@@ -83,12 +91,16 @@ export function SiteShell({ children }: { children: ReactNode }) {
             ].join(" "),
           ).includes(aliases),
         )
-        .map((product) => ({
-          type: "Product",
-          name: product.name,
-          context: product.organisation,
-          href: `/products/${product.slug}`,
-        })),
+        .map((product) => {
+          const organisation = organisations.find((item) => item.id === product.organisationId);
+          return {
+            type: "Product",
+            name: product.name,
+            context: product.organisation,
+            href: `/products/${product.slug}`,
+            contextHref: organisation ? `/organisations/${organisation.slug}` : undefined,
+          };
+        }),
       ...organisations
         .filter((organisation) =>
           normaliseQuery(
@@ -374,17 +386,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
               ) : searchResults.length ? (
                 <>
                   {searchResults.map((result, index) => (
-                    <Link
-                      className="v2-search-result"
-                      href={result.href}
-                      key={`${result.type}-${result.name}`}
-                      onClick={() => setSearchOpen(false)}
-                    >
+                    <article className="v2-search-result" key={`${result.type}-${result.name}`}>
                       <span>{String(index + 1).padStart(2, "0")}</span>
-                      <strong>{result.name}</strong>
-                      <small>{result.type} · {result.context}</small>
-                      <i aria-hidden="true">↗</i>
-                    </Link>
+                      <Link href={result.href} onClick={() => setSearchOpen(false)}><strong>{result.name}</strong></Link>
+                      <small>{result.type} · {result.contextHref ? <Link href={result.contextHref} onClick={() => setSearchOpen(false)}>{result.context}</Link> : result.context}</small>
+                      <Link aria-label={`Open ${result.name}`} href={result.href} onClick={() => setSearchOpen(false)}><i aria-hidden="true">↗</i></Link>
+                    </article>
                   ))}
                   <Link
                     className="v2-search-all"

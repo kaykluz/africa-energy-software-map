@@ -7,6 +7,7 @@ import {
   categories,
   deployments,
   evidenceLabels,
+  organisationById,
   originLabels,
   productById,
   products,
@@ -29,6 +30,7 @@ import {
 } from "@/components/semantic-tags";
 import {
   type CSSProperties,
+  Fragment,
   useEffect,
   useMemo,
   useRef,
@@ -640,7 +642,7 @@ function StackView({
                     >
                       <header>
                         <span className="v2-market-signal" aria-hidden="true" />
-                        <h3>{category.name}</h3>
+                        <h3><Link href={`/?category=${category.id}`}>{category.name}</Link></h3>
                         <span>{categoryProducts.length || "—"}</span>
                       </header>
                       {categoryProducts.length ? (
@@ -740,20 +742,19 @@ function ProductOrb({
     (deployment) => deployment.productId === product.id,
   ).length;
   return (
-    <button
-      aria-label={`${product.name} by ${product.organisation}, ${evidenceCount} evidenced deployments`}
-      className="v2-product-orb"
-      onClick={(event) => onOpenProduct(product, event.currentTarget)}
-      type="button"
-    >
+    <article className="v2-product-orb">
       <span>
-        <strong>{product.name}</strong>
-        <small>{product.organisation}</small>
+        <Link href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
+        <small><OrganisationLink product={product} /></small>
       </span>
-      <i aria-hidden="true">
-        {evidenceCount ? evidenceCount : "·"}
-      </i>
-    </button>
+      <button
+        aria-label={`Preview ${product.name} by ${product.organisation}, ${evidenceCount} evidenced deployments`}
+        onClick={(event) => onOpenProduct(product, event.currentTarget)}
+        type="button"
+      >
+        <i aria-hidden="true">{evidenceCount ? evidenceCount : "·"}</i>
+      </button>
+    </article>
   );
 }
 
@@ -930,7 +931,7 @@ function DeploymentsView({
           <header>
             <span>{selectedCountry}</span>
             <div>
-              <h2>{selected?.[1] ?? selectedCountry}</h2>
+              <h2><Link href={`/countries/${selectedCountry.toLowerCase()}`}>{selected?.[1] ?? selectedCountry}</Link></h2>
               <p>
                 {geography !== "evidenced"
                   ? "Layer not available"
@@ -954,21 +955,21 @@ function DeploymentsView({
                   const product = productById(deployment.productId);
                   if (!product) return null;
                   return (
-                    <button
+                    <article
                       key={deployment.id}
-                      onClick={(event) =>
-                        onOpenProduct(product, event.currentTarget)
-                      }
-                      type="button"
                     >
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       <span>
-                        <strong>{product.name}</strong>
+                        <Link href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
                         <small>{deployment.customer}</small>
                       </span>
                       <b>{deployment.year}</b>
-                      <i aria-hidden="true">↗</i>
-                    </button>
+                      <button
+                        aria-label={`Preview ${product.name}`}
+                        onClick={(event) => onOpenProduct(product, event.currentTarget)}
+                        type="button"
+                      ><i aria-hidden="true">↗</i></button>
+                    </article>
                   );
                 })}
                 {selectedDeployments.length > 5 ? (
@@ -1228,10 +1229,15 @@ function DirectoryView({
                     </span>
                     <Link href={`/products/${product.slug}`}>{product.name}</Link>
                   </th>
-                  {visibleColumns.includes("organisation") ? <td>{product.organisation}</td> : null}
-                  {visibleColumns.includes("category") ? <td>{product.category}</td> : null}
+                  {visibleColumns.includes("organisation") ? <td><OrganisationLink product={product} /></td> : null}
+                  {visibleColumns.includes("category") ? <td><Link href={`/?category=${product.categoryId}`}>{product.category}</Link></td> : null}
                   {visibleColumns.includes("countries") ? (
-                    <td>{product.deploymentCountries.length ? product.deploymentCountries.join(", ") : "—"}</td>
+                    <td>{product.deploymentCountries.length ? product.deploymentCountries.map((iso2, countryIndex) => (
+                      <Fragment key={iso2}>
+                        {countryIndex ? ", " : null}
+                        <Link href={`/countries/${iso2.toLowerCase()}`}>{countryLabel(iso2)}</Link>
+                      </Fragment>
+                    )) : "—"}</td>
                   ) : null}
                   {visibleColumns.includes("access") ? <td>{product.accessModel}</td> : null}
                   {visibleColumns.includes("evidence") ? (
@@ -1257,21 +1263,21 @@ function DirectoryView({
       ) : (
         <div className="v2-data-cards">
           {pageData.items.map((product, index) => (
-            <button
-              key={product.id}
-              onClick={(event) => onOpenProduct(product, event.currentTarget)}
-              type="button"
-            >
+            <article key={product.id}>
               <span>
                 {String(
                   (pageData.page - 1) * pageData.pageSize + index + 1,
                 ).padStart(2, "0")}
               </span>
-              <strong>{product.name}</strong>
-              <small>{product.organisation}</small>
-              <i>{product.category}</i>
-              <b aria-hidden="true">↗</b>
-            </button>
+              <Link className="v2-data-card-product" href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
+              <OrganisationLink product={product} />
+              <Link className="v2-data-card-category" href={`/?category=${product.categoryId}`}>{product.category}</Link>
+              <button
+                aria-label={`Preview ${product.name}`}
+                onClick={(event) => onOpenProduct(product, event.currentTarget)}
+                type="button"
+              ><b aria-hidden="true">↗</b></button>
+            </article>
           ))}
         </div>
       )}
@@ -1373,11 +1379,9 @@ function ProductPreview({
           <button onClick={close} type="button">Close</button>
         </div>
         <header className="v2-preview-head">
-          <span>{product.category}</span>
-          <h2 id="v2-preview-title">{product.name}</h2>
-          <Link href={`/organisations/${organisationSlug(product)}`}>
-            {product.organisation} ↗
-          </Link>
+          <Link href={`/?category=${product.categoryId}`}>{product.category}</Link>
+          <h2 id="v2-preview-title"><Link href={`/products/${product.slug}`}>{product.name}</Link></h2>
+          <OrganisationLink product={product} suffix=" ↗" />
         </header>
 
         <div className="v2-preview-metrics">
@@ -1428,7 +1432,7 @@ function ProductPreview({
               productDeployments.map((deployment, index) => (
                 <div key={deployment.id}>
                   <span>{String(index + 1).padStart(2, "0")}</span>
-                  <strong>{deployment.country}</strong>
+                  <Link href={`/countries/${deployment.countryIso2.toLowerCase()}`}><strong>{deployment.country}</strong></Link>
                   <small>{deployment.customer}</small>
                   <b>{deployment.year}</b>
                   <EvidenceStatusLabel compact status={deployment.evidence} />
@@ -1471,10 +1475,20 @@ function labelGeography(value: string) {
   }[value] ?? "Geography";
 }
 
-function organisationSlug(product: Product) {
-  if (product.organisationId === "org_001") return "beacon-power-services";
-  if (product.organisationId === "org_002") return "pam-africa";
-  return "powerlabs";
+function OrganisationLink({
+  product,
+  suffix = "",
+}: {
+  product: Product;
+  suffix?: string;
+}) {
+  const organisation = organisationById(product.organisationId);
+  if (!organisation) return <span>{product.organisation}{suffix}</span>;
+  return <Link href={`/organisations/${organisation.slug}`}>{product.organisation}{suffix}</Link>;
+}
+
+function countryLabel(iso2: string) {
+  return africanCountries.find(([countryIso2]) => countryIso2 === iso2)?.[1] ?? iso2;
 }
 
 function toCsv(rows: Record<string, string | string[]>[]) {

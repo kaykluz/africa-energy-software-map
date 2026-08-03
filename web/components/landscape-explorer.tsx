@@ -672,16 +672,23 @@ function IdentityTile({
     ? landscapeFunctionLabels[item.functionIds[0]]
     : "Function not set";
   return (
-    <button
-      aria-label={`Open ${item.name}, ${landscapeEnergyRelationshipLabels[item.energyRelationship]}`}
-      className="landscape-identity-tile"
-      onClick={(event) => onOpen(item, event.currentTarget)}
-      type="button"
-    >
+    <article className="landscape-identity-tile">
       <IdentityMark item={item} />
-      <span>{item.name}</span>
-      <small>{functionLabel}</small>
-    </button>
+      <span>
+        {item.canonicalHref ? (
+          <Link href={item.canonicalHref}>{item.name}</Link>
+        ) : (
+          <button onClick={(event) => onOpen(item, event.currentTarget)} type="button">{item.name}</button>
+        )}
+        <small>{functionLabel}</small>
+      </span>
+      <button
+        aria-label={`Preview ${item.name}, ${landscapeEnergyRelationshipLabels[item.energyRelationship]}`}
+        className="landscape-identity-preview"
+        onClick={(event) => onOpen(item, event.currentTarget)}
+        type="button"
+      ><span aria-hidden="true">＋</span></button>
+    </article>
   );
 }
 
@@ -708,7 +715,7 @@ function LandscapeCard({
         <b>{landscapeEnergyRelationshipLabels[item.energyRelationship]}</b>
       </div>
       <IdentityMark item={item} />
-      <h2>{item.name}</h2>
+      <h2>{item.canonicalHref ? <Link href={item.canonicalHref}>{item.name}</Link> : item.name}</h2>
       {item.parent ? <p className="landscape-parent">{item.parent}</p> : null}
       <p>{item.summaryAsSubmitted}</p>
       <div className="landscape-card-tags">
@@ -743,7 +750,7 @@ function LandscapePreview({ item, close }: { item: LandscapeItem; close: () => v
           <IdentityMark item={item} />
           <div>
             <span>{landscapeEnergyRelationshipLabels[item.energyRelationship]}</span>
-            <h2 id="landscape-preview-title">{item.name}</h2>
+            <h2 id="landscape-preview-title">{item.canonicalHref ? <Link href={item.canonicalHref}>{item.name}</Link> : item.name}</h2>
             {item.parent ? <p>{item.parent}</p> : null}
           </div>
         </div>
