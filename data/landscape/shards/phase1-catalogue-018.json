@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "phase1-catalogue-018",
+  "sourceLabel": "Phase 1 catalogue build",
+  "sourceAsOf": "2026-08-02",
+  "items": [
+    {
+      "id": "land_phase1_a3507d9d",
+      "name": "SAP S/4HANA Utilities (IS-U)",
+      "kind": "product",
+      "stageIds": ["stage_transmit_distribute"],
+      "categoryIds": ["cat_retail_metering_billing_payments"],
+      "sectorIds": ["sector_power_utilities"],
+      "geographies": ["Germany", "Africa"],
+      "statusAsSubmitted": "active",
+      "summaryAsSubmitted": "Utility billing, CIS and ERP",
+      "sourceDomains": ["sap.com"],
+      "segmentsAsSubmitted": ["utility"],
+      "deliveryModelsAsSubmitted": ["on-premise", "cloud SaaS"],
+      "commercialModelAsSubmitted": "licence",
+      "africaUseAsSubmitted": "confirmed_deployment",
+      "asOfDate": "2026-08-02",
+      "parent": "SAP",
+      "sourceUrls": ["https://sap.com"]
+    }
+  ],
+  "deploymentLeads": [],
+  "relationships": [
+    {
+      "id": "land_rel_phase1_001",
+      "name": "Solaris Offgrid — Rebranded to Masunga (pivot, not a failure)",
+      "subject": "Solaris Offgrid",
+      "eventAsSubmitted": "Rebranded to Masunga (pivot, not a failure)",
+      "dateAsSubmitted": "2024 to 2025",
+      "sourceDomains": ["masunga.tech"]
+    },
+    {
+      "id": "land_rel_phase1_002",
+      "name": "Payhippo — Pivoted to clean energy financing then rebranded to Rivy",
+      "subject": "Payhippo",
+      "eventAsSubmitted": "Pivoted to clean energy financing then rebranded to Rivy",
+      "dateAsSubmitted": "2023-06 pivot; 2025-03 rebrand",
+      "sourceDomains": ["disruptafrica.com", "techcabal.com"]
+    },
+    {
+      "id": "land_rel_phase1_003",
+      "name": "Baobab+ — Rebranded to Izili Group following BioLite majority stake",
+      "subject": "Baobab+",
+      "eventAsSubmitted": "Rebranded to Izili Group following BioLite majority stake",
+      "dateAsSubmitted": "2025-04 stake; 2025-09 rebrand",
+      "sourceDomains": ["iziligroup.com"]
+    },
+    {
+      "id": "land_rel_phase1_004",
+      "name": "Network Planner — Maintenance appears to have lapsed",
+      "subject": "Network Planner",
+      "eventAsSubmitted": "Maintenance appears to have lapsed",
+      "dateAsSubmitted": "unknown",
+      "sourceDomains": ["github.com"]
+    },
+    {
+      "id": "land_rel_phase1_005",
+      "name": "Sun Exchange — Operating status uncertain 2025 to 2026",
+      "subject": "Sun Exchange",
+      "eventAsSubmitted": "Operating status uncertain 2025 to 2026",
+      "dateAsSubmitted": "unknown",
+      "sourceDomains": []
+    }
+  ]
+}
