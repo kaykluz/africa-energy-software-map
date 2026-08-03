@@ -26,6 +26,17 @@ contradictory updates and a role-by-segment navigation matrix.
 
 ## What changes in the public information architecture
 
+`/organisations` is now a first-class public object view rather than a role
+tab. It lists organisations behind reviewed software, links to their stable
+profiles and shows linked product and evidenced-country counts. "Organisation"
+is used instead of "company" because the data also includes public bodies,
+research communities and partnerships.
+
+The deployment map has a Software/Organisations object switch. Selecting an
+organisation does not infer a role such as EPC, developer or financier. Those
+roles remain future filterable fields on the organisation record, so adding
+market actors later will not create a tab for every role-by-sector combination.
+
 The compact global navigation should evolve to:
 
 **Map · Software · Organisations · Data · Method · Contribute**

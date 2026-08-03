@@ -940,8 +940,10 @@ body {
 .v2-deployment-list small { overflow: hidden; color: #899189; font-size: .67rem; text-overflow: ellipsis; white-space: nowrap; }
 .v2-deployment-list b { font: .66rem var(--font-mono); }
 .v2-deployment-list i { color: var(--v2-teal); font-style: normal; transition: transform .3s var(--v2-ease); }
-.v2-deployment-list article > button { padding: 4px; border: 0; color: inherit; background: transparent; }
-.v2-deployment-list article > button:hover i { display: inline-block; transform: translate(4px, -4px); }
+.v2-deployment-list article > button,
+.v2-deployment-list article > a:last-child { padding: 4px; border: 0; color: inherit; background: transparent; }
+.v2-deployment-list article > button:hover i,
+.v2-deployment-list article > a:last-child:hover i { display: inline-block; transform: translate(4px, -4px); }
 .v2-country-more {
   display: flex;
   align-items: center;
@@ -2269,4 +2271,189 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .landscape-card { transition: none; }
   .landscape-card:hover { transform: none; }
+}
+
+/* Geographic map, catalogue scope and organisation atlas. */
+.v2-africa-map-wrap {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: min(680px, 100%);
+  min-height: 510px;
+  align-content: center;
+  margin: auto;
+}
+.v2-africa-map { display: block; width: 100%; max-height: 550px; overflow: visible; }
+.v2-africa-map g[role="button"] { cursor: pointer; outline: none; }
+.v2-africa-map g[role="button"] > path,
+.v2-africa-map > path.context {
+  vector-effect: non-scaling-stroke;
+  stroke: #f5f3ed;
+  stroke-width: 1.1;
+  transition: fill .18s, stroke .18s;
+}
+.v2-africa-map > path.context { fill: #d4d7d0; pointer-events: none; }
+.v2-africa-map g.unknown > path { fill: #dfe2da; }
+.v2-africa-map g.count-zero > path { fill: #c8dcd4; }
+.v2-africa-map g.count-low > path { fill: #8ee0c8; }
+.v2-africa-map g.count-high > path { fill: #31af8e; }
+.v2-africa-map g[role="button"]:hover > path,
+.v2-africa-map g[role="button"]:focus-visible > path {
+  stroke: var(--v2-ink);
+  stroke-width: 2.2;
+  fill: var(--v2-acid);
+}
+.v2-africa-map g[role="button"].selected > path {
+  stroke: var(--v2-blue);
+  stroke-width: 3;
+  fill: #7095ff;
+  filter: drop-shadow(0 5px 8px rgb(36 87 255 / 24%));
+}
+.v2-africa-map .hit-area { fill: transparent; stroke: transparent; pointer-events: all; }
+.v2-africa-map .map-count circle { fill: var(--v2-ink); stroke: #fff; stroke-width: 1.5; }
+.v2-africa-map .map-count text {
+  fill: #fff;
+  font: 650 8px var(--font-mono);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+.v2-africa-map-wrap > p { margin: 2px 0 0; color: var(--muted); font: .57rem var(--font-mono); text-align: center; }
+
+.landscape-page-explore .landscape-intro h1 { max-width: 820px; font-size: clamp(2.4rem, 4.3vw, 3.75rem); }
+.landscape-scoreboard { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.landscape-scope-tabs,
+.object-tabs { display: flex; margin-top: 42px; border-bottom: 1px solid var(--v2-line-dark); gap: 22px; }
+.landscape-scope-tabs > span,
+.landscape-scope-tabs > a,
+.object-tabs > span,
+.object-tabs > a {
+  padding: 13px 0 11px;
+  color: var(--muted);
+  border-bottom: 3px solid transparent;
+  font-size: .78rem;
+  font-weight: 720;
+  text-decoration: none;
+}
+.landscape-scope-tabs > span[aria-current="page"],
+.object-tabs > span[aria-current="page"] { color: var(--v2-ink); border-color: var(--v2-blue); }
+.landscape-scope-tabs b { margin-left: 5px; font: .6rem var(--font-mono); }
+
+.organisation-mark {
+  display: grid;
+  width: 72px;
+  height: 72px;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--v2-line-dark);
+  border-radius: 16px;
+  color: var(--v2-blue-dark);
+  background: #fff;
+  font: 700 .82rem var(--font-mono);
+}
+.organisation-mark img { width: 82%; height: 82%; object-fit: contain; }
+.record-brand-mark { width: 88px; height: 88px; margin-bottom: 24px; }
+.record-header h1 { font-size: clamp(2.7rem, 5vw, 5rem); }
+
+.organisation-atlas {
+  width: calc(100% - 48px);
+  max-width: 1500px;
+  margin-inline: auto;
+  padding: 52px 0 96px;
+}
+.organisation-atlas-intro { display: flex; align-items: end; justify-content: space-between; gap: 28px; }
+.organisation-atlas-intro h1 {
+  margin: 0 0 8px;
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  font-weight: 590;
+  letter-spacing: -.055em;
+  line-height: .96;
+}
+.organisation-atlas-intro p { max-width: 58ch; margin: 0; color: var(--muted); }
+.organisation-atlas-intro > a {
+  padding: 10px 14px;
+  border: 1px solid var(--v2-line-dark);
+  border-radius: 999px;
+  color: var(--v2-ink);
+  font-size: .74rem;
+  font-weight: 720;
+  text-decoration: none;
+}
+.organisation-atlas-stats {
+  display: grid;
+  margin-top: 28px;
+  border: 1px solid var(--v2-line-dark);
+  border-radius: 18px;
+  overflow: hidden;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.organisation-atlas-stats > div {
+  display: grid;
+  min-height: 116px;
+  align-content: space-between;
+  padding: 18px;
+  border-right: 1px solid var(--v2-line);
+}
+.organisation-atlas-stats > div:last-child { border-right: 0; }
+.organisation-atlas-stats strong { font-size: 2.6rem; font-weight: 560; letter-spacing: -.06em; }
+.organisation-atlas-stats span { color: var(--muted); font: .6rem var(--font-mono); text-transform: uppercase; }
+.organisation-atlas-controls {
+  display: grid;
+  align-items: center;
+  padding: 20px 0 16px;
+  grid-template-columns: minmax(220px, 1fr) minmax(180px, .35fr) minmax(180px, .35fr) auto;
+  gap: 8px;
+}
+.organisation-atlas-controls label {
+  display: grid;
+  height: 44px;
+  align-items: center;
+  border: 1px solid var(--v2-line);
+  border-radius: 10px;
+  background: var(--v2-paper-bright);
+  grid-template-columns: 38px 1fr;
+}
+.organisation-atlas-controls i { color: var(--v2-blue); font-style: normal; text-align: center; }
+.organisation-atlas-controls input { height: 100%; border: 0; outline: 0; background: transparent; }
+.organisation-atlas-controls select { height: 44px; border: 1px solid var(--v2-line); border-radius: 10px; background: var(--v2-paper-bright); }
+.organisation-atlas-controls > span { color: var(--muted); font: .62rem var(--font-mono); }
+.organisation-atlas-grid {
+  display: grid;
+  border-top: 1px solid var(--v2-line-dark);
+  border-left: 1px solid var(--v2-line-dark);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.organisation-atlas-grid article {
+  position: relative;
+  display: grid;
+  min-height: 225px;
+  padding: 18px;
+  border-right: 1px solid var(--v2-line-dark);
+  border-bottom: 1px solid var(--v2-line-dark);
+  background: rgb(251 250 246 / 48%);
+  grid-template-rows: auto 1fr auto;
+  transition: transform .3s var(--v2-ease), background .18s;
+}
+.organisation-atlas-grid article:hover { z-index: 1; transform: translateY(-3px); background: #fff; }
+.organisation-atlas-grid h2 { align-self: end; margin: 24px 0 4px; font-size: 1.25rem; }
+.organisation-atlas-grid h2 a { color: inherit; text-decoration: none; }
+.organisation-atlas-grid h2 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.organisation-atlas-grid p { margin: 0; color: var(--muted); font-size: .7rem; }
+.organisation-atlas-grid dl { display: flex; margin: 20px 0 0; gap: 20px; }
+.organisation-atlas-grid dl div { display: grid; }
+.organisation-atlas-grid dt { color: var(--muted); font: .56rem var(--font-mono); text-transform: uppercase; }
+.organisation-atlas-grid dd { margin: 2px 0 0; font-size: .84rem; font-weight: 720; }
+.organisation-atlas-grid article > a { position: absolute; top: 18px; right: 18px; color: var(--v2-blue); text-decoration: none; }
+
+@media (max-width: 1040px) {
+  .organisation-atlas-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .organisation-atlas { width: calc(100% - 28px); padding-top: 38px; }
+  .organisation-atlas-intro { align-items: start; flex-direction: column; }
+  .organisation-atlas-stats { grid-template-columns: 1fr; }
+  .organisation-atlas-stats > div { min-height: 86px; border-right: 0; border-bottom: 1px solid var(--v2-line); }
+  .organisation-atlas-controls { grid-template-columns: 1fr; }
+  .organisation-atlas-grid { grid-template-columns: 1fr; }
+  .v2-africa-map-wrap { min-height: 430px; }
 }

@@ -251,7 +251,7 @@ function reviewRequest(body, headers = {}) {
   };
 }
 
-test("server-renders the Stack with reviewed status and useful records", async () => {
+test("server-renders the full catalogue with reviewed data kept distinct", async () => {
   const response = await render("/");
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
@@ -260,9 +260,9 @@ test("server-renders the Stack with reviewed status and useful records", async (
   assert.match(html, /The software powering African energy/);
   assert.match(html, /Reviewed beta/);
   assert.match(html, /Reviewed data release/);
-  assert.match(html, /CAIMS/);
-  assert.match(html, /Adora/);
-  assert.match(html, /PAYGo and mini-grid operations/);
+  assert.match(html, /<strong>540<\/strong><span>listings<\/span>/);
+  assert.match(html, /All catalogue/);
+  assert.match(html, /Reviewed records/);
   assert.match(html, /Skip to main content/);
   assert.doesNotMatch(html, /Your site is taking shape|Building your site/);
 });
@@ -273,6 +273,7 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
     "/deployments",
     "/directory",
     "/landscape",
+    "/organisations",
     "/accessibility",
     "/contribute",
   ]) {
@@ -297,10 +298,13 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
 
   const mapResponse = await render("/deployments");
   const mapHtml = await mapResponse.text();
-  assert.match(mapHtml, /aria-label="Map layer"/i);
+  assert.match(mapHtml, /aria-label="Map objects"/i);
   assert.match(mapHtml, /aria-label="Map representation"/i);
   assert.match(mapHtml, /aria-label="African country data view"/i);
-  assert.match(mapHtml, /aria-label="African countries, equal-area grid"/i);
+  assert.match(mapHtml, /Clickable map of African countries/i);
+  assert.match(mapHtml, /data-country="NG"/i);
+  assert.match(mapHtml, /Software/);
+  assert.match(mapHtml, /Organisations/);
   assert.match(mapHtml, /aria-live="polite"/i);
 
   const styles = ["../app/globals.css", "../app/visual-system.css"]
@@ -321,10 +325,26 @@ test("server-renders the classified software wall", async () => {
   assert.match(html, /SteamaCo/);
   assert.match(html, /href="\/organisations\/steamaco"/);
   assert.match(html, /Plan and design/);
-  assert.match(html, /Deployment map/);
+  assert.match(html, /href="\/deployments">Map<\/a>/);
   assert.match(html, /CSV/);
   assert.match(html, /JSON/);
   assert.match(html, /Sources/);
+});
+
+test("server-renders local brand assets and the organisation atlas", async () => {
+  const organisationResponse = await render("/organisations");
+  assert.equal(organisationResponse.status, 200);
+  const organisationHtml = await organisationResponse.text();
+  assert.match(organisationHtml, /<h1[^>]*>Organisations<\/h1>/i);
+  assert.match(organisationHtml, /64<\/strong><span>organisations/);
+  assert.match(organisationHtml, /href="\/organisations\/bboxx"/);
+  assert.match(organisationHtml, /src="\/brand\/organisations\/bboxx\.svg"/);
+  assert.doesNotMatch(organisationHtml, /src="https?:\/\//i);
+
+  const productResponse = await render("/products/ammp-os");
+  assert.equal(productResponse.status, 200);
+  const productHtml = await productResponse.text();
+  assert.match(productHtml, /src="\/brand\/organisations\/ammp\.png"/);
 });
 
 test("classifies a horizontal payment rail without presenting it as energy software", async () => {

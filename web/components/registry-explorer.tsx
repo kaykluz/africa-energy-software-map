@@ -36,6 +36,7 @@ import {
   useRef,
   useState,
 } from "react";
+import africaMapJson from "@/generated/africa-map-paths.json";
 
 export type RegistryView = "stack" | "deployments" | "directory";
 
@@ -65,6 +66,7 @@ export function RegistryExplorer({
   initialOrigin = "all",
   initialLifecycle = "all",
   initialAccess = "all",
+  initialObject = "software",
 }: {
   view: RegistryView;
   initialQuery?: string;
@@ -74,6 +76,7 @@ export function RegistryExplorer({
   initialOrigin?: string;
   initialLifecycle?: string;
   initialAccess?: string;
+  initialObject?: string;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -241,6 +244,7 @@ export function RegistryExplorer({
             ["/", "Explore", "stack", "01"],
             ["/deployments", "Map", "deployments", "02"],
             ["/directory", "Data", "directory", "03"],
+            ["/landscape", "Wall", "wall", "04"],
           ].map(([href, label, id, index]) => (
             <Link
               aria-current={view === id ? "page" : undefined}
@@ -316,6 +320,7 @@ export function RegistryExplorer({
         <DeploymentsView
           filteredProducts={filteredProducts}
           initialCountry={countryFilter}
+          initialObject={initialObject}
           onOpenProduct={openProduct}
           preservedSearch={preservedSearch}
         />
@@ -761,17 +766,21 @@ function ProductOrb({
 function DeploymentsView({
   filteredProducts,
   initialCountry,
+  initialObject,
   onOpenProduct,
   preservedSearch,
 }: {
   filteredProducts: Product[];
   initialCountry: string;
+  initialObject: string;
   onOpenProduct: (product: Product, element: HTMLElement) => void;
   preservedSearch: string;
 }) {
-  const [geography, setGeography] = useState("evidenced");
-  const [representation, setRepresentation] = useState<"grid" | "ranked">(
-    "grid",
+  const [objectMode, setObjectMode] = useState<"software" | "organisations">(
+    initialObject === "organisations" ? "organisations" : "software",
+  );
+  const [representation, setRepresentation] = useState<"map" | "grid" | "ranked">(
+    "map",
   );
   const [selectedCountry, setSelectedCountry] = useState(
     initialCountry !== "all" ? initialCountry : "NG",
@@ -782,43 +791,64 @@ function DeploymentsView({
   const assessedCountries = new Set(
     deployments.map((deployment) => deployment.countryIso2),
   );
+  function countryObjectIds(iso2: string) {
+    const countryDeployments = visibleDeployments.filter(
+      (deployment) => deployment.countryIso2 === iso2,
+    );
+    if (objectMode === "software") {
+      return new Set(countryDeployments.map((deployment) => deployment.productId));
+    }
+    return new Set(
+      countryDeployments
+        .map((deployment) => productById(deployment.productId)?.organisationId)
+        .filter(Boolean),
+    );
+  }
   const rankedCountries = africanCountries
     .map(([iso2, name]) => ({
       iso2,
       name,
-      count:
-        geography === "evidenced"
-          ? visibleDeployments.filter(
-              (deployment) => deployment.countryIso2 === iso2,
-            ).length
-          : 0,
-      assessed: geography === "evidenced" && assessedCountries.has(iso2),
+      count: countryObjectIds(iso2).size,
+      assessed: assessedCountries.has(iso2),
     }))
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   const selected = africanCountries.find(([iso2]) => iso2 === selectedCountry);
-  const selectedCountryAssessed =
-    geography === "evidenced" && assessedCountries.has(selectedCountry);
-  const selectedDeployments =
-    geography === "evidenced"
-      ? visibleDeployments.filter(
-          (deployment) => deployment.countryIso2 === selectedCountry,
-        )
-      : [];
+  const selectedCountryAssessed = assessedCountries.has(selectedCountry);
+  const selectedDeployments = visibleDeployments.filter(
+    (deployment) => deployment.countryIso2 === selectedCountry,
+  );
+  const selectedProducts = Array.from(
+    new Map(
+      selectedDeployments
+        .map((deployment) => productById(deployment.productId))
+        .filter((product): product is Product => Boolean(product))
+        .map((product) => [product.id, product]),
+    ).values(),
+  );
+  const selectedOrganisations = Array.from(
+    new Map(
+      selectedProducts
+        .map((product) => organisationById(product.organisationId))
+        .filter((organisation) => Boolean(organisation))
+        .map((organisation) => [organisation!.id, organisation!]),
+    ).values(),
+  );
+  const selectedObjectCount = objectMode === "software"
+    ? selectedProducts.length
+    : selectedOrganisations.length;
 
   return (
     <section className="v2-map-canvas">
       <div className="v2-map-controls">
-        <div className="v2-layer-switch" role="group" aria-label="Map layer">
+        <div className="v2-layer-switch" role="group" aria-label="Map objects">
           {[
-            ["evidenced", "Deployments"],
-            ["claimed", "Claims"],
-            ["headquarters", "HQ"],
-            ["founded", "Origin"],
+            ["software", "Software"],
+            ["organisations", "Organisations"],
           ].map(([value, label]) => (
             <button
-              aria-pressed={geography === value}
+              aria-pressed={objectMode === value}
               key={value}
-              onClick={() => setGeography(value)}
+              onClick={() => setObjectMode(value as "software" | "organisations")}
               type="button"
             >
               {label}
@@ -826,6 +856,13 @@ function DeploymentsView({
           ))}
         </div>
         <div className="v2-representation-switch" role="group" aria-label="Map representation">
+          <button
+            aria-pressed={representation === "map"}
+            onClick={() => setRepresentation("map")}
+            type="button"
+          >
+            Map
+          </button>
           <button
             aria-pressed={representation === "grid"}
             onClick={() => setRepresentation("grid")}
@@ -846,33 +883,34 @@ function DeploymentsView({
       <div className="v2-map-stage">
         <section className="v2-map-visual" aria-label="African country data view">
           <div className="v2-map-caption">
-            <span>{geography === "evidenced" ? "Evidence layer" : `${labelGeography(geography)} layer`}</span>
+            <span>Country-level evidence</span>
             <strong>
-              {geography === "evidenced"
-                ? `${visibleDeployments.length} located records`
-                : "Layer awaiting reviewed data"}
+              {objectMode === "software"
+                ? `${new Set(visibleDeployments.map((item) => item.productId)).size} software records`
+                : `${new Set(visibleDeployments.map((item) => productById(item.productId)?.organisationId).filter(Boolean)).size} organisations`}
             </strong>
           </div>
 
-          {representation === "grid" ? (
+          {representation === "map" ? (
+            <AfricaCountryMap
+              countries={rankedCountries}
+              objectMode={objectMode}
+              selectedCountry={selectedCountry}
+              setSelectedCountry={setSelectedCountry}
+            />
+          ) : representation === "grid" ? (
             <div
               aria-label="African countries, equal-area grid"
               className="v2-country-field"
             >
               {africanCountries.map(([iso2, name], index) => {
-                const count =
-                  geography === "evidenced"
-                    ? visibleDeployments.filter(
-                        (deployment) => deployment.countryIso2 === iso2,
-                      ).length
-                    : 0;
-                const researched =
-                  geography === "evidenced" && assessedCountries.has(iso2);
+                const count = countryObjectIds(iso2).size;
+                const researched = assessedCountries.has(iso2);
                 return (
                   <button
                     aria-label={`${name}: ${
                       researched
-                        ? `${count} candidate records`
+                        ? `${count} ${objectMode}`
                         : "coverage not yet assessed"
                     }`}
                     aria-pressed={selectedCountry === iso2}
@@ -922,7 +960,7 @@ function DeploymentsView({
           )}
 
           <div className="v2-map-legend">
-            <span><i className="known" /> evidenced</span>
+            <span><i className="known" /> evidenced {objectMode}</span>
             <span><i className="unknown" /> not assessed</span>
           </div>
         </section>
@@ -933,30 +971,25 @@ function DeploymentsView({
             <div>
               <h2><Link href={`/countries/${selectedCountry.toLowerCase()}`}>{selected?.[1] ?? selectedCountry}</Link></h2>
               <p>
-                {geography !== "evidenced"
-                  ? "Layer not available"
-                  : selectedCountryAssessed
-                    ? `${selectedDeployments.length} matching evidence ${
-                        selectedDeployments.length === 1 ? "point" : "points"
-                      }`
+                {selectedCountryAssessed
+                    ? `${selectedObjectCount} ${objectMode === "software" ? "software" : "organisations"}`
                     : "Coverage not assessed"}
               </p>
             </div>
           </header>
 
-          {selectedDeployments.length ? (
+          {selectedObjectCount ? (
             <>
               <div className="v2-country-score">
                 <span style={{ "--score": "78%" } as CSSProperties} />
                 <small>Current candidate coverage</small>
               </div>
               <div className="v2-deployment-list">
-                {selectedDeployments.slice(0, 5).map((deployment, index) => {
-                  const product = productById(deployment.productId);
-                  if (!product) return null;
-                  return (
+                {objectMode === "software" ? selectedProducts.slice(0, 5).map((product, index) => {
+                  const deployment = selectedDeployments.find((item) => item.productId === product.id);
+                  return deployment ? (
                     <article
-                      key={deployment.id}
+                      key={product.id}
                     >
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       <span>
@@ -970,19 +1003,31 @@ function DeploymentsView({
                         type="button"
                       ><i aria-hidden="true">↗</i></button>
                     </article>
-                  );
-                })}
-                {selectedDeployments.length > 5 ? (
+                  ) : null;
+                }) : selectedOrganisations.slice(0, 5).map((organisation, index) => (
+                  <article key={organisation.id}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span>
+                      <Link href={`/organisations/${organisation.slug}`}><strong>{organisation.name}</strong></Link>
+                      <small>{organisation.type}</small>
+                    </span>
+                    <b>{selectedProducts.filter((product) => product.organisationId === organisation.id).length} SW</b>
+                    <Link aria-label={`Open ${organisation.name}`} href={`/organisations/${organisation.slug}`}><i aria-hidden="true">→</i></Link>
+                  </article>
+                ))}
+                {selectedObjectCount > 5 ? (
                   <Link
                     className="v2-country-more"
-                    href={withSearchParam(
-                      "/directory",
-                      preservedSearch,
-                      "country",
-                      selectedCountry,
-                    )}
+                    href={objectMode === "software"
+                      ? withSearchParam(
+                          "/directory",
+                          preservedSearch,
+                          "country",
+                          selectedCountry,
+                        )
+                      : `/organisations?country=${selectedCountry}`}
                   >
-                    View all {selectedDeployments.length} in Data
+                    View all {selectedObjectCount} {objectMode}
                     <span aria-hidden="true">→</span>
                   </Link>
                 ) : null}
@@ -992,15 +1037,11 @@ function DeploymentsView({
             <div className="v2-country-unknown">
               <span aria-hidden="true">?</span>
               <strong>
-                {geography !== "evidenced"
-                  ? "Reviewed data is not available for this layer."
-                  : selectedCountryAssessed
+                {selectedCountryAssessed
                     ? "No evidence matches the current filters."
                     : "Coverage has not been assessed."}
               </strong>
-              {geography === "evidenced" ? (
-                <Link href="/contribute/deployment">Add evidence →</Link>
-              ) : null}
+              <Link href="/contribute/deployment">Add evidence →</Link>
             </div>
           )}
 
@@ -1013,6 +1054,85 @@ function DeploymentsView({
         </aside>
       </div>
     </section>
+  );
+}
+
+type MapCountryRow = {
+  iso2: string;
+  name: string;
+  count: number;
+  assessed: boolean;
+};
+
+type AfricaMapCountry = {
+  iso2: string;
+  name: string;
+  path: string;
+  labelX: number;
+  labelY: number;
+  small: boolean;
+  interactive: boolean;
+};
+
+function AfricaCountryMap({
+  countries,
+  objectMode,
+  selectedCountry,
+  setSelectedCountry,
+}: {
+  countries: MapCountryRow[];
+  objectMode: "software" | "organisations";
+  selectedCountry: string;
+  setSelectedCountry: (iso2: string) => void;
+}) {
+  const rows = new Map(countries.map((country) => [country.iso2, country]));
+  return (
+    <div className="v2-africa-map-wrap">
+      <svg
+        aria-labelledby="africa-map-title africa-map-description"
+        className="v2-africa-map"
+        role="group"
+        viewBox={africaMapJson.viewBox}
+      >
+        <title id="africa-map-title">Clickable map of African countries</title>
+        <desc id="africa-map-description">Select a country to see evidenced {objectMode}.</desc>
+        {(africaMapJson.countries as AfricaMapCountry[]).map((geometry) => {
+          const row = rows.get(geometry.iso2);
+          if (!geometry.interactive || !row) {
+            return <path className="context" d={geometry.path} key={geometry.iso2} />;
+          }
+          const active = selectedCountry === geometry.iso2;
+          return (
+            <g
+              aria-label={`${row.name}: ${row.assessed ? `${row.count} evidenced ${objectMode}` : "coverage not assessed"}`}
+              aria-pressed={active}
+              className={`${row.assessed ? countClass(row.count) : "unknown"}${active ? " selected" : ""}`}
+              data-country={geometry.iso2}
+              key={geometry.iso2}
+              onClick={() => setSelectedCountry(geometry.iso2)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setSelectedCountry(geometry.iso2);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+            >
+              <path d={geometry.path} />
+              {geometry.small ? <circle className="hit-area" cx={geometry.labelX} cy={geometry.labelY} r="11" /> : null}
+              {row.count ? (
+                <g aria-hidden="true" className="map-count" pointerEvents="none">
+                  <circle cx={geometry.labelX} cy={geometry.labelY} r="10" />
+                  <text x={geometry.labelX} y={geometry.labelY}>{row.count}</text>
+                </g>
+              ) : null}
+            </g>
+          );
+        })}
+      </svg>
+      <p>Country boundaries are for navigation. No site coordinates are shown.</p>
+    </div>
   );
 }
 
@@ -1465,14 +1585,6 @@ function countClass(count: number) {
   if (count >= 4) return "count-high";
   if (count > 0) return "count-low";
   return "count-zero";
-}
-
-function labelGeography(value: string) {
-  return {
-    claimed: "Claims",
-    headquarters: "Headquarters",
-    founded: "Origin",
-  }[value] ?? "Geography";
 }
 
 function OrganisationLink({

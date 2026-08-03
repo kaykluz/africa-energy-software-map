@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Made the 540-listing catalogue the default Explore surface, promoted Wall to
+  a primary view, added a first-class Organisations atlas, replaced the map
+  grid default with clickable Natural Earth country geometry and introduced a
+  locally stored, source-registered first batch of organisation marks.
 - Composed reviewed release `0.2.0` from the independently approved `0.1.0`
   baseline and all 13 bounded Batch 001 shards: 64 organisations, 94 products,
   20 country-level deployments, 75 rights-resolved sources and 1,276 reviewed
