@@ -17,6 +17,7 @@ export default async function Directory({
     <RegistryExplorer
       initialCategory={params.category}
       initialCountry={params.country}
+      initialStage={params.stage}
       initialEvidence={params.evidence}
       initialQuery={params.q}
       initialOrigin={params.origin}

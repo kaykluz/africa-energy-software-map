@@ -16,7 +16,13 @@ export default async function Home({
   const params = await searchParams;
   return (
     <LandscapeExplorer
+      initialAfricaUse={params.africaUse}
+      initialFunction={params.function}
+      initialKind={params.kind}
       initialQuery={params.q}
+      initialRelationship={params.relationship}
+      initialSector={params.sector}
+      initialStage={params.stage}
       initialView="listings"
       mode="explore"
     />
