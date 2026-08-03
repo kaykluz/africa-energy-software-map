@@ -365,6 +365,9 @@ export const productById = (id: string) =>
 export const organisationBySlug = (slug: string) =>
   organisations.find((organisation) => organisation.slug === slug);
 
+export const organisationById = (id: string) =>
+  organisations.find((organisation) => organisation.id === id);
+
 export const registrySnapshot = {
   release,
   manifest: registryManifest,

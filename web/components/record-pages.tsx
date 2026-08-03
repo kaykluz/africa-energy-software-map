@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Fragment, type ReactNode } from "react";
 import {
   africanCountries,
   assertions,
@@ -77,7 +78,7 @@ export function ProductProfile({ slug }: { slug: string }) {
         <article className="record-main">
           <ProfileSection heading="At a glance">
             <dl className="fact-grid">
-              <Fact label="Category" value={product.category} />
+              <Fact label="Category" value={<Link href={`/?category=${product.categoryId}`}>{product.category}</Link>} />
               <Fact label="Access model" value={product.accessModel} />
               <Fact label="Lifecycle" value={capitalise(product.lifecycle)} />
               <Fact
@@ -88,7 +89,7 @@ export function ProductProfile({ slug }: { slug: string }) {
                 label="Deployment countries"
                 value={
                   product.deploymentCountries.length
-                    ? product.deploymentCountries.join(", ")
+                    ? <CountryIsoLinks iso2s={product.deploymentCountries} />
                     : "No evidenced country in this batch"
                 }
               />
@@ -108,7 +109,7 @@ export function ProductProfile({ slug }: { slug: string }) {
                   <article key={deployment.id}>
                     <header>
                       <div>
-                        <h3>{deployment.country}</h3>
+                        <h3><Link href={`/countries/${deployment.countryIso2.toLowerCase()}`}>{deployment.country}</Link></h3>
                         <span>{deployment.area}</span>
                       </div>
                       <LifecycleTag value={deployment.lifecycle} />
@@ -161,7 +162,7 @@ export function ProductProfile({ slug }: { slug: string }) {
                   <article key={source.id}>
                     <div>
                       <span className="eyebrow">{source.independence}</span>
-                      <h3>{source.title}</h3>
+                      <h3><a href={source.url} rel="noreferrer" target="_blank">{source.title}</a></h3>
                       <p>{source.publisher} · retrieved {source.retrieved}</p>
                     </div>
                     <a href={source.url} rel="noreferrer" target="_blank">
@@ -190,7 +191,7 @@ export function ProductProfile({ slug }: { slug: string }) {
           </div>
           <div className="rail-card">
             <span className="eyebrow">Owning organisation</span>
-            <strong>{organisation?.name}</strong>
+            {organisation ? <Link href={`/organisations/${organisation.slug}`}><strong>{organisation.name}</strong></Link> : null}
             <p>{organisation?.description}</p>
             <Link href={`/organisations/${organisation?.slug}`}>View organisation →</Link>
           </div>
@@ -249,8 +250,8 @@ export function OrganisationProfile({ slug }: { slug: string }) {
           <ProfileSection heading="Overview">
             <dl className="fact-grid">
               <Fact label="Type" value={organisation.type} />
-              <Fact label="Country of origin" value={organisation.countryOfOrigin} />
-              <Fact label="Current headquarters" value={organisation.headquarters} />
+              <Fact label="Country of origin" value={<CountryNameLink name={organisation.countryOfOrigin} />} />
+              <Fact label="Current headquarters" value={<CountryNameLink name={organisation.headquarters} />} />
               <Fact
                 label="Provider profile confirmation"
                 value={
@@ -275,9 +276,8 @@ export function OrganisationProfile({ slug }: { slug: string }) {
             <p>
               {organisationDeployments.length} candidate deployment{" "}
               {organisationDeployments.length === 1 ? "record" : "records"}
-              {deploymentCountries.length
-                ? ` across ${deploymentCountries.join(", ")}`
-                : ""}.
+              {deploymentCountries.length ? " across " : ""}
+              {deploymentCountries.length ? <CountryNameLinks names={deploymentCountries} /> : null}.
               Claimed presence is not added to this total.
             </p>
             <Link
@@ -372,7 +372,7 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
             <div className="distribution-bars">
               {categoryRows.map(({ category, count }) => (
                 <div key={category?.id}>
-                  <span>{category?.name}</span>
+                  {category ? <Link href={`/directory?category=${category.id}&country=${countryIso2}`}>{category.name}</Link> : null}
                   <i>
                     <b
                       style={{
@@ -392,7 +392,7 @@ export function CountryProfile({ iso2 }: { iso2: string }) {
                 return (
                   <article key={deployment.id}>
                     <header>
-                      <div><h3>{product?.name}</h3><span>{deployment.area}</span></div>
+                      <div>{product ? <h3><Link href={`/products/${product.slug}`}>{product.name}</Link></h3> : null}<span>{deployment.area}</span></div>
                       <LifecycleTag value={deployment.lifecycle} />
                     </header>
                     <dl>
@@ -448,7 +448,7 @@ function ProfileSection({
   );
 }
 
-function Fact({ label, value }: { label: string; value: string }) {
+function Fact({ label, value }: { label: string; value: ReactNode }) {
   return <div><dt>{label}</dt><dd>{value}</dd></div>;
 }
 
@@ -480,4 +480,29 @@ function disclosureLabel(
     unknown: "Customer not documented",
     confidential: "Customer confidential",
   }[value];
+}
+
+function CountryIsoLinks({ iso2s }: { iso2s: string[] }) {
+  return iso2s.map((iso2, index) => (
+    <Fragment key={iso2}>
+      {index ? ", " : null}
+      <Link href={`/countries/${iso2.toLowerCase()}`}>
+        {africanCountries.find(([countryIso2]) => countryIso2 === iso2)?.[1] ?? iso2}
+      </Link>
+    </Fragment>
+  ));
+}
+
+function CountryNameLink({ name }: { name: string }) {
+  const country = africanCountries.find(([, countryName]) => countryName === name);
+  return country ? <Link href={`/countries/${country[0].toLowerCase()}`}>{name}</Link> : <>{name}</>;
+}
+
+function CountryNameLinks({ names }: { names: string[] }) {
+  return names.map((name, index) => (
+    <Fragment key={name}>
+      {index ? ", " : null}
+      <CountryNameLink name={name} />
+    </Fragment>
+  ));
 }

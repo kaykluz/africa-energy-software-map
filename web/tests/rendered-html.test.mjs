@@ -319,6 +319,7 @@ test("server-renders the classified software wall", async () => {
   assert.match(html, /Browse tools by where they sit in the energy system/);
   assert.match(html, /Core energy software/);
   assert.match(html, /SteamaCo/);
+  assert.match(html, /href="\/organisations\/steamaco"/);
   assert.match(html, /Plan and design/);
   assert.match(html, /Deployment map/);
   assert.match(html, /CSV/);
@@ -359,6 +360,9 @@ test("server-renders the Directory and its export action", async () => {
   assert.match(textHtml, /Page 1 of 1/);
   assert.match(html, /Nigeria/);
   assert.match(html, /PAM-AI/);
+  assert.match(html, /href="\/organisations\/pam-africa"/);
+  assert.match(html, /href="\/countries\/ng"/);
+  assert.match(html, /href="\/\?category=/);
   assert.doesNotMatch(html, /Pai Enterprise/);
 });
 
@@ -381,6 +385,8 @@ test("server-renders a source-linked product profile", async () => {
   assert.match(html, /Abuja Electricity Distribution Company/);
   assert.match(html, /Assertion-level evidence and sources/);
   assert.match(html, /Proparco/);
+  assert.match(html, /href="\/organisations\/beacon-power-services"/);
+  assert.match(html, /href="\/countries\/ng"/);
   assert.match(html, /Editorial review required/);
 });
 
@@ -431,6 +437,8 @@ test("server-renders a country profile from the generated snapshot", async () =>
   assert.match(html, /<h1[^>]*>Nigeria<\/h1>/i);
   assert.match(html, /Evidence-led software index/);
   assert.match(html, /Abuja Electricity Distribution Company/);
+  assert.match(html, /href="\/products\/adora"/);
+  assert.match(html, /href="\/directory\?category=/);
   assert.match(html, /View in Data/);
   assert.match(html, /href="\/directory\?country=NG"/);
 });
