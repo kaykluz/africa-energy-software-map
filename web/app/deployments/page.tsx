@@ -6,15 +6,21 @@ import {
   queryOrganisationCatalogue,
 } from "@/lib/organisation-catalogue";
 import { africanCountries } from "@/lib/registry-data";
+import {
+  organisationRoleName,
+  organisationRoles,
+  organisationSegmentName,
+  organisationSegments,
+} from "@/lib/organisation-data";
 import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/deployments" },
-  title: "Deployments",
+  title: "Map",
   description:
-    "Explore evidenced deployment geography separately from claims, headquarters and origin.",
+    "Map every recorded software and organisation country relationship while keeping deployments, catalogue locations, headquarters and other presence types distinct.",
 };
 
 export default async function Deployments({
@@ -28,10 +34,16 @@ export default async function Deployments({
     { pageSize: 1 },
     catalogueRecords,
   ).options;
+  const catalogueRole = organisationRoles.some((role) => role.id === params.role)
+    ? organisationRoleName(params.role ?? "")
+    : params.role;
+  const catalogueSegment = organisationSegments.some((segment) => segment.id === params.segment)
+    ? organisationSegmentName(params.segment ?? "")
+    : params.segment;
   const filteredCatalogueRecords = filterOrganisationCatalogueRecords({
     query: params.q,
-    role: params.role,
-    segment: params.segment,
+    role: catalogueRole,
+    segment: catalogueSegment,
     headquarters: params.headquarters,
     scope: params.scope,
   }, catalogueRecords);
@@ -50,6 +62,7 @@ export default async function Deployments({
       initialAccess={params.access}
       initialObject={params.object}
       initialPresence={params.presence}
+      initialSoftwareLocation={params.softwareLocation}
       initialFocus={params.focus ?? params.country}
       initialRepresentation={params.representation}
       initialGroup={params.group}

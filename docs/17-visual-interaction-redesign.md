@@ -157,13 +157,16 @@ The map is a layered data field, not a decorative pin map.
 
 ### Controls
 
-- Deployments
-- Claims
-- Headquarters
-- Origin
+- Object: Software or Organisations
+- Software location: All recorded, reviewed deployment, catalogue location or publisher headquarters
+- Organisation presence: All recorded, catalogue activity, evidenced activity,
+  company-stated activity, software deployed, office/entity, product
+  availability, headquarters or origin
 
-Representation switches between equal-area grid and ranked list. Claims,
-headquarters and origin remain visibly separate from deployment evidence.
+Representation switches between geographic map, equal-area grid and ranked
+list. All-recorded is a de-duplicated union; every underlying type remains
+labelled and independently selectable. Headquarters, catalogue locations and
+company statements never become deployment evidence.
 
 ### Country field
 
@@ -171,17 +174,14 @@ Every African state receives an equal-size selectable tile. This prevents small
 and island states from disappearing. ISO2 is visual; the accessible name contains
 the full country and coverage status.
 
-- neutral tile: coverage not assessed;
-- teal tile: evidenced candidate count;
+- neutral tile: no location matches the current layer and filters;
+- teal tile: matching record count;
 - cobalt tile: current selection; and
 - acid hover: interaction affordance, never a data meaning.
 
-The country panel shows the selected country, coverage state, deployment list
-and link to the country record. Unknown is stated as `Coverage has not been
-assessed.`
-
-The geographic choropleth remains a later enhancement once official geometry
-and enough reviewed data are available.
+The country panel shows the selected country, matching records, their location
+types and a link to the country record. Country boundaries are navigation only;
+no site coordinates are published.
 
 ## Data page
 
