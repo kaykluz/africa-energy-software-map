@@ -399,6 +399,44 @@ test("server-renders the classified software wall", async () => {
   assert.match(inheritedMarkHtml, /href="\/landscape\?function=/);
 });
 
+test("keeps product ownership distinct from the map publisher", async () => {
+  const items = [
+    "../../data/landscape/shards/phase1-catalogue-004.json",
+    "../../data/landscape/shards/phase1-catalogue-005.json",
+    "../../data/landscape/shards/phase1-catalogue-015.json",
+  ].flatMap((filename) =>
+    JSON.parse(readFileSync(new URL(filename, import.meta.url), "utf8")).items,
+  );
+  const byId = new Map(items.map((item) => [item.id, item]));
+
+  assert.deepEqual(
+    {
+      name: byId.get("land_phase1_57ac0151").name,
+      parent: byId.get("land_phase1_57ac0151").parent,
+      sourceDomains: byId.get("land_phase1_57ac0151").sourceDomains,
+      sourceUrls: byId.get("land_phase1_57ac0151").sourceUrls,
+    },
+    {
+      name: "Africa Energy Software Map",
+      parent: "Kaykluz.com",
+      sourceDomains: ["kaykluz.com"],
+      sourceUrls: ["https://kaykluz.com"],
+    },
+  );
+
+  for (const [id, name, sourceDomain, sourceUrl] of [
+    ["land_phase1_50a2450d", "KIISHA platform (VATR)", "kiisha.io", "https://kiisha.io"],
+    ["land_phase1_b0451add", "ATARA", "kiisha.io", "https://kiisha.io"],
+    ["land_phase1_43ca221d", "DealGrid", "dealgrid.kiisha.io", "https://dealgrid.kiisha.io"],
+  ]) {
+    const item = byId.get(id);
+    assert.equal(item.name, name);
+    assert.equal(item.parent, "KIISHA Technologies");
+    assert.deepEqual(item.sourceDomains, [sourceDomain]);
+    assert.deepEqual(item.sourceUrls, [sourceUrl]);
+  }
+});
+
 test("server-renders local brand assets and the organisation atlas", async () => {
   const organisationResponse = await render("/organisations?view=ecosystem");
   assert.equal(organisationResponse.status, 200);
