@@ -571,7 +571,7 @@ function PublicOrganisationCatalogue({
 
       <div className="organisation-catalogue-notice">
         <span>Inclusion catalogue · updated {formatCatalogueDate(cataloguePage.asOf)}</span>
-        <p>Broad market coverage for discovery. A listing is not an endorsement; records marked “review pending” have not yet entered the reviewed release.</p>
+        <p>Broad discovery layer. Review status is shown on each record.</p>
         <Link href="/methodology#organisation-catalogue">How this layer works →</Link>
       </div>
 
@@ -598,20 +598,8 @@ function PublicOrganisationCatalogue({
           <option value="all">All active countries</option>
           {cataloguePage.options.countries.map((value) => <option key={value} value={value}>{value}</option>)}
         </select>
-        <select aria-label="Filter catalogue by headquarters" onChange={(event) => update(setHeadquarters, event.target.value)} value={headquarters}>
-          <option value="all">All headquarters</option>
-          {cataloguePage.options.headquarters.map((value) => <option key={value} value={value}>{value}</option>)}
-        </select>
-        <select aria-label="Filter catalogue by scope" onChange={(event) => update(setScope, event.target.value)} value={scope}>
-          <option value="all">All listings</option>
-          <option value="africa_wide">Africa-wide coverage</option>
-          <option value="africa_hq">Africa-headquartered</option>
-          <option value="international">International, active in Africa</option>
-          <option value="reviewed">Reviewed profiles</option>
-          <option value="pending">Review pending</option>
-        </select>
         <details className="organisation-more-filters organisation-catalogue-more">
-          <summary>More filters</summary>
+          <summary>More</summary>
           <div className="organisation-more-panel">
             <label>
               <span>Actor type</span>
@@ -625,6 +613,24 @@ function PublicOrganisationCatalogue({
               <select aria-label="Filter catalogue by sector" onChange={(event) => update(setSector, event.target.value)} value={sector}>
                 <option value="all">All sectors</option>
                 {organisationSectors.map((value) => <option key={value.id} value={value.id}>{value.name}</option>)}
+              </select>
+            </label>
+            <label>
+              <span>Headquarters</span>
+              <select aria-label="Filter catalogue by headquarters" onChange={(event) => update(setHeadquarters, event.target.value)} value={headquarters}>
+                <option value="all">All headquarters</option>
+                {cataloguePage.options.headquarters.map((value) => <option key={value} value={value}>{value}</option>)}
+              </select>
+            </label>
+            <label>
+              <span>Review and coverage</span>
+              <select aria-label="Filter catalogue by scope" onChange={(event) => update(setScope, event.target.value)} value={scope}>
+                <option value="all">All listings</option>
+                <option value="africa_wide">Africa-wide coverage</option>
+                <option value="africa_hq">Africa-headquartered</option>
+                <option value="international">International, active in Africa</option>
+                <option value="reviewed">Reviewed profiles</option>
+                <option value="pending">Review pending</option>
               </select>
             </label>
           </div>

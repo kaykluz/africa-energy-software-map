@@ -295,7 +295,7 @@ test("server-renders one filterable software database with review state visible"
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<h1>Database<\/h1>/);
+  assert.match(html, /<h1>Explore<\/h1>/);
   assert.match(html, /Reviewed beta/);
   assert.match(html, /Reviewed data release/);
   assert.match(html, /<strong>474<\/strong><span>software records<\/span>/);
@@ -410,7 +410,7 @@ test("server-renders the classified software wall", async () => {
   const response = await render("/landscape?q=SteamaCo");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /<h1[^>]*>Database<\/h1>/i);
+  assert.match(html, /<h1[^>]*>Software wall<\/h1>/i);
   assert.match(html, /aria-label="Database records"/);
   assert.match(html, /href="\/landscape\?q=SteamaCo" aria-current="page">Wall/);
   assert.match(html, /Core energy software/);
@@ -474,7 +474,7 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   const organisationResponse = await render("/organisations?q=Bboxx");
   assert.equal(organisationResponse.status, 200);
   const organisationHtml = await organisationResponse.text();
-  assert.match(organisationHtml, /<h1[^>]*>Database<\/h1>/i);
+  assert.match(organisationHtml, /<h1[^>]*>Organisations<\/h1>/i);
   assert.match(organisationHtml, /1,953<\/strong><span>listings/);
   assert.match(organisationHtml, /Financiers/);
   assert.match(organisationHtml, /Developers and owners/);
@@ -626,7 +626,7 @@ test("surfaces one organisation database with role, sector and review filters", 
   assert.match(html, /Review pending/);
   assert.match(html, /10000 Children Care Uganda/);
   assert.match(html, /reviewed profiles/i);
-  assert.match(html, /<h1>Database<\/h1>/);
+  assert.match(html, /<h1>Organisations<\/h1>/);
   assert.match(html, /Filter catalogue by actor type/);
   assert.match(html, /Filter catalogue by sector/);
 
@@ -675,7 +675,7 @@ test("surfaces one organisation database with role, sector and review filters", 
   );
   assert.equal(map.status, 200);
   const mapHtml = await map.text();
-  assert.match(mapHtml, /<h1>Database<\/h1>/);
+  assert.match(mapHtml, /<h1>Organisation map<\/h1>/);
   assert.match(mapHtml, /aria-label="Database records"/);
   assert.match(mapHtml, /href="\/deployments\?object=organisations&amp;country=NG&amp;presence=catalogue" aria-current="page">/);
   assert.match(mapHtml, /href="\/deployments\?country=NG&amp;object=organisations&amp;presence=catalogue" aria-current="page">Map/);
@@ -1293,7 +1293,7 @@ test("organisation catalogue candidates are visible and decisions persist in rev
   );
   assert.equal(canonicalDirectory.status, 200);
   const canonicalDirectoryHtml = await canonicalDirectory.text();
-  assert.match(canonicalDirectoryHtml, /<h1>Database<\/h1>/);
+  assert.match(canonicalDirectoryHtml, /<h1>Organisations<\/h1>/);
   assert.match(canonicalDirectoryHtml, /1,953<\/strong><span>listings/);
   assert.match(canonicalDirectoryHtml, /href="\/organisations\/3e-afr-0002"/);
 
@@ -1471,7 +1471,7 @@ test("duplicate organisation decisions merge catalogue records into one canonica
     { DB: database },
   );
   const directoryHtml = await directory.text();
-  assert.match(directoryHtml, /<h1>Database<\/h1>/);
+  assert.match(directoryHtml, /<h1>Organisations<\/h1>/);
   assert.match(directoryHtml, /inclusion catalogue/i);
   assert.match(directoryHtml, /href="\/organisations\/ampersand-energy"/);
 

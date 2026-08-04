@@ -3387,3 +3387,209 @@ body {
   .country-filter-bar details,
   .country-filter-bar > button { flex-basis: 100%; }
 }
+
+/* Cohesion pass: retain the unified data model without turning the public site
+   into an administrative dashboard. */
+.v2-nav a {
+  padding-inline: 11px;
+  font-size: .79rem;
+}
+
+.database-header {
+  padding-top: 20px;
+}
+
+.database-header-title {
+  min-height: 78px;
+  align-items: center;
+  padding-bottom: 16px;
+}
+
+.database-header-title h1 {
+  margin-bottom: 5px;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+}
+
+.database-header-title p {
+  max-width: 68ch;
+  font-size: .8rem;
+}
+
+.database-header-count {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.database-header-count strong {
+  color: var(--v2-ink);
+  font: 650 1.25rem var(--font-mono);
+}
+
+.database-header-count span {
+  font: .58rem var(--font-mono);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.database-header-navs {
+  align-items: center;
+}
+
+.database-object-tabs,
+.database-view-tabs {
+  gap: 20px;
+}
+
+.database-object-tabs a,
+.database-view-tabs a {
+  min-height: 40px;
+  padding: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+}
+
+.database-object-tabs a[aria-current="page"],
+.database-view-tabs a[aria-current="page"],
+.database-object-tabs a[aria-current="page"]:hover,
+.database-view-tabs a[aria-current="page"]:hover {
+  color: var(--v2-ink);
+  border-color: var(--v2-blue);
+  background: transparent;
+}
+
+.database-object-tabs a:hover,
+.database-view-tabs a:hover {
+  color: var(--v2-ink);
+  background: transparent;
+}
+
+.landscape-page {
+  padding-top: 18px;
+}
+
+.landscape-scoreboard,
+.v2-experience > .landscape-scoreboard {
+  display: flex;
+  width: 100%;
+  max-width: none;
+  margin-top: 14px;
+  border: 0;
+  border-block: 1px solid var(--v2-line);
+  border-radius: 0;
+  background: transparent;
+}
+
+.landscape-scoreboard > div {
+  min-height: 54px;
+  flex: 0 1 auto;
+  align-items: baseline;
+  justify-content: flex-start;
+  flex-direction: row;
+  padding: 14px 26px 14px 0;
+  border: 0;
+  gap: 8px;
+}
+
+.landscape-scoreboard > div + div {
+  padding-left: 26px;
+  border-left: 1px solid var(--v2-line);
+}
+
+.landscape-scoreboard strong {
+  font-size: 1.35rem;
+  letter-spacing: -.04em;
+}
+
+.landscape-scoreboard span {
+  font-size: .57rem;
+}
+
+.landscape-controls {
+  padding: 14px 0;
+  grid-template-columns: minmax(260px, 1.45fr) minmax(140px, .7fr) minmax(180px, .9fr) minmax(140px, .7fr) auto auto;
+}
+
+.landscape-clear {
+  position: absolute;
+  right: 0;
+  bottom: -24px;
+  width: auto;
+  height: auto;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  color: var(--v2-blue);
+  background: transparent;
+  font-size: .63rem;
+  font-weight: 700;
+}
+
+.landscape-clear:disabled { display: none; }
+
+.landscape-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.landscape-card {
+  min-height: 270px;
+}
+
+.landscape-card-top em {
+  padding: 0;
+  border: 0;
+  color: var(--muted);
+  background: transparent;
+  font-size: .54rem;
+}
+
+.country-directory-page {
+  padding-top: 22px;
+}
+
+.country-directory-header {
+  padding: 28px 0 22px;
+}
+
+.country-directory-header h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: -.06em;
+  line-height: .92;
+}
+
+.country-directory-header p {
+  margin-top: 12px;
+  font-size: .86rem;
+}
+
+@media (min-width: 1420px) {
+  .landscape-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (max-width: 1040px) {
+  .v2-nav { display: none; }
+  .landscape-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  .database-header-title { align-items: end; }
+  .database-header-count { display: grid; justify-items: end; gap: 0; }
+  .database-header-navs { gap: 0; }
+  .database-object-tabs a,
+  .database-view-tabs a { border-radius: 0; }
+  .landscape-scoreboard,
+  .v2-experience > .landscape-scoreboard { overflow-x: auto; }
+  .landscape-scoreboard > div { min-width: max-content; }
+  .landscape-controls { grid-template-columns: 1fr 1fr auto; }
+  .landscape-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+  .database-header-title p { max-width: 34ch; }
+  .database-header-count span { display: none; }
+  .landscape-scoreboard { display: flex; }
+  .landscape-scoreboard > div { min-height: 50px; padding-block: 11px; border-bottom: 0; }
+}
