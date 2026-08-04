@@ -46,6 +46,7 @@ export type Product = {
   launchedYear?: string;
   lastChecked: string;
   deploymentCountries: string[];
+  publisherHeadquartersCountryIso2: string;
   evidence: EvidenceStatus[];
   capabilities: string[];
 };
@@ -71,7 +72,9 @@ export type Organisation = {
   slug: string;
   type: string;
   origin: string;
+  countryOfOriginIso2: string;
   countryOfOrigin: string;
+  headquartersCountryIso2: string;
   headquarters: string;
   lifecycle: string;
   website: string;
@@ -389,7 +392,9 @@ export const organisations: Organisation[] = snapshot.organisations.map(
     slug: record.slug,
     type: labelValue(record.organisationType),
     origin: originLabels[record.originClassification],
+    countryOfOriginIso2: record.countryOfOriginIso2,
     countryOfOrigin: countryName(record.countryOfOriginIso2),
+    headquartersCountryIso2: record.headquartersCountryIso2,
     headquarters: countryName(record.headquartersCountryIso2),
     lifecycle: labelValue(record.lifecycleStatus),
     website: record.website,
@@ -417,6 +422,9 @@ export const products: Product[] = snapshot.products.map((record) => ({
   launchedYear: record.launchedYear || undefined,
   lastChecked: displayDate(record.lastCheckedAt),
   deploymentCountries: record.deploymentCountries,
+  publisherHeadquartersCountryIso2:
+    organisations.find((organisation) => organisation.id === record.organisationId)
+      ?.headquartersCountryIso2 ?? "",
   evidence: record.evidenceStatuses,
   capabilities: record.capabilities.map((value) => sentenceCase(value)),
 }));

@@ -235,7 +235,7 @@ export function OrganisationAtlas({
   }
 
   const mapParams = new URLSearchParams({ object: "organisations" });
-  mapParams.set("presence", presence === "all" ? "software_linked" : presence);
+  mapParams.set("presence", presence === "all" ? "all_presence" : presence);
   if (query.trim()) mapParams.set("q", query.trim());
   if (group !== "all") mapParams.set("group", group);
   if (role !== "all") mapParams.set("role", role);

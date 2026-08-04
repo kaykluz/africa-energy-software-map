@@ -41,12 +41,12 @@ across views.
 ## 2. Deployments
 
 **Route:** `/deployments`  
-**Job:** “Which software is actually used in this country?”
+**Job:** “What software and organisations have a recorded relationship to this country, and what kind of relationship is it?”
 
 ### Anatomy
 
 Header/H1, an object switch (Software or Organisations), contextual filters,
-organisation-presence mode, representation mode (Map, Country grid, Ranked
+software-location or organisation-presence mode, representation mode (Map, Country grid, Ranked
 list), legend, dominant visual/list, selected country panel, methodology note.
 
 Software filters are search, country, stage, category, evidence, origin,
@@ -61,13 +61,26 @@ focused country and representation are encoded in the URL. The country panel
 and Filtered directory action preserve compatible filters when opening Data or
 Organisations; changing representation never clears them.
 
-Desktop defaults to software evidence + map. Alternative representations are
+Software defaults to all recorded locations: reviewed deployments, itemised
+catalogue locations and the publisher's African headquarters. These are
+independently selectable and labelled; a catalogue location or headquarters is
+never presented as deployment evidence. Raw catalogue records merge with a
+canonical product only when an explicit canonical link exists.
+
+Organisations default to a de-duplicated union of all recorded presence. The
+separate layers are catalogue activity, evidenced activity, company-stated
+activity, software-linked activity, offices or legal entities, product
+availability, headquarters and origin. A warehouse or facility is shown only
+after that relationship is explicitly recorded; it is not inferred from an
+office or headquarters.
+
+Desktop defaults to all software locations + map. Alternative representations are
 explicit, shareable URL state on every viewport.
 
-Country panel: country, separate evidenced/claimed totals, category counts,
-three to five deployments, View all in Directory, Open country page. Selecting a
-deployment opens product preview; Back restores country, filters, representation,
-and position.
+Country panel: country, count for the selected layer, records with compact
+location-type labels, browse action and country page. Canonical products retain
+preview; catalogue-only records open in the catalogue. Back restores country,
+filters, layer, representation and position.
 
 Solid teal represents evidenced count; hatching claimed; light neutral researched
 zero; patterned neutral unknown; cobalt outline selection.

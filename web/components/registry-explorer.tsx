@@ -60,11 +60,17 @@ import {
   resolveOrganisationHref,
   type ExactLinkIndex,
 } from "@/lib/entity-links";
+import {
+  landscapeItems,
+  type LandscapeItem,
+} from "@/lib/landscape-data";
 
 export type RegistryView = "stack" | "deployments" | "directory";
 
 const emptyCatalogueMapData: OrganisationCatalogueMapData = {
   totalWithDocumentedCountry: 0,
+  totalWithHeadquarters: 0,
+  totalWithAnyLocation: 0,
   assessedIso2s: [],
   countries: {},
 };
@@ -86,6 +92,209 @@ const viewMeta: Record<
   },
 };
 
+type SoftwareMapLayer =
+  | "all_locations"
+  | "reviewed_deployment"
+  | "catalogue_location"
+  | "publisher_headquarters";
+
+type SoftwareLocationType = Exclude<SoftwareMapLayer, "all_locations">;
+
+type CatalogueSoftwareLocation = {
+  item: LandscapeItem;
+  countryIso2s: string[];
+  canonicalProduct?: Product;
+};
+
+type SoftwareMapEntity = {
+  key: string;
+  name: string;
+  organisation: string;
+  href: string;
+  product?: Product;
+  catalogueItem?: LandscapeItem;
+  locationTypesByCountry: Map<string, Set<SoftwareLocationType>>;
+};
+
+type SoftwareMapIndex = Map<string, SoftwareMapEntity>;
+
+const softwareMapLayers: Array<[SoftwareMapLayer, string]> = [
+  ["all_locations", "All recorded locations"],
+  ["reviewed_deployment", "Reviewed deployments"],
+  ["catalogue_location", "Catalogue locations"],
+  ["publisher_headquarters", "Publisher headquarters"],
+];
+
+const africanIso2s = new Set(africanCountries.map(([iso2]) => iso2));
+const catalogueCountryIso2ByLabel = new Map(
+  africanCountries.map(([iso2, name]) => [normaliseCountryLabel(name), iso2]),
+);
+for (const [label, iso2] of [
+  ["Cote d'Ivoire", "CI"],
+  ["Ivory Coast", "CI"],
+  ["DRC", "CD"],
+  ["Congo DRC", "CD"],
+  ["Gambia", "GM"],
+] as const) {
+  catalogueCountryIso2ByLabel.set(normaliseCountryLabel(label), iso2);
+}
+
+const canonicalProductByHref = new Map(
+  products.map((product) => [`/products/${product.slug}`, product]),
+);
+
+const catalogueSoftwareLocations: CatalogueSoftwareLocation[] = landscapeItems
+  .filter((item) => item.kind === "product" || item.kind === "public_tool")
+  .map((item) => ({
+    item,
+    countryIso2s: catalogueCountryIso2s(item.geographies),
+    canonicalProduct: item.canonicalHref
+      ? canonicalProductByHref.get(item.canonicalHref)
+      : undefined,
+  }))
+  .filter((record) => record.countryIso2s.length);
+
+function normaliseCountryLabel(value: string) {
+  return value
+    .replace(/[’‘]/g, "'")
+    .normalize("NFKD")
+    .replace(/[^\x00-\x7F]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function catalogueCountryIso2s(geographies: string[]) {
+  return Array.from(new Set(
+    geographies.flatMap((geography) =>
+      geography
+        .split(/[\/,;|]+/)
+        .map((part) => catalogueCountryIso2ByLabel.get(normaliseCountryLabel(part)))
+        .filter((iso2): iso2 is string => Boolean(iso2)),
+    ),
+  ));
+}
+
+function isSoftwareMapLayer(value: string): value is SoftwareMapLayer {
+  return softwareMapLayers.some(([id]) => id === value);
+}
+
+function softwareMapLayerLabel(layer: SoftwareMapLayer) {
+  return softwareMapLayers.find(([id]) => id === layer)?.[1] ?? layer;
+}
+
+function softwareLocationMatches(
+  layer: SoftwareMapLayer,
+  types: Set<SoftwareLocationType>,
+) {
+  return layer === "all_locations" || types.has(layer);
+}
+
+function buildSoftwareMapIndex(
+  filteredProducts: Product[],
+  visibleDeployments: typeof deployments,
+  catalogueRecords: CatalogueSoftwareLocation[],
+): SoftwareMapIndex {
+  const index: SoftwareMapIndex = new Map();
+  const filteredProductIds = new Set(filteredProducts.map((product) => product.id));
+
+  function canonicalEntity(product: Product) {
+    const key = `product:${product.id}`;
+    const existing = index.get(key);
+    if (existing) return existing;
+    const entity: SoftwareMapEntity = {
+      key,
+      name: product.name,
+      organisation: product.organisation,
+      href: `/products/${product.slug}`,
+      product,
+      locationTypesByCountry: new Map(),
+    };
+    index.set(key, entity);
+    return entity;
+  }
+
+  function addLocation(
+    entity: SoftwareMapEntity,
+    iso2: string,
+    type: SoftwareLocationType,
+  ) {
+    if (!africanIso2s.has(iso2)) return;
+    const types = entity.locationTypesByCountry.get(iso2) ?? new Set();
+    types.add(type);
+    entity.locationTypesByCountry.set(iso2, types);
+  }
+
+  for (const deployment of visibleDeployments) {
+    const product = productById(deployment.productId);
+    if (!product || !filteredProductIds.has(product.id)) continue;
+    addLocation(canonicalEntity(product), deployment.countryIso2, "reviewed_deployment");
+  }
+
+  for (const product of filteredProducts) {
+    if (product.publisherHeadquartersCountryIso2) {
+      addLocation(
+        canonicalEntity(product),
+        product.publisherHeadquartersCountryIso2,
+        "publisher_headquarters",
+      );
+    }
+  }
+
+  for (const record of catalogueRecords) {
+    if (record.canonicalProduct && !filteredProductIds.has(record.canonicalProduct.id)) continue;
+    const key = record.canonicalProduct
+      ? `product:${record.canonicalProduct.id}`
+      : `catalogue:${record.item.id}`;
+    const entity = record.canonicalProduct
+      ? canonicalEntity(record.canonicalProduct)
+      : index.get(key) ?? {
+          key,
+          name: record.item.name,
+          organisation: record.item.parent || "Catalogue listing",
+          href: record.item.canonicalHref || `/landscape?q=${encodeURIComponent(record.item.name)}`,
+          catalogueItem: record.item,
+          locationTypesByCountry: new Map(),
+        };
+    if (!index.has(key)) index.set(key, entity);
+    for (const iso2 of record.countryIso2s) {
+      addLocation(entity, iso2, "catalogue_location");
+    }
+  }
+
+  for (const [key, entity] of index) {
+    if (!entity.locationTypesByCountry.size) index.delete(key);
+  }
+  return index;
+}
+
+function softwareEntitiesForCountry(
+  index: SoftwareMapIndex,
+  iso2: string,
+  layer: SoftwareMapLayer,
+) {
+  return Array.from(index.values()).filter((entity) => {
+    const types = entity.locationTypesByCountry.get(iso2);
+    return Boolean(types && softwareLocationMatches(layer, types));
+  });
+}
+
+function softwareKeysForLayer(
+  index: SoftwareMapIndex,
+  layer: SoftwareMapLayer,
+  country = "all",
+) {
+  return new Set(
+    Array.from(index.values()).flatMap((entity) => {
+      const visible = Array.from(entity.locationTypesByCountry.entries()).some(
+        ([iso2, types]) =>
+          (country === "all" || iso2 === country) && softwareLocationMatches(layer, types),
+      );
+      return visible ? [entity.key] : [];
+    }),
+  );
+}
+
 export function RegistryExplorer({
   view,
   initialQuery = "",
@@ -97,7 +306,8 @@ export function RegistryExplorer({
   initialLifecycle = "all",
   initialAccess = "all",
   initialObject = "software",
-  initialPresence = "software_linked",
+  initialPresence = "all_presence",
+  initialSoftwareLocation = "all_locations",
   initialFocus = "NG",
   initialRepresentation = "map",
   initialGroup = "all",
@@ -122,6 +332,7 @@ export function RegistryExplorer({
   initialAccess?: string;
   initialObject?: string;
   initialPresence?: string;
+  initialSoftwareLocation?: string;
   initialFocus?: string;
   initialRepresentation?: string;
   initialGroup?: string;
@@ -149,7 +360,10 @@ export function RegistryExplorer({
     initialObject === "organisations" ? "organisations" : "software",
   );
   const [organisationLayer, setOrganisationLayer] = useState<OrganisationMapLayer>(
-    isOrganisationMapLayer(initialPresence) ? initialPresence : "software_linked",
+    isOrganisationMapLayer(initialPresence) ? initialPresence : "all_presence",
+  );
+  const [softwareLayer, setSoftwareLayer] = useState<SoftwareMapLayer>(
+    isSoftwareMapLayer(initialSoftwareLocation) ? initialSoftwareLocation : "all_locations",
   );
   const [groupFilter, setGroupFilter] = useState(initialGroup);
   const [roleFilter, setRoleFilter] = useState(initialRole);
@@ -191,11 +405,45 @@ export function RegistryExplorer({
       query,
       category: categoryFilter,
       evidence: evidenceFilter,
-      country: countryFilter,
+      country: view === "deployments" ? "all" : countryFilter,
       stage: stageFilter,
       origin: originFilter,
       lifecycle: lifecycleFilter,
       access: accessFilter,
+    });
+  }, [
+    accessFilter,
+    categoryFilter,
+    countryFilter,
+    evidenceFilter,
+    lifecycleFilter,
+    originFilter,
+    query,
+    stageFilter,
+    view,
+  ]);
+
+  const filteredCatalogueSoftwareLocations = useMemo(() => {
+    const needle = normaliseQuery(query);
+    const comparableOnly =
+      evidenceFilter !== "all" ||
+      originFilter !== "all" ||
+      lifecycleFilter !== "all" ||
+      accessFilter !== "all";
+    return catalogueSoftwareLocations.filter((record) => {
+      if (record.canonicalProduct) return true;
+      if (comparableOnly) return false;
+      const searchable = normaliseQuery([
+        record.item.name,
+        record.item.parent,
+        record.item.summaryAsSubmitted,
+      ].filter(Boolean).join(" "));
+      return (
+        (!needle || searchable.includes(needle)) &&
+        (categoryFilter === "all" || record.item.categoryIds.includes(categoryFilter)) &&
+        (stageFilter === "all" || record.item.stageIds.includes(stageFilter)) &&
+        (countryFilter === "all" || record.countryIso2s.includes(countryFilter))
+      );
     });
   }, [
     accessFilter,
@@ -224,23 +472,41 @@ export function RegistryExplorer({
         ...record.segmentIds.map(organisationSegmentName),
         ...record.ownedProducts.map((product) => product.name),
       ].join(" "));
+      const roleMatches = roleFilter === "all" || record.roleIds.some(
+        (roleId) => roleId === roleFilter || organisationRoleName(roleId) === roleFilter,
+      );
+      const segmentMatches = segmentFilter === "all" || record.segmentIds.some(
+        (segmentId) => segmentId === segmentFilter || organisationSegmentName(segmentId) === segmentFilter,
+      );
+      const africaHeadquartered = africanCountries.some(
+        ([, name]) => name === record.organisation.headquarters,
+      );
+      const scopeMatches =
+        scopeFilter === "all" ||
+        scopeFilter === "reviewed" ||
+        (scopeFilter === "africa_hq" && africaHeadquartered) ||
+        (scopeFilter === "international" && !africaHeadquartered);
       return (
         (!needle || searchable.includes(needle)) &&
         (groupFilter === "all" || record.ecosystemGroupIds.includes(groupFilter)) &&
-        (roleFilter === "all" || record.roleIds.includes(roleFilter)) &&
+        roleMatches &&
         (sectorFilter === "all" || record.sectorIds.includes(sectorFilter)) &&
-        (segmentFilter === "all" || record.segmentIds.includes(segmentFilter)) &&
-        (organisationOriginFilter === "all" || record.organisation.origin === organisationOriginFilter)
+        segmentMatches &&
+        (organisationOriginFilter === "all" || record.organisation.origin === organisationOriginFilter) &&
+        (headquartersFilter === "all" || record.organisation.headquarters === headquartersFilter) &&
+        scopeMatches
       );
     });
   }, [
     canonicalOrganisationDirectory,
     groupFilter,
+    headquartersFilter,
     organisationOriginFilter,
     query,
     roleFilter,
     sectorFilter,
     segmentFilter,
+    scopeFilter,
   ]);
 
   const filteredProductIds = useMemo(
@@ -251,10 +517,24 @@ export function RegistryExplorer({
     () => deployments.filter((deployment) => filteredProductIds.has(deployment.productId)),
     [filteredProductIds],
   );
-  const mappedSoftwareCount = useMemo(
-    () => new Set(visibleSoftwareDeployments.map((deployment) => deployment.productId)).size,
-    [visibleSoftwareDeployments],
+  const softwareMapIndex = useMemo(
+    () => buildSoftwareMapIndex(
+      filteredProducts,
+      visibleSoftwareDeployments,
+      filteredCatalogueSoftwareLocations,
+    ),
+    [filteredCatalogueSoftwareLocations, filteredProducts, visibleSoftwareDeployments],
   );
+  const softwareLayerKeys = useMemo(
+    () => softwareKeysForLayer(softwareMapIndex, softwareLayer, countryFilter),
+    [countryFilter, softwareLayer, softwareMapIndex],
+  );
+  const softwareLayerCounts = useMemo(() => ({
+    all_locations: softwareKeysForLayer(softwareMapIndex, "all_locations", countryFilter).size,
+    reviewed_deployment: softwareKeysForLayer(softwareMapIndex, "reviewed_deployment", countryFilter).size,
+    catalogue_location: softwareKeysForLayer(softwareMapIndex, "catalogue_location", countryFilter).size,
+    publisher_headquarters: softwareKeysForLayer(softwareMapIndex, "publisher_headquarters", countryFilter).size,
+  }), [countryFilter, softwareMapIndex]);
 
   function updateUrl(next: {
     q?: string;
@@ -266,6 +546,7 @@ export function RegistryExplorer({
     lifecycle?: string;
     access?: string;
     object?: "software" | "organisations";
+    softwareLocation?: SoftwareMapLayer;
     presence?: OrganisationMapLayer;
     focus?: string;
     representation?: string;
@@ -288,6 +569,7 @@ export function RegistryExplorer({
       lifecycle: next.lifecycle ?? lifecycleFilter,
       access: next.access ?? accessFilter,
       object: next.object ?? mapObject,
+      softwareLocation: next.softwareLocation ?? softwareLayer,
       presence: next.presence ?? organisationLayer,
       focus: next.focus ?? initialFocus,
       representation: next.representation ?? initialRepresentation,
@@ -309,7 +591,8 @@ export function RegistryExplorer({
     if (values.access !== "all") params.set("access", values.access);
     if (view === "deployments") {
       if (values.object !== "software") params.set("object", values.object);
-      if (values.presence !== "software_linked") params.set("presence", values.presence);
+      if (values.softwareLocation !== "all_locations") params.set("softwareLocation", values.softwareLocation);
+      if (values.presence !== "all_presence") params.set("presence", values.presence);
       if (values.focus !== "NG") params.set("focus", values.focus);
       if (values.representation !== "map") params.set("representation", values.representation);
       if (values.group !== "all") params.set("group", values.group);
@@ -407,6 +690,8 @@ export function RegistryExplorer({
         sectorFilter !== "all" ? organisationSectorName(sectorFilter) : null,
         segmentFilter !== "all" ? organisationSegmentName(segmentFilter) : null,
         organisationOriginFilter !== "all" ? organisationOriginFilter : null,
+        headquartersFilter !== "all" ? `HQ: ${headquartersFilter}` : null,
+        scopeFilter !== "all" ? organisationScopeLabel(scopeFilter) : null,
       ].filter(Boolean) as string[];
   const activeFilters = view === "deployments" && mapObject === "organisations"
     ? organisationActiveFilters
@@ -425,15 +710,23 @@ export function RegistryExplorer({
     return params.toString();
   })();
 
-  const organisationResultCount = organisationLayer === "catalogue"
-    ? (catalogueMapData ?? emptyCatalogueMapData).totalWithDocumentedCountry
-    : filteredOrganisationRecords.filter(
-        (record) => organisationLayerCountries(record, organisationLayer).length,
-      ).length;
+  const catalogueComparableWithOrganisationFilters =
+    groupFilter === "all" &&
+    sectorFilter === "all" &&
+    organisationOriginFilter === "all";
+  const effectiveCatalogueMapData =
+    ["all_presence", "headquarters"].includes(organisationLayer) && !catalogueComparableWithOrganisationFilters
+      ? emptyCatalogueMapData
+      : catalogueMapData ?? emptyCatalogueMapData;
+  const organisationResultCount = organisationMapResultKeys(
+    filteredOrganisationRecords,
+    effectiveCatalogueMapData,
+    organisationLayer,
+  ).size;
   const resultCount = view === "deployments"
     ? mapObject === "organisations"
       ? organisationResultCount
-      : mappedSoftwareCount
+      : softwareLayerKeys.size
     : filteredProducts.length;
   const organisationDirectoryHref = buildOrganisationDirectoryHref({
     group: groupFilter,
@@ -448,12 +741,21 @@ export function RegistryExplorer({
   });
 
   const meta = viewMeta[view];
+  const pageTitle = view === "deployments"
+    ? mapObject === "software" ? "Software by country" : "Organisations by country"
+    : meta.title;
   const heroStats = view === "deployments" && mapObject === "software"
     ? [
-        [mappedSoftwareCount, "mapped products"],
-        [filteredProducts.length, "catalogue products"],
-        [visibleSoftwareDeployments.length, "evidence points"],
+        [softwareLayerCounts.all_locations, "located records"],
+        [softwareLayerCounts.reviewed_deployment, "reviewed deployments"],
+        [softwareLayerCounts.catalogue_location, "catalogue locations"],
       ]
+    : view === "deployments" && mapObject === "organisations"
+      ? [
+          [organisationResultCount, "located organisations"],
+          [organisationMapResultKeys(filteredOrganisationRecords, emptyCatalogueMapData, organisationLayer).size, "reviewed profiles"],
+          [organisationMapResultKeys([], effectiveCatalogueMapData, organisationLayer).size, "catalogue records"],
+        ]
     : [
         [stages.length, "stages"],
         [products.length, "products"],
@@ -468,7 +770,7 @@ export function RegistryExplorer({
     >
       <section className="v2-experience-hero">
         <div className="v2-hero-copy">
-          <h1>{meta.title}</h1>
+          <h1>{pageTitle}</h1>
         </div>
         <div className="v2-hero-side">
           <div className="v2-hero-stats">
@@ -526,6 +828,7 @@ export function RegistryExplorer({
           close={() => setFiltersOpen(false)}
           countryFilter={countryFilter}
           evidenceFilter={evidenceFilter}
+          expandedOrganisationFilters={["all_presence", "headquarters"].includes(organisationLayer)}
           originFilter={originFilter}
           lifecycleFilter={lifecycleFilter}
           accessFilter={accessFilter}
@@ -610,11 +913,14 @@ export function RegistryExplorer({
       ) : null}
       {view === "deployments" ? (
         <DeploymentsView
-          catalogueMapData={catalogueMapData ?? emptyCatalogueMapData}
-          allOrganisationRecords={canonicalOrganisationDirectory}
+          catalogueMapData={effectiveCatalogueMapData}
           filteredOrganisationRecords={filteredOrganisationRecords}
           organisationLinks={canonicalOrganisationLinks}
           filteredProducts={filteredProducts}
+          softwareMapIndex={softwareMapIndex}
+          softwareLayer={softwareLayer}
+          softwareLayerCounts={softwareLayerCounts}
+          softwareCountryFilter={countryFilter}
           initialFocus={initialFocus}
           initialRepresentation={initialRepresentation}
           objectMode={mapObject}
@@ -624,6 +930,10 @@ export function RegistryExplorer({
           onObjectModeChange={(object) => {
             setMapObject(object);
             updateUrl({ object });
+          }}
+          onSoftwareLayerChange={(softwareLocation) => {
+            setSoftwareLayer(softwareLocation);
+            updateUrl({ softwareLocation });
           }}
           onOrganisationLayerChange={(presence) => {
             const crossesCatalogueBoundary =
@@ -750,6 +1060,7 @@ function FilterPanel({
   close,
   countryFilter,
   evidenceFilter,
+  expandedOrganisationFilters,
   groupFilter,
   headquartersFilter,
   lifecycleFilter,
@@ -785,6 +1096,7 @@ function FilterPanel({
   close: () => void;
   countryFilter: string;
   evidenceFilter: string;
+  expandedOrganisationFilters: boolean;
   groupFilter: string;
   headquartersFilter: string;
   lifecycleFilter: string;
@@ -877,6 +1189,19 @@ function FilterPanel({
                 <option value="all">All origins</option>
                 {organisationOrigins.map((value) => <option key={value} value={value}>{value}</option>)}
               </FilterSelect>
+              {expandedOrganisationFilters ? <>
+                <FilterSelect label="Headquarters" onChange={setHeadquartersFilter} value={headquartersFilter}>
+                  <option value="all">All headquarters</option>
+                  {(catalogueOptions?.headquarters ?? []).map((value) => <option key={value} value={value}>{value}</option>)}
+                </FilterSelect>
+                <FilterSelect label="Review layer" onChange={setScopeFilter} value={scopeFilter}>
+                  <option value="all">All listings</option>
+                  <option value="africa_hq">Africa-headquartered</option>
+                  <option value="international">International, active in Africa</option>
+                  <option value="reviewed">Canonical profiles</option>
+                  <option value="pending">Review pending</option>
+                </FilterSelect>
+              </> : null}
             </>
           ) : (
             <>
@@ -1165,7 +1490,6 @@ function ProductOrb({
 }
 
 function DeploymentsView({
-  allOrganisationRecords,
   catalogueMapData,
   filteredOrganisationRecords,
   filteredProducts,
@@ -1175,14 +1499,18 @@ function DeploymentsView({
   organisationDirectoryHref,
   organisationLayer,
   organisationLinks,
+  softwareLayer,
+  softwareLayerCounts,
+  softwareMapIndex,
+  softwareCountryFilter,
   onFocusCountry,
   onObjectModeChange,
   onOpenProduct,
   onOrganisationLayerChange,
+  onSoftwareLayerChange,
   onRepresentationChange,
   preservedSearch,
 }: {
-  allOrganisationRecords: OrganisationDirectoryRecord[];
   catalogueMapData: OrganisationCatalogueMapData;
   filteredOrganisationRecords: OrganisationDirectoryRecord[];
   filteredProducts: Product[];
@@ -1192,10 +1520,15 @@ function DeploymentsView({
   organisationDirectoryHref: string;
   organisationLayer: OrganisationMapLayer;
   organisationLinks: ExactLinkIndex;
+  softwareLayer: SoftwareMapLayer;
+  softwareLayerCounts: Record<SoftwareMapLayer, number>;
+  softwareMapIndex: SoftwareMapIndex;
+  softwareCountryFilter: string;
   onFocusCountry: (iso2: string) => void;
   onObjectModeChange: (value: "software" | "organisations") => void;
   onOpenProduct: (product: Product, element: HTMLElement) => void;
   onOrganisationLayerChange: (value: OrganisationMapLayer) => void;
+  onSoftwareLayerChange: (value: SoftwareMapLayer) => void;
   onRepresentationChange: (value: "map" | "grid" | "ranked") => void;
   preservedSearch: string;
 }) {
@@ -1212,38 +1545,48 @@ function DeploymentsView({
   const visibleDeployments = deployments.filter((deployment) =>
     filteredProducts.some((product) => product.id === deployment.productId),
   );
-  const mappedProductCount = new Set(
-    visibleDeployments.map((deployment) => deployment.productId),
+  const softwareResultCount = softwareKeysForLayer(
+    softwareMapIndex,
+    softwareLayer,
+    softwareCountryFilter,
   ).size;
-  const unmappedProductCount = Math.max(0, filteredProducts.length - mappedProductCount);
-  const mappedProductPercent = filteredProducts.length
-    ? Math.round((mappedProductCount / filteredProducts.length) * 100)
-    : 0;
-  const assessedCountries = organisationLayer === "catalogue" && objectMode === "organisations"
-    ? new Set(catalogueMapData.assessedIso2s)
-    : objectMode === "software" || organisationLayer === "software_linked"
-      ? new Set(deployments.map((deployment) => deployment.countryIso2))
-      : new Set(allOrganisationRecords.flatMap((record) => organisationLayerCountries(record, organisationLayer)));
+  const organisationResultCount = organisationMapResultKeys(
+    filteredOrganisationRecords,
+    catalogueMapData,
+    organisationLayer,
+  ).size;
+  const assessedCountries = new Set(africanCountries.map(([iso2]) => iso2));
+
   function countryObjectIds(iso2: string) {
-    const countryDeployments = visibleDeployments.filter(
-      (deployment) => deployment.countryIso2 === iso2,
-    );
     if (objectMode === "software") {
-      return new Set(countryDeployments.map((deployment) => deployment.productId));
+      if (softwareCountryFilter !== "all" && softwareCountryFilter !== iso2) {
+        return new Set<string>();
+      }
+      return new Set(
+        softwareEntitiesForCountry(softwareMapIndex, iso2, softwareLayer)
+          .map((entity) => entity.key),
+      );
     }
-    if (organisationLayer === "catalogue") {
-      return new Set<string>();
+    const ids = new Set<string>();
+    if (organisationLayer !== "catalogue") {
+      for (const record of filteredOrganisationRecords) {
+        if (organisationLayerCountries(record, organisationLayer).includes(iso2)) {
+          ids.add(`/organisations/${record.organisation.slug}`);
+        }
+      }
     }
-    return new Set(
-      filteredOrganisationRecords
-        .filter((record) => organisationLayerCountries(record, organisationLayer).includes(iso2))
-        .map((record) => record.organisation.id),
-    );
+    if (["catalogue", "all_presence", "headquarters"].includes(organisationLayer)) {
+      const country = catalogueMapData.countries[iso2];
+      const catalogueKeys = organisationLayer === "catalogue"
+        ? country?.activityRecordKeys ?? []
+        : organisationLayer === "headquarters"
+          ? country?.headquartersRecordKeys ?? []
+          : country?.recordKeys ?? [];
+      for (const key of catalogueKeys) ids.add(key);
+    }
+    return ids;
   }
   function countryObjectCount(iso2: string) {
-    if (objectMode === "organisations" && organisationLayer === "catalogue") {
-      return catalogueMapData.countries[iso2]?.count ?? 0;
-    }
     return countryObjectIds(iso2).size;
   }
   const rankedCountries = africanCountries
@@ -1255,34 +1598,32 @@ function DeploymentsView({
     }))
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   const selected = africanCountries.find(([iso2]) => iso2 === selectedCountry);
-  const selectedCountryAssessed = assessedCountries.has(selectedCountry);
   const selectedDeployments = visibleDeployments.filter(
     (deployment) => deployment.countryIso2 === selectedCountry,
   );
-  const selectedProducts = Array.from(
-    new Map(
-      selectedDeployments
-        .map((deployment) => productById(deployment.productId))
-        .filter((product): product is Product => Boolean(product))
-        .map((product) => [product.id, product]),
-    ).values(),
-  );
+  const selectedSoftwareEntities = softwareCountryFilter !== "all" && softwareCountryFilter !== selectedCountry
+    ? []
+    : softwareEntitiesForCountry(softwareMapIndex, selectedCountry, softwareLayer);
   const selectedOrganisationRecords = filteredOrganisationRecords.filter((record) =>
     organisationLayerCountries(record, organisationLayer).includes(selectedCountry),
   );
-  const selectedOrganisations = selectedOrganisationRecords.map((record) => record.organisation);
-  const selectedCatalogueListings = catalogueMapData.countries[selectedCountry]?.records ?? [];
-  const selectedObjectCount = objectMode === "software"
-    ? selectedProducts.length
-    : organisationLayer === "catalogue"
-      ? catalogueMapData.countries[selectedCountry]?.count ?? 0
-      : selectedOrganisations.length;
+  const selectedCanonicalHrefs = new Set(
+    selectedOrganisationRecords.map((record) => `/organisations/${record.organisation.slug}`),
+  );
+  const selectedCatalogueListings = (catalogueMapData.countries[selectedCountry]?.records ?? [])
+    .filter((record) => {
+      if (organisationLayer === "all_presence") return true;
+      if (organisationLayer === "catalogue") return record.locationTypes.includes("catalogue_activity");
+      if (organisationLayer === "headquarters") return record.locationTypes.includes("headquarters");
+      return false;
+    })
+    .filter((record) => !record.canonicalHref || !selectedCanonicalHrefs.has(record.canonicalHref));
+  const selectedObjectCount = countryObjectCount(selectedCountry);
   const mappedObjectLabel = objectMode === "software"
-    ? "evidenced software"
+    ? "software records"
     : organisationLayer === "catalogue"
-      ? "catalogued organisations"
+      ? "catalogue activity organisations"
       : `${organisationMapLayerLabel(organisationLayer).toLowerCase()} organisations`;
-
   return (
     <section className="v2-map-canvas">
       <div className="v2-map-controls">
@@ -1301,7 +1642,24 @@ function DeploymentsView({
             </button>
           ))}
         </div>
-        {objectMode === "organisations" ? (
+        {objectMode === "software" ? (
+          <div className="v2-map-organisation-tools">
+            <label className="v2-map-layer-select">
+              <span>Location</span>
+              <select
+                aria-label="Software location layer"
+                onChange={(event) => onSoftwareLayerChange(event.target.value as SoftwareMapLayer)}
+                value={softwareLayer}
+              >
+                {softwareMapLayers.map(([value, label]) => (
+                  <option key={value} value={value}>{label}</option>
+                ))}
+              </select>
+            </label>
+            <Link className="v2-map-filtered-link" href={preservedSearch ? `/directory?${preservedSearch}` : "/directory"}>Reviewed data →</Link>
+            <Link className="v2-map-filtered-link" href="/landscape">Catalogue →</Link>
+          </div>
+        ) : (
           <div className="v2-map-organisation-tools">
             <label className="v2-map-layer-select">
               <span>Presence</span>
@@ -1317,7 +1675,7 @@ function DeploymentsView({
             </label>
             <Link className="v2-map-filtered-link" href={organisationDirectoryHref}>Filtered directory →</Link>
           </div>
-        ) : null}
+        )}
         <div className="v2-representation-switch" role="group" aria-label="Map representation">
           <button
             aria-pressed={representation === "map"}
@@ -1355,33 +1713,31 @@ function DeploymentsView({
       <div className="v2-map-stage">
         <section className="v2-map-visual" aria-label="African country data view">
           <div className="v2-map-caption">
-            <span>{objectMode === "organisations" && organisationLayer === "catalogue" ? "Country catalogue coverage" : objectMode === "software" ? "Country-level deployment evidence" : "Country-level evidence"}</span>
+            <span>{objectMode === "software" ? softwareMapLayerLabel(softwareLayer) : organisationMapLayerLabel(organisationLayer)}</span>
             <strong>
               {objectMode === "software"
-                ? `${mappedProductCount} of ${filteredProducts.length} catalogue products`
-                : organisationLayer === "catalogue"
-                  ? `${catalogueMapData.totalWithDocumentedCountry} organisations with itemised country coverage`
-                  : `${new Set(filteredOrganisationRecords.flatMap((record) => organisationLayerCountries(record, organisationLayer).length ? [record.organisation.id] : [])).size} ${organisationMapLayerLabel(organisationLayer).toLowerCase()} organisations`}
+                ? `${softwareResultCount} located software records`
+                : `${organisationResultCount} located organisations`}
             </strong>
           </div>
 
-          {objectMode === "software" && filteredProducts.length ? (
-            <div
-              aria-label={`${mappedProductCount} of ${filteredProducts.length} matching catalogue products have reviewed country-level deployment evidence`}
-              className="v2-map-coverage"
-            >
-              <span aria-hidden="true" className="v2-map-coverage-meter">
-                <i style={{ width: `${mappedProductPercent}%` }} />
+          {objectMode === "software" ? (
+            <div aria-label="Software location type totals" className="v2-map-coverage">
+              <span className="v2-map-location-totals">
+                <i className="reviewed">{softwareLayerCounts.reviewed_deployment} reviewed deployments</i>
+                <i className="catalogue">{softwareLayerCounts.catalogue_location} catalogue locations</i>
+                <i className="headquarters">{softwareLayerCounts.publisher_headquarters} publisher HQ</i>
               </span>
-              <small>{unmappedProductCount} awaiting country evidence</small>
               <span className="v2-map-coverage-links">
-                <Link href={preservedSearch ? `/directory?${preservedSearch}` : "/directory"}>
-                  All {filteredProducts.length}
-                </Link>
-                <Link href="/contribute/deployment">Add evidence</Link>
+                <Link href="/contribute/deployment">Add a location</Link>
               </span>
             </div>
-          ) : null}
+          ) : (
+            <div aria-label="Organisation location guidance" className="v2-map-coverage">
+              <small>Each layer keeps its own meaning. The combined view removes duplicate organisations.</small>
+              <span className="v2-map-coverage-links"><Link href="/contribute/organisation">Add a presence</Link></span>
+            </div>
+          )}
 
           {representation === "map" ? (
             <AfricaCountryMap
@@ -1397,16 +1753,11 @@ function DeploymentsView({
             >
               {africanCountries.map(([iso2, name], index) => {
                 const count = countryObjectCount(iso2);
-                const researched = assessedCountries.has(iso2);
                 return (
                   <button
-                    aria-label={`${name}: ${
-                      researched
-                        ? `${count} ${mappedObjectLabel}`
-                        : "coverage not yet assessed"
-                    }`}
+                    aria-label={`${name}: ${count} ${mappedObjectLabel}`}
                     aria-pressed={selectedCountry === iso2}
-                    className={`${researched ? countClass(count) : "unknown"}`}
+                    className={countClass(count)}
                     key={iso2}
                     onClick={() => selectCountry(iso2)}
                     style={{ "--tile-index": index } as CSSProperties}
@@ -1443,7 +1794,7 @@ function DeploymentsView({
                             : "8%",
                         }}
                       />
-                      <b>{assessed ? count : "—"}</b>
+                      <b>{count}</b>
                     </button>
                   </li>
                 );
@@ -1452,8 +1803,8 @@ function DeploymentsView({
           )}
 
           <div className="v2-map-legend">
-            <span><i className="known" /> {objectMode === "software" ? "evidenced software" : organisationMapLayerLabel(organisationLayer).toLowerCase()}</span>
-            <span><i className="unknown" /> not assessed</span>
+            <span><i className="known" /> {mappedObjectLabel}</span>
+            <span><i className="unknown" /> no matching recorded location</span>
           </div>
         </section>
 
@@ -1462,58 +1813,68 @@ function DeploymentsView({
             <span>{selectedCountry}</span>
             <div>
               <h2><Link href={`/countries/${selectedCountry.toLowerCase()}`}>{selected?.[1] ?? selectedCountry}</Link></h2>
-              <p>
-                {selectedCountryAssessed
-                    ? objectMode === "organisations" && organisationLayer === "catalogue"
-                      ? `${selectedObjectCount} organisations listed`
-                      : `${selectedObjectCount} ${objectMode === "software" ? "software" : organisationMapLayerLabel(organisationLayer).toLowerCase()}`
-                    : "Coverage not assessed"}
-              </p>
+              <p>{selectedObjectCount} {objectMode === "software" ? "software records" : "organisations"}</p>
             </div>
           </header>
 
           {selectedObjectCount ? (
             <>
-              <div className="v2-country-score">
-                <span style={{ "--score": "78%" } as CSSProperties} />
-                <small>{objectMode === "organisations" && organisationLayer === "catalogue" ? "Documented catalogue coverage" : "Current reviewed coverage"}</small>
-              </div>
+              <div className="v2-country-score"><small>{objectMode === "software" ? softwareMapLayerLabel(softwareLayer) : organisationMapLayerLabel(organisationLayer)}</small></div>
               <div className="v2-deployment-list">
-                {objectMode === "software" ? selectedProducts.slice(0, 5).map((product, index) => {
-                  const deployment = selectedDeployments.find((item) => item.productId === product.id);
-                  return deployment ? (
-                    <article
-                      key={product.id}
-                    >
+                {objectMode === "software" ? selectedSoftwareEntities.slice(0, 8).map((entity, index) => {
+                  const deployment = entity.product
+                    ? selectedDeployments.find((item) => item.productId === entity.product?.id)
+                    : undefined;
+                  const locationTypes = entity.locationTypesByCountry.get(selectedCountry) ?? new Set<SoftwareLocationType>();
+                  return (
+                    <article key={entity.key}>
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       <span className="v2-deployment-entity">
-                        <ProductMark
-                          organisationId={product.organisationId}
-                          organisationName={product.organisation}
-                          productId={product.id}
-                          productName={product.name}
+                        {entity.product ? <ProductMark
+                          organisationId={entity.product.organisationId}
+                          organisationName={entity.product.organisation}
+                          productId={entity.product.id}
+                          productName={entity.product.name}
                           size={30}
-                        />
+                        /> : <OrganisationMark name={entity.organisation} organisationId={entity.key} size={30} />}
                         <span>
-                          <Link href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
-                          <small><OrganisationReferenceLink
-                            index={organisationLinks}
-                            name={deployment.customer}
-                            searchFallback={deployment.customerDisclosure === "named"}
-                          /></small>
+                          <Link href={entity.href}><strong>{entity.name}</strong></Link>
+                          <small>{deployment ? <OrganisationReferenceLink
+                              index={organisationLinks}
+                              name={deployment.customer}
+                              searchFallback={deployment.customerDisclosure === "named"}
+                            /> : entity.organisation}</small>
                         </span>
                       </span>
-                      <b>{deployment.year}</b>
-                      <button
-                        aria-label={`Preview ${product.name}`}
-                        onClick={(event) => onOpenProduct(product, event.currentTarget)}
+                      <b title={Array.from(locationTypes).map(softwareLocationTypeLabel).join(", ")}>{softwareLocationTypeShortLabel(locationTypes)}</b>
+                      {entity.product ? <button
+                        aria-label={`Preview ${entity.product.name}`}
+                        onClick={(event) => onOpenProduct(entity.product!, event.currentTarget)}
                         type="button"
-                      ><i aria-hidden="true">↗</i></button>
+                      ><i aria-hidden="true">↗</i></button> : <Link aria-label={`Open ${entity.name}`} href={entity.href}><i aria-hidden="true">→</i></Link>}
                     </article>
-                  ) : null;
-                }) : organisationLayer === "catalogue" ? selectedCatalogueListings.slice(0, 5).map((organisation, index) => (
+                  );
+                }) : <>
+                  {selectedOrganisationRecords.slice(0, 8).map((record, index) => {
+                    const types = organisationLocationTypesForCountry(record, selectedCountry);
+                    const catalogueTypes = catalogueMapData.countries[selectedCountry]?.records
+                      .find((item) => item.canonicalHref === `/organisations/${record.organisation.slug}`)?.locationTypes ?? [];
+                    return <article key={record.organisation.id}>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <span className="v2-deployment-entity">
+                        <OrganisationMark name={record.organisation.name} organisationId={record.organisation.id} size={30} />
+                        <span>
+                          <Link href={`/organisations/${record.organisation.slug}`}><strong>{record.organisation.name}</strong></Link>
+                          <small>{record.organisation.type}</small>
+                        </span>
+                      </span>
+                      <b title={[...types.map(organisationLocationTypeLabel), ...catalogueTypes.map(catalogueLocationTypeLabel)].join(", ")}>{organisationLayer === "all_presence" ? organisationLocationTypeShortSummary(types, catalogueTypes) : organisationMapLayerShortLabel(organisationLayer)}</b>
+                      <Link aria-label={`Open ${record.organisation.name}`} href={`/organisations/${record.organisation.slug}`}><i aria-hidden="true">→</i></Link>
+                    </article>;
+                  })}
+                  {selectedCatalogueListings.slice(0, Math.max(0, 8 - selectedOrganisationRecords.length)).map((organisation, offset) => (
                   <article key={organisation.id}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span>{String(selectedOrganisationRecords.length + offset + 1).padStart(2, "0")}</span>
                     <span className="v2-deployment-entity">
                       <OrganisationMark name={organisation.name} organisationId={organisation.id} size={30} />
                       <span>
@@ -1525,57 +1886,27 @@ function DeploymentsView({
                         <small>{organisation.primaryRole || organisation.headquartersCountry || "Role not classified"}</small>
                       </span>
                     </span>
-                    <b>{organisation.reviewState === "reviewed" ? "Reviewed" : "Listed"}</b>
+                    <b title={organisation.locationTypes.map(catalogueLocationTypeLabel).join(", ")}>{catalogueLocationTypeShortSummary(organisation.locationTypes)}</b>
                     <Link aria-label={`Open ${organisation.name}`} href={organisation.canonicalHref || `/organisations?q=${encodeURIComponent(organisation.name)}`}><i aria-hidden="true">→</i></Link>
                   </article>
-                )) : selectedOrganisations.slice(0, 5).map((organisation, index) => (
-                  <article key={organisation.id}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <span className="v2-deployment-entity">
-                      <OrganisationMark name={organisation.name} organisationId={organisation.id} size={30} />
-                      <span>
-                        <Link href={`/organisations/${organisation.slug}`}><strong>{organisation.name}</strong></Link>
-                        <small>{organisation.type}</small>
-                      </span>
-                    </span>
-                    <b>{organisationMapLayerShortLabel(organisationLayer)}</b>
-                    <Link aria-label={`Open ${organisation.name}`} href={`/organisations/${organisation.slug}`}><i aria-hidden="true">→</i></Link>
-                  </article>
-                ))}
+                ))}</>}
                 {selectedObjectCount ? (
                   <Link
                     className="v2-country-more"
                     href={objectMode === "software"
-                      ? withSearchParam(
-                          "/directory",
-                          preservedSearch,
-                          "country",
-                          selectedCountry,
-                        )
-                      : withSearchParam(
-                          organisationDirectoryHref,
-                          "",
-                          "country",
-                          selectedCountry,
-                        )}
+                      ? `/landscape?q=${encodeURIComponent(selected?.[1] ?? selectedCountry)}`
+                      : withSearchParam(organisationDirectoryHref, "", "country", selectedCountry)}
                   >
-                    View all {selectedObjectCount} {objectMode}
-                    <span aria-hidden="true">→</span>
+                    Browse all {selectedObjectCount} records <span aria-hidden="true">→</span>
                   </Link>
                 ) : null}
               </div>
             </>
           ) : (
             <div className="v2-country-unknown">
-              <span aria-hidden="true">?</span>
-              <strong>
-                {selectedCountryAssessed
-                    ? objectMode === "organisations" && organisationLayer === "catalogue"
-                      ? "No listings match the current filters."
-                      : "No evidence matches the current filters."
-                    : "Coverage has not been assessed."}
-              </strong>
-              <Link href={objectMode === "software" ? "/contribute/deployment" : "/contribute/organisation"}>Add evidence →</Link>
+              <span aria-hidden="true">0</span>
+              <strong>No recorded locations match this view.</strong>
+              <Link href={objectMode === "software" ? "/contribute/deployment" : "/contribute/organisation"}>Add a location →</Link>
             </div>
           )}
 
@@ -1599,6 +1930,7 @@ type MapCountryRow = {
 };
 
 type OrganisationMapLayer =
+  | "all_presence"
   | "catalogue"
   | "evidenced"
   | "company_stated"
@@ -1609,7 +1941,8 @@ type OrganisationMapLayer =
   | "origin";
 
 const organisationMapLayers: Array<[OrganisationMapLayer, string]> = [
-  ["catalogue", "Catalogue coverage"],
+  ["all_presence", "All recorded presence"],
+  ["catalogue", "Catalogue activity"],
   ["evidenced", "Evidenced activity"],
   ["company_stated", "Company-stated"],
   ["software_linked", "Software deployed"],
@@ -1672,7 +2005,7 @@ function buildOrganisationDirectoryHref({
     if (sector !== "all") params.set("sector", sector);
     if (segment !== "all") params.set("segment", segment);
     if (origin !== "all") params.set("origin", origin);
-    if (layer !== "software_linked") params.set("presence", layer);
+    if (layer !== "all_presence") params.set("presence", layer);
   }
   return `/organisations?${params.toString()}`;
 }
@@ -1683,6 +2016,7 @@ function organisationMapLayerLabel(layer: OrganisationMapLayer) {
 
 function organisationMapLayerShortLabel(layer: OrganisationMapLayer) {
   return {
+    all_presence: "Located",
     catalogue: "Listed",
     evidenced: "Evidence",
     company_stated: "Stated",
@@ -1694,21 +2028,116 @@ function organisationMapLayerShortLabel(layer: OrganisationMapLayer) {
   }[layer];
 }
 
+function softwareLocationTypeLabel(type: SoftwareLocationType) {
+  return {
+    reviewed_deployment: "Reviewed deployment",
+    catalogue_location: "Catalogue location",
+    publisher_headquarters: "Publisher headquarters",
+  }[type];
+}
+
+function softwareLocationTypeShortLabel(types: Set<SoftwareLocationType>) {
+  if (types.size > 1) return `${types.size} types`;
+  const type = Array.from(types)[0];
+  return type === "reviewed_deployment" ? "Reviewed" : type === "catalogue_location" ? "Catalogue" : "HQ";
+}
+
+type OrganisationLocationType =
+  | "evidenced"
+  | "company_stated"
+  | "software_linked"
+  | "offices"
+  | "availability"
+  | "headquarters"
+  | "origin";
+
+function organisationLocationTypesForCountry(
+  record: OrganisationDirectoryRecord,
+  iso2: string,
+): OrganisationLocationType[] {
+  const types: OrganisationLocationType[] = [];
+  if (record.evidencedCountryIso2s.includes(iso2)) types.push("evidenced");
+  if (record.companyStatedCountryIso2s.includes(iso2)) types.push("company_stated");
+  if (record.softwareLinkedCountryIso2s.includes(iso2)) types.push("software_linked");
+  if (record.officeCountryIso2s.includes(iso2)) types.push("offices");
+  if (record.availabilityCountryIso2s.includes(iso2)) types.push("availability");
+  if (record.organisation.headquartersCountryIso2 === iso2) types.push("headquarters");
+  if (record.organisation.countryOfOriginIso2 === iso2) types.push("origin");
+  return types;
+}
+
+function organisationLocationTypeLabel(type: OrganisationLocationType) {
+  return {
+    evidenced: "Evidenced activity",
+    company_stated: "Company-stated activity",
+    software_linked: "Software deployed",
+    offices: "Office or legal entity",
+    availability: "Product availability",
+    headquarters: "Headquarters",
+    origin: "Country of origin",
+  }[type];
+}
+
+function catalogueLocationTypeLabel(type: "catalogue_activity" | "headquarters") {
+  return type === "catalogue_activity" ? "Catalogue activity" : "Headquarters";
+}
+
+function organisationLocationTypeShortSummary(
+  canonicalTypes: OrganisationLocationType[],
+  catalogueTypes: Array<"catalogue_activity" | "headquarters">,
+) {
+  const labels = [...canonicalTypes.map(organisationLocationTypeLabel), ...catalogueTypes.map(catalogueLocationTypeLabel)];
+  return labels.length > 1 ? `${labels.length} types` : labels[0] ?? "Located";
+}
+
+function catalogueLocationTypeShortSummary(
+  types: Array<"catalogue_activity" | "headquarters">,
+) {
+  if (types.length > 1) return `${types.length} types`;
+  return types[0] === "headquarters" ? "HQ" : "Catalogue";
+}
+
 function organisationLayerCountries(
   record: OrganisationDirectoryRecord,
   layer: OrganisationMapLayer,
 ) {
+  if (layer === "all_presence") return record.countryIso2s;
   if (layer === "catalogue") return [];
   if (layer === "evidenced") return record.evidencedCountryIso2s;
   if (layer === "company_stated") return record.companyStatedCountryIso2s;
   if (layer === "software_linked") return record.softwareLinkedCountryIso2s;
   if (layer === "offices") return record.officeCountryIso2s;
   if (layer === "availability") return record.availabilityCountryIso2s;
-  const countryName = layer === "headquarters"
-    ? record.organisation.headquarters
-    : record.organisation.countryOfOrigin;
-  const iso2 = africanCountries.find(([, name]) => name === countryName)?.[0];
+  const iso2 = layer === "headquarters"
+    ? record.organisation.headquartersCountryIso2
+    : record.organisation.countryOfOriginIso2;
   return iso2 ? [iso2] : [];
+}
+
+function organisationMapResultKeys(
+  records: OrganisationDirectoryRecord[],
+  catalogueMapData: OrganisationCatalogueMapData,
+  layer: OrganisationMapLayer,
+) {
+  const keys = new Set<string>();
+  if (layer !== "catalogue") {
+    for (const record of records) {
+      if (organisationLayerCountries(record, layer).length) {
+        keys.add(`/organisations/${record.organisation.slug}`);
+      }
+    }
+  }
+  if (["catalogue", "all_presence", "headquarters"].includes(layer)) {
+    for (const country of Object.values(catalogueMapData.countries)) {
+      const catalogueKeys = layer === "catalogue"
+        ? country.activityRecordKeys
+        : layer === "headquarters"
+          ? country.headquartersRecordKeys
+          : country.recordKeys;
+      for (const key of catalogueKeys) keys.add(key);
+    }
+  }
+  return keys;
 }
 
 type AfricaMapCountry = {

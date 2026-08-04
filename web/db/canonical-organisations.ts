@@ -172,7 +172,9 @@ function materialisePromotion(
       ? "Africa-headquartered"
       : "International, active in Africa",
     countryOfOrigin: "Not publicly documented",
+    countryOfOriginIso2: "",
     headquarters: effective.headquartersCountry || "Not publicly documented",
+    headquartersCountryIso2: iso2ByCountry.get(normalise(effective.headquartersCountry)) ?? "",
     lifecycle: effective.lifecycle || "Not publicly documented",
     website,
     description: effective.description,

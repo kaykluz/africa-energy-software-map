@@ -859,9 +859,41 @@ body {
   display: grid;
   align-items: center;
   margin-top: 14px;
-  grid-template-columns: minmax(120px, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 12px;
 }
+
+.v2-map-location-totals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.v2-map-location-totals i {
+  display: inline-flex;
+  align-items: center;
+  min-height: 27px;
+  padding: 4px 9px;
+  border: 1px solid rgb(16 19 17 / 12%);
+  border-radius: 999px;
+  color: var(--v2-ink);
+  background: rgb(251 250 246 / 72%);
+  font: 600 .59rem var(--font-mono);
+  font-style: normal;
+}
+
+.v2-map-location-totals i::before {
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: #69706b;
+  content: "";
+}
+
+.v2-map-location-totals .reviewed::before { background: var(--v2-teal); }
+.v2-map-location-totals .catalogue::before { background: var(--v2-blue); }
+.v2-map-location-totals .headquarters::before { background: #af7e2f; }
 
 .v2-map-coverage-meter {
   height: 5px;
@@ -999,9 +1031,9 @@ body {
 .v2-country-panel h2 a:hover,
 .v2-country-panel h2 a:focus-visible { text-decoration: underline; text-underline-offset: 6px; }
 .v2-country-panel header p { margin: 14px 0 0; color: #9ea69e; font-size: .78rem; }
-.v2-country-score { padding: 26px 0; }
+.v2-country-score { padding: 22px 0 12px; }
 .v2-country-score > span { display: block; height: 7px; border-radius: 999px; background: linear-gradient(90deg, var(--v2-teal) var(--score), #303630 var(--score)); }
-.v2-country-score small { display: block; margin-top: 8px; color: #7f887f; font: .6rem var(--font-mono); text-transform: uppercase; }
+.v2-country-score small { display: block; color: #a6aea6; font: .6rem var(--font-mono); text-transform: uppercase; }
 .v2-deployment-list { display: grid; }
 
 .v2-deployment-list article {
@@ -1027,7 +1059,7 @@ body {
 .v2-deployment-list a:hover,
 .v2-deployment-list a:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
 .v2-deployment-list small { overflow: hidden; color: #899189; font-size: .67rem; text-overflow: ellipsis; white-space: nowrap; }
-.v2-deployment-list b { font: .66rem var(--font-mono); }
+.v2-deployment-list b { max-width: 88px; overflow: hidden; color: #c5cbc5; font: .61rem var(--font-mono); text-overflow: ellipsis; white-space: nowrap; }
 .v2-deployment-list i { color: var(--v2-teal); font-style: normal; transition: transform .3s var(--v2-ease); }
 .v2-deployment-list article > button,
 .v2-deployment-list article > a:last-child { padding: 4px; border: 0; color: inherit; background: transparent; }

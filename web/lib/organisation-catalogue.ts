@@ -131,11 +131,18 @@ export type OrganisationCataloguePage = {
 
 export type OrganisationCatalogueMapData = {
   totalWithDocumentedCountry: number;
+  totalWithHeadquarters: number;
+  totalWithAnyLocation: number;
   assessedIso2s: string[];
   countries: Record<
     string,
     {
       count: number;
+      activityCount: number;
+      headquartersCount: number;
+      recordKeys: string[];
+      activityRecordKeys: string[];
+      headquartersRecordKeys: string[];
       records: Array<{
         id: string;
         name: string;
@@ -144,6 +151,7 @@ export type OrganisationCatalogueMapData = {
         website: string;
         canonicalHref: string;
         reviewState: "reviewed" | "needs_review";
+        locationTypes: Array<"catalogue_activity" | "headquarters">;
       }>;
     }
   >;
@@ -156,25 +164,60 @@ export function buildOrganisationCatalogueMapData(
   const iso2ByName = new Map(africanCountries.map(([iso2, name]) => [normalise(name), iso2]));
   const countries: OrganisationCatalogueMapData["countries"] = {};
   const recordsWithCountry = new Set<string>();
+  const recordsWithHeadquarters = new Set<string>();
+  const recordsWithAnyLocation = new Set<string>();
   for (const record of records) {
+    const locations = new Map<string, Set<"catalogue_activity" | "headquarters">>();
     for (const countryName of record.countriesActive) {
       const iso2 = iso2ByName.get(normalise(countryName));
       if (!iso2) continue;
       recordsWithCountry.add(record.id);
-      const group = countries[iso2] ?? { count: 0, records: [] };
-      group.count += 1;
-      if (group.records.length < 8) {
+      const types = locations.get(iso2) ?? new Set();
+      types.add("catalogue_activity");
+      locations.set(iso2, types);
+    }
+    const headquartersIso2 = iso2ByName.get(normalise(record.headquartersCountry));
+    if (headquartersIso2) {
+      recordsWithHeadquarters.add(record.id);
+      const types = locations.get(headquartersIso2) ?? new Set();
+      types.add("headquarters");
+      locations.set(headquartersIso2, types);
+    }
+    for (const [iso2, locationTypes] of locations) {
+      recordsWithAnyLocation.add(record.id);
+      const canonicalHref = record.reconciliation.status === "reviewed_match"
+        ? record.reconciliation.canonicalHref
+        : "";
+      const recordKey = canonicalHref || `catalogue:${record.id}`;
+      const group = countries[iso2] ?? {
+        count: 0,
+        activityCount: 0,
+        headquartersCount: 0,
+        recordKeys: [],
+        activityRecordKeys: [],
+        headquartersRecordKeys: [],
+        records: [],
+      };
+      group.recordKeys.push(recordKey);
+      group.count = group.recordKeys.length;
+      if (locationTypes.has("catalogue_activity")) {
+        group.activityCount += 1;
+        group.activityRecordKeys.push(recordKey);
+      }
+      if (locationTypes.has("headquarters")) {
+        group.headquartersCount += 1;
+        group.headquartersRecordKeys.push(recordKey);
+      }
+      if (group.records.length < 12) {
         group.records.push({
           id: record.id,
           name: record.name,
           primaryRole: record.primaryRole,
           headquartersCountry: record.headquartersCountry,
           website: record.website,
-          canonicalHref:
-            record.reconciliation.status === "reviewed_match"
-              ? record.reconciliation.canonicalHref
-              : "",
+          canonicalHref,
           reviewState: record.reviewState,
+          locationTypes: Array.from(locationTypes),
         });
       }
       countries[iso2] = group;
@@ -182,6 +225,8 @@ export function buildOrganisationCatalogueMapData(
   }
   return {
     totalWithDocumentedCountry: recordsWithCountry.size,
+    totalWithHeadquarters: recordsWithHeadquarters.size,
+    totalWithAnyLocation: recordsWithAnyLocation.size,
     assessedIso2s: africanCountries.map(([iso2]) => iso2),
     countries,
   };

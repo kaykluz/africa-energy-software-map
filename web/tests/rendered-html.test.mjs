@@ -345,18 +345,35 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
   assert.match(mapHtml, /Software/);
   assert.match(mapHtml, /Organisations/);
   assert.match(mapHtml, /aria-live="polite"/i);
-  assert.match(mapHtml, /<strong>19<\/strong><span>mapped products<\/span>/);
-  assert.match(mapHtml, /<strong>94<\/strong><span>catalogue products<\/span>/);
-  assert.match(mapTextHtml, /19 results/);
-  assert.match(mapHtml, /19 of 94 catalogue products/);
-  assert.match(mapTextHtml, /75 awaiting country evidence/);
-  assert.match(mapTextHtml, /href="\/directory">All 94<\/a>/);
-  assert.match(mapHtml, /href="\/contribute\/deployment">Add evidence<\/a>/);
+  assert.match(mapHtml, /<strong>165<\/strong><span>located records<\/span>/);
+  assert.match(mapHtml, /<strong>19<\/strong><span>reviewed deployments<\/span>/);
+  assert.match(mapHtml, /<strong>107<\/strong><span>catalogue locations<\/span>/);
+  assert.match(mapTextHtml, /165 results/);
+  assert.match(mapHtml, /aria-label="Software location layer"/i);
+  assert.match(mapHtml, /All recorded locations/);
+  assert.match(mapHtml, /165 located software records/);
+  assert.match(mapTextHtml, /43 publisher HQ/);
+  assert.match(mapHtml, /href="\/contribute\/deployment">Add a location<\/a>/);
+
+  const reviewedSoftwareMap = await render(
+    "/deployments?softwareLocation=reviewed_deployment&focus=NG",
+  );
+  const reviewedSoftwareMapHtml = await reviewedSoftwareMap.text();
+  assert.match(reviewedSoftwareMapHtml, /19 located software records/);
+  assert.match(reviewedSoftwareMapHtml, /Reviewed deployments/);
   const organisationMapResponse = await render("/deployments?object=organisations");
   const organisationMapHtml = await organisationMapResponse.text();
   assert.match(organisationMapHtml, /aria-label="Organisation presence layer"/i);
+  assert.match(organisationMapHtml, /All recorded presence/);
   assert.match(organisationMapHtml, /Company-stated/);
   assert.match(organisationMapHtml, /Offices and entities/);
+
+  const headquartersMapResponse = await render(
+    "/deployments?object=organisations&presence=headquarters&focus=NG",
+  );
+  const headquartersMapHtml = await headquartersMapResponse.text();
+  assert.match(headquartersMapHtml, /Headquarters/);
+  assert.match(headquartersMapHtml, /Nigeria: [1-9][0-9]* headquarters organisations/);
 
   const gridMapResponse = await render(
     "/deployments?object=organisations&presence=catalogue&representation=grid&focus=NG",
@@ -479,7 +496,7 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   assert.match(sectorHtml, /href="\/organisations\/bboxx"/);
   assert.match(
     sectorHtml,
-    /href="\/deployments\?object=organisations&amp;presence=software_linked&amp;sector=sector_emobility_batteries"/,
+    /href="\/deployments\?object=organisations&amp;presence=all_presence&amp;sector=sector_emobility_batteries"/,
   );
 
   const organisationProfileResponse = await render(
@@ -628,10 +645,9 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   );
   assert.equal(map.status, 200);
   const mapHtml = await map.text();
-  assert.match(mapHtml, /Catalogue coverage/);
-  assert.match(mapHtml, /organisations with itemised country coverage/);
-  assert.match(mapHtml, /Documented catalogue coverage/);
-  assert.match(mapHtml, /Nigeria: 310 catalogued organisations/);
+  assert.match(mapHtml, /Catalogue activity/);
+  assert.match(mapHtml, /located organisations/);
+  assert.match(mapHtml, /Nigeria: 310 catalogue activity organisations/);
   assert.match(mapHtml, /href="\/organisations\?view=catalogue&amp;country=NG"/);
 
   const financierMap = await render(
@@ -639,8 +655,8 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   );
   assert.equal(financierMap.status, 200);
   const financierMapHtml = await financierMap.text();
-  assert.match(financierMapHtml, /105 organisations with itemised country coverage/);
-  assert.match(financierMapHtml, /28 organisations listed/);
+  assert.match(financierMapHtml, /105 located organisations/);
+  assert.match(financierMapHtml, /Nigeria: 28 catalogue activity organisations/);
   assert.match(financierMapHtml, /Anfani Energy/);
   assert.match(
     financierMapHtml,
@@ -660,11 +676,11 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   assert.match(canonicalSectorMapHtml, /Spiro/);
   assert.match(
     canonicalSectorMapHtml,
-    /href="\/organisations\?view=ecosystem&amp;sector=sector_emobility_batteries"/,
+    /href="\/organisations\?view=ecosystem&amp;sector=sector_emobility_batteries&amp;presence=software_linked"/,
   );
   assert.match(
     canonicalSectorMapHtml,
-    /href="\/organisations\?view=ecosystem&amp;sector=sector_emobility_batteries&amp;country=KE"/,
+    /href="\/organisations\?view=ecosystem&amp;sector=sector_emobility_batteries&amp;presence=software_linked&amp;country=KE"/,
   );
 
   const nigeria = await render("/organisations?country=NG");

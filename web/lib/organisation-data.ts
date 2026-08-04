@@ -320,8 +320,12 @@ export function buildOrganisationDirectoryRecord(
   const countryIso2s = sortCountries(Array.from(new Set([
     ...evidencedCountryIso2s,
     ...companyStatedCountryIso2s,
+    ...officeCountryIso2s,
+    ...availabilityCountryIso2s,
     ...softwareLinkedCountryIso2s,
     ...catalogueCountryIso2s,
+    ...(organisation.headquartersCountryIso2 ? [organisation.headquartersCountryIso2] : []),
+    ...(organisation.countryOfOriginIso2 ? [organisation.countryOfOriginIso2] : []),
   ])));
 
   return {
