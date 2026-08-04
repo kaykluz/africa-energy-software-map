@@ -114,6 +114,23 @@ export type OrganisationDirectoryRecord = {
   catalogueCandidateId?: string;
   catalogueSourceUrl?: string;
   canonicalReviewVersion?: number;
+  catalogueListings: OrganisationCatalogueLink[];
+  catalogueSourceUrls: string[];
+};
+
+export type OrganisationCatalogueLink = {
+  id: string;
+  name: string;
+  aliases: string[];
+  parent: string;
+  roles: string[];
+  segments: string[];
+  technologies: string[];
+  projectFocus: string;
+  countriesActive: string[];
+  sourceUrls: string[];
+  website: string;
+  lastReviewed: string;
 };
 
 export type OrganisationDirectoryOverrides = {
@@ -122,7 +139,10 @@ export type OrganisationDirectoryOverrides = {
   catalogueCountryIso2s?: string[];
   catalogueSourceUrl?: string;
   canonicalReviewVersion?: number;
+  catalogueListings?: OrganisationCatalogueLink[];
+  catalogueSourceUrls?: string[];
   roleIds?: string[];
+  sectorIds?: string[];
   segmentIds?: string[];
 };
 
@@ -154,6 +174,11 @@ export function organisationSectorName(sectorId: string) {
 
 export function organisationSegmentName(segmentId: string) {
   return organisationSegments.find((item) => item.id === segmentId)?.name ?? segmentId;
+}
+
+export function publicOrganisationDescription(value: string) {
+  const description = value.trim();
+  return /[\p{L}\p{N}]/u.test(description) ? description : "";
 }
 
 export function softwareStageName(stageId: string) {
@@ -227,12 +252,17 @@ export function buildOrganisationDirectoryRecord(
   const explicitSectorIds = organisationSectorRecords
     .filter((record) => record.organisationId === organisation.id && sectorsById.has(record.sectorId))
     .map((record) => record.sectorId);
+  const overriddenSectorIds = (overrides.sectorIds ?? []).filter((sectorId) =>
+    sectorsById.has(sectorId),
+  );
   const sectorIds = Array.from(new Set(
-    explicitSectorIds.length
-      ? explicitSectorIds
-      : ownedProducts.flatMap((product) =>
-          Array.from(sectorIdsByProduct.get(product.id) ?? []),
-        ),
+    overriddenSectorIds.length
+      ? overriddenSectorIds
+      : explicitSectorIds.length
+        ? explicitSectorIds
+        : ownedProducts.flatMap((product) =>
+            Array.from(sectorIdsByProduct.get(product.id) ?? []),
+          ),
   )).sort(byTaxonomyOrder(organisationSectors));
   const overriddenSegmentIds = (overrides.segmentIds ?? []).filter((segmentId) =>
     organisationSegments.some((item) => item.id === segmentId),
@@ -326,6 +356,8 @@ export function buildOrganisationDirectoryRecord(
     catalogueCandidateId: overrides.catalogueCandidateId,
     catalogueSourceUrl: overrides.catalogueSourceUrl,
     canonicalReviewVersion: overrides.canonicalReviewVersion,
+    catalogueListings: overrides.catalogueListings ?? [],
+    catalogueSourceUrls: overrides.catalogueSourceUrls ?? [],
   };
 }
 

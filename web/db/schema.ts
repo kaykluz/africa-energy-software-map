@@ -238,6 +238,7 @@ export const organisationCatalogueReviews = sqliteTable(
   {
     candidateId: text("candidate_id").primaryKey(),
     decision: text("decision").notNull(),
+    canonicalOrganisationId: text("canonical_organisation_id"),
     amendmentsJson: text("amendments_json"),
     normalizedSourceUrl: text("normalized_source_url").notNull(),
     sourceOpened: integer("source_opened", { mode: "boolean" })

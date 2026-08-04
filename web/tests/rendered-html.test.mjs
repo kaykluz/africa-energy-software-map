@@ -49,6 +49,7 @@ class MemoryD1 {
       "../drizzle/0003_deep_magneto.sql",
       "../drizzle/0004_curious_magma.sql",
       "../drizzle/0005_pale_epoch.sql",
+      "../drizzle/0006_nappy_layla_miller.sql",
     ]) {
       const sql = readFileSync(new URL(migration, import.meta.url), "utf8");
       for (const statement of sql.split("--> statement-breakpoint")) {
@@ -429,7 +430,7 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   assert.equal(sectorResponse.status, 200);
   const sectorHtml = await sectorResponse.text();
   assert.match(sectorHtml, /Ampersand Energy/);
-  assert.doesNotMatch(sectorHtml, /href="\/organisations\/bboxx"/);
+  assert.match(sectorHtml, /href="\/organisations\/bboxx"/);
   assert.match(
     sectorHtml,
     /href="\/deployments\?object=organisations&amp;presence=software_linked&amp;sector=sector_emobility_batteries"/,
@@ -467,7 +468,7 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   );
   assert.equal(epcGroupResponse.status, 200);
   const epcGroupHtml = await epcGroupResponse.text();
-  assert.match(epcGroupHtml, /No organisations listed here yet/);
+  assert.match(epcGroupHtml, /href="\/organisations\/ge-vernova"/);
   assert.doesNotMatch(epcGroupHtml, /href="\/organisations\/bboxx"/);
 
   const productResponse = await render("/products/ammp-os");
@@ -1080,6 +1081,24 @@ test("organisation catalogue candidates are visible and decisions persist in rev
   assert.equal(savedReview.canonicalHref, "/organisations/3e-afr-0002");
   assert.equal(database.count("organisation_catalogue_reviews"), 1);
 
+  const selfMerge = await fetchWorker(
+    `/api/review/organisation-catalogue/${candidateId}`,
+    reviewRequest({
+      decision: "duplicate",
+      canonicalOrganisationId: savedReview.canonicalOrganisationId,
+      amendments: {},
+      sourceUrl: "https://www.3e.eu/",
+      sourceOpened: true,
+      identityConfirmed: true,
+      classificationsConfirmed: true,
+      safetyChecked: true,
+      notes: "This invalid decision attempts to target the same canonical identity.",
+      expectedVersion: 1,
+    }),
+    { DB: database },
+  );
+  assert.equal(selfMerge.status, 422);
+
   const publicCatalogue = await fetchWorker(
     "/api/organisation-catalogue?q=3E&scope=reviewed",
     { headers: { accept: "application/json" } },
@@ -1197,6 +1216,136 @@ test("organisation catalogue candidates are visible and decisions persist in rev
     ).count,
     3,
   );
+});
+
+test("duplicate organisation decisions merge catalogue records into one canonical graph", async () => {
+  const database = new MemoryD1();
+  const candidateId = "listing_afr_0148";
+  const canonicalOrganisationId = "org_36577bb3608ee5a3";
+
+  const targets = await fetchWorker(
+    "/api/review/organisation-catalogue?targets=1&q=Ampersand%20Energy",
+    { headers: reviewerHeaders },
+    { DB: database },
+  );
+  assert.equal(targets.status, 200);
+  assert.deepEqual(await targets.json(), {
+    records: [{
+      aliases: [],
+      href: "/organisations/ampersand-energy",
+      id: canonicalOrganisationId,
+      name: "Ampersand Energy",
+    }],
+  });
+
+  const invalid = await fetchWorker(
+    `/api/review/organisation-catalogue/${candidateId}`,
+    reviewRequest({
+      decision: "duplicate",
+      canonicalOrganisationId: "",
+      amendments: {},
+      sourceUrl: "https://puredata.gogla.org/pure-companies/ampersand/",
+      sourceOpened: true,
+      identityConfirmed: true,
+      classificationsConfirmed: false,
+      safetyChecked: true,
+      notes: "The source and official site identify the same operating organisation.",
+      expectedVersion: 0,
+    }),
+    { DB: database },
+  );
+  assert.equal(invalid.status, 422);
+
+  const merged = await fetchWorker(
+    `/api/review/organisation-catalogue/${candidateId}`,
+    reviewRequest({
+      decision: "duplicate",
+      canonicalOrganisationId,
+      amendments: {},
+      sourceUrl: "https://puredata.gogla.org/pure-companies/ampersand/",
+      sourceOpened: true,
+      identityConfirmed: true,
+      classificationsConfirmed: true,
+      safetyChecked: true,
+      notes: "Ampersand is the shortened catalogue name for Ampersand Energy.",
+      expectedVersion: 0,
+    }),
+    { DB: database },
+  );
+  assert.equal(merged.status, 200);
+  const mergedReview = await merged.json();
+  assert.equal(mergedReview.canonicalOrganisationId, canonicalOrganisationId);
+  assert.equal(mergedReview.canonicalHref, "/organisations/ampersand-energy");
+
+  const catalogue = await fetchWorker(
+    "/api/organisation-catalogue?q=Ampersand&scope=reviewed",
+    { headers: { accept: "application/json" } },
+    { DB: database },
+  );
+  const cataloguePayload = await catalogue.json();
+  assert.equal(cataloguePayload.total, 1);
+  assert.equal(
+    cataloguePayload.records[0].reconciliation.canonicalHref,
+    "/organisations/ampersand-energy",
+  );
+
+  const profile = await fetchWorker(
+    "/organisations/ampersand-energy",
+    {},
+    { DB: database },
+  );
+  const profileHtml = await profile.text();
+  assert.match(profileHtml, /Also known as[\s\S]*Ampersand/);
+  assert.match(profileHtml, /Merged catalogue records/);
+  assert.match(profileHtml, /One canonical identity/);
+  assert.match(profileHtml, /puredata\.gogla\.org/);
+  assert.match(profileHtml, /Projects and deployment leads|Sources/);
+  assert.match(profileHtml, /Developer or IPP/);
+  assert.match(profileHtml, /E-mobility, charging and swapping/);
+
+  const directory = await fetchWorker(
+    "/organisations?view=directory&q=Ampersand",
+    {},
+    { DB: database },
+  );
+  const directoryHtml = await directory.text();
+  assert.match(directoryHtml, /<strong>64<\/strong><span>organisations<\/span>/);
+  assert.match(directoryHtml, /href="\/organisations\/ampersand-energy"/);
+
+  for (const filter of [
+    "role=org_role_developer_ipp",
+    "segment=org_segment_emobility",
+    "sector=sector_emobility_batteries",
+  ]) {
+    const filtered = await fetchWorker(
+      `/organisations?view=ecosystem&q=Ampersand&${filter}`,
+      {},
+      { DB: database },
+    );
+    assert.match(await filtered.text(), /href="\/organisations\/ampersand-energy"/);
+  }
+
+  const oldProfile = await fetchWorker(
+    "/organisations/ampersand-afr-0148",
+    { redirect: "manual" },
+    { DB: database },
+  );
+  assert.equal(oldProfile.status, 307);
+  assert.equal(
+    new URL(oldProfile.headers.get("location")).pathname,
+    "/organisations/ampersand-energy",
+  );
+});
+
+test("pre-reconciled catalogue identities enrich canonical organisation profiles", async () => {
+  const profile = await render("/organisations/bboxx");
+  assert.equal(profile.status, 200);
+  const html = await profile.text();
+  assert.match(html, /Merged catalogue records/);
+  assert.match(html, /Also known as[\s\S]*BBOXX/);
+  assert.match(html, /Developer or IPP/);
+  assert.match(html, /Off-grid solar, SHS and PAYGo/);
+  assert.match(html, /Sources/);
 });
 
 test("assertion review records decisions, audits changes, and detects conflicts", async () => {

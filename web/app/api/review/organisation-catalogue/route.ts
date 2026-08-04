@@ -1,6 +1,8 @@
 import { listOrganisationCatalogueReviews } from "@/db/organisation-catalogue-reviews";
+import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
 import { authorisedReviewer, reviewJson } from "@/lib/review-api";
 import {
+  catalogueCanonicalIdentity,
   catalogueRoles,
   catalogueSegments,
   organisationCatalogue,
@@ -12,6 +14,32 @@ export async function GET(request: Request) {
   if (!authorisation.ok) return authorisation.response;
   const params = new URL(request.url).searchParams;
   const query = clean(params.get("q"), 160).toLowerCase();
+  if (params.get("targets") === "1") {
+    const { canonicalDirectory } = await loadPublicOrganisationRegistry();
+    const excludedCandidate = organisationCatalogueRecords.find(
+      (record) => record.id === clean(params.get("excludeCandidate"), 120),
+    );
+    const excludedOrganisationId = excludedCandidate
+      ? catalogueCanonicalIdentity(excludedCandidate).organisationId
+      : "";
+    const records = canonicalDirectory
+      .filter((record) =>
+        record.organisation.id !== excludedOrganisationId &&
+        (!query || [
+            record.organisation.id,
+            record.organisation.name,
+            ...record.aliases,
+          ].join(" ").toLowerCase().includes(query)),
+      )
+      .slice(0, 20)
+      .map((record) => ({
+        id: record.organisation.id,
+        name: record.organisation.name,
+        href: `/organisations/${record.organisation.slug}`,
+        aliases: record.aliases,
+      }));
+    return reviewJson({ records });
+  }
   const status = clean(params.get("status"), 30) || "pending";
   const role = clean(params.get("role"), 120) || "all";
   const segment = clean(params.get("segment"), 120) || "all";

@@ -158,17 +158,23 @@ chooses one of five decisions:
 | Accept | Publish the reviewed listing as a live canonical organisation profile |
 | Amend | Publish a canonical profile using the recorded corrected values |
 | More evidence | The candidate remains listed but cannot be promoted from the current source |
-| Duplicate | The identity should be reconciled to another record rather than created again |
+| Duplicate | Merge the listing into a reviewer-selected canonical organisation rather than create another profile |
 | Reject | The row should not enter the canonical registry |
 
-Accept and Amend require the reviewer to confirm that the source was opened,
-the identity was checked, roles and markets were checked, and the record is safe
-to publish. Amendments are stored separately from the immutable imported row.
-All other decisions require a note. Decisions are versioned and auditable.
+Accept, Amend and Duplicate require the reviewer to confirm that the source was
+opened, the identity was checked, roles and markets were checked, and the record
+is safe to publish. Duplicate additionally requires selecting the exact existing
+organisation through the name-and-alias search. Amendments are stored separately
+from the immutable imported row. All non-promotion decisions require a note;
+Duplicate also requires a note explaining the identity match. Decisions are
+versioned and auditable.
 Accept and Amend immediately materialise a stable canonical ID, profile URL and
 directory record from the immutable listing plus its reviewed amendments.
-Reject and More evidence do not create a canonical record; Duplicate resolves
-to an existing identity rather than creating one.
+Reject and More evidence do not create a canonical record. Duplicate resolves
+to the selected existing identity, keeps the catalogue row and source trail on
+that profile, adds its reviewed classifications to relevant filters, and does
+not increase the canonical count. The former candidate profile URL redirects to
+the canonical record.
 
 Live canonical materialisation is distinct from an immutable GitHub data
 release. The review record remains the D1 source of truth until a bounded data

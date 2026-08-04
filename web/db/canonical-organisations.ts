@@ -1,6 +1,10 @@
 import {
   buildOrganisationDirectoryRecord,
   organisationDirectory,
+  organisationRoles,
+  organisationSectors,
+  organisationSegments,
+  type OrganisationCatalogueLink,
   type OrganisationDirectoryRecord,
 } from "@/lib/organisation-data";
 import {
@@ -58,6 +62,20 @@ const segmentIds: Record<string, string> = {
   "Utility-scale": "org_segment_utility_generation",
 };
 
+const sectorIdsBySegment: Record<string, string[]> = {
+  "C&I": ["sector_commercial_industrial"],
+  "Carbon Markets": ["sector_markets_finance_carbon"],
+  "Clean Cooking": ["sector_distributed_energy_access"],
+  "E-mobility": ["sector_emobility_batteries"],
+  Efficiency: ["sector_commercial_industrial"],
+  "Mini-grids": ["sector_distributed_energy_access"],
+  "Productive Use": ["sector_distributed_energy_access"],
+  "SHS/PAYGo": ["sector_distributed_energy_access"],
+  Storage: ["sector_generation_storage"],
+  "T&D": ["sector_power_utilities"],
+  "Utility-scale": ["sector_generation_storage"],
+};
+
 const iso2ByCountry = new Map(
   africanCountries.map(([iso2, country]) => [normalise(country), iso2]),
 );
@@ -68,13 +86,54 @@ export async function loadPublicOrganisationRegistry(): Promise<PublicOrganisati
   const promotionByCandidate = new Map(
     promotions.map((promotion) => [promotion.candidateId, promotion]),
   );
-  const catalogueRecords = organisationCatalogueRecords.map(
-    (record) => promotionByCandidate.get(record.id)?.effectiveCatalogueRecord ?? record,
-  );
-  const canonicalDirectory = [
+  const baseCanonicalDirectory = [
     ...organisationDirectory,
     ...promotions.map((promotion) => promotion.directoryRecord),
-  ].sort((left, right) =>
+  ];
+  const canonicalById = new Map(
+    baseCanonicalDirectory.map((record) => [record.organisation.id, record]),
+  );
+  const duplicateByCandidate = new Map(
+    reviews.flatMap((review) => {
+      if (review.decision !== "duplicate" || !review.canonicalOrganisationId) return [];
+      const target = canonicalById.get(review.canonicalOrganisationId);
+      const candidate = organisationCatalogueRecords.find(
+        (record) => record.id === review.candidateId,
+      );
+      if (!target || !candidate) return [];
+      const sourceUrl = safeUrl(review.normalizedSourceUrl) || safeUrl(candidate.sourceUrl) || safeUrl(candidate.website);
+      return [[candidate.id, {
+        ...candidate,
+        reconciliation: {
+          status: "reviewed_match" as const,
+          canonicalOrganisationId: target.organisation.id,
+          canonicalHref: `/organisations/${target.organisation.slug}`,
+        },
+        reviewState: "reviewed" as const,
+        sourceUrl,
+      }] as const];
+    }),
+  );
+  const catalogueRecords = organisationCatalogueRecords.map((record) =>
+    duplicateByCandidate.get(record.id) ??
+    promotionByCandidate.get(record.id)?.effectiveCatalogueRecord ??
+    record,
+  );
+  const catalogueByCanonicalId = new Map<string, OrganisationCatalogueRecord[]>();
+  for (const record of catalogueRecords) {
+    if (record.reconciliation.status !== "reviewed_match") continue;
+    const current = catalogueByCanonicalId.get(
+      record.reconciliation.canonicalOrganisationId,
+    ) ?? [];
+    current.push(record);
+    catalogueByCanonicalId.set(record.reconciliation.canonicalOrganisationId, current);
+  }
+  const canonicalDirectory = baseCanonicalDirectory.map((record) =>
+    mergeCatalogueMetadata(
+      record,
+      catalogueByCanonicalId.get(record.organisation.id) ?? [],
+    ),
+  ).sort((left, right) =>
     left.organisation.name.localeCompare(right.organisation.name),
   );
   return { catalogueRecords, canonicalDirectory, promotions };
@@ -127,6 +186,9 @@ function materialisePromotion(
   const mappedSegments = unique(
     effective.segments.map((segment) => segmentIds[segment]).filter(Boolean),
   );
+  const mappedSectors = unique(
+    effective.segments.flatMap((segment) => sectorIdsBySegment[segment] ?? []),
+  );
   const catalogueCountryIso2s = unique(
     effective.countriesActive
       .map((country) => iso2ByCountry.get(normalise(country)) ?? "")
@@ -139,6 +201,7 @@ function materialisePromotion(
     catalogueSourceUrl: sourceUrl,
     canonicalReviewVersion: review.version,
     roleIds: mappedRoles.length ? mappedRoles : ["org_role_to_classify"],
+    sectorIds: mappedSectors,
     segmentIds: mappedSegments,
   });
   return [{
@@ -160,6 +223,95 @@ function materialisePromotion(
     sourceUrl,
     version: review.version,
   }];
+}
+
+function mergeCatalogueMetadata(
+  record: OrganisationDirectoryRecord,
+  catalogueRecords: OrganisationCatalogueRecord[],
+): OrganisationDirectoryRecord {
+  if (!catalogueRecords.length) return record;
+  const catalogueListings: OrganisationCatalogueLink[] = catalogueRecords.map((item) => ({
+    id: item.id,
+    name: item.name,
+    aliases: item.aliases,
+    parent: item.parent,
+    roles: item.roles,
+    segments: item.segments,
+    technologies: item.technologies,
+    projectFocus: item.projectFocus,
+    countriesActive: item.countriesActive,
+    sourceUrls: unique([
+      item.sourceUrl,
+      ...item.additionalSourceUrls,
+    ].map(safeUrl).filter(Boolean)),
+    website: safeUrl(item.website),
+    lastReviewed: item.lastReviewed,
+  }));
+  const catalogueSourceUrls = unique(catalogueListings.flatMap((item) => item.sourceUrls));
+  const catalogueCountryIso2s = unique([
+    ...record.catalogueCountryIso2s,
+    ...catalogueRecords.flatMap((item) =>
+      item.countriesActive
+        .map((country) => iso2ByCountry.get(normalise(country)) ?? "")
+        .filter(Boolean),
+    ),
+  ]).sort();
+  const countryIso2s = unique([
+    ...record.countryIso2s,
+    ...catalogueCountryIso2s,
+  ]).sort();
+  const countryNames = countryIso2s.map(
+    (iso2) => africanCountries.find(([value]) => value === iso2)?.[1] ?? iso2,
+  );
+  const aliases = unique([
+    ...record.aliases,
+    ...catalogueListings.flatMap((item) => [item.name, ...item.aliases]),
+  ]).filter((name) => name !== record.organisation.name);
+  const catalogueRoleIds = unique(catalogueRecords.flatMap((item) =>
+    [item.primaryRole, ...item.roles].map((role) => roleIds[role]).filter(Boolean),
+  ));
+  const roleIdsWithCatalogue = unique([
+    ...record.roleIds.filter((roleId) =>
+      roleId !== "org_role_to_classify" || catalogueRoleIds.length === 0,
+    ),
+    ...catalogueRoleIds,
+  ]);
+  const primaryRole = record.primaryRole.id === "org_role_to_classify" && catalogueRoleIds[0]
+    ? organisationRoles.find((role) => role.id === catalogueRoleIds[0]) ?? record.primaryRole
+    : record.primaryRole;
+  const ecosystemGroupIds = unique(roleIdsWithCatalogue.flatMap((roleId) =>
+    organisationRoles.find((role) => role.id === roleId)?.ecosystemGroupIds ?? [],
+  ));
+  const catalogueSegmentIds = unique(catalogueRecords.flatMap((item) =>
+    item.segments.map((segment) => segmentIds[segment]).filter(Boolean),
+  ));
+  const segmentIdsWithCatalogue = sortByTaxonomy(
+    unique([...record.segmentIds, ...catalogueSegmentIds]),
+    organisationSegments,
+  );
+  const catalogueSectorIds = unique(catalogueRecords.flatMap((item) =>
+    item.segments.flatMap((segment) => sectorIdsBySegment[segment] ?? []),
+  ));
+  const sectorIdsWithCatalogue = sortByTaxonomy(
+    unique([...record.sectorIds, ...catalogueSectorIds]),
+    organisationSectors,
+  );
+  return {
+    ...record,
+    aliases,
+    catalogueCountryIso2s,
+    catalogueListings,
+    catalogueSourceUrl: catalogueSourceUrls[0] ?? record.catalogueSourceUrl,
+    catalogueSourceUrls,
+    countryCount: countryIso2s.length,
+    countryIso2s,
+    countryNames,
+    ecosystemGroupIds,
+    primaryRole,
+    roleIds: roleIdsWithCatalogue,
+    sectorIds: sectorIdsWithCatalogue,
+    segmentIds: segmentIdsWithCatalogue,
+  };
 }
 
 function applyAmendments(
@@ -207,6 +359,17 @@ function splitList(value: string) {
 
 function unique(values: string[]) {
   return Array.from(new Set(values));
+}
+
+function sortByTaxonomy(
+  values: string[],
+  taxonomy: Array<{ id: string }>,
+) {
+  const order = new Map(taxonomy.map((item, index) => [item.id, index]));
+  return values.sort((left, right) =>
+    (order.get(left) ?? Number.MAX_SAFE_INTEGER) -
+    (order.get(right) ?? Number.MAX_SAFE_INTEGER),
+  );
 }
 
 function normalise(value: string) {
