@@ -591,6 +591,7 @@ function PublicOrganisationCatalogue({
         </select>
         <select aria-label="Filter catalogue by scope" onChange={(event) => update(setScope, event.target.value)} value={scope}>
           <option value="all">All listings</option>
+          <option value="africa_wide">Africa-wide coverage</option>
           <option value="africa_hq">Africa-headquartered</option>
           <option value="international">International, active in Africa</option>
           <option value="reviewed">Canonical profiles</option>
@@ -667,7 +668,7 @@ function PublicOrganisationCard({
       </div>
       <dl>
         <div><dt>HQ</dt><dd>{record.headquartersCountry ? <CatalogueCountryLink country={record.headquartersCountry} field="headquarters" /> : "Not stated"}</dd></div>
-        <div><dt>Coverage</dt><dd>{record.countryCount ? `${record.countryCount} ${record.countryCount === 1 ? "country" : "countries"}` : record.africanRegionsActive.join(", ") || "Africa-wide / not itemised"}</dd></div>
+        <div><dt>Coverage</dt><dd>{record.africanRegionsActive.includes("Africa-wide") ? "Africa-wide" : record.countryCount ? `${record.countryCount} ${record.countryCount === 1 ? "country" : "countries"}` : record.africanRegionsActive.join(", ") || "Not itemised"}</dd></div>
       </dl>
       <footer>
         {record.sourceUrl ? <a href={record.sourceUrl} rel="noreferrer" target="_blank">Source ↗</a> : <span>Source needed</span>}
@@ -835,7 +836,7 @@ function organisationCatalogueMapHref(values: {
 }) {
   const params = new URLSearchParams({
     object: "organisations",
-    presence: "catalogue",
+    presence: values.scope === "africa_wide" ? "africa_wide" : "catalogue",
   });
   if (values.query.trim()) params.set("q", values.query.trim());
   if (values.role !== "all") params.set("role", values.role);

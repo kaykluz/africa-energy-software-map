@@ -48,7 +48,7 @@ function catalogueCsv(records: ReturnType<typeof queryOrganisationCatalogue>["re
   const headers = [
     "organisation", "aliases", "parent_group", "organisation_type", "primary_role",
     "all_roles", "energy_markets", "headquarters_country", "africa_headquartered",
-    "countries_active_or_available", "technologies", "status", "catalogue_status",
+    "african_regions_active", "countries_active_or_available", "technologies", "status", "catalogue_status",
     "evidence_confidence", "last_checked", "source", "website",
   ];
   const rows = records.map((record) => ({
@@ -61,6 +61,7 @@ function catalogueCsv(records: ReturnType<typeof queryOrganisationCatalogue>["re
     energy_markets: record.segments,
     headquarters_country: record.headquartersCountry,
     africa_headquartered: record.africaHeadquartered ? "Yes" : "No",
+    african_regions_active: record.africanRegionsActive,
     countries_active_or_available: record.countriesActive,
     technologies: record.technologies,
     status: record.lifecycle,

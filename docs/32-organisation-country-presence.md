@@ -53,6 +53,20 @@ share the same layers:
 Filters and exports preserve the selected layer. Organisation CSV exports use
 separate columns rather than one ambiguous list of “countries active”.
 
+### Africa-wide coverage
+
+`Africa-wide` is a catalogue coverage scope, not an invented set of country
+presence assertions. For discovery, an explicitly Africa-wide record appears in
+every African country view and in the combined map. Every occurrence is labelled
+`Africa-wide coverage`, can be isolated with its own filter and remains separate
+from exact-country activity, offices, headquarters and deployments. Exact
+country fields remain visible alongside the continental scope when both exist.
+
+The interface does not expand regional labels such as `West Africa`, `East
+Africa` or `Sub-Saharan Africa` into countries. Only an explicit all-Africa value
+is projected continent-wide. Profiles and exports retain the original scope so
+the display rule is auditable.
+
 ## Review intake
 
 Use `record_type=organisation_presence` in the bulk workbook with:

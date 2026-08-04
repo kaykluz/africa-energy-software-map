@@ -25,6 +25,7 @@ import {
 } from "@/lib/organisation-data";
 import {
   filterOrganisationCatalogueRecords,
+  organisationHasAfricaWideCoverage,
   type OrganisationCatalogueRecord,
 } from "@/lib/organisation-catalogue";
 import {
@@ -36,6 +37,7 @@ import {
   softwareMapLayers,
   type SoftwareLocationType,
 } from "@/lib/geographic-data";
+import { isAfricaWideCoverageLabel } from "@/lib/geography-scope";
 import { organisationLinkIndex, resolveOrganisationHref } from "@/lib/entity-links";
 import { filterProducts, normaliseQuery } from "@/lib/registry-query";
 
@@ -59,6 +61,7 @@ type CountryOrganisationRow = {
 const organisationPresenceLayers = [
   ["all_presence", "All recorded presence"],
   ["catalogue", "Documented country activity"],
+  ["africa_wide", "Africa-wide coverage"],
   ["evidenced", "Evidenced activity"],
   ["company_stated", "Company-stated activity"],
   ["software_linked", "Software deployed"],
@@ -117,7 +120,7 @@ export function CountryDirectory({
     filters.access,
   ].some((value) => value && value !== "all");
   const filteredCatalogueSoftware = catalogueSoftwareLocations.filter((record) => {
-    if (!record.countryIso2s.includes(countryIso2)) return false;
+    if (!record.countryIso2s.includes(countryIso2) && !record.africaWide) return false;
     if (record.canonicalProduct) return softwareProductIds.has(record.canonicalProduct.id);
     if (comparableSoftwareFilters) return false;
     const searchable = normaliseQuery([
@@ -369,6 +372,7 @@ function buildCountryOrganisationRows({
 
 function organisationCountryMatches(record: OrganisationDirectoryRecord, iso2: string, presence: string) {
   if (presence === "catalogue") return record.catalogueCountryIso2s.includes(iso2);
+  if (presence === "africa_wide") return directoryRecordHasAfricaWideCoverage(record);
   if (presence === "evidenced") return record.evidencedCountryIso2s.includes(iso2);
   if (presence === "company_stated") return record.companyStatedCountryIso2s.includes(iso2);
   if (presence === "software_linked") return record.softwareLinkedCountryIso2s.includes(iso2);
@@ -376,14 +380,15 @@ function organisationCountryMatches(record: OrganisationDirectoryRecord, iso2: s
   if (presence === "availability") return record.availabilityCountryIso2s.includes(iso2);
   if (presence === "headquarters") return record.organisation.headquartersCountryIso2 === iso2;
   if (presence === "origin") return record.organisation.countryOfOriginIso2 === iso2;
-  return record.countryIso2s.includes(iso2);
+  return record.countryIso2s.includes(iso2) || directoryRecordHasAfricaWideCoverage(record);
 }
 
 function catalogueCountryMatches(record: OrganisationCatalogueRecord, country: string, presence: string) {
-  if (!["all_presence", "catalogue", "headquarters"].includes(presence)) return false;
+  if (!["all_presence", "catalogue", "africa_wide", "headquarters"].includes(presence)) return false;
   if (presence === "headquarters") return record.headquartersCountry === country;
+  if (presence === "africa_wide") return organisationHasAfricaWideCoverage(record);
   if (presence === "catalogue") return record.countriesActive.includes(country);
-  return record.countriesActive.includes(country) || record.headquartersCountry === country;
+  return record.countriesActive.includes(country) || record.headquartersCountry === country || organisationHasAfricaWideCoverage(record);
 }
 
 function canonicalLocationLabels(record: OrganisationDirectoryRecord, iso2: string) {
@@ -391,6 +396,7 @@ function canonicalLocationLabels(record: OrganisationDirectoryRecord, iso2: stri
     .filter((presence) => presence.countryIso2 === iso2)
     .map((presence) => organisationPresenceLabels[presence.presenceType]);
   if (record.catalogueCountryIso2s.includes(iso2)) labels.push("Documented country activity");
+  if (directoryRecordHasAfricaWideCoverage(record)) labels.push("Africa-wide coverage");
   if (record.softwareLinkedCountryIso2s.includes(iso2)) labels.push("Software deployed");
   if (record.organisation.headquartersCountryIso2 === iso2) labels.push("Headquarters");
   if (record.organisation.countryOfOriginIso2 === iso2) labels.push("Country of origin");
@@ -400,8 +406,15 @@ function canonicalLocationLabels(record: OrganisationDirectoryRecord, iso2: stri
 function catalogueLocationLabels(record: OrganisationCatalogueRecord, country: string) {
   const labels: string[] = [];
   if (record.countriesActive.includes(country)) labels.push("Documented country activity");
+  if (organisationHasAfricaWideCoverage(record)) labels.push("Africa-wide coverage");
   if (record.headquartersCountry === country) labels.push("Headquarters");
   return labels;
+}
+
+function directoryRecordHasAfricaWideCoverage(record: OrganisationDirectoryRecord) {
+  return record.catalogueListings.some((listing) =>
+    listing.africanRegionsActive.some(isAfricaWideCoverageLabel),
+  );
 }
 
 function catalogueRoleDisplayName(value: string) {

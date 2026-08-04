@@ -6,11 +6,13 @@ import {
   type Product,
 } from "@/lib/registry-data";
 import { landscapeItems, type LandscapeItem } from "@/lib/landscape-data";
+import { isAfricaWideCoverageLabel } from "@/lib/geography-scope";
 
 export type SoftwareMapLayer =
   | "all_locations"
   | "reviewed_deployment"
   | "catalogue_location"
+  | "africa_wide_coverage"
   | "publisher_headquarters";
 
 export type SoftwareLocationType = Exclude<SoftwareMapLayer, "all_locations">;
@@ -18,6 +20,7 @@ export type SoftwareLocationType = Exclude<SoftwareMapLayer, "all_locations">;
 export type CatalogueSoftwareLocation = {
   item: LandscapeItem;
   countryIso2s: string[];
+  africaWide: boolean;
   canonicalProduct?: Product;
 };
 
@@ -37,10 +40,12 @@ export const softwareMapLayers: Array<[SoftwareMapLayer, string]> = [
   ["all_locations", "All recorded locations"],
   ["reviewed_deployment", "Reviewed deployments"],
   ["catalogue_location", "Documented catalogue locations"],
+  ["africa_wide_coverage", "Africa-wide coverage"],
   ["publisher_headquarters", "Publisher headquarters"],
 ];
 
 const africanIso2s = new Set(africanCountries.map(([iso2]) => iso2));
+const allAfricanIso2s = africanCountries.map(([iso2]) => iso2);
 const countryIso2ByLabel = new Map(
   africanCountries.map(([iso2, name]) => [normaliseCountryLabel(name), iso2]),
 );
@@ -63,11 +68,12 @@ export const catalogueSoftwareLocations: CatalogueSoftwareLocation[] = landscape
   .map((item) => ({
     item,
     countryIso2s: catalogueCountryIso2s(item.geographies),
+    africaWide: item.geographies.some(isAfricaWideCoverageLabel),
     canonicalProduct: item.canonicalHref
       ? canonicalProductByHref.get(item.canonicalHref)
       : undefined,
   }))
-  .filter((record) => record.countryIso2s.length);
+  .filter((record) => record.countryIso2s.length || record.africaWide);
 
 export function normaliseCountryLabel(value: string) {
   return value
@@ -175,6 +181,11 @@ export function buildSoftwareMapIndex(
     for (const iso2 of record.countryIso2s) {
       addLocation(entity, iso2, "catalogue_location");
     }
+    if (record.africaWide) {
+      for (const iso2 of allAfricanIso2s) {
+        addLocation(entity, iso2, "africa_wide_coverage");
+      }
+    }
   }
 
   for (const [key, entity] of index) {
@@ -216,6 +227,7 @@ export function softwareLocationTypeLabel(type: SoftwareLocationType) {
   return {
     reviewed_deployment: "Reviewed deployment",
     catalogue_location: "Documented catalogue location",
+    africa_wide_coverage: "Africa-wide coverage",
     publisher_headquarters: "Publisher headquarters",
   }[type];
 }
@@ -227,5 +239,7 @@ export function softwareLocationTypeShortLabel(types: Set<SoftwareLocationType>)
     ? "Reviewed deployment"
     : type === "catalogue_location"
       ? "Catalogue location"
-      : "Publisher HQ";
+      : type === "africa_wide_coverage"
+        ? "Africa-wide"
+        : "Publisher HQ";
 }

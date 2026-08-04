@@ -403,6 +403,9 @@ export function OrganisationProfile({
                         {listing.technologies.map((technology) => (
                           <Link href={`/landscape?q=${encodeURIComponent(technology)}`} key={`technology-${technology}`}>{technology}</Link>
                         ))}
+                        {listing.africanRegionsActive.includes("Africa-wide") ? (
+                          <Link href="/organisations?view=catalogue&scope=africa_wide">Africa-wide coverage</Link>
+                        ) : null}
                         {listing.countriesActive.map((country) => (
                           <span key={`country-${country}`}><CountryNameLink name={country} /></span>
                         ))}

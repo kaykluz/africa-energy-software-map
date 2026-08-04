@@ -73,11 +73,13 @@ import {
   type SoftwareMapIndex,
   type SoftwareMapLayer,
 } from "@/lib/geographic-data";
+import { isAfricaWideCoverageLabel } from "@/lib/geography-scope";
 
 export type RegistryView = "stack" | "deployments" | "directory";
 
 const emptyCatalogueMapData: OrganisationCatalogueMapData = {
   totalWithDocumentedCountry: 0,
+  totalWithAfricaWideCoverage: 0,
   totalWithHeadquarters: 0,
   totalWithAnyLocation: 0,
   assessedIso2s: [],
@@ -253,7 +255,7 @@ export function RegistryExplorer({
         (!needle || searchable.includes(needle)) &&
         (categoryFilter === "all" || record.item.categoryIds.includes(categoryFilter)) &&
         (stageFilter === "all" || record.item.stageIds.includes(stageFilter)) &&
-        (countryFilter === "all" || record.countryIso2s.includes(countryFilter))
+        (countryFilter === "all" || record.countryIso2s.includes(countryFilter) || record.africaWide)
       );
     });
   }, [
@@ -344,6 +346,7 @@ export function RegistryExplorer({
     all_locations: softwareKeysForLayer(softwareMapIndex, "all_locations", countryFilter).size,
     reviewed_deployment: softwareKeysForLayer(softwareMapIndex, "reviewed_deployment", countryFilter).size,
     catalogue_location: softwareKeysForLayer(softwareMapIndex, "catalogue_location", countryFilter).size,
+    africa_wide_coverage: softwareKeysForLayer(softwareMapIndex, "africa_wide_coverage", countryFilter).size,
     publisher_headquarters: softwareKeysForLayer(softwareMapIndex, "publisher_headquarters", countryFilter).size,
   }), [countryFilter, softwareMapIndex]);
 
@@ -552,7 +555,7 @@ export function RegistryExplorer({
     ? [
         [softwareLayerCounts.all_locations, "located records"],
         [softwareLayerCounts.reviewed_deployment, "reviewed deployments"],
-        [softwareLayerCounts.catalogue_location, "catalogue locations"],
+        [softwareLayerCounts.africa_wide_coverage, "Africa-wide"],
       ]
     : view === "deployments" && mapObject === "organisations"
       ? [
@@ -1382,10 +1385,12 @@ function DeploymentsView({
         }
       }
     }
-    if (["catalogue", "all_presence", "headquarters"].includes(organisationLayer)) {
+    if (["catalogue", "africa_wide", "all_presence", "headquarters"].includes(organisationLayer)) {
       const country = catalogueMapData.countries[iso2];
       const catalogueKeys = organisationLayer === "catalogue"
         ? country?.activityRecordKeys ?? []
+        : organisationLayer === "africa_wide"
+          ? country?.africaWideRecordKeys ?? []
         : organisationLayer === "headquarters"
           ? country?.headquartersRecordKeys ?? []
           : country?.recordKeys ?? [];
@@ -1419,6 +1424,7 @@ function DeploymentsView({
     .filter((record) => {
       if (organisationLayer === "all_presence") return true;
       if (organisationLayer === "catalogue") return record.locationTypes.includes("catalogue_activity");
+      if (organisationLayer === "africa_wide") return record.locationTypes.includes("africa_wide");
       if (organisationLayer === "headquarters") return record.locationTypes.includes("headquarters");
       return false;
     })
@@ -1587,6 +1593,7 @@ function DeploymentsView({
               <span className="v2-map-location-totals">
                 <i className="reviewed">{softwareLayerCounts.reviewed_deployment} reviewed deployments</i>
                 <i className="catalogue">{softwareLayerCounts.catalogue_location} catalogue locations</i>
+                <i className="catalogue">{softwareLayerCounts.africa_wide_coverage} Africa-wide</i>
                 <i className="headquarters">{softwareLayerCounts.publisher_headquarters} publisher HQ</i>
               </span>
               <span className="v2-map-coverage-links">
@@ -1742,6 +1749,7 @@ type MapCountryRow = {
 type OrganisationMapLayer =
   | "all_presence"
   | "catalogue"
+  | "africa_wide"
   | "evidenced"
   | "company_stated"
   | "software_linked"
@@ -1753,6 +1761,7 @@ type OrganisationMapLayer =
 const organisationMapLayers: Array<[OrganisationMapLayer, string]> = [
   ["all_presence", "All recorded presence"],
   ["catalogue", "Documented country activity"],
+  ["africa_wide", "Africa-wide coverage"],
   ["evidenced", "Evidenced activity"],
   ["company_stated", "Company-stated"],
   ["software_linked", "Software deployed"],
@@ -1773,6 +1782,7 @@ function isMapRepresentation(value: string): value is "map" | "grid" {
 function organisationScopeLabel(scope: string) {
   return {
     africa_hq: "Africa-headquartered",
+    africa_wide: "Africa-wide coverage",
     international: "International, active in Africa",
     reviewed: "Canonical profiles",
     pending: "Review pending",
@@ -1804,13 +1814,14 @@ function buildOrganisationDirectoryHref({
 }) {
   const params = new URLSearchParams();
   if (query.trim()) params.set("q", query.trim());
-  if (layer === "catalogue") {
+  if (layer === "catalogue" || layer === "africa_wide") {
     params.set("view", "catalogue");
     if (role !== "all") params.set("role", role);
     if (segment !== "all") params.set("segment", segment);
     if (country !== "all") params.set("country", country);
     if (headquarters !== "all") params.set("headquarters", headquarters);
     if (scope !== "all") params.set("scope", scope);
+    if (layer === "africa_wide") params.set("scope", "africa_wide");
   } else {
     params.set("view", "ecosystem");
     if (group !== "all") params.set("group", group);
@@ -1832,6 +1843,7 @@ function organisationMapLayerShortLabel(layer: OrganisationMapLayer) {
   return {
     all_presence: "Located",
     catalogue: "Listed",
+    africa_wide: "Africa-wide",
     evidenced: "Evidence",
     company_stated: "Stated",
     software_linked: "Software",
@@ -1848,6 +1860,7 @@ type OrganisationLocationType =
   | "software_linked"
   | "offices"
   | "availability"
+  | "africa_wide"
   | "headquarters"
   | "origin";
 
@@ -1861,6 +1874,7 @@ function organisationLocationTypesForCountry(
   if (record.softwareLinkedCountryIso2s.includes(iso2)) types.push("software_linked");
   if (record.officeCountryIso2s.includes(iso2)) types.push("offices");
   if (record.availabilityCountryIso2s.includes(iso2)) types.push("availability");
+  if (organisationHasAfricaWideCoverage(record)) types.push("africa_wide");
   if (record.organisation.headquartersCountryIso2 === iso2) types.push("headquarters");
   if (record.organisation.countryOfOriginIso2 === iso2) types.push("origin");
   return types;
@@ -1873,36 +1887,60 @@ function organisationLocationTypeLabel(type: OrganisationLocationType) {
     software_linked: "Software deployed",
     offices: "Office or legal entity",
     availability: "Product availability",
+    africa_wide: "Africa-wide coverage",
     headquarters: "Headquarters",
     origin: "Country of origin",
   }[type];
 }
 
-function catalogueLocationTypeLabel(type: "catalogue_activity" | "headquarters") {
-  return type === "catalogue_activity" ? "Documented country activity" : "Headquarters";
+function catalogueLocationTypeLabel(type: "catalogue_activity" | "africa_wide" | "headquarters") {
+  return type === "catalogue_activity"
+    ? "Documented country activity"
+    : type === "africa_wide"
+      ? "Africa-wide coverage"
+      : "Headquarters";
 }
 
 function organisationLocationTypeShortSummary(
   canonicalTypes: OrganisationLocationType[],
-  catalogueTypes: Array<"catalogue_activity" | "headquarters">,
+  catalogueTypes: Array<"catalogue_activity" | "africa_wide" | "headquarters">,
 ) {
   const labels = [...canonicalTypes.map(organisationLocationTypeLabel), ...catalogueTypes.map(catalogueLocationTypeLabel)];
   return labels.length > 1 ? `${labels.length} types` : labels[0] ?? "Located";
 }
 
 function catalogueLocationTypeShortSummary(
-  types: Array<"catalogue_activity" | "headquarters">,
+  types: Array<"catalogue_activity" | "africa_wide" | "headquarters">,
 ) {
   if (types.length > 1) return `${types.length} types`;
-  return types[0] === "headquarters" ? "HQ" : "Catalogue";
+  return types[0] === "headquarters"
+    ? "HQ"
+    : types[0] === "africa_wide"
+      ? "Africa-wide"
+      : "Catalogue";
+}
+
+function organisationHasAfricaWideCoverage(record: OrganisationDirectoryRecord) {
+  return record.catalogueListings.some((listing) =>
+    listing.africanRegionsActive.some(isAfricaWideCoverageLabel),
+  );
 }
 
 function organisationLayerCountries(
   record: OrganisationDirectoryRecord,
   layer: OrganisationMapLayer,
 ) {
-  if (layer === "all_presence") return record.countryIso2s;
+  if (layer === "all_presence") {
+    return organisationHasAfricaWideCoverage(record)
+      ? africanCountries.map(([iso2]) => iso2)
+      : record.countryIso2s;
+  }
   if (layer === "catalogue") return [];
+  if (layer === "africa_wide") {
+    return organisationHasAfricaWideCoverage(record)
+      ? africanCountries.map(([iso2]) => iso2)
+      : [];
+  }
   if (layer === "evidenced") return record.evidencedCountryIso2s;
   if (layer === "company_stated") return record.companyStatedCountryIso2s;
   if (layer === "software_linked") return record.softwareLinkedCountryIso2s;
@@ -1929,11 +1967,13 @@ function organisationMapResultKeys(
       }
     }
   }
-  if (["catalogue", "all_presence", "headquarters"].includes(layer)) {
+  if (["catalogue", "africa_wide", "all_presence", "headquarters"].includes(layer)) {
     for (const [iso2, countryData] of Object.entries(catalogueMapData.countries)) {
       if (country !== "all" && iso2 !== country) continue;
       const catalogueKeys = layer === "catalogue"
         ? countryData.activityRecordKeys
+        : layer === "africa_wide"
+          ? countryData.africaWideRecordKeys
         : layer === "headquarters"
           ? countryData.headquartersRecordKeys
           : countryData.recordKeys;

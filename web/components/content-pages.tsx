@@ -109,6 +109,11 @@ export async function MethodologyPage() {
               operation, project role, office, legal entity, product deployment or
               product availability—and whether it is active, planned, historical or unknown.
             </p>
+            <p>
+              An explicit Africa-wide catalogue scope appears across country views for
+              discovery and is always labelled “Africa-wide coverage.” It is not an
+              exact-country presence, office, headquarters or deployment claim.
+            </p>
             <div className="definition-pair">
               <div><strong>Company source</strong><p>An official company page may support company-stated presence. It stays provider-authored until corroborated.</p></div>
               <div><strong>Independent evidence</strong><p>A customer, official or independent source can support an evidenced presence record. It does not automatically prove a software deployment.</p></div>

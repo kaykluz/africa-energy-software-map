@@ -72,6 +72,8 @@ readiness, and the bounded Batch 002 plan are documented in
 - Product-level records remain primary; product or owner logos are visual
   navigation aids, never substitutes for records.
 - Deployment geography is distinct from headquarters and claimed availability.
+- Explicit Africa-wide catalogue coverage is shown across country views but is
+  always labelled and never converted into exact-country presence or deployment evidence.
 - Anyone may submit; editors decide what is published.
 - AI may discover and structure claims, but it may not verify or publish them.
 - Evidence attaches to individual assertions.

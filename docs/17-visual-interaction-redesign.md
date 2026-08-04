@@ -158,8 +158,9 @@ The map is a layered data field, not a decorative pin map.
 ### Controls
 
 - Object: Software or Organisations
-- Software location: All recorded, reviewed deployment, catalogue location or publisher headquarters
-- Organisation presence: All recorded, catalogue activity, evidenced activity,
+- Software location: All recorded, reviewed deployment, catalogue location,
+  Africa-wide coverage or publisher headquarters
+- Organisation presence: All recorded, catalogue activity, Africa-wide coverage, evidenced activity,
   company-stated activity, software deployed, office/entity, product
   availability, headquarters or origin
 
@@ -167,6 +168,10 @@ Representation switches between geographic map, equal-area grid and ranked
 list. All-recorded is a de-duplicated union; every underlying type remains
 labelled and independently selectable. Headquarters, catalogue locations and
 company statements never become deployment evidence.
+
+An explicit Africa-wide catalogue scope appears in every country view for
+discovery but carries an `Africa-wide coverage` label. It never becomes an
+exact-country assertion, headquarters, office or deployment.
 
 ### Country field
 

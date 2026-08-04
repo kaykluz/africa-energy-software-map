@@ -345,13 +345,15 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
   assert.match(mapHtml, /Software/);
   assert.match(mapHtml, /Organisations/);
   assert.match(mapHtml, /aria-live="polite"/i);
-  assert.match(mapHtml, /<strong>165<\/strong><span>located records<\/span>/);
+  assert.match(mapHtml, /<strong>423<\/strong><span>located records<\/span>/);
   assert.match(mapHtml, /<strong>19<\/strong><span>reviewed deployments<\/span>/);
-  assert.match(mapHtml, /<strong>107<\/strong><span>catalogue locations<\/span>/);
-  assert.match(mapTextHtml, /165 results/);
+  assert.match(mapTextHtml, /107 catalogue locations/);
+  assert.match(mapHtml, /<strong>366<\/strong><span>Africa-wide<\/span>/);
+  assert.match(mapTextHtml, /423 results/);
   assert.match(mapHtml, /aria-label="Software location layer"/i);
   assert.match(mapHtml, /All recorded locations/);
-  assert.match(mapHtml, /165 located software records/);
+  assert.match(mapHtml, /423 located software records/);
+  assert.match(mapTextHtml, /366 Africa-wide/);
   assert.match(mapTextHtml, /43 publisher HQ/);
   assert.match(mapHtml, /href="\/contribute\/deployment">Add a location<\/a>/);
 
@@ -682,6 +684,15 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   assert.match(epcMapHtml, /aria-label="Organisation sector"/);
   assert.match(epcMapHtml, /aria-label="Organisation energy market"/);
 
+  const africaWideMap = await render(
+    "/deployments?object=organisations&presence=africa_wide&focus=NG",
+  );
+  assert.equal(africaWideMap.status, 200);
+  const africaWideMapHtml = (await africaWideMap.text()).replaceAll(/<!--.*?-->/g, "");
+  assert.match(africaWideMapHtml, /282 located organisations/);
+  assert.match(africaWideMapHtml, /Nigeria: 282 africa-wide coverage organisations/i);
+  assert.match(africaWideMapHtml, /href="\/organisations\?view=catalogue&amp;scope=africa_wide"/);
+
   const canonicalSectorMap = await render(
     "/deployments?object=organisations&presence=software_linked&sector=sector_emobility_batteries&focus=KE",
   );
@@ -701,7 +712,7 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   const nigeria = await render("/organisations?country=NG");
   assert.equal(nigeria.status, 200);
   const nigeriaHtml = await nigeria.text();
-  assert.match(nigeriaHtml, /310 shown/);
+  assert.match(nigeriaHtml, /563 shown/);
   assert.match(nigeriaHtml, /A4&amp;T Power Solutions/);
 
   const role = await render("/organisations?role=Financier");
@@ -804,7 +815,7 @@ test("server-renders a complete country-scoped directory", async () => {
   assert.equal(organisationsResponse.status, 200);
   const organisationsHtml = await organisationsResponse.text();
   const organisationsTextHtml = organisationsHtml.replaceAll(/<!--.*?-->/g, "");
-  assert.match(organisationsTextHtml, /10 organisations/);
+  assert.match(organisationsTextHtml, /34 organisations/);
   assert.match(organisationsHtml, /Royal Power and Energy/);
   assert.match(organisationsHtml, /SAO Energy/);
   assert.match(organisationsHtml, /Documented country activity/);
@@ -813,9 +824,26 @@ test("server-renders a complete country-scoped directory", async () => {
   assert.equal(softwareResponse.status, 200);
   const softwareHtml = await softwareResponse.text();
   const softwareTextHtml = softwareHtml.replaceAll(/<!--.*?-->/g, "");
-  assert.match(softwareTextHtml, /53 software records/);
+  assert.match(softwareTextHtml, /373 software records/);
   assert.match(softwareHtml, /href="\/products\/adora"/);
   assert.match(softwareHtml, /Documented catalogue location/);
+  assert.match(softwareHtml, /Africa-wide coverage/);
+
+  const africaWideOrganisations = await render(
+    "/countries/ng?view=organisations&presence=africa_wide",
+  );
+  assert.equal(africaWideOrganisations.status, 200);
+  const africaWideOrganisationsHtml = (await africaWideOrganisations.text()).replaceAll(/<!--.*?-->/g, "");
+  assert.match(africaWideOrganisationsHtml, /282 organisations/);
+  assert.match(africaWideOrganisationsHtml, /Africa-wide coverage/);
+
+  const africaWideSoftware = await render(
+    "/countries/ng?view=software&softwareLocation=africa_wide_coverage",
+  );
+  assert.equal(africaWideSoftware.status, 200);
+  const africaWideSoftwareHtml = (await africaWideSoftware.text()).replaceAll(/<!--.*?-->/g, "");
+  assert.match(africaWideSoftwareHtml, /366 software records/);
+  assert.match(africaWideSoftwareHtml, /Africa-wide coverage/);
 
   const deploymentsResponse = await render("/countries/ng?view=deployments");
   assert.equal(deploymentsResponse.status, 200);
