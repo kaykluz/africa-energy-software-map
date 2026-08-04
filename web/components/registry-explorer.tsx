@@ -258,7 +258,7 @@ export function RegistryExplorer({
         (!needle || searchable.includes(needle)) &&
         (categoryFilter === "all" || record.item.categoryIds.includes(categoryFilter)) &&
         (stageFilter === "all" || record.item.stageIds.includes(stageFilter)) &&
-        (countryFilter === "all" || record.countryIso2s.includes(countryFilter) || record.africaWide)
+        (countryFilter === "all" || record.countryIso2s.includes(countryFilter))
       );
     });
   }, [
@@ -1498,9 +1498,13 @@ function DeploymentsView({
   }
   const selectedCountryHref = `/countries/${selectedCountry.toLowerCase()}?${countryRecordParams.toString()}`;
   const mappedObjectLabel = objectMode === "software"
-    ? "software records"
+    ? softwareLayer === "africa_wide_coverage"
+      ? "Africa-wide software with named locations"
+      : "software records"
     : organisationLayer === "catalogue"
       ? "organisations with documented country activity"
+      : organisationLayer === "africa_wide"
+        ? "Africa-wide organisations with named locations"
       : `${organisationMapLayerLabel(organisationLayer).toLowerCase()} organisations`;
   return (
     <section className="v2-map-canvas">
@@ -1621,7 +1625,9 @@ function DeploymentsView({
             <span>{objectMode === "software" ? softwareMapLayerLabel(softwareLayer) : organisationMapLayerLabel(organisationLayer)}</span>
             <strong>
               {objectMode === "software"
-                ? `${softwareResultCount} located software records`
+                ? softwareLayer === "africa_wide_coverage"
+                  ? `${softwareResultCount} regional coverage records`
+                  : `${softwareResultCount} located software records`
                 : `${organisationResultCount} located organisations`}
             </strong>
           </div>
@@ -1634,13 +1640,14 @@ function DeploymentsView({
                 <i className="catalogue">{softwareLayerCounts.africa_wide_coverage} Africa-wide</i>
                 <i className="headquarters">{softwareLayerCounts.publisher_headquarters} publisher HQ</i>
               </span>
+              <small>Africa-wide records are plotted only where a country is named.</small>
               <span className="v2-map-coverage-links">
                 <Link href="/contribute/deployment">Add a location</Link>
               </span>
             </div>
           ) : (
             <div aria-label="Organisation location guidance" className="v2-map-coverage">
-              <small>Each layer keeps its own meaning. The combined view removes duplicate organisations.</small>
+              <small>Africa-wide stays regional. Countries appear only where a source names activity, an office, entity, project, deployment, availability or headquarters.</small>
               <span className="v2-map-coverage-links"><Link href="/contribute/organisation">Add a presence</Link></span>
             </div>
           )}
@@ -1799,11 +1806,11 @@ type OrganisationMapLayer =
 const organisationMapLayers: Array<[OrganisationMapLayer, string]> = [
   ["all_presence", "All recorded presence"],
   ["catalogue", "Documented country activity"],
-  ["africa_wide", "Africa-wide coverage"],
+  ["africa_wide", "Africa-wide · named locations"],
   ["evidenced", "Evidenced activity"],
   ["company_stated", "Company-stated"],
   ["software_linked", "Software deployed"],
-  ["offices", "Offices and entities"],
+  ["offices", "Offices, warehouses and entities"],
   ["availability", "Product availability"],
   ["headquarters", "Headquarters"],
   ["origin", "Country of origin"],
@@ -1910,9 +1917,13 @@ function organisationLocationTypesForCountry(
   if (record.evidencedCountryIso2s.includes(iso2)) types.push("evidenced");
   if (record.companyStatedCountryIso2s.includes(iso2)) types.push("company_stated");
   if (record.softwareLinkedCountryIso2s.includes(iso2)) types.push("software_linked");
-  if (record.officeCountryIso2s.includes(iso2)) types.push("offices");
+  if (record.officeCountryIso2s.includes(iso2) || record.warehouseCountryIso2s.includes(iso2)) {
+    types.push("offices");
+  }
   if (record.availabilityCountryIso2s.includes(iso2)) types.push("availability");
-  if (organisationHasAfricaWideCoverage(record)) types.push("africa_wide");
+  if (organisationHasAfricaWideCoverage(record) && record.countryIso2s.includes(iso2)) {
+    types.push("africa_wide");
+  }
   if (record.organisation.headquartersCountryIso2 === iso2) types.push("headquarters");
   if (record.organisation.countryOfOriginIso2 === iso2) types.push("origin");
   return types;
@@ -1923,7 +1934,7 @@ function organisationLocationTypeLabel(type: OrganisationLocationType) {
     evidenced: "Evidenced activity",
     company_stated: "Company-stated activity",
     software_linked: "Software deployed",
-    offices: "Office or legal entity",
+    offices: "Office, warehouse or legal entity",
     availability: "Product availability",
     africa_wide: "Africa-wide coverage",
     headquarters: "Headquarters",
@@ -1969,20 +1980,18 @@ function organisationLayerCountries(
   layer: OrganisationMapLayer,
 ) {
   if (layer === "all_presence") {
-    return organisationHasAfricaWideCoverage(record)
-      ? africanCountries.map(([iso2]) => iso2)
-      : record.countryIso2s;
+    return record.countryIso2s;
   }
   if (layer === "catalogue") return [];
   if (layer === "africa_wide") {
-    return organisationHasAfricaWideCoverage(record)
-      ? africanCountries.map(([iso2]) => iso2)
-      : [];
+    return organisationHasAfricaWideCoverage(record) ? record.countryIso2s : [];
   }
   if (layer === "evidenced") return record.evidencedCountryIso2s;
   if (layer === "company_stated") return record.companyStatedCountryIso2s;
   if (layer === "software_linked") return record.softwareLinkedCountryIso2s;
-  if (layer === "offices") return record.officeCountryIso2s;
+  if (layer === "offices") {
+    return Array.from(new Set([...record.officeCountryIso2s, ...record.warehouseCountryIso2s]));
+  }
   if (layer === "availability") return record.availabilityCountryIso2s;
   const iso2 = layer === "headquarters"
     ? record.organisation.headquartersCountryIso2

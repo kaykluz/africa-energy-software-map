@@ -184,6 +184,7 @@ export function buildOrganisationCatalogueMapData(
   const recordsWithAnyLocation = new Set<string>();
   for (const record of records) {
     const locations = new Map<string, Set<"catalogue_activity" | "africa_wide" | "headquarters">>();
+    const africaWide = organisationHasAfricaWideCoverage(record);
     for (const countryName of record.countriesActive) {
       const iso2 = iso2ByName.get(normalise(countryName));
       if (!iso2) continue;
@@ -192,13 +193,8 @@ export function buildOrganisationCatalogueMapData(
       types.add("catalogue_activity");
       locations.set(iso2, types);
     }
-    if (organisationHasAfricaWideCoverage(record)) {
+    if (africaWide) {
       recordsWithAfricaWideCoverage.add(record.id);
-      for (const [iso2] of africanCountries) {
-        const types = locations.get(iso2) ?? new Set();
-        types.add("africa_wide");
-        locations.set(iso2, types);
-      }
     }
     const headquartersIso2 = iso2ByName.get(normalise(record.headquartersCountry));
     if (headquartersIso2) {
@@ -206,6 +202,9 @@ export function buildOrganisationCatalogueMapData(
       const types = locations.get(headquartersIso2) ?? new Set();
       types.add("headquarters");
       locations.set(headquartersIso2, types);
+    }
+    if (africaWide) {
+      for (const types of locations.values()) types.add("africa_wide");
     }
     for (const [iso2, locationTypes] of locations) {
       recordsWithAnyLocation.add(record.id);
@@ -343,7 +342,7 @@ export function filterOrganisationCatalogueRecords({
     if (
       country !== "all" &&
       !record.countriesActive.includes(country) &&
-      !organisationHasAfricaWideCoverage(record)
+      record.headquartersCountry !== country
     ) return false;
     if (headquarters !== "all" && record.headquartersCountry !== headquarters) return false;
     if (origin === "Africa-headquartered" && !record.africaHeadquartered) return false;

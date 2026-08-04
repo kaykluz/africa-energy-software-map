@@ -25,6 +25,7 @@ export type ContributionInput = {
     | "operations"
     | "project_participation"
     | "office"
+    | "warehouse"
     | "legal_entity"
     | "product_deployment"
     | "product_availability";
@@ -55,6 +56,7 @@ const allowedPresenceTypes = new Set([
   "operations",
   "project_participation",
   "office",
+  "warehouse",
   "legal_entity",
   "product_deployment",
   "product_availability",

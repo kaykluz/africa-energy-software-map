@@ -30,8 +30,8 @@ export function DatabaseHeader({
       : activeView === "wall" ? "Software wall" : "Explore";
   const description = activeView === "map"
     ? activeObject === "software"
-      ? "Browse deployments, catalogue locations and Africa-wide coverage by country."
-      : "Browse headquarters, offices, activity and Africa-wide coverage by country."
+      ? "Browse named deployments, catalogue locations and publisher headquarters. Africa-wide remains regional."
+      : "Browse named headquarters, offices, warehouses, projects and activity. Africa-wide remains regional."
     : activeObject === "organisations"
       ? "Find developers, EPCs, OEMs, financiers, software teams and sector enablers."
       : activeView === "wall"

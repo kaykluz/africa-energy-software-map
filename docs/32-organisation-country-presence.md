@@ -14,6 +14,7 @@ country and presence type:
 - `operations` — the organisation says or is evidenced to operate in the country;
 - `project_participation` — a sourced role in a named or safely described project;
 - `office` — a sourced office location at country precision;
+- `warehouse` — a sourced warehouse, depot or distribution facility at country precision;
 - `legal_entity` — a sourced registered entity or local subsidiary;
 - `product_deployment` — the organisation's non-software product is deployed;
 - `product_availability` — the organisation offers a product in the market.
@@ -44,7 +45,7 @@ share the same layers:
 
 - evidenced activity;
 - company-stated presence;
-- offices and legal entities;
+- offices, warehouses and legal entities;
 - product availability;
 - reviewed software deployments;
 - headquarters;
@@ -55,17 +56,16 @@ separate columns rather than one ambiguous list of “countries active”.
 
 ### Africa-wide coverage
 
-`Africa-wide` is a catalogue coverage scope, not an invented set of country
-presence assertions. For discovery, an explicitly Africa-wide record appears in
-every African country view and in the combined map. Every occurrence is labelled
-`Africa-wide coverage`, can be isolated with its own filter and remains separate
-from exact-country activity, offices, headquarters and deployments. Exact
-country fields remain visible alongside the continental scope when both exist.
+`Africa-wide` is a catalogue coverage scope, not a country presence assertion.
+It remains visible and filterable as regional scope, but it never places an
+organisation in every African country. Country maps and country pages require a
+named, sourced country through activity, an office, warehouse, entity, project,
+deployment, availability or headquarters. An Africa-wide record can therefore
+appear in a country only when that separate country-level basis also exists.
 
-The interface does not expand regional labels such as `West Africa`, `East
-Africa` or `Sub-Saharan Africa` into countries. Only an explicit all-Africa value
-is projected continent-wide. Profiles and exports retain the original scope so
-the display rule is auditable.
+The interface does not expand `Africa-wide`, `West Africa`, `East Africa`,
+`Sub-Saharan Africa` or any other regional label into countries. Profiles and
+exports retain the original scope so the display rule is auditable.
 
 ## Review intake
 

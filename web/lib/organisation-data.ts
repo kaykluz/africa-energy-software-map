@@ -104,6 +104,7 @@ export type OrganisationDirectoryRecord = {
   evidencedCountryIso2s: string[];
   companyStatedCountryIso2s: string[];
   officeCountryIso2s: string[];
+  warehouseCountryIso2s: string[];
   availabilityCountryIso2s: string[];
   softwareLinkedCountryIso2s: string[];
   catalogueCountryIso2s: string[];
@@ -310,6 +311,11 @@ export function buildOrganisationDirectoryRecord(
       .filter((record) => ["office", "legal_entity"].includes(record.presenceType))
       .map((record) => record.countryIso2),
   )));
+  const warehouseCountryIso2s = sortCountries(Array.from(new Set(
+    presenceRecords
+      .filter((record) => record.presenceType === "warehouse")
+      .map((record) => record.countryIso2),
+  )));
   const availabilityCountryIso2s = sortCountries(Array.from(new Set(
     presenceRecords
       .filter((record) => record.presenceType === "product_availability")
@@ -322,11 +328,11 @@ export function buildOrganisationDirectoryRecord(
     ...evidencedCountryIso2s,
     ...companyStatedCountryIso2s,
     ...officeCountryIso2s,
+    ...warehouseCountryIso2s,
     ...availabilityCountryIso2s,
     ...softwareLinkedCountryIso2s,
     ...catalogueCountryIso2s,
     ...(organisation.headquartersCountryIso2 ? [organisation.headquartersCountryIso2] : []),
-    ...(organisation.countryOfOriginIso2 ? [organisation.countryOfOriginIso2] : []),
   ])));
 
   return {
@@ -351,6 +357,7 @@ export function buildOrganisationDirectoryRecord(
     evidencedCountryIso2s,
     companyStatedCountryIso2s,
     officeCountryIso2s,
+    warehouseCountryIso2s,
     availabilityCountryIso2s,
     softwareLinkedCountryIso2s,
     catalogueCountryIso2s,

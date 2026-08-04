@@ -233,6 +233,7 @@ export function OrganisationAtlas({
       evidenced_countries: countryNames(record.evidencedCountryIso2s),
       company_stated_countries: countryNames(record.companyStatedCountryIso2s),
       office_countries: countryNames(record.officeCountryIso2s),
+      warehouse_countries: countryNames(record.warehouseCountryIso2s),
       product_availability_countries: countryNames(record.availabilityCountryIso2s),
       software_linked_countries: countryNames(record.softwareLinkedCountryIso2s),
       origin: record.organisation.origin,
@@ -331,7 +332,7 @@ export function OrganisationAtlas({
           <option value="all">All presence types</option>
           <option value="evidenced">Evidenced activity</option>
           <option value="company_stated">Company-stated</option>
-          <option value="offices">Offices and entities</option>
+          <option value="offices">Offices, warehouses and entities</option>
           <option value="availability">Product availability</option>
           <option value="software_linked">Software deployments</option>
         </select>
@@ -826,6 +827,7 @@ function organisationCsv(rows: Array<Record<string, string | string[] | number>>
     "evidenced_countries",
     "company_stated_countries",
     "office_countries",
+    "warehouse_countries",
     "product_availability_countries",
     "software_linked_countries",
     "origin",
@@ -962,7 +964,9 @@ function isPresenceLayer(value: string): value is OrganisationPresenceLayer {
 function presenceCountries(record: OrganisationDirectoryRecord, layer: OrganisationPresenceLayer) {
   if (layer === "evidenced") return record.evidencedCountryIso2s;
   if (layer === "company_stated") return record.companyStatedCountryIso2s;
-  if (layer === "offices") return record.officeCountryIso2s;
+  if (layer === "offices") {
+    return Array.from(new Set([...record.officeCountryIso2s, ...record.warehouseCountryIso2s]));
+  }
   if (layer === "availability") return record.availabilityCountryIso2s;
   if (layer === "software_linked") return record.softwareLinkedCountryIso2s;
   return record.countryIso2s;
@@ -973,7 +977,7 @@ function presenceLayerLabel(layer: OrganisationPresenceLayer) {
     all: "All presence types",
     evidenced: "Evidenced activity",
     company_stated: "Company-stated",
-    offices: "Offices and entities",
+    offices: "Offices, warehouses and entities",
     availability: "Product availability",
     software_linked: "Software deployments",
   }[layer];
