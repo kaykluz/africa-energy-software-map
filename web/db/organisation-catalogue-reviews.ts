@@ -1,9 +1,11 @@
 import { getD1Database } from "./index";
 import {
   catalogueCanonicalIdentity,
+  organisationCatalogueRecords,
   organisationCatalogueById,
 } from "@/lib/organisation-catalogue";
 import { normalizeSourceUrl } from "@/lib/source-url";
+import { organisations } from "@/lib/registry-data";
 
 export const organisationCatalogueDecisions = [
   "accept",
@@ -62,6 +64,7 @@ export async function listOrganisationCatalogueReviews() {
       `SELECT
          candidate_id AS candidateId,
          decision,
+         canonical_organisation_id AS canonicalOrganisationId,
          amendments_json AS amendmentsJson,
          normalized_source_url AS normalizedSourceUrl,
          source_opened AS sourceOpened,
@@ -83,6 +86,7 @@ export async function listOrganisationCatalogueReviews() {
 export async function saveOrganisationCatalogueReview({
   candidateId,
   decision,
+  canonicalOrganisationId,
   amendments,
   sourceUrl,
   sourceOpened,
@@ -95,6 +99,7 @@ export async function saveOrganisationCatalogueReview({
 }: {
   candidateId: string;
   decision: OrganisationCatalogueDecision;
+  canonicalOrganisationId: string;
   amendments: Partial<Record<OrganisationCatalogueAmendableField, string>>;
   sourceUrl: string;
   sourceOpened: boolean;
@@ -120,12 +125,32 @@ export async function saveOrganisationCatalogueReview({
   if (["reject", "needs_evidence", "duplicate"].includes(decision) && !notes) {
     throw new OrganisationCatalogueValidationError("Add a short reason for this decision.");
   }
+  const duplicateTarget = decision === "duplicate" ? canonicalOrganisationId.trim() : "";
+  if (decision === "duplicate") {
+    if (!duplicateTarget) {
+      throw new OrganisationCatalogueValidationError("Choose the canonical organisation this duplicate belongs to.");
+    }
+    if (!(await canonicalTargetExists(database, duplicateTarget))) {
+      throw new OrganisationCatalogueValidationError("The duplicate target is not a published canonical organisation.");
+    }
+    if (duplicateTarget === catalogueCanonicalIdentity(candidate).organisationId) {
+      throw new OrganisationCatalogueValidationError("A catalogue record cannot be merged into its own canonical identity.");
+    }
+  }
   if (
     ["accept", "amend"].includes(decision) &&
     (!sourceOpened || !identityConfirmed || !classificationsConfirmed || !safetyChecked)
   ) {
     throw new OrganisationCatalogueValidationError(
       "Confirm the source, identity, classifications and publication-safety checks.",
+    );
+  }
+  if (
+    decision === "duplicate" &&
+    (!sourceOpened || !identityConfirmed || !classificationsConfirmed || !safetyChecked)
+  ) {
+    throw new OrganisationCatalogueValidationError(
+      "Confirm the source, matching identity, classifications and publication-safety checks before merging a duplicate.",
     );
   }
   const normalizedSourceUrl = normalizeSourceUrl(sourceUrl || candidate.sourceUrl || candidate.website);
@@ -136,6 +161,7 @@ export async function saveOrganisationCatalogueReview({
   const next: OrganisationCatalogueReviewRecord = {
     candidateId,
     decision,
+    canonicalOrganisationId: duplicateTarget || undefined,
     amendments,
     normalizedSourceUrl,
     sourceOpened,
@@ -152,12 +178,13 @@ export async function saveOrganisationCatalogueReview({
     database
       .prepare(
         `INSERT INTO organisation_catalogue_reviews (
-           candidate_id, decision, amendments_json, normalized_source_url,
+           candidate_id, decision, canonical_organisation_id, amendments_json, normalized_source_url,
            source_opened, identity_confirmed, classifications_confirmed,
            safety_checked, notes, reviewer_email, reviewed_at, updated_at, version
-         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
          ON CONFLICT(candidate_id) DO UPDATE SET
            decision = excluded.decision,
+           canonical_organisation_id = excluded.canonical_organisation_id,
            amendments_json = excluded.amendments_json,
            normalized_source_url = excluded.normalized_source_url,
            source_opened = excluded.source_opened,
@@ -172,6 +199,7 @@ export async function saveOrganisationCatalogueReview({
       .bind(
         next.candidateId,
         next.decision,
+        next.canonicalOrganisationId ?? null,
         JSON.stringify(next.amendments),
         next.normalizedSourceUrl,
         Number(next.sourceOpened),
@@ -208,8 +236,10 @@ export async function saveOrganisationCatalogueReview({
 async function findReview(database: D1Database, candidateId: string) {
   const record = await database
     .prepare(
-      `SELECT
-         candidate_id AS candidateId, decision, amendments_json AS amendmentsJson,
+        `SELECT
+         candidate_id AS candidateId, decision,
+         canonical_organisation_id AS canonicalOrganisationId,
+         amendments_json AS amendmentsJson,
          normalized_source_url AS normalizedSourceUrl, source_opened AS sourceOpened,
          identity_confirmed AS identityConfirmed,
          classifications_confirmed AS classificationsConfirmed,
@@ -231,10 +261,15 @@ function normaliseReview(
     ["accept", "amend"].includes(record.decision)
       ? catalogueCanonicalIdentity(candidate)
       : null;
+  const canonicalOrganisationId = record.decision === "duplicate"
+    ? record.canonicalOrganisationId
+    : canonicalIdentity?.organisationId;
   return {
     ...record,
-    canonicalHref: canonicalIdentity?.href,
-    canonicalOrganisationId: canonicalIdentity?.organisationId,
+    canonicalHref: canonicalOrganisationId
+      ? canonicalHrefForId(canonicalOrganisationId)
+      : undefined,
+    canonicalOrganisationId,
     amendments: record.amendmentsJson
       ? (JSON.parse(record.amendmentsJson) as OrganisationCatalogueReviewRecord["amendments"])
       : {},
@@ -243,6 +278,25 @@ function normaliseReview(
     classificationsConfirmed: Boolean(record.classificationsConfirmed),
     safetyChecked: Boolean(record.safetyChecked),
   };
+}
+
+async function canonicalTargetExists(database: D1Database, organisationId: string) {
+  if (organisations.some((organisation) => organisation.id === organisationId)) return true;
+  const candidate = organisationCatalogueRecords.find(
+    (record) => catalogueCanonicalIdentity(record).organisationId === organisationId,
+  );
+  if (!candidate) return false;
+  const review = await findReview(database, candidate.id);
+  return Boolean(review && ["accept", "amend"].includes(review.decision));
+}
+
+function canonicalHrefForId(organisationId: string) {
+  const staticOrganisation = organisations.find((item) => item.id === organisationId);
+  if (staticOrganisation) return `/organisations/${staticOrganisation.slug}`;
+  const candidate = organisationCatalogueRecords.find(
+    (record) => catalogueCanonicalIdentity(record).organisationId === organisationId,
+  );
+  return candidate ? catalogueCanonicalIdentity(candidate).href : undefined;
 }
 
 export class OrganisationCatalogueNotFoundError extends Error {}

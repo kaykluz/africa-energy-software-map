@@ -57,6 +57,41 @@ Fuzzy name matching may be shown to a reviewer later but never creates an
 automatic identity link. Similar names, shared domains and group marketing pages
 are common in this market and are unsafe deduplication signals on their own.
 
+### Reviewed duplicate merge
+
+`/review` provides a separate Duplicate decision. The reviewer searches the
+published organisation registry by name or alias and selects the exact canonical
+target. A merge requires the direct source to be opened and the identity,
+classifications and publication safety to be confirmed. The selected canonical
+ID is stored with the versioned decision; a note explains why the two names are
+the same operating identity.
+
+A duplicate decision never creates a second organisation or increases the
+canonical directory count. The duplicate name and its aliases become search
+aliases, its reviewed catalogue row remains visible on the canonical profile,
+and its old deterministic candidate URL redirects to that profile. No fuzzy or
+domain-only suggestion can perform this action automatically.
+
+The canonical profile then presents the union of source-linked information from
+all reconciled rows:
+
+- every applicable actor role, ecosystem group, sector and market segment;
+- documented countries, with catalogue coverage still distinguished from
+  evidenced presence and software deployments;
+- canonical and catalogue software, with catalogue-only items labelled as such;
+- deployments in which the organisation is the software party or a named
+  customer;
+- project, deployment and relationship research leads, without promoting them
+  into reviewed objects;
+- related organisations that already have stable internal identities; and
+- a complete external source ledger for the organisation, its software,
+  deployments and relationship leads.
+
+Equivalent source URLs are collapsed for display, but their contexts are joined
+and the underlying source and assertion records are not deleted. Names link to
+canonical internal records wherever an exact identity exists; otherwise the
+direct external source remains available.
+
 Rows with several named parties are marked `needs_split`. A reviewer separates
 them into organisations, vehicles and relationships before promotion.
 

@@ -128,6 +128,14 @@ Search resolves aliases but links only to canonical IDs. Graph views are an
 alternate exploration surface, not the only way to access data; every edge is
 also available in accessible lists and exports.
 
+Until canonical project, capital and transaction tables contain reviewed rows,
+organisation profiles may surface source-linked catalogue descriptions and
+deployment leads in a clearly labelled research-lead layer. These are not
+counted as projects, transactions, portfolios or operational deployments. When
+the reviewed object tables are populated, the same profile sections consume the
+stable project and party edges and the research leads remain available as audit
+context rather than being silently converted.
+
 ## Candidate and release workflow
 
 1. Keep organisation-shaped rows, funds/programmes and possible identity
@@ -155,4 +163,3 @@ into review notes, repository data, exports or the public database.
    shards exist; empty navigation is not shipped.
 6. Add visual graph and map layers after list, keyboard and export equivalents
    pass accessibility testing.
-

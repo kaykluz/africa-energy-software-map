@@ -2842,6 +2842,75 @@ body {
 .organisation-presence-list article > div:last-child small { color: var(--muted); font-size: .62rem; }
 .organisation-software-presence { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--v2-line); }
 .organisation-software-presence p { margin: 4px 0 8px; color: var(--muted); font-size: .76rem; }
+.organisation-catalogue-software,
+.organisation-graph-list,
+.organisation-source-ledger { display: grid; gap: 1px; margin-top: 16px; background: var(--v2-line); }
+.organisation-catalogue-software > header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 14px;
+  color: var(--muted);
+  background: var(--v2-paper);
+  font-size: .66rem;
+}
+.organisation-catalogue-software > article,
+.organisation-graph-list > article,
+.organisation-source-ledger > article {
+  display: grid;
+  align-items: center;
+  min-height: 86px;
+  padding: 14px 16px;
+  background: var(--v2-paper-bright);
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+}
+.organisation-catalogue-software h3,
+.organisation-graph-list h3,
+.organisation-source-ledger h3,
+.organisation-party-grid h3 { margin: 0; font-size: .92rem; }
+.organisation-catalogue-software h3 a,
+.organisation-graph-list h3 a,
+.organisation-source-ledger h3 a,
+.organisation-party-grid h3 a { color: inherit; text-decoration: none; }
+.organisation-catalogue-software p,
+.organisation-graph-list p,
+.organisation-source-ledger p,
+.organisation-party-grid p { margin: 4px 0 0; color: var(--muted); font-size: .68rem; }
+.organisation-catalogue-software article > div:last-child,
+.organisation-graph-list article > div:last-child {
+  display: grid;
+  justify-items: end;
+  gap: 6px;
+  color: var(--muted);
+  font-size: .62rem;
+}
+.organisation-catalogue-software article > div:first-child > div,
+.organisation-catalogue-links,
+.organisation-project-focus { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.organisation-catalogue-software article > div:first-child > div a,
+.organisation-catalogue-links a,
+.organisation-catalogue-links span,
+.organisation-project-focus span {
+  padding: 4px 7px;
+  border: 1px solid var(--v2-line);
+  border-radius: 999px;
+  color: var(--v2-ink);
+  font-size: .58rem;
+  text-decoration: none;
+}
+.organisation-source-ledger > article > a { font-size: .68rem; white-space: nowrap; }
+.organisation-party-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--v2-line); }
+.organisation-party-grid article {
+  display: grid;
+  align-items: center;
+  min-height: 76px;
+  padding: 12px 14px;
+  background: var(--v2-paper-bright);
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px;
+}
+.organisation-party-grid article > a { color: var(--v2-ink); text-decoration: none; }
 .country-organisation-list { margin-bottom: 14px; }
 .country-organisation-list article {
   display: grid;
@@ -2855,6 +2924,18 @@ body {
 .country-organisation-list article > span { color: var(--muted); font: .58rem var(--font-mono); text-transform: uppercase; }
 .inline-empty.compact { padding: 16px; }
 .inline-empty.compact p { font-size: .76rem; }
+.review-catalogue-duplicate-target { display: grid; gap: 8px; position: relative; }
+.review-canonical-targets {
+  max-height: 260px;
+  padding: 6px;
+  border: 1px solid var(--v2-line-dark);
+  border-radius: 12px;
+  background: var(--v2-paper-bright);
+  box-shadow: 0 14px 40px rgb(0 0 0 / 16%);
+}
+.review-canonical-selected { color: var(--muted); font-size: .68rem; }
+.review-canonical-selected { display: flex; align-items: center; gap: 8px; margin: 0; }
+.review-canonical-selected a { margin-left: auto; }
 
 @media (max-width: 1180px) {
   .organisation-atlas-controls { grid-template-columns: minmax(220px, 1fr) repeat(4, minmax(150px, .6fr)); }
@@ -2888,5 +2969,11 @@ body {
   .organisation-profile-classification > div { align-items: start; grid-template-columns: 1fr; gap: 8px; }
   .organisation-presence-list article { align-items: start; grid-template-columns: 1fr; }
   .organisation-presence-list article > div:last-child { justify-items: start; }
+  .organisation-catalogue-software > article,
+  .organisation-graph-list > article,
+  .organisation-source-ledger > article { align-items: start; grid-template-columns: 1fr; }
+  .organisation-catalogue-software article > div:last-child,
+  .organisation-graph-list article > div:last-child { justify-items: start; }
+  .organisation-party-grid { grid-template-columns: 1fr; }
   .organisation-coverage-note { align-items: start; grid-template-columns: 1fr; gap: 8px; }
 }
