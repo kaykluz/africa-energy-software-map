@@ -21,9 +21,20 @@ import {
   type LandscapeItem,
   type LandscapeKind,
 } from "@/lib/landscape-data";
+import {
+  buildExactLinkIndex,
+  organisationLinkIndex,
+  normaliseEntityKey,
+  resolveCountryHref,
+  resolveLandscapeItemHref,
+  resolveOrganisationHref,
+  resolveProductHref,
+  type ExactLinkIndex,
+  type OrganisationLinkRecord,
+} from "@/lib/entity-links";
 import { normaliseQuery } from "@/lib/registry-query";
 import { brandAssetForExactName } from "@/lib/brand-assets";
-import { type CSSProperties, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, type CSSProperties, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 
 type LandscapeView = "wall" | "listings" | "deployments" | "history" | "sources";
 
@@ -41,32 +52,64 @@ const africaUseOptions = Object.entries(landscapeAfricaUseLabels) as [
   AfricaUseAsSubmitted,
   string,
 ][];
+const landscapeListingLinks = buildExactLinkIndex(
+  landscapeItems.map((item) => ({
+    href: `/landscape?q=${encodeURIComponent(item.name)}`,
+    names: [item.name, ...(item.aliases ?? [])],
+  })),
+);
 const firstPageSize = 48;
 const coreWallPreviewSize = 8;
 const supportingWallPreviewSize = 5;
 
 export function LandscapeExplorer({
+  canonicalOrganisations = [],
+  initialAfricaUse = "all",
+  initialFunction = "all",
+  initialKind = "all",
   initialQuery = "",
+  initialRelationship = "all",
+  initialSector = "all",
   initialStage = "all",
   initialView = "wall",
   mode = "wall",
 }: {
+  canonicalOrganisations?: OrganisationLinkRecord[];
+  initialAfricaUse?: string;
+  initialFunction?: string;
+  initialKind?: string;
   initialQuery?: string;
+  initialRelationship?: string;
+  initialSector?: string;
   initialStage?: string;
   initialView?: LandscapeView;
   mode?: "explore" | "wall";
 }) {
+  const canonicalOrganisationLinks = useMemo(
+    () => organisationLinkIndex(canonicalOrganisations),
+    [canonicalOrganisations],
+  );
   const [query, setQuery] = useState(initialQuery);
-  const [kind, setKind] = useState<LandscapeKind | "all">("all");
+  const [kind, setKind] = useState<LandscapeKind | "all">(
+    isLandscapeKind(initialKind) ? initialKind : "all",
+  );
   const [stage, setStage] = useState(
     initialStage === "all" || Object.hasOwn(landscapeStageLabels, initialStage)
       ? initialStage
       : "all",
   );
-  const [functionId, setFunctionId] = useState("all");
-  const [sector, setSector] = useState("all");
-  const [relationship, setRelationship] = useState<EnergyRelationship | "all">("all");
-  const [africaUse, setAfricaUse] = useState<AfricaUseAsSubmitted | "all">("all");
+  const [functionId, setFunctionId] = useState(
+    Object.hasOwn(landscapeFunctionLabels, initialFunction) ? initialFunction : "all",
+  );
+  const [sector, setSector] = useState(
+    Object.hasOwn(landscapeSectorLabels, initialSector) ? initialSector : "all",
+  );
+  const [relationship, setRelationship] = useState<EnergyRelationship | "all">(
+    isEnergyRelationship(initialRelationship) ? initialRelationship : "all",
+  );
+  const [africaUse, setAfricaUse] = useState<AfricaUseAsSubmitted | "all">(
+    isAfricaUse(initialAfricaUse) ? initialAfricaUse : "all",
+  );
   const [displayLimit, setDisplayLimit] = useState(firstPageSize);
   const [view, setView] = useState<LandscapeView>(initialView);
   const [selectedItem, setSelectedItem] = useState<LandscapeItem | null>(null);
@@ -140,7 +183,7 @@ export function LandscapeExplorer({
   function download(format: "csv" | "json") {
     const rows =
       view === "wall" || view === "listings"
-        ? filteredItems.map(exportItem)
+        ? filteredItems.map((item) => exportItem(item, canonicalOrganisationLinks))
         : view === "deployments"
           ? landscapeDeploymentLeads
           : view === "history"
@@ -234,6 +277,7 @@ export function LandscapeExplorer({
 
       {view === "wall" ? (
         <LandscapeWall
+          organisationLinks={canonicalOrganisationLinks}
           hasFilters={hasFilters}
           items={filteredItems}
           onOpen={openItem}
@@ -249,7 +293,13 @@ export function LandscapeExplorer({
           {filteredItems.length ? (
             <div className="landscape-grid">
               {visibleItems.map((item, index) => (
-                <LandscapeCard index={index} item={item} key={item.id} onOpen={openItem} />
+                <LandscapeCard
+                  index={index}
+                  item={item}
+                  key={item.id}
+                  onOpen={openItem}
+                  organisationLinks={canonicalOrganisationLinks}
+                />
               ))}
             </div>
           ) : (
@@ -273,7 +323,14 @@ export function LandscapeExplorer({
           {landscapeDeploymentLeads.length ? landscapeDeploymentLeads.map((lead, index) => (
             <article key={lead.id}>
               <span>{String(index + 1).padStart(2, "0")}</span>
-              <div><h2>{lead.name}</h2><p>{lead.countries.join(", ")} · {lead.customerAsSubmitted}</p></div>
+              <div>
+                <h2><LinkedEntityName name={lead.name} preferred="product" productName={lead.product} /></h2>
+                <p>
+                  <LinkedEntityName index={canonicalOrganisationLinks} name={lead.organisation} preferred="organisation" />
+                  {" · "}<CountryNameList names={lead.countries} />
+                  {" · "}<LinkedEntityName index={canonicalOrganisationLinks} name={lead.customerAsSubmitted} preferred="organisation" searchFallback />
+                </p>
+              </div>
               <p>{lead.scaleAsSubmitted}</p>
               <small>{lead.dateAsSubmitted}</small>
             </article>
@@ -284,7 +341,7 @@ export function LandscapeExplorer({
           {landscapeRelationships.length ? landscapeRelationships.map((event, index) => (
             <article key={event.id}>
               <span>{String(index + 1).padStart(2, "0")}</span>
-              <div><h2>{event.subject}</h2><p>{event.eventAsSubmitted}</p></div>
+              <div><h2><LinkedEntityName index={canonicalOrganisationLinks} name={event.subject} preferred="organisation" /></h2><p>{event.eventAsSubmitted}</p></div>
               <small>{event.dateAsSubmitted}</small>
             </article>
           )) : <LandscapeWaiting label="company events" />}
@@ -315,7 +372,7 @@ export function LandscapeExplorer({
         <Link href="/contribute/product">Add it <span aria-hidden="true">↗</span></Link>
       </section>
 
-      {selectedItem ? <LandscapePreview close={closeItem} item={selectedItem} /> : null}
+      {selectedItem ? <LandscapePreview close={closeItem} item={selectedItem} organisationLinks={canonicalOrganisationLinks} /> : null}
     </main>
   );
 }
@@ -434,12 +491,14 @@ function LandscapeWall({
   items,
   onOpen,
   onShowStage,
+  organisationLinks,
   reset,
 }: {
   hasFilters: boolean;
   items: LandscapeItem[];
   onOpen: (item: LandscapeItem, element: HTMLElement) => void;
   onShowStage: (stageId: string, relationship: EnergyRelationship) => void;
+  organisationLinks: ExactLinkIndex;
   reset: () => void;
 }) {
   const wallItems = [...items]
@@ -476,6 +535,7 @@ function LandscapeWall({
           items={coreItems}
           onOpen={onOpen}
           onShowStage={onShowStage}
+          organisationLinks={organisationLinks}
           previewSize={coreWallPreviewSize}
           relationship="energy_native"
         />
@@ -495,6 +555,7 @@ function LandscapeWall({
             items={appliedItems}
             onOpen={onOpen}
             onShowStage={onShowStage}
+            organisationLinks={organisationLinks}
             previewSize={supportingWallPreviewSize}
             relationship="energy_applied"
           />
@@ -506,6 +567,7 @@ function LandscapeWall({
             items={infrastructureItems}
             onOpen={onOpen}
             onShowStage={onShowStage}
+            organisationLinks={organisationLinks}
             previewSize={supportingWallPreviewSize}
             relationship="enabling_infrastructure"
           />
@@ -526,6 +588,7 @@ function LandscapeWall({
             items={operatorItems}
             onOpen={onOpen}
             onShowStage={onShowStage}
+            organisationLinks={organisationLinks}
             previewSize={supportingWallPreviewSize}
             relationship="operator_owned"
           />
@@ -537,6 +600,7 @@ function LandscapeWall({
             items={publicItems}
             onOpen={onOpen}
             onShowStage={onShowStage}
+            organisationLinks={organisationLinks}
             previewSize={supportingWallPreviewSize}
             relationship="public_research"
           />
@@ -555,6 +619,7 @@ function LandscapeWall({
           items={unclassifiedItems}
           onOpen={onOpen}
           onShowStage={onShowStage}
+          organisationLinks={organisationLinks}
           previewSize={supportingWallPreviewSize}
           relationship="unclassified"
         />
@@ -613,6 +678,7 @@ function StageWall({
   items,
   onOpen,
   onShowStage,
+  organisationLinks,
   previewSize,
   relationship,
 }: {
@@ -621,6 +687,7 @@ function StageWall({
   items: LandscapeItem[];
   onOpen: (item: LandscapeItem, element: HTMLElement) => void;
   onShowStage: (stageId: string, relationship: EnergyRelationship) => void;
+  organisationLinks: ExactLinkIndex;
   previewSize: number;
   relationship: EnergyRelationship;
 }) {
@@ -647,12 +714,17 @@ function StageWall({
             <section className="landscape-wall-stage" key={stageId}>
               <header>
                 <span>{String(stageIndex + 1).padStart(2, "0")}</span>
-                <StageHeading>{label}</StageHeading>
+                <StageHeading><Link href={`/landscape?stage=${stageId}`}>{label}</Link></StageHeading>
                 <b>{stageItems.length}</b>
               </header>
               <div className="landscape-wall-tiles">
                 {stageItems.slice(0, previewSize).map((item) => (
-                  <IdentityTile item={item} key={`${relationship}-${stageId}-${item.id}`} onOpen={onOpen} />
+                  <IdentityTile
+                    item={item}
+                    key={`${relationship}-${stageId}-${item.id}`}
+                    onOpen={onOpen}
+                    organisationLinks={organisationLinks}
+                  />
                 ))}
               </div>
               {stageItems.length > previewSize ? (
@@ -675,7 +747,12 @@ function StageWall({
           <header><span>＋</span><StageHeading>Cross-cutting</StageHeading><b>{crossCutting.length}</b></header>
           <div className="landscape-wall-tiles landscape-wall-tiles-wide">
             {crossCutting.slice(0, previewSize * 2).map((item) => (
-              <IdentityTile item={item} key={`${relationship}-cross-${item.id}`} onOpen={onOpen} />
+              <IdentityTile
+                item={item}
+                key={`${relationship}-cross-${item.id}`}
+                onOpen={onOpen}
+                organisationLinks={organisationLinks}
+              />
             ))}
           </div>
         </section>
@@ -687,23 +764,30 @@ function StageWall({
 function IdentityTile({
   item,
   onOpen,
+  organisationLinks,
 }: {
   item: LandscapeItem;
   onOpen: (item: LandscapeItem, element: HTMLElement) => void;
+  organisationLinks: ExactLinkIndex;
 }) {
   const functionLabel = item.functionIds[0]
     ? landscapeFunctionLabels[item.functionIds[0]]
     : "Function not set";
+  const itemHref = resolveLandscapeItemHref(item, organisationLinks);
   return (
     <article className="landscape-identity-tile">
       <IdentityMark item={item} />
       <span>
-        {item.canonicalHref ? (
-          <Link href={item.canonicalHref}>{item.name}</Link>
+        {itemHref ? (
+          <Link href={itemHref}>{item.name}</Link>
         ) : (
           <button onClick={(event) => onOpen(item, event.currentTarget)} type="button">{item.name}</button>
         )}
-        <small>{functionLabel}</small>
+        <small>
+          {item.functionIds[0]
+            ? <Link href={`/landscape?function=${item.functionIds[0]}`}>{functionLabel}</Link>
+            : functionLabel}
+        </small>
       </span>
       <button
         aria-label={`Preview ${item.name}, ${landscapeEnergyRelationshipLabels[item.energyRelationship]}`}
@@ -729,23 +813,35 @@ function LandscapeCard({
   item,
   index,
   onOpen,
+  organisationLinks,
 }: {
   item: LandscapeItem;
   index: number;
   onOpen: (item: LandscapeItem, element: HTMLElement) => void;
+  organisationLinks: ExactLinkIndex;
 }) {
+  const itemHref = resolveLandscapeItemHref(item, organisationLinks);
+  const parentHref = item.parent
+    ? resolveOrganisationHref(item.parent, organisationLinks)
+    : undefined;
   return (
     <article className="landscape-card">
       <div className="landscape-card-top">
         <span>{String(index + 1).padStart(2, "0")}</span>
-        <b>{landscapeEnergyRelationshipLabels[item.energyRelationship]}</b>
+        <b><Link href={`/landscape?relationship=${item.energyRelationship}`}>{landscapeEnergyRelationshipLabels[item.energyRelationship]}</Link></b>
       </div>
       <IdentityMark item={item} />
-      <h2>{item.canonicalHref ? <Link href={item.canonicalHref}>{item.name}</Link> : item.name}</h2>
-      {item.parent ? <p className="landscape-parent">{item.parent}</p> : null}
+      <h2>{itemHref ? <Link href={itemHref}>{item.name}</Link> : item.name}</h2>
+      {item.parent ? (
+        <p className="landscape-parent">
+          {parentHref ? <Link href={parentHref}>{item.parent}</Link> : item.parent}
+        </p>
+      ) : null}
       <p>{item.summaryAsSubmitted}</p>
       <div className="landscape-card-tags">
-        {item.functionIds.slice(0, 2).map((id) => <span key={id}>{landscapeFunctionLabels[id] ?? id}</span>)}
+        {item.functionIds.slice(0, 2).map((id) => (
+          <Link href={`/landscape?function=${id}`} key={id}>{landscapeFunctionLabels[id] ?? id}</Link>
+        ))}
       </div>
       <button className="landscape-card-open" onClick={(event) => onOpen(item, event.currentTarget)} type="button">
         Open <span aria-hidden="true">→</span>
@@ -754,8 +850,20 @@ function LandscapeCard({
   );
 }
 
-function LandscapePreview({ item, close }: { item: LandscapeItem; close: () => void }) {
+function LandscapePreview({
+  item,
+  close,
+  organisationLinks,
+}: {
+  item: LandscapeItem;
+  close: () => void;
+  organisationLinks: ExactLinkIndex;
+}) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const itemHref = resolveLandscapeItemHref(item, organisationLinks);
+  const parentHref = item.parent
+    ? resolveOrganisationHref(item.parent, organisationLinks)
+    : undefined;
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -775,9 +883,9 @@ function LandscapePreview({ item, close }: { item: LandscapeItem; close: () => v
         <div className="landscape-preview-identity">
           <IdentityMark item={item} />
           <div>
-            <span>{landscapeEnergyRelationshipLabels[item.energyRelationship]}</span>
-            <h2 id="landscape-preview-title">{item.canonicalHref ? <Link href={item.canonicalHref}>{item.name}</Link> : item.name}</h2>
-            {item.parent ? <p>{item.parent}</p> : null}
+            <Link href={`/landscape?relationship=${item.energyRelationship}`}>{landscapeEnergyRelationshipLabels[item.energyRelationship]}</Link>
+            <h2 id="landscape-preview-title">{itemHref ? <Link href={itemHref}>{item.name}</Link> : item.name}</h2>
+            {item.parent ? <p>{parentHref ? <Link href={parentHref}>{item.parent}</Link> : item.parent}</p> : null}
           </div>
         </div>
         <p className="landscape-preview-summary">{item.summaryAsSubmitted}</p>
@@ -785,16 +893,16 @@ function LandscapePreview({ item, close }: { item: LandscapeItem; close: () => v
           {landscapeEnergyRelationshipDescriptions[item.energyRelationship]}
         </p>
         <dl>
-          <div><dt>Function</dt><dd>{item.functionIds.map((id) => landscapeFunctionLabels[id] ?? id).join(", ") || "Not set"}</dd></div>
-          <div><dt>Value chain</dt><dd>{item.stageIds.map((id) => landscapeStageLabels[id] ?? id).join(", ") || "Cross-cutting"}</dd></div>
-          <div><dt>Sector</dt><dd>{item.sectorIds.map((id) => landscapeSectorLabels[id] ?? id).join(", ") || "Not supplied"}</dd></div>
-          <div><dt>Places</dt><dd>{item.geographies.join(", ") || "Not supplied"}</dd></div>
-          {item.africaUseAsSubmitted ? <div><dt>Africa link</dt><dd>{landscapeAfricaUseLabels[item.africaUseAsSubmitted]}</dd></div> : null}
+          <div><dt>Function</dt><dd>{item.functionIds.length ? <TaxonomyLinks ids={item.functionIds} labels={landscapeFunctionLabels} parameter="function" /> : "Not set"}</dd></div>
+          <div><dt>Value chain</dt><dd>{item.stageIds.length ? <TaxonomyLinks ids={item.stageIds} labels={landscapeStageLabels} parameter="stage" /> : "Cross-cutting"}</dd></div>
+          <div><dt>Sector</dt><dd>{item.sectorIds.length ? <TaxonomyLinks ids={item.sectorIds} labels={landscapeSectorLabels} parameter="sector" /> : "Not supplied"}</dd></div>
+          <div><dt>Places</dt><dd>{item.geographies.length ? <CountryNameList names={item.geographies} /> : "Not supplied"}</dd></div>
+          {item.africaUseAsSubmitted ? <div><dt>Africa link</dt><dd><Link href={`/landscape?africaUse=${item.africaUseAsSubmitted}`}>{landscapeAfricaUseLabels[item.africaUseAsSubmitted]}</Link></dd></div> : null}
           {item.deliveryModelsAsSubmitted?.length ? <div><dt>Delivery</dt><dd>{item.deliveryModelsAsSubmitted.join(", ")}</dd></div> : null}
           {item.commercialModelAsSubmitted ? <div><dt>Access</dt><dd>{item.commercialModelAsSubmitted}</dd></div> : null}
         </dl>
         <div className="landscape-preview-actions">
-          {item.canonicalHref ? <Link href={item.canonicalHref}>Reviewed record</Link> : null}
+          {itemHref ? <Link href={itemHref}>Open linked record</Link> : null}
           {item.sourceUrls?.slice(0, 2).map((url) => (
             <a href={url} key={url} rel="noreferrer" target="_blank">Source ↗</a>
           ))}
@@ -813,6 +921,90 @@ function LandscapeWaiting({ label }: { label: string }) {
   );
 }
 
+function LinkedEntityName({
+  index,
+  name,
+  preferred,
+  productName,
+  searchFallback = false,
+}: {
+  index?: ExactLinkIndex;
+  name: string;
+  preferred?: "organisation" | "product";
+  productName?: string;
+  searchFallback?: boolean;
+}) {
+  const organisationHref = resolveOrganisationHref(name, index);
+  const productHref = resolveProductHref(productName ?? name);
+  const landscapeHref = resolveExactLandscapeHref(name);
+  const exactCandidates = unique(
+    [organisationHref, productHref, landscapeHref].filter(
+      (value): value is string => Boolean(value),
+    ),
+  );
+  const href = preferred === "organisation"
+    ? organisationHref ?? landscapeHref
+    : preferred === "product"
+      ? productHref ?? landscapeHref
+      : exactCandidates.length === 1
+        ? exactCandidates[0]
+        : undefined;
+  if (href) return <Link href={href}>{name}</Link>;
+  if (searchFallback && name && !/not named|not disclosed|unknown/i.test(name)) {
+    return <Link href={`/organisations?q=${encodeURIComponent(name)}`}>{name}</Link>;
+  }
+  return <>{name}</>;
+}
+
+function CountryNameList({ names }: { names: string[] }) {
+  return names.map((name, index) => {
+    const href = resolveCountryHref(name);
+    return (
+      <Fragment key={`${name}-${index}`}>
+        {index ? ", " : null}
+        {href ? <Link href={href}>{name}</Link> : name}
+      </Fragment>
+    );
+  });
+}
+
+function TaxonomyLinks({
+  ids,
+  labels,
+  parameter,
+}: {
+  ids: string[];
+  labels: Record<string, string>;
+  parameter: "function" | "sector" | "stage";
+}) {
+  return ids.map((id, index) => (
+    <Fragment key={id}>
+      {index ? ", " : null}
+      <Link href={`/landscape?${parameter}=${id}`}>{labels[id] ?? id}</Link>
+    </Fragment>
+  ));
+}
+
+function resolveExactLandscapeHref(value: string) {
+  return landscapeListingLinks.get(normaliseEntityKey(value));
+}
+
+function isLandscapeKind(value: string): value is LandscapeKind {
+  return Object.hasOwn(landscapeKindLabels, value);
+}
+
+function isEnergyRelationship(value: string): value is EnergyRelationship {
+  return Object.hasOwn(landscapeEnergyRelationshipLabels, value);
+}
+
+function isAfricaUse(value: string): value is AfricaUseAsSubmitted {
+  return Object.hasOwn(landscapeAfricaUseLabels, value);
+}
+
+function unique(values: string[]) {
+  return Array.from(new Set(values));
+}
+
 function initials(name: string) {
   return name
     .replace(/[^\p{L}\p{N}]+/gu, " ")
@@ -823,7 +1015,7 @@ function initials(name: string) {
     .join("") || "•";
 }
 
-function exportItem(item: LandscapeItem) {
+function exportItem(item: LandscapeItem, organisationLinks: ExactLinkIndex) {
   return {
     name: item.name,
     type: landscapeKindLabels[item.kind],
@@ -844,7 +1036,10 @@ function exportItem(item: LandscapeItem) {
     commercial_model_as_submitted: item.commercialModelAsSubmitted ?? "",
     africa_use_as_submitted: item.africaUseAsSubmitted ?? "",
     as_of_date: item.asOfDate ?? "",
-    reviewed_record: item.canonicalHref ?? "",
+    reviewed_record: resolveLandscapeItemHref(item, organisationLinks) ?? "",
+    parent_record: item.parent
+      ? resolveOrganisationHref(item.parent, organisationLinks) ?? ""
+      : "",
   };
 }
 

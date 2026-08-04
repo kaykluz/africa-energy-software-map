@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { DataPage } from "@/components/content-pages";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   alternates: { canonical: "/data" },
   title: "Data and downloads",

@@ -5,11 +5,20 @@ import { usePathname } from "next/navigation";
 import {
   africanCountries,
   categories,
-  organisations,
   products,
   release,
 } from "@/lib/registry-data";
 import { landscapeItems } from "@/lib/landscape-data";
+import {
+  resolveLandscapeItemHref,
+  resolveOrganisationHref,
+  organisationLinkIndex,
+} from "@/lib/entity-links";
+import { organisationDirectory } from "@/lib/organisation-data";
+import type {
+  OrganisationCataloguePage,
+  OrganisationCatalogueRecord,
+} from "@/lib/organisation-catalogue";
 import { normaliseQuery } from "@/lib/registry-query";
 import {
   type KeyboardEvent,
@@ -50,13 +59,45 @@ export function SiteShell({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [statusOpen, setStatusOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [reviewedCatalogueMatches, setReviewedCatalogueMatches] = useState<OrganisationCatalogueRecord[]>([]);
   const searchButtonRef = useRef<HTMLButtonElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const canonicalOrganisationLinks = useMemo(
+    () => organisationLinkIndex(organisationDirectory),
+    [],
+  );
+  const canonicalOrganisationsById = useMemo(
+    () => new Map(organisationDirectory.map((record) => [record.organisation.id, record])),
+    [],
+  );
 
   useEffect(() => {
     if (searchOpen) searchInputRef.current?.focus();
   }, [searchOpen]);
+
+  useEffect(() => {
+    const term = query.trim();
+    if (term.length < 2) return;
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => {
+      fetch(`/api/organisation-catalogue?q=${encodeURIComponent(term)}&scope=reviewed&pageSize=8`, {
+        signal: controller.signal,
+      })
+        .then(async (response) => {
+          if (!response.ok) return { records: [] } as Pick<OrganisationCataloguePage, "records">;
+          return await response.json() as OrganisationCataloguePage;
+        })
+        .then((payload) => setReviewedCatalogueMatches(payload.records))
+        .catch(() => {
+          if (!controller.signal.aborted) setReviewedCatalogueMatches([]);
+        });
+    }, 140);
+    return () => {
+      controller.abort();
+      window.clearTimeout(timer);
+    };
+  }, [query]);
 
   useEffect(() => {
     const closeOnEscape = (event: globalThis.KeyboardEvent) => {
@@ -79,7 +120,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     const normalised = normaliseQuery(query);
     if (normalised.length < 2) return [];
     const aliases = normalised;
-    return [
+    const candidates = [
       ...products
         .filter((product) =>
           normaliseQuery(
@@ -93,7 +134,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
           ).includes(aliases),
         )
         .map((product) => {
-          const organisation = organisations.find((item) => item.id === product.organisationId);
+          const organisation = canonicalOrganisationsById.get(product.organisationId)?.organisation;
           return {
             type: "Product",
             name: product.name,
@@ -102,24 +143,44 @@ export function SiteShell({ children }: { children: ReactNode }) {
             contextHref: organisation ? `/organisations/${organisation.slug}` : undefined,
           };
         }),
-      ...organisations
-        .filter((organisation) =>
+      ...organisationDirectory
+        .filter((record) =>
           normaliseQuery(
             [
-              organisation.name,
-              organisation.type,
-              organisation.description,
-              organisation.countryOfOrigin,
-              organisation.headquarters,
+              record.organisation.name,
+              record.organisation.type,
+              record.organisation.description,
+              record.organisation.countryOfOrigin,
+              record.organisation.headquarters,
+              ...record.aliases,
             ].join(" "),
           ).includes(aliases),
         )
-        .map((organisation) => ({
+        .map((record) => ({
           type: "Organisation",
-          name: organisation.name,
-          context: organisation.type,
-          href: `/organisations/${organisation.slug}`,
+          name: record.organisation.name,
+          context: record.primaryRole.name,
+          href: `/organisations/${record.organisation.slug}`,
         })),
+      ...reviewedCatalogueMatches
+        .filter((record) => normaliseQuery([
+          record.name,
+          ...record.aliases,
+          record.primaryRole,
+          record.organisationType,
+          record.headquartersCountry,
+        ].join(" ")).includes(aliases))
+        .flatMap((record) => {
+          const href = record.reconciliation.status === "reviewed_match"
+            ? record.reconciliation.canonicalHref
+            : "";
+          return href ? [{
+            type: "Organisation",
+            name: record.name,
+            context: record.primaryRole || record.organisationType || "Reviewed organisation",
+            href,
+          }] : [];
+        }),
       ...categories
         .filter((category) =>
           normaliseQuery(category.name).includes(aliases),
@@ -152,14 +213,26 @@ export function SiteShell({ children }: { children: ReactNode }) {
           ).includes(aliases),
         )
         .slice(0, 4)
-        .map((item) => ({
-          type: "Listing",
-          name: item.name,
-          context: "Full list",
-          href: `/landscape?q=${encodeURIComponent(item.name)}`,
-        })),
-    ].slice(0, 10);
-  }, [query]);
+        .map((item) => {
+          const parentHref = item.parent
+            ? resolveOrganisationHref(item.parent, canonicalOrganisationLinks)
+            : undefined;
+          return {
+            type: "Listing",
+            name: item.name,
+            context: item.parent || "Full list",
+            href: resolveLandscapeItemHref(item, canonicalOrganisationLinks) ?? `/landscape?q=${encodeURIComponent(item.name)}`,
+            contextHref: parentHref,
+          };
+        }),
+    ];
+    const seen = new Set<string>();
+    return candidates.filter((result) => {
+      if (seen.has(result.href)) return false;
+      seen.add(result.href);
+      return true;
+    }).slice(0, 10);
+  }, [canonicalOrganisationLinks, canonicalOrganisationsById, query, reviewedCatalogueMatches]);
 
   function onSearchKeyDown(event: KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter" && query.trim().length >= 2) {

@@ -82,6 +82,13 @@ export const organisationCatalogueById = new Map(
   organisationCatalogueRecords.map((record) => [record.id, record]),
 );
 
+export function catalogueCanonicalIdentity(record: OrganisationCatalogueRecord) {
+  const organisationId = `org_catalogue_${record.workbookId.toLowerCase().replace(/[^a-z0-9]+/g, "_")}`;
+  const slugBase = normalise(record.name).replaceAll(" ", "-") || "organisation";
+  const slug = `${slugBase}-${record.workbookId.toLowerCase()}`;
+  return { organisationId, slug, href: `/organisations/${slug}` };
+}
+
 export const catalogueRoles = uniqueSorted(
   organisationCatalogueRecords.flatMap((record) => record.roles),
 );
@@ -144,11 +151,12 @@ export type OrganisationCatalogueMapData = {
 
 export function buildOrganisationCatalogueMapData(
   africanCountries: Array<readonly [string, string]>,
+  records: OrganisationCatalogueRecord[] = organisationCatalogueRecords,
 ): OrganisationCatalogueMapData {
   const iso2ByName = new Map(africanCountries.map(([iso2, name]) => [normalise(name), iso2]));
   const countries: OrganisationCatalogueMapData["countries"] = {};
   const recordsWithCountry = new Set<string>();
-  for (const record of organisationCatalogueRecords) {
+  for (const record of records) {
     for (const countryName of record.countriesActive) {
       const iso2 = iso2ByName.get(normalise(countryName));
       if (!iso2) continue;
@@ -188,9 +196,50 @@ export function queryOrganisationCatalogue({
   scope = "all",
   page = 1,
   pageSize = 60,
-}: OrganisationCatalogueQuery = {}): OrganisationCataloguePage {
+}: OrganisationCatalogueQuery = {}, records: OrganisationCatalogueRecord[] = organisationCatalogueRecords): OrganisationCataloguePage {
+  const filtered = filterOrganisationCatalogueRecords({
+    query,
+    role,
+    segment,
+    country,
+    headquarters,
+    scope,
+  }, records);
+  const safePageSize = Math.min(100, Math.max(1, Math.trunc(pageSize)));
+  const pageCount = Math.max(1, Math.ceil(filtered.length / safePageSize));
+  const safePage = Math.min(pageCount, Math.max(1, Math.trunc(page)));
+  return {
+    counts: {
+      total: records.length,
+      reviewedMatches: records.filter((record) => record.reviewState === "reviewed").length,
+      needsReview: records.filter((record) => record.reviewState === "needs_review").length,
+      africaHeadquartered: records.filter((record) => record.africaHeadquartered).length,
+    },
+    asOf: organisationCatalogue.asOf,
+    total: filtered.length,
+    page: safePage,
+    pageSize: safePageSize,
+    pageCount,
+    records: filtered.slice((safePage - 1) * safePageSize, safePage * safePageSize),
+    options: {
+      roles: uniqueSorted(records.flatMap((record) => record.roles)),
+      segments: uniqueSorted(records.flatMap((record) => record.segments)),
+      countries: uniqueSorted(records.flatMap((record) => record.countriesActive)),
+      headquarters: uniqueSorted(records.map((record) => record.headquartersCountry)),
+    },
+  };
+}
+
+export function filterOrganisationCatalogueRecords({
+  query = "",
+  role = "all",
+  segment = "all",
+  country = "all",
+  headquarters = "all",
+  scope = "all",
+}: OrganisationCatalogueQuery = {}, records: OrganisationCatalogueRecord[] = organisationCatalogueRecords) {
   const needle = normalise(query);
-  const filtered = organisationCatalogueRecords.filter((record) => {
+  return records.filter((record) => {
     if (role !== "all" && !record.roles.includes(role)) return false;
     if (segment !== "all" && !record.segments.includes(segment)) return false;
     if (country !== "all" && !record.countriesActive.includes(country)) return false;
@@ -214,24 +263,6 @@ export function queryOrganisationCatalogue({
       record.description,
     ].join(" ")).includes(needle);
   });
-  const safePageSize = Math.min(100, Math.max(1, Math.trunc(pageSize)));
-  const pageCount = Math.max(1, Math.ceil(filtered.length / safePageSize));
-  const safePage = Math.min(pageCount, Math.max(1, Math.trunc(page)));
-  return {
-    counts: organisationCatalogue.counts,
-    asOf: organisationCatalogue.asOf,
-    total: filtered.length,
-    page: safePage,
-    pageSize: safePageSize,
-    pageCount,
-    records: filtered.slice((safePage - 1) * safePageSize, safePage * safePageSize),
-    options: {
-      roles: catalogueRoles,
-      segments: catalogueSegments,
-      countries: catalogueCountries,
-      headquarters: catalogueHeadquarters,
-    },
-  };
 }
 
 function uniqueSorted(values: string[]) {

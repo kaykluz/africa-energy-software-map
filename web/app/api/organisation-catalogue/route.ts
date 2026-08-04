@@ -1,6 +1,8 @@
 import { queryOrganisationCatalogue } from "@/lib/organisation-catalogue";
+import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
 
 export async function GET(request: Request) {
+  const { catalogueRecords } = await loadPublicOrganisationRegistry();
   const params = new URL(request.url).searchParams;
   const page = integer(params.get("page"), 1);
   const pageSize = integer(params.get("pageSize"), 60);
@@ -13,10 +15,10 @@ export async function GET(request: Request) {
     scope: text(params.get("scope"), 30) || "all",
   };
   if (params.get("format") === "csv") {
-    const first = queryOrganisationCatalogue({ ...query, page: 1, pageSize: 100 });
+    const first = queryOrganisationCatalogue({ ...query, page: 1, pageSize: 100 }, catalogueRecords);
     const records = [...first.records];
     for (let current = 2; current <= first.pageCount; current += 1) {
-      records.push(...queryOrganisationCatalogue({ ...query, page: current, pageSize: 100 }).records);
+      records.push(...queryOrganisationCatalogue({ ...query, page: current, pageSize: 100 }, catalogueRecords).records);
     }
     return new Response(catalogueCsv(records), {
       headers: {
@@ -32,10 +34,10 @@ export async function GET(request: Request) {
       ...query,
       page,
       pageSize,
-    }),
+    }, catalogueRecords),
     {
       headers: {
-        "Cache-Control": "public, max-age=300, stale-while-revalidate=3600",
+        "Cache-Control": "public, max-age=0, must-revalidate",
         "X-Content-Type-Options": "nosniff",
       },
     },
@@ -62,7 +64,7 @@ function catalogueCsv(records: ReturnType<typeof queryOrganisationCatalogue>["re
     countries_active_or_available: record.countriesActive,
     technologies: record.technologies,
     status: record.lifecycle,
-    catalogue_status: record.reviewState === "reviewed" ? "Reviewed match" : "Review pending",
+    catalogue_status: record.reviewState === "reviewed" ? "Canonical" : "Review pending",
     evidence_confidence: record.confidence,
     last_checked: record.lastReviewed,
     source: record.sourceUrl,

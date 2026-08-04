@@ -10,6 +10,7 @@ export type ProductFilters = {
   category: string;
   evidence: string;
   country: string;
+  stage: string;
   origin: string;
   lifecycle: string;
   access: string;
@@ -45,6 +46,7 @@ export function filterProducts(
         product.evidence.includes(filters.evidence as EvidenceStatus)) &&
       (filters.country === "all" ||
         product.deploymentCountries.includes(filters.country)) &&
+      (filters.stage === "all" || product.stageId === filters.stage) &&
       (filters.origin === "all" ||
         product.origin === (filters.origin as OriginClassification)) &&
       (filters.lifecycle === "all" ||

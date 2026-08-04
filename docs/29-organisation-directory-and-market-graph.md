@@ -39,15 +39,22 @@ The catalogue is deliberately separate from the canonical reviewed release:
   discovery record. It is not an endorsement or a verified profile.
 - **Reviewed match** means the workbook identity reconciles to an existing
   canonical organisation profile.
-- **Accepted in `/review`** records an editorial decision but still does not
-  publish a canonical profile. Promotion requires a bounded repository data
-  pull request and independent review.
+- **Accepted or amended in `/review`** immediately materialises a live canonical
+  profile with a stable ID and URL. A bounded repository data pull request and
+  independent review are still required to include that record in an immutable
+  GitHub release snapshot.
 
 The private review workspace exposes every catalogue row. Editors can search
 and filter the full queue, open the direct source, then accept, amend, reject,
 mark duplicate or request more evidence. Accept and Amend require explicit
 source-opened, identity, classification and publication-safety checks. All
 decisions use optimistic versions and append-only audit events.
+
+Canonical therefore means one deduplicated, human-approved, source-linked
+identity that can be addressed by a stable internal ID and profile URL. It does
+not mean every statement about that organisation is independently evidenced.
+Deployment, office, availability and other presence claims keep their own
+evidence classes.
 
 Private editorial cells matching employment, ownership, competitor or
 conflict-style language were omitted when the public-safe catalogue was
@@ -67,9 +74,18 @@ is used instead of "company" because the data also includes public bodies,
 research communities and partnerships.
 
 The deployment map has a Software/Organisations object switch. Selecting an
-organisation does not infer a role such as EPC, developer or financier. Those
-roles remain future filterable fields on the organisation record, so adding
-market actors later will not create a tab for every role-by-sector combination.
+organisation does not infer a role such as EPC, developer or financier. Actor
+group, specific role, broad sector, energy market and origin are independent
+filters on canonical organisation records. The wider inclusion catalogue uses
+its available source fields—role, energy market, headquarters and review
+scope—without pretending that unreviewed listings have canonical taxonomy.
+
+The geographic map, equal-area grid, ranked countries, totals and selected-
+country panel all consume the same filtered dataset. Filter, presence layer,
+focused country and representation are reproducible URL parameters. A
+**Filtered directory** action carries the compatible filter state into
+`/organisations`, and each country panel adds its country constraint. Switching
+representation or presence layer does not silently broaden the result set.
 
 The compact global navigation is:
 
@@ -106,7 +122,8 @@ stable internal destination, its visible name links to that destination.
 | Segment or technology | Filtered Software or Organisations view, according to context |
 | Category or value-chain stage | Filtered Software view |
 | Project or transaction | Canonical project or transaction record when introduced |
-| Source title or publisher | Direct source URL or a future internal source record |
+| Source title | Direct source URL |
+| Source publisher | Canonical organisation record when the publisher identity is resolved |
 
 Names are linked in tables, cards, previews, map panels, relationship lists,
 profiles, search results and change history. A relationship should be traversable
@@ -118,6 +135,16 @@ Link only known identities. Do not guess a destination from a matching string,
 silently link a customer name to the wrong organisation, or treat two similar
 names as the same entity. Records without a stable destination remain plain text
 and enter the identity-resolution queue.
+
+The implemented resolver uses canonical names and reviewed aliases, normalises
+only punctuation, accents, case and spacing, and requires an exact result. When
+the same normalised label points to different product or organisation records,
+the label remains unresolved unless the field itself establishes the object
+type. Named customers without a canonical profile may link to an exact catalogue
+search result, but the interface does not present that search link as a resolved
+identity. Organisations accepted or amended in `/review` join the live canonical
+link index immediately; immutable release snapshots still follow the repository
+promotion workflow described above.
 
 Interaction rules:
 

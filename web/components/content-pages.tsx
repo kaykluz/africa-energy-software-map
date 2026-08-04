@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
+  africanCountries,
   categories,
   dataDistributions,
   deployments,
-  organisationAliasRecords,
   organisationPresenceRecords,
   organisations,
   products,
@@ -18,10 +18,17 @@ import { EvidenceStatusLabel } from "@/components/semantic-tags";
 import { OrganisationMark, ProductMark } from "@/components/brand-mark";
 import {
   organisationCatalogue,
-  organisationCatalogueRecords,
 } from "@/lib/organisation-catalogue";
+import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
+import { landscapeItems } from "@/lib/landscape-data";
+import {
+  organisationLinkIndex,
+  resolveLandscapeItemHref,
+  resolveOrganisationHref,
+} from "@/lib/entity-links";
 
-export function MethodologyPage() {
+export async function MethodologyPage() {
+  const { canonicalDirectory } = await loadPublicOrganisationRegistry();
   const sections = [
     ["scope", "Scope and exclusions"],
     ["taxonomy", "Entities and taxonomy"],
@@ -118,7 +125,7 @@ export function MethodologyPage() {
             </p>
             <div className="definition-pair">
               <div><strong>Listed</strong><p>Imported from a named directory or direct source and clearly marked when editorial review remains open.</p></div>
-              <div><strong>Reviewed</strong><p>Identity, source, classifications, relationships and publication safety have passed the human review workflow.</p></div>
+              <div><strong>Canonical</strong><p>A deduplicated identity with a stable profile URL, published after source, classification and safety checks.</p></div>
             </div>
           </ContentSection>
           <ContentSection id="evidence" heading="Evidence and source independence">
@@ -176,7 +183,7 @@ export function MethodologyPage() {
           <ContentSection id="current-release" heading="Current release">
             <p>
               Release {release.version} contains {products.length} reviewed products,
-              {" "}{organisations.length} reviewed organisations and{" "}
+              {" "}{canonicalDirectory.length} canonical organisations and{" "}
               {organisationCatalogue.counts.total.toLocaleString()} inclusion-catalogue listings,
               {" "}{deployments.length} country-safe
               deployment records, {organisationPresenceRecords.length} explicit organisation-presence
@@ -278,7 +285,8 @@ export function ContributeHubPage() {
   );
 }
 
-export function DataPage() {
+export async function DataPage() {
+  const { canonicalDirectory } = await loadPublicOrganisationRegistry();
   return (
     <main className="standard-width data-page" id="main-content" tabIndex={-1}>
       <header className="page-intro reading-intro">
@@ -304,7 +312,7 @@ export function DataPage() {
         <dl>
           <div><dt>Products</dt><dd>{products.length}</dd></div>
           <div><dt>Organisation listings</dt><dd>{organisationCatalogue.counts.total.toLocaleString()}</dd></div>
-          <div><dt>Reviewed organisations</dt><dd>{organisations.length}</dd></div>
+          <div><dt>Canonical organisations</dt><dd>{canonicalDirectory.length}</dd></div>
           <div><dt>Deployments</dt><dd>{deployments.length}</dd></div>
           <div><dt>Sources</dt><dd>{sources.length}</dd></div>
         </dl>
@@ -395,7 +403,13 @@ function distributionDescription(id: string) {
   }[id] ?? "Versioned release file.";
 }
 
-export function SearchResultsPage({ query }: { query: string }) {
+export async function SearchResultsPage({ query }: { query: string }) {
+  const { canonicalDirectory, catalogueRecords } = await loadPublicOrganisationRegistry();
+  const canonicalOrganisations = canonicalDirectory.map((record) => record.organisation);
+  const canonicalDirectoryById = new Map(
+    canonicalDirectory.map((record) => [record.organisation.id, record]),
+  );
+  const canonicalOrganisationLinks = organisationLinkIndex(canonicalDirectory);
   const term = normaliseQuery(query);
   const productResults = term
     ? products.filter((product) =>
@@ -411,7 +425,7 @@ export function SearchResultsPage({ query }: { query: string }) {
       )
     : [];
   const organisationResults = term
-    ? organisations.filter((organisation) =>
+    ? canonicalOrganisations.filter((organisation) =>
         normaliseQuery(
           [
             organisation.name,
@@ -420,9 +434,7 @@ export function SearchResultsPage({ query }: { query: string }) {
             organisation.origin,
             organisation.countryOfOrigin,
             organisation.headquarters,
-            ...organisationAliasRecords
-              .filter((alias) => alias.organisationId === organisation.id)
-              .map((alias) => alias.alias),
+            ...(canonicalDirectoryById.get(organisation.id)?.aliases ?? []),
           ].join(" "),
         ).includes(term),
       )
@@ -432,8 +444,33 @@ export function SearchResultsPage({ query }: { query: string }) {
         normaliseQuery(category.name).includes(term),
       )
     : [];
+  const countryResults = term
+    ? africanCountries.filter(([, name]) => normaliseQuery(name).includes(term))
+    : [];
+  const canonicalResultHrefs = new Set([
+    ...productResults.map((product) => `/products/${product.slug}`),
+    ...organisationResults.map((organisation) => `/organisations/${organisation.slug}`),
+  ]);
+  const landscapeResults = term
+    ? landscapeItems
+        .filter((item) => normaliseQuery([
+          item.name,
+          item.parent ?? "",
+          ...(item.aliases ?? []),
+          item.summaryAsSubmitted,
+          ...item.geographies,
+        ].join(" ")).includes(term))
+        .map((item) => ({
+          href: resolveLandscapeItemHref(item, canonicalOrganisationLinks) ?? `/landscape?q=${encodeURIComponent(item.name)}`,
+          item,
+          parentHref: item.parent
+            ? resolveOrganisationHref(item.parent, canonicalOrganisationLinks)
+            : undefined,
+        }))
+        .filter((result) => !canonicalResultHrefs.has(result.href))
+    : [];
   const catalogueResults = term
-    ? organisationCatalogueRecords
+    ? catalogueRecords
         .filter((record) => record.reviewState === "needs_review")
         .filter((record) =>
           normaliseQuery([
@@ -464,6 +501,8 @@ export function SearchResultsPage({ query }: { query: string }) {
       ) : productResults.length ||
         organisationResults.length ||
         categoryResults.length ||
+        countryResults.length ||
+        landscapeResults.length ||
         catalogueResults.length ? (
         <div className="search-groups">
           {productResults.length ? (
@@ -527,6 +566,28 @@ export function SearchResultsPage({ query }: { query: string }) {
             <section><h2>Capabilities <span>{categoryResults.length}</span></h2>
               {categoryResults.map((category) => (
                 <Link href={`/?category=${category.id}`} key={category.id}><span><strong>{category.name}</strong><small>Value-chain category</small></span><span>View in Explore →</span></Link>
+              ))}
+            </section>
+          ) : null}
+          {countryResults.length ? (
+            <section><h2>Countries <span>{countryResults.length}</span></h2>
+              {countryResults.map(([iso2, name]) => (
+                <Link href={`/countries/${iso2.toLowerCase()}`} key={iso2}><span><strong>{name}</strong><small>{iso2}</small></span><span>Open country →</span></Link>
+              ))}
+            </section>
+          ) : null}
+          {landscapeResults.length ? (
+            <section><h2>Software wall <span>{landscapeResults.length}</span></h2>
+              {landscapeResults.slice(0, 100).map(({ href, item, parentHref }) => (
+                <article className="search-entity-row" key={item.id}>
+                  <span>
+                    <Link href={href}><strong>{item.name}</strong></Link>
+                    {item.parent ? (
+                      parentHref ? <Link href={parentHref}><small>{item.parent}</small></Link> : <small>{item.parent}</small>
+                    ) : <small>Full catalogue listing</small>}
+                  </span>
+                  <Link href={href}>Open listing →</Link>
+                </article>
               ))}
             </section>
           ) : null}

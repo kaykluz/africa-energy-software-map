@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { CountryProfile } from "@/components/record-pages";
+import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -20,5 +23,6 @@ export default async function CountryPage({
   params: Promise<{ iso2: string }>;
 }) {
   const { iso2 } = await params;
-  return <CountryProfile iso2={iso2} />;
+  const { canonicalDirectory } = await loadPublicOrganisationRegistry();
+  return <CountryProfile directory={canonicalDirectory} iso2={iso2} />;
 }

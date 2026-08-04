@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { SearchResultsPage } from "@/components/content-pages";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Search",
   robots: { index: false, follow: true },

@@ -1,5 +1,8 @@
 import { getD1Database } from "./index";
-import { organisationCatalogueById } from "@/lib/organisation-catalogue";
+import {
+  catalogueCanonicalIdentity,
+  organisationCatalogueById,
+} from "@/lib/organisation-catalogue";
 import { normalizeSourceUrl } from "@/lib/source-url";
 
 export const organisationCatalogueDecisions = [
@@ -35,6 +38,8 @@ export type OrganisationCatalogueAmendableField =
   (typeof organisationCatalogueAmendableFields)[number];
 
 export type OrganisationCatalogueReviewRecord = {
+  canonicalHref?: string;
+  canonicalOrganisationId?: string;
   candidateId: string;
   decision: OrganisationCatalogueDecision;
   amendments: Partial<Record<OrganisationCatalogueAmendableField, string>>;
@@ -220,8 +225,16 @@ async function findReview(database: D1Database, candidateId: string) {
 function normaliseReview(
   record: Omit<OrganisationCatalogueReviewRecord, "amendments"> & { amendmentsJson: string | null },
 ): OrganisationCatalogueReviewRecord {
+  const candidate = organisationCatalogueById.get(record.candidateId);
+  const canonicalIdentity = candidate &&
+    candidate.reconciliation.status !== "reviewed_match" &&
+    ["accept", "amend"].includes(record.decision)
+      ? catalogueCanonicalIdentity(candidate)
+      : null;
   return {
     ...record,
+    canonicalHref: canonicalIdentity?.href,
+    canonicalOrganisationId: canonicalIdentity?.organisationId,
     amendments: record.amendmentsJson
       ? (JSON.parse(record.amendmentsJson) as OrganisationCatalogueReviewRecord["amendments"])
       : {},

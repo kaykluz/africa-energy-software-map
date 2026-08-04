@@ -52,15 +52,17 @@ human-reviewed data change passes the publication gate. See
 [contribution intake and moderation](docs/21-contribution-intake-and-moderation.md).
 Authorised editors can now review candidate assertions, source rights, and
 incoming contributions in a private
-[`/review` workspace](docs/22-review-workspace.md). Its decisions are audited
-but never publish data directly.
+[`/review` workspace](docs/22-review-workspace.md). Its decisions are audited.
+Organisation-catalogue Accept or Amend decisions materialise live canonical
+profiles directly; assertion, source, contribution and bulk decisions do not.
 Bulk candidates can be accepted, amended, rejected or held for more evidence.
 Approved rows become source-linked atomic assertions in that same private
 workspace and still require assertion-level review before a release pull
 request can be prepared.
 The same workspace now exposes every organisation-catalogue row in a dedicated
-queue. Organisation decisions are versioned and audited but still require a
-bounded, independently reviewed data pull request before canonical publication.
+queue. Organisation decisions are versioned and audited. Accept or Amend updates
+the live canonical registry immediately, while a bounded, independently reviewed
+data pull request is still required for an immutable GitHub release snapshot.
 Scheduled retention, source-first review preparation, proposal-only research
 readiness, and the bounded Batch 002 plan are documented in
 [automation and review assist](docs/23-automation-and-review-assist.md).

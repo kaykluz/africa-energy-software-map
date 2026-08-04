@@ -500,8 +500,11 @@ export async function exportReviewPackage(reviewerEmail: string) {
   const rejectedCandidates = bulkCandidates.filter(
     (record) => record.review?.decision === "reject",
   ).length;
+  const liveCanonicalOrganisations = workspace.organisationCatalogueReviews.filter(
+    (review) => review.canonicalHref,
+  ).length;
   return {
-    schemaVersion: "1.2.0",
+    schemaVersion: "1.3.0",
     batchId: reviewBatchId,
     generatedAt: new Date().toISOString(),
     generatedBy: reviewerEmail,
@@ -517,6 +520,7 @@ export async function exportReviewPackage(reviewerEmail: string) {
       promotedAssertions: workspace.promotedAssertions.length,
       promotedSources: workspace.promotedSources.length,
       organisationCatalogueDecisions: workspace.organisationCatalogueReviews.length,
+      liveCanonicalOrganisations,
       containsPublicDataChanges: false,
       publicationAuthorised: false,
     },

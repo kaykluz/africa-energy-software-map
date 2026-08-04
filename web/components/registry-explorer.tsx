@@ -18,6 +18,7 @@ import {
 } from "@/lib/registry-data";
 import {
   filterProducts,
+  normaliseQuery,
   paginate,
   sortProducts,
   type ProductSort,
@@ -39,10 +40,26 @@ import {
 } from "react";
 import africaMapJson from "@/generated/africa-map-paths.json";
 import {
+  organisationEcosystemGroupName,
+  organisationEcosystemGroups,
   organisationDirectory,
+  organisationRoles,
+  organisationRoleName,
+  organisationSegments,
+  organisationSegmentName,
+  organisationSectors,
+  organisationSectorName,
   type OrganisationDirectoryRecord,
 } from "@/lib/organisation-data";
-import type { OrganisationCatalogueMapData } from "@/lib/organisation-catalogue";
+import type {
+  OrganisationCatalogueMapData,
+  OrganisationCataloguePage,
+} from "@/lib/organisation-catalogue";
+import {
+  organisationLinkIndex,
+  resolveOrganisationHref,
+  type ExactLinkIndex,
+} from "@/lib/entity-links";
 
 export type RegistryView = "stack" | "deployments" | "directory";
 
@@ -75,24 +92,48 @@ export function RegistryExplorer({
   initialCategory = "all",
   initialEvidence = "all",
   initialCountry = "all",
+  initialStage = "all",
   initialOrigin = "all",
   initialLifecycle = "all",
   initialAccess = "all",
   initialObject = "software",
   initialPresence = "software_linked",
+  initialFocus = "NG",
+  initialRepresentation = "map",
+  initialGroup = "all",
+  initialRole = "all",
+  initialSector = "all",
+  initialSegment = "all",
+  initialOrganisationOrigin = "all",
+  initialHeadquarters = "all",
+  initialScope = "all",
   catalogueMapData,
+  catalogueMapOptions,
+  canonicalOrganisationDirectory = organisationDirectory,
 }: {
   view: RegistryView;
   initialQuery?: string;
   initialCategory?: string;
   initialEvidence?: string;
   initialCountry?: string;
+  initialStage?: string;
   initialOrigin?: string;
   initialLifecycle?: string;
   initialAccess?: string;
   initialObject?: string;
   initialPresence?: string;
+  initialFocus?: string;
+  initialRepresentation?: string;
+  initialGroup?: string;
+  initialRole?: string;
+  initialSector?: string;
+  initialSegment?: string;
+  initialOrganisationOrigin?: string;
+  initialHeadquarters?: string;
+  initialScope?: string;
   catalogueMapData?: OrganisationCatalogueMapData;
+  catalogueMapOptions?: OrganisationCataloguePage["options"];
+  canonicalOrganisationDirectory?: OrganisationDirectoryRecord[];
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -100,12 +141,36 @@ export function RegistryExplorer({
   const [categoryFilter, setCategoryFilter] = useState(initialCategory);
   const [evidenceFilter, setEvidenceFilter] = useState(initialEvidence);
   const [countryFilter, setCountryFilter] = useState(initialCountry);
+  const [stageFilter, setStageFilter] = useState(initialStage);
   const [originFilter, setOriginFilter] = useState(initialOrigin);
   const [lifecycleFilter, setLifecycleFilter] = useState(initialLifecycle);
   const [accessFilter, setAccessFilter] = useState(initialAccess);
+  const [mapObject, setMapObject] = useState<"software" | "organisations">(
+    initialObject === "organisations" ? "organisations" : "software",
+  );
+  const [organisationLayer, setOrganisationLayer] = useState<OrganisationMapLayer>(
+    isOrganisationMapLayer(initialPresence) ? initialPresence : "software_linked",
+  );
+  const [groupFilter, setGroupFilter] = useState(initialGroup);
+  const [roleFilter, setRoleFilter] = useState(initialRole);
+  const [sectorFilter, setSectorFilter] = useState(initialSector);
+  const [segmentFilter, setSegmentFilter] = useState(initialSegment);
+  const [organisationOriginFilter, setOrganisationOriginFilter] = useState(initialOrganisationOrigin);
+  const [headquartersFilter, setHeadquartersFilter] = useState(initialHeadquarters);
+  const [scopeFilter, setScopeFilter] = useState(initialScope);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const openerRef = useRef<HTMLElement | null>(null);
+  const canonicalOrganisationLinks = useMemo(
+    () => organisationLinkIndex(canonicalOrganisationDirectory),
+    [canonicalOrganisationDirectory],
+  );
+  const organisationOrigins = useMemo(
+    () => Array.from(new Set(
+      canonicalOrganisationDirectory.map((record) => record.organisation.origin),
+    )).sort(),
+    [canonicalOrganisationDirectory],
+  );
 
   useEffect(() => {
     const close = (event: KeyboardEvent) => {
@@ -127,6 +192,7 @@ export function RegistryExplorer({
       category: categoryFilter,
       evidence: evidenceFilter,
       country: countryFilter,
+      stage: stageFilter,
       origin: originFilter,
       lifecycle: lifecycleFilter,
       access: accessFilter,
@@ -139,6 +205,42 @@ export function RegistryExplorer({
     lifecycleFilter,
     originFilter,
     query,
+    stageFilter,
+  ]);
+
+  const filteredOrganisationRecords = useMemo(() => {
+    const needle = normaliseQuery(query);
+    return canonicalOrganisationDirectory.filter((record) => {
+      const searchable = normaliseQuery([
+        record.organisation.name,
+        record.organisation.type,
+        record.organisation.description,
+        record.organisation.origin,
+        record.organisation.countryOfOrigin,
+        record.organisation.headquarters,
+        ...record.aliases,
+        ...record.roleIds.map(organisationRoleName),
+        ...record.sectorIds.map(organisationSectorName),
+        ...record.segmentIds.map(organisationSegmentName),
+        ...record.ownedProducts.map((product) => product.name),
+      ].join(" "));
+      return (
+        (!needle || searchable.includes(needle)) &&
+        (groupFilter === "all" || record.ecosystemGroupIds.includes(groupFilter)) &&
+        (roleFilter === "all" || record.roleIds.includes(roleFilter)) &&
+        (sectorFilter === "all" || record.sectorIds.includes(sectorFilter)) &&
+        (segmentFilter === "all" || record.segmentIds.includes(segmentFilter)) &&
+        (organisationOriginFilter === "all" || record.organisation.origin === organisationOriginFilter)
+      );
+    });
+  }, [
+    canonicalOrganisationDirectory,
+    groupFilter,
+    organisationOriginFilter,
+    query,
+    roleFilter,
+    sectorFilter,
+    segmentFilter,
   ]);
 
   function updateUrl(next: {
@@ -146,9 +248,21 @@ export function RegistryExplorer({
     category?: string;
     evidence?: string;
     country?: string;
+    stage?: string;
     origin?: string;
     lifecycle?: string;
     access?: string;
+    object?: "software" | "organisations";
+    presence?: OrganisationMapLayer;
+    focus?: string;
+    representation?: string;
+    group?: string;
+    role?: string;
+    sector?: string;
+    segment?: string;
+    orgOrigin?: string;
+    headquarters?: string;
+    scope?: string;
   }) {
     const params = new URLSearchParams();
     const values = {
@@ -156,17 +270,43 @@ export function RegistryExplorer({
       category: next.category ?? categoryFilter,
       evidence: next.evidence ?? evidenceFilter,
       country: next.country ?? countryFilter,
+      stage: next.stage ?? stageFilter,
       origin: next.origin ?? originFilter,
       lifecycle: next.lifecycle ?? lifecycleFilter,
       access: next.access ?? accessFilter,
+      object: next.object ?? mapObject,
+      presence: next.presence ?? organisationLayer,
+      focus: next.focus ?? initialFocus,
+      representation: next.representation ?? initialRepresentation,
+      group: next.group ?? groupFilter,
+      role: next.role ?? roleFilter,
+      sector: next.sector ?? sectorFilter,
+      segment: next.segment ?? segmentFilter,
+      orgOrigin: next.orgOrigin ?? organisationOriginFilter,
+      headquarters: next.headquarters ?? headquartersFilter,
+      scope: next.scope ?? scopeFilter,
     };
     if (values.q.trim()) params.set("q", values.q.trim());
     if (values.category !== "all") params.set("category", values.category);
     if (values.evidence !== "all") params.set("evidence", values.evidence);
     if (values.country !== "all") params.set("country", values.country);
+    if (values.stage !== "all") params.set("stage", values.stage);
     if (values.origin !== "all") params.set("origin", values.origin);
     if (values.lifecycle !== "all") params.set("lifecycle", values.lifecycle);
     if (values.access !== "all") params.set("access", values.access);
+    if (view === "deployments") {
+      if (values.object !== "software") params.set("object", values.object);
+      if (values.presence !== "software_linked") params.set("presence", values.presence);
+      if (values.focus !== "NG") params.set("focus", values.focus);
+      if (values.representation !== "map") params.set("representation", values.representation);
+      if (values.group !== "all") params.set("group", values.group);
+      if (values.role !== "all") params.set("role", values.role);
+      if (values.sector !== "all") params.set("sector", values.sector);
+      if (values.segment !== "all") params.set("segment", values.segment);
+      if (values.orgOrigin !== "all") params.set("orgOrigin", values.orgOrigin);
+      if (values.headquarters !== "all") params.set("headquarters", values.headquarters);
+      if (values.scope !== "all") params.set("scope", values.scope);
+    }
     const search = params.toString();
     router.replace(search ? `${pathname}?${search}` : pathname, {
       scroll: false,
@@ -175,13 +315,43 @@ export function RegistryExplorer({
 
   function clearFilters() {
     setQuery("");
+    if (view === "deployments" && mapObject === "organisations") {
+      setGroupFilter("all");
+      setRoleFilter("all");
+      setSectorFilter("all");
+      setSegmentFilter("all");
+      setOrganisationOriginFilter("all");
+      setHeadquartersFilter("all");
+      setScopeFilter("all");
+      updateUrl({
+        q: "",
+        group: "all",
+        role: "all",
+        sector: "all",
+        segment: "all",
+        orgOrigin: "all",
+        headquarters: "all",
+        scope: "all",
+      });
+      return;
+    }
     setCategoryFilter("all");
     setEvidenceFilter("all");
     setCountryFilter("all");
+    setStageFilter("all");
     setOriginFilter("all");
     setLifecycleFilter("all");
     setAccessFilter("all");
-    router.replace(pathname, { scroll: false });
+    updateUrl({
+      q: "",
+      category: "all",
+      evidence: "all",
+      country: "all",
+      stage: "all",
+      origin: "all",
+      lifecycle: "all",
+      access: "all",
+    });
   }
 
   function openProduct(product: Product, element: HTMLElement) {
@@ -189,7 +359,7 @@ export function RegistryExplorer({
     setSelectedProduct(product);
   }
 
-  const activeFilters = [
+  const softwareActiveFilters = [
     categoryFilter !== "all"
       ? categories.find((category) => category.id === categoryFilter)?.name
       : null,
@@ -198,6 +368,9 @@ export function RegistryExplorer({
       : null,
     countryFilter !== "all"
       ? africanCountries.find(([iso2]) => iso2 === countryFilter)?.[1]
+      : null,
+    stageFilter !== "all"
+      ? stages.find((stage) => stage.id === stageFilter)?.name
       : null,
     originFilter !== "all"
       ? originLabels[originFilter as keyof typeof originLabels]
@@ -208,17 +381,56 @@ export function RegistryExplorer({
     accessFilter !== "all" ? accessFilter : null,
   ].filter(Boolean) as string[];
 
+  const organisationActiveFilters = organisationLayer === "catalogue"
+    ? [
+        roleFilter !== "all" ? roleFilter : null,
+        segmentFilter !== "all" ? segmentFilter : null,
+        headquartersFilter !== "all" ? `HQ: ${headquartersFilter}` : null,
+        scopeFilter !== "all" ? organisationScopeLabel(scopeFilter) : null,
+      ].filter(Boolean) as string[]
+    : [
+        groupFilter !== "all" ? organisationEcosystemGroupName(groupFilter) : null,
+        roleFilter !== "all" ? organisationRoleName(roleFilter) : null,
+        sectorFilter !== "all" ? organisationSectorName(sectorFilter) : null,
+        segmentFilter !== "all" ? organisationSegmentName(segmentFilter) : null,
+        organisationOriginFilter !== "all" ? organisationOriginFilter : null,
+      ].filter(Boolean) as string[];
+  const activeFilters = view === "deployments" && mapObject === "organisations"
+    ? organisationActiveFilters
+    : softwareActiveFilters;
+
   const preservedSearch = (() => {
     const params = new URLSearchParams();
     if (query.trim()) params.set("q", query.trim());
     if (categoryFilter !== "all") params.set("category", categoryFilter);
     if (evidenceFilter !== "all") params.set("evidence", evidenceFilter);
     if (countryFilter !== "all") params.set("country", countryFilter);
+    if (stageFilter !== "all") params.set("stage", stageFilter);
     if (originFilter !== "all") params.set("origin", originFilter);
     if (lifecycleFilter !== "all") params.set("lifecycle", lifecycleFilter);
     if (accessFilter !== "all") params.set("access", accessFilter);
     return params.toString();
   })();
+
+  const organisationResultCount = organisationLayer === "catalogue"
+    ? (catalogueMapData ?? emptyCatalogueMapData).totalWithDocumentedCountry
+    : filteredOrganisationRecords.filter(
+        (record) => organisationLayerCountries(record, organisationLayer).length,
+      ).length;
+  const resultCount = view === "deployments" && mapObject === "organisations"
+    ? organisationResultCount
+    : filteredProducts.length;
+  const organisationDirectoryHref = buildOrganisationDirectoryHref({
+    group: groupFilter,
+    headquarters: headquartersFilter,
+    layer: organisationLayer,
+    origin: organisationOriginFilter,
+    query,
+    role: roleFilter,
+    scope: scopeFilter,
+    sector: sectorFilter,
+    segment: segmentFilter,
+  });
 
   const meta = viewMeta[view];
 
@@ -280,7 +492,7 @@ export function RegistryExplorer({
         clearFilters={clearFilters}
         filtersOpen={filtersOpen}
         query={query}
-        resultCount={filteredProducts.length}
+        resultCount={resultCount}
         setFiltersOpen={setFiltersOpen}
         setQuery={(value) => setQuery(value)}
         submitQuery={() => updateUrl({ q: query })}
@@ -289,13 +501,25 @@ export function RegistryExplorer({
       {filtersOpen ? (
         <FilterPanel
           categoryFilter={categoryFilter}
+          catalogueMode={organisationLayer === "catalogue"}
+          catalogueOptions={catalogueMapOptions}
           close={() => setFiltersOpen(false)}
           countryFilter={countryFilter}
           evidenceFilter={evidenceFilter}
           originFilter={originFilter}
           lifecycleFilter={lifecycleFilter}
           accessFilter={accessFilter}
-          resultCount={filteredProducts.length}
+          groupFilter={groupFilter}
+          headquartersFilter={headquartersFilter}
+          organisationMode={view === "deployments" && mapObject === "organisations"}
+          organisationOriginFilter={organisationOriginFilter}
+          organisationOrigins={organisationOrigins}
+          resultCount={resultCount}
+          roleFilter={roleFilter}
+          scopeFilter={scopeFilter}
+          sectorFilter={sectorFilter}
+          segmentFilter={segmentFilter}
+          stageFilter={stageFilter}
           setCategoryFilter={(value) => {
             setCategoryFilter(value);
             updateUrl({ category: value });
@@ -303,6 +527,10 @@ export function RegistryExplorer({
           setCountryFilter={(value) => {
             setCountryFilter(value);
             updateUrl({ country: value });
+          }}
+          setStageFilter={(value) => {
+            setStageFilter(value);
+            updateUrl({ stage: value });
           }}
           setEvidenceFilter={(value) => {
             setEvidenceFilter(value);
@@ -320,6 +548,34 @@ export function RegistryExplorer({
             setAccessFilter(value);
             updateUrl({ access: value });
           }}
+          setGroupFilter={(value) => {
+            setGroupFilter(value);
+            updateUrl({ group: value });
+          }}
+          setRoleFilter={(value) => {
+            setRoleFilter(value);
+            updateUrl({ role: value });
+          }}
+          setSectorFilter={(value) => {
+            setSectorFilter(value);
+            updateUrl({ sector: value });
+          }}
+          setSegmentFilter={(value) => {
+            setSegmentFilter(value);
+            updateUrl({ segment: value });
+          }}
+          setOrganisationOriginFilter={(value) => {
+            setOrganisationOriginFilter(value);
+            updateUrl({ orgOrigin: value });
+          }}
+          setHeadquartersFilter={(value) => {
+            setHeadquartersFilter(value);
+            updateUrl({ headquarters: value });
+          }}
+          setScopeFilter={(value) => {
+            setScopeFilter(value);
+            updateUrl({ scope: value });
+          }}
         />
       ) : null}
 
@@ -335,10 +591,47 @@ export function RegistryExplorer({
       {view === "deployments" ? (
         <DeploymentsView
           catalogueMapData={catalogueMapData ?? emptyCatalogueMapData}
+          allOrganisationRecords={canonicalOrganisationDirectory}
+          filteredOrganisationRecords={filteredOrganisationRecords}
+          organisationLinks={canonicalOrganisationLinks}
           filteredProducts={filteredProducts}
-          initialCountry={countryFilter}
-          initialObject={initialObject}
-          initialPresence={initialPresence}
+          initialFocus={initialFocus}
+          initialRepresentation={initialRepresentation}
+          objectMode={mapObject}
+          organisationDirectoryHref={organisationDirectoryHref}
+          organisationLayer={organisationLayer}
+          onFocusCountry={(focus) => updateUrl({ focus })}
+          onObjectModeChange={(object) => {
+            setMapObject(object);
+            updateUrl({ object });
+          }}
+          onOrganisationLayerChange={(presence) => {
+            const crossesCatalogueBoundary =
+              (organisationLayer === "catalogue") !== (presence === "catalogue");
+            setOrganisationLayer(presence);
+            if (crossesCatalogueBoundary) {
+              setGroupFilter("all");
+              setRoleFilter("all");
+              setSectorFilter("all");
+              setSegmentFilter("all");
+              setOrganisationOriginFilter("all");
+              setHeadquartersFilter("all");
+              setScopeFilter("all");
+            }
+            updateUrl({
+              presence,
+              ...(crossesCatalogueBoundary ? {
+                group: "all",
+                role: "all",
+                sector: "all",
+                segment: "all",
+                orgOrigin: "all",
+                headquarters: "all",
+                scope: "all",
+              } : {}),
+            });
+          }}
+          onRepresentationChange={(representation) => updateUrl({ representation })}
           onOpenProduct={openProduct}
           preservedSearch={preservedSearch}
         />
@@ -358,6 +651,7 @@ export function RegistryExplorer({
             openerRef.current?.focus();
           }}
           product={selectedProduct}
+          organisationLinks={canonicalOrganisationLinks}
         />
       ) : null}
     </main>
@@ -430,34 +724,74 @@ function CommandBar({
 
 function FilterPanel({
   accessFilter,
+  catalogueMode,
+  catalogueOptions,
   categoryFilter,
   close,
   countryFilter,
   evidenceFilter,
+  groupFilter,
+  headquartersFilter,
   lifecycleFilter,
+  organisationMode,
+  organisationOriginFilter,
+  organisationOrigins,
   originFilter,
   resultCount,
+  roleFilter,
+  scopeFilter,
+  sectorFilter,
+  segmentFilter,
   setAccessFilter,
   setCategoryFilter,
   setCountryFilter,
   setEvidenceFilter,
+  setGroupFilter,
+  setHeadquartersFilter,
   setLifecycleFilter,
+  setOrganisationOriginFilter,
   setOriginFilter,
+  setRoleFilter,
+  setScopeFilter,
+  setSectorFilter,
+  setSegmentFilter,
+  setStageFilter,
+  stageFilter,
 }: {
   accessFilter: string;
+  catalogueMode: boolean;
+  catalogueOptions?: OrganisationCataloguePage["options"];
   categoryFilter: string;
   close: () => void;
   countryFilter: string;
   evidenceFilter: string;
+  groupFilter: string;
+  headquartersFilter: string;
   lifecycleFilter: string;
+  organisationMode: boolean;
+  organisationOriginFilter: string;
+  organisationOrigins: string[];
   originFilter: string;
   resultCount: number;
+  roleFilter: string;
+  scopeFilter: string;
+  sectorFilter: string;
+  segmentFilter: string;
   setAccessFilter: (value: string) => void;
   setCategoryFilter: (value: string) => void;
   setCountryFilter: (value: string) => void;
   setEvidenceFilter: (value: string) => void;
+  setGroupFilter: (value: string) => void;
+  setHeadquartersFilter: (value: string) => void;
   setLifecycleFilter: (value: string) => void;
+  setOrganisationOriginFilter: (value: string) => void;
   setOriginFilter: (value: string) => void;
+  setRoleFilter: (value: string) => void;
+  setScopeFilter: (value: string) => void;
+  setSectorFilter: (value: string) => void;
+  setSegmentFilter: (value: string) => void;
+  setStageFilter: (value: string) => void;
+  stageFilter: string;
 }) {
   const accessModels = Array.from(
     new Set(products.map((product) => product.accessModel)),
@@ -475,86 +809,87 @@ function FilterPanel({
         role="dialog"
       >
         <div className="v2-sheet-top">
-          <span id="v2-filter-title">Refine</span>
+          <span id="v2-filter-title">Filter {organisationMode ? "organisations" : "software"}</span>
           <button onClick={close} type="button">Close</button>
         </div>
         <div className="v2-filter-fields">
-          <label>
-            <span>Country</span>
-            <select
-              onChange={(event) => setCountryFilter(event.target.value)}
-              value={countryFilter}
-            >
-              <option value="all">All countries</option>
-              {africanCountries.map(([iso2, name]) => (
-                <option key={iso2} value={iso2}>{name}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span>Category</span>
-            <select
-              onChange={(event) => setCategoryFilter(event.target.value)}
-              value={categoryFilter}
-            >
-              <option value="all">All categories</option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span>Evidence</span>
-            <select
-              onChange={(event) => setEvidenceFilter(event.target.value)}
-              value={evidenceFilter}
-            >
-              <option value="all">All evidence</option>
-              {Object.entries(evidenceLabels).map(([value, label]) => (
-                <option key={value} value={value}>{label}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span>Origin</span>
-            <select
-              onChange={(event) => setOriginFilter(event.target.value)}
-              value={originFilter}
-            >
-              <option value="all">All origins</option>
-              {Object.entries(originLabels).map(([value, label]) => (
-                <option key={value} value={value}>{label}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span>Lifecycle</span>
-            <select
-              onChange={(event) => setLifecycleFilter(event.target.value)}
-              value={lifecycleFilter}
-            >
-              <option value="all">All lifecycle states</option>
-              {lifecycleStates.map((value) => (
-                <option key={value} value={value}>
-                  {value.replaceAll("_", " ")}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span>Access</span>
-            <select
-              onChange={(event) => setAccessFilter(event.target.value)}
-              value={accessFilter}
-            >
-              <option value="all">All access models</option>
-              {accessModels.map((value) => (
-                <option key={value} value={value}>{value}</option>
-              ))}
-            </select>
-          </label>
+          {organisationMode ? catalogueMode ? (
+            <>
+              <FilterSelect label="Actor role" onChange={setRoleFilter} value={roleFilter}>
+                <option value="all">All actor roles</option>
+                {(catalogueOptions?.roles ?? []).map((value) => <option key={value} value={value}>{value}</option>)}
+              </FilterSelect>
+              <FilterSelect label="Energy market" onChange={setSegmentFilter} value={segmentFilter}>
+                <option value="all">All energy markets</option>
+                {(catalogueOptions?.segments ?? []).map((value) => <option key={value} value={value}>{value}</option>)}
+              </FilterSelect>
+              <FilterSelect label="Headquarters" onChange={setHeadquartersFilter} value={headquartersFilter}>
+                <option value="all">All headquarters</option>
+                {(catalogueOptions?.headquarters ?? []).map((value) => <option key={value} value={value}>{value}</option>)}
+              </FilterSelect>
+              <FilterSelect label="Review layer" onChange={setScopeFilter} value={scopeFilter}>
+                <option value="all">All listings</option>
+                <option value="africa_hq">Africa-headquartered</option>
+                <option value="international">International, active in Africa</option>
+                <option value="reviewed">Canonical profiles</option>
+                <option value="pending">Review pending</option>
+              </FilterSelect>
+            </>
+          ) : (
+            <>
+              <FilterSelect label="Actor group" onChange={setGroupFilter} value={groupFilter}>
+                <option value="all">All actor groups</option>
+                {organisationEcosystemGroups.map((value) => <option key={value.id} value={value.id}>{value.name}</option>)}
+              </FilterSelect>
+              <FilterSelect label="Specific role" onChange={setRoleFilter} value={roleFilter}>
+                <option value="all">All specific roles</option>
+                {organisationRoles.map((value) => <option key={value.id} value={value.id}>{value.name}</option>)}
+              </FilterSelect>
+              <FilterSelect label="Broad sector" onChange={setSectorFilter} value={sectorFilter}>
+                <option value="all">All broad sectors</option>
+                {organisationSectors.map((value) => <option key={value.id} value={value.id}>{value.name}</option>)}
+              </FilterSelect>
+              <FilterSelect label="Energy market" onChange={setSegmentFilter} value={segmentFilter}>
+                <option value="all">All energy markets</option>
+                {organisationSegments.map((value) => <option key={value.id} value={value.id}>{value.name}</option>)}
+              </FilterSelect>
+              <FilterSelect label="Organisation origin" onChange={setOrganisationOriginFilter} value={organisationOriginFilter}>
+                <option value="all">All origins</option>
+                {organisationOrigins.map((value) => <option key={value} value={value}>{value}</option>)}
+              </FilterSelect>
+            </>
+          ) : (
+            <>
+              <FilterSelect label="Country" onChange={setCountryFilter} value={countryFilter}>
+                <option value="all">All countries</option>
+                {africanCountries.map(([iso2, name]) => <option key={iso2} value={iso2}>{name}</option>)}
+              </FilterSelect>
+              <FilterSelect label="Stage" onChange={setStageFilter} value={stageFilter}>
+                <option value="all">All stages</option>
+                {stages.map((stage) => <option key={stage.id} value={stage.id}>{stage.name}</option>)}
+              </FilterSelect>
+              <FilterSelect label="Category" onChange={setCategoryFilter} value={categoryFilter}>
+                <option value="all">All categories</option>
+                {categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}
+              </FilterSelect>
+              <FilterSelect label="Evidence" onChange={setEvidenceFilter} value={evidenceFilter}>
+                <option value="all">All evidence</option>
+                {Object.entries(evidenceLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+              </FilterSelect>
+              <FilterSelect label="Origin" onChange={setOriginFilter} value={originFilter}>
+                <option value="all">All origins</option>
+                {Object.entries(originLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+              </FilterSelect>
+              <FilterSelect label="Lifecycle" onChange={setLifecycleFilter} value={lifecycleFilter}>
+                <option value="all">All lifecycle states</option>
+                {lifecycleStates.map((value) => <option key={value} value={value}>{value.replaceAll("_", " ")}</option>)}
+              </FilterSelect>
+              <FilterSelect label="Access" onChange={setAccessFilter} value={accessFilter}>
+                <option value="all">All access models</option>
+                {accessModels.map((value) => <option key={value} value={value}>{value}</option>)}
+              </FilterSelect>
+            </>
+          )}
         </div>
         <button className="v2-panel-apply" onClick={close} type="button">
           Show {resultCount} {resultCount === 1 ? "result" : "results"}
@@ -562,6 +897,27 @@ function FilterPanel({
         </button>
       </section>
     </div>
+  );
+}
+
+function FilterSelect({
+  children,
+  label,
+  onChange,
+  value,
+}: {
+  children: React.ReactNode;
+  label: string;
+  onChange: (value: string) => void;
+  value: string;
+}) {
+  return (
+    <label>
+      <span>{label}</span>
+      <select onChange={(event) => onChange(event.target.value)} value={value}>
+        {children}
+      </select>
+    </label>
   );
 }
 
@@ -789,34 +1145,50 @@ function ProductOrb({
 }
 
 function DeploymentsView({
+  allOrganisationRecords,
   catalogueMapData,
+  filteredOrganisationRecords,
   filteredProducts,
-  initialCountry,
-  initialObject,
-  initialPresence,
+  initialFocus,
+  initialRepresentation,
+  objectMode,
+  organisationDirectoryHref,
+  organisationLayer,
+  organisationLinks,
+  onFocusCountry,
+  onObjectModeChange,
   onOpenProduct,
+  onOrganisationLayerChange,
+  onRepresentationChange,
   preservedSearch,
 }: {
+  allOrganisationRecords: OrganisationDirectoryRecord[];
   catalogueMapData: OrganisationCatalogueMapData;
+  filteredOrganisationRecords: OrganisationDirectoryRecord[];
   filteredProducts: Product[];
-  initialCountry: string;
-  initialObject: string;
-  initialPresence: string;
+  initialFocus: string;
+  initialRepresentation: string;
+  objectMode: "software" | "organisations";
+  organisationDirectoryHref: string;
+  organisationLayer: OrganisationMapLayer;
+  organisationLinks: ExactLinkIndex;
+  onFocusCountry: (iso2: string) => void;
+  onObjectModeChange: (value: "software" | "organisations") => void;
   onOpenProduct: (product: Product, element: HTMLElement) => void;
+  onOrganisationLayerChange: (value: OrganisationMapLayer) => void;
+  onRepresentationChange: (value: "map" | "grid" | "ranked") => void;
   preservedSearch: string;
 }) {
-  const [objectMode, setObjectMode] = useState<"software" | "organisations">(
-    initialObject === "organisations" ? "organisations" : "software",
-  );
-  const [organisationLayer, setOrganisationLayer] = useState<OrganisationMapLayer>(
-    isOrganisationMapLayer(initialPresence) ? initialPresence : "software_linked",
-  );
   const [representation, setRepresentation] = useState<"map" | "grid" | "ranked">(
-    "map",
+    isMapRepresentation(initialRepresentation) ? initialRepresentation : "map",
   );
   const [selectedCountry, setSelectedCountry] = useState(
-    initialCountry !== "all" ? initialCountry : "NG",
+    africanCountries.some(([iso2]) => iso2 === initialFocus) ? initialFocus : "NG",
   );
+  function selectCountry(iso2: string) {
+    setSelectedCountry(iso2);
+    onFocusCountry(iso2);
+  }
   const visibleDeployments = deployments.filter((deployment) =>
     filteredProducts.some((product) => product.id === deployment.productId),
   );
@@ -824,7 +1196,7 @@ function DeploymentsView({
     ? new Set(catalogueMapData.assessedIso2s)
     : objectMode === "software" || organisationLayer === "software_linked"
       ? new Set(deployments.map((deployment) => deployment.countryIso2))
-      : new Set(organisationDirectory.flatMap((record) => organisationLayerCountries(record, organisationLayer)));
+      : new Set(allOrganisationRecords.flatMap((record) => organisationLayerCountries(record, organisationLayer)));
   function countryObjectIds(iso2: string) {
     const countryDeployments = visibleDeployments.filter(
       (deployment) => deployment.countryIso2 === iso2,
@@ -836,7 +1208,7 @@ function DeploymentsView({
       return new Set<string>();
     }
     return new Set(
-      organisationDirectory
+      filteredOrganisationRecords
         .filter((record) => organisationLayerCountries(record, organisationLayer).includes(iso2))
         .map((record) => record.organisation.id),
     );
@@ -868,7 +1240,7 @@ function DeploymentsView({
         .map((product) => [product.id, product]),
     ).values(),
   );
-  const selectedOrganisationRecords = organisationDirectory.filter((record) =>
+  const selectedOrganisationRecords = filteredOrganisationRecords.filter((record) =>
     organisationLayerCountries(record, organisationLayer).includes(selectedCountry),
   );
   const selectedOrganisations = selectedOrganisationRecords.map((record) => record.organisation);
@@ -895,7 +1267,7 @@ function DeploymentsView({
             <button
               aria-pressed={objectMode === value}
               key={value}
-              onClick={() => setObjectMode(value as "software" | "organisations")}
+              onClick={() => onObjectModeChange(value as "software" | "organisations")}
               type="button"
             >
               {label}
@@ -903,37 +1275,49 @@ function DeploymentsView({
           ))}
         </div>
         {objectMode === "organisations" ? (
-          <label className="v2-map-layer-select">
-            <span>Presence</span>
-            <select
-              aria-label="Organisation presence layer"
-              onChange={(event) => setOrganisationLayer(event.target.value as OrganisationMapLayer)}
-              value={organisationLayer}
-            >
-              {organisationMapLayers.map(([value, label]) => (
-                <option key={value} value={value}>{label}</option>
-              ))}
-            </select>
-          </label>
+          <div className="v2-map-organisation-tools">
+            <label className="v2-map-layer-select">
+              <span>Presence</span>
+              <select
+                aria-label="Organisation presence layer"
+                onChange={(event) => onOrganisationLayerChange(event.target.value as OrganisationMapLayer)}
+                value={organisationLayer}
+              >
+                {organisationMapLayers.map(([value, label]) => (
+                  <option key={value} value={value}>{label}</option>
+                ))}
+              </select>
+            </label>
+            <Link className="v2-map-filtered-link" href={organisationDirectoryHref}>Filtered directory →</Link>
+          </div>
         ) : null}
         <div className="v2-representation-switch" role="group" aria-label="Map representation">
           <button
             aria-pressed={representation === "map"}
-            onClick={() => setRepresentation("map")}
+            onClick={() => {
+              setRepresentation("map");
+              onRepresentationChange("map");
+            }}
             type="button"
           >
             Map
           </button>
           <button
             aria-pressed={representation === "grid"}
-            onClick={() => setRepresentation("grid")}
+            onClick={() => {
+              setRepresentation("grid");
+              onRepresentationChange("grid");
+            }}
             type="button"
           >
             Grid
           </button>
           <button
             aria-pressed={representation === "ranked"}
-            onClick={() => setRepresentation("ranked")}
+            onClick={() => {
+              setRepresentation("ranked");
+              onRepresentationChange("ranked");
+            }}
             type="button"
           >
             Rank
@@ -950,7 +1334,7 @@ function DeploymentsView({
                 ? `${new Set(visibleDeployments.map((item) => item.productId)).size} software records`
                 : organisationLayer === "catalogue"
                   ? `${catalogueMapData.totalWithDocumentedCountry} organisations with itemised country coverage`
-                  : `${new Set(organisationDirectory.flatMap((record) => organisationLayerCountries(record, organisationLayer).length ? [record.organisation.id] : [])).size} ${organisationMapLayerLabel(organisationLayer).toLowerCase()} organisations`}
+                  : `${new Set(filteredOrganisationRecords.flatMap((record) => organisationLayerCountries(record, organisationLayer).length ? [record.organisation.id] : [])).size} ${organisationMapLayerLabel(organisationLayer).toLowerCase()} organisations`}
             </strong>
           </div>
 
@@ -959,7 +1343,7 @@ function DeploymentsView({
               countries={rankedCountries}
               objectLabel={mappedObjectLabel}
               selectedCountry={selectedCountry}
-              setSelectedCountry={setSelectedCountry}
+              setSelectedCountry={selectCountry}
             />
           ) : representation === "grid" ? (
             <div
@@ -979,7 +1363,7 @@ function DeploymentsView({
                     aria-pressed={selectedCountry === iso2}
                     className={`${researched ? countClass(count) : "unknown"}`}
                     key={iso2}
-                    onClick={() => setSelectedCountry(iso2)}
+                    onClick={() => selectCountry(iso2)}
                     style={{ "--tile-index": index } as CSSProperties}
                     type="button"
                   >
@@ -996,7 +1380,7 @@ function DeploymentsView({
                   <li key={iso2}>
                     <button
                       aria-pressed={selectedCountry === iso2}
-                      onClick={() => setSelectedCountry(iso2)}
+                      onClick={() => selectCountry(iso2)}
                       type="button"
                     >
                       <span>{String(index + 1).padStart(2, "0")}</span>
@@ -1067,7 +1451,11 @@ function DeploymentsView({
                         />
                         <span>
                           <Link href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
-                          <small>{deployment.customer}</small>
+                          <small><OrganisationReferenceLink
+                            index={organisationLinks}
+                            name={deployment.customer}
+                            searchFallback={deployment.customerDisclosure === "named"}
+                          /></small>
                         </span>
                       </span>
                       <b>{deployment.year}</b>
@@ -1109,7 +1497,7 @@ function DeploymentsView({
                     <Link aria-label={`Open ${organisation.name}`} href={`/organisations/${organisation.slug}`}><i aria-hidden="true">→</i></Link>
                   </article>
                 ))}
-                {selectedObjectCount > 5 ? (
+                {selectedObjectCount ? (
                   <Link
                     className="v2-country-more"
                     href={objectMode === "software"
@@ -1119,9 +1507,12 @@ function DeploymentsView({
                           "country",
                           selectedCountry,
                         )
-                      : organisationLayer === "catalogue"
-                        ? `/organisations?country=${selectedCountry}`
-                        : `/organisations?view=ecosystem&country=${selectedCountry}&presence=${organisationLayer}`}
+                      : withSearchParam(
+                          organisationDirectoryHref,
+                          "",
+                          "country",
+                          selectedCountry,
+                        )}
                   >
                     View all {selectedObjectCount} {objectMode}
                     <span aria-hidden="true">→</span>
@@ -1185,6 +1576,60 @@ const organisationMapLayers: Array<[OrganisationMapLayer, string]> = [
 
 function isOrganisationMapLayer(value: string): value is OrganisationMapLayer {
   return organisationMapLayers.some(([id]) => id === value);
+}
+
+function isMapRepresentation(value: string): value is "map" | "grid" | "ranked" {
+  return ["map", "grid", "ranked"].includes(value);
+}
+
+function organisationScopeLabel(scope: string) {
+  return {
+    africa_hq: "Africa-headquartered",
+    international: "International, active in Africa",
+    reviewed: "Canonical profiles",
+    pending: "Review pending",
+  }[scope] ?? scope;
+}
+
+function buildOrganisationDirectoryHref({
+  group,
+  headquarters,
+  layer,
+  origin,
+  query,
+  role,
+  scope,
+  sector,
+  segment,
+}: {
+  group: string;
+  headquarters: string;
+  layer: OrganisationMapLayer;
+  origin: string;
+  query: string;
+  role: string;
+  scope: string;
+  sector: string;
+  segment: string;
+}) {
+  const params = new URLSearchParams();
+  if (query.trim()) params.set("q", query.trim());
+  if (layer === "catalogue") {
+    params.set("view", "catalogue");
+    if (role !== "all") params.set("role", role);
+    if (segment !== "all") params.set("segment", segment);
+    if (headquarters !== "all") params.set("headquarters", headquarters);
+    if (scope !== "all") params.set("scope", scope);
+  } else {
+    params.set("view", "ecosystem");
+    if (group !== "all") params.set("group", group);
+    if (role !== "all") params.set("role", role);
+    if (sector !== "all") params.set("sector", sector);
+    if (segment !== "all") params.set("segment", segment);
+    if (origin !== "all") params.set("origin", origin);
+    if (layer !== "software_linked") params.set("presence", layer);
+  }
+  return `/organisations?${params.toString()}`;
 }
 
 function organisationMapLayerLabel(layer: OrganisationMapLayer) {
@@ -1647,9 +2092,11 @@ function DirectoryView({
 
 function ProductPreview({
   close,
+  organisationLinks,
   product,
 }: {
   close: () => void;
+  organisationLinks: ExactLinkIndex;
   product: Product;
 }) {
   const [tab, setTab] = useState<"overview" | "evidence">("overview");
@@ -1731,7 +2178,11 @@ function ProductPreview({
                 <div key={deployment.id}>
                   <span>{String(index + 1).padStart(2, "0")}</span>
                   <Link href={`/countries/${deployment.countryIso2.toLowerCase()}`}><strong>{deployment.country}</strong></Link>
-                  <small>{deployment.customer}</small>
+                  <small><OrganisationReferenceLink
+                    index={organisationLinks}
+                    name={deployment.customer}
+                    searchFallback={deployment.customerDisclosure === "named"}
+                  /></small>
                   <b>{deployment.year}</b>
                   <EvidenceStatusLabel compact status={deployment.evidence} />
                 </div>
@@ -1777,6 +2228,23 @@ function OrganisationLink({
   return <Link href={`/organisations/${organisation.slug}`}>{product.organisation}{suffix}</Link>;
 }
 
+function OrganisationReferenceLink({
+  index,
+  name,
+  searchFallback = false,
+}: {
+  index: ExactLinkIndex;
+  name: string;
+  searchFallback?: boolean;
+}) {
+  const href = resolveOrganisationHref(name, index);
+  if (href) return <Link href={href}>{name}</Link>;
+  if (searchFallback && name && !/not disclosed|not documented|confidential|unknown/i.test(name)) {
+    return <Link href={`/organisations?q=${encodeURIComponent(name)}`}>{name}</Link>;
+  }
+  return <>{name}</>;
+}
+
 function countryLabel(iso2: string) {
   return africanCountries.find(([countryIso2]) => countryIso2 === iso2)?.[1] ?? iso2;
 }
@@ -1802,7 +2270,11 @@ function withSearchParam(
   key: string,
   value: string,
 ) {
-  const params = new URLSearchParams(search);
+  const [basePath, baseSearch = ""] = pathname.split("?", 2);
+  const params = new URLSearchParams(baseSearch);
+  for (const [name, existingValue] of new URLSearchParams(search)) {
+    params.set(name, existingValue);
+  }
   params.set(key, value);
-  return `${pathname}?${params.toString()}`;
+  return `${basePath}?${params.toString()}`;
 }
