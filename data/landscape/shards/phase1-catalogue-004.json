@@ -109,14 +109,14 @@
       "geographies": ["Nigeria", "Africa"],
       "statusAsSubmitted": "active",
       "summaryAsSubmitted": "Autonomous solar prospecting and origination agent swarm",
-      "sourceDomains": ["kaykluz.com"],
+      "sourceDomains": ["kiisha.io"],
       "segmentsAsSubmitted": ["C&I", "utility-scale"],
       "deliveryModelsAsSubmitted": ["cloud SaaS"],
       "commercialModelAsSubmitted": "subscription",
       "africaUseAsSubmitted": "confirmed_deployment",
       "asOfDate": "2026-08-02",
-      "parent": "Kaykluz.com",
-      "sourceUrls": ["https://kaykluz.com"]
+      "parent": "KIISHA Technologies",
+      "sourceUrls": ["https://kiisha.io"]
     },
     {
       "id": "land_phase1_7dab816c",
@@ -296,14 +296,14 @@
       "geographies": ["Nigeria", "Africa"],
       "statusAsSubmitted": "active",
       "summaryAsSubmitted": "Transaction operating system for African renewable energy deals",
-      "sourceDomains": ["kaykluz.com"],
+      "sourceDomains": ["dealgrid.kiisha.io"],
       "segmentsAsSubmitted": ["utility-scale", "C&I", "mini-grid"],
       "deliveryModelsAsSubmitted": ["cloud SaaS"],
       "commercialModelAsSubmitted": "subscription",
       "africaUseAsSubmitted": "confirmed_deployment",
       "asOfDate": "2026-08-02",
-      "parent": "Kaykluz.com",
-      "sourceUrls": ["https://kaykluz.com"]
+      "parent": "KIISHA Technologies",
+      "sourceUrls": ["https://dealgrid.kiisha.io"]
     },
     {
       "id": "land_phase1_02374006",

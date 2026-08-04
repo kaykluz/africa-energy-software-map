@@ -196,7 +196,7 @@
     },
     {
       "id": "land_phase1_50a2450d",
-      "name": "VATR",
+      "name": "KIISHA platform (VATR)",
       "kind": "product",
       "stageIds": ["stage_generate_store"],
       "categoryIds": ["cat_generation_storage_operations"],
@@ -204,14 +204,14 @@
       "geographies": ["Nigeria/UK", "Africa"],
       "statusAsSubmitted": "active",
       "summaryAsSubmitted": "Enterprise platform with verified asset transaction record system",
-      "sourceDomains": ["kaykluz.com"],
+      "sourceDomains": ["kiisha.io"],
       "segmentsAsSubmitted": ["all segments"],
       "deliveryModelsAsSubmitted": ["cloud SaaS"],
       "commercialModelAsSubmitted": "subscription",
       "africaUseAsSubmitted": "confirmed_deployment",
       "asOfDate": "2026-08-02",
-      "parent": "Kaykluz.com",
-      "sourceUrls": ["https://kaykluz.com"]
+      "parent": "KIISHA Technologies",
+      "sourceUrls": ["https://kiisha.io"]
     },
     {
       "id": "land_phase1_9b4a93b7",
