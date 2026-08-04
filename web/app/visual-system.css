@@ -853,6 +853,43 @@ body {
 .v2-map-caption span { color: var(--muted); font: .65rem var(--font-mono); text-transform: uppercase; }
 .v2-map-caption strong { font-size: .8rem; }
 
+.v2-map-coverage {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  align-items: center;
+  margin-top: 14px;
+  grid-template-columns: minmax(120px, 1fr) auto auto;
+  gap: 12px;
+}
+
+.v2-map-coverage-meter {
+  height: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #d4d7d0;
+}
+
+.v2-map-coverage-meter i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--v2-teal);
+  transition: width .45s var(--v2-ease);
+}
+
+.v2-map-coverage small { color: var(--muted); font: .6rem var(--font-mono); }
+.v2-map-coverage-links { display: inline-flex; gap: 12px; }
+.v2-map-coverage-links a {
+  color: var(--v2-ink);
+  font-size: .66rem;
+  font-weight: 700;
+  text-decoration-color: rgb(16 19 17 / 30%);
+  text-underline-offset: 3px;
+}
+.v2-map-coverage-links a:hover,
+.v2-map-coverage-links a:focus-visible { color: var(--v2-blue); }
+
 .v2-country-field {
   position: relative;
   z-index: 2;
@@ -1394,6 +1431,9 @@ body {
   .v2-map-stage { margin-inline: -14px; border-right: 0; border-left: 0; border-radius: 0; }
   .v2-map-visual { min-height: 570px; padding: 18px 14px; }
   .v2-map-caption { align-items: flex-start; flex-direction: column; gap: 4px; }
+  .v2-map-coverage { grid-template-columns: 1fr auto; }
+  .v2-map-coverage small { grid-column: 1; grid-row: 2; }
+  .v2-map-coverage-links { grid-column: 2; grid-row: 1 / span 2; flex-direction: column; gap: 5px; }
   .v2-country-field { gap: 4px; }
   .v2-country-field button { border-radius: 6px; font-size: .54rem; }
   .v2-country-panel { min-height: 530px; padding: 24px 18px; }
@@ -1439,7 +1479,8 @@ body {
   .v2-search-stage, .v2-menu-sheet, .v2-filter-panel, .v2-export-panel,
   .v2-product-drawer, .v2-overlay, .v2-search-overlay { animation: none !important; }
   .v2-route-line i, .v2-product-orb, .v2-round-action, .v2-wordmark-disc,
-  .v2-country-field button, .v2-deployment-list i { transition: none !important; }
+  .v2-country-field button, .v2-deployment-list i,
+  .v2-map-coverage-meter i { transition: none !important; }
 }
 
 /* Inclusive landscape: broad discovery stays separate from reviewed records. */

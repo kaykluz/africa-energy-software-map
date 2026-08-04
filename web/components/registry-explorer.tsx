@@ -243,6 +243,19 @@ export function RegistryExplorer({
     segmentFilter,
   ]);
 
+  const filteredProductIds = useMemo(
+    () => new Set(filteredProducts.map((product) => product.id)),
+    [filteredProducts],
+  );
+  const visibleSoftwareDeployments = useMemo(
+    () => deployments.filter((deployment) => filteredProductIds.has(deployment.productId)),
+    [filteredProductIds],
+  );
+  const mappedSoftwareCount = useMemo(
+    () => new Set(visibleSoftwareDeployments.map((deployment) => deployment.productId)).size,
+    [visibleSoftwareDeployments],
+  );
+
   function updateUrl(next: {
     q?: string;
     category?: string;
@@ -417,8 +430,10 @@ export function RegistryExplorer({
     : filteredOrganisationRecords.filter(
         (record) => organisationLayerCountries(record, organisationLayer).length,
       ).length;
-  const resultCount = view === "deployments" && mapObject === "organisations"
-    ? organisationResultCount
+  const resultCount = view === "deployments"
+    ? mapObject === "organisations"
+      ? organisationResultCount
+      : mappedSoftwareCount
     : filteredProducts.length;
   const organisationDirectoryHref = buildOrganisationDirectoryHref({
     group: groupFilter,
@@ -433,6 +448,17 @@ export function RegistryExplorer({
   });
 
   const meta = viewMeta[view];
+  const heroStats = view === "deployments" && mapObject === "software"
+    ? [
+        [mappedSoftwareCount, "mapped products"],
+        [filteredProducts.length, "catalogue products"],
+        [visibleSoftwareDeployments.length, "evidence points"],
+      ]
+    : [
+        [stages.length, "stages"],
+        [products.length, "products"],
+        [deployments.length, "evidence points"],
+      ];
 
   return (
     <main
@@ -446,18 +472,12 @@ export function RegistryExplorer({
         </div>
         <div className="v2-hero-side">
           <div className="v2-hero-stats">
-            <div>
-              <strong>{stages.length}</strong>
-              <span>stages</span>
-            </div>
-            <div>
-              <strong>{products.length}</strong>
-              <span>products</span>
-            </div>
-            <div>
-              <strong>{deployments.length}</strong>
-              <span>evidence points</span>
-            </div>
+            {heroStats.map(([value, label]) => (
+              <div key={label}>
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </div>
+            ))}
           </div>
           <Link className="v2-hero-contribute" href="/contribute">
             <span>
@@ -1192,6 +1212,13 @@ function DeploymentsView({
   const visibleDeployments = deployments.filter((deployment) =>
     filteredProducts.some((product) => product.id === deployment.productId),
   );
+  const mappedProductCount = new Set(
+    visibleDeployments.map((deployment) => deployment.productId),
+  ).size;
+  const unmappedProductCount = Math.max(0, filteredProducts.length - mappedProductCount);
+  const mappedProductPercent = filteredProducts.length
+    ? Math.round((mappedProductCount / filteredProducts.length) * 100)
+    : 0;
   const assessedCountries = organisationLayer === "catalogue" && objectMode === "organisations"
     ? new Set(catalogueMapData.assessedIso2s)
     : objectMode === "software" || organisationLayer === "software_linked"
@@ -1328,15 +1355,33 @@ function DeploymentsView({
       <div className="v2-map-stage">
         <section className="v2-map-visual" aria-label="African country data view">
           <div className="v2-map-caption">
-            <span>{objectMode === "organisations" && organisationLayer === "catalogue" ? "Country catalogue coverage" : "Country-level evidence"}</span>
+            <span>{objectMode === "organisations" && organisationLayer === "catalogue" ? "Country catalogue coverage" : objectMode === "software" ? "Country-level deployment evidence" : "Country-level evidence"}</span>
             <strong>
               {objectMode === "software"
-                ? `${new Set(visibleDeployments.map((item) => item.productId)).size} software records`
+                ? `${mappedProductCount} of ${filteredProducts.length} catalogue products`
                 : organisationLayer === "catalogue"
                   ? `${catalogueMapData.totalWithDocumentedCountry} organisations with itemised country coverage`
                   : `${new Set(filteredOrganisationRecords.flatMap((record) => organisationLayerCountries(record, organisationLayer).length ? [record.organisation.id] : [])).size} ${organisationMapLayerLabel(organisationLayer).toLowerCase()} organisations`}
             </strong>
           </div>
+
+          {objectMode === "software" && filteredProducts.length ? (
+            <div
+              aria-label={`${mappedProductCount} of ${filteredProducts.length} matching catalogue products have reviewed country-level deployment evidence`}
+              className="v2-map-coverage"
+            >
+              <span aria-hidden="true" className="v2-map-coverage-meter">
+                <i style={{ width: `${mappedProductPercent}%` }} />
+              </span>
+              <small>{unmappedProductCount} awaiting country evidence</small>
+              <span className="v2-map-coverage-links">
+                <Link href={preservedSearch ? `/directory?${preservedSearch}` : "/directory"}>
+                  All {filteredProducts.length}
+                </Link>
+                <Link href="/contribute/deployment">Add evidence</Link>
+              </span>
+            </div>
+          ) : null}
 
           {representation === "map" ? (
             <AfricaCountryMap
