@@ -29,10 +29,12 @@ export default async function OrganisationsPage({
   const initialCatalogue = queryOrganisationCatalogue(
     {
       country: catalogueCountry,
+      group: params.group,
       headquarters: params.headquarters,
       query: params.q,
       role: catalogueRole,
       scope: params.scope,
+      sector: params.sector,
       segment: catalogueSegment,
     },
     catalogueRecords,
@@ -42,9 +44,11 @@ export default async function OrganisationsPage({
       canonicalDirectory={canonicalDirectory}
       initialCatalogue={initialCatalogue}
       initialCatalogueCountry={catalogueCountry}
+      initialCatalogueGroup={params.group}
       initialCatalogueHeadquarters={params.headquarters}
       initialCatalogueRole={catalogueRole}
       initialCatalogueScope={params.scope}
+      initialCatalogueSector={params.sector}
       initialCatalogueSegment={catalogueSegment}
       initialGroup={params.group}
       initialCountry={params.country}

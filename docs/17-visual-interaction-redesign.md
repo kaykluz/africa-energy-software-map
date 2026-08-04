@@ -29,9 +29,9 @@ The redesign combines:
 These are directional references, not templates. The registry must stay faster,
 clearer, more accessible and more data-literate than a studio showcase.
 
-## Two connected modes
+## One database interaction model
 
-### Explore mode
+### Cards and Wall
 
 For people who want to understand the landscape, discover products or follow the
 energy value chain.
@@ -43,7 +43,7 @@ energy value chain.
 - hover, focus and selection motion that explains what can be opened; and
 - no methodology paragraph in the main task path.
 
-### Data mode
+### Reviewed release table
 
 For academics, analysts, journalists, investors, operators and public
 institutions who need structured records.
@@ -56,8 +56,9 @@ institutions who need structured records.
 - filtered CSV and JSON export; and
 - links to source and methodology detail.
 
-Both modes use the same records and filter vocabulary. Explore is not a
-simplified dataset and Data is not a separate product.
+All representations use the same records and filter vocabulary. Review state is
+shown on cards and is directly filterable. The reviewed release table is an
+audit-oriented representation, not a separate public database.
 
 ## Information layering
 
@@ -78,9 +79,9 @@ controls. Product detail uses a drawer. Full evidence belongs on the record.
 
 The desktop header has three destinations:
 
-1. Explore
+1. Database
 2. Map
-3. Data
+3. Method
 
 `Improve the map` is a labelled primary action. Search and prototype status are
 compact controls. Method, downloads, changes and accessibility live in the
@@ -107,16 +108,13 @@ Search copy must never imply that no matching record means no product exists.
 The footer is a low-density utility line: project, version, Method, Downloads,
 Licence, GitHub and Improve the map. It does not repeat the site architecture.
 
-## Explore page
+## Database page
 
 ### Opening
 
-The page opens with one statement:
-
-> The software powering African energy
-
-Three small dataset numbers establish scale. Explore, Map and Data remain visible
-as a local mode dock. A labelled `Improve the map` action links directly to
+The page opens with the compact title `Database`, object tabs for Software and
+Organisations, and view tabs for Cards, Wall and Map. Three small dataset numbers
+establish scale. A labelled `Improve the map` action links directly to
 contribution routes.
 
 The opening has no eyebrow or slogan below the title. Core page titles use a

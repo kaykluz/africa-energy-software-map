@@ -18,20 +18,18 @@ No dataset in this repository should yet be treated as a complete census.
 
 ## Product experience
 
-One connected data model supports five public modes:
+The public site behaves as one database, not a collection of competing
+directories:
 
-1. **Explore** — the complete classified catalogue.
-2. **Map** — where products are evidenced as being used, rather than
-   merely where their providers are headquartered.
-3. **Data** — searchable, filterable, and exportable reviewed software records
-   for academics and
-   power users.
-4. **Wall** — a visual software landscape organised by relationship to energy,
-   function, software stage and sector.
-5. **Organisations** — actor types such as financiers, developers, OEMs, EPCs,
-   operators, software providers and enablers. The route separates a broad
-   1,953-record inclusion catalogue from canonical reviewed profiles and is
-   filterable by role, energy market, headquarters, country and review status.
+1. Choose a record type: **Software** or **Organisations**.
+2. Choose a view: **Cards**, **Wall** (software) or **Map**.
+3. Apply filters. The current selection follows the user between views.
+
+Software is filterable by relationship to energy, function, value-chain stage,
+sector, record type, Africa link and review status. Organisations are filterable
+by actor type, role, energy market, sector, headquarters, country coverage and
+review status. The separate Reviewed software route is a compact release table
+for audit and export; it is not a second public catalogue.
 
 Every material deployment and market claim will link to evidence and display a
 last-checked date.
@@ -53,7 +51,7 @@ human-reviewed data change passes the publication gate. See
 Authorised editors can now review candidate assertions, source rights, and
 incoming contributions in a private
 [`/review` workspace](docs/22-review-workspace.md). Its decisions are audited.
-Organisation-catalogue Accept or Amend decisions materialise live canonical
+Organisation-catalogue Accept or Amend decisions materialise live reviewed
 profiles directly; assertion, source, contribution and bulk decisions do not.
 Bulk candidates can be accepted, amended, rejected or held for more evidence.
 Approved rows become source-linked atomic assertions in that same private
@@ -61,7 +59,7 @@ workspace and still require assertion-level review before a release pull
 request can be prepared.
 The same workspace now exposes every organisation-catalogue row in a dedicated
 queue. Organisation decisions are versioned and audited. Accept or Amend updates
-the live canonical registry immediately, while a bounded, independently reviewed
+the live reviewed registry immediately, while a bounded, independently reviewed
 data pull request is still required for an immutable GitHub release snapshot.
 Scheduled retention, source-first review preparation, proposal-only research
 readiness, and the bounded Batch 002 plan are documented in

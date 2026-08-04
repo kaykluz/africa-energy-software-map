@@ -10,6 +10,7 @@ import {
   landscapeEnergyRelationshipLabels,
   landscapeFunctionLabels,
   landscapeItems,
+  landscapeSoftwareItems,
   landscapeKindLabels,
   landscapeRelationships,
   landscapeSectorLabels,
@@ -34,11 +35,15 @@ import {
 } from "@/lib/entity-links";
 import { normaliseQuery } from "@/lib/registry-query";
 import { brandAssetForExactName } from "@/lib/brand-assets";
+import { DatabaseHeader } from "@/components/database-header";
 import { Fragment, type CSSProperties, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 
 type LandscapeView = "wall" | "listings" | "deployments" | "history" | "sources";
+type ReviewStatus = "all" | "reviewed" | "pending";
 
-const kindOptions = Object.entries(landscapeKindLabels) as [LandscapeKind, string][];
+const kindOptions = (Object.entries(landscapeKindLabels) as [LandscapeKind, string][]).filter(
+  ([kind]) => kind === "product" || kind === "public_tool" || kind === "research_lead",
+);
 const stageOptions = Object.entries(landscapeStageLabels);
 const functionOptions = Object.entries(landscapeFunctionLabels).sort((left, right) =>
   left[1].localeCompare(right[1]),
@@ -69,10 +74,12 @@ export function LandscapeExplorer({
   initialKind = "all",
   initialQuery = "",
   initialRelationship = "all",
+  initialReviewStatus = "all",
   initialSector = "all",
   initialStage = "all",
   initialView = "wall",
   mode = "wall",
+  organisationCount,
 }: {
   canonicalOrganisations?: OrganisationLinkRecord[];
   initialAfricaUse?: string;
@@ -80,10 +87,12 @@ export function LandscapeExplorer({
   initialKind?: string;
   initialQuery?: string;
   initialRelationship?: string;
+  initialReviewStatus?: string;
   initialSector?: string;
   initialStage?: string;
   initialView?: LandscapeView;
   mode?: "explore" | "wall";
+  organisationCount: number;
 }) {
   const canonicalOrganisationLinks = useMemo(
     () => organisationLinkIndex(canonicalOrganisations),
@@ -110,6 +119,11 @@ export function LandscapeExplorer({
   const [africaUse, setAfricaUse] = useState<AfricaUseAsSubmitted | "all">(
     isAfricaUse(initialAfricaUse) ? initialAfricaUse : "all",
   );
+  const [reviewStatus, setReviewStatus] = useState<ReviewStatus>(
+    initialReviewStatus === "reviewed" || initialReviewStatus === "pending"
+      ? initialReviewStatus
+      : "all",
+  );
   const [displayLimit, setDisplayLimit] = useState(firstPageSize);
   const [view, setView] = useState<LandscapeView>(initialView);
   const [selectedItem, setSelectedItem] = useState<LandscapeItem | null>(null);
@@ -117,7 +131,9 @@ export function LandscapeExplorer({
 
   const filteredItems = useMemo(() => {
     const term = normaliseQuery(query);
-    return landscapeItems.filter((item) => {
+    return landscapeSoftwareItems.filter((item) => {
+      if (reviewStatus === "reviewed" && !item.canonicalHref) return false;
+      if (reviewStatus === "pending" && item.canonicalHref) return false;
       if (kind !== "all" && item.kind !== kind) return false;
       if (stage !== "all" && !item.stageIds.includes(stage)) return false;
       if (functionId !== "all" && !item.functionIds.includes(functionId)) return false;
@@ -139,7 +155,7 @@ export function LandscapeExplorer({
         ].join(" "),
       ).includes(term);
     });
-  }, [africaUse, functionId, kind, query, relationship, sector, stage]);
+  }, [africaUse, functionId, kind, query, relationship, reviewStatus, sector, stage]);
 
   const visibleItems = filteredItems.slice(0, displayLimit);
   const hasFilters = Boolean(
@@ -149,6 +165,7 @@ export function LandscapeExplorer({
       functionId !== "all" ||
       sector !== "all" ||
       relationship !== "all" ||
+      reviewStatus !== "all" ||
       africaUse !== "all",
   );
 
@@ -159,6 +176,7 @@ export function LandscapeExplorer({
     setFunctionId("all");
     setSector("all");
     setRelationship("all");
+    setReviewStatus("all");
     setAfricaUse("all");
     setDisplayLimit(firstPageSize);
   }
@@ -208,36 +226,46 @@ export function LandscapeExplorer({
         ? landscapeDeploymentLeads.length
         : view === "history"
           ? landscapeRelationships.length
-          : landscapeSourceDomains.length;
+      : landscapeSourceDomains.length;
+  const mapParams = new URLSearchParams({ object: "software" });
+  if (query.trim()) mapParams.set("q", query.trim());
+  if (stage !== "all") mapParams.set("stage", stage);
+  const databaseParams = new URLSearchParams();
+  if (query.trim()) databaseParams.set("q", query.trim());
+  if (kind !== "all") databaseParams.set("kind", kind);
+  if (stage !== "all") databaseParams.set("stage", stage);
+  if (functionId !== "all") databaseParams.set("function", functionId);
+  if (sector !== "all") databaseParams.set("sector", sector);
+  if (relationship !== "all") databaseParams.set("relationship", relationship);
+  if (reviewStatus !== "all") databaseParams.set("status", reviewStatus);
+  if (africaUse !== "all") databaseParams.set("africaUse", africaUse);
+  const databaseQuery = databaseParams.toString();
+
+  useEffect(() => {
+    const pathname = mode === "wall" ? "/landscape" : "/";
+    window.history.replaceState(null, "", databaseQuery ? `${pathname}?${databaseQuery}` : pathname);
+  }, [databaseQuery, mode]);
 
   return (
     <main className={`landscape-page landscape-page-${mode}`} id="main-content" tabIndex={-1}>
-      <header className="landscape-intro">
-        <div>
-          <h1>{mode === "explore" ? "The software powering African energy" : "Software wall"}</h1>
-          <p>{mode === "explore" ? "Search the full catalogue." : "Browse tools by where they sit in the energy system."}</p>
-        </div>
-        <div className="landscape-intro-links">
-          <Link href="/organisations">Organisations</Link>
-          <Link href="/deployments">Map</Link>
-        </div>
-      </header>
+      <DatabaseHeader
+        activeObject="software"
+        activeView={mode === "wall" ? "wall" : "cards"}
+        cardsHref={databaseQuery ? `/?${databaseQuery}` : "/"}
+        mapHref={`/deployments?${mapParams.toString()}`}
+        organisationCount={organisationCount}
+        softwareCount={landscapeSoftwareItems.length}
+        wallHref={databaseQuery ? `/landscape?${databaseQuery}` : "/landscape"}
+      />
 
       <section className="landscape-scoreboard" aria-label="Catalogue totals">
-        <div><strong>{landscapeItems.length}</strong><span>listings</span></div>
+        <div><strong>{landscapeSoftwareItems.length}</strong><span>software records</span></div>
         <div><strong>{stageOptions.length}</strong><span>stages</span></div>
         <div><strong>{functionOptions.length}</strong><span>functions</span></div>
       </section>
 
-      {mode === "explore" ? (
-        <nav aria-label="Catalogue scope" className="landscape-scope-tabs">
-          <span aria-current="page">All catalogue <b>{landscapeItems.length}</b></span>
-          <Link href="/directory">Reviewed records</Link>
-        </nav>
-      ) : <nav aria-label="Landscape views" className="landscape-tabs">
+      {mode === "wall" ? <nav aria-label="Additional software data" className="landscape-tabs landscape-tabs-secondary">
         {[
-          ["wall", "Wall", landscapeItems.length],
-          ["listings", "List", landscapeItems.length],
           ["deployments", "Deployment leads", landscapeDeploymentLeads.length],
           ["history", "History", landscapeRelationships.length],
           ["sources", "Sources", landscapeSourceDomains.length],
@@ -251,7 +279,7 @@ export function LandscapeExplorer({
             {label} <span>{count}</span>
           </button>
         ))}
-      </nav>}
+      </nav> : null}
 
       {view === "wall" || view === "listings" ? (
         <LandscapeControls
@@ -261,6 +289,7 @@ export function LandscapeExplorer({
           kind={kind}
           query={query}
           relationship={relationship}
+          reviewStatus={reviewStatus}
           reset={resetListings}
           sector={sector}
           setAfricaUse={setAfricaUse}
@@ -268,10 +297,11 @@ export function LandscapeExplorer({
           setKind={setKind}
           setQuery={setQuery}
           setRelationship={setRelationship}
+          setReviewStatus={setReviewStatus}
           setSector={setSector}
           setStage={setStage}
           stage={stage}
-          searchLabel={mode === "explore" ? "Search the catalogue" : "Search the wall"}
+          searchLabel="Search software and tools"
         />
       ) : null}
 
@@ -384,6 +414,7 @@ function LandscapeControls({
   kind,
   query,
   relationship,
+  reviewStatus,
   reset,
   sector,
   setAfricaUse,
@@ -391,6 +422,7 @@ function LandscapeControls({
   setKind,
   setQuery,
   setRelationship,
+  setReviewStatus,
   setSector,
   setStage,
   searchLabel,
@@ -402,6 +434,7 @@ function LandscapeControls({
   kind: LandscapeKind | "all";
   query: string;
   relationship: EnergyRelationship | "all";
+  reviewStatus: ReviewStatus;
   reset: () => void;
   sector: string;
   setAfricaUse: (value: AfricaUseAsSubmitted | "all") => void;
@@ -409,6 +442,7 @@ function LandscapeControls({
   setKind: (value: LandscapeKind | "all") => void;
   setQuery: (value: string) => void;
   setRelationship: (value: EnergyRelationship | "all") => void;
+  setReviewStatus: (value: ReviewStatus) => void;
   setSector: (value: string) => void;
   setStage: (value: string) => void;
   searchLabel: string;
@@ -425,6 +459,14 @@ function LandscapeControls({
           type="search"
           value={query}
         />
+      </label>
+      <label>
+        <span>Status</span>
+        <select aria-label="Filter by review status" onChange={(event) => setReviewStatus(event.target.value as ReviewStatus)} value={reviewStatus}>
+          <option value="all">All records</option>
+          <option value="reviewed">Reviewed</option>
+          <option value="pending">Review pending</option>
+        </select>
       </label>
       <label>
         <span>Relationship</span>
@@ -828,7 +870,10 @@ function LandscapeCard({
     <article className="landscape-card">
       <div className="landscape-card-top">
         <span>{String(index + 1).padStart(2, "0")}</span>
-        <b><Link href={`/landscape?relationship=${item.energyRelationship}`}>{landscapeEnergyRelationshipLabels[item.energyRelationship]}</Link></b>
+        <div>
+          <em data-status={item.canonicalHref ? "reviewed" : "pending"}>{item.canonicalHref ? "Reviewed" : "Review pending"}</em>
+          <b><Link href={`/landscape?relationship=${item.energyRelationship}`}>{landscapeEnergyRelationshipLabels[item.energyRelationship]}</Link></b>
+        </div>
       </div>
       <IdentityMark item={item} />
       <h2>{itemHref ? <Link href={itemHref}>{item.name}</Link> : item.name}</h2>

@@ -341,7 +341,7 @@ function buildCountryOrganisationRows({
       roles: record.roleIds.map(organisationRoleName),
       segments: record.segmentIds.map(organisationSegmentName),
       locationLabels: canonicalLocationLabels(record, countryIso2),
-      reviewLabel: "Canonical profile",
+      reviewLabel: "Reviewed profile",
     }));
   const filteredCatalogue = filterOrganisationCatalogueRecords({
     group,
@@ -361,11 +361,11 @@ function buildCountryOrganisationRows({
       name: record.name,
       href: record.reconciliation.status === "reviewed_match"
         ? record.reconciliation.canonicalHref
-        : `/organisations?view=catalogue&q=${encodeURIComponent(record.name)}`,
+        : `/organisations?q=${encodeURIComponent(record.name)}`,
       roles: record.roles.map(catalogueRoleDisplayName),
       segments: record.segments.map(catalogueSegmentDisplayName),
       locationLabels: catalogueLocationLabels(record, countryName),
-      reviewLabel: record.reviewState === "reviewed" ? "Canonical match" : "Catalogue · review pending",
+      reviewLabel: record.reviewState === "reviewed" ? "Reviewed match" : "Review pending",
     }));
   return [...canonicalRows, ...catalogueRows].sort((left, right) => left.name.localeCompare(right.name));
 }
@@ -456,7 +456,7 @@ function CountryOrganisationFilters({ countryIso2, filters, headquartersOptions 
         <FilterSelect defaultValue={filters.sector} label="Sector" name="sector" options={organisationSectors.map((item) => [item.id, item.name])} />
         <FilterSelect defaultValue={filters.orgOrigin} label="Origin" name="orgOrigin" options={[["Africa-headquartered", "Africa-headquartered"], ["International, active in Africa", "International, active in Africa"]]} />
         <FilterSelect defaultValue={filters.headquarters} label="Headquarters" name="headquarters" options={headquartersOptions.map((value) => [value, value])} />
-        <FilterSelect defaultValue={filters.scope} label="Review layer" name="scope" options={[["reviewed", "Canonical profiles"], ["pending", "Review pending"], ["africa_hq", "Africa-headquartered"], ["international", "International, active in Africa"]]} />
+        <FilterSelect defaultValue={filters.scope} label="Review status" name="scope" options={[["reviewed", "Reviewed profiles"], ["pending", "Review pending"], ["africa_hq", "Africa-headquartered"], ["international", "International, active in Africa"]]} />
       </div></details>
       <button type="submit">Apply</button><Link href={countryViewHref(countryIso2, "organisations")}>Clear</Link>
     </form>

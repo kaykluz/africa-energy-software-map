@@ -74,7 +74,7 @@
 .organisation-catalogue-controls,
 .review-catalogue-filters {
   display: grid;
-  grid-template-columns: minmax(250px, 1.4fr) repeat(5, minmax(125px, .65fr)) auto auto;
+  grid-template-columns: minmax(250px, 1.4fr) repeat(5, minmax(125px, .65fr)) minmax(105px, auto) auto auto;
   align-items: center;
   gap: 8px;
   padding: 12px 0 18px;
@@ -119,6 +119,8 @@
   font: .66rem var(--font-mono);
   white-space: nowrap;
 }
+
+.organisation-catalogue-more > summary { height: 42px; }
 
 .organisation-catalogue-grid {
   display: grid;

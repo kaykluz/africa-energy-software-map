@@ -8,7 +8,9 @@ export async function GET(request: Request) {
   const pageSize = integer(params.get("pageSize"), 60);
   const query = {
     query: text(params.get("q"), 160),
+    group: text(params.get("group"), 120) || "all",
     role: text(params.get("role"), 120) || "all",
+    sector: text(params.get("sector"), 120) || "all",
     segment: text(params.get("segment"), 120) || "all",
     country: text(params.get("country"), 120) || "all",
     headquarters: text(params.get("headquarters"), 120) || "all",
@@ -65,7 +67,7 @@ function catalogueCsv(records: ReturnType<typeof queryOrganisationCatalogue>["re
     countries_active_or_available: record.countriesActive,
     technologies: record.technologies,
     status: record.lifecycle,
-    catalogue_status: record.reviewState === "reviewed" ? "Canonical" : "Review pending",
+    catalogue_status: record.reviewState === "reviewed" ? "Reviewed" : "Review pending",
     evidence_confidence: record.confidence,
     last_checked: record.lastReviewed,
     source: record.sourceUrl,

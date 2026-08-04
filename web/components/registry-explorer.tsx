@@ -29,6 +29,7 @@ import {
   OriginLabel,
 } from "@/components/semantic-tags";
 import { OrganisationMark, ProductMark } from "@/components/brand-mark";
+import { DatabaseHeader } from "@/components/database-header";
 import {
   type CSSProperties,
   Fragment,
@@ -50,10 +51,12 @@ import {
   organisationSectorName,
   type OrganisationDirectoryRecord,
 } from "@/lib/organisation-data";
-import type {
-  OrganisationCatalogueMapData,
-  OrganisationCataloguePage,
+import {
+  organisationCatalogue,
+  type OrganisationCatalogueMapData,
+  type OrganisationCataloguePage,
 } from "@/lib/organisation-catalogue";
+import { landscapeSoftwareItems } from "@/lib/landscape-data";
 import {
   organisationLinkIndex,
   resolveOrganisationHref,
@@ -93,13 +96,13 @@ const viewMeta: Record<
   }
 > = {
   stack: {
-    title: "The software powering African energy",
+    title: "Database",
   },
   deployments: {
     title: "Where the software is running",
   },
   directory: {
-    title: "Directory",
+    title: "Reviewed software",
   },
 };
 
@@ -165,7 +168,7 @@ export function RegistryExplorer({
   const [originFilter, setOriginFilter] = useState(initialOrigin);
   const [lifecycleFilter, setLifecycleFilter] = useState(initialLifecycle);
   const [accessFilter, setAccessFilter] = useState(initialAccess);
-  const [mapObject, setMapObject] = useState<"software" | "organisations">(
+  const [mapObject] = useState<"software" | "organisations">(
     initialObject === "organisations" ? "organisations" : "software",
   );
   const [organisationLayer, setOrganisationLayer] = useState<OrganisationMapLayer>(
@@ -546,6 +549,59 @@ export function RegistryExplorer({
     sector: sectorFilter,
     segment: segmentFilter,
   });
+  const softwareDatabaseParams = new URLSearchParams();
+  if (query.trim()) softwareDatabaseParams.set("q", query.trim());
+  if (stageFilter !== "all") softwareDatabaseParams.set("stage", stageFilter);
+  const softwareDatabaseQuery = softwareDatabaseParams.toString();
+  const currentMapParams = new URLSearchParams();
+  if (query.trim()) currentMapParams.set("q", query.trim());
+  if (categoryFilter !== "all") currentMapParams.set("category", categoryFilter);
+  if (evidenceFilter !== "all") currentMapParams.set("evidence", evidenceFilter);
+  if (countryFilter !== "all") currentMapParams.set("country", countryFilter);
+  if (stageFilter !== "all") currentMapParams.set("stage", stageFilter);
+  if (originFilter !== "all") currentMapParams.set("origin", originFilter);
+  if (lifecycleFilter !== "all") currentMapParams.set("lifecycle", lifecycleFilter);
+  if (accessFilter !== "all") currentMapParams.set("access", accessFilter);
+  if (mapObject !== "software") currentMapParams.set("object", mapObject);
+  if (softwareLayer !== "all_locations") currentMapParams.set("softwareLocation", softwareLayer);
+  if (organisationLayer !== "all_presence") currentMapParams.set("presence", organisationLayer);
+  if (initialFocus !== "NG") currentMapParams.set("focus", initialFocus);
+  if (initialRepresentation !== "map") currentMapParams.set("representation", initialRepresentation);
+  if (groupFilter !== "all") currentMapParams.set("group", groupFilter);
+  if (roleFilter !== "all") currentMapParams.set("role", roleFilter);
+  if (sectorFilter !== "all") currentMapParams.set("sector", sectorFilter);
+  if (segmentFilter !== "all") currentMapParams.set("segment", segmentFilter);
+  if (organisationOriginFilter !== "all") currentMapParams.set("orgOrigin", organisationOriginFilter);
+  if (headquartersFilter !== "all") currentMapParams.set("headquarters", headquartersFilter);
+  if (scopeFilter !== "all") currentMapParams.set("scope", scopeFilter);
+  const currentMapQuery = currentMapParams.toString();
+  const softwareMapParams = new URLSearchParams();
+  if (query.trim()) softwareMapParams.set("q", query.trim());
+  if (categoryFilter !== "all") softwareMapParams.set("category", categoryFilter);
+  if (evidenceFilter !== "all") softwareMapParams.set("evidence", evidenceFilter);
+  if (countryFilter !== "all") softwareMapParams.set("country", countryFilter);
+  if (stageFilter !== "all") softwareMapParams.set("stage", stageFilter);
+  if (originFilter !== "all") softwareMapParams.set("origin", originFilter);
+  if (lifecycleFilter !== "all") softwareMapParams.set("lifecycle", lifecycleFilter);
+  if (accessFilter !== "all") softwareMapParams.set("access", accessFilter);
+  if (softwareLayer !== "all_locations") softwareMapParams.set("softwareLocation", softwareLayer);
+  if (initialFocus !== "NG") softwareMapParams.set("focus", initialFocus);
+  if (initialRepresentation !== "map") softwareMapParams.set("representation", initialRepresentation);
+  const organisationMapParams = new URLSearchParams({ object: "organisations" });
+  if (query.trim()) organisationMapParams.set("q", query.trim());
+  if (countryFilter !== "all") organisationMapParams.set("country", countryFilter);
+  if (organisationLayer !== "all_presence") organisationMapParams.set("presence", organisationLayer);
+  if (initialFocus !== "NG") organisationMapParams.set("focus", initialFocus);
+  if (initialRepresentation !== "map") organisationMapParams.set("representation", initialRepresentation);
+  if (groupFilter !== "all") organisationMapParams.set("group", groupFilter);
+  if (roleFilter !== "all") organisationMapParams.set("role", roleFilter);
+  if (sectorFilter !== "all") organisationMapParams.set("sector", sectorFilter);
+  if (segmentFilter !== "all") organisationMapParams.set("segment", segmentFilter);
+  if (organisationOriginFilter !== "all") organisationMapParams.set("orgOrigin", organisationOriginFilter);
+  if (headquartersFilter !== "all") organisationMapParams.set("headquarters", headquartersFilter);
+  if (scopeFilter !== "all") organisationMapParams.set("scope", scopeFilter);
+  const softwareMapHref = softwareMapParams.toString() ? `/deployments?${softwareMapParams.toString()}` : "/deployments";
+  const organisationMapHref = `/deployments?${organisationMapParams.toString()}`;
 
   const meta = viewMeta[view];
   const pageTitle = view === "deployments"
@@ -560,7 +616,7 @@ export function RegistryExplorer({
     : view === "deployments" && mapObject === "organisations"
       ? [
           [organisationResultCount, "located organisations"],
-          [organisationMapResultKeys(filteredOrganisationRecords, emptyCatalogueMapData, organisationLayer, countryFilter).size, "canonical profiles"],
+          [organisationMapResultKeys(filteredOrganisationRecords, emptyCatalogueMapData, organisationLayer, countryFilter).size, "reviewed profiles"],
           [organisationMapResultKeys([], effectiveCatalogueMapData, organisationLayer, countryFilter).size, "catalogue records"],
         ]
     : [
@@ -575,7 +631,28 @@ export function RegistryExplorer({
       id="main-content"
       tabIndex={-1}
     >
-      <section className="v2-experience-hero">
+      {view === "deployments" ? (
+        <>
+          <DatabaseHeader
+            activeObject={mapObject}
+            activeView="map"
+            cardsHref={mapObject === "software"
+              ? softwareDatabaseQuery ? `/?${softwareDatabaseQuery}` : "/"
+              : organisationDirectoryHref}
+            mapHref={currentMapQuery ? `/deployments?${currentMapQuery}` : "/deployments"}
+            organisationCount={organisationCatalogue.counts.total}
+            organisationsHref={organisationMapHref}
+            softwareHref={softwareMapHref}
+            softwareCount={landscapeSoftwareItems.length}
+            wallHref={softwareDatabaseQuery ? `/landscape?${softwareDatabaseQuery}` : "/landscape"}
+          />
+          <section className="landscape-scoreboard map-database-scoreboard" aria-label="Map totals">
+            {heroStats.map(([value, label]) => (
+              <div key={label}><strong>{value}</strong><span>{label}</span></div>
+            ))}
+          </section>
+        </>
+      ) : <section className="v2-experience-hero">
         <div className="v2-hero-copy">
           <h1>{pageTitle}</h1>
         </div>
@@ -596,25 +673,7 @@ export function RegistryExplorer({
             <i aria-hidden="true">↗</i>
           </Link>
         </div>
-        <nav aria-label="Dataset views" className="v2-view-dock">
-          {[
-            ["/", "Explore", "stack", "01"],
-            ["/deployments", "Map", "deployments", "02"],
-            ["/directory", "Data", "directory", "03"],
-            ["/landscape", "Wall", "wall", "04"],
-          ].map(([href, label, id, index]) => (
-            <Link
-              aria-current={view === id ? "page" : undefined}
-              className={view === id ? "active" : ""}
-              href={`${href}${preservedSearch ? `?${preservedSearch}` : ""}`}
-              key={id}
-            >
-              <span>{index}</span>
-              {label}
-            </Link>
-          ))}
-        </nav>
-      </section>
+      </section>}
 
       <CommandBar
         activeFilters={activeFilters}
@@ -734,10 +793,6 @@ export function RegistryExplorer({
           sectorFilter={sectorFilter}
           segmentFilter={segmentFilter}
           onFocusCountry={(focus) => updateUrl({ focus })}
-          onObjectModeChange={(object) => {
-            setMapObject(object);
-            updateUrl({ object });
-          }}
           onSoftwareLayerChange={(softwareLocation) => {
             setSoftwareLayer(softwareLocation);
             updateUrl({ softwareLocation });
@@ -962,7 +1017,7 @@ function FilterPanel({
                 <option value="all">All listings</option>
                 <option value="africa_hq">Africa-headquartered</option>
                 <option value="international">International, active in Africa</option>
-                <option value="reviewed">Canonical profiles</option>
+                <option value="reviewed">Reviewed profiles</option>
                 <option value="pending">Review pending</option>
               </FilterSelect>
             </>
@@ -1000,7 +1055,7 @@ function FilterPanel({
                 <option value="all">All listings</option>
                 <option value="africa_hq">Africa-headquartered</option>
                 <option value="international">International, active in Africa</option>
-                <option value="reviewed">Canonical profiles</option>
+                <option value="reviewed">Reviewed profiles</option>
                 <option value="pending">Review pending</option>
               </FilterSelect>
             </>
@@ -1307,7 +1362,6 @@ function DeploymentsView({
   softwareMapIndex,
   onCountryFilterChange,
   onFocusCountry,
-  onObjectModeChange,
   onOpenProduct,
   onOrganisationLayerChange,
   onRoleFilterChange,
@@ -1333,7 +1387,6 @@ function DeploymentsView({
   softwareMapIndex: SoftwareMapIndex;
   onCountryFilterChange: (value: string) => void;
   onFocusCountry: (iso2: string) => void;
-  onObjectModeChange: (value: "software" | "organisations") => void;
   onOpenProduct: (product: Product, element: HTMLElement) => void;
   onOrganisationLayerChange: (value: OrganisationMapLayer) => void;
   onRoleFilterChange: (value: string) => void;
@@ -1452,21 +1505,6 @@ function DeploymentsView({
   return (
     <section className="v2-map-canvas">
       <div className="v2-map-controls">
-        <div className="v2-layer-switch" role="group" aria-label="Map objects">
-          {[
-            ["software", "Software"],
-            ["organisations", "Organisations"],
-          ].map(([value, label]) => (
-            <button
-              aria-pressed={objectMode === value}
-              key={value}
-              onClick={() => onObjectModeChange(value as "software" | "organisations")}
-              type="button"
-            >
-              {label}
-            </button>
-          ))}
-        </div>
         {objectMode === "software" ? (
           <div className="v2-map-organisation-tools">
             <label className="v2-map-layer-select">
@@ -1784,7 +1822,7 @@ function organisationScopeLabel(scope: string) {
     africa_hq: "Africa-headquartered",
     africa_wide: "Africa-wide coverage",
     international: "International, active in Africa",
-    reviewed: "Canonical profiles",
+    reviewed: "Reviewed profiles",
     pending: "Review pending",
   }[scope] ?? scope;
 }
@@ -1815,15 +1853,15 @@ function buildOrganisationDirectoryHref({
   const params = new URLSearchParams();
   if (query.trim()) params.set("q", query.trim());
   if (layer === "catalogue" || layer === "africa_wide") {
-    params.set("view", "catalogue");
     if (role !== "all") params.set("role", role);
+    if (group !== "all") params.set("group", group);
+    if (sector !== "all") params.set("sector", sector);
     if (segment !== "all") params.set("segment", segment);
     if (country !== "all") params.set("country", country);
     if (headquarters !== "all") params.set("headquarters", headquarters);
     if (scope !== "all") params.set("scope", scope);
     if (layer === "africa_wide") params.set("scope", "africa_wide");
   } else {
-    params.set("view", "ecosystem");
     if (group !== "all") params.set("group", group);
     if (role !== "all") params.set("role", role);
     if (sector !== "all") params.set("sector", sector);

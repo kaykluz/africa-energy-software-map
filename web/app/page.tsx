@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { LandscapeExplorer } from "@/components/landscape-explorer";
+import { organisationCatalogue } from "@/lib/organisation-catalogue";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  title: "The software powering African energy",
+  title: "Database",
   description:
-    "Search 540 classified software and enabling-infrastructure listings connected to African energy.",
+    "Search and filter software and digital tools connected to African energy.",
 };
 
 export default async function Home({
@@ -21,10 +22,12 @@ export default async function Home({
       initialKind={params.kind}
       initialQuery={params.q}
       initialRelationship={params.relationship}
+      initialReviewStatus={params.status}
       initialSector={params.sector}
       initialStage={params.stage}
       initialView="listings"
       mode="explore"
+      organisationCount={organisationCatalogue.counts.total}
     />
   );
 }

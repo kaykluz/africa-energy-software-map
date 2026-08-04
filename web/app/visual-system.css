@@ -368,6 +368,13 @@ body {
 .v2-search-empty a { color: var(--v2-teal); }
 
 .v2-experience { min-height: 80vh; }
+.v2-experience > .database-header,
+.v2-experience > .landscape-scoreboard {
+  width: calc(100% - 48px);
+  max-width: 1500px;
+  margin-inline: auto;
+}
+.map-database-scoreboard { margin-top: 18px; }
 
 .v2-experience-hero {
   position: relative;
@@ -1445,6 +1452,8 @@ body {
 @media (max-width: 760px) {
   .v2-header-inner, .v2-experience-hero, .v2-command-bar, .v2-active-filters,
   .v2-stack-canvas, .v2-map-canvas, .v2-data-canvas, .v2-footer { width: calc(100% - 28px); }
+  .v2-experience > .database-header,
+  .v2-experience > .landscape-scoreboard { width: calc(100% - 28px); }
   .v2-header-inner { min-height: 66px; }
   .v2-status-button span:not(.sr-only) { display: none; }
   .v2-status-button { width: 38px; justify-content: center; padding: 0; }
@@ -1770,6 +1779,15 @@ body {
   justify-content: space-between;
 }
 
+.landscape-card-top > div { display: flex; align-items: flex-end; flex-direction: column; gap: 5px; text-align: right; }
+.landscape-card-top em {
+  padding: 3px 6px;
+  border: 1px solid var(--v2-line);
+  border-radius: 999px;
+  color: var(--muted);
+  font: normal 560 .5rem var(--font-mono);
+}
+.landscape-card-top em[data-status="reviewed"] { color: var(--v2-teal-dark); border-color: color-mix(in srgb, var(--v2-teal) 52%, var(--v2-line)); }
 .landscape-card-top b { color: var(--v2-teal-dark); font: inherit; }
 .landscape-card-top a,
 .landscape-card .landscape-parent a {
@@ -2525,6 +2543,51 @@ body {
   dominant-baseline: central;
 }
 .v2-africa-map-wrap > p { margin: 2px 0 0; color: var(--muted); font: .57rem var(--font-mono); text-align: center; }
+
+.database-header {
+  padding: 12px 0 0;
+  border-bottom: 1px solid var(--v2-line-dark);
+}
+.database-header-title {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  min-height: 104px;
+  padding-bottom: 24px;
+  gap: 24px;
+}
+.database-header-title h1 {
+  margin: 0 0 7px;
+  font-size: clamp(2.15rem, 4vw, 3.6rem);
+  font-weight: 590;
+  letter-spacing: -.055em;
+  line-height: .96;
+}
+.database-header-title p { margin: 0; color: var(--muted); font-size: .88rem; }
+.database-header-title > strong { color: var(--v2-blue); font: 650 clamp(1.75rem, 3vw, 2.8rem) var(--font-mono); }
+.database-header-navs { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+.database-object-tabs,
+.database-view-tabs { display: flex; gap: 4px; }
+.database-object-tabs a,
+.database-view-tabs a {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  padding: 0 15px;
+  border-radius: 9px 9px 0 0;
+  color: var(--muted);
+  font-size: .75rem;
+  font-weight: 720;
+  text-decoration: none;
+}
+.database-object-tabs a span { margin-left: 8px; color: inherit; font: .58rem var(--font-mono); }
+.database-object-tabs a[aria-current="page"],
+.database-view-tabs a[aria-current="page"] { color: #fff; background: var(--v2-blue); }
+.database-object-tabs a:hover,
+.database-view-tabs a:hover { color: var(--v2-ink); background: var(--v2-surface); }
+.database-object-tabs a[aria-current="page"]:hover,
+.database-view-tabs a[aria-current="page"]:hover { color: #fff; background: var(--v2-blue); }
+.landscape-tabs-secondary { margin-top: 18px; }
 
 .landscape-page-explore .landscape-intro h1 { max-width: 820px; font-size: clamp(2.4rem, 4.3vw, 3.75rem); }
 .landscape-scoreboard { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -3283,6 +3346,13 @@ body {
 }
 
 @media (max-width: 760px) {
+  .database-header-title { min-height: 0; align-items: start; padding-bottom: 18px; }
+  .database-header-title > strong { font-size: 1.45rem; }
+  .database-header-navs { align-items: stretch; flex-direction: column; gap: 4px; }
+  .database-object-tabs,
+  .database-view-tabs { width: 100%; overflow-x: auto; }
+  .database-object-tabs a,
+  .database-view-tabs a { flex: 0 0 auto; border-radius: 8px; }
   .country-directory-page { width: min(100% - 28px, 1240px); padding-top: 28px; }
   .country-directory-header { align-items: start; flex-direction: column; }
   .country-directory-header .country-stat-row { width: 100%; }

@@ -265,7 +265,9 @@ export function buildOrganisationCatalogueMapData(
 
 export function queryOrganisationCatalogue({
   query = "",
+  group = "all",
   role = "all",
+  sector = "all",
   segment = "all",
   country = "all",
   headquarters = "all",
@@ -275,7 +277,9 @@ export function queryOrganisationCatalogue({
 }: OrganisationCatalogueQuery = {}, records: OrganisationCatalogueRecord[] = organisationCatalogueRecords): OrganisationCataloguePage {
   const filtered = filterOrganisationCatalogueRecords({
     query,
+    group,
     role,
+    sector,
     segment,
     country,
     headquarters,

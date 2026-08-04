@@ -2,68 +2,84 @@
 
 ## Navigation
 
-Phase 1 navigation is intentionally small:
+The public navigation is intentionally small:
 
-**Stack · Deployments · Directory · Software wall · Methodology**
+**Database · Map · Method**
 
-Global search and Contribute remain available across all views. Data downloads
-live in the Directory. Organisation and country pages are reached contextually.
+Global search and Improve the map remain available everywhere. Reviewed
+software, downloads, changes, accessibility and administration sit in the
+utility menu. Organisation, product and country pages are reached contextually.
+
+## One database, several views
+
+The Database is the single public discovery surface. It has two record types:
+
+- **Software** — products, public tools and research leads.
+- **Organisations** — financiers, developers, OEMs, EPCs, operators, software
+  providers, enablers and public institutions.
+
+The same records can be represented as Cards, Wall or Map. Wall applies only to
+software. Switching representations preserves compatible filters. Review status
+is a filter and label, not a separate directory.
+
+### Software cards
+
+Answers: **What software and digital tools are in the database?**
+
+Cards are the default software view. Search and filters cover relationship to
+energy, function, value-chain stage, sector, record type, Africa link and review
+status. A card opens a preview or its stable record when one exists.
 
 ### Software wall
 
-Answers: **What software and enabling infrastructure appears across the wider
-landscape?**
+Answers: **How does the software landscape fit together?**
 
-The wall arranges catalogue identities across the six value-chain stages and a
-cross-cutting band. Selecting a tile opens the listing detail in place. Wall,
-list, deployment leads, history, sources and exports share the same catalogue
-route. Broad inclusion does not create a reviewed deployment claim.
+The Wall arranges the same filtered software identities across the six
+value-chain stages and a cross-cutting band. It never ranks products. Selecting
+a tile opens the same record or preview used by Cards.
 
-## Reviewed database, three views
+### Organisation cards
 
-### Stack
+Answers: **Who participates in African energy, and what do they do?**
 
-Answers: **What exists at each layer of the energy system?**
+The Organisation object uses one inclusion catalogue. It is filterable by actor
+type, role, energy market, broad sector, country activity, headquarters and
+review status. Accepted duplicates resolve to one reviewed profile while their
+source-listed names and facts remain attached to that profile.
 
-The stack uses six value-chain stages plus a cross-cutting band. Categories are
-full-width horizontal bands. Each collapsed product tile contains:
+### Map
 
-- product name;
-- organisation;
-- origin classification; and
-- count-based evidence summary.
+Answers: **Where are these records connected to Africa?**
 
-Selecting a product opens a preview. Opening the profile is a second action.
+Software and Organisations are switchable objects on the same map. Each
+geographic layer retains its meaning:
 
-### Deployments
+- reviewed deployment;
+- catalogue location;
+- explicit Africa-wide coverage;
+- headquarters;
+- company-stated presence;
+- office or local entity;
+- product availability; and
+- software-linked activity.
 
-Answers: **Where is the product evidenced as being used?**
+A catalogue location never silently becomes deployment evidence. Country or
+province is the default maximum precision.
 
-Geographic modes:
+## Reviewed release table
 
-- evidenced deployments;
-- claimed availability;
-- headquarters; and
-- founded in.
-
-A geographic choropleth is the recognisable desktop view. An equal-area country
-grid preserves small states and serves as the analytical/mobile alternative.
-Country or province is the default maximum precision.
-
-### Directory
-
-Answers: **Show me the structured records.**
-
-The Directory supports filtering, sorting, column selection, permalinks, and
-export of the current result set.
+`/directory` is the compact, sortable and exportable table of reviewed software.
+It supports evidence inspection and release-oriented work without presenting
+itself as a competing public catalogue.
 
 ## Core routes
 
 ```text
 /
+/organisations
 /deployments
-/directory
 /landscape
+/directory
 /methodology
 /products/{slug}
 /organisations/{slug}
@@ -72,30 +88,31 @@ export of the current result set.
 /data
 ```
 
-`/` is the canonical Stack route. `/stack` permanently redirects to `/`.
+`/` is Software Cards, `/landscape` is Software Wall, `/organisations` is
+Organisation Cards and `/deployments` is the shared Map. `/stack` permanently
+redirects to `/`.
 
-Every public entity page is server-rendered, crawlable, and assigned a stable
-canonical URL.
+Every reviewed entity page is server-rendered, crawlable and assigned a stable
+canonical URL. “Canonical” is an implementation and URL concept, not a competing
+public record type.
 
 ## Persistent state
 
-- Switching views preserves filters.
+- Switching Cards, Wall and Map preserves compatible filters.
 - Filter state is encoded in the URL.
-- Browser Back restores the prior selection, scroll position, and filters.
-- Selecting country → deployment → product preserves the country context.
-- Search automatically opens collapsed stages containing matches.
+- Selecting country, record or related entity preserves a clear return path.
+- Search opens matching software, organisations, countries and capabilities.
 
 ## Progressive disclosure
 
 ```text
-all stages → selected stage → category → product preview → full profile
-country overview → deployment → product preview → full profile
-directory row → product preview → full profile
+database → filtered cards or wall → preview → full record → sources
+map → country → filtered country records → full record → sources
 ```
 
 ## Search
 
-Search covers products, organisations, countries, and capabilities. It supports
+Search covers software, organisations, countries and capabilities. It supports
 sector synonyms such as PAYG/pay-as-you-go, C&I/commercial and industrial, and
 AMI/advanced metering.
 
@@ -105,3 +122,4 @@ The implementation-level design contracts are:
 
 - [Phase 1 UI/UX design system](14-phase-1-ui-ux-design-system.md)
 - [Phase 1 page specifications](15-phase-1-page-specifications.md)
+- [Visual interaction redesign](17-visual-interaction-redesign.md)

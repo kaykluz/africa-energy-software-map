@@ -3,8 +3,8 @@ import { RegistryExplorer } from "@/components/registry-explorer";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/directory" },
-  title: "Directory",
-  description: "Filter, sort and export Africa energy-software records.",
+  title: "Reviewed software",
+  description: "Filter, sort and export the reviewed Africa energy-software release.",
 };
 
 export default async function Directory({

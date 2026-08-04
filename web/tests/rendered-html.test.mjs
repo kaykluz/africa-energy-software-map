@@ -289,18 +289,23 @@ function reviewRequest(body, headers = {}) {
   };
 }
 
-test("server-renders the full catalogue with reviewed data kept distinct", async () => {
+test("server-renders one filterable software database with review state visible", async () => {
   const response = await render("/");
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /The software powering African energy/);
+  assert.match(html, /<h1>Database<\/h1>/);
   assert.match(html, /Reviewed beta/);
   assert.match(html, /Reviewed data release/);
-  assert.match(html, /<strong>540<\/strong><span>listings<\/span>/);
-  assert.match(html, /All catalogue/);
-  assert.match(html, /Reviewed records/);
+  assert.match(html, /<strong>474<\/strong><span>software records<\/span>/);
+  assert.match(html, /Software <span>474<\/span>/);
+  assert.match(html, /Organisations <span>1,953<\/span>/);
+  assert.match(html, /Cards/);
+  assert.match(html, /Wall/);
+  assert.match(html, /Map/);
+  assert.match(html, /Review pending/);
+  assert.match(html, /Filter by review status/);
   assert.match(html, /Skip to main content/);
   assert.doesNotMatch(html, /Your site is taking shape|Building your site/);
 });
@@ -337,7 +342,7 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
   const mapResponse = await render("/deployments");
   const mapHtml = await mapResponse.text();
   const mapTextHtml = mapHtml.replaceAll(/<!--.*?-->/g, "");
-  assert.match(mapHtml, /aria-label="Map objects"/i);
+  assert.match(mapHtml, /aria-label="Database records"/i);
   assert.match(mapHtml, /aria-label="Map representation"/i);
   assert.match(mapHtml, /aria-label="African country data view"/i);
   assert.match(mapHtml, /Clickable map of African countries/i);
@@ -405,13 +410,14 @@ test("server-renders the classified software wall", async () => {
   const response = await render("/landscape?q=SteamaCo");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /<h1[^>]*>Software wall<\/h1>/i);
-  assert.match(html, /Browse tools by where they sit in the energy system/);
+  assert.match(html, /<h1[^>]*>Database<\/h1>/i);
+  assert.match(html, /aria-label="Database records"/);
+  assert.match(html, /href="\/landscape\?q=SteamaCo" aria-current="page">Wall/);
   assert.match(html, /Core energy software/);
   assert.match(html, /SteamaCo/);
-  assert.match(html, /href="\/organisations\/steamaco"/);
+  assert.match(html, /href="\/products\/(thunderbolt|nimbus-ami)"/);
   assert.match(html, /Plan and design/);
-  assert.match(html, /href="\/deployments">Map<\/a>/);
+  assert.match(html, /href="\/deployments\?object=software&amp;q=SteamaCo">Map<\/a>/);
   assert.match(html, /CSV/);
   assert.match(html, /JSON/);
   assert.match(html, /Sources/);
@@ -465,11 +471,11 @@ test("keeps product ownership distinct from the map publisher", async () => {
 });
 
 test("server-renders local brand assets and the organisation atlas", async () => {
-  const organisationResponse = await render("/organisations?view=ecosystem");
+  const organisationResponse = await render("/organisations?q=Bboxx");
   assert.equal(organisationResponse.status, 200);
   const organisationHtml = await organisationResponse.text();
-  assert.match(organisationHtml, /<h1[^>]*>Organisations<\/h1>/i);
-  assert.match(organisationHtml, /64<\/strong><span>organisations/);
+  assert.match(organisationHtml, /<h1[^>]*>Database<\/h1>/i);
+  assert.match(organisationHtml, /1,953<\/strong><span>listings/);
   assert.match(organisationHtml, /Financiers/);
   assert.match(organisationHtml, /Developers and owners/);
   assert.match(organisationHtml, /OEMs and suppliers/);
@@ -477,20 +483,19 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   assert.match(organisationHtml, /Software and data/);
   assert.match(organisationHtml, /Enablers and advisers/);
   assert.match(organisationHtml, /Public institutions/);
-  assert.match(organisationHtml, /Software developer or platform/);
-  assert.match(organisationHtml, /Filter by actor type/);
-  assert.match(organisationHtml, /Filter by energy market/);
-  assert.match(organisationHtml, /Choose organisation presence layer/);
+  assert.match(organisationHtml, /Filter catalogue by actor type/);
+  assert.match(organisationHtml, /Filter catalogue by energy market/);
+  assert.match(organisationHtml, /Filter catalogue by sector/);
   assert.match(organisationHtml, /Export CSV/);
   assert.match(organisationHtml, /Mini-grids/);
-  assert.match(organisationHtml, /Off-grid solar, SHS and PAYGo/);
-  assert.match(organisationHtml, /C&amp;I and distributed energy/);
+  assert.match(organisationHtml, /SHS\/PAYGo/);
+  assert.match(organisationHtml, /C&amp;I/);
   assert.match(organisationHtml, /href="\/organisations\/bboxx"/);
   assert.match(organisationHtml, /src="\/brand\/organisations\/bboxx\.svg"/);
   assert.doesNotMatch(organisationHtml, /src="https?:\/\//i);
 
   const sectorResponse = await render(
-    "/organisations?view=ecosystem&sector=sector_emobility_batteries",
+    "/organisations?sector=sector_emobility_batteries",
   );
   assert.equal(sectorResponse.status, 200);
   const sectorHtml = await sectorResponse.text();
@@ -498,7 +503,7 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   assert.match(sectorHtml, /href="\/organisations\/bboxx"/);
   assert.match(
     sectorHtml,
-    /href="\/deployments\?object=organisations&amp;presence=all_presence&amp;sector=sector_emobility_batteries"/,
+    /href="\/deployments\?object=organisations&amp;presence=catalogue&amp;sector=sector_emobility_batteries"/,
   );
 
   const organisationProfileResponse = await render(
@@ -514,26 +519,26 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   assert.match(organisationProfileHtml, /Software-linked footprint/);
   assert.match(
     organisationProfileHtml,
-    /href="\/organisations\?view=ecosystem&amp;sector=sector_emobility_batteries"/,
+    /href="\/organisations\?sector=sector_emobility_batteries"/,
   );
   assert.match(
     organisationProfileHtml,
-    /href="\/organisations\?view=ecosystem&amp;group=org_group_software"/,
+    /href="\/organisations\?group=org_group_software"/,
   );
 
   const softwareGroupResponse = await render(
-    "/organisations?view=ecosystem&group=org_group_software",
+    "/organisations?group=org_group_software",
   );
   assert.equal(softwareGroupResponse.status, 200);
   const softwareGroupHtml = await softwareGroupResponse.text();
   assert.match(softwareGroupHtml, /Bboxx/);
 
   const epcGroupResponse = await render(
-    "/organisations?view=ecosystem&group=org_group_epcs",
+    "/organisations?group=org_group_epcs",
   );
   assert.equal(epcGroupResponse.status, 200);
   const epcGroupHtml = await epcGroupResponse.text();
-  assert.match(epcGroupHtml, /href="\/organisations\/ge-vernova"/);
+  assert.match(epcGroupHtml, /SAO Energy/);
   assert.doesNotMatch(epcGroupHtml, /href="\/organisations\/bboxx"/);
 
   const productResponse = await render("/products/ammp-os");
@@ -577,7 +582,7 @@ test("server-renders the Directory and its export action", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   const textHtml = html.replaceAll(/<!--.*?-->/g, "");
-  assert.match(html, /<h1[^>]*>Directory<\/h1>/i);
+  assert.match(html, /<h1[^>]*>Reviewed software<\/h1>/i);
   assert.match(html, /Export current view/);
   assert.match(html, /Page size/);
   assert.match(textHtml, /Page 1 of 1/);
@@ -612,7 +617,7 @@ test("server search includes organisation records", async () => {
   assert.match(listingHtml, /href="\/organisations\/esri"/);
 });
 
-test("surfaces the full organisation inclusion catalogue separately from canonical profiles", async () => {
+test("surfaces one organisation database with role, sector and review filters", async () => {
   const response = await render("/organisations");
   assert.equal(response.status, 200);
   const html = await response.text();
@@ -620,7 +625,10 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   assert.match(html, /inclusion catalogue/i);
   assert.match(html, /Review pending/);
   assert.match(html, /10000 Children Care Uganda/);
-  assert.match(html, /canonical profiles/i);
+  assert.match(html, /reviewed profiles/i);
+  assert.match(html, /<h1>Database<\/h1>/);
+  assert.match(html, /Filter catalogue by actor type/);
+  assert.match(html, /Filter catalogue by sector/);
 
   const api = await fetchWorker(
     "/api/organisation-catalogue?role=Financier&pageSize=10",
@@ -632,6 +640,26 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   assert.equal(payload.records.length, 10);
   assert.ok(payload.total > 100);
   assert.ok(payload.records.every((record) => record.roles.includes("Financier")));
+
+  const actorGroup = await fetchWorker(
+    "/api/organisation-catalogue?group=org_group_epcs&pageSize=100",
+    { headers: { accept: "application/json" } },
+    { DB: new MemoryD1() },
+  );
+  const actorGroupPayload = await actorGroup.json();
+  assert.ok(actorGroupPayload.total > 0);
+  assert.ok(actorGroupPayload.records.every((record) => record.roles.includes("EPC")));
+
+  const sector = await fetchWorker(
+    "/api/organisation-catalogue?sector=sector_emobility_batteries&pageSize=100",
+    { headers: { accept: "application/json" } },
+    { DB: new MemoryD1() },
+  );
+  const sectorPayload = await sector.json();
+  assert.ok(sectorPayload.total > 0);
+  assert.ok(sectorPayload.records.every((record) =>
+    record.segments.some((segment) => ["E-mobility", "Storage"].includes(segment)),
+  ));
 
   const csv = await fetchWorker(
     "/api/organisation-catalogue?scope=reviewed&format=csv",
@@ -647,10 +675,15 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   );
   assert.equal(map.status, 200);
   const mapHtml = await map.text();
+  assert.match(mapHtml, /<h1>Database<\/h1>/);
+  assert.match(mapHtml, /aria-label="Database records"/);
+  assert.match(mapHtml, /href="\/deployments\?object=organisations&amp;country=NG&amp;presence=catalogue" aria-current="page">/);
+  assert.match(mapHtml, /href="\/deployments\?country=NG&amp;object=organisations&amp;presence=catalogue" aria-current="page">Map/);
+  assert.doesNotMatch(mapHtml, /aria-label="Map objects"/);
   assert.match(mapHtml, /Documented country activity/);
   assert.match(mapHtml, /located organisations/);
   assert.match(mapHtml, /Nigeria: 310 organisations with documented country activity/);
-  assert.match(mapHtml, /href="\/organisations\?view=catalogue&amp;country=NG"/);
+  assert.match(mapHtml, /href="\/organisations\?country=NG"/);
   assert.doesNotMatch(mapHtml, />Rank</);
 
   const financierMap = await render(
@@ -663,7 +696,7 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   assert.match(financierMapHtml, /Anfani Energy/);
   assert.match(
     financierMapHtml,
-    /href="\/organisations\?view=catalogue&amp;role=org_role_financier"/,
+    /href="\/organisations\?role=org_role_financier"/,
   );
   assert.match(
     financierMapHtml,
@@ -691,7 +724,7 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   const africaWideMapHtml = (await africaWideMap.text()).replaceAll(/<!--.*?-->/g, "");
   assert.match(africaWideMapHtml, /282 located organisations/);
   assert.match(africaWideMapHtml, /Nigeria: 282 africa-wide coverage organisations/i);
-  assert.match(africaWideMapHtml, /href="\/organisations\?view=catalogue&amp;scope=africa_wide"/);
+  assert.match(africaWideMapHtml, /href="\/organisations\?scope=africa_wide"/);
 
   const canonicalSectorMap = await render(
     "/deployments?object=organisations&presence=software_linked&sector=sector_emobility_batteries&focus=KE",
@@ -702,7 +735,7 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   assert.match(canonicalSectorMapHtml, /Spiro/);
   assert.match(
     canonicalSectorMapHtml,
-    /href="\/organisations\?view=ecosystem&amp;sector=sector_emobility_batteries&amp;presence=software_linked"/,
+    /href="\/organisations\?sector=sector_emobility_batteries&amp;presence=software_linked"/,
   );
   assert.match(
     canonicalSectorMapHtml,
@@ -1260,7 +1293,8 @@ test("organisation catalogue candidates are visible and decisions persist in rev
   );
   assert.equal(canonicalDirectory.status, 200);
   const canonicalDirectoryHtml = await canonicalDirectory.text();
-  assert.match(canonicalDirectoryHtml, /<strong>65<\/strong><span>organisations<\/span>/);
+  assert.match(canonicalDirectoryHtml, /<h1>Database<\/h1>/);
+  assert.match(canonicalDirectoryHtml, /1,953<\/strong><span>listings/);
   assert.match(canonicalDirectoryHtml, /href="\/organisations\/3e-afr-0002"/);
 
   const amended = await fetchWorker(
@@ -1425,7 +1459,7 @@ test("duplicate organisation decisions merge catalogue records into one canonica
   const profileHtml = await profile.text();
   assert.match(profileHtml, /Also known as[\s\S]*Ampersand/);
   assert.match(profileHtml, /Merged catalogue records/);
-  assert.match(profileHtml, /One canonical identity/);
+  assert.match(profileHtml, /Merged into this reviewed record/);
   assert.match(profileHtml, /puredata\.gogla\.org/);
   assert.match(profileHtml, /Projects and deployment leads|Sources/);
   assert.match(profileHtml, /Developer or IPP/);
@@ -1437,7 +1471,8 @@ test("duplicate organisation decisions merge catalogue records into one canonica
     { DB: database },
   );
   const directoryHtml = await directory.text();
-  assert.match(directoryHtml, /<strong>64<\/strong><span>organisations<\/span>/);
+  assert.match(directoryHtml, /<h1>Database<\/h1>/);
+  assert.match(directoryHtml, /inclusion catalogue/i);
   assert.match(directoryHtml, /href="\/organisations\/ampersand-energy"/);
 
   for (const filter of [
