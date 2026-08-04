@@ -74,9 +74,18 @@ is used instead of "company" because the data also includes public bodies,
 research communities and partnerships.
 
 The deployment map has a Software/Organisations object switch. Selecting an
-organisation does not infer a role such as EPC, developer or financier. Those
-roles remain future filterable fields on the organisation record, so adding
-market actors later will not create a tab for every role-by-sector combination.
+organisation does not infer a role such as EPC, developer or financier. Actor
+group, specific role, broad sector, energy market and origin are independent
+filters on canonical organisation records. The wider inclusion catalogue uses
+its available source fields—role, energy market, headquarters and review
+scope—without pretending that unreviewed listings have canonical taxonomy.
+
+The geographic map, equal-area grid, ranked countries, totals and selected-
+country panel all consume the same filtered dataset. Filter, presence layer,
+focused country and representation are reproducible URL parameters. A
+**Filtered directory** action carries the compatible filter state into
+`/organisations`, and each country panel adds its country constraint. Switching
+representation or presence layer does not silently broaden the result set.
 
 The compact global navigation is:
 

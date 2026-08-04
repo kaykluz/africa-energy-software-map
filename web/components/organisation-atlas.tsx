@@ -99,6 +99,16 @@ export function OrganisationAtlas({
   const [view, setView] = useState<OrganisationView>(
     initialView === "directory" || initialView === "ecosystem" ? initialView : "catalogue",
   );
+  const [catalogueMapHref, setCatalogueMapHref] = useState(() =>
+    organisationCatalogueMapHref({
+      country: initialCatalogueCountry,
+      headquarters: initialCatalogueHeadquarters,
+      query: initialQuery,
+      role: initialCatalogueRole,
+      scope: initialCatalogueScope,
+      segment: initialCatalogueSegment,
+    }),
+  );
 
   const withoutGroup = useMemo(
     () => filterRecords(canonicalDirectory, { query, role, sector, segment, country, origin, presence }),
@@ -225,11 +235,15 @@ export function OrganisationAtlas({
   }
 
   const mapParams = new URLSearchParams({ object: "organisations" });
-  if (country !== "all") mapParams.set("country", country);
-  mapParams.set(
-    "presence",
-    view === "catalogue" ? "catalogue" : presence === "all" ? "software_linked" : presence,
-  );
+  mapParams.set("presence", presence === "all" ? "software_linked" : presence);
+  if (query.trim()) mapParams.set("q", query.trim());
+  if (group !== "all") mapParams.set("group", group);
+  if (role !== "all") mapParams.set("role", role);
+  if (sector !== "all") mapParams.set("sector", sector);
+  if (segment !== "all") mapParams.set("segment", segment);
+  if (origin !== "all") mapParams.set("orgOrigin", origin);
+  if (country !== "all") mapParams.set("focus", country);
+  const canonicalMapHref = `/deployments?${mapParams.toString()}`;
 
   return (
     <main className="organisation-atlas" id="main-content" tabIndex={-1}>
@@ -257,7 +271,7 @@ export function OrganisationAtlas({
           onClick={() => { setView("directory"); updateUrl({ view: "directory" }); }}
           type="button"
         >Canonical directory</button>
-        <Link href={`/deployments?${mapParams.toString()}`}>Map</Link>
+        <Link href={view === "catalogue" ? catalogueMapHref : canonicalMapHref}>Map</Link>
       </nav>
 
       {view === "catalogue" ? (
@@ -269,6 +283,7 @@ export function OrganisationAtlas({
           initialRole={initialCatalogueRole}
           initialScope={initialCatalogueScope}
           initialSegment={initialCatalogueSegment}
+          onMapHrefChange={setCatalogueMapHref}
           organisationLinks={canonicalOrganisationLinks}
           reviewedCount={canonicalDirectory.length}
         />
@@ -455,6 +470,7 @@ function PublicOrganisationCatalogue({
   initialRole,
   initialScope,
   initialSegment,
+  onMapHrefChange,
   organisationLinks,
   reviewedCount,
 }: {
@@ -465,6 +481,7 @@ function PublicOrganisationCatalogue({
   initialRole: string;
   initialScope: string;
   initialSegment: string;
+  onMapHrefChange: (href: string) => void;
   organisationLinks: ExactLinkIndex;
   reviewedCount: number;
 }) {
@@ -505,6 +522,17 @@ function PublicOrganisationCatalogue({
       window.clearTimeout(timer);
     };
   }, [country, headquarters, initialQuery, page, query, role, scope, segment]);
+
+  useEffect(() => {
+    onMapHrefChange(organisationCatalogueMapHref({
+      country,
+      headquarters,
+      query,
+      role,
+      scope,
+      segment,
+    }));
+  }, [country, headquarters, onMapHrefChange, query, role, scope, segment]);
 
   function update(setter: (value: string) => void, value: string) {
     setter(value);
@@ -792,6 +820,28 @@ function catalogueParams(values: {
   }
   if (values.format) params.set("format", values.format);
   return params.toString();
+}
+
+function organisationCatalogueMapHref(values: {
+  country: string;
+  headquarters: string;
+  query: string;
+  role: string;
+  scope: string;
+  segment: string;
+}) {
+  const params = new URLSearchParams({
+    object: "organisations",
+    presence: "catalogue",
+  });
+  if (values.query.trim()) params.set("q", values.query.trim());
+  if (values.role !== "all") params.set("role", values.role);
+  if (values.segment !== "all") params.set("segment", values.segment);
+  if (values.headquarters !== "all") params.set("headquarters", values.headquarters);
+  if (values.scope !== "all") params.set("scope", values.scope);
+  const focus = africanCountries.find(([, name]) => name === values.country)?.[0];
+  if (focus) params.set("focus", focus);
+  return `/deployments?${params.toString()}`;
 }
 
 function catalogueFilterHref(values: Partial<{
