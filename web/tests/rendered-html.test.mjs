@@ -336,6 +336,7 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
 
   const mapResponse = await render("/deployments");
   const mapHtml = await mapResponse.text();
+  const mapTextHtml = mapHtml.replaceAll(/<!--.*?-->/g, "");
   assert.match(mapHtml, /aria-label="Map objects"/i);
   assert.match(mapHtml, /aria-label="Map representation"/i);
   assert.match(mapHtml, /aria-label="African country data view"/i);
@@ -344,6 +345,13 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
   assert.match(mapHtml, /Software/);
   assert.match(mapHtml, /Organisations/);
   assert.match(mapHtml, /aria-live="polite"/i);
+  assert.match(mapHtml, /<strong>19<\/strong><span>mapped products<\/span>/);
+  assert.match(mapHtml, /<strong>94<\/strong><span>catalogue products<\/span>/);
+  assert.match(mapTextHtml, /19 results/);
+  assert.match(mapHtml, /19 of 94 catalogue products/);
+  assert.match(mapTextHtml, /75 awaiting country evidence/);
+  assert.match(mapTextHtml, /href="\/directory">All 94<\/a>/);
+  assert.match(mapHtml, /href="\/contribute\/deployment">Add evidence<\/a>/);
   const organisationMapResponse = await render("/deployments?object=organisations");
   const organisationMapHtml = await organisationMapResponse.text();
   assert.match(organisationMapHtml, /aria-label="Organisation presence layer"/i);
