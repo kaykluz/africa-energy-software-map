@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { OrganisationAtlas } from "@/components/organisation-atlas";
-import { queryOrganisationCatalogue } from "@/lib/organisation-catalogue";
+import {
+  catalogueRoleFilterValue,
+  catalogueSegmentFilterValue,
+  queryOrganisationCatalogue,
+} from "@/lib/organisation-catalogue";
 import { africanCountries } from "@/lib/registry-data";
 import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
 
@@ -19,15 +23,17 @@ export default async function OrganisationsPage({
 }) {
   const params = await searchParams;
   const catalogueCountry = africanCountries.find(([iso2]) => iso2 === params.country)?.[1] ?? "all";
+  const catalogueRole = catalogueRoleFilterValue(params.role);
+  const catalogueSegment = catalogueSegmentFilterValue(params.segment);
   const { canonicalDirectory, catalogueRecords } = await loadPublicOrganisationRegistry();
   const initialCatalogue = queryOrganisationCatalogue(
     {
       country: catalogueCountry,
       headquarters: params.headquarters,
       query: params.q,
-      role: params.role,
+      role: catalogueRole,
       scope: params.scope,
-      segment: params.segment,
+      segment: catalogueSegment,
     },
     catalogueRecords,
   );
@@ -37,9 +43,9 @@ export default async function OrganisationsPage({
       initialCatalogue={initialCatalogue}
       initialCatalogueCountry={catalogueCountry}
       initialCatalogueHeadquarters={params.headquarters}
-      initialCatalogueRole={params.role}
+      initialCatalogueRole={catalogueRole}
       initialCatalogueScope={params.scope}
-      initialCatalogueSegment={params.segment}
+      initialCatalogueSegment={catalogueSegment}
       initialGroup={params.group}
       initialCountry={params.country}
       initialOrigin={params.origin}

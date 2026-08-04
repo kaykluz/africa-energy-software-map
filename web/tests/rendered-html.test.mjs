@@ -645,10 +645,11 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   );
   assert.equal(map.status, 200);
   const mapHtml = await map.text();
-  assert.match(mapHtml, /Catalogue activity/);
+  assert.match(mapHtml, /Documented country activity/);
   assert.match(mapHtml, /located organisations/);
-  assert.match(mapHtml, /Nigeria: 310 catalogue activity organisations/);
+  assert.match(mapHtml, /Nigeria: 310 organisations with documented country activity/);
   assert.match(mapHtml, /href="\/organisations\?view=catalogue&amp;country=NG"/);
+  assert.doesNotMatch(mapHtml, />Rank</);
 
   const financierMap = await render(
     "/deployments?object=organisations&presence=catalogue&role=Financier&focus=NG",
@@ -656,16 +657,30 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   assert.equal(financierMap.status, 200);
   const financierMapHtml = await financierMap.text();
   assert.match(financierMapHtml, /105 located organisations/);
-  assert.match(financierMapHtml, /Nigeria: 28 catalogue activity organisations/);
+  assert.match(financierMapHtml, /Nigeria: 28 organisations with documented country activity/);
   assert.match(financierMapHtml, /Anfani Energy/);
   assert.match(
     financierMapHtml,
-    /href="\/organisations\?view=catalogue&amp;role=Financier"/,
+    /href="\/organisations\?view=catalogue&amp;role=org_role_financier"/,
   );
   assert.match(
     financierMapHtml,
-    /href="\/organisations\?view=catalogue&amp;role=Financier&amp;country=NG"/,
+    /href="\/countries\/ng\?view=organisations&amp;presence=catalogue&amp;role=org_role_financier"/,
   );
+
+  const epcMap = await render(
+    "/deployments?object=organisations&presence=catalogue&role=org_role_epc&country=NG&focus=NG",
+  );
+  assert.equal(epcMap.status, 200);
+  const epcMapHtml = await epcMap.text();
+  assert.match(epcMapHtml, /10 located organisations/);
+  assert.match(epcMapHtml, /Nigeria: 10 organisations with documented country activity/);
+  assert.match(epcMapHtml, /Royal Power and Energy/);
+  assert.match(epcMapHtml, /SAO Energy/);
+  assert.doesNotMatch(epcMapHtml, /Browse all 10 records/);
+  assert.match(epcMapHtml, /aria-label="Organisation role"/);
+  assert.match(epcMapHtml, /aria-label="Organisation sector"/);
+  assert.match(epcMapHtml, /aria-label="Organisation energy market"/);
 
   const canonicalSectorMap = await render(
     "/deployments?object=organisations&presence=software_linked&sector=sector_emobility_batteries&focus=KE",
@@ -680,7 +695,7 @@ test("surfaces the full organisation inclusion catalogue separately from canonic
   );
   assert.match(
     canonicalSectorMapHtml,
-    /href="\/organisations\?view=ecosystem&amp;sector=sector_emobility_batteries&amp;presence=software_linked&amp;country=KE"/,
+    /href="\/countries\/ke\?view=organisations&amp;presence=software_linked&amp;sector=sector_emobility_batteries"/,
   );
 
   const nigeria = await render("/organisations?country=NG");
@@ -769,23 +784,46 @@ test("server-renders reproducible reviewed downloads and review status", async (
   assert.doesNotMatch(html, /_vinext\/image/);
 });
 
-test("server-renders a country profile from the generated snapshot", async () => {
+test("server-renders a complete country-scoped directory", async () => {
   const response = await render("/countries/ng");
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /<h1[^>]*>Nigeria<\/h1>/i);
-  assert.match(html, /Evidence-led software index/);
-  assert.match(html, /Abuja Electricity Distribution Company/);
-  assert.match(html, /href="\/products\/adora"/);
-  assert.match(html, /href="\/directory\?category=/);
-  assert.match(html, /View in Data/);
+  assert.match(html, /Software, organisations and recorded activity in one country view/);
+  assert.match(html, /Organisations by role/);
+  assert.match(html, /Organisations by market/);
+  assert.match(html, /Software by category/);
+  assert.match(html, /href="\/countries\/ng\?view=organisations"/);
+  assert.match(html, /href="\/countries\/ng\?view=software"/);
+  assert.match(html, /href="\/countries\/ng\?view=deployments"/);
   assert.match(html, /href="\/directory\?country=NG"/);
-  assert.match(
-    html,
-    /href="\/organisations\?q=Abuja%20Electricity%20Distribution%20Company%20\(AEDC\)"/,
+
+  const organisationsResponse = await render(
+    "/countries/ng?view=organisations&role=org_role_epc",
   );
-  assert.match(html, /<h2[^>]*>Organisations<\/h2>/i);
-  assert.match(html, /View filtered organisations/);
+  assert.equal(organisationsResponse.status, 200);
+  const organisationsHtml = await organisationsResponse.text();
+  const organisationsTextHtml = organisationsHtml.replaceAll(/<!--.*?-->/g, "");
+  assert.match(organisationsTextHtml, /10 organisations/);
+  assert.match(organisationsHtml, /Royal Power and Energy/);
+  assert.match(organisationsHtml, /SAO Energy/);
+  assert.match(organisationsHtml, /Documented country activity/);
+
+  const softwareResponse = await render("/countries/ng?view=software");
+  assert.equal(softwareResponse.status, 200);
+  const softwareHtml = await softwareResponse.text();
+  const softwareTextHtml = softwareHtml.replaceAll(/<!--.*?-->/g, "");
+  assert.match(softwareTextHtml, /53 software records/);
+  assert.match(softwareHtml, /href="\/products\/adora"/);
+  assert.match(softwareHtml, /Documented catalogue location/);
+
+  const deploymentsResponse = await render("/countries/ng?view=deployments");
+  assert.equal(deploymentsResponse.status, 200);
+  const deploymentsHtml = await deploymentsResponse.text();
+  const deploymentsTextHtml = deploymentsHtml.replaceAll(/<!--.*?-->/g, "");
+  assert.match(deploymentsTextHtml, /8 reviewed deployments/);
+  assert.match(deploymentsHtml, /Abuja Electricity Distribution Company/);
+  assert.match(deploymentsHtml, /<h2>Sources<\/h2>/);
 });
 
 test("server-renders the methodology AI disclosure", async () => {

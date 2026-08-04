@@ -1,4 +1,8 @@
 import catalogueJson from "@/generated/organisation-catalogue.json";
+import {
+  organisationRoleName,
+  organisationSegmentName,
+} from "@/lib/organisation-data";
 
 export type OrganisationCatalogueRecord = {
   id: string;
@@ -104,10 +108,13 @@ export const catalogueHeadquarters = uniqueSorted(
 
 export type OrganisationCatalogueQuery = {
   query?: string;
+  group?: string;
   role?: string;
+  sector?: string;
   segment?: string;
   country?: string;
   headquarters?: string;
+  origin?: string;
   scope?: string;
   page?: number;
   pageSize?: number;
@@ -160,8 +167,12 @@ export type OrganisationCatalogueMapData = {
 export function buildOrganisationCatalogueMapData(
   africanCountries: Array<readonly [string, string]>,
   records: OrganisationCatalogueRecord[] = organisationCatalogueRecords,
+  options: { includeRecordsFor?: string[] } = {},
 ): OrganisationCatalogueMapData {
   const iso2ByName = new Map(africanCountries.map(([iso2, name]) => [normalise(name), iso2]));
+  const recordCountries = options.includeRecordsFor
+    ? new Set(options.includeRecordsFor)
+    : null;
   const countries: OrganisationCatalogueMapData["countries"] = {};
   const recordsWithCountry = new Set<string>();
   const recordsWithHeadquarters = new Set<string>();
@@ -208,7 +219,7 @@ export function buildOrganisationCatalogueMapData(
         group.headquartersCount += 1;
         group.headquartersRecordKeys.push(recordKey);
       }
-      if (group.records.length < 12) {
+      if (!recordCountries || recordCountries.has(iso2)) {
         group.records.push({
           id: record.id,
           name: record.name,
@@ -277,18 +288,38 @@ export function queryOrganisationCatalogue({
 
 export function filterOrganisationCatalogueRecords({
   query = "",
+  group = "all",
   role = "all",
+  sector = "all",
   segment = "all",
   country = "all",
   headquarters = "all",
+  origin = "all",
   scope = "all",
 }: OrganisationCatalogueQuery = {}, records: OrganisationCatalogueRecord[] = organisationCatalogueRecords) {
   const needle = normalise(query);
   return records.filter((record) => {
-    if (role !== "all" && !record.roles.includes(role)) return false;
-    if (segment !== "all" && !record.segments.includes(segment)) return false;
+    const recordGroups = new Set(record.roles.flatMap((name) => catalogueGroupsByRoleName[name] ?? []));
+    const roleLabels = new Set([
+      role,
+      organisationRoleName(role),
+      catalogueRoleNameByTaxonomyId[role] ?? "",
+    ]);
+    const segmentLabels = new Set([
+      segment,
+      organisationSegmentName(segment),
+      catalogueSegmentNameByTaxonomyId[segment] ?? "",
+    ]);
+    if (group !== "all" && !recordGroups.has(group)) return false;
+    if (role !== "all" && !record.roles.some((name) => roleLabels.has(name))) return false;
+    if (sector !== "all" && !record.segments.some((name) =>
+      (catalogueSectorIdsBySegment[name] ?? []).includes(sector),
+    )) return false;
+    if (segment !== "all" && !record.segments.some((name) => segmentLabels.has(name))) return false;
     if (country !== "all" && !record.countriesActive.includes(country)) return false;
     if (headquarters !== "all" && record.headquartersCountry !== headquarters) return false;
+    if (origin === "Africa-headquartered" && !record.africaHeadquartered) return false;
+    if (origin === "International, active in Africa" && record.africaHeadquartered) return false;
     if (scope === "africa_hq" && !record.africaHeadquartered) return false;
     if (scope === "international" && record.africaHeadquartered) return false;
     if (scope === "reviewed" && record.reviewState !== "reviewed") return false;
@@ -308,6 +339,66 @@ export function filterOrganisationCatalogueRecords({
       record.description,
     ].join(" ")).includes(needle);
   });
+}
+
+const catalogueSectorIdsBySegment: Record<string, string[]> = {
+  "C&I": ["sector_commercial_industrial"],
+  "Carbon Markets": ["sector_markets_finance_carbon"],
+  "Clean Cooking": ["sector_distributed_energy_access"],
+  "E-mobility": ["sector_emobility_batteries"],
+  Efficiency: ["sector_commercial_industrial"],
+  "Mini-grids": ["sector_distributed_energy_access"],
+  "Productive Use": ["sector_distributed_energy_access"],
+  "SHS/PAYGo": ["sector_distributed_energy_access"],
+  Storage: ["sector_generation_storage"],
+  "T&D": ["sector_power_utilities"],
+  "Utility-scale": ["sector_generation_storage"],
+};
+
+const catalogueRoleNameByTaxonomyId: Record<string, string> = {
+  org_role_financier: "Financier",
+  org_role_developer_ipp: "Developer",
+  org_role_oem_manufacturer: "OEM",
+  org_role_epc: "EPC",
+  org_role_operator: "Operator",
+  org_role_software_data: "Software/Data",
+  org_role_enabler: "Enabler",
+  org_role_public_institution: "Public Institution",
+};
+
+const catalogueGroupsByRoleName: Record<string, string[]> = {
+  Financier: ["org_group_capital"],
+  Developer: ["org_group_developers"],
+  OEM: ["org_group_oems"],
+  EPC: ["org_group_epcs"],
+  Operator: ["org_group_operators"],
+  "Software/Data": ["org_group_software"],
+  Enabler: ["org_group_enablers"],
+  "Public Institution": ["org_group_public"],
+};
+
+const catalogueSegmentNameByTaxonomyId: Record<string, string> = {
+  org_segment_utility_generation: "Utility-scale",
+  org_segment_transmission_distribution: "T&D",
+  org_segment_minigrids: "Mini-grids",
+  org_segment_shs_paygo: "SHS/PAYGo",
+  org_segment_commercial_industrial: "C&I",
+  org_segment_emobility: "E-mobility",
+  org_segment_energy_storage: "Storage",
+  org_segment_clean_cooking: "Clean Cooking",
+  org_segment_efficiency_demand: "Efficiency",
+  org_segment_productive_use: "Productive Use",
+  org_segment_carbon_markets: "Carbon Markets",
+};
+
+export function catalogueRoleFilterValue(value = "all") {
+  if (value === "all") return value;
+  return catalogueRoleNameByTaxonomyId[value] ?? organisationRoleName(value);
+}
+
+export function catalogueSegmentFilterValue(value = "all") {
+  if (value === "all") return value;
+  return catalogueSegmentNameByTaxonomyId[value] ?? organisationSegmentName(value);
 }
 
 function uniqueSorted(values: string[]) {

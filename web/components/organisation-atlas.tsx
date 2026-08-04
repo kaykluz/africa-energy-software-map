@@ -242,7 +242,10 @@ export function OrganisationAtlas({
   if (sector !== "all") mapParams.set("sector", sector);
   if (segment !== "all") mapParams.set("segment", segment);
   if (origin !== "all") mapParams.set("orgOrigin", origin);
-  if (country !== "all") mapParams.set("focus", country);
+  if (country !== "all") {
+    mapParams.set("country", country);
+    mapParams.set("focus", country);
+  }
   const canonicalMapHref = `/deployments?${mapParams.toString()}`;
 
   return (
@@ -840,7 +843,10 @@ function organisationCatalogueMapHref(values: {
   if (values.headquarters !== "all") params.set("headquarters", values.headquarters);
   if (values.scope !== "all") params.set("scope", values.scope);
   const focus = africanCountries.find(([, name]) => name === values.country)?.[0];
-  if (focus) params.set("focus", focus);
+  if (focus) {
+    params.set("country", focus);
+    params.set("focus", focus);
+  }
   return `/deployments?${params.toString()}`;
 }
 
