@@ -30,16 +30,14 @@ import {
 } from "react";
 
 const primaryNavigation = [
-  { href: "/", label: "Explore" },
+  { href: "/", label: "Database" },
   { href: "/deployments", label: "Map" },
-  { href: "/directory", label: "Data" },
-  { href: "/landscape", label: "Wall" },
-  { href: "/organisations", label: "Organisations" },
+  { href: "/methodology", label: "Method" },
 ] as const;
 
 const projectNavigation = [
   { href: "/review", label: "Admin" },
-  { href: "/methodology", label: "Method" },
+  { href: "/directory", label: "Reviewed software" },
   { href: "/data", label: "Downloads" },
   { href: "/changes", label: "Changes" },
   { href: "/accessibility", label: "Accessibility" },
@@ -266,8 +264,10 @@ export function SiteShell({ children }: { children: ReactNode }) {
             {primaryNavigation.map((item, index) => {
               const active =
                 item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
+                  ? pathname === "/" || pathname.startsWith("/landscape") || pathname.startsWith("/organisations") || pathname.startsWith("/directory") || pathname.startsWith("/products")
+                  : item.href === "/deployments"
+                    ? pathname.startsWith("/deployments") || pathname.startsWith("/countries")
+                    : pathname.startsWith(item.href);
               return (
                 <Link
                   aria-current={active ? "page" : undefined}
@@ -496,6 +496,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <span className="mono">{release.version}</span>
         </div>
         <nav aria-label="Footer">
+          <Link href="/">Database</Link>
+          <Link href="/deployments">Map</Link>
           <Link href="/landscape">Wall</Link>
           <Link href="/organisations">Organisations</Link>
           <Link href="/methodology">Method</Link>

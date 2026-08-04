@@ -8,7 +8,9 @@ export async function GET(request: Request) {
   const pageSize = integer(params.get("pageSize"), 60);
   const query = {
     query: text(params.get("q"), 160),
+    group: text(params.get("group"), 120) || "all",
     role: text(params.get("role"), 120) || "all",
+    sector: text(params.get("sector"), 120) || "all",
     segment: text(params.get("segment"), 120) || "all",
     country: text(params.get("country"), 120) || "all",
     headquarters: text(params.get("headquarters"), 120) || "all",
@@ -48,7 +50,7 @@ function catalogueCsv(records: ReturnType<typeof queryOrganisationCatalogue>["re
   const headers = [
     "organisation", "aliases", "parent_group", "organisation_type", "primary_role",
     "all_roles", "energy_markets", "headquarters_country", "africa_headquartered",
-    "countries_active_or_available", "technologies", "status", "catalogue_status",
+    "african_regions_active", "countries_active_or_available", "technologies", "status", "catalogue_status",
     "evidence_confidence", "last_checked", "source", "website",
   ];
   const rows = records.map((record) => ({
@@ -61,10 +63,11 @@ function catalogueCsv(records: ReturnType<typeof queryOrganisationCatalogue>["re
     energy_markets: record.segments,
     headquarters_country: record.headquartersCountry,
     africa_headquartered: record.africaHeadquartered ? "Yes" : "No",
+    african_regions_active: record.africanRegionsActive,
     countries_active_or_available: record.countriesActive,
     technologies: record.technologies,
     status: record.lifecycle,
-    catalogue_status: record.reviewState === "reviewed" ? "Canonical" : "Review pending",
+    catalogue_status: record.reviewState === "reviewed" ? "Reviewed" : "Review pending",
     evidence_confidence: record.confidence,
     last_checked: record.lastReviewed,
     source: record.sourceUrl,

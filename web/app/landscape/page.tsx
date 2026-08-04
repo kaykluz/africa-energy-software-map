@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LandscapeExplorer } from "@/components/landscape-explorer";
 import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
+import { organisationCatalogue } from "@/lib/organisation-catalogue";
 
 export const dynamic = "force-dynamic";
 
@@ -31,10 +32,12 @@ export default async function Landscape({
       initialKind={params.kind}
       initialQuery={params.q}
       initialRelationship={params.relationship}
+      initialReviewStatus={params.status}
       initialSector={params.sector}
       initialStage={params.stage}
       initialView="wall"
       mode="wall"
+      organisationCount={organisationCatalogue.counts.total}
     />
   );
 }

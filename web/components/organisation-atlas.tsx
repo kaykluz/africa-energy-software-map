@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { OrganisationMark } from "@/components/brand-mark";
+import { DatabaseHeader } from "@/components/database-header";
 import {
   organisationEcosystemGroupName,
   organisationEcosystemGroups,
@@ -16,6 +17,7 @@ import {
   type OrganisationDirectoryRecord,
 } from "@/lib/organisation-data";
 import { africanCountries, products } from "@/lib/registry-data";
+import { landscapeSoftwareItems } from "@/lib/landscape-data";
 import { normaliseQuery } from "@/lib/registry-query";
 import type {
   OrganisationCataloguePage,
@@ -40,9 +42,11 @@ type OrganisationAtlasProps = {
   canonicalDirectory: OrganisationDirectoryRecord[];
   initialCatalogue: OrganisationCataloguePage;
   initialCatalogueCountry?: string;
+  initialCatalogueGroup?: string;
   initialCatalogueHeadquarters?: string;
   initialCatalogueRole?: string;
   initialCatalogueScope?: string;
+  initialCatalogueSector?: string;
   initialCatalogueSegment?: string;
   initialQuery?: string;
   initialGroup?: string;
@@ -59,9 +63,11 @@ export function OrganisationAtlas({
   canonicalDirectory,
   initialCatalogue,
   initialCatalogueCountry = "all",
+  initialCatalogueGroup = "all",
   initialCatalogueHeadquarters = "all",
   initialCatalogueRole = "all",
   initialCatalogueScope = "all",
+  initialCatalogueSector = "all",
   initialCatalogueSegment = "all",
   initialQuery = "",
   initialGroup = "all",
@@ -71,7 +77,6 @@ export function OrganisationAtlas({
   initialCountry = "all",
   initialOrigin = "all",
   initialPresence = "all",
-  initialView = "catalogue",
 }: OrganisationAtlasProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -96,16 +101,28 @@ export function OrganisationAtlas({
   const [presence, setPresence] = useState<OrganisationPresenceLayer>(
     isPresenceLayer(initialPresence) ? initialPresence : "all",
   );
-  const [view, setView] = useState<OrganisationView>(
-    initialView === "directory" || initialView === "ecosystem" ? initialView : "catalogue",
-  );
+  const view: OrganisationView = "catalogue";
   const [catalogueMapHref, setCatalogueMapHref] = useState(() =>
     organisationCatalogueMapHref({
       country: initialCatalogueCountry,
+      group: initialCatalogueGroup,
       headquarters: initialCatalogueHeadquarters,
       query: initialQuery,
       role: initialCatalogueRole,
       scope: initialCatalogueScope,
+      sector: initialCatalogueSector,
+      segment: initialCatalogueSegment,
+    }),
+  );
+  const [catalogueCardsHref, setCatalogueCardsHref] = useState(() =>
+    organisationCatalogueCardsHref({
+      country: initialCatalogueCountry,
+      group: initialCatalogueGroup,
+      headquarters: initialCatalogueHeadquarters,
+      query: initialQuery,
+      role: initialCatalogueRole,
+      scope: initialCatalogueScope,
+      sector: initialCatalogueSector,
       segment: initialCatalogueSegment,
     }),
   );
@@ -178,7 +195,7 @@ export function OrganisationAtlas({
     setCountry("all");
     setOrigin("all");
     setPresence("all");
-    router.replace(view === "catalogue" ? pathname : `${pathname}?view=${view}`, { scroll: false });
+    router.replace(pathname, { scroll: false });
   }
 
   const activeFilters = [
@@ -234,55 +251,29 @@ export function OrganisationAtlas({
     URL.revokeObjectURL(url);
   }
 
-  const mapParams = new URLSearchParams({ object: "organisations" });
-  mapParams.set("presence", presence === "all" ? "all_presence" : presence);
-  if (query.trim()) mapParams.set("q", query.trim());
-  if (group !== "all") mapParams.set("group", group);
-  if (role !== "all") mapParams.set("role", role);
-  if (sector !== "all") mapParams.set("sector", sector);
-  if (segment !== "all") mapParams.set("segment", segment);
-  if (origin !== "all") mapParams.set("orgOrigin", origin);
-  if (country !== "all") mapParams.set("focus", country);
-  const canonicalMapHref = `/deployments?${mapParams.toString()}`;
-
   return (
     <main className="organisation-atlas" id="main-content" tabIndex={-1}>
-      <header className="organisation-atlas-intro">
-        <div>
-          <h1>Organisations</h1>
-          <p>Who does what across African energy.</p>
-        </div>
-        <Link href="/contribute/organisation">Add an organisation</Link>
-      </header>
-
-      <nav aria-label="Organisation views" className="organisation-view-tabs">
-        <button
-          aria-current={view === "catalogue" ? "page" : undefined}
-          onClick={() => { setView("catalogue"); updateUrl({ view: "catalogue" }); }}
-          type="button"
-        >All listings</button>
-        <button
-          aria-current={view === "ecosystem" ? "page" : undefined}
-          onClick={() => { setView("ecosystem"); updateUrl({ view: "ecosystem" }); }}
-          type="button"
-        >Canonical ecosystem</button>
-        <button
-          aria-current={view === "directory" ? "page" : undefined}
-          onClick={() => { setView("directory"); updateUrl({ view: "directory" }); }}
-          type="button"
-        >Canonical directory</button>
-        <Link href={view === "catalogue" ? catalogueMapHref : canonicalMapHref}>Map</Link>
-      </nav>
+      <DatabaseHeader
+        activeObject="organisations"
+        activeView="cards"
+        cardsHref={catalogueCardsHref}
+        mapHref={catalogueMapHref}
+        organisationCount={initialCatalogue.counts.total}
+        softwareCount={landscapeSoftwareItems.length}
+      />
 
       {view === "catalogue" ? (
         <PublicOrganisationCatalogue
           initial={initialCatalogue}
           initialCountry={initialCatalogueCountry}
+          initialGroup={initialCatalogueGroup}
           initialHeadquarters={initialCatalogueHeadquarters}
           initialQuery={initialQuery}
           initialRole={initialCatalogueRole}
           initialScope={initialCatalogueScope}
+          initialSector={initialCatalogueSector}
           initialSegment={initialCatalogueSegment}
+          onCardsHrefChange={setCatalogueCardsHref}
           onMapHrefChange={setCatalogueMapHref}
           organisationLinks={canonicalOrganisationLinks}
           reviewedCount={canonicalDirectory.length}
@@ -436,7 +427,7 @@ export function OrganisationAtlas({
                   return (
                     <section className="organisation-group-section" key={item.id}>
                       <header>
-                        <h2><Link href={`/organisations?view=ecosystem&group=${item.id}`}>{item.name}</Link></h2>
+                        <h2><Link href={`/organisations?group=${item.id}`}>{item.name}</Link></h2>
                         <p>{item.description}</p>
                         <strong>{groupRows.length}</strong>
                       </header>
@@ -452,7 +443,7 @@ export function OrganisationAtlas({
       ) : <EmptyState />}
 
       <footer className="organisation-coverage-note">
-        <span>Live canonical registry</span>
+        <span>Reviewed registry</span>
         <p>{products.length} reviewed software records. Add missing developers, EPCs, OEMs, financiers and operators.</p>
         <Link href="/contribute/organisation">Add an organisation →</Link>
       </footer>
@@ -465,28 +456,36 @@ export function OrganisationAtlas({
 function PublicOrganisationCatalogue({
   initial,
   initialCountry,
+  initialGroup,
   initialHeadquarters,
   initialQuery,
   initialRole,
   initialScope,
+  initialSector,
   initialSegment,
+  onCardsHrefChange,
   onMapHrefChange,
   organisationLinks,
   reviewedCount,
 }: {
   initial: OrganisationCataloguePage;
   initialCountry: string;
+  initialGroup: string;
   initialHeadquarters: string;
   initialQuery: string;
   initialRole: string;
   initialScope: string;
+  initialSector: string;
   initialSegment: string;
+  onCardsHrefChange: (href: string) => void;
   onMapHrefChange: (href: string) => void;
   organisationLinks: ExactLinkIndex;
   reviewedCount: number;
 }) {
   const [query, setQuery] = useState(initialQuery);
+  const [group, setGroup] = useState(initialGroup);
   const [role, setRole] = useState(initialRole);
+  const [sector, setSector] = useState(initialSector);
   const [segment, setSegment] = useState(initialSegment);
   const [country, setCountry] = useState(initialCountry);
   const [headquarters, setHeadquarters] = useState(initialHeadquarters);
@@ -500,7 +499,7 @@ function PublicOrganisationCatalogue({
     const controller = new AbortController();
     const timer = window.setTimeout(() => {
       setLoading(true);
-      fetch(`/api/organisation-catalogue?${catalogueParams({ query, role, segment, country, headquarters, scope, page })}`, {
+      fetch(`/api/organisation-catalogue?${catalogueParams({ query, group, role, sector, segment, country, headquarters, scope, page })}`, {
         signal: controller.signal,
       })
         .then(async (response) => {
@@ -521,18 +520,35 @@ function PublicOrganisationCatalogue({
       controller.abort();
       window.clearTimeout(timer);
     };
-  }, [country, headquarters, initialQuery, page, query, role, scope, segment]);
+  }, [country, group, headquarters, initialQuery, page, query, role, scope, sector, segment]);
 
   useEffect(() => {
-    onMapHrefChange(organisationCatalogueMapHref({
+    const cardsHref = organisationCatalogueCardsHref({
       country,
+      group,
       headquarters,
       query,
       role,
       scope,
+      sector,
+      segment,
+    });
+    onCardsHrefChange(cardsHref);
+    window.history.replaceState(null, "", cardsHref);
+  }, [country, group, headquarters, onCardsHrefChange, query, role, scope, sector, segment]);
+
+  useEffect(() => {
+    onMapHrefChange(organisationCatalogueMapHref({
+      country,
+      group,
+      headquarters,
+      query,
+      role,
+      scope,
+      sector,
       segment,
     }));
-  }, [country, headquarters, onMapHrefChange, query, role, scope, segment]);
+  }, [country, group, headquarters, onMapHrefChange, query, role, scope, sector, segment]);
 
   function update(setter: (value: string) => void, value: string) {
     setter(value);
@@ -541,7 +557,7 @@ function PublicOrganisationCatalogue({
 
   function downloadCatalogue() {
     window.location.href = `/api/organisation-catalogue?${catalogueParams({
-      query, role, segment, country, headquarters, scope, page: 1, format: "csv",
+      query, group, role, sector, segment, country, headquarters, scope, page: 1, format: "csv",
     })}`;
   }
 
@@ -550,7 +566,7 @@ function PublicOrganisationCatalogue({
       <section className="organisation-atlas-stats organisation-catalogue-stats" aria-label="Organisation catalogue totals">
         <div><strong>{cataloguePage.counts.total.toLocaleString()}</strong><span>listings</span></div>
         <div><strong>{cataloguePage.counts.africaHeadquartered.toLocaleString()}</strong><span>Africa-headquartered</span></div>
-        <div><strong>{reviewedCount}</strong><span>canonical profiles</span></div>
+        <div><strong>{reviewedCount}</strong><span>reviewed profiles</span></div>
       </section>
 
       <div className="organisation-catalogue-notice">
@@ -588,11 +604,31 @@ function PublicOrganisationCatalogue({
         </select>
         <select aria-label="Filter catalogue by scope" onChange={(event) => update(setScope, event.target.value)} value={scope}>
           <option value="all">All listings</option>
+          <option value="africa_wide">Africa-wide coverage</option>
           <option value="africa_hq">Africa-headquartered</option>
           <option value="international">International, active in Africa</option>
-          <option value="reviewed">Canonical profiles</option>
+          <option value="reviewed">Reviewed profiles</option>
           <option value="pending">Review pending</option>
         </select>
+        <details className="organisation-more-filters organisation-catalogue-more">
+          <summary>More filters</summary>
+          <div className="organisation-more-panel">
+            <label>
+              <span>Actor type</span>
+              <select aria-label="Filter catalogue by actor type" onChange={(event) => update(setGroup, event.target.value)} value={group}>
+                <option value="all">All actor types</option>
+                {organisationEcosystemGroups.map((value) => <option key={value.id} value={value.id}>{value.name}</option>)}
+              </select>
+            </label>
+            <label>
+              <span>Sector</span>
+              <select aria-label="Filter catalogue by sector" onChange={(event) => update(setSector, event.target.value)} value={sector}>
+                <option value="all">All sectors</option>
+                {organisationSectors.map((value) => <option key={value.id} value={value.id}>{value.name}</option>)}
+              </select>
+            </label>
+          </div>
+        </details>
         <span aria-live="polite">{loading ? "Loading…" : `${cataloguePage.total.toLocaleString()} shown`}</span>
         <button className="organisation-export" onClick={downloadCatalogue} type="button">Export CSV <span aria-hidden="true">↓</span></button>
       </section>
@@ -654,7 +690,7 @@ function PublicOrganisationCard({
             {record.parent ? <> · {parentHref ? <Link href={parentHref}>{record.parent}</Link> : record.parent}</> : null}
           </p>
         </div>
-        <span data-status={record.reviewState}>{record.reviewState === "reviewed" ? "Canonical" : "Review pending"}</span>
+        <span data-status={record.reviewState}>{record.reviewState === "reviewed" ? "Reviewed" : "Review pending"}</span>
       </header>
       <div className="organisation-catalogue-card-tags">
         {record.segments.slice(0, 3).map((value) => (
@@ -664,7 +700,7 @@ function PublicOrganisationCard({
       </div>
       <dl>
         <div><dt>HQ</dt><dd>{record.headquartersCountry ? <CatalogueCountryLink country={record.headquartersCountry} field="headquarters" /> : "Not stated"}</dd></div>
-        <div><dt>Coverage</dt><dd>{record.countryCount ? `${record.countryCount} ${record.countryCount === 1 ? "country" : "countries"}` : record.africanRegionsActive.join(", ") || "Africa-wide / not itemised"}</dd></div>
+        <div><dt>Coverage</dt><dd>{record.africanRegionsActive.includes("Africa-wide") ? "Africa-wide" : record.countryCount ? `${record.countryCount} ${record.countryCount === 1 ? "country" : "countries"}` : record.africanRegionsActive.join(", ") || "Not itemised"}</dd></div>
       </dl>
       <footer>
         {record.sourceUrl ? <a href={record.sourceUrl} rel="noreferrer" target="_blank">Source ↗</a> : <span>Source needed</span>}
@@ -686,10 +722,10 @@ function OrganisationCardGrid({ rows }: { rows: OrganisationDirectoryRecord[] })
             <OrganisationMark name={record.organisation.name} organisationId={record.organisation.id} size={64} />
             <div>
               <h3><Link href={`/organisations/${record.organisation.slug}`}>{record.organisation.name}</Link></h3>
-              <p><Link href={`/organisations?view=ecosystem&role=${record.primaryRole.id}`}>{record.primaryRole.name}</Link></p>
+              <p><Link href={`/organisations?role=${record.primaryRole.id}`}>{record.primaryRole.name}</Link></p>
               <div className="organisation-sector-tags">
                 {tags.slice(0, 2).map((tag) => (
-                  <Link href={`/organisations?view=ecosystem&${tag.key}=${tag.id}`} key={tag.id}>{tag.label}</Link>
+                  <Link href={`/organisations?${tag.key}=${tag.id}`} key={tag.id}>{tag.label}</Link>
                 ))}
                 {tags.length > 2 ? <span>+{tags.length - 2}</span> : null}
               </div>
@@ -718,12 +754,12 @@ function OrganisationDirectoryTable({ rows }: { rows: OrganisationDirectoryRecor
             <OrganisationMark name={record.organisation.name} organisationId={record.organisation.id} size={44} />
             <span><Link href={`/organisations/${record.organisation.slug}`}>{record.organisation.name}</Link><small><CountryNameLink name={record.organisation.countryOfOrigin} /></small></span>
           </div>
-            <span><Link href={`/organisations?view=directory&group=${record.ecosystemGroupIds[0]}`}>{organisationEcosystemGroupName(record.ecosystemGroupIds[0])}</Link><small><Link href={`/organisations?view=directory&role=${record.primaryRole.id}`}>{record.primaryRole.name}</Link></small></span>
+            <span><Link href={`/organisations?group=${record.ecosystemGroupIds[0]}`}>{organisationEcosystemGroupName(record.ecosystemGroupIds[0])}</Link><small><Link href={`/organisations?role=${record.primaryRole.id}`}>{record.primaryRole.name}</Link></small></span>
           <div className="organisation-directory-sectors">
             {record.segmentIds.length ? record.segmentIds.slice(0, 2).map((segmentId) => (
-              <Link href={`/organisations?view=directory&segment=${segmentId}`} key={segmentId}>{organisationSegmentName(segmentId)}</Link>
+              <Link href={`/organisations?segment=${segmentId}`} key={segmentId}>{organisationSegmentName(segmentId)}</Link>
             )) : record.sectorIds.length ? record.sectorIds.slice(0, 2).map((sectorId) => (
-              <Link href={`/organisations?view=directory&sector=${sectorId}`} key={sectorId}>{organisationSectorName(sectorId)}</Link>
+              <Link href={`/organisations?sector=${sectorId}`} key={sectorId}>{organisationSectorName(sectorId)}</Link>
             )) : <span>Not yet classified</span>}
           </div>
           <span>{presenceSummary(record, true)}</span>
@@ -805,7 +841,9 @@ function organisationCsv(rows: Array<Record<string, string | string[] | number>>
 
 function catalogueParams(values: {
   query: string;
+  group: string;
   role: string;
+  sector: string;
   segment: string;
   country: string;
   headquarters: string;
@@ -815,7 +853,7 @@ function catalogueParams(values: {
 }) {
   const params = new URLSearchParams({ page: String(values.page), pageSize: "60" });
   if (values.query.trim()) params.set("q", values.query.trim());
-  for (const key of ["role", "segment", "country", "headquarters", "scope"] as const) {
+  for (const key of ["group", "role", "sector", "segment", "country", "headquarters", "scope"] as const) {
     if (values[key] !== "all") params.set(key, values[key]);
   }
   if (values.format) params.set("format", values.format);
@@ -824,35 +862,63 @@ function catalogueParams(values: {
 
 function organisationCatalogueMapHref(values: {
   country: string;
+  group: string;
   headquarters: string;
   query: string;
   role: string;
   scope: string;
+  sector: string;
   segment: string;
 }) {
   const params = new URLSearchParams({
     object: "organisations",
-    presence: "catalogue",
+    presence: values.scope === "africa_wide" ? "africa_wide" : "catalogue",
   });
   if (values.query.trim()) params.set("q", values.query.trim());
+  if (values.group !== "all") params.set("group", values.group);
   if (values.role !== "all") params.set("role", values.role);
+  if (values.sector !== "all") params.set("sector", values.sector);
   if (values.segment !== "all") params.set("segment", values.segment);
   if (values.headquarters !== "all") params.set("headquarters", values.headquarters);
   if (values.scope !== "all") params.set("scope", values.scope);
   const focus = africanCountries.find(([, name]) => name === values.country)?.[0];
-  if (focus) params.set("focus", focus);
+  if (focus) {
+    params.set("country", focus);
+    params.set("focus", focus);
+  }
   return `/deployments?${params.toString()}`;
+}
+
+function organisationCatalogueCardsHref(values: {
+  country: string;
+  group: string;
+  headquarters: string;
+  query: string;
+  role: string;
+  scope: string;
+  sector: string;
+  segment: string;
+}) {
+  const params = new URLSearchParams();
+  if (values.query.trim()) params.set("q", values.query.trim());
+  for (const key of ["group", "role", "sector", "segment", "country", "headquarters", "scope"] as const) {
+    if (values[key] !== "all") params.set(key, values[key]);
+  }
+  const query = params.toString();
+  return query ? `/organisations?${query}` : "/organisations";
 }
 
 function catalogueFilterHref(values: Partial<{
   country: string;
+  group: string;
   headquarters: string;
   q: string;
   role: string;
   scope: string;
+  sector: string;
   segment: string;
 }>) {
-  const params = new URLSearchParams({ view: "catalogue" });
+  const params = new URLSearchParams();
   for (const [key, value] of Object.entries(values)) {
     if (value) params.set(key, value);
   }

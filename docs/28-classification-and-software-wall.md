@@ -126,10 +126,10 @@ related product and organisation profiles. Checksums make silent asset changes
 detectable. A missing, blocked, ambiguous or visually unsuitable mark remains a
 typographic tile; completeness is not a reason to use an unverified image.
 
-The main public views are **Explore**, **Map**, **Data** and **Wall**. Explore
-defaults to the complete 540-listing inclusion catalogue. Data remains the
-reviewed-record view. This is a scope distinction, not a quality score, and the
-interface links directly between the two.
+Software Cards, Software Wall and Software Map are views of the same software
+dataset. Reviewed and Review pending are visible record states and filters. The
+Reviewed software table remains available for release audit and export, but it
+does not form a separate discovery catalogue.
 
 ## Scale-up
 

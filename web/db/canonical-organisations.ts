@@ -241,6 +241,7 @@ function mergeCatalogueMetadata(
     segments: item.segments,
     technologies: item.technologies,
     projectFocus: item.projectFocus,
+    africanRegionsActive: item.africanRegionsActive,
     countriesActive: item.countriesActive,
     sourceUrls: unique([
       item.sourceUrl,

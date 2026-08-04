@@ -127,6 +127,7 @@ export type OrganisationCatalogueLink = {
   segments: string[];
   technologies: string[];
   projectFocus: string;
+  africanRegionsActive: string[];
   countriesActive: string[];
   sourceUrls: string[];
   website: string;

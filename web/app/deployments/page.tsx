@@ -6,12 +6,6 @@ import {
   queryOrganisationCatalogue,
 } from "@/lib/organisation-catalogue";
 import { africanCountries } from "@/lib/registry-data";
-import {
-  organisationRoleName,
-  organisationRoles,
-  organisationSegmentName,
-  organisationSegments,
-} from "@/lib/organisation-data";
 import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
 
 export const dynamic = "force-dynamic";
@@ -29,27 +23,29 @@ export default async function Deployments({
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const params = await searchParams;
+  const focusIso2 = params.focus ?? params.country ?? "NG";
   const { canonicalDirectory, catalogueRecords } = await loadPublicOrganisationRegistry();
   const catalogueMapOptions = queryOrganisationCatalogue(
     { pageSize: 1 },
     catalogueRecords,
   ).options;
-  const catalogueRole = organisationRoles.some((role) => role.id === params.role)
-    ? organisationRoleName(params.role ?? "")
-    : params.role;
-  const catalogueSegment = organisationSegments.some((segment) => segment.id === params.segment)
-    ? organisationSegmentName(params.segment ?? "")
-    : params.segment;
   const filteredCatalogueRecords = filterOrganisationCatalogueRecords({
+    group: params.group,
     query: params.q,
-    role: catalogueRole,
-    segment: catalogueSegment,
+    role: params.role,
+    sector: params.sector,
+    segment: params.segment,
     headquarters: params.headquarters,
+    origin: params.orgOrigin,
     scope: params.scope,
   }, catalogueRecords);
   return (
     <RegistryExplorer
-      catalogueMapData={buildOrganisationCatalogueMapData(africanCountries, filteredCatalogueRecords)}
+      catalogueMapData={buildOrganisationCatalogueMapData(
+        africanCountries,
+        filteredCatalogueRecords,
+        { includeRecordsFor: [focusIso2] },
+      )}
       catalogueMapOptions={catalogueMapOptions}
       canonicalOrganisationDirectory={canonicalDirectory}
       initialCategory={params.category}

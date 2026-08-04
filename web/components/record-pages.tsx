@@ -340,7 +340,7 @@ export function OrganisationProfile({
                   <span>Specific roles</span>
                   <div>
                     {directoryRecord.roleIds.map((roleId) => (
-                      <Link href={`/organisations?view=ecosystem&role=${roleId}`} key={roleId}>
+                      <Link href={`/organisations?role=${roleId}`} key={roleId}>
                         {organisationRoleName(roleId)}
                         {roleId === directoryRecord.primaryRole.id ? " · primary" : ""}
                       </Link>
@@ -351,7 +351,7 @@ export function OrganisationProfile({
                   <span>Actor type</span>
                   <div>
                     {directoryRecord.ecosystemGroupIds.map((groupId) => (
-                      <Link href={`/organisations?view=ecosystem&group=${groupId}`} key={groupId}>
+                      <Link href={`/organisations?group=${groupId}`} key={groupId}>
                         {organisationEcosystemGroups.find((item) => item.id === groupId)?.name ?? groupId}
                       </Link>
                     ))}
@@ -361,7 +361,7 @@ export function OrganisationProfile({
                   <span>Broad sectors</span>
                   <div>
                     {directoryRecord.sectorIds.length ? directoryRecord.sectorIds.map((sectorId) => (
-                      <Link href={`/organisations?view=ecosystem&sector=${sectorId}`} key={sectorId}>
+                      <Link href={`/organisations?sector=${sectorId}`} key={sectorId}>
                         {organisationSectorName(sectorId)}
                       </Link>
                     )) : <em>Not yet classified</em>}
@@ -372,7 +372,7 @@ export function OrganisationProfile({
                     <span>Energy markets</span>
                     <div>
                       {directoryRecord.segmentIds.map((segmentId) => (
-                        <Link href={`/organisations?view=ecosystem&segment=${segmentId}`} key={segmentId}>
+                        <Link href={`/organisations?segment=${segmentId}`} key={segmentId}>
                           {organisationSegmentName(segmentId)}
                         </Link>
                       ))}
@@ -391,18 +391,21 @@ export function OrganisationProfile({
                 {directoryRecord.catalogueListings.map((listing) => (
                   <article key={listing.id}>
                     <div>
-                      <span>One canonical identity · catalogue record {listing.id}</span>
+                      <span>Merged into this reviewed record · catalogue record {listing.id}</span>
                       <h3>{listing.name}</h3>
                       <div className="organisation-catalogue-links">
                         {listing.roles.map((role) => (
-                          <Link href={`/organisations?view=catalogue&role=${encodeURIComponent(role)}`} key={`role-${role}`}>{role}</Link>
+                          <Link href={`/organisations?role=${encodeURIComponent(role)}`} key={`role-${role}`}>{role}</Link>
                         ))}
                         {listing.segments.map((segment) => (
-                          <Link href={`/organisations?view=catalogue&segment=${encodeURIComponent(segment)}`} key={`segment-${segment}`}>{segment}</Link>
+                          <Link href={`/organisations?segment=${encodeURIComponent(segment)}`} key={`segment-${segment}`}>{segment}</Link>
                         ))}
                         {listing.technologies.map((technology) => (
                           <Link href={`/landscape?q=${encodeURIComponent(technology)}`} key={`technology-${technology}`}>{technology}</Link>
                         ))}
+                        {listing.africanRegionsActive.includes("Africa-wide") ? (
+                          <Link href="/organisations?scope=africa_wide">Africa-wide coverage</Link>
+                        ) : null}
                         {listing.countriesActive.map((country) => (
                           <span key={`country-${country}`}><CountryNameLink name={country} /></span>
                         ))}
@@ -484,7 +487,7 @@ export function OrganisationProfile({
                       </div>
                     </div>
                     <div>
-                      <span>Catalogue · not yet canonical</span>
+                      <span>Catalogue · review pending</span>
                       {item.website ? <a href={item.website} rel="noreferrer" target="_blank">Website ↗</a> : null}
                       {item.sourceUrls[0] ? <a href={item.sourceUrls[0]} rel="noreferrer" target="_blank">Source ↗</a> : null}
                     </div>
@@ -723,7 +726,7 @@ export function OrganisationProfile({
           ) : null}
           {directoryRecord?.catalogueSourceUrl ? (
             <div className="rail-card">
-              <span className="eyebrow">Canonical source</span>
+              <span className="eyebrow">Primary source</span>
               <a href={directoryRecord.catalogueSourceUrl} rel="noreferrer" target="_blank">Open reviewed source ↗</a>
               <p>Accepted through the human review workspace.</p>
             </div>
@@ -883,13 +886,13 @@ export function CountryProfile({
                         <h3><Link href={`/organisations/${record.organisation.slug}`}>{record.organisation.name}</Link></h3>
                         <p>{labels.length ? labels.join(" · ") : catalogueListed ? "Documented catalogue coverage" : "Software deployment linked"}</p>
                       </div>
-                      <span>{companyStatedOnly ? "Company-stated" : presences.length ? "Evidenced" : catalogueListed ? "Canonical listing" : "Software-linked"}</span>
+                      <span>{companyStatedOnly ? "Company-stated" : presences.length ? "Evidenced" : catalogueListed ? "Reviewed listing" : "Software-linked"}</span>
                     </article>
                   );
                 })}
               </div>
             ) : <p>No organisation-presence record is published for this country yet.</p>}
-            <Link href={`/organisations?view=ecosystem&country=${countryIso2}`}>View filtered organisations →</Link>
+            <Link href={`/organisations?country=${countryIso2}`}>View filtered organisations →</Link>
           </ProfileSection>
           <ProfileSection heading="Research coverage">
             <p>

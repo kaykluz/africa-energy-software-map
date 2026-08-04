@@ -1,4 +1,9 @@
 import catalogueJson from "@/generated/organisation-catalogue.json";
+import {
+  organisationRoleName,
+  organisationSegmentName,
+} from "@/lib/organisation-data";
+import { isAfricaWideCoverageLabel } from "@/lib/geography-scope";
 
 export type OrganisationCatalogueRecord = {
   id: string;
@@ -104,10 +109,13 @@ export const catalogueHeadquarters = uniqueSorted(
 
 export type OrganisationCatalogueQuery = {
   query?: string;
+  group?: string;
   role?: string;
+  sector?: string;
   segment?: string;
   country?: string;
   headquarters?: string;
+  origin?: string;
   scope?: string;
   page?: number;
   pageSize?: number;
@@ -131,6 +139,7 @@ export type OrganisationCataloguePage = {
 
 export type OrganisationCatalogueMapData = {
   totalWithDocumentedCountry: number;
+  totalWithAfricaWideCoverage: number;
   totalWithHeadquarters: number;
   totalWithAnyLocation: number;
   assessedIso2s: string[];
@@ -139,9 +148,11 @@ export type OrganisationCatalogueMapData = {
     {
       count: number;
       activityCount: number;
+      africaWideCount: number;
       headquartersCount: number;
       recordKeys: string[];
       activityRecordKeys: string[];
+      africaWideRecordKeys: string[];
       headquartersRecordKeys: string[];
       records: Array<{
         id: string;
@@ -151,7 +162,7 @@ export type OrganisationCatalogueMapData = {
         website: string;
         canonicalHref: string;
         reviewState: "reviewed" | "needs_review";
-        locationTypes: Array<"catalogue_activity" | "headquarters">;
+        locationTypes: Array<"catalogue_activity" | "africa_wide" | "headquarters">;
       }>;
     }
   >;
@@ -160,14 +171,19 @@ export type OrganisationCatalogueMapData = {
 export function buildOrganisationCatalogueMapData(
   africanCountries: Array<readonly [string, string]>,
   records: OrganisationCatalogueRecord[] = organisationCatalogueRecords,
+  options: { includeRecordsFor?: string[] } = {},
 ): OrganisationCatalogueMapData {
   const iso2ByName = new Map(africanCountries.map(([iso2, name]) => [normalise(name), iso2]));
+  const recordCountries = options.includeRecordsFor
+    ? new Set(options.includeRecordsFor)
+    : null;
   const countries: OrganisationCatalogueMapData["countries"] = {};
   const recordsWithCountry = new Set<string>();
+  const recordsWithAfricaWideCoverage = new Set<string>();
   const recordsWithHeadquarters = new Set<string>();
   const recordsWithAnyLocation = new Set<string>();
   for (const record of records) {
-    const locations = new Map<string, Set<"catalogue_activity" | "headquarters">>();
+    const locations = new Map<string, Set<"catalogue_activity" | "africa_wide" | "headquarters">>();
     for (const countryName of record.countriesActive) {
       const iso2 = iso2ByName.get(normalise(countryName));
       if (!iso2) continue;
@@ -175,6 +191,14 @@ export function buildOrganisationCatalogueMapData(
       const types = locations.get(iso2) ?? new Set();
       types.add("catalogue_activity");
       locations.set(iso2, types);
+    }
+    if (organisationHasAfricaWideCoverage(record)) {
+      recordsWithAfricaWideCoverage.add(record.id);
+      for (const [iso2] of africanCountries) {
+        const types = locations.get(iso2) ?? new Set();
+        types.add("africa_wide");
+        locations.set(iso2, types);
+      }
     }
     const headquartersIso2 = iso2ByName.get(normalise(record.headquartersCountry));
     if (headquartersIso2) {
@@ -192,9 +216,11 @@ export function buildOrganisationCatalogueMapData(
       const group = countries[iso2] ?? {
         count: 0,
         activityCount: 0,
+        africaWideCount: 0,
         headquartersCount: 0,
         recordKeys: [],
         activityRecordKeys: [],
+        africaWideRecordKeys: [],
         headquartersRecordKeys: [],
         records: [],
       };
@@ -204,11 +230,15 @@ export function buildOrganisationCatalogueMapData(
         group.activityCount += 1;
         group.activityRecordKeys.push(recordKey);
       }
+      if (locationTypes.has("africa_wide")) {
+        group.africaWideCount += 1;
+        group.africaWideRecordKeys.push(recordKey);
+      }
       if (locationTypes.has("headquarters")) {
         group.headquartersCount += 1;
         group.headquartersRecordKeys.push(recordKey);
       }
-      if (group.records.length < 12) {
+      if (!recordCountries || recordCountries.has(iso2)) {
         group.records.push({
           id: record.id,
           name: record.name,
@@ -225,6 +255,7 @@ export function buildOrganisationCatalogueMapData(
   }
   return {
     totalWithDocumentedCountry: recordsWithCountry.size,
+    totalWithAfricaWideCoverage: recordsWithAfricaWideCoverage.size,
     totalWithHeadquarters: recordsWithHeadquarters.size,
     totalWithAnyLocation: recordsWithAnyLocation.size,
     assessedIso2s: africanCountries.map(([iso2]) => iso2),
@@ -234,7 +265,9 @@ export function buildOrganisationCatalogueMapData(
 
 export function queryOrganisationCatalogue({
   query = "",
+  group = "all",
   role = "all",
+  sector = "all",
   segment = "all",
   country = "all",
   headquarters = "all",
@@ -244,7 +277,9 @@ export function queryOrganisationCatalogue({
 }: OrganisationCatalogueQuery = {}, records: OrganisationCatalogueRecord[] = organisationCatalogueRecords): OrganisationCataloguePage {
   const filtered = filterOrganisationCatalogueRecords({
     query,
+    group,
     role,
+    sector,
     segment,
     country,
     headquarters,
@@ -277,22 +312,47 @@ export function queryOrganisationCatalogue({
 
 export function filterOrganisationCatalogueRecords({
   query = "",
+  group = "all",
   role = "all",
+  sector = "all",
   segment = "all",
   country = "all",
   headquarters = "all",
+  origin = "all",
   scope = "all",
 }: OrganisationCatalogueQuery = {}, records: OrganisationCatalogueRecord[] = organisationCatalogueRecords) {
   const needle = normalise(query);
   return records.filter((record) => {
-    if (role !== "all" && !record.roles.includes(role)) return false;
-    if (segment !== "all" && !record.segments.includes(segment)) return false;
-    if (country !== "all" && !record.countriesActive.includes(country)) return false;
+    const recordGroups = new Set(record.roles.flatMap((name) => catalogueGroupsByRoleName[name] ?? []));
+    const roleLabels = new Set([
+      role,
+      organisationRoleName(role),
+      catalogueRoleNameByTaxonomyId[role] ?? "",
+    ]);
+    const segmentLabels = new Set([
+      segment,
+      organisationSegmentName(segment),
+      catalogueSegmentNameByTaxonomyId[segment] ?? "",
+    ]);
+    if (group !== "all" && !recordGroups.has(group)) return false;
+    if (role !== "all" && !record.roles.some((name) => roleLabels.has(name))) return false;
+    if (sector !== "all" && !record.segments.some((name) =>
+      (catalogueSectorIdsBySegment[name] ?? []).includes(sector),
+    )) return false;
+    if (segment !== "all" && !record.segments.some((name) => segmentLabels.has(name))) return false;
+    if (
+      country !== "all" &&
+      !record.countriesActive.includes(country) &&
+      !organisationHasAfricaWideCoverage(record)
+    ) return false;
     if (headquarters !== "all" && record.headquartersCountry !== headquarters) return false;
+    if (origin === "Africa-headquartered" && !record.africaHeadquartered) return false;
+    if (origin === "International, active in Africa" && record.africaHeadquartered) return false;
     if (scope === "africa_hq" && !record.africaHeadquartered) return false;
     if (scope === "international" && record.africaHeadquartered) return false;
     if (scope === "reviewed" && record.reviewState !== "reviewed") return false;
     if (scope === "pending" && record.reviewState !== "needs_review") return false;
+    if (scope === "africa_wide" && !organisationHasAfricaWideCoverage(record)) return false;
     if (!needle) return true;
     return normalise([
       record.name,
@@ -308,6 +368,70 @@ export function filterOrganisationCatalogueRecords({
       record.description,
     ].join(" ")).includes(needle);
   });
+}
+
+export function organisationHasAfricaWideCoverage(record: OrganisationCatalogueRecord) {
+  return record.africanRegionsActive.some(isAfricaWideCoverageLabel);
+}
+
+const catalogueSectorIdsBySegment: Record<string, string[]> = {
+  "C&I": ["sector_commercial_industrial"],
+  "Carbon Markets": ["sector_markets_finance_carbon"],
+  "Clean Cooking": ["sector_distributed_energy_access"],
+  "E-mobility": ["sector_emobility_batteries"],
+  Efficiency: ["sector_commercial_industrial"],
+  "Mini-grids": ["sector_distributed_energy_access"],
+  "Productive Use": ["sector_distributed_energy_access"],
+  "SHS/PAYGo": ["sector_distributed_energy_access"],
+  Storage: ["sector_generation_storage"],
+  "T&D": ["sector_power_utilities"],
+  "Utility-scale": ["sector_generation_storage"],
+};
+
+const catalogueRoleNameByTaxonomyId: Record<string, string> = {
+  org_role_financier: "Financier",
+  org_role_developer_ipp: "Developer",
+  org_role_oem_manufacturer: "OEM",
+  org_role_epc: "EPC",
+  org_role_operator: "Operator",
+  org_role_software_data: "Software/Data",
+  org_role_enabler: "Enabler",
+  org_role_public_institution: "Public Institution",
+};
+
+const catalogueGroupsByRoleName: Record<string, string[]> = {
+  Financier: ["org_group_capital"],
+  Developer: ["org_group_developers"],
+  OEM: ["org_group_oems"],
+  EPC: ["org_group_epcs"],
+  Operator: ["org_group_operators"],
+  "Software/Data": ["org_group_software"],
+  Enabler: ["org_group_enablers"],
+  "Public Institution": ["org_group_public"],
+};
+
+const catalogueSegmentNameByTaxonomyId: Record<string, string> = {
+  org_segment_utility_generation: "Utility-scale",
+  org_segment_transmission_distribution: "T&D",
+  org_segment_minigrids: "Mini-grids",
+  org_segment_shs_paygo: "SHS/PAYGo",
+  org_segment_commercial_industrial: "C&I",
+  org_segment_emobility: "E-mobility",
+  org_segment_energy_storage: "Storage",
+  org_segment_clean_cooking: "Clean Cooking",
+  org_segment_efficiency_demand: "Efficiency",
+  org_segment_productive_use: "Productive Use",
+  org_segment_carbon_markets: "Carbon Markets",
+};
+
+export function catalogueRoleFilterValue(value = "all") {
+  if (value === "all") return value;
+  return catalogueRoleNameByTaxonomyId[value] ?? organisationRoleName(value);
+}
+
+export function catalogueSegmentFilterValue(value = "all") {
+  if (value === "all") return value;
+  return catalogueSegmentNameByTaxonomyId[value] ?? organisationSegmentName(value);
 }
 
 function uniqueSorted(values: string[]) {

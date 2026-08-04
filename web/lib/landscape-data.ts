@@ -155,6 +155,9 @@ export const landscapeItems = landscapeShards.flatMap((shard) => shard.items).ma
     functionIds: [],
   }),
 }));
+export const landscapeSoftwareItems = landscapeItems.filter((item) =>
+  item.kind === "product" || item.kind === "public_tool" || item.kind === "research_lead",
+);
 export const landscapeDeploymentLeads = landscapeShards.flatMap(
   (shard) => shard.deploymentLeads,
 );

@@ -20,7 +20,7 @@ import {
   organisationCatalogue,
 } from "@/lib/organisation-catalogue";
 import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
-import { landscapeItems } from "@/lib/landscape-data";
+import { landscapeItems, landscapeSoftwareItems } from "@/lib/landscape-data";
 import {
   organisationLinkIndex,
   resolveLandscapeItemHref,
@@ -109,6 +109,11 @@ export async function MethodologyPage() {
               operation, project role, office, legal entity, product deployment or
               product availability—and whether it is active, planned, historical or unknown.
             </p>
+            <p>
+              An explicit Africa-wide catalogue scope appears across country views for
+              discovery and is always labelled “Africa-wide coverage.” It is not an
+              exact-country presence, office, headquarters or deployment claim.
+            </p>
             <div className="definition-pair">
               <div><strong>Company source</strong><p>An official company page may support company-stated presence. It stays provider-authored until corroborated.</p></div>
               <div><strong>Independent evidence</strong><p>A customer, official or independent source can support an evidenced presence record. It does not automatically prove a software deployment.</p></div>
@@ -125,7 +130,7 @@ export async function MethodologyPage() {
             </p>
             <div className="definition-pair">
               <div><strong>Listed</strong><p>Imported from a named directory or direct source and clearly marked when editorial review remains open.</p></div>
-              <div><strong>Canonical</strong><p>A deduplicated identity with a stable profile URL, published after source, classification and safety checks.</p></div>
+              <div><strong>Reviewed record</strong><p>A deduplicated identity with a stable profile URL, published after source, classification and safety checks.</p></div>
             </div>
           </ContentSection>
           <ContentSection id="evidence" heading="Evidence and source independence">
@@ -182,14 +187,15 @@ export async function MethodologyPage() {
           </ContentSection>
           <ContentSection id="current-release" heading="Current release">
             <p>
-              Release {release.version} contains {products.length} reviewed products,
-              {" "}{canonicalDirectory.length} canonical organisations and{" "}
-              {organisationCatalogue.counts.total.toLocaleString()} inclusion-catalogue listings,
+              Release {release.version} contains {products.length} reviewed products and
+              {" "}{canonicalDirectory.length} reviewed organisation profiles. The public database contains
+              {" "}{landscapeSoftwareItems.length} software and tool listings and
+              {" "}{organisationCatalogue.counts.total.toLocaleString()} organisation listings,
               {" "}{deployments.length} country-safe
               deployment records, {organisationPresenceRecords.length} explicit organisation-presence
               records and {sources.length} rights-resolved sources. The
-              wider software wall also contains classified submitted listings that
-              are kept distinct from canonical reviewed records.
+              review status remains visible on every listing so submitted records are
+              not mistaken for reviewed records.
             </p>
           </ContentSection>
           <ContentSection id="sensitive-infrastructure" heading="Sensitive infrastructure">
@@ -312,7 +318,7 @@ export async function DataPage() {
         <dl>
           <div><dt>Products</dt><dd>{products.length}</dd></div>
           <div><dt>Organisation listings</dt><dd>{organisationCatalogue.counts.total.toLocaleString()}</dd></div>
-          <div><dt>Canonical organisations</dt><dd>{canonicalDirectory.length}</dd></div>
+          <div><dt>Reviewed organisations</dt><dd>{canonicalDirectory.length}</dd></div>
           <div><dt>Deployments</dt><dd>{deployments.length}</dd></div>
           <div><dt>Sources</dt><dd>{sources.length}</dd></div>
         </dl>
