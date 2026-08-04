@@ -23,14 +23,33 @@ export function DatabaseHeader({
   softwareCount,
   wallHref,
 }: DatabaseHeaderProps) {
+  const heading = activeView === "map"
+    ? activeObject === "software" ? "Software map" : "Organisation map"
+    : activeObject === "organisations"
+      ? "Organisations"
+      : activeView === "wall" ? "Software wall" : "Explore";
+  const description = activeView === "map"
+    ? activeObject === "software"
+      ? "Browse named deployments, catalogue locations and publisher headquarters. Africa-wide remains regional."
+      : "Browse named headquarters, offices, warehouses, projects and activity. Africa-wide remains regional."
+    : activeObject === "organisations"
+      ? "Find developers, EPCs, OEMs, financiers, software teams and sector enablers."
+      : activeView === "wall"
+        ? "Scan the landscape by relationship to energy, function and value-chain stage."
+        : "Find software by function, value-chain stage or relationship to energy.";
+  const activeCount = activeObject === "software" ? softwareCount : organisationCount;
+
   return (
     <header className="database-header">
       <div className="database-header-title">
         <div>
-          <h1>Database</h1>
-          <p>Search, filter and open every record from one place.</p>
+          <h1>{heading}</h1>
+          <p>{description}</p>
         </div>
-        <strong>{activeObject === "software" ? softwareCount : organisationCount}</strong>
+        <div className="database-header-count">
+          <strong>{activeCount.toLocaleString()}</strong>
+          <span>{activeObject === "software" ? "software" : "organisations"}</span>
+        </div>
       </div>
       <div className="database-header-navs">
         <nav aria-label="Database records" className="database-object-tabs">

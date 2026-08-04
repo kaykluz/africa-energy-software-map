@@ -295,7 +295,7 @@ test("server-renders one filterable software database with review state visible"
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<h1>Database<\/h1>/);
+  assert.match(html, /<h1>Explore<\/h1>/);
   assert.match(html, /Reviewed beta/);
   assert.match(html, /Reviewed data release/);
   assert.match(html, /<strong>474<\/strong><span>software records<\/span>/);
@@ -350,14 +350,14 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
   assert.match(mapHtml, /Software/);
   assert.match(mapHtml, /Organisations/);
   assert.match(mapHtml, /aria-live="polite"/i);
-  assert.match(mapHtml, /<strong>423<\/strong><span>located records<\/span>/);
+  assert.match(mapHtml, /<strong>165<\/strong><span>located records<\/span>/);
   assert.match(mapHtml, /<strong>19<\/strong><span>reviewed deployments<\/span>/);
   assert.match(mapTextHtml, /107 catalogue locations/);
   assert.match(mapHtml, /<strong>366<\/strong><span>Africa-wide<\/span>/);
-  assert.match(mapTextHtml, /423 results/);
+  assert.match(mapTextHtml, /165 results/);
   assert.match(mapHtml, /aria-label="Software location layer"/i);
   assert.match(mapHtml, /All recorded locations/);
-  assert.match(mapHtml, /423 located software records/);
+  assert.match(mapHtml, /165 located software records/);
   assert.match(mapTextHtml, /366 Africa-wide/);
   assert.match(mapTextHtml, /43 publisher HQ/);
   assert.match(mapHtml, /href="\/contribute\/deployment">Add a location<\/a>/);
@@ -373,7 +373,7 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
   assert.match(organisationMapHtml, /aria-label="Organisation presence layer"/i);
   assert.match(organisationMapHtml, /All recorded presence/);
   assert.match(organisationMapHtml, /Company-stated/);
-  assert.match(organisationMapHtml, /Offices and entities/);
+  assert.match(organisationMapHtml, /Offices, warehouses and entities/);
 
   const headquartersMapResponse = await render(
     "/deployments?object=organisations&presence=headquarters&focus=NG",
@@ -410,7 +410,7 @@ test("server-renders the classified software wall", async () => {
   const response = await render("/landscape?q=SteamaCo");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /<h1[^>]*>Database<\/h1>/i);
+  assert.match(html, /<h1[^>]*>Software wall<\/h1>/i);
   assert.match(html, /aria-label="Database records"/);
   assert.match(html, /href="\/landscape\?q=SteamaCo" aria-current="page">Wall/);
   assert.match(html, /Core energy software/);
@@ -474,7 +474,7 @@ test("server-renders local brand assets and the organisation atlas", async () =>
   const organisationResponse = await render("/organisations?q=Bboxx");
   assert.equal(organisationResponse.status, 200);
   const organisationHtml = await organisationResponse.text();
-  assert.match(organisationHtml, /<h1[^>]*>Database<\/h1>/i);
+  assert.match(organisationHtml, /<h1[^>]*>Organisations<\/h1>/i);
   assert.match(organisationHtml, /1,953<\/strong><span>listings/);
   assert.match(organisationHtml, /Financiers/);
   assert.match(organisationHtml, /Developers and owners/);
@@ -626,7 +626,7 @@ test("surfaces one organisation database with role, sector and review filters", 
   assert.match(html, /Review pending/);
   assert.match(html, /10000 Children Care Uganda/);
   assert.match(html, /reviewed profiles/i);
-  assert.match(html, /<h1>Database<\/h1>/);
+  assert.match(html, /<h1>Organisations<\/h1>/);
   assert.match(html, /Filter catalogue by actor type/);
   assert.match(html, /Filter catalogue by sector/);
 
@@ -661,6 +661,20 @@ test("surfaces one organisation database with role, sector and review filters", 
     record.segments.some((segment) => ["E-mobility", "Storage"].includes(segment)),
   ));
 
+  const unlocatedAfricaWide = await fetchWorker(
+    "/api/organisation-catalogue?country=Nigeria&q=Zola%20Electric",
+    { headers: { accept: "application/json" } },
+    { DB: new MemoryD1() },
+  );
+  assert.equal(unlocatedAfricaWide.status, 200);
+  assert.equal((await unlocatedAfricaWide.json()).total, 0);
+  const regionalAfricaWide = await fetchWorker(
+    "/api/organisation-catalogue?scope=africa_wide&q=Zola%20Electric",
+    { headers: { accept: "application/json" } },
+    { DB: new MemoryD1() },
+  );
+  assert.ok((await regionalAfricaWide.json()).total > 0);
+
   const csv = await fetchWorker(
     "/api/organisation-catalogue?scope=reviewed&format=csv",
     { headers: { accept: "text/csv" } },
@@ -675,7 +689,7 @@ test("surfaces one organisation database with role, sector and review filters", 
   );
   assert.equal(map.status, 200);
   const mapHtml = await map.text();
-  assert.match(mapHtml, /<h1>Database<\/h1>/);
+  assert.match(mapHtml, /<h1>Organisation map<\/h1>/);
   assert.match(mapHtml, /aria-label="Database records"/);
   assert.match(mapHtml, /href="\/deployments\?object=organisations&amp;country=NG&amp;presence=catalogue" aria-current="page">/);
   assert.match(mapHtml, /href="\/deployments\?country=NG&amp;object=organisations&amp;presence=catalogue" aria-current="page">Map/);
@@ -722,9 +736,11 @@ test("surfaces one organisation database with role, sector and review filters", 
   );
   assert.equal(africaWideMap.status, 200);
   const africaWideMapHtml = (await africaWideMap.text()).replaceAll(/<!--.*?-->/g, "");
-  assert.match(africaWideMapHtml, /282 located organisations/);
-  assert.match(africaWideMapHtml, /Nigeria: 282 africa-wide coverage organisations/i);
+  assert.match(africaWideMapHtml, /103 located organisations/);
+  assert.match(africaWideMapHtml, /Nigeria: 31 Africa-wide organisations with named locations/);
   assert.match(africaWideMapHtml, /href="\/organisations\?scope=africa_wide"/);
+  assert.match(africaWideMapHtml, /Africa-wide stays regional/);
+  assert.doesNotMatch(africaWideMapHtml, />Zola Electric</);
 
   const canonicalSectorMap = await render(
     "/deployments?object=organisations&presence=software_linked&sector=sector_emobility_batteries&focus=KE",
@@ -745,7 +761,7 @@ test("surfaces one organisation database with role, sector and review filters", 
   const nigeria = await render("/organisations?country=NG");
   assert.equal(nigeria.status, 200);
   const nigeriaHtml = await nigeria.text();
-  assert.match(nigeriaHtml, /563 shown/);
+  assert.match(nigeriaHtml, /311 shown/);
   assert.match(nigeriaHtml, /A4&amp;T Power Solutions/);
 
   const role = await render("/organisations?role=Financier");
@@ -848,7 +864,7 @@ test("server-renders a complete country-scoped directory", async () => {
   assert.equal(organisationsResponse.status, 200);
   const organisationsHtml = await organisationsResponse.text();
   const organisationsTextHtml = organisationsHtml.replaceAll(/<!--.*?-->/g, "");
-  assert.match(organisationsTextHtml, /34 organisations/);
+  assert.match(organisationsTextHtml, /10 organisations/);
   assert.match(organisationsHtml, /Royal Power and Energy/);
   assert.match(organisationsHtml, /SAO Energy/);
   assert.match(organisationsHtml, /Documented country activity/);
@@ -857,7 +873,7 @@ test("server-renders a complete country-scoped directory", async () => {
   assert.equal(softwareResponse.status, 200);
   const softwareHtml = await softwareResponse.text();
   const softwareTextHtml = softwareHtml.replaceAll(/<!--.*?-->/g, "");
-  assert.match(softwareTextHtml, /373 software records/);
+  assert.match(softwareTextHtml, /53 software records/);
   assert.match(softwareHtml, /href="\/products\/adora"/);
   assert.match(softwareHtml, /Documented catalogue location/);
   assert.match(softwareHtml, /Africa-wide coverage/);
@@ -867,7 +883,7 @@ test("server-renders a complete country-scoped directory", async () => {
   );
   assert.equal(africaWideOrganisations.status, 200);
   const africaWideOrganisationsHtml = (await africaWideOrganisations.text()).replaceAll(/<!--.*?-->/g, "");
-  assert.match(africaWideOrganisationsHtml, /282 organisations/);
+  assert.match(africaWideOrganisationsHtml, /31 organisations/);
   assert.match(africaWideOrganisationsHtml, /Africa-wide coverage/);
 
   const africaWideSoftware = await render(
@@ -875,7 +891,7 @@ test("server-renders a complete country-scoped directory", async () => {
   );
   assert.equal(africaWideSoftware.status, 200);
   const africaWideSoftwareHtml = (await africaWideSoftware.text()).replaceAll(/<!--.*?-->/g, "");
-  assert.match(africaWideSoftwareHtml, /366 software records/);
+  assert.match(africaWideSoftwareHtml, /46 software records/);
   assert.match(africaWideSoftwareHtml, /Africa-wide coverage/);
 
   const deploymentsResponse = await render("/countries/ng?view=deployments");
@@ -933,7 +949,7 @@ test("organisation contributions enter the moderated queue with an actor type", 
       organisation: "Example Solar EPC",
       category: "EPCs and installers",
       country: "GH",
-      presenceType: "operations",
+      presenceType: "warehouse",
       lifecycle: "active",
       source: "https://example.com/about",
       notes: "EPC working in C&I and mini-grids in Ghana.",
@@ -951,7 +967,7 @@ test("organisation contributions enter the moderated queue with an actor type", 
   assert.equal(stored.organisationName, "Example Solar EPC");
   assert.equal(stored.category, "EPCs and installers");
   assert.equal(stored.countryIso2, "GH");
-  assert.equal(stored.presenceType, "operations");
+  assert.equal(stored.presenceType, "warehouse");
   assert.equal(stored.lifecycle, "active");
   assert.equal(stored.notes, "EPC working in C&I and mini-grids in Ghana.");
 });
@@ -1293,7 +1309,7 @@ test("organisation catalogue candidates are visible and decisions persist in rev
   );
   assert.equal(canonicalDirectory.status, 200);
   const canonicalDirectoryHtml = await canonicalDirectory.text();
-  assert.match(canonicalDirectoryHtml, /<h1>Database<\/h1>/);
+  assert.match(canonicalDirectoryHtml, /<h1>Organisations<\/h1>/);
   assert.match(canonicalDirectoryHtml, /1,953<\/strong><span>listings/);
   assert.match(canonicalDirectoryHtml, /href="\/organisations\/3e-afr-0002"/);
 
@@ -1471,7 +1487,7 @@ test("duplicate organisation decisions merge catalogue records into one canonica
     { DB: database },
   );
   const directoryHtml = await directory.text();
-  assert.match(directoryHtml, /<h1>Database<\/h1>/);
+  assert.match(directoryHtml, /<h1>Organisations<\/h1>/);
   assert.match(directoryHtml, /inclusion catalogue/i);
   assert.match(directoryHtml, /href="\/organisations\/ampersand-energy"/);
 

@@ -673,7 +673,7 @@ def validate_data_package(
                 )
 
     presence_types = {
-        "operations", "project_participation", "office", "legal_entity",
+        "operations", "project_participation", "office", "warehouse", "legal_entity",
         "product_deployment", "product_availability",
     }
     presence_lifecycles = {"active", "planned", "historical", "unknown"}
@@ -1386,7 +1386,7 @@ def validate_release_shards(errors: list[str]) -> None:
                     f"{relative}/organisation-presences.csv:{line_number}: invalid country_iso2"
                 )
             if row["presence_type"] not in {
-                "operations", "project_participation", "office", "legal_entity",
+                "operations", "project_participation", "office", "warehouse", "legal_entity",
                 "product_deployment", "product_availability",
             }:
                 errors.append(

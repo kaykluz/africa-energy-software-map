@@ -4,7 +4,7 @@ import { organisationCatalogue } from "@/lib/organisation-catalogue";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  title: "Database",
+  title: "Explore",
   description:
     "Search and filter software and digital tools connected to African energy.",
 };

@@ -175,6 +175,7 @@ export const organisationPresenceTypes = [
   "operations",
   "project_participation",
   "office",
+  "warehouse",
   "legal_entity",
   "product_deployment",
   "product_availability",

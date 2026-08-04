@@ -145,6 +145,7 @@ export type OrganisationPresenceType =
   | "operations"
   | "project_participation"
   | "office"
+  | "warehouse"
   | "legal_entity"
   | "product_deployment"
   | "product_availability";
@@ -358,6 +359,7 @@ export const organisationPresenceLabels: Record<OrganisationPresenceType, string
   operations: "Operations",
   project_participation: "Project participation",
   office: "Office",
+  warehouse: "Warehouse",
   legal_entity: "Registered entity",
   product_deployment: "Product deployment",
   product_availability: "Product available",

@@ -289,9 +289,10 @@ An international organisation belongs in the directory when it has a sourced
 role in African energy. It appears on the Africa map through evidenced or
 claimed African presence, not by pretending its headquarters are in Africa.
 
-Presence is country-level by default. Offices, availability and project
-participation are separate presence types. No precise asset coordinates are
-needed for the organisation directory.
+Presence is country-level by default. Offices, warehouses, availability and
+project participation are separate presence types. Regional coverage labels do
+not create country presence. No precise asset coordinates are needed for the
+organisation directory.
 
 ## Organisations page
 

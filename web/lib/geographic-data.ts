@@ -29,6 +29,7 @@ export type SoftwareMapEntity = {
   name: string;
   organisation: string;
   href: string;
+  africaWide: boolean;
   product?: Product;
   catalogueItem?: LandscapeItem;
   locationTypesByCountry: Map<string, Set<SoftwareLocationType>>;
@@ -45,7 +46,6 @@ export const softwareMapLayers: Array<[SoftwareMapLayer, string]> = [
 ];
 
 const africanIso2s = new Set(africanCountries.map(([iso2]) => iso2));
-const allAfricanIso2s = africanCountries.map(([iso2]) => iso2);
 const countryIso2ByLabel = new Map(
   africanCountries.map(([iso2, name]) => [normaliseCountryLabel(name), iso2]),
 );
@@ -128,6 +128,7 @@ export function buildSoftwareMapIndex(
       name: product.name,
       organisation: product.organisation,
       href: `/products/${product.slug}`,
+      africaWide: false,
       product,
       locationTypesByCountry: new Map(),
     };
@@ -174,22 +175,22 @@ export function buildSoftwareMapIndex(
           name: record.item.name,
           organisation: record.item.parent || "Catalogue listing",
           href: record.item.canonicalHref || `/landscape?q=${encodeURIComponent(record.item.name)}`,
+          africaWide: record.africaWide,
           catalogueItem: record.item,
           locationTypesByCountry: new Map(),
         };
     if (!index.has(key)) index.set(key, entity);
+    entity.africaWide ||= record.africaWide;
     for (const iso2 of record.countryIso2s) {
       addLocation(entity, iso2, "catalogue_location");
-    }
-    if (record.africaWide) {
-      for (const iso2 of allAfricanIso2s) {
+      if (record.africaWide) {
         addLocation(entity, iso2, "africa_wide_coverage");
       }
     }
   }
 
   for (const [key, entity] of index) {
-    if (!entity.locationTypesByCountry.size) index.delete(key);
+    if (!entity.locationTypesByCountry.size && !entity.africaWide) index.delete(key);
   }
   return index;
 }
@@ -214,6 +215,10 @@ export function softwareKeysForLayer(
 ) {
   return new Set(
     Array.from(index.values()).flatMap((entity) => {
+      if (layer === "africa_wide_coverage") {
+        const hasNamedCountry = country === "all" || entity.locationTypesByCountry.has(country);
+        return entity.africaWide && hasNamedCountry ? [entity.key] : [];
+      }
       const visible = Array.from(entity.locationTypesByCountry.entries()).some(
         ([iso2, types]) =>
           (country === "all" || iso2 === country) && softwareLocationMatches(layer, types),

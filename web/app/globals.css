@@ -5964,3 +5964,78 @@ dd {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Public organisation discovery stays compact; editorial detail belongs in /review. */
+.organisation-catalogue-stats {
+  display: flex;
+  margin-top: 14px;
+  border: 0;
+  border-block: 1px solid var(--border);
+  border-radius: 0;
+}
+
+.organisation-catalogue-stats > div {
+  min-height: 54px;
+  align-items: baseline;
+  align-content: center;
+  padding: 10px 24px 10px 0;
+  grid-template-columns: auto auto;
+  gap: 8px;
+}
+
+.organisation-catalogue-stats > div + div { padding-left: 24px; }
+.organisation-catalogue-stats strong { font-size: 1.35rem; }
+
+.organisation-catalogue-notice {
+  min-height: 42px;
+  margin: 0;
+  padding: 9px 0;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+}
+
+.organisation-catalogue-notice p { font-size: .7rem; }
+
+.organisation-catalogue-controls {
+  grid-template-columns: minmax(270px, 1.5fr) repeat(3, minmax(140px, .65fr)) auto auto auto;
+  padding: 14px 0;
+}
+
+.organisation-catalogue-more > summary { min-width: 72px; }
+
+.organisation-catalogue-more .organisation-more-panel {
+  width: min(640px, 88vw);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.organisation-catalogue-grid header > span {
+  padding: 2px 0;
+  color: var(--muted);
+  background: transparent;
+  font: .54rem var(--font-mono);
+}
+
+.organisation-catalogue-grid header > span[data-status="reviewed"] {
+  color: var(--positive);
+  background: transparent;
+}
+
+@media (max-width: 1180px) {
+  .organisation-catalogue-controls {
+    grid-template-columns: minmax(260px, 1.3fr) repeat(2, minmax(150px, .7fr)) auto auto;
+  }
+  .organisation-catalogue-controls > select:nth-of-type(3) { display: none; }
+}
+
+@media (max-width: 760px) {
+  .organisation-catalogue-stats { overflow-x: auto; }
+  .organisation-catalogue-stats > div { min-width: max-content; }
+  .organisation-catalogue-notice { grid-template-columns: 1fr auto; }
+  .organisation-catalogue-notice p { display: none; }
+  .organisation-catalogue-controls { grid-template-columns: 1fr auto; }
+  .organisation-catalogue-search { grid-column: 1 / -1; }
+  .organisation-catalogue-controls > select { grid-column: 1 / -1; }
+  .organisation-catalogue-more .organisation-more-panel { grid-template-columns: 1fr; }
+}

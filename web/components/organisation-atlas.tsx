@@ -233,6 +233,7 @@ export function OrganisationAtlas({
       evidenced_countries: countryNames(record.evidencedCountryIso2s),
       company_stated_countries: countryNames(record.companyStatedCountryIso2s),
       office_countries: countryNames(record.officeCountryIso2s),
+      warehouse_countries: countryNames(record.warehouseCountryIso2s),
       product_availability_countries: countryNames(record.availabilityCountryIso2s),
       software_linked_countries: countryNames(record.softwareLinkedCountryIso2s),
       origin: record.organisation.origin,
@@ -331,7 +332,7 @@ export function OrganisationAtlas({
           <option value="all">All presence types</option>
           <option value="evidenced">Evidenced activity</option>
           <option value="company_stated">Company-stated</option>
-          <option value="offices">Offices and entities</option>
+          <option value="offices">Offices, warehouses and entities</option>
           <option value="availability">Product availability</option>
           <option value="software_linked">Software deployments</option>
         </select>
@@ -571,7 +572,7 @@ function PublicOrganisationCatalogue({
 
       <div className="organisation-catalogue-notice">
         <span>Inclusion catalogue · updated {formatCatalogueDate(cataloguePage.asOf)}</span>
-        <p>Broad market coverage for discovery. A listing is not an endorsement; records marked “review pending” have not yet entered the reviewed release.</p>
+        <p>Broad discovery layer. Review status is shown on each record.</p>
         <Link href="/methodology#organisation-catalogue">How this layer works →</Link>
       </div>
 
@@ -598,20 +599,8 @@ function PublicOrganisationCatalogue({
           <option value="all">All active countries</option>
           {cataloguePage.options.countries.map((value) => <option key={value} value={value}>{value}</option>)}
         </select>
-        <select aria-label="Filter catalogue by headquarters" onChange={(event) => update(setHeadquarters, event.target.value)} value={headquarters}>
-          <option value="all">All headquarters</option>
-          {cataloguePage.options.headquarters.map((value) => <option key={value} value={value}>{value}</option>)}
-        </select>
-        <select aria-label="Filter catalogue by scope" onChange={(event) => update(setScope, event.target.value)} value={scope}>
-          <option value="all">All listings</option>
-          <option value="africa_wide">Africa-wide coverage</option>
-          <option value="africa_hq">Africa-headquartered</option>
-          <option value="international">International, active in Africa</option>
-          <option value="reviewed">Reviewed profiles</option>
-          <option value="pending">Review pending</option>
-        </select>
         <details className="organisation-more-filters organisation-catalogue-more">
-          <summary>More filters</summary>
+          <summary>More</summary>
           <div className="organisation-more-panel">
             <label>
               <span>Actor type</span>
@@ -625,6 +614,24 @@ function PublicOrganisationCatalogue({
               <select aria-label="Filter catalogue by sector" onChange={(event) => update(setSector, event.target.value)} value={sector}>
                 <option value="all">All sectors</option>
                 {organisationSectors.map((value) => <option key={value.id} value={value.id}>{value.name}</option>)}
+              </select>
+            </label>
+            <label>
+              <span>Headquarters</span>
+              <select aria-label="Filter catalogue by headquarters" onChange={(event) => update(setHeadquarters, event.target.value)} value={headquarters}>
+                <option value="all">All headquarters</option>
+                {cataloguePage.options.headquarters.map((value) => <option key={value} value={value}>{value}</option>)}
+              </select>
+            </label>
+            <label>
+              <span>Review and coverage</span>
+              <select aria-label="Filter catalogue by scope" onChange={(event) => update(setScope, event.target.value)} value={scope}>
+                <option value="all">All listings</option>
+                <option value="africa_wide">Africa-wide coverage</option>
+                <option value="africa_hq">Africa-headquartered</option>
+                <option value="international">International, active in Africa</option>
+                <option value="reviewed">Reviewed profiles</option>
+                <option value="pending">Review pending</option>
               </select>
             </label>
           </div>
@@ -820,6 +827,7 @@ function organisationCsv(rows: Array<Record<string, string | string[] | number>>
     "evidenced_countries",
     "company_stated_countries",
     "office_countries",
+    "warehouse_countries",
     "product_availability_countries",
     "software_linked_countries",
     "origin",
@@ -956,7 +964,9 @@ function isPresenceLayer(value: string): value is OrganisationPresenceLayer {
 function presenceCountries(record: OrganisationDirectoryRecord, layer: OrganisationPresenceLayer) {
   if (layer === "evidenced") return record.evidencedCountryIso2s;
   if (layer === "company_stated") return record.companyStatedCountryIso2s;
-  if (layer === "offices") return record.officeCountryIso2s;
+  if (layer === "offices") {
+    return Array.from(new Set([...record.officeCountryIso2s, ...record.warehouseCountryIso2s]));
+  }
   if (layer === "availability") return record.availabilityCountryIso2s;
   if (layer === "software_linked") return record.softwareLinkedCountryIso2s;
   return record.countryIso2s;
@@ -967,7 +977,7 @@ function presenceLayerLabel(layer: OrganisationPresenceLayer) {
     all: "All presence types",
     evidenced: "Evidenced activity",
     company_stated: "Company-stated",
-    offices: "Offices and entities",
+    offices: "Offices, warehouses and entities",
     availability: "Product availability",
     software_linked: "Software deployments",
   }[layer];
