@@ -242,7 +242,7 @@ export function LandscapeExplorer({
   const databaseQuery = databaseParams.toString();
 
   useEffect(() => {
-    const pathname = mode === "wall" ? "/landscape" : "/";
+    const pathname = mode === "wall" ? "/landscape" : "/explore";
     window.history.replaceState(null, "", databaseQuery ? `${pathname}?${databaseQuery}` : pathname);
   }, [databaseQuery, mode]);
 
@@ -251,9 +251,11 @@ export function LandscapeExplorer({
       <DatabaseHeader
         activeObject="software"
         activeView={mode === "wall" ? "wall" : "cards"}
-        cardsHref={databaseQuery ? `/?${databaseQuery}` : "/"}
+        cardsHref={databaseQuery ? `/explore?${databaseQuery}` : "/explore"}
         mapHref={`/deployments?${mapParams.toString()}`}
         organisationCount={organisationCount}
+        organisationsHref="/landscape?object=organisations"
+        softwareHref="/landscape"
         softwareCount={landscapeSoftwareItems.length}
         wallHref={databaseQuery ? `/landscape?${databaseQuery}` : "/landscape"}
       />

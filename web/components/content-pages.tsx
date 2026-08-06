@@ -528,7 +528,7 @@ export async function SearchResultsPage({ query }: { query: string }) {
                       <Link href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
                       {organisation ? <Link href={`/organisations/${organisation.slug}`}><small>{product.organisation}</small></Link> : <small>{product.organisation}</small>}
                     </span>
-                    <Link href={`/?category=${product.categoryId}`}>{product.category} →</Link>
+                    <Link href={`/explore?category=${product.categoryId}`}>{product.category} →</Link>
                   </article>
                 );
               })}
@@ -571,7 +571,7 @@ export async function SearchResultsPage({ query }: { query: string }) {
           {categoryResults.length ? (
             <section><h2>Capabilities <span>{categoryResults.length}</span></h2>
               {categoryResults.map((category) => (
-                <Link href={`/?category=${category.id}`} key={category.id}><span><strong>{category.name}</strong><small>Value-chain category</small></span><span>View in Explore →</span></Link>
+                <Link href={`/explore?category=${category.id}`} key={category.id}><span><strong>{category.name}</strong><small>Value-chain category</small></span><span>View in Explore →</span></Link>
               ))}
             </section>
           ) : null}

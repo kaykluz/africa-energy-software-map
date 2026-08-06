@@ -6,6 +6,7 @@ import {
   type KeyboardEvent,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import type {
@@ -168,6 +169,7 @@ export function ReviewWorkspace({
   const [assertionFilter, setAssertionFilter] =
     useState<AssertionFilter>("pending");
   const [query, setQuery] = useState("");
+  const autoRoutedRef = useRef(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -280,6 +282,18 @@ export function ReviewWorkspace({
     0,
     organisationCatalogueSummary.total - organisationCatalogueDecided,
   );
+  useEffect(() => {
+    if (
+      workspace &&
+      !autoRoutedRef.current &&
+      assertionsPending === 0 &&
+      resolvedSources === combinedSources.length &&
+      organisationCataloguePending > 0
+    ) {
+      autoRoutedRef.current = true;
+      setTab("organisations");
+    }
+  }, [assertionsPending, combinedSources.length, organisationCataloguePending, resolvedSources, workspace]);
   const releaseReady =
     manifest.reviewGate.publishable &&
     assertionsPending === 0 &&
@@ -508,28 +522,36 @@ export function ReviewWorkspace({
         </div>
       ) : null}
 
+      <section aria-label="Open review work" className="review-action-queue">
+        <div><span>Open work</span><strong>{(assertionsPending + (combinedSources.length - resolvedSources) + organisationCataloguePending + openContributions).toLocaleString()}</strong></div>
+        <button disabled={!assertionsPending} onClick={() => setTab("assertions")} type="button"><strong>{assertionsPending.toLocaleString()}</strong><span>Assertions</span></button>
+        <button disabled={resolvedSources === combinedSources.length} onClick={() => setTab("sources")} type="button"><strong>{(combinedSources.length - resolvedSources).toLocaleString()}</strong><span>Source rights</span></button>
+        <button disabled={!organisationCataloguePending} onClick={() => setTab("organisations")} type="button"><strong>{organisationCataloguePending.toLocaleString()}</strong><span>Organisation candidates</span></button>
+        <button disabled={!openContributions} onClick={() => setTab("contributions")} type="button"><strong>{openContributions.toLocaleString()}</strong><span>Contributions</span></button>
+      </section>
+
       <nav aria-label="Review queues" className="review-tabs">
         <TabButton
           active={tab === "assertions"}
-          count={combinedAssertions.length}
+          count={assertionsPending}
           label="Assertions"
           onClick={() => setTab("assertions")}
         />
         <TabButton
           active={tab === "sources"}
-          count={combinedSources.length}
+          count={combinedSources.length - resolvedSources}
           label="Sources"
           onClick={() => setTab("sources")}
         />
         <TabButton
           active={tab === "organisations"}
-          count={organisationCatalogueSummary.total}
+          count={organisationCataloguePending}
           label="Organisations"
           onClick={() => setTab("organisations")}
         />
         <TabButton
           active={tab === "contributions"}
-          count={contributions.length}
+          count={openContributions}
           label="Contributions"
           onClick={() => setTab("contributions")}
         />
@@ -2099,6 +2121,7 @@ function AssertionsWorkspace({
         left.id.localeCompare(right.id),
     );
   const groups = groupAssertions(filtered);
+  const visibleActive = filtered.find((assertion) => assertion.id === active?.id) ?? filtered[0];
 
   return (
     <section className="review-workbench">
@@ -2144,8 +2167,8 @@ function AssertionsWorkspace({
                 const review = reviewMap.get(assertion.id);
                 return (
                   <button
-                    aria-current={active?.id === assertion.id ? "true" : undefined}
-                    className={active?.id === assertion.id ? "active" : ""}
+                    aria-current={visibleActive?.id === assertion.id ? "true" : undefined}
+                    className={visibleActive?.id === assertion.id ? "active" : ""}
                     key={assertion.id}
                     onClick={() => onSelect(assertion.id)}
                     type="button"
@@ -2181,12 +2204,12 @@ function AssertionsWorkspace({
         </div>
       </aside>
       <div className="review-detail">
-        {active ? (
+        {visibleActive ? (
           <AssertionReviewPanel
-            assertion={active}
-            key={`${active.id}-${reviewMap.get(active.id)?.version ?? 0}`}
+            assertion={visibleActive}
+            key={`${visibleActive.id}-${reviewMap.get(visibleActive.id)?.version ?? 0}`}
             onSaved={onReviewSaved}
-            review={reviewMap.get(active.id)}
+            review={reviewMap.get(visibleActive.id)}
           />
         ) : (
           <ReviewEmpty title="No assertion selected" />

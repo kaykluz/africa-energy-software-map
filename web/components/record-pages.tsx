@@ -73,7 +73,7 @@ export function ProductProfile({
     <main className="profile-page profile-width" id="main-content" tabIndex={-1}>
       <nav aria-label="Breadcrumb" className="breadcrumb">
         <Link href="/">Explore</Link><span aria-hidden="true">/</span>
-        <Link href={`/?category=${product.categoryId}`}>{product.category}</Link>
+        <Link href={`/explore?category=${product.categoryId}`}>{product.category}</Link>
         <span aria-hidden="true">/</span><span>{product.name}</span>
       </nav>
       <header className="record-header">
@@ -115,7 +115,7 @@ export function ProductProfile({
         <article className="record-main">
           <ProfileSection heading="At a glance">
             <dl className="fact-grid">
-              <Fact label="Category" value={<Link href={`/?category=${product.categoryId}`}>{product.category}</Link>} />
+              <Fact label="Category" value={<Link href={`/explore?category=${product.categoryId}`}>{product.category}</Link>} />
               <Fact label="Access model" value={product.accessModel} />
               <Fact label="Lifecycle" value={capitalise(product.lifecycle)} />
               <Fact
