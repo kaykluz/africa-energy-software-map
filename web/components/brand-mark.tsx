@@ -1,5 +1,6 @@
 import Image from "next/image";
 import {
+  brandAssetForExactName,
   brandAssetForOrganisation,
   brandAssetForProduct,
 } from "@/lib/brand-assets";
@@ -15,12 +16,16 @@ export function OrganisationMark({
   organisationId: string;
   size?: number;
 }) {
-  const asset = brandAssetForOrganisation(organisationId);
+  const organisationAsset = brandAssetForOrganisation(organisationId);
+  const nameMatchedAsset = organisationAsset ? undefined : brandAssetForExactName(name);
+  const asset = organisationAsset ?? nameMatchedAsset;
   if (asset) {
     return (
       <span
         className={`organisation-mark has-logo ${className}`.trim()}
+        data-brand-source={organisationAsset ? "organisation" : "name-match"}
         style={{ height: size, width: size }}
+        title={`${name} identity`}
       >
         <Image
           alt={`${name} logo`}
@@ -37,7 +42,9 @@ export function OrganisationMark({
     <span
       aria-hidden="true"
       className={`organisation-mark is-type ${className}`.trim()}
+      data-brand-source="type"
       style={{ height: size, width: size }}
+      title="Logo not yet added"
     >
       {initials}
     </span>
@@ -60,7 +67,8 @@ export function ProductMark({
   size?: number;
 }) {
   const productAsset = brandAssetForProduct(productId);
-  const organisationAsset = brandAssetForOrganisation(organisationId);
+  const organisationAsset = brandAssetForOrganisation(organisationId)
+    ?? brandAssetForExactName(organisationName);
   const asset = productAsset ?? organisationAsset;
   if (asset) {
     const inherited = !productAsset && Boolean(organisationAsset);

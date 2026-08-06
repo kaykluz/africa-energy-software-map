@@ -629,7 +629,7 @@ export function RegistryExplorer({
       ? [
           [organisationResultCount, "located organisations"],
           [organisationMapResultKeys(filteredOrganisationRecords, emptyCatalogueMapData, organisationLayer, countryFilter).size, "reviewed profiles"],
-          [organisationMapResultKeys([], effectiveCatalogueMapData, organisationLayer, countryFilter).size, "catalogue records"],
+          [organisationMapResultKeys([], effectiveCatalogueMapData, organisationLayer, countryFilter).size, "directory listings"],
         ]
     : [
         [stages.length, "stages"],
@@ -1570,7 +1570,7 @@ function DeploymentsView({
               </select>
             </label>
             <Link className="v2-map-filtered-link" href={preservedSearch ? `/directory?${preservedSearch}` : "/directory"}>Reviewed data →</Link>
-            <Link className="v2-map-filtered-link" href="/landscape">Catalogue →</Link>
+            <Link className="v2-map-filtered-link" href="/landscape">Software wall →</Link>
           </div>
         ) : (
           <div className="v2-map-organisation-tools v2-map-organisation-facets">
@@ -1682,7 +1682,7 @@ function DeploymentsView({
             <div aria-label="Software location type totals" className="v2-map-coverage">
               <span className="v2-map-location-totals">
                 <i className="reviewed">{softwareLayerCounts.reviewed_deployment} reviewed deployments</i>
-                <i className="catalogue">{softwareLayerCounts.catalogue_location} catalogue locations</i>
+                <i className="catalogue">{softwareLayerCounts.catalogue_location} listed locations</i>
                 <i className="catalogue">{softwareLayerCounts.africa_wide_coverage} Africa-wide</i>
                 <i className="headquarters">{softwareLayerCounts.publisher_headquarters} publisher HQ</i>
               </span>
@@ -1693,7 +1693,7 @@ function DeploymentsView({
             </div>
           ) : (
             <div aria-label="Organisation location guidance" className="v2-map-coverage">
-              <small>Africa-wide stays regional. Countries appear only where a source names activity, an office, entity, project, deployment, availability or headquarters.</small>
+              <small>Africa-wide stays regional. Countries appear only where a source names activity, an office, entity, project, deployment, availability or headquarters. Local logos appear where approved; initials mark the remaining gaps.</small>
               <span className="v2-map-coverage-links"><Link href="/contribute/organisation">Add a presence</Link></span>
             </div>
           )}
@@ -1782,15 +1782,15 @@ function DeploymentsView({
                         const record = item.record;
                         const types = organisationLocationTypesForCountry(record, selectedCountry);
                         return <article key={record.organisation.id}>
-                          <span className="v2-deployment-entity"><OrganisationMark name={record.organisation.name} organisationId={record.organisation.id} size={30} /><span><Link href={`/organisations/${record.organisation.slug}`}><strong>{record.organisation.name}</strong></Link><small>{organisationLocationTypeShortSummary(types, item.catalogueLocationTypes)}</small></span></span>
-                          <b>Reviewed</b>
+                          <span className="v2-deployment-entity"><OrganisationMark name={record.organisation.name} organisationId={record.organisation.id} size={30} /><span><Link href={`/organisations/${record.organisation.slug}`}><strong>{record.organisation.name}</strong></Link>{record.organisation.headquartersCountryIso2 ? <small>HQ {countryLabel(record.organisation.headquartersCountryIso2)}</small> : null}</span></span>
+                          <b title={organisationLocationTypeSummary(types, item.catalogueLocationTypes)}>{organisationLocationTypeShortSummary(types, item.catalogueLocationTypes)}</b>
                           <button aria-label={`Preview ${record.organisation.name}`} onClick={(event) => onOpenOrganisation({ kind: "canonical", countryIso2: selectedCountry, record, catalogueLocationTypes: item.catalogueLocationTypes }, event.currentTarget)} type="button"><i aria-hidden="true">＋</i></button>
                         </article>;
                       }
                       const organisation = item.record;
                       return <article key={organisation.id}>
-                        <span className="v2-deployment-entity"><OrganisationMark name={organisation.name} organisationId={organisation.id} size={30} /><span>{organisation.canonicalHref ? <Link href={organisation.canonicalHref}><strong>{organisation.name}</strong></Link> : <button className="v2-map-name-button" onClick={(event) => onOpenOrganisation({ kind: "catalogue", countryIso2: selectedCountry, record: organisation }, event.currentTarget)} type="button"><strong>{organisation.name}</strong></button>}<small>{catalogueLocationTypeShortSummary(organisation.locationTypes)}</small></span></span>
-                        <b>{organisation.reviewState === "reviewed" ? "Reviewed" : "Catalogue"}</b>
+                        <span className="v2-deployment-entity"><OrganisationMark name={organisation.name} organisationId={organisation.id} size={30} /><span>{organisation.canonicalHref ? <Link href={organisation.canonicalHref}><strong>{organisation.name}</strong></Link> : <button className="v2-map-name-button" onClick={(event) => onOpenOrganisation({ kind: "catalogue", countryIso2: selectedCountry, record: organisation }, event.currentTarget)} type="button"><strong>{organisation.name}</strong></button>}{organisation.headquartersCountry ? <small>HQ {organisation.headquartersCountry}</small> : null}</span></span>
+                        <b title={organisation.locationTypes.map(catalogueLocationTypeLabel).join(", ")}>{catalogueLocationTypeShortSummary(organisation.locationTypes)}</b>
                         <button aria-label={`Preview ${organisation.name}`} onClick={(event) => onOpenOrganisation({ kind: "catalogue", countryIso2: selectedCountry, record: organisation }, event.currentTarget)} type="button"><i aria-hidden="true">＋</i></button>
                       </article>;
                     })}
@@ -1973,19 +1973,53 @@ function organisationLocationTypeShortSummary(
   canonicalTypes: OrganisationLocationType[],
   catalogueTypes: Array<"catalogue_activity" | "africa_wide" | "headquarters">,
 ) {
-  const labels = [...canonicalTypes.map(organisationLocationTypeLabel), ...catalogueTypes.map(catalogueLocationTypeLabel)];
-  return labels.length > 1 ? `${labels.length} types` : labels[0] ?? "Located";
+  const labels = Array.from(new Set([
+    ...canonicalTypes.map(organisationLocationTypeShortLabel),
+    ...catalogueTypes.map(catalogueLocationTypeShortLabel),
+  ]));
+  if (labels.length > 2) return `${labels[0]} +${labels.length - 1}`;
+  return labels.join(" · ") || "Location";
+}
+
+function organisationLocationTypeSummary(
+  canonicalTypes: OrganisationLocationType[],
+  catalogueTypes: Array<"catalogue_activity" | "africa_wide" | "headquarters">,
+) {
+  return Array.from(new Set([
+    ...canonicalTypes.map(organisationLocationTypeLabel),
+    ...catalogueTypes.map(catalogueLocationTypeLabel),
+  ])).join(", ");
 }
 
 function catalogueLocationTypeShortSummary(
   types: Array<"catalogue_activity" | "africa_wide" | "headquarters">,
 ) {
-  if (types.length > 1) return `${types.length} types`;
-  return types[0] === "headquarters"
-    ? "HQ"
-    : types[0] === "africa_wide"
+  const labels = Array.from(new Set(types.map(catalogueLocationTypeShortLabel)));
+  if (labels.length > 2) return `${labels[0]} +${labels.length - 1}`;
+  return labels.join(" · ") || "Location";
+}
+
+function organisationLocationTypeShortLabel(type: OrganisationLocationType) {
+  return {
+    evidenced: "Evidenced",
+    company_stated: "Company-stated",
+    software_linked: "Software",
+    offices: "Office",
+    availability: "Available",
+    africa_wide: "Africa-wide",
+    headquarters: "HQ",
+    origin: "Origin",
+  }[type];
+}
+
+function catalogueLocationTypeShortLabel(
+  type: "catalogue_activity" | "africa_wide" | "headquarters",
+) {
+  return type === "catalogue_activity"
+    ? "Named activity"
+    : type === "africa_wide"
       ? "Africa-wide"
-      : "Catalogue";
+      : "HQ";
 }
 
 function organisationHasAfricaWideCoverage(record: OrganisationDirectoryRecord) {
