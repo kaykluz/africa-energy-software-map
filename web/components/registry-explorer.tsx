@@ -89,6 +89,11 @@ const emptyCatalogueMapData: OrganisationCatalogueMapData = {
   countries: {},
 };
 
+type CatalogueMapOrganisation = OrganisationCatalogueMapData["countries"][string]["records"][number];
+type OrganisationPreviewTarget =
+  | { kind: "canonical"; countryIso2: string; record: OrganisationDirectoryRecord; catalogueLocationTypes: CatalogueMapOrganisation["locationTypes"] }
+  | { kind: "catalogue"; countryIso2: string; record: CatalogueMapOrganisation };
+
 const viewMeta: Record<
   RegistryView,
   {
@@ -189,6 +194,7 @@ export function RegistryExplorer({
   const [headquartersFilter, setHeadquartersFilter] = useState(initialHeadquarters);
   const [scopeFilter, setScopeFilter] = useState(initialScope);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedOrganisation, setSelectedOrganisation] = useState<OrganisationPreviewTarget | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const openerRef = useRef<HTMLElement | null>(null);
   const canonicalOrganisationLinks = useMemo(
@@ -205,8 +211,9 @@ export function RegistryExplorer({
   useEffect(() => {
     const close = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
-      if (selectedProduct) {
+      if (selectedProduct || selectedOrganisation) {
         setSelectedProduct(null);
+        setSelectedOrganisation(null);
         openerRef.current?.focus();
       } else if (filtersOpen) {
         setFiltersOpen(false);
@@ -214,7 +221,7 @@ export function RegistryExplorer({
     };
     document.addEventListener("keydown", close);
     return () => document.removeEventListener("keydown", close);
-  }, [filtersOpen, selectedProduct]);
+  }, [filtersOpen, selectedOrganisation, selectedProduct]);
 
   const filteredProducts = useMemo(() => {
     return filterProducts(products, {
@@ -474,6 +481,11 @@ export function RegistryExplorer({
     setSelectedProduct(product);
   }
 
+  function openOrganisation(record: OrganisationPreviewTarget, element: HTMLElement) {
+    openerRef.current = element;
+    setSelectedOrganisation(record);
+  }
+
   const softwareActiveFilters = [
     categoryFilter !== "all"
       ? categories.find((category) => category.id === categoryFilter)?.name
@@ -637,14 +649,16 @@ export function RegistryExplorer({
             activeObject={mapObject}
             activeView="map"
             cardsHref={mapObject === "software"
-              ? softwareDatabaseQuery ? `/?${softwareDatabaseQuery}` : "/"
+              ? softwareDatabaseQuery ? `/explore?${softwareDatabaseQuery}` : "/explore"
               : organisationDirectoryHref}
             mapHref={currentMapQuery ? `/deployments?${currentMapQuery}` : "/deployments"}
             organisationCount={organisationCatalogue.counts.total}
             organisationsHref={organisationMapHref}
             softwareHref={softwareMapHref}
             softwareCount={landscapeSoftwareItems.length}
-            wallHref={softwareDatabaseQuery ? `/landscape?${softwareDatabaseQuery}` : "/landscape"}
+            wallHref={mapObject === "software"
+              ? softwareDatabaseQuery ? `/landscape?${softwareDatabaseQuery}` : "/landscape"
+              : "/landscape?object=organisations"}
           />
           <section className="landscape-scoreboard map-database-scoreboard" aria-label="Map totals">
             {heroStats.map(([value, label]) => (
@@ -819,6 +833,7 @@ export function RegistryExplorer({
           }}
           onRepresentationChange={(representation) => updateUrl({ representation })}
           onOpenProduct={openProduct}
+          onOpenOrganisation={openOrganisation}
           preservedSearch={preservedSearch}
         />
       ) : null}
@@ -838,6 +853,15 @@ export function RegistryExplorer({
           }}
           product={selectedProduct}
           organisationLinks={canonicalOrganisationLinks}
+        />
+      ) : null}
+      {selectedOrganisation ? (
+        <OrganisationPreview
+          close={() => {
+            setSelectedOrganisation(null);
+            openerRef.current?.focus();
+          }}
+          target={selectedOrganisation}
         />
       ) : null}
     </main>
@@ -1222,7 +1246,7 @@ function StackView({
                     >
                       <header>
                         <span className="v2-market-signal" aria-hidden="true" />
-                        <h3><Link href={`/?category=${category.id}`}>{category.name}</Link></h3>
+                        <h3><Link href={`/explore?category=${category.id}`}>{category.name}</Link></h3>
                         <span>{categoryProducts.length || "—"}</span>
                       </header>
                       {categoryProducts.length ? (
@@ -1305,7 +1329,7 @@ function StackView({
         <span>∞</span>
         <strong>Data · interoperability · security</strong>
         <small>Across every stage</small>
-        <Link href="/?category=cat_data_interoperability_security">Open →</Link>
+        <Link href="/explore?category=cat_data_interoperability_security">Open →</Link>
       </div>
     </section>
   );
@@ -1363,6 +1387,7 @@ function DeploymentsView({
   onCountryFilterChange,
   onFocusCountry,
   onOpenProduct,
+  onOpenOrganisation,
   onOrganisationLayerChange,
   onRoleFilterChange,
   onSectorFilterChange,
@@ -1388,6 +1413,7 @@ function DeploymentsView({
   onCountryFilterChange: (value: string) => void;
   onFocusCountry: (iso2: string) => void;
   onOpenProduct: (product: Product, element: HTMLElement) => void;
+  onOpenOrganisation: (record: OrganisationPreviewTarget, element: HTMLElement) => void;
   onOrganisationLayerChange: (value: OrganisationMapLayer) => void;
   onRoleFilterChange: (value: string) => void;
   onSectorFilterChange: (value: string) => void;
@@ -1483,6 +1509,26 @@ function DeploymentsView({
     })
     .filter((record) => !record.canonicalHref || !selectedCanonicalHrefs.has(record.canonicalHref))
     .sort((left, right) => left.name.localeCompare(right.name));
+  const selectedOrganisationGroups = (() => {
+    const values: Array<
+      | { kind: "canonical"; role: string; record: OrganisationDirectoryRecord; catalogueLocationTypes: CatalogueMapOrganisation["locationTypes"] }
+      | { kind: "catalogue"; role: string; record: CatalogueMapOrganisation }
+    > = selectedOrganisationRecords.map((record) => ({
+      kind: "canonical",
+      role: organisationRoleName(record.primaryRole.id),
+      record,
+      catalogueLocationTypes: catalogueMapData.countries[selectedCountry]?.records
+        .find((item) => item.canonicalHref === `/organisations/${record.organisation.slug}`)?.locationTypes ?? [],
+    }));
+    values.push(...selectedCatalogueListings.map((record) => ({
+      kind: "catalogue" as const,
+      role: record.primaryRole || "Other and to classify",
+      record,
+    })));
+    const groups = new Map<string, typeof values>();
+    for (const value of values) groups.set(value.role, [...(groups.get(value.role) ?? []), value]);
+    return Array.from(groups.entries()).sort(([left], [right]) => left.localeCompare(right));
+  })();
   const selectedObjectCount = countryObjectCount(selectedCountry);
   const countryRecordParams = new URLSearchParams({
     view: objectMode === "software" ? "software" : "organisations",
@@ -1728,40 +1774,28 @@ function DeploymentsView({
                       ><i aria-hidden="true">↗</i></button> : <Link aria-label={`Open ${entity.name}`} href={entity.href}><i aria-hidden="true">→</i></Link>}
                     </article>
                   );
-                }) : <>
-                  {selectedOrganisationRecords.map((record) => {
-                    const types = organisationLocationTypesForCountry(record, selectedCountry);
-                    const catalogueTypes = catalogueMapData.countries[selectedCountry]?.records
-                      .find((item) => item.canonicalHref === `/organisations/${record.organisation.slug}`)?.locationTypes ?? [];
-                    return <article key={record.organisation.id}>
-                      <span className="v2-deployment-entity">
-                        <OrganisationMark name={record.organisation.name} organisationId={record.organisation.id} size={30} />
-                        <span>
-                          <Link href={`/organisations/${record.organisation.slug}`}><strong>{record.organisation.name}</strong></Link>
-                          <small>{organisationRoleName(record.primaryRole.id)}</small>
-                        </span>
-                      </span>
-                      <b title={[...types.map(organisationLocationTypeLabel), ...catalogueTypes.map(catalogueLocationTypeLabel)].join(", ")}>{organisationLayer === "all_presence" ? organisationLocationTypeShortSummary(types, catalogueTypes) : organisationMapLayerShortLabel(organisationLayer)}</b>
-                      <Link aria-label={`Open ${record.organisation.name}`} href={`/organisations/${record.organisation.slug}`}><i aria-hidden="true">→</i></Link>
-                    </article>;
-                  })}
-                  {selectedCatalogueListings.map((organisation) => (
-                  <article key={organisation.id}>
-                    <span className="v2-deployment-entity">
-                      <OrganisationMark name={organisation.name} organisationId={organisation.id} size={30} />
-                      <span>
-                        {organisation.canonicalHref ? (
-                          <Link href={organisation.canonicalHref}><strong>{organisation.name}</strong></Link>
-                        ) : (
-                          <Link href={`/organisations?q=${encodeURIComponent(organisation.name)}`}><strong>{organisation.name}</strong></Link>
-                        )}
-                        <small>{organisation.primaryRole || organisation.headquartersCountry || "Role not classified"}</small>
-                      </span>
-                    </span>
-                    <b title={organisation.locationTypes.map(catalogueLocationTypeLabel).join(", ")}>{catalogueLocationTypeShortSummary(organisation.locationTypes)}</b>
-                    <Link aria-label={`Open ${organisation.name}`} href={organisation.canonicalHref || `/organisations?q=${encodeURIComponent(organisation.name)}`}><i aria-hidden="true">→</i></Link>
-                  </article>
-                ))}</>}
+                }) : selectedOrganisationGroups.map(([role, items]) => (
+                  <section className="v2-map-result-group" key={role}>
+                    <header><strong>{role}</strong><span>{items.length}</span></header>
+                    {items.map((item) => {
+                      if (item.kind === "canonical") {
+                        const record = item.record;
+                        const types = organisationLocationTypesForCountry(record, selectedCountry);
+                        return <article key={record.organisation.id}>
+                          <span className="v2-deployment-entity"><OrganisationMark name={record.organisation.name} organisationId={record.organisation.id} size={30} /><span><Link href={`/organisations/${record.organisation.slug}`}><strong>{record.organisation.name}</strong></Link><small>{organisationLocationTypeShortSummary(types, item.catalogueLocationTypes)}</small></span></span>
+                          <b>Reviewed</b>
+                          <button aria-label={`Preview ${record.organisation.name}`} onClick={(event) => onOpenOrganisation({ kind: "canonical", countryIso2: selectedCountry, record, catalogueLocationTypes: item.catalogueLocationTypes }, event.currentTarget)} type="button"><i aria-hidden="true">＋</i></button>
+                        </article>;
+                      }
+                      const organisation = item.record;
+                      return <article key={organisation.id}>
+                        <span className="v2-deployment-entity"><OrganisationMark name={organisation.name} organisationId={organisation.id} size={30} /><span>{organisation.canonicalHref ? <Link href={organisation.canonicalHref}><strong>{organisation.name}</strong></Link> : <button className="v2-map-name-button" onClick={(event) => onOpenOrganisation({ kind: "catalogue", countryIso2: selectedCountry, record: organisation }, event.currentTarget)} type="button"><strong>{organisation.name}</strong></button>}<small>{catalogueLocationTypeShortSummary(organisation.locationTypes)}</small></span></span>
+                        <b>{organisation.reviewState === "reviewed" ? "Reviewed" : "Catalogue"}</b>
+                        <button aria-label={`Preview ${organisation.name}`} onClick={(event) => onOpenOrganisation({ kind: "catalogue", countryIso2: selectedCountry, record: organisation }, event.currentTarget)} type="button"><i aria-hidden="true">＋</i></button>
+                      </article>;
+                    })}
+                  </section>
+                ))}
               </div>
             </>
           ) : (
@@ -1882,21 +1916,6 @@ function buildOrganisationDirectoryHref({
 
 function organisationMapLayerLabel(layer: OrganisationMapLayer) {
   return organisationMapLayers.find(([id]) => id === layer)?.[1] ?? layer;
-}
-
-function organisationMapLayerShortLabel(layer: OrganisationMapLayer) {
-  return {
-    all_presence: "Located",
-    catalogue: "Listed",
-    africa_wide: "Africa-wide",
-    evidenced: "Evidence",
-    company_stated: "Stated",
-    software_linked: "Software",
-    offices: "Office",
-    availability: "Available",
-    headquarters: "HQ",
-    origin: "Origin",
-  }[layer];
 }
 
 type OrganisationLocationType =
@@ -2323,7 +2342,7 @@ function DirectoryView({
                     </span>
                   </th>
                   {visibleColumns.includes("organisation") ? <td><OrganisationLink product={product} /></td> : null}
-                  {visibleColumns.includes("category") ? <td><Link href={`/?category=${product.categoryId}`}>{product.category}</Link></td> : null}
+                  {visibleColumns.includes("category") ? <td><Link href={`/explore?category=${product.categoryId}`}>{product.category}</Link></td> : null}
                   {visibleColumns.includes("countries") ? (
                     <td>{product.deploymentCountries.length ? product.deploymentCountries.map((iso2, countryIndex) => (
                       <Fragment key={iso2}>
@@ -2371,7 +2390,7 @@ function DirectoryView({
               />
               <Link className="v2-data-card-product" href={`/products/${product.slug}`}><strong>{product.name}</strong></Link>
               <OrganisationLink product={product} />
-              <Link className="v2-data-card-category" href={`/?category=${product.categoryId}`}>{product.category}</Link>
+              <Link className="v2-data-card-category" href={`/explore?category=${product.categoryId}`}>{product.category}</Link>
               <button
                 aria-label={`Preview ${product.name}`}
                 onClick={(event) => onOpenProduct(product, event.currentTarget)}
@@ -2454,6 +2473,60 @@ function DirectoryView({
   );
 }
 
+function OrganisationPreview({
+  close,
+  target,
+}: {
+  close: () => void;
+  target: OrganisationPreviewTarget;
+}) {
+  const isCanonical = target.kind === "canonical";
+  const name = isCanonical ? target.record.organisation.name : target.record.name;
+  const id = isCanonical ? target.record.organisation.id : target.record.id;
+  const href = isCanonical
+    ? `/organisations/${target.record.organisation.slug}`
+    : target.record.canonicalHref || `/organisations?q=${encodeURIComponent(target.record.name)}`;
+  const role = isCanonical
+    ? organisationRoleName(target.record.primaryRole.id)
+    : target.record.primaryRole || "Role not classified";
+  const country = africanCountries.find(([iso2]) => iso2 === target.countryIso2)?.[1] ?? target.countryIso2;
+  const locationTypes = isCanonical
+    ? [
+        ...organisationLocationTypesForCountry(target.record, target.countryIso2).map(organisationLocationTypeLabel),
+        ...target.catalogueLocationTypes.map(catalogueLocationTypeLabel),
+      ]
+    : target.record.locationTypes.map(catalogueLocationTypeLabel);
+  const roles = isCanonical ? target.record.roleIds.map(organisationRoleName) : [role];
+  const markets = isCanonical ? target.record.segmentIds.map(organisationSegmentName) : [];
+  const productsForOrganisation = isCanonical ? target.record.ownedProducts : [];
+  const website = isCanonical ? target.record.organisation.website : target.record.website;
+  return (
+    <div className="v2-overlay v2-drawer-overlay" onMouseDown={close}>
+      <aside aria-labelledby="v2-organisation-preview-title" aria-modal="true" className="v2-product-drawer v2-organisation-drawer" onMouseDown={(event) => event.stopPropagation()} role="dialog">
+        <div className="v2-sheet-top"><span>Organisation</span><button onClick={close} type="button">Close</button></div>
+        <header className="v2-preview-head">
+          <OrganisationMark name={name} organisationId={id} size={64} />
+          <span>{role}</span>
+          <h2 id="v2-organisation-preview-title"><Link href={href}>{name}</Link></h2>
+          <Link href={`/countries/${target.countryIso2.toLowerCase()}?view=organisations`}>{country} ↗</Link>
+        </header>
+        <div className="v2-preview-metrics">
+          <div><strong>{roles.length}</strong><span>{roles.length === 1 ? "role" : "roles"}</span></div>
+          <div><strong>{isCanonical ? target.record.countryCount : 1}</strong><span>{isCanonical ? "countries" : "location"}</span></div>
+          <div><strong>{productsForOrganisation.length}</strong><span>linked software</span></div>
+        </div>
+        <div className="v2-preview-overview">
+          {isCanonical && target.record.organisation.description ? <p>{target.record.organisation.description}</p> : null}
+          <section className="v2-organisation-preview-section"><h3>Why it appears in {country}</h3><div className="v2-preview-tags">{Array.from(new Set(locationTypes)).map((value) => <span key={value}>{value}</span>)}</div></section>
+          <section className="v2-organisation-preview-section"><h3>Roles and markets</h3><div className="v2-preview-tags">{[...roles, ...markets].map((value) => <span key={value}>{value}</span>)}</div></section>
+          {productsForOrganisation.length ? <section className="v2-organisation-preview-section"><h3>Software</h3><div className="v2-organisation-preview-links">{productsForOrganisation.map((product) => <Link href={`/products/${product.slug}`} key={product.id}>{product.name}<span>→</span></Link>)}</div></section> : null}
+        </div>
+        <div className="v2-preview-actions"><Link href={href}>Full record <span aria-hidden="true">→</span></Link>{website ? <a href={website} rel="noreferrer" target="_blank">Website ↗</a> : null}<Link href="/contribute/organisation">Correct</Link></div>
+      </aside>
+    </div>
+  );
+}
+
 function ProductPreview({
   close,
   organisationLinks,
@@ -2488,7 +2561,7 @@ function ProductPreview({
             productName={product.name}
             size={64}
           />
-          <Link href={`/?category=${product.categoryId}`}>{product.category}</Link>
+          <Link href={`/explore?category=${product.categoryId}`}>{product.category}</Link>
           <h2 id="v2-preview-title"><Link href={`/products/${product.slug}`}>{product.name}</Link></h2>
           <OrganisationLink product={product} suffix=" ↗" />
         </header>

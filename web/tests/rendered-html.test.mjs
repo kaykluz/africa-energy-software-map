@@ -289,30 +289,44 @@ function reviewRequest(body, headers = {}) {
   };
 }
 
-test("server-renders one filterable software database with review state visible", async () => {
+test("server-renders a clear landing page and keeps Explore as a database view", async () => {
   const response = await render("/");
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<h1>Explore<\/h1>/);
+  assert.match(html, /Find organisations and software across African energy/);
   assert.match(html, /Reviewed beta/);
   assert.match(html, /Reviewed data release/);
-  assert.match(html, /<strong>474<\/strong><span>software records<\/span>/);
-  assert.match(html, /Software <span>474<\/span>/);
-  assert.match(html, /Organisations <span>1,953<\/span>/);
-  assert.match(html, /Cards/);
+  assert.match(html, /Browse activity by country/);
+  assert.match(html, /Software/);
+  assert.match(html, /474/);
+  assert.match(html, /Organisations/);
+  assert.match(html, /1,953/);
+  assert.match(html, /href="\/explore"/);
+  assert.match(html, /href="\/deployments"/);
   assert.match(html, /Wall/);
-  assert.match(html, /Map/);
-  assert.match(html, /Review pending/);
-  assert.match(html, /Filter by review status/);
+  assert.doesNotMatch(html, /Filter by review status/);
+  assert.doesNotMatch(html, /474 shown/);
   assert.match(html, /Skip to main content/);
+
+  const exploreResponse = await render("/explore");
+  assert.equal(exploreResponse.status, 200);
+  const exploreHtml = await exploreResponse.text();
+  assert.match(exploreHtml, /<h1>Explore<\/h1>/);
+  assert.match(exploreHtml, /<strong>474<\/strong><span>software records<\/span>/);
+  assert.match(exploreHtml, /Software <span>474<\/span>/);
+  assert.match(exploreHtml, /Organisations <span>1,953<\/span>/);
+  assert.match(exploreHtml, />Explore<\/a>/);
+  assert.match(exploreHtml, /Review pending/);
+  assert.match(exploreHtml, /Filter by review status/);
   assert.doesNotMatch(html, /Your site is taking shape|Building your site/);
 });
 
 test("core public routes expose semantic keyboard and reflow contracts", async () => {
   for (const pathname of [
     "/",
+    "/explore",
     "/deployments",
     "/directory",
     "/landscape",
@@ -374,6 +388,7 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
   assert.match(organisationMapHtml, /All recorded presence/);
   assert.match(organisationMapHtml, /Company-stated/);
   assert.match(organisationMapHtml, /Offices, warehouses and entities/);
+  assert.match(organisationMapHtml, /Preview [^\"]+/);
 
   const headquartersMapResponse = await render(
     "/deployments?object=organisations&presence=headquarters&focus=NG",
@@ -430,6 +445,20 @@ test("server-renders the classified software wall", async () => {
   assert.match(inheritedMarkHtml, /href="\/products\/ammp-os"/);
   assert.match(inheritedMarkHtml, /href="\/landscape\?stage=stage_generate_store"/);
   assert.match(inheritedMarkHtml, /href="\/landscape\?function=/);
+});
+
+test("server-renders an organisation wall from the same catalogue", async () => {
+  const response = await render("/landscape?object=organisations&role=EPC");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<h1[^>]*>Organisation wall<\/h1>/i);
+  assert.match(html, /aria-label="Filter organisation wall"/);
+  assert.match(html, /Filter wall by role/);
+  assert.match(html, /Filter wall by market/);
+  assert.match(html, /EPC/);
+  assert.match(html, /Colour marks their market, not a ranking/);
+  assert.match(html, /href="\/organisations"[^>]*>Explore<\/a>/);
+  assert.match(html, /href="\/deployments\?object=organisations"[^>]*>Map<\/a>/);
 });
 
 test("keeps product ownership distinct from the map publisher", async () => {
@@ -590,7 +619,7 @@ test("server-renders the Directory and its export action", async () => {
   assert.match(html, /PAM-AI/);
   assert.match(html, /href="\/organisations\/pam-africa"/);
   assert.match(html, /href="\/countries\/ng"/);
-  assert.match(html, /href="\/\?category=/);
+  assert.match(html, /href="\/explore\?category=/);
   assert.doesNotMatch(html, /Pai Enterprise/);
 });
 
@@ -1185,6 +1214,8 @@ test("review workspace is private and renders for an allowlisted reviewer", asyn
   assert.match(html, /Contributions/);
   assert.match(html, /Sign out/);
   assert.match(html, /<button[^>]*>Download package<\/button>/i);
+  assert.match(html, /Open work/);
+  assert.match(html, /Organisation candidates/);
   assert.doesNotMatch(html, /href="\/api\/review\/export"/i);
 });
 

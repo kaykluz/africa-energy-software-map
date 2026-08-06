@@ -30,11 +30,11 @@ import {
 } from "react";
 
 const primaryNavigation = [
-  { href: "/", label: "Explore" },
+  { href: "/", label: "Home" },
+  { href: "/explore", label: "Explore" },
   { href: "/deployments", label: "Map" },
-  { href: "/directory", label: "Data" },
+  { href: "/directory", label: "Directory" },
   { href: "/landscape", label: "Wall" },
-  { href: "/organisations", label: "Organisations" },
 ] as const;
 
 const projectNavigation = [
@@ -266,7 +266,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
             {primaryNavigation.map((item, index) => {
               const active =
                 item.href === "/"
-                  ? pathname === "/" || pathname.startsWith("/products")
+                  ? pathname === "/"
+                  : item.href === "/explore"
+                    ? pathname.startsWith("/explore") || pathname.startsWith("/products") || pathname.startsWith("/organisations")
                   : item.href === "/deployments"
                     ? pathname.startsWith("/deployments") || pathname.startsWith("/countries")
                     : item.href === "/directory"
@@ -500,7 +502,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <span className="mono">{release.version}</span>
         </div>
         <nav aria-label="Footer">
-          <Link href="/">Explore</Link>
+          <Link href="/">Home</Link>
+          <Link href="/explore">Explore</Link>
           <Link href="/deployments">Map</Link>
           <Link href="/directory">Data</Link>
           <Link href="/landscape">Wall</Link>

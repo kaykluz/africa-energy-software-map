@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { LandscapeExplorer } from "@/components/landscape-explorer";
+import { OrganisationWall } from "@/components/organisation-wall";
 import { loadPublicOrganisationRegistry } from "@/db/canonical-organisations";
 import { organisationCatalogue } from "@/lib/organisation-catalogue";
+import { landscapeSoftwareItems } from "@/lib/landscape-data";
 
 export const dynamic = "force-dynamic";
 
@@ -17,7 +19,18 @@ export default async function Landscape({
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const params = await searchParams;
-  const { canonicalDirectory } = await loadPublicOrganisationRegistry();
+  const { canonicalDirectory, catalogueRecords } = await loadPublicOrganisationRegistry();
+  if (params.object === "organisations") {
+    return <OrganisationWall
+      initialCountry={params.country}
+      initialQuery={params.q}
+      initialRole={params.role}
+      initialScope={params.scope}
+      initialSegment={params.segment}
+      records={catalogueRecords}
+      softwareCount={landscapeSoftwareItems.length}
+    />;
+  }
   return (
     <LandscapeExplorer
       canonicalOrganisations={canonicalDirectory.map((record) => ({
