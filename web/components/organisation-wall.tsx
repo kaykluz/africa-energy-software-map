@@ -117,7 +117,7 @@ export function OrganisationWall({
       />
       <section className="organisation-wall-summary" aria-label="Organisation wall totals">
         <div><strong>{filtered.length.toLocaleString()}</strong><span>organisations in view</span></div>
-        <p>Organisations appear under every applicable role. Colour marks their market, not a ranking.</p>
+        <p>Organisations appear under every applicable role. Colour marks their market, not a ranking. Local logos appear where approved; initials mark the remaining gaps.</p>
       </section>
       <section className="organisation-wall-controls" aria-label="Filter organisation wall">
         <label className="organisation-wall-search"><span aria-hidden="true">⌕</span><input aria-label="Search organisation wall" onChange={(event) => setQuery(event.target.value)} placeholder="Search organisations" type="search" value={query} /></label>

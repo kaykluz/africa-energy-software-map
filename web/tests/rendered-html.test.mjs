@@ -366,7 +366,7 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
   assert.match(mapHtml, /aria-live="polite"/i);
   assert.match(mapHtml, /<strong>165<\/strong><span>located records<\/span>/);
   assert.match(mapHtml, /<strong>19<\/strong><span>reviewed deployments<\/span>/);
-  assert.match(mapTextHtml, /107 catalogue locations/);
+  assert.match(mapTextHtml, /107 listed locations/);
   assert.match(mapHtml, /<strong>366<\/strong><span>Africa-wide<\/span>/);
   assert.match(mapTextHtml, /165 results/);
   assert.match(mapHtml, /aria-label="Software location layer"/i);
@@ -388,7 +388,23 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
   assert.match(organisationMapHtml, /All recorded presence/);
   assert.match(organisationMapHtml, /Company-stated/);
   assert.match(organisationMapHtml, /Offices, warehouses and entities/);
+  assert.match(organisationMapHtml, /directory listings/);
+  assert.match(organisationMapHtml, /Local logos appear where approved; initials mark the remaining gaps/);
   assert.match(organisationMapHtml, /Preview [^\"]+/);
+
+  const nigerOrganisationMapResponse = await render(
+    "/deployments?object=organisations&focus=NE",
+  );
+  const nigerOrganisationMapHtml = await nigerOrganisationMapResponse.text();
+  assert.match(nigerOrganisationMapHtml, /title="Documented country activity">Named activity<\/b>/);
+  assert.doesNotMatch(nigerOrganisationMapHtml, />Catalogue<\/b>/);
+
+  const nameMatchedLogoMapResponse = await render(
+    "/deployments?object=organisations&q=Ampersand&focus=RW",
+  );
+  const nameMatchedLogoMapHtml = await nameMatchedLogoMapResponse.text();
+  assert.match(nameMatchedLogoMapHtml, /data-brand-source="name-match"/);
+  assert.match(nameMatchedLogoMapHtml, /src="\/brand\/organisations\/ampersand\.png"/);
 
   const headquartersMapResponse = await render(
     "/deployments?object=organisations&presence=headquarters&focus=NG",
