@@ -1,0 +1,788 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-033",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_mct_solaire_energies_e8245ffe",
+      "sourceRow": 1,
+      "submittedName": "MCT SOLAIRE ENERGIES",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV+ labelled solar installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_nrj_international_03a1c083",
+      "sourceRow": 2,
+      "submittedName": "NRJ International",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV+ and Pompage Solaire labelled; ZI Sapino, Nouaceur; AMISOLE member",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_azolis_9c7bc9b6",
+      "sourceRow": 3,
+      "submittedName": "Azolis",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV, PV+ and Pompage Solaire labelled installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_temasol_c68bc336",
+      "sourceRow": 4,
+      "submittedName": "TEMASOL",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV+ labelled; AMISOLE member described as solar electrification services",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_energy_transfo_b4dd8237",
+      "sourceRow": 5,
+      "submittedName": "ENERGY TRANSFO",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV+ labelled; ZI Est Ain Sebaâ, Casablanca",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_awas_air_water_and_sun_energy_sarl_b5b62b32",
+      "sourceRow": 6,
+      "submittedName": "AWAS (Air Water and Sun Energy sarl)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV+ labelled solar installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_cleanergy_18113713",
+      "sourceRow": 7,
+      "submittedName": "CLEANERGY",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV+ labelled; ZI Sapino Nouaceur, Casablanca; AMISOLE member",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_shamsiyah_f7664f33",
+      "sourceRow": 8,
+      "submittedName": "SHAMSIYAH",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV+ labelled; Quartier Bourgogne, Casablanca; AMISOLE member (solar pumping + PV)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kafeb_0172c837",
+      "sourceRow": 9,
+      "submittedName": "KAFEB",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV labelled solar installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ultrasol_cff58b4b",
+      "sourceRow": 10,
+      "submittedName": "ULTRASOL",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro Pompage Solaire labelled installer; Taourirt",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_suratem_9ae72d3f",
+      "sourceRow": 11,
+      "submittedName": "SURATEM",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro Pompage Solaire labelled installer; Tanger",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_stil_energie_8fa89b27",
+      "sourceRow": 12,
+      "submittedName": "Stil energie",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro Pompage Solaire labelled installer; Marrakech-Médina",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solarsys_sarl_au_3529d6aa",
+      "sourceRow": 13,
+      "submittedName": "SOLARSYS SARL AU",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro Pompage Solaire labelled installer; Casablanca",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_renpower_d2c6b851",
+      "sourceRow": 14,
+      "submittedName": "RENPOWER",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro Pompage Solaire labelled installer; Technopark, Casablanca",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_new_power_solutions_npsol_d4114c68",
+      "sourceRow": 15,
+      "submittedName": "NEW POWER SOLUTIONS (NPSOL)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro Pompage Solaire labelled installer; Casablanca",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_menara_technologie_services_6a76e143",
+      "sourceRow": 16,
+      "submittedName": "MENARA TECHNOLOGIE SERVICES",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro Pompage Solaire labelled installer; Marrakech",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_keem_sol_energy_de10ec0e",
+      "sourceRow": 17,
+      "submittedName": "KEEM-SOL ENERGY",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro Pompage Solaire labelled installer; Kenitra",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_dades_power_ab054b70",
+      "sourceRow": 18,
+      "submittedName": "DADES POWER",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro Pompage Solaire labelled installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_asca_solar_97babe09",
+      "sourceRow": 19,
+      "submittedName": "ASCA SOLAR",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro Pompage Solaire labelled installer; Drarga, Agadir",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_clean_energies_solutions_fc68e123",
+      "sourceRow": 20,
+      "submittedName": "Clean Energies Solutions",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro Pompage Solaire labelled installer; Hay Mohammadi, Agadir",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_s2e_shams_eau_et_environnement_64d0e155",
+      "sourceRow": 21,
+      "submittedName": "S2E (Shams Eau et Environnement)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro Pompage Solaire labelled; website s2e.ma given on the source page",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_afric_hydrogene_e84bc7a7",
+      "sourceRow": 22,
+      "submittedName": "AFRIC HYDROGENE",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: green hydrogen plant installation services",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_alomra_group_international_df635a01",
+      "sourceRow": 23,
+      "submittedName": "ALOMRA GROUP INTERNATIONAL",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: installation and integration incl. solar panel installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_system_integrator",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_autelec_158f35e2",
+      "sourceRow": 24,
+      "submittedName": "AUTELEC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar installation, distribution and custom fabrication",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_cietec_506876b1",
+      "sourceRow": 25,
+      "submittedName": "CIETEC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: distributes and installs motors, inverters and solar panels",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

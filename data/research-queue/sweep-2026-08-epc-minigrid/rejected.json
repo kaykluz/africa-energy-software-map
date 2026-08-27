@@ -1,0 +1,3190 @@
+[
+  {
+    "name": "Prado Power Limited",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://nerc.gov.ng/wp-content/uploads/2026/04/2025_Q4-Report.pdf",
+    "website": "",
+    "evidenceNote": "NERC Table 15 'Mini-grid Permits issued in 2025/Q4' lists 13 permits to Prado Power Limited (100-700 kW) across Cross River, FCT, Taraba, Nasarawa and Benue. Also holds a 2023/Q3 permit (470 kW, Benue) and 24 permits as 'Prado Limited' in 2024/Q4.",
+    "_market": "nigeria",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Darway Coast Nigeria Ltd",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://nep.rea.gov.ng/posts/news_2ND_PBG_GRANT_SIGNING_FOR_NIGERIA_DARES.html",
+    "website": "",
+    "evidenceNote": "REA DARES second performance-based grant signing: awarded 11 mini grids across Delta, Bayelsa, Imo, Rivers, Abia and Cross River States, 2.3 MW, 12,299 connections. The Nigeria off-grid mini-grid inventory separately credits 'Darway Coast Ltd' with a 440 kWp interconnected mini-grid in Etung LGA, Cross River State (2025, IMAS/EU/REA).",
+    "_market": "nigeria",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "A4&T Power Solutions",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_epc",
+      "org_role_installer",
+      "org_role_developer_ipp",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_shs_paygo",
+      "org_segment_commercial_industrial"
+    ],
+    "sourceUrl": "https://a4tintegrated.com",
+    "website": "https://a4tintegrated.com",
+    "evidenceNote": "Own site lists EPC/EPCI, 'Personalized Solar Design' and 'Professional Installation', 'Mini-Grid Services', system maintenance and performance monitoring, plus solar home systems. Listed in the REAN member directory (Gbagada, Lagos); NERC issued it mini-grid permits in 2023/Q3 (880 kW, Lagos) and 2023/Q4 (339 kW and 979 kW, Ondo); named as 'A4&T' among REA's first DARES standalone-solar awardees.",
+    "_market": "nigeria",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "GVE Projects Ltd",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://elec-t.energymrc.ng/dashboard/off-grid/MiniGridsData",
+    "website": "",
+    "evidenceNote": "Nigeria off-grid mini-grid inventory: '160 kWp Solar Minigrid in Kwande Community, Qua'an Pan LGA, Plateau State ... installed in 2024 by GVE Projects Ltd (REA/IMAS)', plus earlier installations credited to 'GVE' at Bisanti (38 kW, 2015), Kolaku (47 kW), Ayaba (18 kW), Akpabom (80 kW, 2019) and Egbeke (52 kW).",
+    "_market": "nigeria",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Arnergy Solar Limited",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_installer",
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_commercial_industrial"
+    ],
+    "sourceUrl": "https://elec-t.energymrc.ng/dashboard/off-grid/MiniGridsData",
+    "website": "",
+    "evidenceNote": "Nigeria off-grid mini-grid inventory: '24kW Solar minigrid in Charwa/Chakun community ... installed in 2016 by Arnergy Solar Limited', and a 24 kW mini-grid at Ogbekpen, Ikpoba (Edo) credited to 'the Arnergy Solar'.",
+    "_market": "nigeria",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "PowerGen Renewable Energy",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://elec-t.energymrc.ng/dashboard/off-grid/MiniGridsData",
+    "website": "",
+    "evidenceNote": "Nigeria off-grid mini-grid inventory: '64kW Solar Hybrid minigrid in Rokota community ... installed in 2019 by PowerGen Renewable Energy'.",
+    "_market": "nigeria",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Salpha Energy",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_distributor",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://nep.rea.gov.ng/posts/Press_Release_First_DARES_Signing.html",
+    "website": "",
+    "evidenceNote": "Named in REA's first Nigeria DARES grant signing as one of eight companies awarded for deploying tier 1 and 2 plug-and-play solar home systems to households and microenterprises.",
+    "_market": "nigeria",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Asolar",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_distributor",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://nep.rea.gov.ng/posts/Press_Release_First_DARES_Signing.html",
+    "website": "",
+    "evidenceNote": "Named in REA's first Nigeria DARES grant signing as one of eight standalone-solar awardees (tier 1 and 2 plug-and-play solar home systems).",
+    "_market": "nigeria",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Bboxx",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_distributor"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://nep.rea.gov.ng/posts/Press_Release_First_DARES_Signing.html",
+    "website": "",
+    "evidenceNote": "Named in REA's first Nigeria DARES grant signing as one of eight standalone-solar awardees for Nigerian households and MSMEs.",
+    "_market": "nigeria",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "D.Light",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_distributor"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://nep.rea.gov.ng/posts/Press_Release_First_DARES_Signing.html",
+    "website": "",
+    "evidenceNote": "Named (spelled 'D.Light') in REA's first Nigeria DARES grant signing as one of eight standalone-solar awardees for Nigerian households and MSMEs.",
+    "_market": "nigeria",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Royal Power and Energy Limited",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_epc",
+      "org_role_om_asset_manager",
+      "org_role_energy_service_company",
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_commercial_industrial",
+      "org_segment_energy_storage"
+    ],
+    "sourceUrl": "https://www.rpeltd.com",
+    "website": "https://www.rpeltd.com",
+    "evidenceNote": "Own site: 'Integrated energy and infrastructure solutions across renewable energy, EPC, power systems, backup systems energy storage, and grid resilience'; service arm provides 'Operations & Maintenance (O&M), Energy-as-a-Service (EaaS), Independent Power Producer (IPP) solutions'. Listed as 'Royal Power and Energy Limited' in the REAN member directory (Victoria Island, Lagos).",
+    "_market": "nigeria",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Ceesolar Energy Limited",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_installer",
+      "org_role_epc",
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_commercial_industrial",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://www.ceesolar.com",
+    "website": "https://www.ceesolar.com",
+    "evidenceNote": "Own site: 'Commercial and residential solar installations' and 'Mini-grids and clean energy solutions for schools, healthcare centers, villages, and productive use equipment (PUE) deployments'. Listed in the REAN member directory (Wuse, Abuja).",
+    "_market": "nigeria",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "MAXTECH ENERGY LIMITED",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_to_classify"
+    ],
+    "segments": [],
+    "sourceUrl": "https://rean.org.ng/our-members/page/2/",
+    "website": "http://www.maxtechenergy.com",
+    "evidenceNote": "Listed as a member company in the REAN directory (Gaduwa, Abuja) with website maxtechenergy.com. Site returned HTTP 403 so the role could not be verified.",
+    "_market": "nigeria",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "PowerGen",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_epc",
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/wp-json/wp/v2/member-directoy?per_page=100",
+    "website": "",
+    "evidenceNote": "AMDA member, member-type 'Minigrid Developer', operations taxonomy 'Kenya / DRC / Sierra Leone / Nigeria'. Record text: 'PowerGen Technologies Limited is a leading Engineering, Procurement, and Construction (EPC) company with over 16 years of industry experience. With operations spanning nine African countries, including Kenya...'",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Renewvia",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/wp-json/wp/v2/member-directoy?per_page=100",
+    "website": "",
+    "evidenceNote": "AMDA member, member-type 'Minigrid Developer', operations 'Kenya / Nigeria / Ethiopia'. Record text: 'Renewvia, with subsidiaries in Kenya and Nigeria... focusing on building, installing, and operating minigrids... constructs standalone and hybrid solar plants.'",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Nal Offgrid Ltd",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_installer",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/wp-json/wp/v2/member-directoy?per_page=100",
+    "website": "",
+    "evidenceNote": "AMDA member, member-type 'Minigrid Developer', operations 'Kenya'. Record text: 'Nal Offgrid Ltd develops solar photovoltaic projects with a focus on solar powered minigrids. They design, install, and operate the minigrids across different parts of Kenya.'",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "PowerHive",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_emobility"
+    ],
+    "sourceUrl": "https://www.africamda.org/wp-json/wp/v2/member-directoy?per_page=100",
+    "website": "",
+    "evidenceNote": "AMDA member, member-type 'Minigrid Developer', operations 'Kenya'. Record text: 'a pioneer in minigrids and Kenya's first privately owned utility... also drives sustainable e-mobility through its Spark Electric Motorcycle and battery swapping technology.'",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Hydrobox",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/wp-json/wp/v2/member-directoy?per_page=100",
+    "website": "",
+    "evidenceNote": "AMDA member, member-type 'Minigrid Developer', operations 'Kenya / DRC'. Record text: 'Hydrobox provides sustainable, decentralized hydro energy solutions... delivers turnkey, smart hydropower systems.'",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Anzana Electric Group",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_utility_generation",
+      "org_segment_transmission_distribution",
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/wp-json/wp/v2/member-directoy?per_page=100",
+    "website": "",
+    "evidenceNote": "AMDA member, member-type 'Minigrid Developer', operations 'Tanzania / Zambia / Kenya / Burundi'. Record text: 'a leading developer and operator of renewable power generation and grid distribution projects... portfolio of clean energy and distribution projects in development, construction, and operations across Kenya, Tanzania, Burundi and Zambia.'",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "RVE.SOL",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/wp-json/wp/v2/member-directoy?per_page=100",
+    "website": "",
+    "evidenceNote": "AMDA member, member-type 'Minigrid Developer', operations 'Kenya / Ethiopia / Mozambique / Madagascar'. Record text describes its KUDURA product as 'a scalable, long-life minigrid utility hub providing prepaid electricity, biogas, biofertilizer, and clean water to rural areas.'",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "LEMA",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/wp-json/wp/v2/member-directoy?per_page=100",
+    "website": "",
+    "evidenceNote": "AMDA member classified by AMDA under member-type 'Minigrid Developer', operations taxonomy includes 'Kenya'. Own description is vaguer ('a technology company that designs sustainable consumer products... specialize in energy technologies'), so the minigrid-developer role rests on AMDA's classification rather than the company blurb.",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "OGIN Solutions Ltd.",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_energy_service_company"
+    ],
+    "segments": [
+      "org_segment_productive_use",
+      "org_segment_minigrids",
+      "org_segment_emobility"
+    ],
+    "sourceUrl": "https://www.africamda.org/wp-json/wp/v2/member-directoy?per_page=100",
+    "website": "",
+    "evidenceNote": "AMDA member, member-type 'Solution Provider', operations 'Kenya, Uganda, Tanzania, S.Sudan, Rwanda'. Record text: 'OGIN specializes in sustainable rural development by deploying productive use of energy (PUE) applications in off-grid areas to boost minigrid power demand... e-mobility, VirtualMiniGrid, thermo dryers, and micro industrialization.'",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "SOLAR PANDA KENYA",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_distributor",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf",
+    "website": "",
+    "evidenceNote": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider - it appears in more counties than any other name (Turkana, Marsabit, Wajir, Mandera, Garissa, Isiolo, Samburu, West Pokot, Lamu, Tana River, Narok, Kwale, Kilifi, Taita Taveta). Also listed separately as KEREA Full Corporate member 'Solar Panda Kenya Ltd' (KEREA-FC-2026-017).",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "D.LIGHT",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_distributor",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf",
+    "website": "",
+    "evidenceNote": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider across essentially all 14 KOSAP service-territory counties.",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "ENGIE ENERGY ACCESS",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_distributor",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf",
+    "website": "",
+    "evidenceNote": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider (including West Pokot).",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "NYALORE IMPACT",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_distributor",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf",
+    "website": "",
+    "evidenceNote": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider (Turkana, West Pokot). Independently listed as KEREA Full Corporate member 'Nyalore Impact Limited' (KEREA-FC-2026-013) - two independent sources.",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "RAFODE RENEWABLE ENERGY",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_to_classify"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf",
+    "website": "",
+    "evidenceNote": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider (Turkana, West Pokot). The newsletter gives no description of what it does beyond the 'renewable energy' in its name, so the role is left unclassified.",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "BURN MANUFACTURING",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_equipment_supplier"
+    ],
+    "segments": [
+      "org_segment_clean_cooking"
+    ],
+    "sourceUrl": "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf",
+    "website": "",
+    "evidenceNote": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider across most of the 14 counties; the newsletter's other legend is 'Clean Cooking Service Providers participating in KOSAP', and the newsletter separately references the 'Jikokoa' improved charcoal jiko.",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "ELCOM NETWORKS",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_to_classify"
+    ],
+    "segments": [],
+    "sourceUrl": "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf",
+    "website": "",
+    "evidenceNote": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider (Isiolo, Samburu, Marsabit and others). The source gives no description, so role and segment are unresolved - flagged for manual classification.",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "ROKIM KENYA",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_to_classify"
+    ],
+    "segments": [],
+    "sourceUrl": "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf",
+    "website": "",
+    "evidenceNote": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider (Turkana, Isiolo, Samburu, West Pokot and others). No description in the source - role unresolved.",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Sunculture",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_to_classify"
+    ],
+    "segments": [],
+    "sourceUrl": "https://kerea.org/memberships/member-directory/",
+    "website": "",
+    "evidenceNote": "Listed in the KEREA member directory as Full Corporate member, ID KEREA-FC-2026-003, contact info@sunculture.io. KEREA's directory and profile pages carry no role or service description, so the role is left unclassified rather than guessed.",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Davis & Shirtliff",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_to_classify"
+    ],
+    "segments": [],
+    "sourceUrl": "https://kerea.org/memberships/member-directory/?frm-page-9121=2",
+    "website": "",
+    "evidenceNote": "Listed in the KEREA member directory as Full Corporate member, ID KEREA-FC-2026-014, contact contactcenter@dayliff.com. No role description given by the source.",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "BioLite Kenya Ltd",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_to_classify"
+    ],
+    "segments": [],
+    "sourceUrl": "https://kerea.org/memberships/member-directory/?frm-page-9121=2",
+    "website": "",
+    "evidenceNote": "Listed in the KEREA member directory as Full Corporate member, ID KEREA-FC-2026-011, contact support@bioliteenergy.com. No role description given by the source.",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Gadgetronix Kenya Limited",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_to_classify"
+    ],
+    "segments": [],
+    "sourceUrl": "https://kerea.org/memberships/member-directory/?frm-page-9121=2",
+    "website": "",
+    "evidenceNote": "Listed in the KEREA member directory as Full Corporate member, ID KEREA-FC-2026-019, contact kenya@gadgetronix.net. No role description given by the source.",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Scode Ltd",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_to_classify"
+    ],
+    "segments": [],
+    "sourceUrl": "https://kerea.org/members/",
+    "website": "",
+    "evidenceNote": "Listed as a KEREA member on the association's legacy members archive. Its dedicated member page renders the company name only, with no business description.",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Empower New Energy",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_commercial_industrial"
+    ],
+    "sourceUrl": "https://www.intersolar.co.ke/news/kenyas-solar-boom-pv-growth-and-trends-in-2025",
+    "website": "",
+    "evidenceNote": "Named in this Kenya PV market review as having 'Partnered with Abyssinia Group Industries to develop a 9 MWp solar power project in Kenya, scaling up their collaboration in September 2025.' The article explicitly states it does not specify whether named parties acted as EPC, installer, developer or IPP, so 'developer' rests on the word 'develop' in the announcement.",
+    "_market": "kenya",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "IB Vogt SA (PTY) Ltd",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "sourceUrl": "https://sapvia.co.za/directory/",
+    "evidenceNote": "SAPVIA member directory, category: Developer, Independent Power Producer (IPP)",
+    "website": "http://www.ibvogt.com",
+    "_market": "south-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Lumax Energy (Pty) Ltd",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_installer",
+      "org_role_epc"
+    ],
+    "sourceUrl": "https://sapvia.co.za/directory/",
+    "evidenceNote": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC)",
+    "website": "https://www.lumaxenergy.com",
+    "_market": "south-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "SOLA",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_installer",
+      "org_role_epc"
+    ],
+    "sourceUrl": "https://sapvia.co.za/directory/",
+    "evidenceNote": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC)",
+    "website": "http://www.sola.africa",
+    "_market": "south-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Voltalia",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "sourceUrl": "https://sapvia.co.za/directory/",
+    "evidenceNote": "SAPVIA member directory, category: Developer, Independent Power Producer (IPP)",
+    "website": "http://www.voltalia.com/",
+    "_market": "south-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "AJ FABER",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_system_integrator"
+    ],
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "evidenceNote": "PV GreenCard certified company; type: Integrator; province: Western Cape",
+    "website": "",
+    "_market": "south-africa",
+    "_reason": "confirmed natural person, not a business"
+  },
+  {
+    "name": "JUA Energy",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_installer"
+    ],
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "evidenceNote": "PV GreenCard certified company; type: PV Installation Company; province: Gauteng",
+    "website": "",
+    "_market": "south-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Lucky Rakale",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_installer"
+    ],
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "evidenceNote": "PV GreenCard certified company; type: PV Installation Company; province: Gauteng",
+    "website": "",
+    "_market": "south-africa",
+    "_reason": "confirmed natural person, not a business"
+  },
+  {
+    "name": "Renen Energy Solutions Pty Ltd",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_epc",
+      "org_role_installer"
+    ],
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "evidenceNote": "PV GreenCard certified company; type: EPC; province: KwaZulu-Natal",
+    "website": "",
+    "_market": "south-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "SA ENERGY (PTY) LTD",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_installer"
+    ],
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "evidenceNote": "PV GreenCard certified company; type: PV Installation Company; province: North West",
+    "website": "",
+    "_market": "south-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "AMEA Power SA (Pty) Ltd",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_to_classify"
+    ],
+    "segments": [
+      "org_segment_utility_generation"
+    ],
+    "sourceUrl": "https://sawea.org.za/membership-directory/corporate",
+    "evidenceNote": "SAWEA corporate member (wind energy value chain); listing gives no role field",
+    "website": "",
+    "_market": "south-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "PELE GREEN ENERGY (PTY) LTD",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_to_classify"
+    ],
+    "segments": [
+      "org_segment_utility_generation"
+    ],
+    "sourceUrl": "https://sawea.org.za/membership-directory/corporate",
+    "evidenceNote": "SAWEA corporate member (wind energy value chain); listing gives no role field",
+    "website": "",
+    "_market": "south-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Starsight Energy Ghana Limited",
+    "countryIso2": "GH",
+    "roles": [
+      "org_role_installer",
+      "org_role_om_asset_manager"
+    ],
+    "sourceUrl": "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/2",
+    "website": "",
+    "evidenceNote": "Row 16 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/11-20-207, issued 27/11/2020. Address: No. 12H Kessels Close, Airport Railway Line, Accra.",
+    "_market": "ghana",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Daystar Power Group Limited",
+    "countryIso2": "GH",
+    "roles": [
+      "org_role_installer",
+      "org_role_om_asset_manager"
+    ],
+    "sourceUrl": "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/3",
+    "website": "",
+    "evidenceNote": "Row 22 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R1-11-20-194, issued 27/11/2020. Address: House No. 6, Airport Road, Airport Residential Area, Accra.",
+    "_market": "ghana",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Crossboundary Energy Ghana Limited",
+    "countryIso2": "GH",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_commercial_industrial"
+    ],
+    "sourceUrl": "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Provisional%20Wholesale%20Supply%20and%20Generation%20License%20Holders/14",
+    "website": "",
+    "evidenceNote": "Row 138 of the Energy Commission generation licence register: 970kWp solar PV, licence EC/GWSL/07-20-005, status Operational. Four further Construction Permits for 1.0-1.4MW solar PV plants appear at rows 126, 127, 133 and 134 — a portfolio of behind-the-meter C&I solar assets.",
+    "_market": "ghana",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "AG ENERGIES",
+    "countryIso2": "TZ",
+    "roles": [
+      "org_role_epc",
+      "org_role_installer",
+      "org_role_om_asset_manager",
+      "org_role_distributor"
+    ],
+    "segments": [
+      "org_segment_commercial_industrial",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://tarea-tz.org/our-work/corporate-members",
+    "website": "https://agenergies.co.tz",
+    "evidenceNote": "Listed as active TAREA corporate member. Own site lists \"Engineering, Procurement, Construction\" and \"Operation & Maintenance\" service lines, e.g. \"Design, supply and installation of a 30 Kwp solar system\"; serves \"urban and rural Tanzania, including Zanzibar\".",
+    "_market": "tanzania-uganda",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "PowerGen",
+    "countryIso2": "TZ",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://minigrids.org/wp-content/uploads/2020/06/Tanzania-_Case_Study.pdf",
+    "website": "",
+    "evidenceNote": "Named in the State of the Global Mini-Grids Market Report 2020 Tanzania case study as one of the two largest mini-grid operators in Tanzania: \"PowerGen began installing mini-grids in Tanzania in 2015\", expanding via a CrossBoundary Energy Access financing deal to build 60 mini-grids.",
+    "_market": "tanzania-uganda",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Redavia",
+    "countryIso2": "TZ",
+    "roles": [
+      "org_role_energy_service_company",
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_commercial_industrial"
+    ],
+    "sourceUrl": "https://minigrids.org/wp-content/uploads/2020/06/Tanzania-_Case_Study.pdf",
+    "website": "",
+    "evidenceNote": "Named in the State of the Global Mini-Grids Market Report 2020 Tanzania case study: \"German company Redavia rents solar hybrid mini-grid systems to household and commercial and industrial (C&I) customers\" with on-grid and off-grid projects across West and East Africa; listed in the Tanzania developer landscape.",
+    "_market": "tanzania-uganda",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "ALL-IN-TRADE LIMITED",
+    "countryIso2": "UG",
+    "roles": [
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_commercial_industrial"
+    ],
+    "sourceUrl": "https://www.useaug.org/our-members/",
+    "website": "",
+    "evidenceNote": "USEA member, Plot 13/15 Dewinton Rise. Also holds ERA company electrical installation permit ERA/EIP/CLX/016/01402, Class X (listed as ALL IN TRADE LIMITED, Plot 13/15 Dewinton Rise, Kampala) — matching address confirms the same entity.",
+    "_market": "tanzania-uganda",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "APTECH AFRICA LTD",
+    "countryIso2": "UG",
+    "roles": [
+      "org_role_epc",
+      "org_role_installer",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_productive_use",
+      "org_segment_commercial_industrial"
+    ],
+    "sourceUrl": "https://www.useaug.org/our-members/",
+    "website": "https://www.aptechafrica.com",
+    "evidenceNote": "USEA member, Industrial Area, Kampala. Own site: \"Aptech's team of engineers use the information from the site assessments to come up with the ideal design for your energy or water needs\", covering site assessment, design, installation and maintenance for solar and water pumping; head office SMS House, 7th Street Industrial Area, Kampala, and states it operates in 11 African countries.",
+    "_market": "tanzania-uganda",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "VILLAGE ENERGY LTD",
+    "countryIso2": "UG",
+    "roles": [
+      "org_role_installer",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_commercial_industrial",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://www.useaug.org/our-members/page/7/",
+    "website": "https://www.villageenergy.com",
+    "evidenceNote": "USEA member, Plot 435, Gyagenda Road, Kiwatule - Kampala. Own site: \"We are experts in solar system design and installation\", offering \"custom design, financing, installation, remote monitoring, and on-site servicing\"; describes itself as \"a Uganda-registered for-profit social enterprise founded in 2008\".",
+    "_market": "tanzania-uganda",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "NOA Energy Services Uganda",
+    "countryIso2": "UG",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.nefco.int/news/30th-bgfa-project-signed-with-a-mini-grid-developer-in-uganda/",
+    "website": "",
+    "evidenceNote": "Named as the awarded developer in Nefco's Beyond the Grid Fund for Africa (BGFA) 30th project: contracted with up to EUR 2.3 million results-based financing to \"deploy mini-grids in rural communities in Uganda\", specifically to \"install 3,300 energy service subscriptions by constructing and deploying eight containerised solar mini-grids on Bunjako Island\".",
+    "_market": "tanzania-uganda",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Winch Energy",
+    "countryIso2": "UG",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://minigrids.org/wp-content/uploads/2020/06/Uganda_Case_Study.pdf",
+    "website": "",
+    "evidenceNote": "Named in the State of the Global Mini-Grids Market Report 2020 Uganda case study as a winning bidder in Uganda's REA Pro Mini-Grids tender: \"Winch Energy and WeLight Africa have been selected to install their projects by December 2020\", eligible for a subsidy of up to 70 percent of low-voltage distribution capex under a 10-year concession.",
+    "_market": "tanzania-uganda",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Rensys Engineering and Trading PLC",
+    "countryIso2": "ET",
+    "roles": [
+      "org_role_epc",
+      "org_role_om_asset_manager",
+      "org_role_developer_ipp",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://energypedia.info/images/7/78/Guidelines_Coop-Led_Mini-Grids_Ethiopia_GIZ_2022.pdf",
+    "website": "",
+    "evidenceNote": "Listed in GIZ 'Table 1. List of EPC and O&M providers', marked Yes for demand assessment, EPC work and O&M; prior off-grid experience 'Development and operation of solar mini-grid systems in various locations'. Also named in the GET.transform Ethiopia case study as 'the second company to install a privately operated mini-grid, with solar generation of 12kWp and a license provided in 2020', and in Mercy Corps' account as co-founder of Humanitarian Energy PLC. Website not stated in the source, so left blank.",
+    "_market": "ethiopia-horn",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Green Scene Energy PLC",
+    "countryIso2": "ET",
+    "roles": [
+      "org_role_epc",
+      "org_role_om_asset_manager",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://energypedia.info/images/7/78/Guidelines_Coop-Led_Mini-Grids_Ethiopia_GIZ_2022.pdf",
+    "website": "",
+    "evidenceNote": "Listed in GIZ 'Table 1. List of EPC and O&M providers' with Yes for EPC work and O&M service (demand assessment: Limited); prior off-grid experience 'Solar system installation'. Also listed as an ESEDA member.",
+    "_market": "ethiopia-horn",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Suntransfer Tech PLC",
+    "countryIso2": "ET",
+    "roles": [
+      "org_role_epc",
+      "org_role_om_asset_manager",
+      "org_role_installer",
+      "org_role_distributor"
+    ],
+    "segments": [
+      "org_segment_shs_paygo",
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://energypedia.info/images/7/78/Guidelines_Coop-Led_Mini-Grids_Ethiopia_GIZ_2022.pdf",
+    "website": "",
+    "evidenceNote": "Listed in GIZ 'Table 1. List of EPC and O&M providers', marked Yes for demand assessment, EPC work and O&M; prior off-grid experience 'SHS import and distribution'. ESEDA (spelling 'SUNTRANSFER TECH PLC') describes it as established December 2011 with scope of 'system sizing, assembling, import, installation, commissioning and training'.",
+    "_market": "ethiopia-horn",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Humanitarian Energy PLC",
+    "countryIso2": "ET",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.mercycorps.org/blog/connecting-refugee-communities-solar-power",
+    "website": "",
+    "evidenceNote": "Named as operating 'the country's first commercially licensed private solar PV-powered mini-grid serving the refugee community of Sheder', with over 1,000 households connected. Co-founded by Mercy Corps with Rensys Engineering and Trading.",
+    "_market": "ethiopia-horn",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Lydetco PLC",
+    "countryIso2": "ET",
+    "roles": [
+      "org_role_epc",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_commercial_industrial",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://eseda.net/our-members/",
+    "website": "https://lydetco.com",
+    "evidenceNote": "ESEDA member, self-described as 'an engineering company engaged in the design, supply, and installation of solar photovoltaic, solar water heaters, solar fridge, solar pump & solar lanterns, home systems' for the past 25 years, including 'solar hybrid systems and back-up systems' for homes and offices.",
+    "_market": "ethiopia-horn",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Amea Power",
+    "countryIso2": "DJ",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_utility_generation",
+      "org_segment_energy_storage"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Amea_Grand_Bara_Solar_Power_Station",
+    "website": "",
+    "evidenceNote": "Named as developer, owner and operator of the Grand Bara solar power station in Djibouti under a Build-Own-Operate-Transfer model with a 25-year PPA with Electricité de Djibouti; the Sovereign Fund of Djibouti (FSD) is a minority shareholder. Dubai-based IPP; no separate EPC contractor named in the source.",
+    "_market": "ethiopia-horn",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Muhanya Solar Limited",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_epc",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_commercial_industrial",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://siaz.co.zm/wp-json/wp/v2/memberspotlight?per_page=100",
+    "website": "",
+    "evidenceNote": "SIAZ member spotlight (permalink https://siaz.co.zm/member-spotlight/muhanya-solar-limited/): established 2005, 'a leading solar company in Zambia. Designing solar systems for off-grid and grid-connected, water pumping and water heating', implementing Commercial and Industrial systems and 'specializing in Engineering, Procurement, and Construction (EPC) services'. Named projects: Chikankata 155kWp and CHAZ 300kW.",
+    "_market": "southern-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "WidEnergy Africa Ltd",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_energy_service_company",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://siaz.co.zm/wp-json/wp/v2/memberspotlight?per_page=100",
+    "website": "",
+    "evidenceNote": "SIAZ member spotlight (permalink https://siaz.co.zm/member-spotlight/widenergy-africa-ltd/): pay-as-you-go solar company serving rural women and smallholder farmers in Zambia off the national grid, with over 600 community ambassadors. Also listed on the BGFA project table as 'WidEnergy', Solar home systems, Zambia.",
+    "_market": "southern-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "RDG Collective",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_energy_service_company",
+      "org_role_distributor"
+    ],
+    "segments": [
+      "org_segment_shs_paygo",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://beyondthegrid.africa/our-projects/",
+    "website": "",
+    "evidenceNote": "Listed in the BGFA contracted-projects table as 'RDG Collective — Solar home systems; Productive Use of Energy (Solar Water Pumps and Fridges) — Zambia'. The same company appears as 'RDG' in the SIAZ member spotlights, founded 2018, offering TV+SHS, solar water pumps, solar fridge/freezer and solar lighting on a PAYGo basis.",
+    "_market": "southern-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Solar Panda",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_energy_service_company",
+      "org_role_equipment_supplier"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://beyondthegrid.africa/our-projects/",
+    "website": "",
+    "evidenceNote": "Listed in the BGFA contracted-projects table as 'Solar Panda — Solar home systems — Zambia'.",
+    "_market": "southern-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Solar Village",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_energy_service_company"
+    ],
+    "segments": [
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://beyondthegrid.africa/our-projects/",
+    "website": "",
+    "evidenceNote": "Listed in the BGFA contracted-projects table as 'Solar Village — Productive Use of Energy — Zambia'.",
+    "_market": "southern-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Natfort Energy",
+    "countryIso2": "ZW",
+    "roles": [
+      "org_role_epc",
+      "org_role_installer",
+      "org_role_energy_service_company"
+    ],
+    "segments": [
+      "org_segment_commercial_industrial",
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://reaz.co.zw/members/natfort-energy",
+    "website": "",
+    "evidenceNote": "REAZ industry member. Profile: 'a solar energy services provider which effectively started operations in 2014. The company predominantly offers solar project Engineering, Procurement, Construction and Management (EPCM) services focusing on both the commercial and residential sectors', plus a solar Pay As You Go arm started in 2018 for low-income and rural communities.",
+    "_market": "southern-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Clamore Solar",
+    "countryIso2": "ZW",
+    "roles": [
+      "org_role_installer",
+      "org_role_epc",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_commercial_industrial",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://reaz.co.zw/members/clamore-solar",
+    "website": "",
+    "evidenceNote": "REAZ industry member, 15 Harare Drive, Borrowdale, Harare. Profile: provider of solar energy solutions for residential and industrial needs across Southern Africa, offering mini solar power plants, solar pumps, hybrid power systems, 'energy audits, system design, energy monitoring, and management', 'rooftop and ground-mounted solar solutions, and comprehensive repairs and maintenance for installed systems'.",
+    "_market": "southern-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Distributed Power Africa",
+    "countryIso2": "ZW",
+    "roles": [
+      "org_role_energy_service_company",
+      "org_role_developer_ipp",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_commercial_industrial"
+    ],
+    "sourceUrl": "https://reaz.co.zw/members/distributed-power-africa",
+    "website": "http://www.dpaafrica.com",
+    "evidenceNote": "REAZ industry member, Smatsatsa Office Park, Borrowdale, Harare. Profile: 'a distributed energy company, leading in innovative renewable solar energy solutions for Africa', launched 2011, subsidiary of Econet Global, with operations in Kenya, South Africa, Zimbabwe, Zambia, DRC, Ivory Coast and Togo. Supplies C&I businesses with solar on lease-financing terms; named customers include Total, Delta, Stanbic, Schweppes and Liquid Telecom. The same page evidences Zambian operations.",
+    "_market": "southern-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Lanforce Energy",
+    "countryIso2": "ZW",
+    "roles": [
+      "org_role_installer",
+      "org_role_energy_service_company"
+    ],
+    "segments": [
+      "org_segment_shs_paygo",
+      "org_segment_clean_cooking"
+    ],
+    "sourceUrl": "https://reaz.co.zw/members/lanforce-energy",
+    "website": "",
+    "evidenceNote": "REAZ industry member, 78 Shaftesbury Avenue, Cranborne, Harare. Profile: 'a women-led for-profit social enterprise in the renewable energy sector... The company installs biogas digesters and solar home systems' on a Pay As You Go basis, partnered with Sistema Bio.",
+    "_market": "southern-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Efacec",
+    "countryIso2": "MZ",
+    "roles": [
+      "org_role_epc",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_utility_generation"
+    ],
+    "sourceUrl": "https://www.esi-africa.com/renewable-energy/solar/efacec-awarded-epc-contract-for-41mwp-plant-in-mozambique/",
+    "website": "",
+    "evidenceNote": "'Efacec was selected for the engineering, procurement and construction (EPC), and operations and maintenance (O&M) of a 41MWp solar plant located in Metoro, north of Mozambique.' Scope includes high-voltage interconnection to EDM's substation plus a long-term O&M contract.",
+    "_market": "southern-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "SolarWorks!",
+    "countryIso2": "MZ",
+    "roles": [
+      "org_role_energy_service_company",
+      "org_role_installer",
+      "org_role_equipment_supplier"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://energypedia.info/wiki/Solar_Home_System_Market_Landscape_in_Mozambique",
+    "website": "",
+    "evidenceNote": "Named as the first SHS company to start operations in Mozambique (2017) and one of five dominating the market. Market table: provinces Maputo, Gaza, Inhambane, Sofala, Manica and Nampula; 20-155 W systems; manufacturer of SHS; '>70,000' units sold and '2000-2500 system installed per month (oct 2021)'; PAYGO plus direct sales.",
+    "_market": "southern-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "ENGIE Energy Access",
+    "countryIso2": "MZ",
+    "roles": [
+      "org_role_energy_service_company",
+      "org_role_equipment_supplier"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://energypedia.info/wiki/Solar_Home_System_Market_Landscape_in_Mozambique",
+    "website": "",
+    "evidenceNote": "Market table entry 'ENGIE Energy Access (previously Fenix Intl)': operating in Mozambique since 2019, 9 provinces except Niassa and Cabo Delgado, 10-50 W, manufacturer of SHS, 100,000 units until July 2022, PAYGO plus direct sales.",
+    "_market": "southern-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Bonergie",
+    "countryIso2": "SN",
+    "roles": [
+      "org_role_installer",
+      "org_role_equipment_supplier",
+      "org_role_distributor"
+    ],
+    "segments": [
+      "org_segment_shs_paygo",
+      "org_segment_productive_use",
+      "org_segment_commercial_industrial"
+    ],
+    "website": "",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf",
+    "evidenceNote": "Listed as a tier-3 company, a local manufacturer ('fabricants locaux (Bonergie, Nadji Bi et Palette)'), and in Tableau 40 under 'Distributeurs de système multi modules' and 'Très grand fournisseur de systèmes'. Report states formal market actors supply 'des services d'installation, d'F&E et d'après-vente'.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Oolu Solar",
+    "countryIso2": "SN",
+    "roles": [
+      "org_role_distributor",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "website": "",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf",
+    "evidenceNote": "Listed first among the tier-3 companies constituting Senegal's off-grid solar supply chain; in Tableau 40 under pico lantern/plug-and-play and multi-module system distributors.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Baobab+",
+    "countryIso2": "SN",
+    "roles": [
+      "org_role_distributor",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "website": "",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf",
+    "evidenceNote": "Tier-3 company in Senegal's off-grid supply chain; appears in Tableau 40 as a distributor of pico lanterns, single-module and multi-module systems. Described as a branch of the French Baobab group using the group's Microcred microfinance distribution network, PAYG model.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Access",
+    "countryIso2": "ML",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_installer",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_shs_paygo"
+    ],
+    "website": "",
+    "sourceUrl": "https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-for-development/wp-content/uploads/2017/04/Mobile-for-Development-Utilities-The-potential-of-mobile-for-rural-energy-access-in-Mali.pdf",
+    "evidenceNote": "Case study, 'Access: Mini-grid and solar home systems': twelve mini-grids already installed with nine more planned for 2017; provides household electricity and solar street lighting; the Bancoumana mini-grid is powered by 144 solar panels with battery back-up. Supported by KfW; partners Nyetaa Finance and Malifolke Centre. Source gives the name only as 'Access' — full legal name not stated.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Oolu Solar",
+    "countryIso2": "ML",
+    "roles": [
+      "org_role_distributor",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "website": "",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Mali/ECREEE%20ROGEP_Mali_Final%20Report_FR.pdf",
+    "evidenceNote": "Described as a regional (Senegalese) company operating in Mali, selling pico solar, plug-and-play and SHS mainly on a PAYG model; also named as working with AMADER's rural electrification initiative. Separate entry from the Senegal record — same group, different country of operation.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Baobab+",
+    "countryIso2": "ML",
+    "roles": [
+      "org_role_distributor",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "website": "",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Mali/ECREEE%20ROGEP_Mali_Final%20Report_FR.pdf",
+    "evidenceNote": "Named first among the main international and regional companies distributing pico lamps, plug-and-play systems and single-module SHS in Mali; uses the Baobab group's Microcred microfinance distribution network to reach Bamako households, PAYG model. Separate entry from the Senegal record.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Lagazel",
+    "countryIso2": "BF",
+    "roles": [
+      "org_role_equipment_supplier",
+      "org_role_distributor"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "website": "",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Burkina%20Faso/ECREEE%20ROGEP_Burkina%20Faso_Final%20Report_FR.pdf",
+    "evidenceNote": "Named among the largest tier-3 companies in the Burkina Faso market. The Mali ROGEP report confirms Lagazel's Kalo pico lamps 'sont fabriquées à Dédougou (Burkina Faso)' — i.e. it has a Burkinabè manufacturing operation, not only imports.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Yandalux",
+    "countryIso2": "BF",
+    "roles": [
+      "org_role_distributor",
+      "org_role_installer",
+      "org_role_system_integrator"
+    ],
+    "segments": [
+      "org_segment_shs_paygo",
+      "org_segment_commercial_industrial"
+    ],
+    "website": "",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Burkina%20Faso/ECREEE%20ROGEP_Burkina%20Faso_Final%20Report_FR.pdf",
+    "evidenceNote": "Named among the largest companies present in the Burkina Faso market and as a tier-2 regional player 'dont le siège est situé en Allemagne et qui opère dans huit pays d'Afrique de l'Ouest'. German-owned but with West African operating presence.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Benalya Group",
+    "countryIso2": "NE",
+    "roles": [
+      "org_role_epc",
+      "org_role_system_integrator",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_commercial_industrial",
+      "org_segment_productive_use"
+    ],
+    "website": "",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Niger/ECREEE%20ROGEP_Niger_Final%20Report_FR.pdf",
+    "evidenceNote": "Named among the large tier-2/tier-3 companies in Niger working with institutional and social clients (Government of Niger, NGOs, donors), acting as system integrators bidding for supply-and-install tenders for larger systems.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Yandalux",
+    "countryIso2": "NE",
+    "roles": [
+      "org_role_system_integrator",
+      "org_role_distributor",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_commercial_industrial",
+      "org_segment_shs_paygo"
+    ],
+    "website": "",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Niger/ECREEE%20ROGEP_Niger_Final%20Report_FR.pdf",
+    "evidenceNote": "Named among the large tier-2/tier-3 companies in Niger working with institutional clients, selling multi-module and very large solar systems and acting as a system integrator in supply-and-install tenders. Separate country record from the Burkina Faso entry.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Yandalux",
+    "countryIso2": "GN",
+    "roles": [
+      "org_role_distributor",
+      "org_role_installer",
+      "org_role_system_integrator"
+    ],
+    "segments": [
+      "org_segment_shs_paygo",
+      "org_segment_commercial_industrial"
+    ],
+    "website": "",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf",
+    "evidenceNote": "The only tier-2 company identified in Guinea: 'Yandalux est une société allemande qui opère dans huit sociétés ouest-africaines'. Separate country record from the Burkina Faso and Niger entries.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Engie",
+    "countryIso2": "BJ",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_shs_paygo"
+    ],
+    "website": "",
+    "sourceUrl": "https://www.24haubenin.info/?MCA-selectionne-11-entreprises-pour-executer-les-projects-OCEF",
+    "evidenceNote": "Named among the eleven companies selected by MCA-Bénin II under the 2nd OCEF call. Source gives only 'Engie'; this is almost certainly the ENGIE Energy Access Benin entity that holds a 20-year ABERME mini-grid licence, but that fuller name was not on a page I opened.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Ismast Energy",
+    "countryIso2": "BJ",
+    "roles": [
+      "org_role_distributor",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_shs_paygo"
+    ],
+    "website": "",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Benin/ECREEE%20ROGEP_Benin_Final%20Report_FR.pdf",
+    "evidenceNote": "Named as a Beninese manufacturer representative (spelled 'Ismast' in one sentence) and, as 'Ismast Energy', one of the country's leading pico-solar distributors.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "AGGREKO",
+    "countryIso2": "CI",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_utility_generation"
+    ],
+    "website": "",
+    "sourceUrl": "https://anare.ci/espaces-operateurs-prives/les-producteurs-independants-delectricite/",
+    "evidenceNote": "Listed by ANARE-CI as an independent power producer in Côte d'Ivoire: lease-and-operate convention with the State since 2010, initially 70 MW gas-fired, since grown to 200 MW, extended several times. Rental/temporary power rather than EPC.",
+    "_market": "francophone-west",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "ib vogt",
+    "countryIso2": "EG",
+    "roles": [
+      "org_role_epc",
+      "org_role_om_asset_manager",
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_utility_generation"
+    ],
+    "sourceUrl": "https://www.nsenergybusiness.com/projects/benban-solar-park/",
+    "website": "",
+    "evidenceNote": "Named as EPC and O&M provider for the Infinity 50 plants at Benban Solar Park, Aswan",
+    "_market": "north-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Acciona Energía",
+    "countryIso2": "EG",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc"
+    ],
+    "segments": [
+      "org_segment_utility_generation"
+    ],
+    "sourceUrl": "https://www.nsenergybusiness.com/projects/benban-solar-park/",
+    "website": "",
+    "evidenceNote": "Named as developer of the Al Subh 50 MW plant at Benban",
+    "_market": "north-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Taqa Arabia",
+    "countryIso2": "EG",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_energy_service_company"
+    ],
+    "segments": [
+      "org_segment_utility_generation",
+      "org_segment_commercial_industrial"
+    ],
+    "sourceUrl": "https://www.nsenergybusiness.com/projects/benban-solar-park/",
+    "website": "",
+    "evidenceNote": "Named as a plot developer at Benban Solar Park",
+    "_market": "north-africa",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "A4&T Power Solutions",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/a4t-power-solutions/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Access SA",
+    "countryIso2": "ML",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/acces-sa/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Mali'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "AEE Power",
+    "countryIso2": "CD",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/aee-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'DRC'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Africa GreenTec",
+    "countryIso2": "MG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/africa-greentec/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations lists 'Madagascar' and 'Mali'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Africa GreenTec",
+    "countryIso2": "ML",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/africa-greentec/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations lists 'Madagascar' and 'Mali'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "ANKA",
+    "countryIso2": "MG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/anka/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Madagascar'. Independently named as a UEF mini-grid grantee in Madagascar.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Anzana Electric Group",
+    "countryIso2": "TZ",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/anzana-electric-group/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Tanzania / Zambia / Kenya / Burundi'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Anzana Electric Group",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/anzana-electric-group/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Tanzania / Zambia / Kenya / Burundi'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Anzana Electric Group",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/anzana-electric-group/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Tanzania / Zambia / Kenya / Burundi'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Anzana Electric Group",
+    "countryIso2": "BI",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/anzana-electric-group/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Tanzania / Zambia / Kenya / Burundi'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Aptech Africa Ltd",
+    "countryIso2": "SL",
+    "roles": [
+      "org_role_epc",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/aptech-africa-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA Associate Member, Main Operations 'Siera Leone / Uganda' (sic). Profile: 'an EPC company specializing in solar energy and water pumping solutions... assessment, design, supply, installation, and after-sales support'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Aptech Africa Ltd",
+    "countryIso2": "UG",
+    "roles": [
+      "org_role_epc",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/aptech-africa-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA Associate Member, Main Operations 'Siera Leone / Uganda' (sic); described as a solar EPC doing design, supply and installation.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "ARC Power",
+    "countryIso2": "RW",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/arc-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Rwanda / Zambia / Malawi / Mozambique'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "ARC Power",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/arc-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Rwanda / Zambia / Malawi / Mozambique'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "ARC Power",
+    "countryIso2": "MW",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/arc-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Rwanda / Zambia / Malawi / Mozambique'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "ARC Power",
+    "countryIso2": "MZ",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/arc-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Rwanda / Zambia / Malawi / Mozambique'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Ashipa Electric Corp.",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/ashipa-electric-corp/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "BBOXX",
+    "countryIso2": "TG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/bboxx/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Togo / DRC'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "BBOXX",
+    "countryIso2": "CD",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/bboxx/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Togo / DRC'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Boutross Solar",
+    "countryIso2": "CD",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/boutross-solar/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'DRC'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Ceesolar Energy Limited",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/ceesolar-energy-limited/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "CrossBoundary Access",
+    "countryIso2": "MG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/crossboundary-access/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations lists 'Madagascar' and 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "CrossBoundary Access",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/crossboundary-access/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations lists 'Madagascar' and 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Darway Coast",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/darway-coast/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "EDF",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/edf/",
+    "website": "",
+    "evidenceNote": "AMDA member profile (name given simply as 'EDF'): Member Type 'Minigrid Developer', Main Operations 'Zambia'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Energicity Corp.",
+    "countryIso2": "SL",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/energicity-corp/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Sierra Leone / Benin / Liberia'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Energicity Corp.",
+    "countryIso2": "BJ",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/energicity-corp/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Sierra Leone / Benin / Liberia'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Energicity Corp.",
+    "countryIso2": "LR",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/energicity-corp/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Sierra Leone / Benin / Liberia'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Equatorial Power",
+    "countryIso2": "UG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/equatorial-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Uganda / DRC / Ethiopia / Mozambique'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Equatorial Power",
+    "countryIso2": "CD",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/equatorial-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Uganda / DRC / Ethiopia / Mozambique'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Equatorial Power",
+    "countryIso2": "ET",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/equatorial-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Uganda / DRC / Ethiopia / Mozambique'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Equatorial Power",
+    "countryIso2": "MZ",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/equatorial-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Uganda / DRC / Ethiopia / Mozambique'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "EtinPower Limited",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/etinpower-limited/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "First Electric",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/first-electric/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "GEI Power",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/gei-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Zambia'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Granville Energy Ltd.",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/granville-energy-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'South Africa / Namibia / DRC / Gabon'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Granville Energy Ltd.",
+    "countryIso2": "NA",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/granville-energy-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'South Africa / Namibia / DRC / Gabon'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Granville Energy Ltd.",
+    "countryIso2": "CD",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/granville-energy-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'South Africa / Namibia / DRC / Gabon'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Granville Energy Ltd.",
+    "countryIso2": "GA",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/granville-energy-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'South Africa / Namibia / DRC / Gabon'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Guinea Energy",
+    "countryIso2": "GN",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/guinea-energy/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Guinea'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "GVE Projects Ltd",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/gve-projects-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Zambia'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Havenhill",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/havenhill/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria / Sierra Leone'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Havenhill",
+    "countryIso2": "SL",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/havenhill/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Nigeria / Sierra Leone'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Hopewell Solutions Services",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_installer",
+      "org_role_system_integrator"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_commercial_industrial"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/hopewell-solutions-services/",
+    "website": "",
+    "evidenceNote": "AMDA member profile (Solution Provider, Main Operations 'Nigeria'): 'delivering integrated solar energy and ICT solutions... with a nationwide installer network spanning all 36 states of Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Humanitarian Energy PLC",
+    "countryIso2": "ET",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/humanitarian-energy-plc/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Ethiopia'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Husk Power",
+    "countryIso2": "CD",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/husk-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations lists 'DRC' and 'Nigeria / India'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Husk Power",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/husk-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations lists 'DRC' and 'Nigeria / India'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Hydrobox",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/hydrobox/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Kenya / DRC'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Hydrobox",
+    "countryIso2": "CD",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/hydrobox/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Kenya / DRC'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Ignite Energy Access",
+    "countryIso2": "BJ",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/engie-energy-access/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Benin, Nigeria, Zambia, Tanzania, Mozambique'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Ignite Energy Access",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/engie-energy-access/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Benin, Nigeria, Zambia, Tanzania, Mozambique'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Ignite Energy Access",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/engie-energy-access/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Benin, Nigeria, Zambia, Tanzania, Mozambique'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Ignite Energy Access",
+    "countryIso2": "TZ",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/engie-energy-access/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Benin, Nigeria, Zambia, Tanzania, Mozambique'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Ignite Energy Access",
+    "countryIso2": "MZ",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_shs_paygo"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/engie-energy-access/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Benin, Nigeria, Zambia, Tanzania, Mozambique'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Indica Renewables",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/indica-renewables/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'South Africa'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Jumeme",
+    "countryIso2": "TZ",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/jumeme/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Tanzania / Uganda'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Jumeme",
+    "countryIso2": "UG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/jumeme/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Tanzania / Uganda'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "KYA Energy",
+    "countryIso2": "TG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/kya-energy/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Togo'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "LEMA",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/lema/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations lists 'Kenya' and 'South Sudan'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "LEMA",
+    "countryIso2": "SS",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/lema/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations lists 'Kenya' and 'South Sudan'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "MCJONES Energy",
+    "countryIso2": "NE",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/mcjones-energy/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Niger'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Muhanya Solar",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_epc",
+      "org_role_installer"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_commercial_industrial"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/muhanya-solar/",
+    "website": "",
+    "evidenceNote": "AMDA member profile, Main Operations 'Zambia': 'Muhanya Solar are a solar EPC based in Zambia. They design, supply, installation and commissioning of Solar Photovoltaics Systems'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Nal Offgrid Ltd",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/nal-offgrid-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Kenya'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "NOA Energy Services Uganda",
+    "countryIso2": "UG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/noa-energy-services-uganda/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Uganda'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Nuru",
+    "countryIso2": "CD",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/nuru/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'DRC'; 'deploying Congo's first solar mini-grid in 2017... 1.3 MW in Goma along with additional sites in Beni, Tadu, and Faradje'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "OGIN Solutions Ltd.",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_energy_service_company"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/ogin-solutions-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA member profile (Solution Provider): Main Operations 'Kenya, Uganda, Tanzania, S.Sudan, Rwanda' and 'Nigeria'; deploys productive-use-of-energy applications to boost minigrid demand.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "OGIN Solutions Ltd.",
+    "countryIso2": "UG",
+    "roles": [
+      "org_role_energy_service_company"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/ogin-solutions-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Kenya, Uganda, Tanzania, S.Sudan, Rwanda'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "OGIN Solutions Ltd.",
+    "countryIso2": "TZ",
+    "roles": [
+      "org_role_energy_service_company"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/ogin-solutions-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Kenya, Uganda, Tanzania, S.Sudan, Rwanda'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "OGIN Solutions Ltd.",
+    "countryIso2": "SS",
+    "roles": [
+      "org_role_energy_service_company"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/ogin-solutions-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Kenya, Uganda, Tanzania, S.Sudan, Rwanda'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "OGIN Solutions Ltd.",
+    "countryIso2": "RW",
+    "roles": [
+      "org_role_energy_service_company"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/ogin-solutions-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Kenya, Uganda, Tanzania, S.Sudan, Rwanda'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "OGIN Solutions Ltd.",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_energy_service_company"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_productive_use"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/ogin-solutions-ltd/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations also lists 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Okra Solar",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_equipment_supplier",
+      "org_role_system_integrator"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/okra-solar/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'; described as a B2B mesh-grid technology provider enabling energy developers to electrify off-grid communities.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "OnePower",
+    "countryIso2": "LS",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/onepower/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Lesotho / Benin'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "OnePower",
+    "countryIso2": "BJ",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/onepower/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Lesotho / Benin'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Peco Power",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/peco-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'South Africa'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "PowerGen",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/powergen/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Kenya / DRC / Sierra Leone / Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "PowerGen",
+    "countryIso2": "CD",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/powergen/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Kenya / DRC / Sierra Leone / Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "PowerGen",
+    "countryIso2": "SL",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/powergen/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Kenya / DRC / Sierra Leone / Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "PowerGen",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp",
+      "org_role_epc"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/powergen/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Kenya / DRC / Sierra Leone / Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "PowerHive",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/powerhive/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Kenya'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "PowerHut Renewables",
+    "countryIso2": "TZ",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/powerhut-renewables/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Tanzania / Zambia / DRC'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "PowerHut Renewables",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/powerhut-renewables/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Tanzania / Zambia / DRC'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "PowerHut Renewables",
+    "countryIso2": "CD",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/powerhut-renewables/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Tanzania / Zambia / DRC'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Prado Power",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/prado-power/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Protergia Energy",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/protergia-energy/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'South Africa'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "REI Cameroon",
+    "countryIso2": "CM",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/rei-cameroon/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Cameroon'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Renewvia",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/renewvia/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Kenya / Nigeria / Ethiopia'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Renewvia",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/renewvia/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Kenya / Nigeria / Ethiopia'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Renewvia",
+    "countryIso2": "ET",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/renewvia/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Kenya / Nigeria / Ethiopia'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Rift Valley Energy",
+    "countryIso2": "TZ",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/rift-valley-energy/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Tanzania'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Rubitec Solar",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/rubitec-solar/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "RVE.SOL",
+    "countryIso2": "KE",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/rve-sol/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Kenya / Ethiopia / Mozambique / Madagascar'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "RVE.SOL",
+    "countryIso2": "ET",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/rve-sol/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Kenya / Ethiopia / Mozambique / Madagascar'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "RVE.SOL",
+    "countryIso2": "MZ",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/rve-sol/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Kenya / Ethiopia / Mozambique / Madagascar'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "RVE.SOL",
+    "countryIso2": "MG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/rve-sol/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Kenya / Ethiopia / Mozambique / Madagascar'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "SAO Energy",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/sao-energy/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "SmartEnergy Technologies",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/smartenergy-technologies/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Zambia'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Solad",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/solad/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Sosai Renewable Energies Company",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/sosai-renewable-energies-company/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Standard Microgrid",
+    "countryIso2": "ZM",
+    "roles": [
+      "org_role_energy_service_company",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/standard-microgrid/",
+    "website": "",
+    "evidenceNote": "AMDA member profile, Main Operations 'Zambia / South Africa': 'provides clean, modern, and affordable energy services to rural African communities... selling energy as a service'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Standard Microgrid",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_energy_service_company",
+      "org_role_om_asset_manager"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/standard-microgrid/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations 'Zambia / South Africa'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "SustainSolar",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_equipment_supplier",
+      "org_role_system_integrator"
+    ],
+    "segments": [
+      "org_segment_minigrids",
+      "org_segment_energy_storage"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/sustainsolar/",
+    "website": "",
+    "evidenceNote": "AMDA member profile, Main Operations 'South Africa': 'modular, plug-and-play solar powered... solutions, including minigrids... designing, commissioning, shipping and servicing turn key PV generation and battery storage systems across sub-Saharan Africa'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Tamarso",
+    "countryIso2": "SO",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/tamarso-2/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Somalia'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Tech Power Services DRC",
+    "countryIso2": "CD",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/tech-power-services-drc/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'DRC'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Templegrange",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_epc",
+      "org_role_system_integrator"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/templegrange/",
+    "website": "",
+    "evidenceNote": "AMDA member profile (Solution Provider), Main Operations 'Nigeria': 'a Nigerian energy and infrastructure enterprise advancing sustainable power solutions, including solar, wind, and hybrid systems, through engineering excellence'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Ugesi",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/ugesi/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations lists 'South Africa' and 'Zimbabwe'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Ugesi",
+    "countryIso2": "ZW",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/ugesi/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Main Operations lists 'South Africa' and 'Zimbabwe'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Vesselnet Solar",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/vesselnet-solar/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Virtuitis Solaris",
+    "countryIso2": "NG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/virtuitis-solaris/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'Nigeria'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "Zonke Energy",
+    "countryIso2": "ZA",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.africamda.org/member-directoy/zonke-energy/",
+    "website": "",
+    "evidenceNote": "AMDA member profile: Member Type 'Minigrid Developer', Main Operations 'South Africa'.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "WeLight",
+    "countryIso2": "MG",
+    "roles": [
+      "org_role_developer_ipp"
+    ],
+    "segments": [
+      "org_segment_minigrids"
+    ],
+    "sourceUrl": "https://www.universalenergyfacility.org/posts/universal-energy-facility-to-grant-up-to-usd-10-4-million-for-renewables-in-democratic-republic-of-the-congo-madagascar-and-sierra-leone",
+    "website": "",
+    "evidenceNote": "UEF/SEforALL: 'the UEF is signing grant agreements with WeLight, ANKA, Autarsys and Jiro Taratra/Africa GreenTec' for 21 additional mini-grids in Madagascar.",
+    "_market": "minigrid-panafrican",
+    "_reason": "already in the published catalogue"
+  },
+  {
+    "name": "ALL IN TRADE LIMITED",
+    "countryIso2": "UG",
+    "roles": [
+      "org_role_installer"
+    ],
+    "segments": [],
+    "website": "",
+    "sourceUrl": "https://era.go.ug/certified-installation-permit-holders/",
+    "evidenceNote": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/016/01402, Plot 13/15 Dewinton Rise, Kampala, class X).",
+    "_market": "uganda-era-register",
+    "_reason": "already in the published catalogue"
+  }
+]

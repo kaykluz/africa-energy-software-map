@@ -1,0 +1,830 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-002",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_rensource_commercial_and_industrial_limi_063ef5a3",
+      "sourceRow": 1,
+      "submittedName": "Rensource Commercial and Industrial Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC's 2023/Q4 licence table lists a 5 MW off-grid SOLAR generation licence to Rensource Commercial and Industrial Limited, Abuja.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/04/2023_Q4_Report_Final.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_crossboundary_nigeria_limited_c63bb55c",
+      "sourceRow": 2,
+      "submittedName": "CrossBoundary Nigeria Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC's 2023/Q4 licence table lists a 2.5 MW off-grid SOLAR generation licence to CrossBoundary Nigeria Limited, Oyo State. A related entity, 'Cross boundary Energy Access Nigeria Assets Limited', received a mini-grid registration certificate in NERC's 2024/Q3 report, and 'Crossboundary Energy' two more in 2024/Q4.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/04/2023_Q4_Report_Final.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_shiroro_solar_generating_company_limited_fa59f985",
+      "sourceRow": 3,
+      "submittedName": "Shiroro Solar Generating Company Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC's 2025/Q2 licence table lists a 300 MW on-grid SOLAR generation licence to Shiroro Solar Generating Company Limited, Abuja.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2025/10/2025_Q2-Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_golden_penny_power_limited_6c6f6fd0",
+      "sourceRow": 4,
+      "submittedName": "Golden Penny Power Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC's 2024/Q1 licence table lists six new off-grid generation licences to Golden Penny Power Limited (4.5-32.4 MW, gas) in Lagos, Oyo, Cross River and Ogun States; a further 57.20 MW licence appears in the 2025/Q1 report.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/07/2024_Q1-Report_v1YA.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_privida_power_limited_c253cfa2",
+      "sourceRow": 5,
+      "submittedName": "Privida Power Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in REA's first Nigeria DARES grant signing as the isolated mini-grid awardee: 2.47 MW of solar mini-grids across 11 communities in Kogi State, 11,027 new connections, plant sizes 61 kW to 704 kW.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nep.rea.gov.ng/posts/Press_Release_First_DARES_Signing.html"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_al_futtaim_nigeria_limited_98777f1b",
+      "sourceRow": 6,
+      "submittedName": "Al Futtaim Nigeria Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REA DARES second performance-based grant signing: awarded 6 mini grids in Kano State, 720 kWp, 6,852 connections.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nep.rea.gov.ng/posts/news_2ND_PBG_GRANT_SIGNING_FOR_NIGERIA_DARES.html"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_protergia_nigeria_ltd_5dfcf005",
+      "sourceRow": 7,
+      "submittedName": "Protergia Nigeria Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REA DARES second performance-based grant signing: awarded 5 mini grids in Ondo and Taraba States, 5,800+ connections.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nep.rea.gov.ng/posts/news_2ND_PBG_GRANT_SIGNING_FOR_NIGERIA_DARES.html"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ashdam_solar_co_ltd_40aa3da7",
+      "sourceRow": 8,
+      "submittedName": "Ashdam Solar Co Ltd",
+      "submittedWebsite": "https://ashdamsolar.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site: 'a renewable energy company that provides quality, smart, decentralised and clean energy solutions to urban households, businesses, organisations and off-grid rural communities in Nigeria.' Listed as 'Ashdam Solar' in the REAN member directory, and awarded 3 mini grids in Oyo State (156.9 kWp, 790 connections) at REA's second DARES grant signing.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://ashdamsolar.com"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_renewvia_energy_c60b6ccb",
+      "sourceRow": 9,
+      "submittedName": "Renewvia Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria off-grid mini-grid inventory: two 67 kW solar hybrid mini-grids at Akipelai and Oloibri communities (Bayelsa) 'installed in 2020 by Renewvia Energy'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://elec-t.energymrc.ng/dashboard/off-grid/MiniGridsData"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_zylab_technologies_nigeria_ltd_49f0c3bb",
+      "sourceRow": 10,
+      "submittedName": "Zylab Technologies Nigeria Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria off-grid mini-grid inventory: 33 kW mini-grid at Umuntumuna Obeagu Isu and 66 kW at Orie Obeagu Isu, both 'installed in 2018 by Zylab Technologies Nigeria Ltd'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://elec-t.energymrc.ng/dashboard/off-grid/MiniGridsData"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_cloud_energy_2b5916d9",
+      "sourceRow": 11,
+      "submittedName": "Cloud Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria off-grid mini-grid inventory: '100kW Solar Hybrid minigrid in Eka Awoke community ... installed in 2020 by Cloud Energy'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://elec-t.energymrc.ng/dashboard/off-grid/MiniGridsData"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_protogy_global_services_c4e7ee02",
+      "sourceRow": 12,
+      "submittedName": "Protogy Global Services",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria off-grid mini-grid inventory: '60kW Solar minigrid in Torankawa community ... installed in 2019 by Protogy Global Services'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://elec-t.energymrc.ng/dashboard/off-grid/MiniGridsData"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ibk_services_limited_8228e3c4",
+      "sourceRow": 13,
+      "submittedName": "IBK Services Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria off-grid mini-grid inventory: '30kW Solar minigrid in Bambami community ... installed in 2020 by the IBK Services Limited'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://elec-t.energymrc.ng/dashboard/off-grid/MiniGridsData"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ay_global_integrated_consult_145a615c",
+      "sourceRow": 14,
+      "submittedName": "AY Global Integrated Consult",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria off-grid mini-grid inventory: '40kW Solar minigrid in Goton Sarki community ... installed in 2020 by AY Global Integrated Consult'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://elec-t.energymrc.ng/dashboard/off-grid/MiniGridsData"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_decrown_w_a_company_limited_f8ef7f97",
+      "sourceRow": 15,
+      "submittedName": "Decrown(W.A) Company Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria off-grid mini-grid inventory: '100 kWp Solar Hybrid Minigrid - Sule-Camp Community, Edo State ... installed in 2024 by Decrown(W.A) Company Limited (REA REF Call 2)'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://elec-t.energymrc.ng/dashboard/off-grid/MiniGridsData"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_rubitec_nigeria_limited_421e7192",
+      "sourceRow": 16,
+      "submittedName": "Rubitec Nigeria Limited",
+      "submittedWebsite": "https://www.rubitecsolar.com/",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site describes an 'Integrated Renewable Energy company and Independent Power Producer' offering hybrid mini-grid systems, solar/inverter backup systems, agrosolar pumping and 'installation and maintenance of Solar Panels across Nigeria'. Listed as 'RUBITEC NIGERIA LIMITED' in the REAN member directory; the Nigeria off-grid mini-grid inventory credits 'Rubitec Sola' with the 85 kW Gbamu Gbamu hybrid mini-grid (2018).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_installer",
+        "org_role_om_asset_manager",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://www.rubitecsolar.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_greenlight_planet_sun_king_nigeria_limit_11df351d",
+      "sourceRow": 17,
+      "submittedName": "Greenlight Planet Sun King Nigeria Limited",
+      "submittedWebsite": "https://ng.sunking.com/",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the REAN member directory (The Kings Court, Victoria Island, Lagos) with website ng.sunking.com. Named as 'Sunking Greenlight Planet' among the eight standalone-solar awardees at REA's first Nigeria DARES grant signing.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_baobab_plus_dfb4f865",
+      "sourceRow": 18,
+      "submittedName": "Baobab Plus",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in REA's first Nigeria DARES grant signing as one of eight standalone-solar awardees (tier 1 and 2 plug-and-play solar home systems).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://nep.rea.gov.ng/posts/Press_Release_First_DARES_Signing.html"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_advad_limited_5fa849cb",
+      "sourceRow": 19,
+      "submittedName": "ADVAD LIMITED",
+      "submittedWebsite": "http://www.advadlimited.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site lists 'Engineering, Procurement & Construction', 'Power Plant Operation & Maintenance', renewable energy projects, rural electrification and power quality audits; '14 Years Of Experience In Power & Electrical Infrastructure'. Listed in the REAN member directory (Agidingbi, Ikeja, Lagos).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_om_asset_manager",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "http://www.advadlimited.com"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_income_electrix_limited_4ca27dc7",
+      "sourceRow": 20,
+      "submittedName": "Income Electrix Limited",
+      "submittedWebsite": "http://www.incomeelectrix.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_transmission_distribution",
+        "org_segment_utility_generation",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site: 'Thermal and renewable plant EPC, gas turbines, diesel generators, solar PV, and small hydro systems' and '66kV-500kV transmission lines, 25KvA - 300MvA substations, 33kV-11kV distribution networks'; also utility O&M and meter/transformer manufacturing. Listed as 'Income Electrix Limited' in the REAN member directory (Port Harcourt).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_om_asset_manager",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_transmission_distribution",
+        "org_segment_utility_generation",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "http://www.incomeelectrix.com"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solarmate_engineering_limited_c2245101",
+      "sourceRow": 21,
+      "submittedName": "Solarmate Engineering Limited",
+      "submittedWebsite": "https://solarmateng.com/",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site: 'an engineering firm established in January 1996 as a renewable energy solutions provider'; services listed include design and engineering, procurement and installation, 'Solar Mini Grid' and 'Operations and maintenance'; 400+ completed projects. Listed in the REAN member directory (Surulere, Lagos).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_om_asset_manager",
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://solarmateng.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solad_integrated_power_solutions_limited_39812643",
+      "sourceRow": 22,
+      "submittedName": "SOLAD Integrated Power Solutions Limited",
+      "submittedWebsite": "https://solad.co",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site: 'Design and Implementation of tailored, fit for purpose solar and solar-hybrid energy solutions' and 'Operation and maintenance services of energy assets'; describes itself as investor, developer and operator with 1.6 MW and 75 kW solar hybrid projects. Listed as 'Solad Integrated Power Solution' in the REAN member directory.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_om_asset_manager",
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://solad.co"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solusoft_nigeria_limited_061cb557",
+      "sourceRow": 23,
+      "submittedName": "Solusoft Nigeria Limited",
+      "submittedWebsite": "https://www.solusoft.com.ng",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site: 'a wholly indigenous Engineering, Procurement and Construction (EPC) company and Original Equipment Manufacturer (OEM), established in 2010'; cites isolated mini-grids of 59 kW-363 kW in Kogi State and 30 kW C&I installations. Listed as 'SoluSoft Nigeria Limited' in the REAN member directory (Abuja).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_equipment_supplier",
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.solusoft.com.ng"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_bartum_energy_024035e1",
+      "sourceRow": 24,
+      "submittedName": "Bartum Energy",
+      "submittedWebsite": "http://www.bartumenergy.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage",
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site: 'ONE-STOP SOLUTIONS PROVIDER FOR SOLAR POWER' offering turnkey systems, 'Engineered Mounting Solutions for Utility-Scale Solar Farms' and containerised 5 MWh battery energy storage; 200+ installations since 2016. Listed as 'BARTUM ENERGY LIMITED' in the REAN member directory (Wuye, Abuja).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "http://www.bartumenergy.com"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ascend_systems_limited_2d89c355",
+      "sourceRow": 25,
+      "submittedName": "Ascend Systems Limited",
+      "submittedWebsite": "http://www.ascendsystems.ng",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site: 'We design, supply, and install precision solar systems for homes, factories, and estates'; residential 3-30 kVA and commercial/industrial solar; 150+ installations, 7+ years. Listed in the REAN member directory (Garki, Abuja).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "http://www.ascendsystems.ng"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

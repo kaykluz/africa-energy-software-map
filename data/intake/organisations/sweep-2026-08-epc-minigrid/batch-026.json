@@ -1,0 +1,830 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-026",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_absolute_energy_57395f85",
+      "sourceRow": 1,
+      "submittedName": "Absolute Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in the State of the Global Mini-Grids Market Report 2020 Uganda case study: \"Italian developer Absolute Energy operates a mini-grid on Kitobo Island consisting of 230kW PV... and a 70kVA diesel generator to serve its 2,000 inhabitants\"; \"ERA granted Absolute Energy a framework concession for over 23 islands and a licence exemption.\" Corroborated by the UNREEEA article naming Absolute Energy as builder of the 230KWp Kitobo hybrid mini-grid.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://minigrids.org/wp-content/uploads/2020/06/Uganda_Case_Study.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kalangala_infrastructure_services_kis_3d327297",
+      "sourceRow": 2,
+      "submittedName": "Kalangala Infrastructure Services (KIS)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in the State of the Global Mini-Grids Market Report 2020 Uganda case study: \"Bugala Island has a 1.6MW solar hybrid mini-grid to serve its 30,000 inhabitants. Kalangala Infrastructure Services (KIS) operates the project under a public-private partnership with the Government of Uganda, the government-funded InfraCo Africa, and the private infrastructure developer EleQtra.\"",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://minigrids.org/wp-content/uploads/2020/06/Uganda_Case_Study.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_eleqtra_ac7042e6",
+      "sourceRow": 3,
+      "submittedName": "EleQtra",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in the State of the Global Mini-Grids Market Report 2020 Uganda case study as \"the private infrastructure developer EleQtra\", a partner in the public-private partnership behind the 1.6MW Bugala Island solar hybrid mini-grid operated by Kalangala Infrastructure Services.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://minigrids.org/wp-content/uploads/2020/06/Uganda_Case_Study.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_pamoja_energy_011ae3f1",
+      "sourceRow": 4,
+      "submittedName": "Pamoja Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in the State of the Global Mini-Grids Market Report 2020 Uganda case study among the independent power producers operating mini-grids in Uganda: \"seven independent power producers (IPPs) operate [mini-]grids in the country, including ... Pamoja Energy.\"",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://minigrids.org/wp-content/uploads/2020/06/Uganda_Case_Study.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_welight_africa_b9ff4228",
+      "sourceRow": 5,
+      "submittedName": "WeLight Africa",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in the State of the Global Mini-Grids Market Report 2020 Uganda case study as a winning bidder in Uganda's REA Pro Mini-Grids tender: \"Winch Energy and WeLight Africa have been selected to install their projects by December 2020\", serving up to 15 villages in the south and 25 in the north under a 10-year concession.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://minigrids.org/wp-content/uploads/2020/06/Uganda_Case_Study.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ethio_resource_group_plc_96302323",
+      "sourceRow": 6,
+      "submittedName": "Ethio Resource Group PLC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in GIZ 'Table 1. List of EPC and O&M providers' for Ethiopian cooperative mini-grids, marked Yes for demand assessment & system sizing, EPC work and O&M service; prior off-grid experience given as 'Development and operation of solar mini-grids. Experience of SHS, solar off-grid and wind solar micro-grid systems, solar water pumping'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_om_asset_manager",
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://energypedia.info/images/7/78/Guidelines_Coop-Led_Mini-Grids_Ethiopia_GIZ_2022.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_alphasol_modular_energy_plc_a0392475",
+      "sourceRow": 7,
+      "submittedName": "Alphasol Modular Energy PLC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in GIZ 'Table 1. List of EPC and O&M providers', marked Yes for demand assessment, EPC work and O&M; prior off-grid experience 'Installation of SHS, solar institutional systems, micro-hydro, experience with biomass and wind energy'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_om_asset_manager",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://energypedia.info/images/7/78/Guidelines_Coop-Led_Mini-Grids_Ethiopia_GIZ_2022.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_gorgeous_solar_solution_e80b7100",
+      "sourceRow": 8,
+      "submittedName": "Gorgeous Solar Solution",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in GIZ 'Table 1. List of EPC and O&M providers', marked Yes for demand assessment, EPC work and O&M; prior off-grid experience 'Installation of off-grid and grid tied solar'. Also an ESEDA member, described there as 'an off-grid solution provider for rural communities'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_om_asset_manager",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://energypedia.info/images/7/78/Guidelines_Coop-Led_Mini-Grids_Ethiopia_GIZ_2022.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_abramba_technologies_plc_8e375036",
+      "sourceRow": 9,
+      "submittedName": "Abramba technologies, PLC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in GIZ 'Table 1. List of EPC and O&M providers' (Bahir Dar, Ethiopia) but marked only 'Limited' for demand assessment and EPC work and 'No' for O&M; prior off-grid experience 'SHS import and distribution'. Included as a weak/limited-capability entry — treat the EPC role as unconfirmed.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://energypedia.info/images/7/78/Guidelines_Coop-Led_Mini-Grids_Ethiopia_GIZ_2022.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sinosoar_58745709",
+      "sourceRow": 10,
+      "submittedName": "SINOSOAR",
+      "submittedWebsite": "https://www.sinosoarhybrid.com",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_energy_storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Announced as winner of the Ethiopian Electric Utility Package II(C) Solar Mini-Grids (Generation) bid, World Bank funded, covering 'design, supply, installation, commissioning and operation and maintenance' of solar mini-grids. A second page on the same site records SINOSOAR signing the EEU 25-Village Micro-grid Project contract (2MWp PV, 5.5MWh BESS, 450kW diesel). Chinese-headquartered (Sino Soar Hybrid (Beijing) Technology Co., Ltd.) but the contracted works are in Ethiopia.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_om_asset_manager",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "https://www.sinosoarhybrid.com/eeu-world-bank-phase-iv-solar-minigrids-generation-projects-ethiopia/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_acme_a01d89da",
+      "sourceRow": 11,
+      "submittedName": "ACME",
+      "submittedWebsite": "https://acme-et.com",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ESEDA member, self-described as 'an electromechanical contracting and trading company, established in 2003 G.C.' that 'provides a wide range of engineering goods and execute turnkey projects in Energy, Water Supply, Irrigation'; services listed as 'Design, Supply, Installation & Commissioning, Training, After-sales service'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://eseda.net/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_symmetry_engineering_91d41543",
+      "sourceRow": 12,
+      "submittedName": "SYMMETRY ENGINEERING",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ESEDA member, self-described as 'an MEP (mechanical, electrical, and plumbing) and solar systems contracting company established by professional mechanical and electrical engineers'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://eseda.net/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_grean_world_3d175c20",
+      "sourceRow": 13,
+      "submittedName": "Grean World",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ESEDA member; self-description claims experience in 'off-grid energy solution technical system design, capital raising, equipment procurement, construction, commissioning, and operation and maintenance of solar and backup energy systems' for rural villages and displacement settings.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_om_asset_manager",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://eseda.net/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_green_hope_renewable_energy_works_plc_gh_721ff0ff",
+      "sourceRow": 14,
+      "submittedName": "Green Hope Renewable Energy Works PLC (GHREW)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ESEDA member; services self-described as 'solar PV installation, electrical maintenance, solar water pump system design, mini grid development, and electrical installation works', plus energy development training.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://eseda.net/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_habeha_eco_trading_plc_b8e1aad9",
+      "sourceRow": 15,
+      "submittedName": "Habeha Eco Trading plc",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ESEDA member; 'an Ethiopian private limited company [that] provides renewable energy solutions ... through providing social interferences by engineering solutions – solar home systems, mini-grids and solar lanterns'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://eseda.net/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_mod_renewable_engineering_plc_139a4596",
+      "sourceRow": 16,
+      "submittedName": "MOD Renewable Engineering PLC",
+      "submittedWebsite": "https://modrengineering.com/",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ESEDA member; 'a renewable energy company based in Addis Ababa, Ethiopia. MOD Renewable Engineering supply, install, and maintain renewable energy solutions for homes and businesses'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://eseda.net/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_global_solar_engineering_plc_a84209e6",
+      "sourceRow": 17,
+      "submittedName": "Global solar engineering PLC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ESEDA member; 'a company that import, distribute and install globally certified quality solar lanterns, home systems, solar operated water pumps and other electro mechanical machines'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://eseda.net/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_green_hope_trading_7b48c486",
+      "sourceRow": 18,
+      "submittedName": "Green hope trading",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ESEDA member; 'an off-grid solution providing company dedicated to enhance the access of solar energy products in Ethiopia ... through supply, installation and maintenance of quality solar energy products'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://eseda.net/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_rohoboth_solar_company_29b7946f",
+      "sourceRow": 19,
+      "submittedName": "Rohoboth solar company",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ESEDA member; 'a renewable energy solution provider for homes, organization and business center. We also supply, install and maintain uninterrupted power for urban and rural areas'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://eseda.net/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_apex_energy_technologies_plc_904ae1bc",
+      "sourceRow": 20,
+      "submittedName": "Apex Energy Technologies PLC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ESEDA member; founded 2019, aims to 'harness this resource for off-grid communities through solar home systems and solar PV systems' and provides backup power for urban households and businesses. Source gives only a LinkedIn page, no own domain, so website left blank.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://eseda.net/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_modify_electromechanical_systems_and_sol_bc25b2e3",
+      "sourceRow": 21,
+      "submittedName": "MODIFY ELECTROMECHANICAL SYSTEMS AND SOLUTIONS PLC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ESEDA member; 'a company dedicated to enhancing people lives through comprehensive solar solutions. We offer a range of products, including Solar Home Systems (SHS) and PUE to off-grid communities in Ethiopia.' Electromechanical framing suggests installation, but the source does not state it explicitly — installer role is inferred and should be verified. Source lists only a business.site page, not an own domain.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://eseda.net/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_hellosolar_international_eba817e6",
+      "sourceRow": 22,
+      "submittedName": "HelloSolar International",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ET",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ESEDA member; 'a decentralized off-grid solar energy solutions provider ... facilitating access to sustainable energy and connectivity through affordable PAY-as-you-go solar systems' for rural Ethiopia. PAYGO operator rather than an EPC — no installation arm stated.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://eseda.net/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_benadir_energy_company_beco_391f2f90",
+      "sourceRow": 23,
+      "submittedName": "Benadir Energy Company (BECO)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SO",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation",
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in the US Country Commercial Guide as \"Somalia's largest electric utility and the only provider in Mogadishu\", operating diesel generation and having developed a 10MW solar farm outside Mogadishu. Also named as 'BECO' in RTI's Somalia energy sector piece and in Wikipedia's 'Solar power in Somalia' as builder of the country's largest solar plant (2020). Own site beco.so was behind bot protection and could not be opened, so website left blank.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://www.trade.gov/country-commercial-guides/somalia-energy-and-electricity"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sompower_2dc1b175",
+      "sourceRow": 24,
+      "submittedName": "SOMPOWER",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SO",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation",
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Hargeisa-based private utility in Somaliland, formed in April 2016 from the merger of 39 local utility firms; 'specialises generating, transmitting and distributing of the electric power' and operates the 20MW Hargeisa solar power station plus a 25MW diesel station. RTI separately records it investing in a hybrid solar-diesel system including a 4MW PV array.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://en.wikipedia.org/wiki/Sompower"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_necsom_0fd352f0",
+      "sourceRow": 25,
+      "submittedName": "NECSOM",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SO",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation",
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as a Puntland-based electricity provider generating power through diesel systems and having developed wind power infrastructure (3.5MW operational since 2016). RTI's Somalia article gives the fuller form 'National Electric Cooperation of Somalia (NECSOM)' in Garowe and a US$6m hybrid wind/solar plus battery storage investment.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://www.trade.gov/country-commercial-guides/somalia-energy-and-electricity"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

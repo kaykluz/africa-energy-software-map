@@ -1,0 +1,781 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-035",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_special_energy_fd27ccc6",
+      "sourceRow": 1,
+      "submittedName": "SPECIAL ENERGY",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar system installation and electrical equipment",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_shams_eau_et_environnement_1606e39b",
+      "sourceRow": 2,
+      "submittedName": "SHAMS EAU ET ENVIRONNEMENT",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar panel installation and energy monitoring",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_smart_electrotec_96edb364",
+      "sourceRow": 3,
+      "submittedName": "SMART ELECTROTEC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: renewable energy installation services",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_smedr_fe076f6b",
+      "sourceRow": 4,
+      "submittedName": "SMEDR",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: electrical and solar installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_smee_83fe40fc",
+      "sourceRow": 5,
+      "submittedName": "SMEE",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar pumping installation and maintenance",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solardeal_90a16847",
+      "sourceRow": 6,
+      "submittedName": "SOLARDEAL",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar equipment distribution and integration",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_system_integrator",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solar_power_9ad0321f",
+      "sourceRow": 7,
+      "submittedName": "SOLAR POWER",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: photovoltaic power plant installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_somalev_cranes_logistics_c700538a",
+      "sourceRow": 8,
+      "submittedName": "SOMALEV CRANES & LOGISTICS",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: wind turbine and solar installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_telepsi_maroc_negoce_f7e8e2f5",
+      "sourceRow": 9,
+      "submittedName": "TELEPSI MAROC NEGOCE",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar equipment distribution and installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ventec_8714cb12",
+      "sourceRow": 10,
+      "submittedName": "VENTEC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: electrical and fluid systems installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_voltalia_maroc_dbf9bba8",
+      "sourceRow": 11,
+      "submittedName": "VOLTALIA MAROC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: wind, solar and hydro production and services",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_2_ses_solar_energy_systems_495d61aa",
+      "sourceRow": 12,
+      "submittedName": "2 SES-Solar Energy Systems",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 2, MV grid-connected PV installer, Tunis, valid to 25/09/2027",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_spectra_7f48a180",
+      "sourceRow": 13,
+      "submittedName": "Spectra",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 10, MV grid-connected PV installer, Sfax",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_domotech_7ccdea35",
+      "sourceRow": 14,
+      "submittedName": "Domotech",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 31, MV grid-connected PV installer, Tunis",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_soften_soci_t_franco_tunisienne_des_nerg_fec7c8c4",
+      "sourceRow": 15,
+      "submittedName": "SOFTEN Société Franco-tunisienne des énergies nouvelles",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 32, MV grid-connected PV installer, ZI Grombalia, Nabeul",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_avenir_pour_l_energie_photovolta_que_aep_17987ab3",
+      "sourceRow": 16,
+      "submittedName": "Avenir pour l'Energie Photovoltaïque (AEP)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 78, MV grid-connected PV installer, Sfax",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_la_m_diterranienne_de_construction_mdc_09b794a1",
+      "sourceRow": 17,
+      "submittedName": "La Méditerranienne de Construction-MDC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 81, MV grid-connected PV installer, Kairouan",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_soteep_7d8bee25",
+      "sourceRow": 18,
+      "submittedName": "SOTEEP",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 107, MV grid-connected PV installer, Sfax",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_nr_sol_99c590a5",
+      "sourceRow": 19,
+      "submittedName": "NR-SOL",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 115, MV grid-connected PV installer, Zaghouan",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_aionenergy_2ac4d4ca",
+      "sourceRow": 20,
+      "submittedName": "AIONENERGY",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 123, MV grid-connected PV installer, Ariana",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_tuncom_636a923b",
+      "sourceRow": 21,
+      "submittedName": "Tuncom",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 144, MV grid-connected PV installer, Tozeur",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solar_power_company_spc_2de0188f",
+      "sourceRow": 22,
+      "submittedName": "Solar Power Company - SPC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 145, MV grid-connected PV installer, Montplaisir, Tunis",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_green_power_company_gpc_945b4e6f",
+      "sourceRow": 23,
+      "submittedName": "Green Power Company- GPC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 149, MV grid-connected PV installer, Sfax",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_arsolaire_ingenierie_6dc21aa0",
+      "sourceRow": 24,
+      "submittedName": "ARSOLAIRE Ingenierie",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 158, MV grid-connected PV installer, Tunis",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_nour_energy_0e178945",
+      "sourceRow": 25,
+      "submittedName": "Nour Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 168, MV grid-connected PV installer, Sfax",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

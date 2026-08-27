@@ -51,17 +51,44 @@ TIMEOUT = 12
 # ── normalisation ───────────────────────────────────────────────────────────
 
 def normalise_name(value: str) -> str:
-    """Fold a company name for comparison only. Never stored."""
+    """Fold a company name for comparison only. Never stored.
+
+    Unicode-aware on purpose. An earlier version reduced to `[a-z0-9]`, which
+    silently emptied every Arabic-script name and dropped Egypt's whole cohort
+    — 79 real companies such as `سمارت باور للهندسة والإنشاءات` — before a
+    reviewer ever saw them. A registry of AFRICAN companies cannot fold names
+    through an ASCII-only filter: it does not merely mis-sort those rows, it
+    deletes them.
+    """
     text = (value or "").strip().lower()
     text = re.sub(r"[‘’“”]", "", text)
     text = re.sub(r"\b(ltd|limited|plc|inc|llc|gmbh|sarl|sa|pty|cc|co|company|group|holdings|enterprises|nigeria|kenya|ghana)\b", " ", text)
-    text = re.sub(r"[^a-z0-9]+", " ", text)
+    text = re.sub(r"[^\w]+", " ", text, flags=re.UNICODE)
     return " ".join(text.split())
 
 
 def slug(value: str) -> str:
     text = re.sub(r"[^a-z0-9]+", "_", (value or "").lower()).strip("_")
     return text[:40] or "record"
+
+
+EMAIL_RE = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.I)
+
+
+def scrub_contact(text: str) -> str:
+    """Strip contact addresses out of free text.
+
+    Association directories routinely publish a contact email beside each
+    member, and agents copy the surrounding line verbatim as evidence. Some of
+    those are personal (`someone@gmail.com`, `firstname@company.com`), and
+    `validate_repository.py` rejects any intake batch containing one — the
+    registry records organisations, not ways to contact people.
+
+    Only emails are removed. Phone-shaped digit runs are left alone on purpose:
+    licence and permit numbers look identical and are the most valuable
+    evidence a regulator register gives us.
+    """
+    return EMAIL_RE.sub("[contact removed]", text or "").strip()
 
 
 def host_of(url: str) -> str:
@@ -71,7 +98,7 @@ def host_of(url: str) -> str:
 
 # ── liveness ────────────────────────────────────────────────────────────────
 
-def resolves(url: str) -> bool:
+def resolves(url: str, timeout: int = TIMEOUT) -> bool:
     """True when the URL answers at all.
 
     Any HTTP status counts as existing — a 403 or 404 still proves the host is
@@ -85,7 +112,7 @@ def resolves(url: str) -> bool:
     context.check_hostname = False
     context.verify_mode = ssl.CERT_NONE  # a bad cert still proves the host exists
     try:
-        with urllib.request.urlopen(request, timeout=TIMEOUT, context=context):
+        with urllib.request.urlopen(request, timeout=timeout, context=context):
             return True
     except urllib.error.HTTPError:
         return True
@@ -96,11 +123,27 @@ def resolves(url: str) -> bool:
 
 
 def check_all(urls: Iterable[str]) -> dict[str, bool]:
+    """Resolve every URL, retrying failures once before believing them.
+
+    The first pass runs twelve at a time, and that contention alone produces
+    timeouts against slow government hosts. Treating one timeout as proof of
+    non-existence made this gate non-deterministic: two runs over the SAME
+    input dropped 2 rows and then 59, purely on network weather. A dropped row
+    is a real company deleted before any human sees it, so a single failure now
+    buys a second, slower, serial attempt and only a second failure counts.
+    """
     unique = sorted({u for u in urls if u})
     if not unique:
         return {}
     with ThreadPoolExecutor(max_workers=12) as pool:
-        return dict(zip(unique, pool.map(resolves, unique)))
+        result = dict(zip(unique, pool.map(resolves, unique)))
+    retry = [u for u, ok in result.items() if not ok]
+    for url in retry:  # serial, so a slow host is not also fighting eleven peers
+        result[url] = resolves(url, timeout=TIMEOUT * 3)
+    if retry:
+        print(f"liveness            retried {len(retry)} failures serially; "
+              f"{sum(1 for u in retry if result[u])} passed on the second attempt")
+    return result
 
 
 # ── natural persons ─────────────────────────────────────────────────────────
@@ -198,6 +241,11 @@ def main() -> int:
     parser.add_argument("--sweep", required=True, type=Path)
     parser.add_argument("--batch-dir", required=True, type=Path)
     parser.add_argument("--as-of", required=True)
+    parser.add_argument("--report-dir", type=Path, default=None,
+                        help="Where the reject and flag reports go. Defaults to "
+                             "data/research-queue/<batch-dir-name>/. These must NOT live "
+                             "inside data/intake/, which validate_repository.py treats as a "
+                             "batches-only contract and reads every .json under as a batch.")
     parser.add_argument("--skip-liveness", action="store_true",
                         help="Skip network checks. For offline dry runs only — never for a batch a reviewer will see.")
     args = parser.parse_args()
@@ -289,7 +337,7 @@ def main() -> int:
                 "submittedSegments": row["_segments"],
                 "submittedOwnershipType": "",
                 "submittedScaleIndicator": "",
-                "submittedNotes": row.get("evidenceNote", "")[:500],
+                "submittedNotes": scrub_contact(row.get("evidenceNote", ""))[:500],
                 "recordShape": "organisation",
                 "suggestedActorGroupId": group_for.get(row["_roles"][0], "org_group_epcs"),
                 "suggestedRoleIds": row["_roles"],
@@ -317,14 +365,16 @@ def main() -> int:
         path = args.batch_dir / f"batch-{index:03d}.json"
         path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n")
 
-    (args.batch_dir / "rejected.json").write_text(
+    report_dir = args.report_dir or (REPO / "data" / "research-queue" / args.batch_dir.name)
+    report_dir.mkdir(parents=True, exist_ok=True)
+    (report_dir / "rejected.json").write_text(
         json.dumps(rejected, indent=2, ensure_ascii=False) + "\n"
     )
     flagged = [
         {"name": r.get("name"), "sourceUrl": r.get("sourceUrl"), "country": r.get("_iso")}
         for r in verified if r.get("_flaggedPersonal")
     ]
-    (args.batch_dir / "flagged-personal.json").write_text(
+    (report_dir / "flagged-personal.json").write_text(
         json.dumps(flagged, indent=2, ensure_ascii=False) + "\n"
     )
 
@@ -334,7 +384,8 @@ def main() -> int:
         print(f"  - {reason}: {sum(1 for r in rejected if r['_reason'] == reason)}")
     print(f"candidates written  {len(verified)} across {len(batches)} batch file(s)")
     print(f"websites dropped    {sum(1 for r in verified if r.get('_websiteDropped'))} (did not resolve)")
-    print(f"flagged as possible natural persons: {len(flagged)} -> flagged-personal.json (kept; needs human eyes)")
+    print(f"flagged as possible natural persons: {len(flagged)} (kept; needs human eyes)")
+    print(f"reports             {report_dir.relative_to(REPO)}")
     return 0
 
 
