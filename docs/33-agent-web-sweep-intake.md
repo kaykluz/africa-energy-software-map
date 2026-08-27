@@ -53,6 +53,35 @@ network before a reviewer sees it. Any HTTP status counts as existing — a 403 
 404 still proves the host is real. Only DNS failure, refusal or timeout count as
 absent.
 
+## Natural persons must never enter the catalogue
+
+Installer registers are the richest source of EPC coverage and the most
+dangerous. South Africa's PV GreenCard and Uganda's ERA permit register both
+certify **people**, not only firms — the ERA register alone holds 4,515
+permits. A personal name in an organisation catalogue is a privacy breach, and
+the liveness gate cannot catch it: a sole trader with no website is
+indistinguishable from a company with no website.
+
+The gate therefore **flags rather than drops**, and the reason is empirical.
+Run against the first sweep it flagged 31 of 724 rows. About thirty were plainly
+businesses whose form the heuristic did not recognise — Afrikaans trading terms
+(`Elektries`, `Sonkrag`, `Konsult`) and ordinary names carrying no legal suffix
+(`Dorper Wind Farm`, `BURN MANUFACTURING`, `Kitso Design Institute`). Two were
+genuine natural persons. An auto-drop would have deleted thirty real companies
+to remove one person.
+
+So the machine narrows the field and a human decides:
+
+- names confirmed by review as natural persons sit in
+  `PERSONAL_NAMES_CONFIRMED` in the script, one commented line each, and are
+  dropped outright;
+- everything else the heuristic flags is **kept** and written to
+  `flagged-personal.json` beside the batch, for an editor to judge against the
+  source page.
+
+Add to the confirmed list only after opening the source. The list is code, so
+the decision is reviewable and can be challenged like any other.
+
 ## Provenance must stay visible
 
 `organisation-candidate.schema.json` previously pinned `source.kind` to

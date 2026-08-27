@@ -103,6 +103,56 @@ def check_all(urls: Iterable[str]) -> dict[str, bool]:
         return dict(zip(unique, pool.map(resolves, unique)))
 
 
+# ── natural persons ─────────────────────────────────────────────────────────
+#
+# Installer registers are the richest source of EPC coverage and the most
+# dangerous, because several certify PEOPLE rather than firms. South Africa's
+# PV GreenCard and Uganda's ERA permit register both issue to named
+# individuals. A personal name in an organisation catalogue is a privacy
+# breach, and the liveness gate cannot catch it: a sole trader with no website
+# is indistinguishable from a company with no website.
+#
+# The heuristic below FLAGS but does not drop. That is deliberate. Run against
+# the first sweep it flagged 31 of 724 rows, of which about thirty were plainly
+# businesses whose form it did not recognise — Afrikaans trading terms
+# (`Elektries`, `Sonkrag`, `Konsult`), and ordinary names carrying no legal
+# suffix (`Dorper Wind Farm`, `BURN MANUFACTURING`). An auto-drop would have
+# deleted real companies to remove one person. So the machine narrows the field
+# and a human decides, with the decision recorded here where it can be audited.
+
+BUSINESS_MARKERS = (
+    r"(ltd|pty|\(pty\)|cc\b|plc|inc\b|llc|gmbh|sarl|enterprise|solar|energy|energie|"
+    r"electric|elektr|sonkrag|engineer|group|holding|service|solution|technolog|technik|"
+    r"system|project|trading|construction|power|renewable|contractor|install|manufactur|"
+    r"t/a|&|company|corp|limited|associates|consult|konsult|industr|supplies|ventures|"
+    r"investment|works|international|tech\b|electronic|institute|platform|farm|impact|"
+    r"design|computing|africa|sa\b)"
+)
+TITLE_PREFIX = r"^(mr|mrs|ms|dr|eng|engr|prof|miss)\b\.?\s"
+
+# Names a human confirmed are natural persons, not businesses. Dropped outright.
+# Add to this list only after looking at the source page.
+PERSONAL_NAMES_CONFIRMED = {
+    "lucky rakale",   # PV GreenCard: given name + surname, no trading name
+    "aj faber",       # PV GreenCard: initials + surname, no trading name
+}
+
+
+def flag_personal(name: str) -> bool:
+    """True when a name might belong to a natural person and needs human eyes."""
+    text = (name or "").strip()
+    if not text:
+        return False
+    if re.search(TITLE_PREFIX, text.lower()):
+        return True
+    if re.search(BUSINESS_MARKERS, text.lower()):
+        return False
+    words = [w for w in re.split(r"\s+", text) if w]
+    if not 2 <= len(words) <= 3:
+        return False
+    return all(re.fullmatch(r"[A-Za-z'\u2019\-.]+", w) for w in words)
+
+
 # ── taxonomy ────────────────────────────────────────────────────────────────
 
 def load_taxonomy() -> tuple[set[str], set[str], dict[str, str]]:
@@ -182,6 +232,12 @@ def main() -> int:
         if key in known:
             rejected.append({**row, "_reason": "already in the published catalogue"})
             continue
+        if key in PERSONAL_NAMES_CONFIRMED:
+            # Privacy boundary: never publish a natural person as an organisation.
+            rejected.append({**row, "_reason": "confirmed natural person, not a business"})
+            continue
+        if flag_personal(name):
+            row["_flaggedPersonal"] = True
         if key in seen:
             # Same company from two markets — merge countries rather than duplicate.
             seen[key].setdefault("_alsoCountries", []).append(iso)
@@ -264,6 +320,13 @@ def main() -> int:
     (args.batch_dir / "rejected.json").write_text(
         json.dumps(rejected, indent=2, ensure_ascii=False) + "\n"
     )
+    flagged = [
+        {"name": r.get("name"), "sourceUrl": r.get("sourceUrl"), "country": r.get("_iso")}
+        for r in verified if r.get("_flaggedPersonal")
+    ]
+    (args.batch_dir / "flagged-personal.json").write_text(
+        json.dumps(flagged, indent=2, ensure_ascii=False) + "\n"
+    )
 
     print(f"raw rows            {len(rows)}")
     print(f"rejected            {len(rejected)}")
@@ -271,6 +334,7 @@ def main() -> int:
         print(f"  - {reason}: {sum(1 for r in rejected if r['_reason'] == reason)}")
     print(f"candidates written  {len(verified)} across {len(batches)} batch file(s)")
     print(f"websites dropped    {sum(1 for r in verified if r.get('_websiteDropped'))} (did not resolve)")
+    print(f"flagged as possible natural persons: {len(flagged)} -> flagged-personal.json (kept; needs human eyes)")
     return 0
 
 
