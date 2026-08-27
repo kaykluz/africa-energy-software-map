@@ -1,0 +1,720 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-024",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_gts_solar_services_limited_e532a658",
+      "sourceRow": 1,
+      "submittedName": "GTS Solar Services Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 6 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/06-20-200, issued 18/06/2020. Address: P.O. Box GP1535, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_dyson_energy_limited_a9a73aec",
+      "sourceRow": 2,
+      "submittedName": "Dyson Energy Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 7 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R1-06-20-184, issued 18/06/2020. Address: P.O. Box NK37, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_black_star_energy_limited_8e0b21d3",
+      "sourceRow": 3,
+      "submittedName": "Black Star Energy Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 8 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R2-06-20-026, issued 18/06/2020. Address: House No. 27, Atta Poku Street, Santasi, Kumasi. (Widely reported as a rural mini-grid operator, but the mini-grid evidence page returned 403 so no mini-grid segment is claimed here.)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sunpower_innovations_limited_33dc2989",
+      "sourceRow": 4,
+      "submittedName": "Sunpower Innovations Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 9 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R3-10-20-060, issued 01/10/2020. Address: St. Elizabeth Sch. Lane, West Legon, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_lumiere_engineering_176fb685",
+      "sourceRow": 5,
+      "submittedName": "Lumiere Engineering",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 10 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/10-20-204, issued 01/10/2020. Address: 2nd Street Manu Avenue, West Lands, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_3esl_company_limited_2c51e150",
+      "sourceRow": 6,
+      "submittedName": "3ESL Company Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 11 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/10-20-206, issued 01/10/2020. Address: Dr. Opoku Street, Abelemkpe, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/2"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_righthause_energy_limited_aa82c744",
+      "sourceRow": 7,
+      "submittedName": "Righthause Energy Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 12 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/10-20-203, issued 01/10/2020. Address: 3rd Floor Valco Trusthouse, Castle Road, Ridge, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/2"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_deng_limited_5b55b07e",
+      "sourceRow": 8,
+      "submittedName": "DENG Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 13 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R4-10-20-015, issued 01/10/2020. Address: P.O. Box AN 19996, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/2"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_meinergy_technology_limited_ab9ddff5",
+      "sourceRow": 9,
+      "submittedName": "Meinergy Technology Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 14 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/07-20-202, issued 28/07/2020, valid to 27/07/2040. The same company also appears at row 70 of the Commission's generation register with a 20MW solar Construction Permit (EC/GWSL/06-15-067). Address: Hse. No. 148A Augustus Akiwumi Road, Kanda, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager",
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/2"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_abba_energy_limited_541f2da3",
+      "sourceRow": 10,
+      "submittedName": "Abba Energy Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 15 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/10-20-205, issued 01/10/2020. Address: P.O. Box CT 8615, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/2"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_prefos_limited_784c09bf",
+      "sourceRow": 11,
+      "submittedName": "Prefos Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 17 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R2-11-20-131, issued 27/11/2020. Address: 24th February Road, Amakom, Kumasi.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/2"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solar_pioneers_ghana_limited_766a24af",
+      "sourceRow": 12,
+      "submittedName": "Solar Pioneers Ghana Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 18 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R2-11-20-094, issued 27/11/2020. Address: Sowutuom-Ofankor Road, Capital Hill Junction, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/2"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_technology_management_group_ghana_limite_3f075d1d",
+      "sourceRow": 13,
+      "submittedName": "Technology Management Group Ghana Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 19 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R1-11-20-129, issued 27/11/2020. Address: No. 9 Kwabena Duffour Street, Airport Residential Area, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/2"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_translight_solar_limited_42629ba7",
+      "sourceRow": 14,
+      "submittedName": "Translight Solar Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 20 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R4-11-20-028, issued 27/11/2020. Address: #98 Boundary Road, East Legon, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/2"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_stella_futura_limited_aef5f54f",
+      "sourceRow": 15,
+      "submittedName": "Stella Futura Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 21 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R1-11-20-193, issued 27/11/2020. Address: Impact Hub, No. F393/4 Otswe Street, Osu, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/3"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_suka_power_limited_591c6ad9",
+      "sourceRow": 16,
+      "submittedName": "Suka Power Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 23 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R3-11-20-006, issued 27/11/2020. Address: No. 303 Off Mile 6, Accra-Winneba Road, McCarthy Hill.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/3"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_priority_prime_limited_6f00bcb2",
+      "sourceRow": 17,
+      "submittedName": "Priority Prime Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 24 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R1-12-20-177, issued 11/12/2020. Address: 250 Amerie Court, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/3"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_dutch_and_company_limited_2387a95c",
+      "sourceRow": 18,
+      "submittedName": "Dutch And Company Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 25 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R3-12-20-049, issued 11/12/2020. Address: No. 8 Narku Iplan Street, Airport Residential Area, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/3"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_terradew_ghana_limited_d6c576cc",
+      "sourceRow": 19,
+      "submittedName": "Terradew Ghana Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 26 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/R1-12-20-189, issued 11/12/2020. Address: Hse No. 414/4, Newtown Road, Kokomlemle, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/3"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_rife_energy_ghana_limited_55b455cc",
+      "sourceRow": 20,
+      "submittedName": "Rife Energy Ghana Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 27 of the Energy Commission Installation and Maintenance licence register; licence EC/IM/12-20-208, issued 11/12/2020. Address: 9th Floor Emporium, Movenpick Ambassador Hotel, Independence Avenue, Accra.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Installation%20and%20Maintenance%20License%20Holders/3"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_savanna_solar_limited_d6b3b37a",
+      "sourceRow": 21,
+      "submittedName": "Savanna Solar Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 3 of the Energy Commission generation licence register: 150MW solar, licence EC/GWSL/04-13-008 at CONSTRUCTION PERMIT stage, dated 15/01/2016.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Provisional%20Wholesale%20Supply%20and%20Generation%20License%20Holders"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_hea_solar_limited_f2c8e8a5",
+      "sourceRow": 22,
+      "submittedName": "HEA Solar Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 9 of the Energy Commission generation licence register: 100MW solar PV, licence EC/GWSL/02-14-031 at CONDITIONAL CONSTRUCTION PERMIT stage, dated 11/03/2016.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Provisional%20Wholesale%20Supply%20and%20Generation%20License%20Holders"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sun_investment_ghana_limited_d89706cd",
+      "sourceRow": 23,
+      "submittedName": "Sun Investment Ghana Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 26 of the Energy Commission generation licence register: 100MW solar, licence EC/GWSL/08-13-016 at CONSTRUCTION PERMIT stage, dated 17/10/2017.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Provisional%20Wholesale%20Supply%20and%20Generation%20License%20Holders/3"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_bxc_company_ghana_ltd_ac18f612",
+      "sourceRow": 24,
+      "submittedName": "BXC Company Ghana Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 30 of the Energy Commission generation licence register: 20MW solar, licence EC/GWSL/06-18-001 at CONSTRUCTION PERMIT stage, dated 07/06/2018.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Provisional%20Wholesale%20Supply%20and%20Generation%20License%20Holders/3"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_whitecap_development_ltd_92e84faa",
+      "sourceRow": 25,
+      "submittedName": "Whitecap Development Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 53 of the Energy Commission generation licence register: 100MW solar, licence EC/GWSL/02-14-034 at Construction Permit stage, dated 23/04/2018. (Also listed at row 38 as 'Whitecap Development Limited', Provisional.)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Provisional%20Wholesale%20Supply%20and%20Generation%20License%20Holders/6"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

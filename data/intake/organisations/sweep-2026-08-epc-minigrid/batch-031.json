@@ -1,0 +1,813 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-031",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_ets_bah_mamadou_bhoye_et_fils_ab1ca4a1",
+      "sourceRow": 1,
+      "submittedName": "Ets Bah Mamadou Bhoye et Fils",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among Guinea's manufacturer representatives acting as local distributors of international solar brands.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ets_kamab_2bf7cac8",
+      "sourceRow": 2,
+      "submittedName": "ETS Kamab",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in prose (as 'Ets Kamab') among Guinea's manufacturer representatives; Tableau 37 lists it (as 'ETS Kamab') across all four system size categories including very large system supply.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_2hk_energie_ff4b0475",
+      "sourceRow": 3,
+      "submittedName": "2HK Energie",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in prose (as '2HK') among Guinea's manufacturer representatives; Tableau 37 lists it as '2HK Energie' across all four system size categories.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_bh_soger_4f0b165b",
+      "sourceRow": 4,
+      "submittedName": "BH Soger",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in Tableau 37 'Produits et composants solaires hors réseau en Guinée' across all four system categories (pico lantern, single-module, multi-module and very large system supply).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_my_cebel_solaire_61432d5c",
+      "sourceRow": 5,
+      "submittedName": "My Cebel Solaire",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in Tableau 37 across all four system size categories including 'Très grand fournisseur de systèmes'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solar_guin_e_a49c0776",
+      "sourceRow": 6,
+      "submittedName": "Solar Guinée",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in Tableau 37 across all four system size categories including very large system supply.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solec_energy_63df86f6",
+      "sourceRow": 7,
+      "submittedName": "Solec Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in Tableau 37 across all four system size categories including very large system supply.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_doumbouya_solar_electric_6ed574cf",
+      "sourceRow": 8,
+      "submittedName": "Doumbouya Solar Electric",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in Tableau 37 across all four system size categories including very large system supply.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ard_equipements_2ec3f797",
+      "sourceRow": 9,
+      "submittedName": "ARD Equipements",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in Tableau 37 across all four system size categories including very large system supply.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sodeper_8194f52b",
+      "sourceRow": 10,
+      "submittedName": "Sodeper",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in Tableau 37 across all four system size categories including very large system supply.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_eg_fimmee_b28c7bd4",
+      "sourceRow": 11,
+      "submittedName": "EG Fimmee",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in Tableau 37 across all four system size categories including very large system supply.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_energicity_3dab80e3",
+      "sourceRow": 12,
+      "submittedName": "Energicity",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as one of the eleven companies selected by MCA-Bénin II under the 2nd OCEF (Facilité d'énergie propre hors réseau) call, contracted to build solar mini-grids over 24 months and operate them for 25 years.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.24haubenin.info/?MCA-selectionne-11-entreprises-pour-executer-les-projects-OCEF"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_comtel_4f06a202",
+      "sourceRow": 13,
+      "submittedName": "Comtel",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the eleven companies selected by MCA-Bénin II under the 2nd OCEF call to construct and operate solar mini-grids in Benin.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.24haubenin.info/?MCA-selectionne-11-entreprises-pour-executer-les-projects-OCEF"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_power_on_94a3db25",
+      "sourceRow": 14,
+      "submittedName": "Power:On",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the eleven companies selected by MCA-Bénin II under the 2nd OCEF call to construct and operate solar mini-grids in Benin. Name spelled 'Power:On' in the source.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.24haubenin.info/?MCA-selectionne-11-entreprises-pour-executer-les-projects-OCEF"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_akuo_energy_1d87db07",
+      "sourceRow": 15,
+      "submittedName": "Akuo Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the eleven companies selected by MCA-Bénin II under the 2nd OCEF call to construct and operate solar mini-grids in Benin.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.24haubenin.info/?MCA-selectionne-11-entreprises-pour-executer-les-projects-OCEF"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_smart_roof_solar_e4600e04",
+      "sourceRow": 16,
+      "submittedName": "Smart Roof Solar",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the eleven companies selected by MCA-Bénin II under the 2nd OCEF call for off-grid electrification projects (mini-grids and/or solar home system distribution).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.24haubenin.info/?MCA-selectionne-11-entreprises-pour-executer-les-projects-OCEF"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_windgen_power_a391b27b",
+      "sourceRow": 17,
+      "submittedName": "WIndGen Power",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the eleven companies selected by MCA-Bénin II under the 2nd OCEF call. Capitalisation 'WIndGen Power' is verbatim from the source and is probably a typo for 'WindGen Power'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.24haubenin.info/?MCA-selectionne-11-entreprises-pour-executer-les-projects-OCEF"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sunkofa_9ea6d941",
+      "sourceRow": 18,
+      "submittedName": "Sunkofa",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the eleven companies selected by MCA-Bénin II under the 2nd OCEF call to construct and operate solar mini-grids in Benin.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.24haubenin.info/?MCA-selectionne-11-entreprises-pour-executer-les-projects-OCEF"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_aress_989ec8e7",
+      "sourceRow": 19,
+      "submittedName": "ARESS",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the eleven companies selected by MCA-Bénin II under the 2nd OCEF call. The ECREEE ROGEP Bénin report independently names ARESS as a leading Beninese manufacturer representative and one of the country's main SHS distributors, offering 'la conception, l'installation et l'exploitation et la maintenance après la vente'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_developer_ipp",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://www.24haubenin.info/?MCA-selectionne-11-entreprises-pour-executer-les-projects-OCEF"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_asemi_3e786b25",
+      "sourceRow": 20,
+      "submittedName": "ASEMI",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the eleven companies selected by MCA-Bénin II under the 2nd OCEF call. The ECREEE ROGEP Bénin report independently names ASEMI as an experienced Beninese wholesaler/retailer and one of the main SHS distributors, offering design, installation and after-sales O&M.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_developer_ipp",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://www.24haubenin.info/?MCA-selectionne-11-entreprises-pour-executer-les-projects-OCEF"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_enerdas_bd46101b",
+      "sourceRow": 21,
+      "submittedName": "Enerdas",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as one of Benin's large wholesaler-retailers and one of the main SHS distributors; one of only two Beninese firms offering plug-and-play systems. Report states these firms 'offrent également généralement des services d'installation et d'F&E pour les produits qu'elles vendent aux clients'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Benin/ECREEE%20ROGEP_Benin_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_soconeme_ad070194",
+      "sourceRow": 22,
+      "submittedName": "Soconeme",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as a Beninese manufacturer representative and one of the country's main solar home system distributors.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Benin/ECREEE%20ROGEP_Benin_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_bio_solar_nergie_plus_2028ef6f",
+      "sourceRow": 23,
+      "submittedName": "Bio Solar Énergie Plus",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among Benin's large wholesaler-retailers and, as 'Bio Solar Energy Plus', one of only two firms in the country offering plug-and-play systems.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Benin/ECREEE%20ROGEP_Benin_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_groupe_atiwib_ca758446",
+      "sourceRow": 24,
+      "submittedName": "groupe Atiwib",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among Benin's large solar companies operating as both wholesaler and retailer: 'les grandes entreprises sont généralement à la fois des grossistes et des détaillants (Ex. Enerdas, Asemi, le groupe Atiwib, Bio Solar Énergie Plus)'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Benin/ECREEE%20ROGEP_Benin_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ego_services_76aa7f0c",
+      "sourceRow": 25,
+      "submittedName": "Ego Services",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "'Ego Services, Ismast Energy et Cetra sont les principaux distributeurs de produits pico solaires dans le pays.' No specific installation evidence beyond the report's general statement about after-sales installation and O&M.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Benin/ECREEE%20ROGEP_Benin_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

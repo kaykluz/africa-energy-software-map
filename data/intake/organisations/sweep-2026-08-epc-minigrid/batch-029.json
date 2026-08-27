@@ -1,0 +1,848 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-029",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_enco_s_n_gal_4cc6dab2",
+      "sourceRow": 1,
+      "submittedName": "ENCO Sénégal",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_transmission_distribution",
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Table 3.1: 'Groupement ENCO Sénégal /ISOFOTON' holds Concession 5 (Kolda-Vélingara, signed 29 July 2013, in force 24 April 2015, 20,500 connections) and Concession 6 (Kaolack-Nioro-Fatick-Gossas, signed 22 Nov 2012, in force 12 Nov 2014, 27,000 connections).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_transmission_distribution",
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://documents1.worldbank.org/curated/en/710071498161444599/pdf/116653-WP-PUBLIC-P150241-36p-Detailed-Case-Study-Senegal.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ss2e_e721dc9e",
+      "sourceRow": 2,
+      "submittedName": "SS2E",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as a private operator recruited under ASER's Gestion Transitoire Déléguée (GTD) programme to manage rural power assets (generators and grid extension) under 25-year affermage contracts; 'SS2E won one of the lots' in the January 2005 procurement. Dated evidence (2005 award, 2017 report).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_om_asset_manager",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://documents1.worldbank.org/curated/en/710071498161444599/pdf/116653-WP-PUBLIC-P150241-36p-Detailed-Case-Study-Senegal.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_equip_plus_666bba7f",
+      "sourceRow": 3,
+      "submittedName": "EQUIP PLUS",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as one of the GTD (Gestion Transitoire Déléguée) delegated operators managing rural power assets for ASER: 'SENELEC did not sign power purchase agreement with two of the GTDs (SS2E and EQUIP PLUS)'. Dated evidence.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_om_asset_manager",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://documents1.worldbank.org/curated/en/710071498161444599/pdf/116653-WP-PUBLIC-P150241-36p-Detailed-Case-Study-Senegal.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_gserm_03dd6b65",
+      "sourceRow": 4,
+      "submittedName": "GSERM",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Bid as 'GSERM/SODIDA' in the January 2005 ASER GTD procurement and 'GSERM won a single lot'; delegated manager of rural power assets under a 25-year affermage contract. Dated evidence.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_om_asset_manager",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://documents1.worldbank.org/curated/en/710071498161444599/pdf/116653-WP-PUBLIC-P150241-36p-Detailed-Case-Study-Senegal.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_nadji_bi_2d765049",
+      "sourceRow": 5,
+      "submittedName": "Nadji-Bi",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the tier-3 companies in Senegal's off-grid supply chain and among the 'fabricants locaux'. Also appears in Tableau 40 as a brand for productive-use and single-module home systems (spelled 'Nadji.bi' there).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_equipment_supplier",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solar_energy_senegal_ses_4b67cb3e",
+      "sourceRow": 6,
+      "submittedName": "Solar Energy Senegal (SES)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Tableau 40 lists 'Solar Energy Senegal (SES)' under single-module distributors, multi-module system distributors and 'Très grand fournisseur de systèmes' (very large system supplier) — the top size category in the table.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_touba_solar_rama_5797f151",
+      "sourceRow": 7,
+      "submittedName": "Touba Solar Rama",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Tableau 40: single-module distributor, multi-module system distributor and 'Très grand fournisseur de systèmes'. The report's prose spells the same firm 'Touba Rama Solar'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_rayon_vert_ec78299d",
+      "sourceRow": 8,
+      "submittedName": "Rayon Vert",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Described in prose as a 'représentant des fabricants' and a distributor; Tableau 40 lists it under single-module, multi-module and 'Très grand fournisseur de systèmes'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_coseer_ddf9bd63",
+      "sourceRow": 9,
+      "submittedName": "COSEER",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in prose as a 'représentant des fabricants'; Tableau 40 lists it (spelled 'Coseer') under pico, single-module, multi-module and 'Très grand fournisseur de systèmes'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_salen_sol_85dd194c",
+      "sourceRow": 10,
+      "submittedName": "Salen Sol",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Tableau 40: single-module distributor, multi-module system distributor and 'Très grand fournisseur de systèmes'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_lectricit_du_rip_d97eda39",
+      "sourceRow": 11,
+      "submittedName": "Électricité du Rip",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Tableau 40: multi-module system distributor and 'Très grand fournisseur de systèmes'. Likely the same entity as the rural electrification project company 'Electricity of Rip' referenced in Senegalese concession reporting, but only the off-grid supply role is evidenced on this page.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer",
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_suntaeg_energy_d89687d6",
+      "sourceRow": 12,
+      "submittedName": "Suntaeg Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in prose among the wholesalers ('grossistes (Suntaeg Energy, Saloum Energy, etc.)'); Tableau 40 lists it under pico, single-module and multi-module distributors. No explicit installation evidence — classify with care.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_idm_services_bcd1ca49",
+      "sourceRow": 13,
+      "submittedName": "IDM Services",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Tableau 40: single-module and multi-module system distributor in Senegal. No explicit installation evidence on this page.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_rosif_b8f62850",
+      "sourceRow": 14,
+      "submittedName": "Rosif",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Tableau 40: multi-module system distributor and 'Très grand fournisseur de systèmes'. The table spells the name inconsistently — 'Rosif' in one row, 'Résif' in the next; treat spelling as unconfirmed.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_saloum_energie_10e41be0",
+      "sourceRow": 15,
+      "submittedName": "Saloum Energie",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in prose among the 'représentants des fabricants' in Senegal's off-grid solar supply chain; also referred to as a wholesaler (spelled 'Saloum Energy' in that sentence).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_futur_tech_c7a78ed3",
+      "sourceRow": 16,
+      "submittedName": "Futur Tech",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in prose both among the 'représentants des fabricants' and among the 'distributeurs (Touba Rama Solar, Rayon Vert, Futur Tech, etc.)'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_leaf_energy_64fc67fb",
+      "sourceRow": 17,
+      "submittedName": "Leaf Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in prose among the 'représentants des fabricants' in Senegal's off-grid solar supply chain.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_soleil_eau_vie_08edba26",
+      "sourceRow": 18,
+      "submittedName": "Soleil-Eau-Vie",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in prose among the 'représentants des fabricants' in Senegal's off-grid solar supply chain.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_palette_aa8d0e5e",
+      "sourceRow": 19,
+      "submittedName": "Palette",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as one of Senegal's local solar manufacturers: 'des fabricants locaux (Bonergie, Nadji Bi et Palette, etc.)'. No installation evidence.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_agt_senegal_622dce88",
+      "sourceRow": 20,
+      "submittedName": "AGT Senegal",
+      "submittedWebsite": "https://www.africagreentec.com",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Africa GreenTec's Senegal subsidiary, headquartered in Dakar and operating in the N'diob region; manufactures Solartainers and Cooltainers for the African market, runs production, logistics and O&M, and deploys solar mini-grid ImpactSites. Plans to equip 50 villages in Senegal.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_installer",
+        "org_role_equipment_supplier",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://www.africagreentec.com/en/presse/africa-greentec-relocates-production-to-senegal/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_yeelen_kura_63f89215",
+      "sourceRow": 21,
+      "submittedName": "Yeelen Kura",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ML",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Case study, 'Yeelen Kura: Mini-grid and solar home systems': launched 2001, operates 15 mini-grids serving over 7,000 households in southern Mali (Sikasso, Ségou, Koulikoro), grids from 30 kWp to 150 kWp; has sold 3,500 solar home systems. Sole shareholder is the Dutch Foundation Rural Energy Services (FRES). Also listed in the report's table 'Decentralised energy providers in Mali'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager",
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-for-development/wp-content/uploads/2017/04/Mobile-for-Development-Utilities-The-potential-of-mobile-for-rural-energy-access-in-Mali.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sinergie_4c9cc54e",
+      "sourceRow": 22,
+      "submittedName": "Sinergie",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ML",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Case study: 'In operation since the late 1990s, Sinergie has worked on hundreds of off- and on-grid projects in over 520 villages', developing solar heating, street lighting, water pumps and cooling with World Bank financial support. Also in the report's table 'Decentralised energy providers in Mali' — service listed as 'On and off-grid projects'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-for-development/wp-content/uploads/2017/04/Mobile-for-Development-Utilities-The-potential-of-mobile-for-rural-energy-access-in-Mali.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sunna_design_54fedc56",
+      "sourceRow": 23,
+      "submittedName": "Sunna Design",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ML",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Case study: 'Sunna Design installs street lights and mini-grids in rural villages of Mali, particularly in southern and central regions'; its mini-grids use a PAYG daily-fee model. Also in the table 'Decentralised energy providers in Mali' — service 'Street lighting and mini-grid'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-for-development/wp-content/uploads/2017/04/Mobile-for-Development-Utilities-The-potential-of-mobile-for-rural-energy-access-in-Mali.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_agt_mali_2c288939",
+      "sourceRow": 24,
+      "submittedName": "AGT Mali",
+      "submittedWebsite": "https://www.africagreentec.com",
+      "submittedHeadquarters": "ML",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Africa GreenTec's Mali subsidiary, founded August 2017, headquartered in Bamako, managing director Alou Keita. Page maps at least 12 ImpactSite (solar mini-grid) installations including Sirakoro, Fanidiama, Djoliba, Bananso, Lambatara, Tambaga, Toukoto, Kaï and Cinzana-Gare.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://www.africagreentec.com/en/where-we-work/mali/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_yeelen_djiguima_fb00b0e7",
+      "sourceRow": 25,
+      "submittedName": "Yeelen Djiguima",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ML",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the main international and regional companies in Mali; distributes Lagazel Kalo pico lamps manufactured in Dédougou (Burkina Faso) through association and cooperative networks, offering both cash and PAYG consumer finance; also manufactures its own solar equipment locally. Report states these companies 'offrent généralement des services d'installation, d'exploitation et de maintenance après-vente'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_equipment_supplier",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Mali/ECREEE%20ROGEP_Mali_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

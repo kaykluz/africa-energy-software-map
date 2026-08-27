@@ -1,0 +1,786 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-001",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_havenhill_synergy_limited_55fd8086",
+      "sourceRow": 1,
+      "submittedName": "Havenhill Synergy Limited",
+      "submittedWebsite": "https://www.havenhillsynergy.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 15 'Mini-grid Permits issued in 2025/Q4' lists 10 permits to Havenhill Synergy Limited (100-800 kW) in Taraba, Benue, Nasarawa and Kwara. NERC permits are issued 'for the construction, operation, and maintenance of mini-grids'. Also holds permits in the 2024/Q1, 2025/Q3 and 2026/Q1 reports; website URL taken from the REAN member directory.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2026/04/2025_Q4-Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_nayo_tropical_technology_limited_d7a21b72",
+      "sourceRow": 2,
+      "submittedName": "Nayo Tropical Technology Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 13 'Mini-grid Permits issued in 2025/Q2' lists a 990 kW mini-grid permit to Nayo Tropical Technology Limited at Lambata, Gurara LGA, Niger State.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2025/10/2025_Q2-Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_husk_power_energy_systems_nig_limited_573d84cd",
+      "sourceRow": 3,
+      "submittedName": "Husk Power Energy Systems Nig Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 13 'Mini-grid Permits issued in 2025/Q2' lists five 110 kW mini-grid permits to Husk Power Energy Systems Nig Limited in Kokona, Lafia, Obi and Nasarawa LGAs, Nasarawa State. Also appears as 'Husk Power Energy System Nigeria Limited' with a 2023/Q4 permit.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2025/10/2025_Q2-Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_nebular_engineering_limited_360f453d",
+      "sourceRow": 4,
+      "submittedName": "Nebular Engineering Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 12 'Mini-grid Permits issued in 2025/Q1' lists all seven permits of the quarter (55-433 kW) to Nebular Engineering Limited, in Nasarawa LGA (Nasarawa State) and Qua'an Pam LGA (Plateau State).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2025/07/2025_Q1_Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_magnificent_catalytic_inclusion_ltd_b79025b8",
+      "sourceRow": 5,
+      "submittedName": "Magnificent Catalytic Inclusion Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 15 'Mini-grid Permits issued in 2025/Q4' lists two 150 kW permits to Magnificent Catalytic Inclusion Ltd in Obi and Okpokwu, Benue State; two further permits appear in the 2026/Q1 report (Delta State).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2026/04/2025_Q4-Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_startimes_smart_energy_nig_ltd_500016e0",
+      "sourceRow": 6,
+      "submittedName": "Startimes Smart Energy Nig Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 15 'Mini-grid Permits issued in 2025/Q4' lists 158 kW (Nasarawa State) and 338 kW (Ikot Abasi, Akwa Ibom) permits to Startimes Smart Energy Nig Ltd; a further 359 kW permit at Bali, Taraba appears in the 2026/Q1 report.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2026/04/2025_Q4-Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_everlink_telesat_network_ltd_03fea7b1",
+      "sourceRow": 7,
+      "submittedName": "Everlink Telesat Network Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 15 'Mini-grid Permits issued in 2025/Q4' lists four permits to Everlink Telesat Network Ltd (50-249 kW) at Ukum (Benue), Burutu and Bomadi (Delta).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2026/04/2025_Q4-Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_we_light_nigeria_limited_efbbd8b7",
+      "sourceRow": 8,
+      "submittedName": "We Light Nigeria Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 15 'Mini-grid Permits issued in 2026/Q1' lists two permits to We Light Nigeria Limited: 44 kW at Yakurr, Cross River State and 99 kW at Baruten, Kwara State.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2026/07/2026_Q1-Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_nxt_grid_nigeria_limited_6e2428cf",
+      "sourceRow": 9,
+      "submittedName": "NXT Grid Nigeria Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 14 'Mini-grid Permits and Registration Certificates issued in 2024/Q1' lists NXT Grid Nigeria Limited under registration certificates. Also appears as 'NxtGrid Nigeria Limited' with three registration certificates (Edo and Ondo States) in the 2023/Q4 report.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/07/2024_Q1-Report_v1YA.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_prince_albert_company_limited_bd936e0a",
+      "sourceRow": 10,
+      "submittedName": "Prince Albert Company Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 14 'Mini-grid Permits and Registration Certificates issued in 2024/Q1' lists Prince Albert Company Limited as a mini-grid registration-certificate holder.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/07/2024_Q1-Report_v1YA.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_metikon_engineering_limited_5ea78754",
+      "sourceRow": 11,
+      "submittedName": "Metikon Engineering Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 13 (2023/Q4) lists two interconnected mini-grid permits of 278.40 kW each to Metikon Engineering Limited in Cross River State.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/04/2023_Q4_Report_Final.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_independent_energy_projects_financial_li_c4fa4461",
+      "sourceRow": 12,
+      "submittedName": "Independent Energy Projects Financial Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 13 (2023/Q4) lists two isolated mini-grid permits to Independent Energy Projects Financial Limited in Plateau State.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/04/2023_Q4_Report_Final.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_international_energy_services_limited_86efc480",
+      "sourceRow": 13,
+      "submittedName": "International Energy Services Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 13 (2023/Q4) lists an isolated mini-grid permit to International Energy Services Limited (Nasarawa State).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/04/2023_Q4_Report_Final.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ashipa_electric_limited_867bf590",
+      "sourceRow": 14,
+      "submittedName": "Ashipa Electric Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 14 'Mini-grid Permits issued in 2023/Q3' lists a 200 kW mini-grid permit to Ashipa Electric Limited in Bayelsa State.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/02/NERCThirdQuarter2023Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_eauxwel_nigeria_limited_22a22eb4",
+      "sourceRow": 15,
+      "submittedName": "Eauxwel Nigeria Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 14 'Mini-grid Permits issued in 2023/Q3' lists a 100 kW mini-grid permit to Eauxwel Nigeria Limited in Abia State.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/02/NERCThirdQuarter2023Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_maskh_nigeria_limited_a5dfb715",
+      "sourceRow": 16,
+      "submittedName": "Maskh Nigeria Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 13 (2023/Q4) lists Maskh Nigeria Limited with mini-grid registration certificates approved for nine sites in Itas, Gadau, Ganjuwa and Katagum LGAs of Bauchi State.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/04/2023_Q4_Report_Final.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_acob_lighting_technology_limited_18157265",
+      "sourceRow": 17,
+      "submittedName": "ACOB Lighting Technology Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria off-grid mini-grid inventory records five installations credited to ACOB Lighting Technology Limited, e.g. '100 kWp Isolated Solar Minigrid - Onipanu Community, Ondo State ... installed in 2024 by ACOB Lighting Technology Limited' and a 50 kW hybrid mini-grid at Makami (2022). NERC's 2023/Q4 report also grants it registration certificates for ten sites in Kauru LGA, Kaduna State (spelled there 'Acob Lightning Technology Limited').",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://elec-t.energymrc.ng/dashboard/off-grid/MiniGridsData"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sholep_energy_limited_4175ae95",
+      "sourceRow": 18,
+      "submittedName": "Sholep Energy Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 13 (2023/Q4) lists Sholep Energy Limited with an isolated mini-grid registration certificate in Osun State.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/04/2023_Q4_Report_Final.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_orahachi_investment_limited_c6ea4fe7",
+      "sourceRow": 19,
+      "submittedName": "Orahachi Investment Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 13 (2023/Q4) lists Orahachi Investment Limited with an isolated mini-grid registration certificate in Kogi State.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/04/2023_Q4_Report_Final.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ochuvus_nigeria_limited_62634ab5",
+      "sourceRow": 20,
+      "submittedName": "Ochuvus Nigeria Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 13 (2023/Q4) lists two isolated mini-grid registration certificates to Ochuvus Nigeria Limited (Niger and Enugu States).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/04/2023_Q4_Report_Final.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_community_energy_social_enterprises_limi_6d59c1da",
+      "sourceRow": 21,
+      "submittedName": "Community Energy Social Enterprises Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 13 (2023/Q4) lists four isolated mini-grid registration certificates (49-74 kW) to Community Energy Social Enterprises Limited in Osun State.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/04/2023_Q4_Report_Final.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sandstream_nigeria_limited_45dda957",
+      "sourceRow": 22,
+      "submittedName": "Sandstream Nigeria Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 13 (2023/Q4) lists a 169 kW isolated mini-grid registration certificate to Sandstream Nigeria Limited in Kano State.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/04/2023_Q4_Report_Final.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_daybreak_power_solutions_limited_0b8d88eb",
+      "sourceRow": 23,
+      "submittedName": "Daybreak Power Solutions Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 10 'Licences issued by the Commission in 2025/Q1' lists three off-grid SOLAR generation licences to Daybreak Power Solutions Limited (2.63 MW Abia, 2.92 MW Ogun, 3.74 MW Aba). The company recurs with off-grid solar licences in the 2023/Q3, 2024/Q1, Q2, Q3, Q4 and 2025/Q4 NERC reports.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2025/07/2025_Q1_Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_tis_renewable_energy_limited_0cdf4e46",
+      "sourceRow": 24,
+      "submittedName": "TIS Renewable Energy Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC Table 11 'Licences issued by the Commission in 2024/Q3' lists a 6.00 MW off-grid generation licence to TIS Renewable Energy Limited, Lagos State.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/12/2024_Q3-Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_auro_nigeria_private_limited_02ffafcd",
+      "sourceRow": 25,
+      "submittedName": "Auro Nigeria Private Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "NERC's 2024/Q2 licence table lists a 1.50 MW off-grid generation licence to Auro Nigeria Private Limited in Kaduna State (also in the 2024/Q1 report).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://nerc.gov.ng/wp-content/uploads/2024/10/NERC_2024_Q2_Report.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

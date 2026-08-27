@@ -1,0 +1,791 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-028",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_shinko_afrika_8f3fad7b",
+      "sourceRow": 1,
+      "submittedName": "SHINKO AFRIKA",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REAZ industry member, 55 Lawley Avenue, Belvedere, Harare. Profile: 'a provider of solar power and water pumping systems incorporated 2019 with the goal to curb the ever increasing water and power supply shortages in the nation'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/shinko-afrika"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_greentec_energy_e06fc10d",
+      "sourceRow": 2,
+      "submittedName": "Greentec Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_clean_cooking",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REAZ industry member. Profile: 'GreenZim Ventures P/L t/a GreenTEC Energy was registered in 2012... a waste-to-energy company operating in Zimbabwe specializing in the construction, installation, repair, and maintenance of biogas systems for both domestic and commercial', plus bio-digesters for wastewater treatment. Named delivery record: 46 biogas digesters in Zibagwe RDC (Kwekwe Rural) in 2023, and digesters at milk collection centres under a USAID grant in 2024.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_clean_cooking",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/greentec-energy-0"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_powerlive_zimbabwe_p_l_0cc77144",
+      "sourceRow": 3,
+      "submittedName": "Powerlive Zimbabwe P/L",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REAZ industry member, 21 Vincent Avenue, Belvedere, Harare. Profile: 'a for profit women-led social enterprise that sells, distributes and installs high-quality decentralized and scalable... Home and Business Energy Systems on Pay As You Go (PAYG) basis to off-grid residential households, small scale farmers and schools in the rural and peri-urban areas of Zimbabwe'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company",
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/powerlive-zimbabwe-pl"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_onyx_earth_private_ltd_f09ee371",
+      "sourceRow": 4,
+      "submittedName": "Onyx Earth Private Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REAZ industry member. Profile: 'a premier construction company based in Harare, Zimbabwe'; its listed services include 'Solar supply & installation' and 'Irrigation equipment installation' alongside wastewater treatment plant construction and roads. Included because of the explicit solar installation service line plus membership of the national renewable energy association; note it is a general construction firm, not a solar pure-play.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/onyx-earth-private-ltd"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_celfre_energy_pvt_ltd_4894d749",
+      "sourceRow": 5,
+      "submittedName": "Celfre Energy Pvt Ltd",
+      "submittedWebsite": "http://celfreenergy.co.zw/",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REAZ industry member, 12 Wycombe Drive, Mount Pleasant, Harare. Profile: started operations 2017, 'a provider of high-quality and affordable renewable energy solutions for productive use... mainly on solar water pumps for sustainable irrigation for small holder farmers, solar powered agro-processing machines and solar refrigeration'. Holds exclusive distributorship of Future Pump solar irrigation units and sells productive-use equipment on Pay As You Go.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/celfre-energy-pvt-ltd"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kumusha_power_e2e89c32",
+      "sourceRow": 6,
+      "submittedName": "Kumusha Power",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REAZ industry member, 12 Maasdorp Avenue, Alexandra Park, Harare. Profile: 'Goodbooks Investments (Private) Limited t/a Kumusha Power', distributing in Zimbabwe since 2010; added d.light Solar Home Systems in 2019 and distributes them through a retail distributor and partner network to rural and peri-urban Zimbabwe.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/kumusha-power"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_nyangani_renewable_energy_f769dabe",
+      "sourceRow": 7,
+      "submittedName": "Nyangani Renewable Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as an industry member of the Renewable Energy Association of Zimbabwe, 21 Mold Crescent, Avondale, Harare, with a named contact. The REAZ member page gives contact details only and no description of activities, so the role could not be established from the source. NEEDS MANUAL CLASSIFICATION.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/nyangani-renewable-energy"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_aurora_energy_5486b440",
+      "sourceRow": 8,
+      "submittedName": "Aurora Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as an industry member of the Renewable Energy Association of Zimbabwe, 1 College Road, Mt Pleasant, Harare, with a named contact and phone numbers. The REAZ member page gives contact details only and no description of activities. NEEDS MANUAL CLASSIFICATION.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/aurora-energy"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_grid_zero_b58411e0",
+      "sourceRow": 9,
+      "submittedName": "Grid Zero",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as an industry member of the Renewable Energy Association of Zimbabwe, 101 Robert Mugabe Rd, Harare, with a named contact. The REAZ member page gives contact details only and no description of activities. NEEDS MANUAL CLASSIFICATION.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/grid-zero"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solar_shack_fd833016",
+      "sourceRow": 10,
+      "submittedName": "Solar Shack",
+      "submittedWebsite": "http://solarshack.co.zw/",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as an industry member of the Renewable Energy Association of Zimbabwe, 21 Glenara Avenue South, Eastlea, Harare, with a named contact and the website above. The REAZ member page gives contact details only and no description of activities. NEEDS MANUAL CLASSIFICATION.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/solar-shack"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_faraday_electrical_engineering_company_4562f609",
+      "sourceRow": 11,
+      "submittedName": "Faraday Electrical Engineering Company",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as an industry member of the Renewable Energy Association of Zimbabwe, 8 Harare Drive, Msasa, Harare. The REAZ member page gives contact details only and no description of activities; the name suggests an electrical engineering contractor and the only energy-sector evidence is the REAZ membership itself. NEEDS MANUAL CLASSIFICATION.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/faraday-electrical-engineering-company"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_neoen_f1368e1b",
+      "sourceRow": 12,
+      "submittedName": "Neoen",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Same article: the 41MWp Metoro solar project 'is being developed and managed by Neoen, a renewable IPP, and is jointly owned by Neoen and EDM through the company Central Solar Metoro'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.esi-africa.com/renewable-energy/solar/efacec-awarded-epc-contract-for-41mwp-plant-in-mozambique/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_enhl_bonatti_9c1cbf03",
+      "sourceRow": 13,
+      "submittedName": "ENHL Bonatti",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "'ENHL Bonatti is pleased to announce it has been awarded the EPC Contract for the installation of a Solar Photovoltaic and Battery System at the Balama Graphite Mine in the Cabo Delgado Province' - 11.25 MWp PV plus 8.5 MW BESS, full turnkey scope (engineering, procurement, construction, commissioning, testing). Described on the page as 'an incorporated Joint Venture between ENH Logistics (a subsidiary of the Mozambican National Oil Company, ENH) and international contractor Bonatti Group'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "https://www.bonattinternational.com/mozambique-enhl-bonatti-signs-an-epc-contract-for-the-balama-mine-hybrid-power-project"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solarcentury_africa_20dcfd89",
+      "sourceRow": 14,
+      "submittedName": "Solarcentury Africa",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Same announcement: 'ENHL Bonatti and Solarcentury Africa also signed a separate agreement relating to the operation & maintenance of the Solar PV Facility for a 2-years period' at the Balama Graphite Mine, Cabo Delgado, Mozambique.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "https://www.bonattinternational.com/mozambique-enhl-bonatti-signs-an-epc-contract-for-the-balama-mine-hybrid-power-project"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_renco_73433cb1",
+      "sourceRow": 15,
+      "submittedName": "Renco",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "RENCO project page for the Mecufi solar park, Mozambique: 26 MW installed, 30 hectares, 200 employees for its construction. Project fields state Client: 'Electricidade de Moçambique', Contractor: 'Renco / Renco Tek', Location: Pemba, with a 25-year land concession held via Central Solar de Mecúfi.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.renco.it/projects/solar-park-mecufi"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_bdd_energia_mocambique_fcf9292f",
+      "sourceRow": 16,
+      "submittedName": "BDD Energia Mocambique",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed under 'IPPs and Mini-grid operators': 'BDD Energia Mocambique - A mini-grid development company supported by REACT SSA. BDD Energia's most recent project is the electrification of the Chiloane island in the Sofala Province. The project consists of the construction of a 130 kWp Solar PV mini-grid system to connect 760 households and 29 businesses.' Page last edited September 2022.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://energypedia.info/wiki/Nano/Mini-Grid_Market_Landscape_in_Mozambique"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_rve_sol_solu_es_de_energia_rural_s_a_918d2154",
+      "sourceRow": 17,
+      "submittedName": "RVE.SOL Soluções de Energia Rural S.A.",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed under 'IPPs and Mini-grid operators': 'RVE.SOL Soluções de Energia Rural S.A. A mini-grid developer and operator Company supported by REACT SSA. Through their project Kudura Mini Grid, RVE.SOL has installed several mini-grids in Kenya and East Africa. They are just starting in Mozambique since 2021.' Also appears in the ALER member list as 'RVE.SOL S.A.'",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://energypedia.info/wiki/Nano/Mini-Grid_Market_Landscape_in_Mozambique"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_mewton_mota_engil_energia_2712dc23",
+      "sourceRow": 18,
+      "submittedName": "Mewton – Mota-Engil Energia",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ALER member directory entry tagged with countries Angola and Moçambique (code 6482) and with service codes 7171 (EPC), 7172 (Instalação de Equipamentos), 7173 (Operação & Manutenção) and 7170 (Promotor de Projectos). Description: 'A Mewton cria valor através do desenvolvimento e implementação de soluções energéticas personalizadas e sustentáveis... desenvolvemos, construímos e operamos soluções personalizadas que vão de 1 a 100MW ou mais.'",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_om_asset_manager",
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://www.aler-energia.org/pt/associados/lista-associados/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_cjr_renewables_dd3a59fe",
+      "sourceRow": 19,
+      "submittedName": "CJR Renewables",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ALER member directory entry tagged with Moçambique (code 6482) among its countries of operation and with service code 7171 (EPC). Description: 'A CJR Renewables é uma empresa de serviços integrados em regime EPC e BoP, especializada na construção de parques eólicos. Opera de forma transversal em todas as fases do processo, incluindo projeto e otimização, construção civil, instalação elétrica, transporte e montagem de aerogeradores.' Note: Portugal-headquartered; the Mozambique link is the associ",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.aler-energia.org/pt/associados/lista-associados/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_epsilon_a0337451",
+      "sourceRow": 20,
+      "submittedName": "Epsilon",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Market table entry: operating in Mozambique since 2017 in Manica, Tete and Zambezia; distributor of Greenlight Planet's Sun King Home 60 and Home 400 systems; over 7,000 units by Oct 2021; PAYGO plus direct sales.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://energypedia.info/wiki/Solar_Home_System_Market_Landscape_in_Mozambique"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_digitech_d70d26c6",
+      "sourceRow": 21,
+      "submittedName": "Digitech",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Market table entry: operating in Mozambique since 2020 in Gaza, Inhambane, Nampula and Cabo Delgado; 4-400 W; distributor; PAYGO plus direct sales.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://energypedia.info/wiki/Solar_Home_System_Market_Landscape_in_Mozambique"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_uranus_solar_fe5d167c",
+      "sourceRow": 22,
+      "submittedName": "Uranus Solar",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Market table entry: operating in Mozambique since 2020; 6-40 W systems; 1,000 units until March 2022; PAYGO financing model.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://energypedia.info/wiki/Solar_Home_System_Market_Landscape_in_Mozambique"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_compagnie_marocco_s_n_galaise_d_electric_c88953da",
+      "sourceRow": 23,
+      "submittedName": "Compagnie Marocco-Sénégalaise d'Electricité (COMASEL)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Table 3.1 'Rural Electrification Concessions under the PPER Program (2015)': operator of Concession 1 (Dagana-Podor-Saint Louis, signed 30 May 2008) and Concession 2 (Louga-Linguère-Kébémer, signed 20 Nov 2009), strategic partner ONEE (Morocco). Report adds COMASEL had obtained ~2,500 solar home systems and uses pre-paid meters for grid-connected clients.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://documents1.worldbank.org/curated/en/710071498161444599/pdf/116653-WP-PUBLIC-P150241-36p-Detailed-Case-Study-Senegal.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_energie_rural_africaine_era_150af512",
+      "sourceRow": 24,
+      "submittedName": "Energie Rural Africaine (ERA)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Table 3.1: operator of Concession 3 (Kaffrine-Tamba-Kedougou, signed 29 June 2011, in force 24 Dec 2013), strategic partner EDF; target 18,001 connections. Report states 'The concessionaire ERA is extending the grid using cement poles' and that ERA had obtained ~1,500 solar home systems. Name spelled 'Energie Rural Africaine' in the source.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://documents1.worldbank.org/curated/en/710071498161444599/pdf/116653-WP-PUBLIC-P150241-36p-Detailed-Case-Study-Senegal.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_scl_energie_solutions_7cc691fb",
+      "sourceRow": 25,
+      "submittedName": "SCL Energie Solutions",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_transmission_distribution",
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Table 3.1: operator of Concession 4 (Mbour, signed 9 Nov 2012) as consortium 'SCL (Energie solutions, STEG International Services, les Câbleries du Sénégal, COSELEC)'; target 7,500 connections. Report states 'The concessionaire SCL Energie Solutions is installing single phase grid extensions' and that it uses pre-paid meters.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_transmission_distribution",
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://documents1.worldbank.org/curated/en/710071498161444599/pdf/116653-WP-PUBLIC-P150241-36p-Detailed-Case-Study-Senegal.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

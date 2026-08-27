@@ -1,0 +1,802 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-003",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_dvs_reliable_energy_limited_37c2cfcd",
+      "sourceRow": 1,
+      "submittedName": "DVS Reliable Energy Limited",
+      "submittedWebsite": "https://dvsreliableenergy.com/",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site: residential, 'Commercial and Industrial Solar' and off-grid systems, plus 'Expert upkeep and repair services'; 'end-to-end solar solutions'; 700+ installations, offices in Lagos, Ibadan and Osogbo. Listed as 'DVS Reliable Energy' in the REAN member directory (Surulere, Lagos).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://dvsreliableenergy.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_e_phaim_energy_limited_bfc6ce92",
+      "sourceRow": 2,
+      "submittedName": "e-Phaim Energy Limited",
+      "submittedWebsite": "https://ephaimenergy.com.ng",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site: 'As a System Integrator, we are involved with our Clients from the first stage of Project Development up to the installation and maintenance'; 'Over 2.5MWp Solar Hybrid System deployed nationwide'. Listed in the REAN member directory (Gaduwa Estate, Abuja).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_system_integrator",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://ephaimenergy.com.ng"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_saf_aga_renewable_energy_ltd_4e23d2bf",
+      "sourceRow": 3,
+      "submittedName": "Saf-Aga Renewable Energy Ltd.",
+      "submittedWebsite": "https://safagaenergy.com/",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site lists 'Solar Mini-Grid' setup and installation, productive-use equipment (solar pumps, grinding machines, electric tricycles), C&I lithium/inverter systems, solar street lights and 'Energy As a Service'. Listed as 'Saf-Aga Renewable Energy Ltd.' in the REAN member directory (Wuse Zone 5, Abuja).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_developer_ipp",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://safagaenergy.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sao_energy_services_africa_ltd_a0213f8c",
+      "sourceRow": 4,
+      "submittedName": "SAO ENERGY SERVICES AFRICA LTD",
+      "submittedWebsite": "http://www.saoenergy.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the REAN member directory (Maitama, Abuja) with website saoenergy.com. That site describes solar, hydro, gas and biomass 'energy solutions', 'Energy-As-A-Service', and project delivery for healthcare facility electrification and communities in sub-Saharan Africa.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/2/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_greenvale_energy_ltd_797cee81",
+      "sourceRow": 5,
+      "submittedName": "Greenvale Energy Ltd",
+      "submittedWebsite": "http://www.greenvaleenergy.com.ng",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site: 'a reputable indigenous Nigerian energy services company and systems integrator, providing comprehensive, end-to-end solutions'; residential and commercial solar installation, maintenance and monitoring, plus engineering and construction. Listed as 'GREENVALE ENERGY LTD' in the REAN member directory (CBD, Abuja).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_system_integrator",
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "http://www.greenvaleenergy.com.ng"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_goshbeth_limited_f80a0902",
+      "sourceRow": 6,
+      "submittedName": "Goshbeth Limited",
+      "submittedWebsite": "http://www.goshbethlimited.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site: 'Goshbeth Limited is a renewable energy firm based in Abuja focused on delivering solar power systems for homes, businesses, and institutions'; solar design and installation, maintenance and repairs, energy audits; portfolio includes a 325 kW system for an educational institution. Listed as 'GOSHBETH LIMITED' in the REAN member directory (Lokogoma, Abuja).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "http://www.goshbethlimited.com"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_primetech_energy_ltd_c35a062c",
+      "sourceRow": 7,
+      "submittedName": "Primetech Energy Ltd.",
+      "submittedWebsite": "http://www.primetechenergy.com.ng",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site lists site assessment, system installation, mini-grid hybrid solar systems and quarterly inverter/battery maintenance; offices in Kano, Abuja and Kaduna with projects at Ahmadu Bello University. Listed as 'PrimeTech Energy limited' in the REAN member directory (Tarauni, Kano).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "http://www.primetechenergy.com.ng"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_vawell_power_solutions_limited_32d32bec",
+      "sourceRow": 8,
+      "submittedName": "Vawell Power Solutions Limited",
+      "submittedWebsite": "http://www.vawellpower.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_transmission_distribution",
+        "org_segment_emobility"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as 'Vawell Power Solutions Limited' in the REAN member directory (Abule-Egba, Lagos). Its site states: 'Solar power systems (homes, businesses, institutions); Large-scale electrical installations (factories, estates, schools, hospitals)', plus transformer supply/repair, EV charging infrastructure, smart metering and turnkey projects; 300+ projects since 2019.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_transmission_distribution",
+        "org_segment_emobility"
+      ],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/3/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ultra_rays_limited_caccaa06",
+      "sourceRow": 9,
+      "submittedName": "Ultra Rays Limited",
+      "submittedWebsite": "http://www.ultrarays.org",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as 'Ultra Rays Limited' in the REAN member directory (Ikate Elegushi, Lagos). Its site (as 'Ultra Rays Ltd') lists grid-tied, hybrid and off-grid solar installation and maintenance, electrical engineering services, energy audits and industrial/commercial power.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/3/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_treffen_renewable_energy_investment_ltd_a1a892f2",
+      "sourceRow": 10,
+      "submittedName": "Treffen Renewable Energy Investment Ltd",
+      "submittedWebsite": "https://treffen.ng",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as 'Treffen Renewable Energy Investment Ltd' in the REAN member directory. Its site (Treffen Renewable Energy Investment Limited, TREIL) states 'Solar Home systems energy audits, solar power design, Installation and maintenance', turn-key delivery, and close to 1 MW installed.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_om_asset_manager",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/3/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_fourier_energy_limited_038f0af4",
+      "sourceRow": 11,
+      "submittedName": "FOURIER ENERGY LIMITED",
+      "submittedWebsite": "http://www.fouriersolar.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as 'FOURIER ENERGY LIMITED' in the REAN member directory (Dei Dei, Abuja). Its site (Fourier Solar Energy) states 'Sales, Installation and Services of Solar Panels and Accessories', with professional installation and post-installation maintenance and monitoring.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_brightaic_green_technologies_limited_ef4380f3",
+      "sourceRow": 12,
+      "submittedName": "Brightaic Green Technologies Limited",
+      "submittedWebsite": "http://www.brightaicgt.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_emobility"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as 'Brightaic Green Technologies Limited' in the REAN member directory (Lekki, Lagos). Its site lists solar installation systems for homes and businesses, wholesale solar panel distribution (300-615 W) and EV charging infrastructure.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_emobility"
+      ],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_energy_vision_nigeria_limited_c5c6e0a3",
+      "sourceRow": 13,
+      "submittedName": "ENERGY VISION NIGERIA LIMITED",
+      "submittedWebsite": "https://genergy.vision/",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as 'ENERGY VISION NIGERIA LIMITED' in the REAN member directory (Victoria Island, Lagos). Its site describes an ESCO offering 'Energy as a Service (EaaS) business models' for telecom infrastructure - hybrid generation and storage, remote monitoring, preventive maintenance - managing 'over 11,000 sites'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_zagus_power_systems_limited_f044297d",
+      "sourceRow": 14,
+      "submittedName": "Zagus Power Systems Limited",
+      "submittedWebsite": "http://www.zaguspower.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site: 'supplied, installed, and maintained critical power solutions' - UPS systems, voltage stabilisers, energy storage and electrical infrastructure; exclusive distributor of Zektron products in Nigeria. Listed in the REAN member directory (Ikeja, Lagos).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "http://www.zaguspower.com"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_smartace_nigeria_limited_8cbb36df",
+      "sourceRow": 15,
+      "submittedName": "SMARTACE NIGERIA LIMITED",
+      "submittedWebsite": "https://smartace.org/",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as 'SMARTACE NIGERIA LIMITED' in the REAN member directory (Surulere, Lagos). Its site states: 'We specialize in the sale, supply, and installation of world-class power infrastructure, including inverters, inverter batteries, solar panels, UPS systems, and stabilizers', and lists Operation & Maintenance. Note the same company also sells automobiles.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/2/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_lpv_technologies_c267d52d",
+      "sourceRow": 16,
+      "submittedName": "LPV Technologies",
+      "submittedWebsite": "https://lpvtechnologies.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site: vertically integrated Lagos-based solar panel manufacturer with a 200 MW semi-automated line producing PERC/TOPCon modules, supplying mini-grid projects, dealers/installers and public-sector procurement. Listed as 'LPV Technologies' in the REAN member directory (Ikoyi, Lagos). Included as an equipment supplier/manufacturer, not an installer.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://lpvtechnologies.com"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_uwana_energy_nigeria_limited_3dee356e",
+      "sourceRow": 17,
+      "submittedName": "UWANA Energy Nigeria Limited",
+      "submittedWebsite": "https://uwanaconnect.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Own site (RC 1653731): 'Nigeria's most trusted solar marketplace. We connect homeowners and businesses with the right solar system, verified installers, and flexible financing', with a 'Finance -> Install -> Support' model. Listed as 'UWANA Energy Nigeria Limited' in the REAN member directory (Ikoyi, Lagos). It brokers rather than performs installation.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://uwanaconnect.com"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_cosol_energy_solutions_limited_585eaa17",
+      "sourceRow": 18,
+      "submittedName": "COSOL ENERGY SOLUTIONS LIMITED",
+      "submittedWebsite": "http://www.tergoenergy.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a member company in the REAN (Renewable Energy Association of Nigeria) directory, Victoria Island, Lagos, with website tergoenergy.com. The directory does not state the member's role, and the site was not opened - role needs manual classification.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ascend_systems_limited_abuja_8e669927",
+      "sourceRow": 19,
+      "submittedName": "Ascend Systems Limited (Abuja)",
+      "submittedWebsite": "http://www.ascendsystems.ng",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Duplicate-safe REAN directory record for Ascend Systems Limited, Suite FF002 Neighbourhood Centre, Area 3, Garki, Abuja - same company as the ascendsystems.ng entry above; merge on ingest.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_areli_power_international_12d2c087",
+      "sourceRow": 20,
+      "submittedName": "Areli Power International",
+      "submittedWebsite": "http://arelipower.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a member company in the REAN directory (Victoria Garden City, Lagos) with website arelipower.com. Site returned HTTP 503 so the role could not be verified.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_novarick_renewable_energy_center_dc806ecf",
+      "sourceRow": 21,
+      "submittedName": "NOVARICK (RENEWABLE ENERGY CENTER)",
+      "submittedWebsite": "http://renewableenergycentre.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a member company in the REAN directory (Lekki, Lagos). Its site is behind a bot-verification interstitial, so the role could not be verified.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/2/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_lekki_solar_company_limited_9114158d",
+      "sourceRow": 22,
+      "submittedName": "LEKKI SOLAR COMPANY LIMITED",
+      "submittedWebsite": "http://www.lekkisolar.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a member company in the REAN directory (Ikota Shopping Complex, VGC, Lagos). Its site rendered only a tagline, so the role could not be verified.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/2/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_premplus_limited_19119c2a",
+      "sourceRow": 23,
+      "submittedName": "Premplus Limited",
+      "submittedWebsite": "https://www.premplus.com.ng/",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a member company in the REAN directory (Area 11, Garki, Abuja). Its site rendered only the tagline 'Empowering Energy Solutions', so the role could not be verified.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/2/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sunfi_technology_solutions_limited_2c96ccc5",
+      "sourceRow": 24,
+      "submittedName": "SunFi Technology Solutions Limited.",
+      "submittedWebsite": "https://www.sunfi.co",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a member company in the REAN directory (Oniru, Lekki, Lagos) with website sunfi.co. The site returned no readable content, so the role could not be verified.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/3/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_greenstreak_energies_limited_a1055fce",
+      "sourceRow": 25,
+      "submittedName": "GreenStreak Energies Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a member company in the REAN directory (Banana Island, Lagos). The website REAN gives (greenstreakenergies.com) no longer resolves, so no website is recorded and the role could not be verified.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

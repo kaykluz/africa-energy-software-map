@@ -1,0 +1,810 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-032",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_cetra_6fa12145",
+      "sourceRow": 1,
+      "submittedName": "Cetra",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as one of the three leading distributors of pico solar products in Benin, alongside Ego Services and Ismast Energy.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Benin/ECREEE%20ROGEP_Benin_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_e2ie_entreprise_ivoirienne_d_int_gration_0bff12c2",
+      "sourceRow": 2,
+      "submittedName": "E2IE (Entreprise Ivoirienne d'Intégration Energétique)",
+      "submittedWebsite": "https://www.e2ie-afrique.com",
+      "submittedHeadquarters": "CI",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use",
+        "org_segment_efficiency_demand"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SARL founded 2016, based in Cocody, Abidjan, with projects across West and Central Africa. Site states 'Etude, fourniture et installation d'équipements d'électricité solaire et pompages solaires de 1,5kw jusqu'à plusieurs Mégawatts', ~2 MWc of solar installed in Côte d'Ivoire and the sub-region, and over 60 PV sites rehabilitated in Côte d'Ivoire. Also does ISO 50001 energy auditing, LV/MV electrical installation and civil works.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_system_integrator",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use",
+        "org_segment_efficiency_demand"
+      ],
+      "sourceLeads": [
+        "https://www.e2ie-afrique.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ad_solar_sarl_6cf1d639",
+      "sourceRow": 3,
+      "submittedName": "AD Solar SARL",
+      "submittedWebsite": "https://adsolar.org",
+      "submittedHeadquarters": "CI",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Company installation page: performs solar installations including mini-grids, residential systems, semi-industrial and industrial installations, solar water heaters and solar pumping, in Côte d'Ivoire. Describes itself as 'pionnier de la promotion des energies renouvelables en Côte d'Ivoire'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://adsolar.org/installation-solaire"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sys_energies_4e461b99",
+      "sourceRow": 4,
+      "submittedName": "SYS ENERGIES",
+      "submittedWebsite": "https://www.sysenergies.com",
+      "submittedHeadquarters": "CI",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage",
+        "org_segment_efficiency_demand"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Headquartered in Abidjan with a regional office in Bouaké; 'Intervention prioritaire sur toute la Côte d'Ivoire'. Installs PV systems for residential and industrial clients (grid-connected or isolated), battery storage, solar street and urban lighting, and provides electrical and solar maintenance and energy audits.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage",
+        "org_segment_efficiency_demand"
+      ],
+      "sourceLeads": [
+        "https://www.sysenergies.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ciprel_compagnie_ivoirienne_de_productio_cae5dff5",
+      "sourceRow": 5,
+      "submittedName": "CIPREL (Compagnie Ivoirienne de Production d'Electricité)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "CI",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed by the Ivorian electricity regulator ANARE-CI as an independent power producer: convention signed 20 July 1994 for construction, operation and transfer of a thermal power plant; five units totalling ~288 MW; gas-fired with HVO backup; minimum 2,154 GWh/yr under a take-or-pay obligation. Thermal, not solar.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://anare.ci/espaces-operateurs-prives/les-producteurs-independants-delectricite/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_azito_energie_69b9cfab",
+      "sourceRow": 6,
+      "submittedName": "AZITO ENERGIE",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "CI",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed by ANARE-CI as an independent power producer: BOOT concession convention signed 5 September 1997 for 24 years, Azito thermal plant, three phases totalling ~450 MW, gas-fired with DDO backup. The regulator notes operations are delegated to a separate entity, AZITO O&M. Thermal, not solar.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://anare.ci/espaces-operateurs-prives/les-producteurs-independants-delectricite/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sewto_c791e6a1",
+      "sourceRow": 7,
+      "submittedName": "Sewto",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV+ labelled solar installer (AMEE label)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_unimagec_7d87ca4b",
+      "sourceRow": 8,
+      "submittedName": "UNIMAGEC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV+ and Pompage Solaire labelled installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_thephsol_14a8007b",
+      "sourceRow": 9,
+      "submittedName": "Thephsol",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV+ labelled solar installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solarexport_0119a802",
+      "sourceRow": 10,
+      "submittedName": "Solarexport",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV+ labelled installer; also listed in AMISOLE as SOLAR EXPORT MAROC",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_schiele_dd45c2ca",
+      "sourceRow": 11,
+      "submittedName": "Schiele",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV+ labelled solar installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_lotusun_e1d53311",
+      "sourceRow": 12,
+      "submittedName": "Lotusun",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV+ labelled solar installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_fadesol_08a30295",
+      "sourceRow": 13,
+      "submittedName": "Fadesol",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV+ labelled solar installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_coreas_high_tech_fb776a98",
+      "sourceRow": 14,
+      "submittedName": "Coreas High Tech",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV+ and Pompage Solaire labelled; Smart City 240, Zenata 20610",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_cmgp_00077ddb",
+      "sourceRow": 15,
+      "submittedName": "CMGP",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV+ and Pompage Solaire labelled; AMISOLE member (irrigation + solar install)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_batitherm_7ffe55e3",
+      "sourceRow": 16,
+      "submittedName": "BATITHERM",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV+ labelled solar installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_badox_90eaa67a",
+      "sourceRow": 17,
+      "submittedName": "BADOX",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV+ labelled solar installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_a_e_p_african_electrique_power_0cb0879e",
+      "sourceRow": 18,
+      "submittedName": "A.E.P (African Electrique Power)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV+ labelled solar installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solaire_plus_f4017b2c",
+      "sourceRow": 19,
+      "submittedName": "SOLAIRE PLUS",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV+ and Pompage Solaire labelled installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_caping_groupe_em_energie_beef79fc",
+      "sourceRow": 20,
+      "submittedName": "CAPING -Groupe EM Energie",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV+ labelled solar installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_adiwatt_afrique_53bc8552",
+      "sourceRow": 21,
+      "submittedName": "Adiwatt Afrique",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV, PV+ and Pompage Solaire labelled; also AMISOLE member",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_neveroil_maroc_sarl_5425fc0b",
+      "sourceRow": 22,
+      "submittedName": "NEVEROIL MAROC SARL",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV+ labelled solar installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solam_b3a83d9a",
+      "sourceRow": 23,
+      "submittedName": "SOLAM",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV+ and Pompage Solaire labelled installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_greenyellow_morocco_2fbd4dcd",
+      "sourceRow": 24,
+      "submittedName": "GreenYellow Morocco",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Taqa Pro PV+ labelled; AMISOLE member for PV installation and energy efficiency",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_econosol_1c3033ff",
+      "sourceRow": 25,
+      "submittedName": "Econosol",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as Taqa Pro PV+ labelled solar installer",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://taqapro.ma/entreprises-labellisees-taqapro/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

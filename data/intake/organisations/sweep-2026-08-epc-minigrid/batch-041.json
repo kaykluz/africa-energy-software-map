@@ -1,0 +1,782 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-041",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_record_4daf85bf",
+      "sourceRow": 1,
+      "submittedName": "رابتور للتوريدات الهندسية و المقاولات",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Raptor Engineering Supplies & Contracting; domain raptor-es.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_bbb8413f",
+      "sourceRow": 2,
+      "submittedName": "الشركة الهندسية لخدمات المياة وحفر الابار",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Engineering Co. for water services and well drilling (solar pumping); domain hndcya-pumps.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_6eb3eff2",
+      "sourceRow": 3,
+      "submittedName": "ايكوجن للابتكارات",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; EcoGen Innovations; domain ecogeninnvov.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_7cb297ab",
+      "sourceRow": 4,
+      "submittedName": "الشركة المصرية للطاقة الشمسية",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Egyptian Solar Energy Company",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_39e56abc",
+      "sourceRow": 5,
+      "submittedName": "إيكوتك للأعمال والتجارة",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; EcoTech for Business & Trade; domain ecotecheg.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_b85176c5",
+      "sourceRow": 6,
+      "submittedName": "اونيرا لأنظمة الطاقة",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Onera Systems; domain onerasystems.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_602dd88f",
+      "sourceRow": 7,
+      "submittedName": "تومورو سولار",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Tomorrow Solar; domain tomorrowsolar.com.eg",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_4d03a93b",
+      "sourceRow": 8,
+      "submittedName": "سولاريس للحلول المبتكرة",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Solaris Innovative Solutions; domain solaris-eg.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_41a059e5",
+      "sourceRow": 9,
+      "submittedName": "تسلا باور ايجيبت",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Tesla Power Egypt; domain tesla-egypt.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_cb4c75b6",
+      "sourceRow": 10,
+      "submittedName": "المصرية لمشروعات الطاقة والتبريد",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_efficiency_demand"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Egyptian Co. for Energy & Cooling Projects; domain gascool-eg.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_efficiency_demand"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_72070362",
+      "sourceRow": 11,
+      "submittedName": "الشركة الدولية للتجارة والتنمية الإقتصادية أشمند",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Ashmand International; domain ashmand.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_f78279f4",
+      "sourceRow": 12,
+      "submittedName": "بدائل للطاقة الشمسية والاستيراد والتصدير",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Badael for Solar Energy",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_46f01b02",
+      "sourceRow": 13,
+      "submittedName": "الأفضل للطاقة الشمسية",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Best Solar",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_7813156c",
+      "sourceRow": 14,
+      "submittedName": "حلول الطاقة لتوليد الكهرباء",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Energy Solutions for Power Generation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_c8845c9e",
+      "sourceRow": 15,
+      "submittedName": "العالمية لأنظمة الطاقة المتجددة",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; International Renewable Energy Systems",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_416e74bb",
+      "sourceRow": 16,
+      "submittedName": "إمداد لخدمات الطاقة الشمسية",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Emdad Solar Energy Services; domain emdad-energy.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_194715f3",
+      "sourceRow": 17,
+      "submittedName": "الرؤية المتقدمة للتنمية",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Advanced Vision for Development; domain adv-vision.co",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_2719b0c3",
+      "sourceRow": 18,
+      "submittedName": "بنها للصناعات الإلكترونية",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Benha Electronics Industries; domain katron.com.eg",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_18ff6a50",
+      "sourceRow": 19,
+      "submittedName": "الشركة الهندسية لخدمات الطاقة الشمسية",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Engineering Co. for Solar Energy Services",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_700f315f",
+      "sourceRow": 20,
+      "submittedName": "اندروميدا لاعمال الطاقة الشمسية",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Andromeda for Solar Energy Works; contact domain karmsolar.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_f9bb18b8",
+      "sourceRow": 21,
+      "submittedName": "مكتب أوروبا للمقاولات الكهروميكانيكية",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Europe Office for Electromechanical Contracting; domain europesolar.org",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_76fabab0",
+      "sourceRow": 22,
+      "submittedName": "الكرم لبيع وتوزيع الكهرباء",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; KarmSolar electricity sale and distribution arm; contact domain karmsolar.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_8cb6995d",
+      "sourceRow": 23,
+      "submittedName": "شركة العمدة للطاقة الشمسية والتجاره",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; El Omda for Solar Energy & Trade",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_e486d43e",
+      "sourceRow": 24,
+      "submittedName": "أجرى سولار",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; AgriSolar Egypt; domain agrisolar-eg.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_954fe34c",
+      "sourceRow": 25,
+      "submittedName": "النصر سولر",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Golden-tier PV-Hub accreditation; Nasr Solar; domain nasrsolar.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9048&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

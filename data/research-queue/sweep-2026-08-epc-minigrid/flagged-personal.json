@@ -1,0 +1,327 @@
+[
+  {
+    "name": "Baobab Plus",
+    "sourceUrl": "https://nep.rea.gov.ng/posts/Press_Release_First_DARES_Signing.html",
+    "country": "NG"
+  },
+  {
+    "name": "GREENLIGHT PLANET KENYA",
+    "sourceUrl": "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf",
+    "country": "KE"
+  },
+  {
+    "name": "BBOXX CAPITAL KENYA",
+    "sourceUrl": "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf",
+    "country": "KE"
+  },
+  {
+    "name": "ACCESS AND MOVE",
+    "sourceUrl": "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf",
+    "country": "KE"
+  },
+  {
+    "name": "Dr H E Maepa Institute (Pty) Ltd",
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "country": "ZA"
+  },
+  {
+    "name": "DY AND SONS",
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "country": "ZA"
+  },
+  {
+    "name": "Green Light City",
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "country": "ZA"
+  },
+  {
+    "name": "Mr Sola Installations Pty Ltd",
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "country": "ZA"
+  },
+  {
+    "name": "Nashua Mpumalanga",
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "country": "ZA"
+  },
+  {
+    "name": "Newthings Lefatshe",
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "country": "ZA"
+  },
+  {
+    "name": "Switch To Green",
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "country": "ZA"
+  },
+  {
+    "name": "Terra Firma",
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "country": "ZA"
+  },
+  {
+    "name": "Thatenda M BusinessEntreprise",
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "country": "ZA"
+  },
+  {
+    "name": "Voltage Master",
+    "sourceUrl": "https://pvgreencard.co.za/app/directory/",
+    "country": "ZA"
+  },
+  {
+    "name": "Upwind Ayitepa",
+    "sourceUrl": "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Provisional%20Wholesale%20Supply%20and%20Generation%20License%20Holders/8",
+    "country": "GH"
+  },
+  {
+    "name": "Grean World",
+    "sourceUrl": "https://eseda.net/our-members/",
+    "country": "ET"
+  },
+  {
+    "name": "Blue Sky",
+    "sourceUrl": "https://www.trade.gov/country-commercial-guides/somalia-energy-and-electricity",
+    "country": "SO"
+  },
+  {
+    "name": "Switch ACDC",
+    "sourceUrl": "https://siaz.co.zm/wp-json/wp/v2/memberspotlight?per_page=100",
+    "country": "ZM"
+  },
+  {
+    "name": "Greenlight Planet Zambia",
+    "sourceUrl": "https://beyondthegrid.africa/our-projects/",
+    "country": "ZM"
+  },
+  {
+    "name": "SHINKO AFRIKA",
+    "sourceUrl": "https://reaz.co.zw/members/shinko-afrika",
+    "country": "ZW"
+  },
+  {
+    "name": "Grid Zero",
+    "sourceUrl": "https://reaz.co.zw/members/grid-zero",
+    "country": "ZW"
+  },
+  {
+    "name": "ENHL Bonatti",
+    "sourceUrl": "https://www.bonattinternational.com/mozambique-enhl-bonatti-signs-an-epc-contract-for-the-balama-mine-hybrid-power-project",
+    "country": "MZ"
+  },
+  {
+    "name": "BDD Energia Mocambique",
+    "sourceUrl": "https://energypedia.info/wiki/Nano/Mini-Grid_Market_Landscape_in_Mozambique",
+    "country": "MZ"
+  },
+  {
+    "name": "EQUIP PLUS",
+    "sourceUrl": "https://documents1.worldbank.org/curated/en/710071498161444599/pdf/116653-WP-PUBLIC-P150241-36p-Detailed-Case-Study-Senegal.pdf",
+    "country": "SN"
+  },
+  {
+    "name": "Rayon Vert",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf",
+    "country": "SN"
+  },
+  {
+    "name": "Salen Sol",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Senegal/ECREEE%20ROGEP_Senegal_Final%20Report_FR.pdf",
+    "country": "SN"
+  },
+  {
+    "name": "AGT Senegal",
+    "sourceUrl": "https://www.africagreentec.com/en/presse/africa-greentec-relocates-production-to-senegal/",
+    "country": "SN"
+  },
+  {
+    "name": "Yeelen Kura",
+    "sourceUrl": "https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-for-development/wp-content/uploads/2017/04/Mobile-for-Development-Utilities-The-potential-of-mobile-for-rural-energy-access-in-Mali.pdf",
+    "country": "ML"
+  },
+  {
+    "name": "AGT Mali",
+    "sourceUrl": "https://www.africagreentec.com/en/where-we-work/mali/",
+    "country": "ML"
+  },
+  {
+    "name": "Yeelen Djiguima",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Mali/ECREEE%20ROGEP_Mali_Final%20Report_FR.pdf",
+    "country": "ML"
+  },
+  {
+    "name": "Atlas Electronique",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Mali/ECREEE%20ROGEP_Mali_Final%20Report_FR.pdf",
+    "country": "ML"
+  },
+  {
+    "name": "Soninkara Solaire",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Mali/ECREEE%20ROGEP_Mali_Final%20Report_FR.pdf",
+    "country": "ML"
+  },
+  {
+    "name": "SIREA Afrique",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Burkina%20Faso/ECREEE%20ROGEP_Burkina%20Faso_Final%20Report_FR.pdf",
+    "country": "BF"
+  },
+  {
+    "name": "ETS Kamab",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf",
+    "country": "GN"
+  },
+  {
+    "name": "BH Soger",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf",
+    "country": "GN"
+  },
+  {
+    "name": "My Cebel Solaire",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf",
+    "country": "GN"
+  },
+  {
+    "name": "ARD Equipements",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf",
+    "country": "GN"
+  },
+  {
+    "name": "EG Fimmee",
+    "sourceUrl": "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf",
+    "country": "GN"
+  },
+  {
+    "name": "SOLAIRE PLUS",
+    "sourceUrl": "https://taqapro.ma/entreprises-labellisees-taqapro/",
+    "country": "MA"
+  },
+  {
+    "name": "Adiwatt Afrique",
+    "sourceUrl": "https://taqapro.ma/entreprises-labellisees-taqapro/",
+    "country": "MA"
+  },
+  {
+    "name": "GreenYellow Morocco",
+    "sourceUrl": "https://taqapro.ma/entreprises-labellisees-taqapro/",
+    "country": "MA"
+  },
+  {
+    "name": "AFRIC HYDROGENE",
+    "sourceUrl": "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/",
+    "country": "MA"
+  },
+  {
+    "name": "GAEPPS IRRIL",
+    "sourceUrl": "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/",
+    "country": "MA"
+  },
+  {
+    "name": "INGESMA MAROC",
+    "sourceUrl": "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/",
+    "country": "MA"
+  },
+  {
+    "name": "POLYTEC ITS",
+    "sourceUrl": "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/",
+    "country": "MA"
+  },
+  {
+    "name": "QAIR MAROC",
+    "sourceUrl": "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/",
+    "country": "MA"
+  },
+  {
+    "name": "SMART ELECTROTEC",
+    "sourceUrl": "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/",
+    "country": "MA"
+  },
+  {
+    "name": "TELEPSI MAROC NEGOCE",
+    "sourceUrl": "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/",
+    "country": "MA"
+  },
+  {
+    "name": "VOLTALIA MAROC",
+    "sourceUrl": "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/",
+    "country": "MA"
+  },
+  {
+    "name": "ARSOLAIRE Ingenierie",
+    "sourceUrl": "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf",
+    "country": "TN"
+  },
+  {
+    "name": "Cap Sud Tunisie",
+    "sourceUrl": "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf",
+    "country": "TN"
+  },
+  {
+    "name": "TECHNO SUN",
+    "sourceUrl": "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf",
+    "country": "TN"
+  },
+  {
+    "name": "Electro Rapide",
+    "sourceUrl": "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf",
+    "country": "TN"
+  },
+  {
+    "name": "STE SOMABE",
+    "sourceUrl": "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf",
+    "country": "TN"
+  },
+  {
+    "name": "ENERSUN TUNISIA",
+    "sourceUrl": "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf",
+    "country": "TN"
+  },
+  {
+    "name": "MES Distribution",
+    "sourceUrl": "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf",
+    "country": "TN"
+  },
+  {
+    "name": "IM Electrique",
+    "sourceUrl": "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf",
+    "country": "TN"
+  },
+  {
+    "name": "Clean Enery Sources",
+    "sourceUrl": "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf",
+    "country": "TN"
+  },
+  {
+    "name": "La Reine Solaire",
+    "sourceUrl": "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf",
+    "country": "TN"
+  },
+  {
+    "name": "BMI PV",
+    "sourceUrl": "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf",
+    "country": "TN"
+  },
+  {
+    "name": "Volto Green Tunisia",
+    "sourceUrl": "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf",
+    "country": "TN"
+  },
+  {
+    "name": "Cosider Canalisation",
+    "sourceUrl": "https://algerie-eco.com/2023/11/03/projet-2000-mw-attribution-provisoire-des-marches/",
+    "country": "DZ"
+  },
+  {
+    "name": "EURL Hamdi",
+    "sourceUrl": "https://algerie-eco.com/2023/11/03/projet-2000-mw-attribution-provisoire-des-marches/",
+    "country": "DZ"
+  },
+  {
+    "name": "Ozgun Insaat-Zergoun",
+    "sourceUrl": "https://algerie-eco.com/2023/11/03/projet-2000-mw-attribution-provisoire-des-marches/",
+    "country": "DZ"
+  },
+  {
+    "name": "Electrilac S.A.S",
+    "sourceUrl": "https://www.universalenergyfacility.org/posts/universal-energy-facility-to-grant-up-to-usd-10-4-million-for-renewables-in-democratic-republic-of-the-congo-madagascar-and-sierra-leone",
+    "country": "CD"
+  }
+]

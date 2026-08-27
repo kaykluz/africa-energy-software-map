@@ -1,0 +1,760 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-043",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_shanxi_installation_group_co_ltd_a4f84812",
+      "sourceRow": 1,
+      "submittedName": "Shanxi Installation Group Co. Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "DZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Awarded Ouled Fadel (Batna) solar plant in Algeria's 2000 MW programme; foreign (Chinese) EPC executing in DZ",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://algerie-eco.com/2023/11/03/projet-2000-mw-attribution-provisoire-des-marches/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_cscec_5729c739",
+      "sourceRow": 2,
+      "submittedName": "CSCEC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "DZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Awarded Tendla (El M'ghaier) 200 MW plant in Algeria; foreign (Chinese) EPC executing in DZ",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://algerie-eco.com/2023/11/03/projet-2000-mw-attribution-provisoire-des-marches/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_powerchina_zhongnan_engineering_corporat_b0d52a46",
+      "sourceRow": 3,
+      "submittedName": "PowerChina Zhongnan Engineering Corporation Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "DZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Awarded Khanguet Sidi Nadji (Biskra) 150 MW plant in Algeria; foreign EPC executing in DZ",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://algerie-eco.com/2023/11/03/projet-2000-mw-attribution-provisoire-des-marches/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_powerchina_ntl_sinohydro_443ef370",
+      "sourceRow": 4,
+      "submittedName": "PowerChina NTL-SinoHydro",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "DZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Grouping awarded Laghrous (Biskra) 200 MW plant in Algeria's 2000 MW programme",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://algerie-eco.com/2023/11/03/projet-2000-mw-attribution-provisoire-des-marches/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_cwe_hxcc_yred_361d96c2",
+      "sourceRow": 5,
+      "submittedName": "CWE-HXCC-YRED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "DZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Chinese grouping awarded five lots in Algeria: Abadla 80 MW, Batmet 220 MW, Gueltet Sidi Saad 200 MW, Douar El Maa 200 MW, Ouled Djellal 80 MW",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://algerie-eco.com/2023/11/03/projet-2000-mw-attribution-provisoire-des-marches/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_energicity_sl_limited_43c60014",
+      "sourceRow": 6,
+      "submittedName": "Energicity (SL) Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SL",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "UEF/SEforALL: 'The UEF plans to sign a USD 706,000 grant agreement with Energicity (SL) Limited to develop' mini-grids in Sierra Leone. Local operating entity of Energicity Corp.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.universalenergyfacility.org/posts/universal-energy-facility-to-grant-up-to-usd-10-4-million-for-renewables-in-democratic-republic-of-the-congo-madagascar-and-sierra-leone"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_onepower_zambia_54430fd1",
+      "sourceRow": 7,
+      "submittedName": "OnePower Zambia",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZM",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SEforALL: 'Awarding over US$1.1 million to OnePower Zambia, Renwasol/Solar23, and ENGIE Energy Access Zambia (PowerCorner Zambia)' under ZEDSI, to develop and operate 43 mini-grids.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.seforall.org/news/private-sector-developers-sign-funding-agreement-to-fast-track-rural-electrification-in-zambia"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_renwasol_solar23_0630f92b",
+      "sourceRow": 8,
+      "submittedName": "Renwasol/Solar23",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZM",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SEforALL ZEDSI award announcement names 'Renwasol/Solar23' among the three developers funded for 43 Zambian mini-grids.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.seforall.org/news/private-sector-developers-sign-funding-agreement-to-fast-track-rural-electrification-in-zambia"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_engie_energy_access_zambia_powercorner_z_15cddbd7",
+      "sourceRow": 9,
+      "submittedName": "ENGIE Energy Access Zambia (PowerCorner Zambia)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZM",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SEforALL ZEDSI award announcement names 'ENGIE Energy Access Zambia (PowerCorner Zambia)' among the three developers funded for 43 Zambian mini-grids.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://www.seforall.org/news/private-sector-developers-sign-funding-agreement-to-fast-track-rural-electrification-in-zambia"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_central_electricals_international_ltd_6b1b4432",
+      "sourceRow": 10,
+      "submittedName": "Central Electricals International Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG, UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria REA/NEP: one of six developers qualified through the Minimum Subsidy Tender to deploy eight utility-enabled interconnected mini-grids totalling 25 MW.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.nep.rea.gov.ng/posts/news-rea-convenes-strategic-kick-off-meeting-with-developers.html"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_eauxwell_nig_ltd_648b3073",
+      "sourceRow": 11,
+      "submittedName": "Eauxwell Nig. Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria REA/NEP: named among the six Minimum Subsidy Tender-qualified interconnected mini-grid developers.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.nep.rea.gov.ng/posts/news-rea-convenes-strategic-kick-off-meeting-with-developers.html"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_chint_birdwell_maskh_nig_ltd_consortium_e120cf60",
+      "sourceRow": 12,
+      "submittedName": "Chint–Birdwell Maskh Nig. Ltd Consortium",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria REA/NEP: named among the six Minimum Subsidy Tender-qualified interconnected mini-grid developers.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.nep.rea.gov.ng/posts/news-rea-convenes-strategic-kick-off-meeting-with-developers.html"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_shenzhen_solar_pro_tech_co_ltd_offgrid_e_157bc182",
+      "sourceRow": 13,
+      "submittedName": "Shenzhen Solar Pro Tech Co. Ltd & Offgrid Electric Ltd (JV)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria REA/NEP: named among the six Minimum Subsidy Tender-qualified interconnected mini-grid developers.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.nep.rea.gov.ng/posts/news-rea-convenes-strategic-kick-off-meeting-with-developers.html"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kelm_elicom_jv_ltd_ae596c16",
+      "sourceRow": 14,
+      "submittedName": "Kelm–Elicom JV Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria REA/NEP: named among the six Minimum Subsidy Tender-qualified interconnected mini-grid developers.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.nep.rea.gov.ng/posts/news-rea-convenes-strategic-kick-off-meeting-with-developers.html"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_international_consolidated_contractors_o_79ae32d3",
+      "sourceRow": 15,
+      "submittedName": "International Consolidated Contractors Offshore SAL Ltd (ICCO)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Nigeria REA/NEP: named among the six Minimum Subsidy Tender-qualified interconnected mini-grid developers.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.nep.rea.gov.ng/posts/news-rea-convenes-strategic-kick-off-meeting-with-developers.html"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_electrilac_s_a_s_5f9c1247",
+      "sourceRow": 16,
+      "submittedName": "Electrilac S.A.S",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "CD",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "UEF/SEforALL: 'The UEF recently signed the first grant agreement for USD 3.8 million with Electrilac S.A.S, a subsidiary of Green Enesys' for 6,500 connections and 2.5 MW in DRC.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.universalenergyfacility.org/posts/universal-energy-facility-to-grant-up-to-usd-10-4-million-for-renewables-in-democratic-republic-of-the-congo-madagascar-and-sierra-leone"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_autarsys_98e332fe",
+      "sourceRow": 17,
+      "submittedName": "Autarsys",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_energy_storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "UEF/SEforALL: named among the Madagascar mini-grid grantees ('WeLight, ANKA, Autarsys and Jiro Taratra/Africa GreenTec').",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "https://www.universalenergyfacility.org/posts/universal-energy-facility-to-grant-up-to-usd-10-4-million-for-renewables-in-democratic-republic-of-the-congo-madagascar-and-sierra-leone"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_jiro_taratra_africa_greentec_d0f501a3",
+      "sourceRow": 18,
+      "submittedName": "Jiro Taratra/Africa GreenTec",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "UEF/SEforALL: named among the Madagascar mini-grid grantees; Malagasy operating vehicle of Africa GreenTec.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://www.universalenergyfacility.org/posts/universal-energy-facility-to-grant-up-to-usd-10-4-million-for-renewables-in-democratic-republic-of-the-congo-madagascar-and-sierra-leone"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_3d_powercrafts_uganda_ltd_9cf8f58b",
+      "sourceRow": 19,
+      "submittedName": "3D POWERCRAFTS UGANDA LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/023/04749, Naguru, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_97s_engineering_services_limited_5e459df2",
+      "sourceRow": 20,
+      "submittedName": "97S ENGINEERING SERVICES LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/018/02633, Mutundwe, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_a_and_i_manpower_services_ltd_a4a16c14",
+      "sourceRow": 21,
+      "submittedName": "A AND I MANPOWER SERVICES LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (mechanical)-class permit holder (permit ERA/EIP/CLXM/023/02639, Mukono, class XM).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_a_o_g_engineering_company_ltd_05727559",
+      "sourceRow": 22,
+      "submittedName": "A.O.G ENGINEERING COMPANY LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/021/05844, Nakawa, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_aamplix_power_limited_8431f383",
+      "sourceRow": 23,
+      "submittedName": "AAMPLIX POWER LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (mechanical)-class permit holder (permit ERA/EIP/CLXM/026/10794, Kampala, class XM).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_afriworks_engineering_company_limited_67208066",
+      "sourceRow": 24,
+      "submittedName": "AFRIWORKS ENGINEERING COMPANY LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (mechanical)-class permit holder (permit ERA/EIP/CLXM/026/10372, Mbarara, class XM).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_agonella_technologies_limited_9507bd85",
+      "sourceRow": 25,
+      "submittedName": "AGONELLA TECHNOLOGIES LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/023/07002, Plot No.2 Kumi Road, Mbale, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}
