@@ -1,0 +1,849 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-027",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_kaah_electric_power_and_lighting_company_dd2ca664",
+      "sourceRow": 1,
+      "submittedName": "KAAH Electric Power and Lighting Company Ltd (KEPLC)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SO",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Established 1997 as City Light Electric Company, renamed 2006; serves Hargeisa, Burao and Erigavo and 'owns and operates the entire electricity distribution system in most popular cities and towns'. Activities include network planning and maintenance. No solar generation assets described — distribution utility only.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://en.wikipedia.org/wiki/KAAH_Electric"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_blue_sky_add5edab",
+      "sourceRow": 2,
+      "submittedName": "Blue Sky",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SO",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in the US Country Commercial Guide as a Mogadishu company that 'offers off-grid solar energy solutions'; Wikipedia's 'Solar power in Somalia' repeats the same trio (Blue Sky, Solargen, Delta). CAUTION: both sources give only this short trading name, no legal entity name and no website — needs manual verification before publication.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.trade.gov/country-commercial-guides/somalia-energy-and-electricity"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solargen_993df86d",
+      "sourceRow": 3,
+      "submittedName": "Solargen",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "SO",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in the US Country Commercial Guide as a Mogadishu company that 'provides off-grid solar energy systems'; also listed in Wikipedia's 'Solar power in Somalia'. CAUTION: short trading name only, no legal entity name or website given — needs manual verification.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.trade.gov/country-commercial-guides/somalia-energy-and-electricity"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_red_sea_power_limited_sas_8132979f",
+      "sourceRow": 4,
+      "submittedName": "Red Sea Power Limited SAS",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "DJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as the special purpose vehicle that constructed, operates and manages the Ghoubet wind power station in Djibouti, selling to Electricité de Djibouti. Owned by a consortium of Africa Finance Corporation, FMO's Construction Equity Fund, Climate Fund Managers (Climate Investor One) and Great Horn Investment Holdings.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://en.wikipedia.org/wiki/Ghoubet_Wind_Power_Station"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_grupo_auxiliar_metal_rgico_s_a_52e4bbf2",
+      "sourceRow": 5,
+      "submittedName": "Grupo Auxiliar Metalúrgico S.A.",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "DJ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as the second member of the EPC consortium (with Siemens Gamesa Renewable Energy) for the Ghoubet wind power station in Djibouti. Spanish contractor; the works are in Djibouti.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://en.wikipedia.org/wiki/Ghoubet_Wind_Power_Station"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_china_energy_engineering_group_shanxi_el_1c0f7357",
+      "sourceRow": 6,
+      "submittedName": "China Energy Engineering Group Shanxi Electric Power Construction Co., Ltd.",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ER",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation",
+        "org_segment_energy_storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as the firm awarded the EPC contract for Eritrea's 30MW Dekemhare solar PV plant, announced by Eritrea's Ministry of Energy and Mines in March 2024 and financed by the African Development Bank. Chinese contractor; the works are in Eritrea.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "https://www.pvknowhow.com/news/30-mw-solar-pv-plant-in-eritrea-awarded-firm/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_aemit_3247d88f",
+      "sourceRow": 7,
+      "submittedName": "AEMIT",
+      "submittedWebsite": "https://aemit.net",
+      "submittedHeadquarters": "SD",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Company website: full name 'African for Engineering and Management of Infrastructures and Technology (AEMIT)', established in Khartoum, Sudan in 2018; self-described as providing 'institutional-grade EPC services', covering engineering and design, construction and deployment, global procurement and O&M support, with LONGi and GoodWe partnerships.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_om_asset_manager",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://aemit.net/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ses_electric_company_7b9efca2",
+      "sourceRow": 8,
+      "submittedName": "SES ELECTRIC COMPANY",
+      "submittedWebsite": "https://seselectriccompany.com",
+      "submittedHeadquarters": "SD",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation",
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Company website: self-described as providing 'a wide range of EPC services on Industrial Projects', with a Sudan project list including 935MW open-cycle gas plants at Garri (Khartoum) and Port Sudan as turnkey projects, maintenance on the 1250MW Merowe hydro plant, 110/220kV switchyards, and signed 50MW solar and 100MW wind development projects with STPG, Sudan.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://seselectriccompany.com/our-energy-solutions/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_empower_d41f84ad",
+      "sourceRow": 9,
+      "submittedName": "Empower",
+      "submittedWebsite": "https://www.empower-sudan.com",
+      "submittedHeadquarters": "SD",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use",
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Company website: self-described as \"Sudan's Leading Solar Energy Company\" delivering grid-tie, off-grid and hybrid solar projects across industrial, agricultural, commercial and utility-scale sectors. Note: the site brands itself simply 'Empower'; a fuller legal name ('Empower Renewable Energy Co. Ltd', Khartoum) appeared in an ENF directory listing I could not open, so it is not asserted here.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use",
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://www.empower-sudan.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_inflo_limited_c00ad1ea",
+      "sourceRow": 10,
+      "submittedName": "INFLO LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial",
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REIAMA member directory listing, Blantyre. Listed services: 'Solar Microgrid and Minigrid Installation - We design, supply, and install both microgrid and minigrid photovoltaic systems'; also supply, installation and maintenance of HV/MV/LV power lines and switchgear, and UPS/inverter systems. Founded 2014.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://reiama.org/directory/inflo-limited/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_energy_solutions_ltd_5f287229",
+      "sourceRow": 11,
+      "submittedName": "Energy Solutions Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use",
+        "org_segment_clean_cooking"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REIAMA member directory listing, Lilongwe, expertise tagged 'Irrigation, Solar'. Described as a Malawian green energy company established November 2015 supplying household on/off-grid lighting solutions, commercial off-grid power and lighting, agricultural water pumping systems, and manufacturing energy-efficient cookstoves. Installation is not explicitly claimed.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use",
+        "org_segment_clean_cooking"
+      ],
+      "sourceLeads": [
+        "https://reiama.org/directory/energy-solutions-ltd/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sky_energy_africa_d6a0b119",
+      "sourceRow": 12,
+      "submittedName": "Sky Energy Africa",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage",
+        "org_segment_emobility",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REIAMA member directory listing, Blantyre. Key activities listed: 'Solar PV System Design, Supply, and Installation' for residential, commercial, industrial, agricultural and public sector; solar water pumping; energy storage system integration; electrical engineering services and maintenance support; EV supply and EV charging infrastructure.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage",
+        "org_segment_emobility",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://reiama.org/directory/sky-energy-africa/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sunray_power_company_ltd_4407b29c",
+      "sourceRow": 13,
+      "submittedName": "Sunray Power Company LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZM",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SIAZ member spotlight (permalink https://siaz.co.zm/member-spotlight/sunray-power-company-ltd/): 'a vertically integrated Solar Energy Company specialized in Engineering consultation and design; sourcing and procurement; distribution & supply of Solar Energy Equipment; installation; monitoring, maintenance and training', operating since 2013. Stated expertise covers Solar Home Systems, Commercial and Industrial (C&I), Solar Mini-Grids, Solar Water Pumping and Solar Refrigeration, with 'strong te",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_system_integrator",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://siaz.co.zm/wp-json/wp/v2/memberspotlight?per_page=100"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_eccentric_engineering_limited_c5171ffd",
+      "sourceRow": 14,
+      "submittedName": "ECCENTRIC ENGINEERING LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZM",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SIAZ member spotlight (permalink https://siaz.co.zm/member-spotlight/eccentric-engineering-limited/): 'Our expertise in supplying, installing, and maintaining top-notch solar equipment', serving companies and individuals. The website address was given in the listing text.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://siaz.co.zm/wp-json/wp/v2/memberspotlight?per_page=100"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_switch_acdc_8752285f",
+      "sourceRow": 15,
+      "submittedName": "Switch ACDC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZM",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SIAZ member spotlight (permalink https://siaz.co.zm/member-spotlight/switch-acdc/): 'offering solar energy projects of different scales... a full-service portfolio that includes consultancy, design, supply and installations', active since early 2020, serving agricultural, commercial and residential sectors in Zambia and the wider sub-Saharan region.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://siaz.co.zm/wp-json/wp/v2/memberspotlight?per_page=100"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sunking_zambia_limited_867f9d26",
+      "sourceRow": 16,
+      "submittedName": "SUNKING ZAMBIA LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZM",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SIAZ member spotlight titled 'MEMBER SPOTLIGHT: SUNKING ZAMBIA LIMITED' (permalink https://siaz.co.zm/member-spotlight/member-spotligt-sunking-zambia-limited/): off-grid solar company 'delivering innovative energy solutions through cutting-edge product design, affordable financing, and a grassroots installation model', with systems powering homes, schools, hospitals, farms, offices and businesses.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company",
+        "org_role_installer",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://siaz.co.zm/wp-json/wp/v2/memberspotlight?per_page=100"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_power_corner_3f90d9bd",
+      "sourceRow": 17,
+      "submittedName": "Power Corner",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZM",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the BGFA contracted-projects table as 'Power Corner — Mini-grids — Zambia', i.e. a BGFA-contracted mini-grid developer/operator in Zambia.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://beyondthegrid.africa/our-projects/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_zengamina_6dba0cce",
+      "sourceRow": 18,
+      "submittedName": "Zengamina",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZM",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the BGFA contracted-projects table as 'Zengamina — Mini-grids — Zambia', i.e. a BGFA-contracted mini-grid developer/operator in Zambia.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://beyondthegrid.africa/our-projects/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_d_light_solar_zambia_16031fe8",
+      "sourceRow": 19,
+      "submittedName": "d.light Solar Zambia",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZM",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the BGFA contracted-projects table as 'd.light Solar Zambia — Solar home systems — Zambia'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://beyondthegrid.africa/our-projects/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_greenlight_planet_zambia_9882a9cd",
+      "sourceRow": 20,
+      "submittedName": "Greenlight Planet Zambia",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZM",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the BGFA contracted-projects table as 'Greenlight Planet Zambia — Solar home systems — Zambia'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://beyondthegrid.africa/our-projects/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ignite_f785ac66",
+      "sourceRow": 21,
+      "submittedName": "Ignite",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MZ, ZM",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the BGFA contracted-projects table as 'Ignite [former: Engie Energy Access] — Solar home systems — Zambia'. The bracketed note is the source's own annotation that this is the renamed ENGIE Energy Access Zambia business.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://beyondthegrid.africa/our-projects/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_energyneering_zimbabwe_c73b6ef1",
+      "sourceRow": 22,
+      "submittedName": "Energyneering Zimbabwe",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_utility_generation",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REAZ industry member, 12th Floor Joina City, Harare. Profile: 'Energyneering Zimbabwe EPCM is a one-stop renewable Engineering, Procurement, Construction, Management, Monitoring & Maintenance - turnkey solutions provider. We design, implement, and manage energy projects across the African continent.' Verticals include utility and enterprise-level solar, residential solar, HVAC and refrigeration, water pumping. Schneider Electric SolarXpert Business Partner and Offgridbox 'solutions integrator, d",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_system_integrator",
+        "org_role_om_asset_manager",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_utility_generation",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/energyneering-zimbabwe"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_elaine_solar_africa_b49707e8",
+      "sourceRow": 23,
+      "submittedName": "Elaine Solar Africa",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REAZ industry member, 624 Scanlane Drive, Borrowdale, Harare. Profile: 'a registered company that sells, install and maintain solar systems for both rural and urban areas... big and small systems for home and corporate scales'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/elaine-solar-africa"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solar_energy_projects_d1ca5db3",
+      "sourceRow": 24,
+      "submittedName": "Solar Energy Projects",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REAZ industry member, No. 16 Campbell Avenue, Pomona, Harare. Profile: 'Solar Energy Projects (SEP) is a leader in solar energy services and solar power provider', run by an electrical engineer with 35 years' Zimbabwe experience and a renewable energy engineer who 'designs most of SEPs Solar installations'. Products: solar water heating, backup and off-grid solar power, solar water pumping, wind and hydro power.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/solar-energy-projects"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_tendo_electronics_8adaf5f3",
+      "sourceRow": 25,
+      "submittedName": "Tendo Electronics",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZW",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "REAZ industry member, 21 Birmingham Rd, Southerton, Harare. Profile: 'Tendo Electronics and Power Engineering is a total solutions provider... supplying, installing, servicing and maintaining UPS, standby generators, inverters... Renewable Energy equipment... including providing comprehensive infrastructure and energy management'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_system_integrator",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "https://reaz.co.zw/members/tendo-electronics-0"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

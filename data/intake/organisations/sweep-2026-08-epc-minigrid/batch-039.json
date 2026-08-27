@@ -1,0 +1,786 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-039",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_electro_mechanic_for_energy_eme_a5ca31a2",
+      "sourceRow": 1,
+      "submittedName": "Electro mechanic for energy EME",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier accredited solar company on PV-Hub; contact domain emenergy-eg.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_enara_for_renewable_energy_services_15f639c7",
+      "sourceRow": 2,
+      "submittedName": "ENARA FOR RENEWABLE ENERGY SERVICES",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier accredited solar company on PV-Hub; contact domain enaragroup.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_gh_group_21f71370",
+      "sourceRow": 3,
+      "submittedName": "GH Group للتوريدات",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier accredited solar company on PV-Hub; contact domain ghgsolar.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_egyptian_international_motors_fd4d2a33",
+      "sourceRow": 4,
+      "submittedName": "Egyptian International Motors",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier accredited solar company on PV-Hub; contact domain eim-eg.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_b38ecdeb",
+      "sourceRow": 5,
+      "submittedName": "سمارت باور للهندسة والإنشاءات",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Smart Power for Engineering & Construction; domain smartgroup-eg.net",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_3280291b",
+      "sourceRow": 6,
+      "submittedName": "ايفرجرين اينرجي",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Evergreen Energy; domain ege.systems",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_aa6fbe65",
+      "sourceRow": 7,
+      "submittedName": "أوتاك للتجارة والمقاولات",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Otak for Trade & Contracting; domain otakegypt.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_69a99ad0",
+      "sourceRow": 8,
+      "submittedName": "اس اي اس لحلول الطاقة المستدامة",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; SAS for Sustainable Energy Solutions; domain ses.com.eg",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_ae9501aa",
+      "sourceRow": 9,
+      "submittedName": "ايجي سفنكس للطاقة المتجددة",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; EgySphinx for Renewable Energy; domain egysphinx.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_76b57809",
+      "sourceRow": 10,
+      "submittedName": "سوليرايز ايجبت",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; SolarizEgypt; domain solarizegypt.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_7b9142d9",
+      "sourceRow": 11,
+      "submittedName": "ايرسك لحلول الطاقة المتجددة",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; IRSC Renewable Energy Solutions; domain irs-c.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_ed409b00",
+      "sourceRow": 12,
+      "submittedName": "كايرو سولر لحلول الطاقة الشمسية",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Cairo Solar; domain cairo-solar.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_c49fcc68",
+      "sourceRow": 13,
+      "submittedName": "إنجازات للتنمية العمرانية والإستشارات",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Engazaat Development; domain engazaat.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_8665742b",
+      "sourceRow": 14,
+      "submittedName": "الشركة العربية للطاقة المتجددة",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Arab Renewable Energy Company (AREco), part of AOI",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_3b70828d",
+      "sourceRow": 15,
+      "submittedName": "تربل إم للمقاولات",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Triple M Contracting; domain triplem-const.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_1916fe3d",
+      "sourceRow": 16,
+      "submittedName": "طاقة بي في للطاقة الشمسية",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Taqa PV Solar; domain taqa.com.eg",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_47abce3f",
+      "sourceRow": 17,
+      "submittedName": "اونا اليكتريك",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Ona Electric; domain onaelectric.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_7167f01a",
+      "sourceRow": 18,
+      "submittedName": "اسونيم للطاقة الشمسية",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Asunim Egypt; domain asunim.co",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_b5797ad1",
+      "sourceRow": 19,
+      "submittedName": "ايجيبت باور سيستم",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Egypt Power System; domain egyptpowersystem.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_aab23042",
+      "sourceRow": 20,
+      "submittedName": "الكتروميكانيك للهندسة والاستشارات اميكو",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; EMECO Electromechanic Engineering; domain emeco-egypt.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_korra_531e8c63",
+      "sourceRow": 21,
+      "submittedName": "قرة لمشروعات الطاقة والاستثمار KORRA",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; KORRA Energi; domain korra-energi.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_5c123813",
+      "sourceRow": 22,
+      "submittedName": "جي تي سي اي لإنشاءات مشاريع الطاقة",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; GTCI Constructors for energy projects; domain gtci-constructors.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_79de1ea9",
+      "sourceRow": 23,
+      "submittedName": "تك-ميرج مقاولون ومطورون",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Tec-Merge Contractors & Developers; domain tec-merge.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_46ea22a1",
+      "sourceRow": 24,
+      "submittedName": "سولار سول للطاقة",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Solar Sol for Energy; domain solarsol.org",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_record_58a241a5",
+      "sourceRow": 25,
+      "submittedName": "ايكو لحلول المياه و الطاقة الشمسية",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "EG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Platinum-tier PV-Hub accreditation; Eco Water & Solar Solutions; domain ecosolutioneg.com",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://pv-hub.org/?page_id=9028&lang=en"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

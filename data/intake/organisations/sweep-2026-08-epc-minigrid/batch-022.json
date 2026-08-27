@@ -1,0 +1,701 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-022",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_winose_electrical_contractor_9b53552c",
+      "sourceRow": 1,
+      "submittedName": "WINOSE Electrical Contractor",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_wireway_electrical_solutions_336351e5",
+      "sourceRow": 2,
+      "submittedName": "Wireway Electrical Solutions",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_work_smart_solar_pty_ltd_3065e25c",
+      "sourceRow": 3,
+      "submittedName": "Work Smart Solar (Pty) Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: EPC; province: Free State",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_xtreme_business_home_automation_193ce53f",
+      "sourceRow": 4,
+      "submittedName": "Xtreme Business & Home Automation",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: EPC; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_yaweh_electrical_e8ec9d32",
+      "sourceRow": 5,
+      "submittedName": "Yaweh Electrical",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: KwaZulu-Natal",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_yeabla_digital_pty_ltd_e22e0744",
+      "sourceRow": 6,
+      "submittedName": "Yeabla Digital PTY(Ltd)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: Integrator; province: Western Cape",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_your_solar_sa_pty_ltd_516fce50",
+      "sourceRow": 7,
+      "submittedName": "Your Solar SA (Pty) Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_zamori_engineering_services_pty_ltd_49a9a6f7",
+      "sourceRow": 8,
+      "submittedName": "Zamori Engineering Services (Pty) Ltd",
+      "submittedWebsite": "http://www.zamori.net",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Gauteng (also listed in the SESSA member business directory)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_zero_point_energy_pty_ltd_45798853",
+      "sourceRow": 9,
+      "submittedName": "Zero Point Energy (Pty) Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: EPC; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kratoco_6a4a5990",
+      "sourceRow": 10,
+      "submittedName": "Kratoco",
+      "submittedWebsite": "https://kratoco.com/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SESSA member business directory (address: Brooklyn, Gauteng). Directory gives no role field",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sessa.org.za/member-business-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_anh_technologies_pty_ltd_faa41e8d",
+      "sourceRow": 11,
+      "submittedName": "ANH Technologies (Pty) Ltd",
+      "submittedWebsite": "http://www.anh-technologies.co.za",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SESSA member business directory (address: Koedoespoort). Directory gives no role field",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sessa.org.za/member-business-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_affordable_power_solutions_pty_ltd_2be9bb53",
+      "sourceRow": 12,
+      "submittedName": "Affordable Power Solutions (PTY) LTD",
+      "submittedWebsite": "https://affordablepowersolutions.co.za/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SESSA member business directory, region Gauteng (Jet Park, Boksburg)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sessa.org.za/member-business-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_atm_sonkrag_67f79e3a",
+      "sourceRow": 13,
+      "submittedName": "ATM SONKRAG",
+      "submittedWebsite": "https://www.motolekupt.co.za/contact/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SESSA member business directory, region Northern Cape (Upington)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sessa.org.za/member-business-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_m_l_nkosi_electrical_contractors_pty_ltd_2bb68093",
+      "sourceRow": 14,
+      "submittedName": "M L Nkosi Electrical Contractors PTY Ltd",
+      "submittedWebsite": "https://www.mlnkosielec.co.za/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SESSA member business directory. Directory gives no role field",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sessa.org.za/member-business-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_hybrid_solutions_sa_pty_ltd_d8433f40",
+      "sourceRow": 15,
+      "submittedName": "Hybrid Solutions SA (PTY) Ltd",
+      "submittedWebsite": "https://hybridsol-sa.co.za/wp/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SESSA member business directory, region Newcastle, KwaZulu-Natal",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sessa.org.za/member-business-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solar_vision_pty_ltd_aa5aa348",
+      "sourceRow": 16,
+      "submittedName": "Solar Vision (Pty) Ltd",
+      "submittedWebsite": "http://www.solarvision.co.za",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SESSA member business directory, region Limpopo (Polokwane)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sessa.org.za/member-business-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_swartland_commercial_solar_pty_ltd_e26f6949",
+      "sourceRow": 17,
+      "submittedName": "Swartland Commercial Solar Pty Ltd",
+      "submittedWebsite": "https://swartlandsolar.wixsite.com/my-site",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SESSA member business directory, region Western Cape",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sessa.org.za/member-business-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_the_alternative_energy_corporation_7345a231",
+      "sourceRow": 18,
+      "submittedName": "The Alternative Energy Corporation",
+      "submittedWebsite": "http://www.genergy.co.za",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SESSA member business directory, region Eastern Cape. Trades as Genergy, which the PV GreenCard directory separately lists as an EPC in the Eastern Cape",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sessa.org.za/member-business-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_blue_horison_power_b824fd39",
+      "sourceRow": 19,
+      "submittedName": "Blue Horison Power",
+      "submittedWebsite": "https://www.bluehorisonpower.com",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SESSA member business directory. Directory gives no role field",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sessa.org.za/member-business-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_abo_energy_south_africa_pty_ltd_43b02165",
+      "sourceRow": 20,
+      "submittedName": "ABO Energy South Africa (Pty) Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAWEA corporate member (wind energy value chain); listing gives no role field",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://sawea.org.za/membership-directory/corporate"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_acciona_energy_sa_global_pty_ltd_622767a7",
+      "sourceRow": 21,
+      "submittedName": "Acciona Energy SA Global (Pty) Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAWEA corporate member (wind energy value chain); listing gives no role field",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://sawea.org.za/membership-directory/corporate"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_atlantic_renewable_energy_partners_pty_l_8de68079",
+      "sourceRow": 22,
+      "submittedName": "Atlantic Renewable Energy Partners (Pty) Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAWEA corporate member (wind energy value chain); listing gives no role field",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://sawea.org.za/membership-directory/corporate"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_aurora_wind_power_2570c01a",
+      "sourceRow": 23,
+      "submittedName": "Aurora Wind Power",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAWEA corporate member (wind energy value chain); listing gives no role field, and its member profile page is corrupted with another company's description",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://sawea.org.za/membership-directory/corporate"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_cennergi_pty_ltd_206e2e3d",
+      "sourceRow": 24,
+      "submittedName": "Cennergi (Pty) Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAWEA corporate member (wind energy value chain); listing gives no role field",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://sawea.org.za/membership-directory/corporate"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_dorper_wind_farm_107f968d",
+      "sourceRow": 25,
+      "submittedName": "Dorper Wind Farm",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAWEA corporate member (wind energy value chain); listing gives no role field",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://sawea.org.za/membership-directory/corporate"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

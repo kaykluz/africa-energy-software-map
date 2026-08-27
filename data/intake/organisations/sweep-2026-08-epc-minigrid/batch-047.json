@@ -1,0 +1,674 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-047",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_itungo_engineering_ltd_7b4611d4",
+      "sourceRow": 1,
+      "submittedName": "ITUNGO ENGINEERING LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/021/04548, Kabale Municipality, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_jarlso_telecom_solutions_limited_769e2a92",
+      "sourceRow": 2,
+      "submittedName": "JARLSO TELECOM SOLUTIONS LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (mechanical)-class permit holder (permit ERA/EIP/CLXM/021/02796, Plot 917 Sentema Road, Mengo, class XM).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_jefwin_investments_limited_b6dcd9b1",
+      "sourceRow": 3,
+      "submittedName": "JEFWIN INVESTMENTS LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/025/09519, Nansana, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_jegomec_engineering_limited_5e2db7e2",
+      "sourceRow": 4,
+      "submittedName": "JEGOMEC ENGINEERING LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (mechanical)-class permit holder (permit ERA/EIP/CLXM/026/10373, Wakiso, class XM).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_jikaland_venture_u_ltd_45096eec",
+      "sourceRow": 5,
+      "submittedName": "JIKALAND VENTURE (U) LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (mechanical)-class permit holder (permit ERA/EIP/CLXM/026/10790, Kampala, class XM).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_jkl_technical_services_ltd_fbdd4b17",
+      "sourceRow": 6,
+      "submittedName": "JKL TECHNICAL SERVICES LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/024/07905, Sentema Road, Masanafu, Kampala, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_jo_power_engineering_co_ltd_89534268",
+      "sourceRow": 7,
+      "submittedName": "JO POWER ENGINEERING CO LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (mechanical)-class permit holder (permit ERA/EIP/CLXM/025/10145, Mbarara, class XM).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_jsl_power_systems_limited_c5e9269d",
+      "sourceRow": 8,
+      "submittedName": "JSL POWER SYSTEMS LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/023/07539, Sms House Plot 6C, 7Th Street Industrial Area, Kampala, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_julde_engineering_services_ltd_bd603417",
+      "sourceRow": 9,
+      "submittedName": "JULDE ENGINEERING SERVICES LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (mechanical)-class permit holder (permit ERA/EIP/CLXM/015/00958, Plot 963, Span House, Office 213, Portal Avenue, class XM).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_jumusa_investments_u_limited_432b469c",
+      "sourceRow": 10,
+      "submittedName": "JUMUSA INVESTMENTS (U) LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/015/00594, Plot 11 Jbw Building, Kinawataka Road, Kireka, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kaka_build_services_limited_59edb402",
+      "sourceRow": 11,
+      "submittedName": "KAKA BUILD SERVICES LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/021/02587, Plot 36 Kitetika Masooli, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kamfed_engineering_company_ltd_55c32671",
+      "sourceRow": 12,
+      "submittedName": "KAMFED ENGINEERING COMPANY LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/025/09678, Namasuba, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kasi_technical_services_limited_7bafe898",
+      "sourceRow": 13,
+      "submittedName": "KASI TECHNICAL SERVICES LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (mechanical)-class permit holder (permit ERA/EIP/CLXM/015/01159, Plot 84/85 Bombo Road, class XM).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_k_code_investments_limited_dc64d1f4",
+      "sourceRow": 14,
+      "submittedName": "K-CODE INVESTMENTS LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/025/09807, Kampala, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kenoc_services_uganda_limited_a62bc7d2",
+      "sourceRow": 15,
+      "submittedName": "KENOC SERVICES UGANDA LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/025/09638, Kyaliwajala Town, Opposite Rubis Fuel Station, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kis_technical_services_ltd_84c71aff",
+      "sourceRow": 16,
+      "submittedName": "KIS TECHNICAL SERVICES LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (mechanical)-class permit holder (permit ERA/EIP/CLXM/025/09447, Lutete, class XM).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kowem_engineering_company_limited_76ae97b5",
+      "sourceRow": 17,
+      "submittedName": "KOWEM ENGINEERING COMPANY LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (high voltage)-class permit holder (permit ERA/EIP/CLXH/026/10748, Kampala, class XH).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ks_hydro_power_uganda_limited_a649f100",
+      "sourceRow": 18,
+      "submittedName": "KS HYDRO POWER UGANDA LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/015/00546, Plot 8 Bandali Close, Bugolobi, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ks_integrated_engineering_company_limite_ee820f34",
+      "sourceRow": 19,
+      "submittedName": "KS INTEGRATED ENGINEERING COMPANY LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (mechanical)-class permit holder (permit ERA/EIP/CLXM/025/09808, Kampala, class XM).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kva_engineering_services_limited_253bcb78",
+      "sourceRow": 20,
+      "submittedName": "KVA ENGINEERING SERVICES LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/025/09806, Kamuli Road, Wakiso, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_l_s_company_ltd_6865843e",
+      "sourceRow": 21,
+      "submittedName": "L & S COMPANY LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/020/04241, Plot 548 Valley Curve, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_leamington_engineering_services_limited_b4ad45c2",
+      "sourceRow": 22,
+      "submittedName": "LEAMINGTON ENGINEERING SERVICES LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/015/00906, Plot 1238 Kyambogo Road, Ntinda, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_lenz_technical_services_limited_b093fe91",
+      "sourceRow": 23,
+      "submittedName": "LENZ TECHNICAL SERVICES LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (mechanical)-class permit holder (permit ERA/EIP/CLXM/026/10645, Jinja, class XM).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_leutech_ug_limited_d86160c8",
+      "sourceRow": 24,
+      "submittedName": "LEUTECH UG LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company-class permit holder (permit ERA/EIP/CLX/024/08853, Mukono, class X).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_levor_energy_technologies_u_ltd_414798b9",
+      "sourceRow": 25,
+      "submittedName": "LEVOR ENERGY TECHNOLOGIES (U) LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed on Uganda ERA's register of certified installation permit holders as a company (mechanical)-class permit holder (permit ERA/EIP/CLXM/026/10769, Kampala, class XM).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

@@ -1,0 +1,684 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-012",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_forest_energy_solutions_dc559183",
+      "sourceRow": 1,
+      "submittedName": "Forest Energy Solutions",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: EPC; province: Western Cape",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_fros_electrical_44b8cdb3",
+      "sourceRow": 2,
+      "submittedName": "Fros Electrical",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Limpopo",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_geldenhuys_engineering_consultants_cc_886e3f79",
+      "sourceRow": 3,
+      "submittedName": "Geldenhuys Engineering Consultants Cc",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: North West",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_genergy_the_alternative_energy_corporati_f561a06c",
+      "sourceRow": 4,
+      "submittedName": "Genergy THE ALTERNATIVE ENERGY CORPORATION",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: EPC; province: Eastern Cape",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_gentricity_solar_solutions_42b09459",
+      "sourceRow": 5,
+      "submittedName": "Gentricity Solar Solutions",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: EPC; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_gkm_engineering_services_e61e2f3d",
+      "sourceRow": 6,
+      "submittedName": "GKM Engineering Services",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_godercy_pty_ltd_5335f8f9",
+      "sourceRow": 7,
+      "submittedName": "GODERCY PTY LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Mpumalanga",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_goventures_14b0f302",
+      "sourceRow": 8,
+      "submittedName": "GoVentures",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_graaff_en_kie_pty_ltd_a3a326d1",
+      "sourceRow": 9,
+      "submittedName": "Graaff En Kie (Pty)Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: KwaZulu-Natal",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_gracelane_solutions_pty_ltd_42702164",
+      "sourceRow": 10,
+      "submittedName": "Gracelane Solutions (pty) Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: EPC; province: Eastern Cape",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_green_leaf_alternative_solutions_239767fe",
+      "sourceRow": 11,
+      "submittedName": "Green Leaf Alternative Solutions",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: Integrator; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_green_light_city_a49301db",
+      "sourceRow": 12,
+      "submittedName": "Green Light City",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Western Cape",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_greenability_installations_e846e0ab",
+      "sourceRow": 13,
+      "submittedName": "Greenability Installations",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Western Cape",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_greenhouse_energy_consulting_pty_ltd_1b250449",
+      "sourceRow": 14,
+      "submittedName": "GreenHouse Energy Consulting (Pty) Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: EPC; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_greenlink_solutions_ced91fa5",
+      "sourceRow": 15,
+      "submittedName": "Greenlink Solutions",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Western Cape",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_greenro_solutions_fb5c6943",
+      "sourceRow": 16,
+      "submittedName": "Greenro Solutions",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: EPC; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_gridlec_power_projects_pty_ltd_t_a_dna_c_2920218f",
+      "sourceRow": 17,
+      "submittedName": "Gridlec Power Projects (Pty) Ltd T/A DNA Consulting Engineers & Project Managers",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: EPC; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_gronn_pty_ltd_9c8f91c6",
+      "sourceRow": 18,
+      "submittedName": "Gronn (Pty) Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: EPC; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_h_kossatz_projects_ad1925cc",
+      "sourceRow": 19,
+      "submittedName": "H KOSSATZ PROJECTS",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_hamsa_consulting_engineers_1905db7d",
+      "sourceRow": 20,
+      "submittedName": "Hamsa Consulting Engineers",
+      "submittedWebsite": "http://www.hamsaeng.co.za",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: EPC; province: Kwazulu Natal (also listed in the SESSA member business directory)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_handza_pty_ltd_51452d5d",
+      "sourceRow": 21,
+      "submittedName": "Handza (Pty) Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_haultron_pty_ltd_8ce565e5",
+      "sourceRow": 22,
+      "submittedName": "Haultron (Pty) Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_hi_quality_electrical_d031deb8",
+      "sourceRow": 23,
+      "submittedName": "Hi Quality Electrical",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Free State",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_holmstone_86296008",
+      "sourceRow": 24,
+      "submittedName": "Holmstone",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: EPC; province: Gauteng",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_how_electrical_pty_ltd_t_a_smhart_solar_d7378073",
+      "sourceRow": 25,
+      "submittedName": "HOW Electrical PTY Ltd T/a Smhart Solar",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "PV GreenCard certified company; type: PV Installation Company; province: Western Cape",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://pvgreencard.co.za/app/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

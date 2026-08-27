@@ -1,0 +1,696 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-004",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_solarcentric_technologies_6f1f3352",
+      "sourceRow": 1,
+      "submittedName": "Solarcentric Technologies",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a member company in the REAN directory (Olu Akerele Street, Ikeja, Lagos). The website REAN gives (solarcentrictech.com) no longer resolves, so no website is recorded and the role could not be verified.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/3/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_joelin_energy_limited_08bc24c4",
+      "sourceRow": 2,
+      "submittedName": "Joelin Energy Limited",
+      "submittedWebsite": "http://www.joelinenergy.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a member company in the REAN directory (Ughelli, Delta State). Its site returned HTTP 403, so the role could not be verified.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/2/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_panvolt_energy_formerly_impact_grids_f68d61d4",
+      "sourceRow": 3,
+      "submittedName": "PANVOLT Energy (Formerly Impact Grids)",
+      "submittedWebsite": "http://www.panvoltenergy.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a member company in the REAN directory (Katampe Extension, Abuja); the directory name itself records the former name 'Impact Grids'. The website serves a default Hostinger parking page, so the role could not be verified.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/2/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_tricell_solar_solutions_limited_e6e987f8",
+      "sourceRow": 4,
+      "submittedName": "TriCell Solar Solutions Limited",
+      "submittedWebsite": "https://www.linkedin.com/company/tricell-solar-solutions",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a member company in the REAN directory (Ilupeju Estate, Lagos). REAN gives only a LinkedIn page rather than an own domain; role not verified.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/3/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_rayonnance_energy_fze_bf572eed",
+      "sourceRow": 5,
+      "submittedName": "RAYONNANCE ENERGY FZE",
+      "submittedWebsite": "https://www.weransolar.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a member company in the REAN directory, Lekki Free Trade Zone, Ibeju Lekki, Lagos, with website weransolar.com. Role not verified.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/2/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_najcom_technologies_limited_c8f18b9b",
+      "sourceRow": 6,
+      "submittedName": "NAJCOM TECHNOLOGIES LIMITED",
+      "submittedWebsite": "http://www.najcom.com",
+      "submittedHeadquarters": "NG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a member company in the REAN directory (LSDPC Complex, Alaka, Surulere, Lagos). Role not verified.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://rean.org.ng/our-members/page/2/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_greenlight_planet_kenya_f04a8c36",
+      "sourceRow": 7,
+      "submittedName": "GREENLIGHT PLANET KENYA",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider in multiple counties (Marsabit, Isiolo, Samburu, Mandera, Garissa, West Pokot and others). Also listed as KEREA Full Corporate member 'Sunking (Greenlight planet)' (KEREA-FC-2026-015).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_bboxx_capital_kenya_ad427de2",
+      "sourceRow": 8,
+      "submittedName": "BBOXX CAPITAL KENYA",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider (Marsabit, Isiolo, Samburu, Garissa, West Pokot and others).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sunvine_africa_b2b4e6c9",
+      "sourceRow": 9,
+      "submittedName": "SUNVINE AFRICA",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider (Turkana, Isiolo, Samburu, West Pokot and others). No role description given in the source.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_wisdom_energy_504afaed",
+      "sourceRow": 10,
+      "submittedName": "WISDOM ENERGY",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider (Isiolo, Samburu, West Pokot and others). No role description given in the source.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_megawatt_ingenieria_ltd_9328e196",
+      "sourceRow": 11,
+      "submittedName": "MEGAWATT INGENIERIA LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider (including West Pokot). Appears in the newsletter both as 'MEGAWATT INGENIERIA' and 'MEGAWATT INGENIERIA LTD'. No role description given; the name suggests engineering work but the source does not confirm it.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_m_gas_limited_6045c7db",
+      "sourceRow": 12,
+      "submittedName": "M-GAS LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_clean_cooking"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider (Isiolo, Turkana, Marsabit and others). Appears both as 'M-GAS' and 'M-GAS LIMITED'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_clean_cooking"
+      ],
+      "sourceLeads": [
+        "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_brenhert_investment_33e57475",
+      "sourceRow": 13,
+      "submittedName": "BRENHERT INVESTMENT",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider in many counties (Isiolo, Samburu, Marsabit, Garissa, West Pokot and others). No description in the source - role unresolved.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_nagoya_holding_862cf133",
+      "sourceRow": 14,
+      "submittedName": "NAGOYA HOLDING",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider (Isiolo, Garissa and others). No description in the source - role unresolved.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_hunkar_trading_company_854c8ba8",
+      "sourceRow": 15,
+      "submittedName": "HUNKAR TRADING COMPANY",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider (Isiolo and others). Name suggests a trading/distribution business; if it proves to be a pure retailer with no installation arm it should be dropped from the atlas.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ljos_company_ltd_18204e70",
+      "sourceRow": 16,
+      "submittedName": "LJOS COMPANY LTD.",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider across many counties. Appears both as 'LJOS COMPANY' and 'LJOS COMPANY LTD.'. No description in the source - role unresolved.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_access_and_move_36b1203f",
+      "sourceRow": 17,
+      "submittedName": "ACCESS AND MOVE",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named on the KOSAP county service-provider map (June 2025 newsletter) as a KOSAP-participating service provider (including West Pokot). No description in the source - role unresolved.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://www.energy.go.ke/sites/default/files/KOSAP%20Newsletter-June%202025%20(1).pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_climacento_green_tech_ltd_759265c5",
+      "sourceRow": 18,
+      "submittedName": "Climacento Green Tech Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the KEREA member directory as Full Corporate member, ID KEREA-FC-2026-016, contact [contact removed]. No role description given by the source.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://kerea.org/memberships/member-directory/?frm-page-9121=2"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sentimental_energy_company_1a922849",
+      "sourceRow": 19,
+      "submittedName": "Sentimental Energy Company",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the KEREA member directory as Full Corporate member, ID KEREA-FC-2026-012, contact [contact removed]. No role description given by the source.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://kerea.org/memberships/member-directory/?frm-page-9121=2"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_green_tech_solutions_ltd_53c0eec0",
+      "sourceRow": 20,
+      "submittedName": "Green Tech Solutions Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the KEREA member directory as Full Corporate member, ID KEREA-FC-2026-002, contact [contact removed]. No role description given by the source.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://kerea.org/memberships/member-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_lomia_energy_limited_b187cfe7",
+      "sourceRow": 21,
+      "submittedName": "Lomia Energy Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the KEREA member directory as Full Corporate member, ID KEREA-FC-2026-004, contact [contact removed]. No role description given by the source.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://kerea.org/memberships/member-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_techwin_limited_96e934f8",
+      "sourceRow": 22,
+      "submittedName": "Techwin Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the KEREA member directory as Full Corporate member, ID KEREA-FC-2026-005, contact [contact removed]. No role description given by the source.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://kerea.org/memberships/member-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sonnen_energie_technik_ca6e7251",
+      "sourceRow": 23,
+      "submittedName": "Sonnen energie Technik",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the KEREA member directory as Full Corporate member, ID KEREA-FC-2026-007, contact [contact removed]. No role description given by the source.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://kerea.org/memberships/member-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ampower_solar_389d0049",
+      "sourceRow": 24,
+      "submittedName": "Ampower Solar",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed in the KEREA member directory as Full Corporate member, ID KEREA-FC-2026-009, contact [contact removed]. No role description given by the source.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://kerea.org/memberships/member-directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_powerpoint_systems_ea_ltd_a93e86fb",
+      "sourceRow": 25,
+      "submittedName": "Powerpoint Systems (EA) LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "KE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as a KEREA member on the association's legacy members archive. Its dedicated member page renders the company name only, with no business description.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_to_classify"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://kerea.org/members/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

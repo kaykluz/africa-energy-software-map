@@ -1,0 +1,797 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-034",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_consolair_6929bae4",
+      "sourceRow": 1,
+      "submittedName": "CONSOLAIR",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar water heater distribution and installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_dmo_energie_5b8f0a3a",
+      "sourceRow": 2,
+      "submittedName": "DMO ENERGIE",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: installation of photovoltaic power plants",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ecowatt_b38304cb",
+      "sourceRow": 3,
+      "submittedName": "ECOWATT",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar panel distribution and installation services",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_elexpert_b1fec7a8",
+      "sourceRow": 4,
+      "submittedName": "ELEXPERT",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_efficiency_demand",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: energy efficiency and electrical installation solutions",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_operators",
+      "suggestedRoleIds": [
+        "org_role_energy_service_company",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_efficiency_demand",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_gaepps_irril_a8e9f7c9",
+      "sourceRow": 5,
+      "submittedName": "GAEPPS IRRIL",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar panel distribution and installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_gpm_holding_7f0af9f3",
+      "sourceRow": 6,
+      "submittedName": "GPM HOLDING",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: PV panel manufacturing and energy services",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_equipment_supplier",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_greentherm_4f8cd6bf",
+      "sourceRow": 7,
+      "submittedName": "GREENTHERM",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar heat distribution and installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_hibapower_sarl_0d466015",
+      "sourceRow": 8,
+      "submittedName": "HIBAPOWER SARL",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: generator and solar equipment distribution and fabrication",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_house_energie_4c828de7",
+      "sourceRow": 9,
+      "submittedName": "HOUSE ENERGIE",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar system installation and maritime signalling",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_inee_4f18392f",
+      "sourceRow": 10,
+      "submittedName": "INEE",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_efficiency_demand",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: energy efficiency and renewable energy installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_energy_service_company"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_efficiency_demand",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ingesma_maroc_25c40410",
+      "sourceRow": 11,
+      "submittedName": "INGESMA MAROC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: energy engineering and electrical safety systems",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_innov_energie_b99be55b",
+      "sourceRow": 12,
+      "submittedName": "INNOV ENERGIE",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar water heater and panel distribution/installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_jatel_7bc3d6d1",
+      "sourceRow": 13,
+      "submittedName": "JATEL",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar pumping and solar heating installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_jet_energy_75c5ccbc",
+      "sourceRow": 14,
+      "submittedName": "JET ENERGY",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: PV module manufacturing and installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_larsen_tourbo_limited_08180c84",
+      "sourceRow": 15,
+      "submittedName": "LARSEN & TOURBO LIMITED",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation",
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: power transmission infrastructure and solar park electrical works (spelling as printed by source)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_moroccan_institute_for_solar_energy_mise_0e10dc70",
+      "sourceRow": 16,
+      "submittedName": "MOROCCAN INSTITUTE FOR SOLAR ENERGY (MISEN)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar equipment manufacturing and installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_myfak_e9436468",
+      "sourceRow": 17,
+      "submittedName": "MYFAK",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: renewable energy installation and maintenance; also Taqa Pro Pompage Solaire labelled",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_nourazinov_eb535f3e",
+      "sourceRow": 18,
+      "submittedName": "NOURAZINOV",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar energy system installation and studies",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_oksa_energy_feec4e50",
+      "sourceRow": 19,
+      "submittedName": "OKSA ENERGY",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_emobility"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar panel installation and EV charging",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_emobility"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_phototherme_5b6e936c",
+      "sourceRow": 20,
+      "submittedName": "PHOTOTHERME",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar PV and thermal system distribution/installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_polytec_its_fc0de5d2",
+      "sourceRow": 21,
+      "submittedName": "POLYTEC ITS",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: photovoltaic supply and installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_precima_073ed69b",
+      "sourceRow": 22,
+      "submittedName": "PRECIMA",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar water heater distribution and installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_protonis_trading_et_consulting_2df94e9c",
+      "sourceRow": 23,
+      "submittedName": "PROTONIS TRADING ET CONSULTING",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar panel distribution and installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ps_power_morocco_f2c00353",
+      "sourceRow": 24,
+      "submittedName": "PS POWER MOROCCO",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar equipment distribution and installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_qair_maroc_d6ab9c44",
+      "sourceRow": 25,
+      "submittedName": "QAIR MAROC",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "MA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "AMISOLE member: solar power plant development and installation",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://fenelec.com/associations-internes/amisole-fenelec/membres-amisole-fenelec/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

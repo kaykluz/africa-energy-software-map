@@ -1,0 +1,841 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-025",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_safi_sana_ghana_limited_eb2a4b49",
+      "sourceRow": 1,
+      "submittedName": "Safi Sana (Ghana) Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 65 of the Energy Commission generation licence register: 100kW waste-to-energy plant, licence EC/GWSL/12-14-063, status Operational Licence — one of the few operational renewable generators in the register.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Provisional%20Wholesale%20Supply%20and%20Generation%20License%20Holders/7"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_upwind_ayitepa_e6edad54",
+      "sourceRow": 2,
+      "submittedName": "Upwind Ayitepa",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 73 of the Energy Commission generation licence register: 20MW solar, licence EC/GWSL/02-14-037 at CONSTRUCTION PERMIT stage. The same licence appears at row 41 as 'Upwind Ayitepa Ltd', 300MW wind, Provisional.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Provisional%20Wholesale%20Supply%20and%20Generation%20License%20Holders/8"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_tfi_power_company_limited_2a9b37f2",
+      "sourceRow": 3,
+      "submittedName": "TFI Power Company Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Row 108 of the Energy Commission generation licence register: 60MW solar, licence EC/GWSL/08-13-017 at CONSTRUCTION PERMIT stage.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation"
+      ],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Provisional%20Wholesale%20Supply%20and%20Generation%20License%20Holders/11"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solarplast_project_company_limited_66a63269",
+      "sourceRow": 4,
+      "submittedName": "SolarPlast Project Company Limited",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Rows 137 and 140 of the Energy Commission generation licence register: 704kWp grid-tied rooftop solar PV (EC/SOL/CP-14/05-20-010, Construction Permit) and 782kWp rooftop solar PV (EC/GWSL/11-20-006, Operational). Spelled 'Solarplast Project Company Limited' at row 140.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://energycom.gov.gh/regnew/index.php/Energy/loadRegister/Provisional%20Wholesale%20Supply%20and%20Generation%20License%20Holders/14"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solar_for_industries_8beef159",
+      "sourceRow": 5,
+      "submittedName": "Solar for Industries",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GH",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as the project lead for Ghana's 200MW utility-scale solar park at Agortor in the Dawa Industrial Enclave (groundbreaking 6 November 2025), described as 'a unit of LMI Holdings' and backed by the IFC. The article names no EPC contractor, referring only to 'international EPC contractors'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://africasustainabilitymatters.com/ghana-breaks-ground-on-200mw-solar-plant-targeting-1000mw-by-2032/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ensol_t_limited_052b86f8",
+      "sourceRow": 6,
+      "submittedName": "Ensol (T) Limited",
+      "submittedWebsite": "https://ensol.co.tz",
+      "submittedHeadquarters": "TZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "TAREA corporate member (listed as ENSOL TANZANIA LTD.). Own site: \"ENSOL is a trusted EPC (Engineering, Procurement, and Construction) company serving East Africa\", with grid-tied and hybrid PV, solar water pumping and a dedicated Operation & Maintenance service line.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_om_asset_manager",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://ensol.co.tz/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_resco_tanzania_ltd_90b54142",
+      "sourceRow": 7,
+      "submittedName": "RESCO TANZANIA LTD",
+      "submittedWebsite": "https://resco.co.tz",
+      "submittedHeadquarters": "TZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as active TAREA corporate member. Own site (resco.co.tz): \"Design, supply and Installation of renewable energy systems including Solar Electric Systems\"; \"We develop and operate solar mini-grid projects for electricity services in rural communities and institutions\"; \"Maintenance and repair of solar energy systems.\"",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://tarea-tz.org/our-work/corporate-members"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sescom_ltd_7e4192d3",
+      "sourceRow": 8,
+      "submittedName": "SESCOM LTD",
+      "submittedWebsite": "https://www.sescom.co.tz",
+      "submittedHeadquarters": "TZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_productive_use",
+        "org_segment_clean_cooking"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as active TAREA corporate member. Own site: \"Standalone, mini-grid and grid-connected solar systems\" and \"Licensed electrical contractor for MV/LV lines, transformers, panels and cable terminations to 33 kV\"; site gives legal name TWENY LIMITED.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_productive_use",
+        "org_segment_clean_cooking"
+      ],
+      "sourceLeads": [
+        "https://tarea-tz.org/our-work/corporate-members"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_power_provider_co_ltd_4083af3b",
+      "sourceRow": 9,
+      "submittedName": "POWER PROVIDER CO. LTD.",
+      "submittedWebsite": "https://powerproviders.co.tz",
+      "submittedHeadquarters": "TZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as active TAREA corporate member. Own site (powerproviders.co.tz): solar power systems, solar water heating and solar water pumping for hotels, NGOs, schools and hospitals in Tanzania — \"In addition to installation, power providers often offer maintenance, monitoring, and technical support\"; site lists institutional, hospitality, commercial and residential reference installations.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://tarea-tz.org/our-work/corporate-members"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_acon_electricals_limited_3f108f33",
+      "sourceRow": 10,
+      "submittedName": "ACON ELECTRICALS LIMITED",
+      "submittedWebsite": "http://www.acon.co.tz",
+      "submittedHeadquarters": "TZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as active TAREA corporate member. Own site: \"Acon Electricals Ltd is a general EPC (engineering, procurement, and construction) contractor committed to providing the highest quality electrical installations in Tanzania\", with \"solar power installations and power grid integration\".",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://tarea-tz.org/our-work/corporate-members"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_compact_energies_ltd_2c67ccc6",
+      "sourceRow": 11,
+      "submittedName": "COMPACT ENERGIES LTD.",
+      "submittedWebsite": "https://compactenergies.co.tz",
+      "submittedHeadquarters": "TZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as active TAREA corporate member. Own site: \"We transform sunlight into savings through professional solar distribution and installation services\", with a project list including solar power system, solar water heater and solar water pump installations.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://tarea-tz.org/our-work/corporate-members"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_mevanti_tanzania_ltd_mevanti_energy_7752f8b3",
+      "sourceRow": 12,
+      "submittedName": "MEVANTI TANZANIA LTD-MEVANTI ENERGY",
+      "submittedWebsite": "http://www.mevantienergy.com",
+      "submittedHeadquarters": "TZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage",
+        "org_segment_emobility"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as active TAREA corporate member. Own site: solar solutions \"for residential, commercial, and industrial use\" where \"dedicated team provides full installation and ongoing support\", plus energy storage (ESS) and EV charging.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage",
+        "org_segment_emobility"
+      ],
+      "sourceLeads": [
+        "https://tarea-tz.org/our-work/corporate-members"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_seanelec_tanzania_ltd_e95ad00d",
+      "sourceRow": 13,
+      "submittedName": "SEANELEC TANZANIA LTD.",
+      "submittedWebsite": "https://www.seanelec.co.tz",
+      "submittedHeadquarters": "TZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as active TAREA corporate member. Own site (Seanelec (T) Ltd, Arusha): \"RENEWABLE ENERGY (SOLAR POWER)\" service line and \"Quality design. Reliable construction. Seamless operation & maintenance. Trusted project management.\"",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://tarea-tz.org/our-work/corporate-members"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_gaptech_electrical_electronics_ltd_c4643ced",
+      "sourceRow": 14,
+      "submittedName": "GAPTECH ELECTRICAL & ELECTRONICS LTD.",
+      "submittedWebsite": "http://www.gaptech.co.tz",
+      "submittedHeadquarters": "TZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as active TAREA corporate member. Own site (Dar es Salaam): provides \"Solar power systems and Energy storage solutions\" and states they \"design and implement bespoke electrical and electronics systems\", including electrical audits and distribution panel boards.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "https://tarea-tz.org/our-work/corporate-members"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_jumeme_rural_power_supply_6b4a206e",
+      "sourceRow": 15,
+      "submittedName": "JUMEME RURAL POWER SUPPLY",
+      "submittedWebsite": "http://www.jumeme.com",
+      "submittedHeadquarters": "TZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as active TAREA corporate member. Own site: \"Jumeme is a mini-grid operator using solar-battery-diesel hybrid power systems connected to medium and low voltage distribution networks... to its customers in rural Tanzanian growth centres.\" Also named in the State of the Global Mini-Grids Market Report 2020 Tanzania case study as one of the two largest mini-grid operators in Tanzania.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://tarea-tz.org/our-work/corporate-members"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_rift_valley_ltd_877bbe5d",
+      "sourceRow": 16,
+      "submittedName": "RIFT VALLEY LTD",
+      "submittedWebsite": "https://rve.co.tz",
+      "submittedHeadquarters": "TZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_utility_generation",
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Listed as active TAREA corporate member (TAREA links to riftvalleyenergy.com, which redirects to rve.co.tz). Own site: \"RVE Tanzania Ltd (RVE) is a Tanzania-based renewable-energy infrastructure project-development holding company that develops, owns, and operates relevant electricity generation and rural distribution project companies\"; subsidiaries named include Mwenga Hydro Limited, Luponde Hydro Limited and Suma Hydro Limited.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_utility_generation",
+        "org_segment_minigrids",
+        "org_segment_transmission_distribution"
+      ],
+      "sourceLeads": [
+        "https://tarea-tz.org/our-work/corporate-members"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_rafiki_power_7bd70dc1",
+      "sourceRow": 17,
+      "submittedName": "Rafiki Power",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in the State of the Global Mini-Grids Market Report 2020 Tanzania case study: former E.ON subsidiary \"which has built eight mini-grids ranging from 5kW to 50kW for customers in Tanzania\"; acquired by PowerGen in August 2019.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://minigrids.org/wp-content/uploads/2020/06/Tanzania-_Case_Study.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_devergy_227fbc2a",
+      "sourceRow": 18,
+      "submittedName": "Devergy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TZ",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in the State of the Global Mini-Grids Market Report 2020 Tanzania case study: \"Devergy, a Tanzanian social energy utility, was founded in 2010 and began operating its first mini-grid two years later. The company installed an adaptive DC mini-grid system to supply 60 to 400 households with electricity.\"",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://minigrids.org/wp-content/uploads/2020/06/Tanzania-_Case_Study.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_nexus_green_limited_ab805f1e",
+      "sourceRow": 19,
+      "submittedName": "NEXUS GREEN LIMITED",
+      "submittedWebsite": "https://nexusgreen.com",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Holds ERA company electrical installation permit ERA/EIP/CLXM/023/07867, Class XM (\"Company work not exceeding 66kV distribution voltage\"), location Ntinda. Also a USEA member (listed as Nexus Green Ltd). Own site: \"designing, supplying, manufacturing and delivering affordable solar-powered solutions\" including solar irrigation, solar street lighting and \"full turnkey solutions\"; describes itself as a British company with a Uganda branch.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "https://www.era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_grid_engineering_u_ltd_1b19a73e",
+      "sourceRow": 20,
+      "submittedName": "GRID ENGINEERING (U) LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Holds ERA company electrical installation permit ERA/EIP/CLX/018/02631, Class X, at Bombo Road, Ben Kiwanuka Street, Plot 88. Independently listed as a Uganda Solar Energy Association member (Plot 88 Ben Kiwanuka Street, Master Plaza) — regulator installation permit plus solar-association membership.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_psi_engineering_uganda_limited_2a924a32",
+      "sourceRow": 21,
+      "submittedName": "PSI Engineering Uganda Limited",
+      "submittedWebsite": "https://www.psiengineering.co.ug",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_transmission_distribution",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "USEA member operating in Northern, West Nile, Eastern, Central, Western and South West regions. Also holds ERA company installation permit ERA/EIP/CLX/021/04615, Class X (listed as PSI ENGINEERING). Own site: \"Comprehensive power infrastructure development including transmission lines, substations, and distribution networks\" plus renewable energy projects, and they \"design, construct, and maintain infrastructure\".",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_transmission_distribution",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.useaug.org/our-members/page/5/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_reliefline_uganda_ltd_94431f69",
+      "sourceRow": 22,
+      "submittedName": "RELIEFLINE UGANDA LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "USEA member at Plot 7629, Kiwafu Road, Kansanga. Also holds ERA company electrical installation permit ERA/EIP/CLX/023/06996, Class X (listed as RELIEFLINE UGANDA LIMITED, Plot 7629, Block 244 Kiwafu Road, Kampala) — matching address confirms the same entity. Note: the group site reliefline.net presents a disaster-relief products business and does not describe the Uganda energy work, so role is based on the ERA permit plus USEA membership.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.useaug.org/our-members/page/5/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sagewood_limited_93984ed2",
+      "sourceRow": 23,
+      "submittedName": "Sagewood Limited",
+      "submittedWebsite": "https://www.sagewood.com",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_transmission_distribution",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Holds ERA company electrical installation permit ERA/EIP/CLX/018/02645, Class X, Plot 30 Lugogo Bypass, Regency Plaza, Kampala. Also a USEA member (17 Vubyabirenge Road, Ntinda). Own site confirms \"regional offices located in Ghana, Uganda, Rwanda and Zambia\" and a \"Power (Electrical Transmission & Distribution)\" sector line.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_transmission_distribution",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solar_nation_smc_ltd_b1dd02d7",
+      "sourceRow": 24,
+      "submittedName": "SOLAR NATION SMC LTD",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Holds ERA company electrical installation permit ERA/EIP/CLX/026/10430, Class X, location Ntinda. Also a USEA member (listed as Solar Nation smc Ltd / SOLAR NATION-SMC LIMITED, Plot 4, Queen Maxima Road, Ministers Village, Ntinda). Website left blank because the USEA directory gives two conflicting contact domains.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.era.go.ug/certified-installation-permit-holders/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_energy_systems_limited_6a4ed198",
+      "sourceRow": 25,
+      "submittedName": "ENERGY SYSTEMS LIMITED",
+      "submittedWebsite": "https://www.energysystemsug.com",
+      "submittedHeadquarters": "UG",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use",
+        "org_segment_energy_storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "USEA member, Plot 3 Get-In House, William Street, Kampala. Own site: \"planning, designing, supply, distribution, installation, maintenance and repair of various solar energy solutions\", plus solar water pumping and battery storage for off-grid and on-grid applications across Uganda.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "https://www.useaug.org/our-members/page/3/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

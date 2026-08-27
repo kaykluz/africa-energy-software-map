@@ -1,0 +1,690 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-007",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_power_plant_electrical_technologies_pty__1887149b",
+      "sourceRow": 1,
+      "submittedName": "Power Plant Electrical Technologies (Pty) Ltd",
+      "submittedWebsite": "https://www.ppetech.co.za",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Engineering, Procurement and Construction (EPC)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_renenergy_cfcbe4a5",
+      "sourceRow": 2,
+      "submittedName": "RenEnergy",
+      "submittedWebsite": "https://www.renenergy.co.za/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_rhino_energy_pty_ltd_2a3c65d0",
+      "sourceRow": 3,
+      "submittedName": "Rhino Energy (Pty) Ltd",
+      "submittedWebsite": "https://rhinoenergy.co.za/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Developer, Independent Power Producer (IPP)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ric_energy_6384a144",
+      "sourceRow": 4,
+      "submittedName": "RIC Energy",
+      "submittedWebsite": "https://ric.energy/en/home/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Developer, Independent Power Producer (IPP)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_scatec_solar_c6982fd7",
+      "sourceRow": 5,
+      "submittedName": "Scatec Solar",
+      "submittedWebsite": "http://www.scatec.com",
+      "submittedHeadquarters": "EG, ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Developer, Independent Power Producer (IPP)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_seriti_green_developments_south_africa_p_6254fb2e",
+      "sourceRow": 6,
+      "submittedName": "Seriti Green Developments South Africa (Pty) Ltd",
+      "submittedWebsite": "https://seritigreen.com/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Developer, Independent Power Producer (IPP)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_shula_developers_pty_ltd_986bb47b",
+      "sourceRow": 7,
+      "submittedName": "Shula Developers (Pty) Ltd",
+      "submittedWebsite": "https://www.shuladevelopers.co.za",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Developer, Independent Power Producer (IPP)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sibeko_engineering_and_projects_pty_ltd_b703f6a2",
+      "sourceRow": 8,
+      "submittedName": "Sibeko Engineering and Projects (Pty) Ltd",
+      "submittedWebsite": "https://www.sibekoengineeringprojects.co.za",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sinani_energy_7e3d5654",
+      "sourceRow": 9,
+      "submittedName": "Sinani Energy",
+      "submittedWebsite": "https://sinanienergy.co.za/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Developer, Independent Power Producer (IPP)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_smei_renewables_division_of_smei_project_9d2c7abe",
+      "sourceRow": 10,
+      "submittedName": "SMEI Renewables division of SMEI Projects (Pty) Ltd",
+      "submittedWebsite": "https://www.smeirenewables.co.za/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solar_africa_pty_ltd_cb2a70ed",
+      "sourceRow": 11,
+      "submittedName": "Solar Africa (Pty) Ltd",
+      "submittedWebsite": "https://solarafrica.com/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solar_capital_pty_ltd_8328e8ca",
+      "sourceRow": 12,
+      "submittedName": "Solar Capital (Pty) Ltd",
+      "submittedWebsite": "http://www.solarcapital.co.za/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Developer, Independent Power Producer (IPP)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solardelight_pty_ltd_bb8da59e",
+      "sourceRow": 13,
+      "submittedName": "Solardelight (Pty) Ltd",
+      "submittedWebsite": "https://www.solardelight.co.za/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solareff_pty_ltd_75c48839",
+      "sourceRow": 14,
+      "submittedName": "Solareff (Pty) Ltd",
+      "submittedWebsite": "http://www.solareff.co.za",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_south_africa_mainstream_renewable_power__a13d4760",
+      "sourceRow": 15,
+      "submittedName": "South Africa Mainstream Renewable Power Developments (Pty) Ltd",
+      "submittedWebsite": "http://www.mainstreamrp.com",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Developer, Independent Power Producer (IPP)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_stage_zero_pty_ltd_79ab7bbb",
+      "sourceRow": 16,
+      "submittedName": "Stage Zero (Pty) Ltd",
+      "submittedWebsite": "https://stagezero.co.za",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Developer, Independent Power Producer (IPP)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_synergy_energy_solutions_pty_ltd_f084fe5a",
+      "sourceRow": 17,
+      "submittedName": "Synergy Energy Solutions Pty (Ltd)",
+      "submittedWebsite": "http://www.synergyenergy.co.za",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_technosolar_pty_ltd_f8fb2495",
+      "sourceRow": 18,
+      "submittedName": "Technosolar (Pty) Ltd",
+      "submittedWebsite": "https://www.technosolar.co.za",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Installer, Small to Medium Scale Projects",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_terra_firma_solutions_pty_ltd_fe834a6f",
+      "sourceRow": 19,
+      "submittedName": "Terra Firma Solutions (Pty) Ltd",
+      "submittedWebsite": "https://www.terrafirma.africa/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_tlhaho_energy_pty_ltd_cb66fc1d",
+      "sourceRow": 20,
+      "submittedName": "Tlhaho Energy (Pty) Ltd",
+      "submittedWebsite": "https://www.teenergy.co.za/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Developer, Independent Power Producer (IPP)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_trust_solar_epc_pty_ltd_5c49987b",
+      "sourceRow": 21,
+      "submittedName": "Trust Solar EPC (Pty) Ltd",
+      "submittedWebsite": "https://www.trustsolar.co.za",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_tshepang_electrical_pty_ltd_f311fef6",
+      "sourceRow": 22,
+      "submittedName": "Tshepang Electrical (Pty) Ltd",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_u_can_solar_pty_ltd_0ad88d87",
+      "sourceRow": 23,
+      "submittedName": "U Can Solar (Pty) Ltd.",
+      "submittedWebsite": "http://lukensolar.co.za",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC), Commercial and Industrial Projects",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_umbono_engineering_636eeae3",
+      "sourceRow": 24,
+      "submittedName": "Umbono Engineering",
+      "submittedWebsite": "https://www.umbonoengineering.africa/",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Installer, Engineering, Procurement and Construction (EPC)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_vigo_energy_group_7ed72f6c",
+      "sourceRow": 25,
+      "submittedName": "ViGo Energy Group",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ZA",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "SAPVIA member directory, category: Developer, Independent Power Producer (IPP)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp"
+      ],
+      "suggestedSegmentIds": [],
+      "sourceLeads": [
+        "https://sapvia.co.za/directory/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

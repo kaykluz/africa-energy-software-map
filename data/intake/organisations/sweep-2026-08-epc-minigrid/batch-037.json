@@ -1,0 +1,775 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-037",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_d_veloppement_et_energies_renouvelables_d52696c0",
+      "sourceRow": 1,
+      "submittedName": "Développement et Energies Renouvelables",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 373, MV grid-connected PV installer, Tataouine",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sigep_a835cc5b",
+      "sourceRow": 2,
+      "submittedName": "SIGEP",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 380, MV grid-connected PV installer, Chbika, Kairouan",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_joule_energie_6daf23ac",
+      "sourceRow": 3,
+      "submittedName": "Joule Energie",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 388, MV grid-connected PV installer, ZI Bouderyar, Sfax",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ips_energy_23d09cab",
+      "sourceRow": 4,
+      "submittedName": "IPS ENERGY",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 395, MV grid-connected PV installer, Megrine, Ben Arous",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sun_solution_678b872d",
+      "sourceRow": 5,
+      "submittedName": "Sun Solution",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 405, MV grid-connected PV installer, Menzah 1, Tunis",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_clean_enery_sources_31c4ed0b",
+      "sourceRow": 6,
+      "submittedName": "Clean Enery Sources",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 413, MV grid-connected PV installer, Menzel Jmil, Bizerte (spelling as printed)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_soltani_of_modern_energy_f1ecec6e",
+      "sourceRow": 7,
+      "submittedName": "Soltani of Modern Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 418, MV grid-connected PV installer, Sidi Bouzid",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_exellence_general_service_e_g_s_c3a036f9",
+      "sourceRow": 8,
+      "submittedName": "Exellence General Service (E.G.S)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 419, MV grid-connected PV installer, Sfax",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_enerconfort_a96e4e42",
+      "sourceRow": 9,
+      "submittedName": "ENERCONFORT",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 427, MV grid-connected PV installer, Gafsa",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_mashariq_energy_92ad4937",
+      "sourceRow": 10,
+      "submittedName": "Mashariq Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 432, MV grid-connected PV installer, Pole technologique Monastir",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_lumyos_energy_system_faca5fc9",
+      "sourceRow": 11,
+      "submittedName": "Lumyos Energy System",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 436, MV grid-connected PV installer, Hammam Sousse",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ingenium_solar_29e1f594",
+      "sourceRow": 12,
+      "submittedName": "Ingenium Solar",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 438, MV grid-connected PV installer, Sidi Bouzid",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_el_baraka_solairephotovoltaique_ebs_3e8fede1",
+      "sourceRow": 13,
+      "submittedName": "El Baraka SolairePhotovoltaique - EBS",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 442, MV grid-connected PV installer, Sakiet Ezzit, Sfax",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_soci_t_photovoltaic_technology_pvtek_f824b18d",
+      "sourceRow": 14,
+      "submittedName": "Société Photovoltaic Technology - PVTEK",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 446, MV grid-connected PV installer, El Jem",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_cleangy_7f53d48a",
+      "sourceRow": 15,
+      "submittedName": "Cleangy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 449, MV grid-connected PV installer, Sfax",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ecovolt_energy_b3c6808c",
+      "sourceRow": 16,
+      "submittedName": "Ecovolt Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 456, MV grid-connected PV installer, La Marsa, Tunis",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_zenith_technology_13c7d2f9",
+      "sourceRow": 17,
+      "submittedName": "Zenith Technology",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 465, MV grid-connected PV installer, Sfax",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_candela_solar_power_9c69ecc2",
+      "sourceRow": 18,
+      "submittedName": "Candela Solar Power",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 468, MV grid-connected PV installer, Sfax",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_mega_sun_energy_55eecf03",
+      "sourceRow": 19,
+      "submittedName": "MEGA SUN ENERGY",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 470, MV grid-connected PV installer, Route Gremda, Sfax",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_maintenance_engineering_electrique_eye_v_7a8363c5",
+      "sourceRow": 20,
+      "submittedName": "Maintenance Engineering Electrique EYE View-M3e",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 476, MV grid-connected PV installer, Gabès",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_soci_t_chalghaf_electrical_technology_9f60a677",
+      "sourceRow": 21,
+      "submittedName": "Société Chalghaf Electrical Technology",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 505, MV grid-connected PV installer, Sfax",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_la_reine_solaire_4fcdb10a",
+      "sourceRow": 22,
+      "submittedName": "La Reine Solaire",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 510, MV grid-connected PV installer, Zermdine, Monastir",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_soci_t_houichi_energy_97a15761",
+      "sourceRow": 23,
+      "submittedName": "Société Houichi Energy",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 531, MV grid-connected PV installer, Tébourba, Manouba",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_scoci_t_sequoia_pv_system_ff397488",
+      "sourceRow": 24,
+      "submittedName": "Scociété SEQUOIA PV SYSTEM",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 541, MV grid-connected PV installer, Sakiet Ezzit, Sfax (spelling as printed)",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_soci_t_asma_cheikh_mhamed_cma_solar_df9c0cf1",
+      "sourceRow": 25,
+      "submittedName": "Société Asma Cheikh Mhamed - CMA SOLAR",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "TN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "ANME approval no. 569, MV grid-connected PV installer, Monastir",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.anme.tn/sites/default/files/2024-10/Liste%20des%20Soci%C3%A9t%C3%A9s%20Installatrices%20Eligibles%20%C3%A0%20la%20r%C3%A9alisation%20des%20Installations%20PV%20raccord%C3%A9es%20au%20r%C3%A9seau%20MT.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}

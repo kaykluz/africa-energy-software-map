@@ -1,0 +1,857 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "sweep-2026-08-epc-minigrid-030",
+  "status": {
+    "candidateOnly": true,
+    "publicationAuthorised": false,
+    "humanReviewRequired": true
+  },
+  "source": {
+    "kind": "agent_web_sweep",
+    "asOf": "2026-08-27",
+    "sha256": "62909804f5d391aeab2c9dcbd41c5ca253c12a86f0d7e9fccd6c9f62ef86d47e"
+  },
+  "inventorySummary": {
+    "rowsParsed": 1507,
+    "canonicalMatches": 0,
+    "catalogueMatches": 203,
+    "newCandidates": 1292,
+    "ambiguous": 0,
+    "needsSplit": 0
+  },
+  "candidates": [
+    {
+      "candidateId": "cand_org_afrika_solar_c2f425ec",
+      "sourceRow": 1,
+      "submittedName": "Afrika Solar",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ML",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Described as 'une startup franco-malienne du secteur solaire lancée en 2015' that manufactures its own small pico solar lamps from recycled materials; named among the main companies distributing pico lamps, plug-and-play and single-module SHS in Mali.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_equipment_supplier",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Mali/ECREEE%20ROGEP_Mali_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_mes_international_82c722c2",
+      "sourceRow": 2,
+      "submittedName": "MES International",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ML",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "'Total Awango, Access, MES International et Oolu Solar travaillent avec l'initiative d'électrification rurale d'AMADER' — i.e. named as a company working with Mali's rural electrification agency AMADER.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Mali/ECREEE%20ROGEP_Mali_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_horonya_solar_a014b2c0",
+      "sourceRow": 3,
+      "submittedName": "Horonya Solar",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ML",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "'Horonya Solar est le seul assembleur local de panneaux solaires dans le pays' (the only local solar panel assembler in Mali); also named (as 'Horonya') among growth-stage companies offering pico, SHS and single/multi-module systems, and acting as a wholesaler.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_equipment_supplier",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Mali/ECREEE%20ROGEP_Mali_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_atlas_electronique_2ca756e0",
+      "sourceRow": 4,
+      "submittedName": "Atlas Electronique",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ML",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among Mali's launch/growth-stage solar companies offering pico, SHS and single/multi-module systems, acting as a manufacturer representative and distributor (spelled 'Altas Electronique' in one sentence of the report).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_equipment_supplier"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Mali/ECREEE%20ROGEP_Mali_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_soninkara_solaire_188cbdf7",
+      "sourceRow": 5,
+      "submittedName": "Soninkara Solaire",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "ML",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among Mali's launch/growth-stage solar companies offering pico, SHS and single/multi-module systems, and among the wholesalers (there spelled 'Soninkara Solar Electro').",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Mali/ECREEE%20ROGEP_Mali_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sahelia_solar_725b0f40",
+      "sourceRow": 6,
+      "submittedName": "Sahelia Solar",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BF",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as a tier-2 regional company operating 'au Burkina Faso et au Mali', and listed among the firms that are 'verticalement intégrées et actives dans tous les domaines de la chaîne d'approvisionnement (Africa Energy Solaire, Burkina Trading International et Sahelia Solar)'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Burkina%20Faso/ECREEE%20ROGEP_Burkina%20Faso_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_africa_energy_solaire_4c78eca4",
+      "sourceRow": 7,
+      "submittedName": "Africa Energy Solaire",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BF",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as a manufacturer representative ('Africa Energy Solaire est le distributeur de Victron') and as one of three firms 'verticalement intégrées et actives dans tous les domaines de la chaîne d'approvisionnement'. Report notes some of these firms 'offrent également des services d'installation et d'F&E'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Burkina%20Faso/ECREEE%20ROGEP_Burkina%20Faso_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_burkina_trading_international_90a404dd",
+      "sourceRow": 8,
+      "submittedName": "Burkina Trading International",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BF",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as one of three Burkinabè solar firms 'verticalement intégrées et actives dans tous les domaines de la chaîne d'approvisionnement (Africa Energy Solaire, Burkina Trading International et Sahelia Solar)'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Burkina%20Faso/ECREEE%20ROGEP_Burkina%20Faso_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sirea_afrique_e2ad2959",
+      "sourceRow": 9,
+      "submittedName": "SIREA Afrique",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BF",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_minigrids",
+        "org_segment_energy_storage"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Singled out with PPI as an exception among wholesalers/retailers: 'à l'exception de SIREA Afrique et de PPI, deux entreprises qui vendent principalement de grands systèmes solaires' (two companies selling mainly large solar systems).",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_minigrids",
+        "org_segment_energy_storage"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Burkina%20Faso/ECREEE%20ROGEP_Burkina%20Faso_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ppi_6d5ff4ff",
+      "sourceRow": 10,
+      "submittedName": "PPI",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BF",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named with SIREA Afrique as one of two Burkinabè companies 'qui vendent principalement de grands systèmes solaires'. Source gives only the acronym 'PPI' — full legal name not stated.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_installer",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Burkina%20Faso/ECREEE%20ROGEP_Burkina%20Faso_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_yeleen_ba_fres_defb2338",
+      "sourceRow": 11,
+      "submittedName": "Yeleen Ba (FRES)",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BF",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the largest tier-3 companies present in the Burkina Faso off-grid market, written verbatim as 'Yeleen Ba (FRES)' — the Burkinabè operating company of the Dutch Foundation Rural Energy Services, sister utility to Yeelen Kura in Mali.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_developers",
+      "suggestedRoleIds": [
+        "org_role_developer_ipp",
+        "org_role_om_asset_manager",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_minigrids",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Burkina%20Faso/ECREEE%20ROGEP_Burkina%20Faso_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_benoo_e40a4b5c",
+      "sourceRow": 12,
+      "submittedName": "Benoo",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "BF",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the largest tier-3 companies present in the Burkina Faso off-grid solar market: 'BBOXX, Total, Benoo, Greenlight Planet, Yeleen Ba (FRES), Lagazel et Yandalux'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Burkina%20Faso/ECREEE%20ROGEP_Burkina%20Faso_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_consultations_plus_0d6ca4a5",
+      "sourceRow": 13,
+      "submittedName": "Consultations Plus",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use",
+        "org_segment_minigrids"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the tier-2/tier-3 companies working with institutional clients in Niger. The section states Niger has 'de nombreuses sociétés d'ingénierie, d'approvisionnement et de construction expérimentées' and that these firms 'agissent également en tant qu'intégrateurs de systèmes, participant aux appels d'offres pour la fourniture et l'installation de systèmes plus importants'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_system_integrator",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use",
+        "org_segment_minigrids"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Niger/ECREEE%20ROGEP_Niger_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_tessa_power_9fe0c3cd",
+      "sourceRow": 14,
+      "submittedName": "Tessa Power",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the large tier-2/tier-3 companies in Niger working with institutional clients and acting as a system integrator bidding for supply-and-install tenders for larger solar systems.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_system_integrator",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Niger/ECREEE%20ROGEP_Niger_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_la_sah_lienne_du_g_nie_lectrique_8525cdf8",
+      "sourceRow": 15,
+      "submittedName": "La Sahélienne du Génie Électrique",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the large tier-2/tier-3 companies in Niger working with institutional clients and acting as a system integrator bidding for supply-and-install tenders for larger solar systems.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_system_integrator",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Niger/ECREEE%20ROGEP_Niger_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_benafsol_b5afd6bf",
+      "sourceRow": 16,
+      "submittedName": "Benafsol",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named among the large tier-2/tier-3 companies in Niger working with institutional clients and acting as a system integrator bidding for supply-and-install tenders for larger solar systems.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_epc",
+        "org_role_system_integrator",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_commercial_industrial",
+        "org_segment_productive_use"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Niger/ECREEE%20ROGEP_Niger_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_kanf_electronics_04d5fac8",
+      "sourceRow": 17,
+      "submittedName": "Kanf Electronics",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "'Kanf Electronics est également un fabricant et un grossiste qui, comme la plupart des grands acteurs du solaire au Niger, n'offre pas de lanternes Pico mais seulement des SHS de plus de 220W'; has begun offering PAYG consumer credit.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_equipment_supplier",
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Niger/ECREEE%20ROGEP_Niger_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_ets_lumi_re_du_sahel_fea66e50",
+      "sourceRow": 18,
+      "submittedName": "Ets Lumière du Sahel",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "NE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "'Ets Lumière du Sahel est une entreprise locale, à la fois grossiste et détaillant, qui vend une large gamme de systèmes solaires domestiques et de systèmes plug and play.' Report notes only some Niger firms do their own installation; others subcontract it.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Niger/ECREEE%20ROGEP_Niger_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_taaka_solarenergy_65ee6335",
+      "sourceRow": 19,
+      "submittedName": "TAAKA-SolarEnergy",
+      "submittedWebsite": "https://www.taaka-solar.com",
+      "submittedHeadquarters": "NE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Company site, Niamey (Station Sonef Cité Progrès), describing itself as 'Votre partenaire solaire au Sahel — Installation • Maintenance • Dépannage • Études solaires'. Services: autonomous and hybrid PV systems, domestic and professional solar kits, solar power stations for isolated sites, solar pumping; installation by qualified local technicians.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_om_asset_manager"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://www.taaka-solar.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_solarex_energy_sarlu_35edf123",
+      "sourceRow": 20,
+      "submittedName": "Solarex-Energy SARLU",
+      "submittedWebsite": "https://solarex-energy.com",
+      "submittedHeadquarters": "NE",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial",
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Company site, Niamey (Quartier Bobiel): 'Solarex-energy est une entreprise spécialisée dans les nouvelles technologies de l'énergie principalement l'énergie solaire.' Off-grid PV installations, grid-connected hybrid systems, solar pumping (Lorentz, Grundfos, Solatech), mini AEP water systems, public solar lighting; serves businesses, administrations, NGOs and international organisations.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_system_integrator",
+        "org_role_epc"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_productive_use",
+        "org_segment_commercial_industrial",
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://solarex-energy.com/"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_woco_solar_44a84a46",
+      "sourceRow": 21,
+      "submittedName": "Woco Solar",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "The only tier-3 solar company identified in Guinea and explicitly 'une société locale basée en Guinée'. Report states local solar firms organised through APER-Guinée provide 'une large gamme de produits et systèmes OGS de haute qualité ainsi que des services d'installation, d'F&E et d'après-vente'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_epcs",
+      "suggestedRoleIds": [
+        "org_role_installer",
+        "org_role_distributor",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_rkomp_2b5128a3",
+      "sourceRow": 22,
+      "submittedName": "RKomp",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "'Parmi les entreprises de niveau 1, RKomp est le seul fabricant local' in Guinea. Tableau 37 lists it (as 'Rkomp Solar') across all four system categories including 'Très grand fournisseur de systèmes'.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_equipment_supplier",
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_batco_engineering_973c4aee",
+      "sourceRow": 23,
+      "submittedName": "Batco Engineering",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named as one of Guinea's manufacturer representatives acting as local distributors of international brands; APER-Guinée member firms are described as providing installation, O&M and after-sales services.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer",
+        "org_role_system_integrator"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_bb_fils_534b926b",
+      "sourceRow": 24,
+      "submittedName": "BB & Fils",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in prose (spelled 'BB&Fils') as a manufacturer representative and local distributor of international brands in Guinea; Tableau 37 lists it (as 'BB & Fils') across all four system size categories including very large system supply.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    },
+    {
+      "candidateId": "cand_org_sines_3e0b0f1d",
+      "sourceRow": 25,
+      "submittedName": "Sines",
+      "submittedWebsite": "",
+      "submittedHeadquarters": "GN",
+      "submittedStakeholderType": "EPC/Installer",
+      "submittedSegments": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "submittedOwnershipType": "",
+      "submittedScaleIndicator": "",
+      "submittedNotes": "Named in prose (as 'SINES') as a manufacturer representative and local distributor in Guinea; Tableau 37 lists it (as 'Sines') across all four system size categories.",
+      "recordShape": "organisation",
+      "suggestedActorGroupId": "org_group_oems",
+      "suggestedRoleIds": [
+        "org_role_distributor",
+        "org_role_installer"
+      ],
+      "suggestedSegmentIds": [
+        "org_segment_shs_paygo",
+        "org_segment_commercial_industrial"
+      ],
+      "sourceLeads": [
+        "https://old.greenmaxcap.com/download/ROGEP%20Reports/Guinea/ECREEE%20ROGEP_Guinea_Final%20Report_FR.pdf"
+      ],
+      "reconciliation": {
+        "status": "new_candidate",
+        "matchedOn": "none"
+      },
+      "reviewState": "needs_source_review"
+    }
+  ]
+}
