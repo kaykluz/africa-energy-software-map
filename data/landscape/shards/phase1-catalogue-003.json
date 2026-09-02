@@ -215,15 +215,17 @@
       "stageIds": ["stage_finance_procure"],
       "categoryIds": ["cat_paygo_minigrid_operations"],
       "sectorIds": ["sector_distributed_energy_access"],
-      "geographies": ["France", "Africa"],
+      "geographies": ["Kenya", "France", "Africa"],
       "statusAsSubmitted": "active",
       "summaryAsSubmitted": "Receivables financing and SPV structuring platform",
-      "sourceDomains": [],
+      "sourceDomains": ["bridgin.io", "nextbillion.net"],
       "segmentsAsSubmitted": ["SHS", "productive use"],
       "deliveryModelsAsSubmitted": ["cloud SaaS"],
       "commercialModelAsSubmitted": "transaction fee",
       "africaUseAsSubmitted": "confirmed_deployment",
-      "asOfDate": "2026-08-02"
+      "asOfDate": "2026-09-02",
+      "parent": "Masunga",
+      "sourceUrls": ["https://www.bridgin.io/", "https://nextbillion.net/news/sunculture-and-bridgin-to-launch-15-million-usd-structure-to-finance-climate-smart-agriculture-in-kenya/"]
     },
     {
       "id": "land_phase1_eab1e069",
