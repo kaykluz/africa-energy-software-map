@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "community-2026-09-emrc",
+  "sourceLabel": "Public submissions reconciled against the provider's own site (energymrc.ng)",
+  "sourceAsOf": "2026-09-02",
+  "items": [
+    {
+      "id": "land_org_energy_market_and_rates_consultants",
+      "name": "Energy Market and Rates Consultants (EMRC)",
+      "kind": "organisation",
+      "stageIds": [
+        "stage_plan_design",
+        "stage_transmit_distribute",
+        "stage_trade_report"
+      ],
+      "categoryIds": [
+        "cat_distribution_utility_operations",
+        "cat_data_interoperability_security"
+      ],
+      "sectorIds": [
+        "sector_power_utilities",
+        "sector_markets_finance_carbon"
+      ],
+      "geographies": [
+        "Nigeria"
+      ],
+      "statusAsSubmitted": "active",
+      "summaryAsSubmitted": "Independent energy consultancy (\"energy market analysis, regulatory frameworks, techno-economic assessments, and financing strategies\") that also builds software for Nigeria's electricity supply industry: the Elec-T electricity data tracker and The Raven utility operations platform. Part of the MRC Group.",
+      "sourceDomains": [
+        "energymrc.ng"
+      ],
+      "websiteAsSubmitted": "https://www.energymrc.ng",
+      "sourceUrls": [
+        "https://www.energymrc.ng/about",
+        "https://www.energymrc.ng/products"
+      ],
+      "asOfDate": "2026-09-02",
+      "canonicalHref": "/organisations/energy-market-and-rates-consultants-emrc"
+    },
+    {
+      "id": "land_product_elec_t_electricity_tracker",
+      "name": "Elec-T (Electricity Tracker)",
+      "kind": "product",
+      "parent": "Energy Market and Rates Consultants (EMRC)",
+      "stageIds": [
+        "stage_plan_design",
+        "stage_trade_report"
+      ],
+      "categoryIds": [
+        "cat_data_interoperability_security"
+      ],
+      "sectorIds": [
+        "sector_power_utilities",
+        "sector_markets_finance_carbon"
+      ],
+      "geographies": [
+        "Nigeria"
+      ],
+      "statusAsSubmitted": "active",
+      "summaryAsSubmitted": "Public data platform giving \"comprehensive insights into Nigeria's electricity infrastructure, from generation to end-user consumption\": on-grid metrics, hourly usage and off-grid (mini-grid) data, built for regulators, utilities and investors. Live at elec-t.energymrc.ng; its mini-grid dataset was used as a source lead in this atlas's own EPC sweep.",
+      "segmentsAsSubmitted": [
+        "market data",
+        "regulatory reporting",
+        "off-grid"
+      ],
+      "deliveryModelsAsSubmitted": [
+        "cloud SaaS"
+      ],
+      "africaUseAsSubmitted": "confirmed_deployment",
+      "sourceDomains": [
+        "energymrc.ng"
+      ],
+      "websiteAsSubmitted": "https://elec-t.energymrc.ng",
+      "sourceUrls": [
+        "https://www.energymrc.ng/products/elec-t",
+        "https://elec-t.energymrc.ng"
+      ],
+      "asOfDate": "2026-09-02"
+    },
+    {
+      "id": "land_product_the_raven",
+      "name": "The Raven",
+      "aliasesAsSubmitted": [
+        "The Ravens"
+      ],
+      "kind": "product",
+      "parent": "Energy Market and Rates Consultants (EMRC)",
+      "stageIds": [
+        "stage_transmit_distribute",
+        "stage_meter_serve"
+      ],
+      "categoryIds": [
+        "cat_distribution_utility_operations",
+        "cat_retail_metering_billing_payments"
+      ],
+      "sectorIds": [
+        "sector_power_utilities"
+      ],
+      "geographies": [
+        "Nigeria"
+      ],
+      "statusAsSubmitted": "active",
+      "summaryAsSubmitted": "Operational intelligence platform for Nigerian distribution companies with commercial, financial, staff, GIS and overview workspaces; EMRC describes it as an advanced distribution management system (ADMS). Named \"The Ravens\" on the product page and \"The Raven\" in EMRC's own tagline and subdomain. No customer DisCo is named publicly.",
+      "segmentsAsSubmitted": [
+        "distribution utilities",
+        "billing and collections",
+        "GIS"
+      ],
+      "deliveryModelsAsSubmitted": [
+        "cloud SaaS"
+      ],
+      "africaUseAsSubmitted": "marketed_to_africa",
+      "sourceDomains": [
+        "energymrc.ng"
+      ],
+      "websiteAsSubmitted": "https://the-ravens.energymrc.ng",
+      "sourceUrls": [
+        "https://www.energymrc.ng/products/the-ravens",
+        "https://the-ravens.energymrc.ng",
+        "https://the-raven.energymrc.ng"
+      ],
+      "asOfDate": "2026-09-02"
+    }
+  ],
+  "deploymentLeads": [],
+  "relationships": []
+}
