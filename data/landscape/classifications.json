@@ -2701,6 +2701,21 @@
       "itemId": "land_tool_vida",
       "energyRelationship": "public_research",
       "functionIds": ["func_electrification_geospatial"]
+    },
+    {
+      "itemId": "land_org_energy_market_and_rates_consultants",
+      "energyRelationship": "operator_owned",
+      "functionIds": []
+    },
+    {
+      "itemId": "land_product_elec_t_electricity_tracker",
+      "energyRelationship": "energy_native",
+      "functionIds": []
+    },
+    {
+      "itemId": "land_product_the_raven",
+      "energyRelationship": "energy_native",
+      "functionIds": ["func_scada_ems_adms", "func_utility_cis_billing"]
     }
   ]
 }
