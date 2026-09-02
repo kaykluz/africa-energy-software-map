@@ -364,14 +364,14 @@ test("core public routes expose semantic keyboard and reflow contracts", async (
   assert.match(mapHtml, /Software/);
   assert.match(mapHtml, /Organisations/);
   assert.match(mapHtml, /aria-live="polite"/i);
-  assert.match(mapHtml, /<strong>165<\/strong><span>located records<\/span>/);
+  assert.match(mapHtml, /<strong>166<\/strong><span>located records<\/span>/);
   assert.match(mapHtml, /<strong>19<\/strong><span>reviewed deployments<\/span>/);
-  assert.match(mapTextHtml, /107 catalogue locations/);
+  assert.match(mapTextHtml, /108 catalogue locations/);
   assert.match(mapHtml, /<strong>366<\/strong><span>Africa-wide<\/span>/);
-  assert.match(mapTextHtml, /165 results/);
+  assert.match(mapTextHtml, /166 results/);
   assert.match(mapHtml, /aria-label="Software location layer"/i);
   assert.match(mapHtml, /All recorded locations/);
-  assert.match(mapHtml, /165 located software records/);
+  assert.match(mapHtml, /166 located software records/);
   assert.match(mapTextHtml, /366 Africa-wide/);
   assert.match(mapTextHtml, /43 publisher HQ/);
   assert.match(mapHtml, /href="\/contribute\/deployment">Add a location<\/a>/);
